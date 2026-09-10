@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ТК «Ланской» — прототип главной</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= ПАНЕЛЬ ПРОТОТИПА ================= -->
+<div class="proto-bar">
+  <span class="proto-bar__title">Прототип главной · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<!-- ================= ШАПКА ================= -->
+<header class="header">
+
+  <div class="utility">
+    <div class="wrap utility__in">
+      <ul class="utility__info">
+        <li>10:00&nbsp;—&nbsp;20:00 ежедневно</li>
+        <li>Санкт-Петербург, ул. Студенческая, 10</li>
+        <li><a href="#">+7 (812) 363-00-07</a></li>
+        <li><a href="#">Как добраться</a></li>
+      </ul>
+      <ul class="utility__actions">
+        <li><a href="#" class="btn btn--ghost btn--sm">Аренда</a></li>
+        <li><a href="#" class="utility__login">Войти в кабинет</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="wrap nav__in">
+
+      <a href="#" class="logo">
+        <img src="logo.svg" alt="ТК «Ланской» — торговый центр интерьерных решений" class="logo__img" width="205" height="64">
+      </a>
+
+      <nav class="menu" id="menu">
+        <ul class="menu__list">
+          <li class="menu__item menu__item--has">
+            <button type="button" class="menu__link" data-mega="shops">Магазины<span class="caret"></span></button>
+          </li>
+          <li class="menu__item"><a class="menu__link" href="#">Акции</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Афиша</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Журнал</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Дизайнерам</a></li>
+          <li class="menu__item menu__item--has">
+            <button type="button" class="menu__link" data-mega="about">О комплексе<span class="caret"></span></button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="hsearch">
+        <div class="field field--hs">
+          <input type="search" placeholder="Магазины, бренды, статьи" autocomplete="off" aria-label="Поиск по сайту">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+          <div class="suggest">
+            <p class="suggest__group">Магазины</p>
+            <a href="#" class="suggest__item"><span>VLADART STUDIO</span><span class="suggest__meta">секция А10 · 1 этаж</span></a>
+            <a href="#" class="suggest__item"><span>ПРЕМЬЕР ДЕКОР</span><span class="suggest__meta">секция А12 · 1 этаж</span></a>
+            <p class="suggest__group">Бренды</p>
+            <a href="#" class="suggest__item"><span>Kerama Marazzi</span><span class="suggest__meta">4 магазина</span></a>
+            <p class="suggest__group">Статьи</p>
+            <a href="#" class="suggest__item"><span>Комбинированный пол: плитка и ламинат</span><span class="suggest__meta">23.06.2026</span></a>
+            <p class="suggest__group">События</p>
+            <a href="#" class="suggest__item"><span>Дни дизайна и интерьера</span><span class="suggest__meta">24—26 мая</span></a>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="ic-search" id="searchToggle" aria-label="Поиск по сайту"></button>
+      <button type="button" class="burger" id="burger" aria-label="Меню"><span></span></button>
+    </div>
+
+    <!-- мегаменю: Магазины -->
+    <div class="mega" id="mega-shops" hidden>
+      <div class="wrap mega__in">
+        <div class="mega__col mega__col--wide">
+          <p class="mega__title">Категории</p>
+          <ul class="mega__cats">
+            <li><a href="#">Декоративно-отделочные материалы</a></li>
+            <li><a href="#">Плитка</a></li>
+            <li><a href="#">Обои</a></li>
+            <li><a href="#">Шторы, карнизы, ткани</a></li>
+            <li><a href="#">Лакокрасочные и клеящие материалы</a></li>
+            <li><a href="#">Напольные покрытия</a></li>
+            <li><a href="#">Потолки</a></li>
+            <li><a href="#">Двери, перегородки, фурнитура</a></li>
+            <li><a href="#">Остекление и оконная фурнитура</a></li>
+            <li><a href="#">Стекло и зеркала</a></li>
+            <li><a href="#">Сантехника</a></li>
+            <li><a href="#">Свет</a></li>
+            <li><a href="#">Лестницы</a></li>
+            <li><a href="#">Отопление и кондиционирование</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Навигация</p>
+          <ul class="mega__links">
+            <li><a href="#">Все магазины</a></li>
+            <li><a href="#">По алфавиту</a></li>
+            <li><a href="#">Бренды</a></li>
+            <li><a href="#">Схема этажей</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Знаете номер помещения?</p>
+          <div class="field field--sm">
+            <input type="search" placeholder="Например, А10">
+            <button type="button" class="field__go" aria-label="Найти"></button>
+          </div>
+          <p class="mega__hint">Секции 1—3 этажей: А, B, C</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- мегаменю: О комплексе -->
+    <div class="mega" id="mega-about" hidden>
+      <div class="wrap mega__in">
+        <div class="mega__col">
+          <p class="mega__title">О комплексе</p>
+          <ul class="mega__links">
+            <li><a href="#">О комплексе</a></li>
+            <li><a href="#">Схема этажей</a></li>
+            <li><a href="#">Парковка и как добраться</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Медиа</p>
+          <ul class="mega__links">
+            <li><a href="#">Галерея</a></li>
+            <li><a href="#">Видео</a></li>
+            <li><a href="#">Архив событий</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Контакты</p>
+          <ul class="mega__links">
+            <li><a href="#">Контакты и реквизиты</a></li>
+            <li><a href="#">Обратная связь</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- оверлей поиска -->
+    <div class="searchbar" id="searchbar" hidden>
+      <div class="wrap">
+        <div class="field field--lg">
+          <input type="search" placeholder="Магазины, бренды, статьи, события, номер помещения">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+        </div>
+        <p class="searchbar__hint">Единый поиск по сайту · подсказки при вводе</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= 1. HERO ================= -->
+<section class="hero">
+  <div class="wrap hero__in">
+    <div class="hero__text">
+      <h1 class="hero__h1">Пространство<br>вдохновения</h1>
+      <p class="hero__sub">Мебель · свет · декор · отделочные материалы<br>и всё для создания интерьера</p>
+      <a href="#" class="btn btn--primary">Каталог магазинов</a>
+    </div>
+    <div class="hero__media ph ph--hero"><span class="ph__label">Фотография комплекса</span></div>
+  </div>
+  <aside class="note"><b>1. Первый экран.</b> Без карусели: она даёт худший LCP, а п. 12.1 ТЗ требует &lt;&nbsp;2,5&nbsp;с. Одна первичная кнопка. Нужна одна сильная фотография — от неё зависит всё впечатление.</aside>
+</section>
+
+<!-- ================= 2. ФАКТЫ ================= -->
+<section class="facts">
+  <div class="wrap facts__in">
+    <div class="fact"><span class="fact__num">150+</span><span class="fact__cap">магазинов<br>и шоурумов</span></div>
+    <div class="fact"><span class="fact__num">3</span><span class="fact__cap">этажа</span></div>
+    <div class="fact"><span class="fact__num ph-mark">00 000</span><span class="fact__cap">м² площади</span></div>
+    <div class="fact"><span class="fact__num ph-mark">000</span><span class="fact__cap">мест на парковке<br>платная / бесплатная?</span></div>
+    <div class="fact"><span class="fact__num ph-mark">0</span><span class="fact__cap">минут<br>от метро</span></div>
+  </div>
+  <aside class="note"><b>2. Полоса фактов.</b> Закрывает «что это за место» за две секунды. Цифры из брендбука брать нельзя — там два макета с разными данными. Нужны сверенные: площадь, парковка (ТЗ говорит платная, брендбук — бесплатная), метро.</aside>
+</section>
+
+<!-- ================= 3. НАПРАВЛЕНИЯ ================= -->
+<section class="sect">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Направления</h2>
+      <a href="#" class="more">Все категории</a>
+    </div>
+    <div class="grid grid--cats">
+      <a href="#" class="cat ph"><span class="cat__name">Декоративно-отделочные материалы</span><span class="cat__count">28 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Плитка</span><span class="cat__count">17 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Обои</span><span class="cat__count">7 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Напольные покрытия</span><span class="cat__count">28 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Шторы, карнизы, ткани</span><span class="cat__count">11 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Лакокрасочные и клеящие</span><span class="cat__count">10 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Двери и перегородки</span><span class="cat__count ph-mark">00 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Сантехника</span><span class="cat__count ph-mark">00 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Свет</span><span class="cat__count ph-mark">00 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Потолки</span><span class="cat__count ph-mark">00 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Стекло и зеркала</span><span class="cat__count ph-mark">00 магазинов</span></a>
+      <a href="#" class="cat ph"><span class="cat__name">Остекление</span><span class="cat__count ph-mark">00 магазинов</span></a>
+    </div>
+  </div>
+  <aside class="note"><b>3. Направления.</b> 12 плиток из 14+, остальные — по ссылке: полный список съедает пол-экрана. Счётчики магазинов забраны со старого сайта, они работают. Нужно решить, какие 12 приоритетны, и найти фото под каждую. Плитка без фото — фон-паттерн вместо изображения.</aside>
+</section>
+
+<!-- ================= 4. НАЙТИ МАГАЗИН ================= -->
+<section class="sect sect--alt">
+  <div class="wrap find">
+    <div class="find__left">
+      <h2 class="sect__h2">Найти магазин</h2>
+      <p class="find__lead">По названию, категории или номеру помещения</p>
+      <div class="field field--lg">
+        <input type="search" placeholder="Например, «плитка» или «А10»" id="findInput" autocomplete="off">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+        <div class="suggest" id="suggest">
+          <p class="suggest__group">Магазины</p>
+          <a href="#" class="suggest__item"><span>VLADART STUDIO</span><span class="suggest__meta">секция А10 · 1 этаж</span></a>
+          <a href="#" class="suggest__item"><span>ПРЕМЬЕР ДЕКОР</span><span class="suggest__meta">секция А12 · 1 этаж</span></a>
+          <p class="suggest__group">Категории</p>
+          <a href="#" class="suggest__item"><span>Плитка</span><span class="suggest__meta">17 магазинов</span></a>
+        </div>
+      </div>
+      <ul class="find__quick">
+        <li><a href="#">Все магазины</a></li>
+        <li><a href="#">По алфавиту</a></li>
+        <li><a href="#">Бренды</a></li>
+      </ul>
+    </div>
+
+    <div class="find__right">
+      <div class="floors">
+        <div class="floors__tabs" role="tablist">
+          <button type="button" class="floors__tab is-active" data-floor="1">1 этаж</button>
+          <button type="button" class="floors__tab" data-floor="2">2 этаж</button>
+          <button type="button" class="floors__tab" data-floor="3">3 этаж</button>
+        </div>
+        <div class="floors__plan" id="plan"></div>
+        <a href="#" class="btn btn--ghost btn--full">Открыть схему этажей</a>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>4. Найти магазин.</b> Блок вне списка из п. 6.1 — предлагаю добавить. Главная задача посетителя: «где купить N» и «где это находится». В ТЗ схема этажей — отдельный раздел, но на главной ей место: это то, зачем возвращаются. План здесь схематичный, реальные планировки есть в брендбуке.</aside>
+</section>
+
+<!-- ================= 5. АФИША ================= -->
+<section class="sect">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Ближайшие события</h2>
+      <a href="#" class="more">Вся афиша</a>
+    </div>
+    <div class="grid grid--3 scroller">
+      <article class="card">
+        <div class="card__media ph"><span class="ph__label">Обложка</span><span class="badge">24—26 мая</span></div>
+        <h3 class="card__title">Дни дизайна и интерьера</h3>
+        <p class="card__meta">3 этаж, зона лекций · 12:00</p>
+        <a href="#" class="link">Регистрация</a>
+      </article>
+      <article class="card">
+        <div class="card__media ph"><span class="ph__label">Обложка</span><span class="badge">25 мая</span></div>
+        <h3 class="card__title">Лекция дизайнера: тренды в интерьере</h3>
+        <p class="card__meta">3 этаж, зона лекций · 19:00</p>
+        <a href="#" class="link">Регистрация</a>
+      </article>
+      <article class="card">
+        <div class="card__media ph"><span class="ph__label">Обложка</span><span class="badge">26 мая</span></div>
+        <h3 class="card__title">Мастер-класс по декору</h3>
+        <p class="card__meta">2 этаж, атриум · 14:00</p>
+        <span class="link link--off">Мест нет</span>
+      </article>
+    </div>
+  </div>
+  <aside class="note"><b>5. Афиша.</b> Даты обязательно в списке — на текущем сайте их нет, и афиша от этого нечитаемая. Третья карточка показывает состояние «мест нет»: по п. 6.8 регистрация закрывается автоматически при заполнении лимита. Обязательное состояние блока — <b>событий нет</b>: тогда показываем ссылку на архив с фотоотчётами или блок выключается из CMS.</aside>
+</section>
+
+<!-- ================= 6. АКЦИИ ================= -->
+<section class="sect sect--alt">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Акции магазинов</h2>
+      <a href="#" class="more">Все акции</a>
+    </div>
+    <div class="grid grid--4 scroller">
+      <article class="card card--sm">
+        <div class="card__media ph"><span class="ph__label">Фото</span></div>
+        <h3 class="card__title">Скидка 30% на дверную фурнитуру</h3>
+        <p class="card__meta">Салон «Корал» · секция B14</p>
+        <p class="card__term">до 30 июня</p>
+      </article>
+      <article class="card card--sm">
+        <div class="card__media ph"><span class="ph__label">Фото</span></div>
+        <h3 class="card__title">Весенние цены на керамогранит</h3>
+        <p class="card__meta">Магазин · секция А22</p>
+        <p class="card__term">до 15 июня</p>
+      </article>
+      <article class="card card--sm">
+        <div class="card__media ph"><span class="ph__label">Фото</span></div>
+        <h3 class="card__title">Мойки воздуха и тёплые полы —10%</h3>
+        <p class="card__meta">Магазин · секция C3</p>
+        <p class="card__term">до 1 июля</p>
+      </article>
+      <article class="card card--sm">
+        <div class="card__media ph"><span class="ph__label">Фото</span></div>
+        <h3 class="card__title">Распродажа коллекций текстиля</h3>
+        <p class="card__meta">Магазин · секция B7</p>
+        <p class="card__term">до 20 июня</p>
+      </article>
+    </div>
+  </div>
+  <aside class="note"><b>6. Акции.</b> Срок действия виден на карточке — по п. 6.7 акция снимается с публикации автоматически по дате. Сетка должна корректно жить при 1—2 акциях, а не только при четырёх. Порядок блоков 5 и 6 обсуждаемый: события поставил выше, потому что у них есть срок и регистрация.</aside>
+</section>
+
+<!-- ================= 7. АРЕНДА ================= -->
+<section class="rent">
+  <div class="wrap rent__in">
+    <div class="rent__text">
+      <p class="rent__kicker">Бизнесу</p>
+      <h2 class="rent__h2">Аренда площадей<br>в ТК «Ланской»</h2>
+      <p class="rent__lead">Аудитория в ремонте и на этапе дизайна проекта — покупатель приходит с готовым намерением.</p>
+      <div class="rent__actions">
+        <a href="#" class="btn btn--primary btn--invert">Оставить заявку</a>
+        <a href="#" class="btn btn--ghost btn--invert">Условия аренды</a>
+      </div>
+    </div>
+    <ul class="rent__args">
+      <li><span class="rent__num ph-mark">000 000</span><span class="rent__cap">посетителей в месяц</span></li>
+      <li><span class="rent__num ph-mark">00 000</span><span class="rent__cap">м² торговых площадей</span></li>
+      <li><span class="rent__num ph-mark">00</span><span class="rent__cap">лет комплексу</span></li>
+    </ul>
+  </div>
+  <aside class="note"><b>7. Аренда.</b> Единственный крупный блок под бизнес — так путь арендатора не спорит с покупательским (п. 9.3). Остальные точки входа для бизнеса живут в верхней утилитарной строке. Цифры нужны от отдела аренды.</aside>
+</section>
+
+<!-- ================= 8. ДИЗАЙНЕРАМ ================= -->
+<section class="sect">
+  <div class="wrap pro">
+    <div class="pro__media ph"><span class="ph__label">Фото</span></div>
+    <div class="pro__text">
+      <p class="kicker">Дизайнерам и архитекторам</p>
+      <h2 class="sect__h2">Пространство для профессионалов</h2>
+      <ul class="pro__list">
+        <li>Каталог дизайнеров комплекса</li>
+        <li>Профессиональные события и лекции</li>
+        <li>Подбор материалов и работа с поставщиками</li>
+        <li>Специальные условия сотрудничества</li>
+      </ul>
+      <a href="#" class="btn btn--ghost">В раздел «Дизайнерам»</a>
+    </div>
+  </div>
+  <aside class="note"><b>8. Дизайнерам.</b> Блок вне списка п. 6.1 — предлагаю добавить. Дизайнеры и архитекторы выделены отдельным сегментом в п. 3.1, раздел под них в ТЗ есть, а входа с главной нет. Сам каталог дизайнеров живёт внутри раздела, на главную не выносим.</aside>
+</section>
+
+<!-- ================= 9. ЖУРНАЛ ================= -->
+<section class="sect sect--alt">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Журнал</h2>
+      <a href="#" class="more">Все статьи</a>
+    </div>
+    <div class="journal">
+      <article class="post post--lead">
+        <div class="post__media ph"><span class="ph__label">Обложка</span></div>
+        <p class="post__rubric">Дизайн интерьера</p>
+        <h3 class="post__title">Комбинированный пол: плитка и ламинат</h3>
+        <p class="post__meta">23.06.2026</p>
+      </article>
+      <div class="journal__list">
+        <article class="post post--row">
+          <div class="post__media ph"><span class="ph__label">Фото</span></div>
+          <div><p class="post__rubric">Тренды</p><h3 class="post__title">Модные обои для кухни-гостиной</h3><p class="post__meta">22.06.2026</p></div>
+        </article>
+        <article class="post post--row">
+          <div class="post__media ph"><span class="ph__label">Фото</span></div>
+          <div><p class="post__rubric">Двери</p><h3 class="post__title">Как выбрать межкомнатные двери</h3><p class="post__meta">18.06.2026</p></div>
+        </article>
+        <article class="post post--row">
+          <div class="post__media ph"><span class="ph__label">Фото</span></div>
+          <div><p class="post__rubric">Дизайн интерьера</p><h3 class="post__title">Интерьер в стиле тихая роскошь</h3><p class="post__meta">11.06.2026</p></div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>9. Журнал.</b> Важен для органики (раздел 11 ТЗ), контент живой — на текущем сайте статьи обновляются. Рубрики уже двухуровневые, это учтено. Заголовки взяты с текущего сайта как реальные образцы длины.</aside>
+</section>
+
+<!-- ================= 10. БРЕНДЫ ================= -->
+<section class="sect">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Бренды в комплексе</h2>
+      <a href="#" class="more">Все бренды</a>
+    </div>
+    <div class="brands scroller">
+      <span class="brand ph"></span><span class="brand ph"></span><span class="brand ph"></span>
+      <span class="brand ph"></span><span class="brand ph"></span><span class="brand ph"></span>
+      <span class="brand ph"></span><span class="brand ph"></span>
+    </div>
+  </div>
+  <aside class="note"><b>10. Бренды.</b> П. 6.1 разрешает «подборку магазинов <i>или</i> брендов» — беру бренды, их сотни и это сильный аргумент. Контейнеры строго одной пропорции с общим фоном: на текущем сайте логотипы разного качества и на цветных плашках, в премиальной сетке это выглядит грязно. Нужны логотипы в приличном качестве, желательно вектор.</aside>
+</section>
+
+<!-- ================= 11. ПОДПИСКА ================= -->
+<section class="subs">
+  <div class="wrap subs__in">
+    <div class="subs__text">
+      <h2 class="subs__h2">Подписка на события и акции</h2>
+      <p class="subs__lead">Письмо раз в две недели. Отписаться можно в один клик.</p>
+    </div>
+    <form class="subs__form" onsubmit="return false">
+      <div class="field field--lg">
+        <input type="email" placeholder="Ваш e-mail">
+        <button type="submit" class="field__go" aria-label="Подписаться"></button>
+      </div>
+      <label class="check"><input type="checkbox"><span>Согласен на обработку персональных данных и принимаю <a href="#">политику</a></span></label>
+    </form>
+  </div>
+  <aside class="note"><b>11. Подписка.</b> Double opt-in по п. 6.15, значит нужны состояния: отправлено → «проверьте почту», ошибка, «вы уже подписаны». Сегментацию (акции / события) на главную не выношу, чтобы не усложнять форму — сегмент выбирается в письме подтверждения.</aside>
+</section>
+
+</main>
+
+<!-- ================= ФУТЕР ================= -->
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div class="footer__brand">
+      <img src="logo.svg" alt="ТК «Ланской»" class="logo__img logo__img--inv" width="205" height="64">
+      <p class="footer__addr">Санкт-Петербург,<br>ул. Студенческая, 10</p>
+      <p class="footer__addr"><a href="#">+7 (812) 363-00-07</a><br>10:00 — 20:00 ежедневно</p>
+      <ul class="socials"><li><a href="#">VK</a></li><li><a href="#">YouTube</a></li></ul>
+    </div>
+    <div class="footer__cols">
+      <div><p class="footer__title">Покупателям</p><ul><li><a href="#">Магазины</a></li><li><a href="#">Категории</a></li><li><a href="#">Бренды</a></li><li><a href="#">Акции</a></li><li><a href="#">Схема этажей</a></li></ul></div>
+      <div><p class="footer__title">События</p><ul><li><a href="#">Афиша</a></li><li><a href="#">Архив событий</a></li><li><a href="#">Галерея</a></li><li><a href="#">Видео</a></li></ul></div>
+      <div><p class="footer__title">Профессионалам</p><ul><li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li><li><a href="#">Журнал</a></li></ul></div>
+      <div><p class="footer__title">Комплекс</p><ul><li><a href="#">О комплексе</a></li><li><a href="#">Аренда</a></li><li><a href="#">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>
+    </div>
+  </div>
+  <div class="wrap footer__legal">
+    <p>© 2026 ТК «Ланской»</p>
+    <ul><li><a href="#">Политика обработки ПД</a></li><li><a href="#">Пользовательское соглашение</a></li><li><a href="#">Политика cookie</a></li></ul>
+  </div>
+  <aside class="note"><b>12. Футер.</b> В ТЗ не описан вообще. Собран так, чтобы вместить все 16 разделов карты сайта, включая те, что не попали в верхнее меню: галерею, видео, каталог дизайнеров, архив событий.</aside>
+</footer>
+
+<!-- ================= COOKIE ================= -->
+<div class="cookie" id="cookie">
+  <p class="cookie__text">Мы используем cookie. Вы можете выбрать, какие категории разрешить.</p>
+  <div class="cookie__acts">
+    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Настроить</button>
+    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Только необходимые</button>
+    <button type="button" class="btn btn--sm btn--primary" data-cookie>Принять все</button>
+  </div>
+  <aside class="note note--cookie"><b>13. Cookie.</b> П. 12.3 требует управления категориями, а не одной кнопки «Принять».</aside>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
