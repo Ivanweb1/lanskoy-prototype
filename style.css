@@ -226,24 +226,46 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .sect__h2{font-size:clamp(28px,3vw,40px);line-height:1.15}
 
 .grid{display:grid;gap:24px}
-.grid--cats{grid-template-columns:repeat(4,1fr)}
 .grid--3{grid-template-columns:repeat(3,1fr)}
 .grid--4{grid-template-columns:repeat(4,1fr)}
 
+/* «направления» — благородная сетка неравномерных плиток (п. 9.1), а не ровный ряд.
+   Две самые крупные по числу магазинов категории выделены размером — так сетка
+   читается интереснее и одновременно расставляет приоритет по факту, а не декоративно.
+   grid-auto-rows задаёт единицу; порядок карточек в HTML определяет их место —
+   ниже 1200px бенто отключается, см. медиазапросы. */
+.grid--cats{grid-template-columns:repeat(4,1fr);grid-auto-rows:160px}
+.cat--big{grid-column:span 2;grid-row:span 2}
+.cat--tall{grid-row:span 2}
+
 .cat{
   position:relative;display:flex;flex-direction:column;justify-content:flex-end;
-  aspect-ratio:4/3;padding:20px;border:1px solid var(--line);
+  padding:20px;border:1px solid var(--line);
 }
 .cat:hover{border-color:var(--ink)}
+.cat--big,.cat--tall{border-color:var(--ink-2)}
 .cat__name{font-family:var(--serif);font-size:19px;line-height:1.25;background:var(--paper);padding:6px 10px;align-self:flex-start}
+.cat--big .cat__name{font-size:28px}
 .cat__count{font-size:12px;color:var(--mute);background:var(--paper);padding:4px 10px;align-self:flex-start;margin-top:6px}
 
 /* ---------- найти магазин ---------- */
-.find{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+/* без align-items:start — колонки растягиваются вровень с более высокой
+   (схемой этажей), а не заканчиваются по своему контенту с пустотой снизу */
+.find{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.find__left{display:flex;flex-direction:column}
 .find__lead{color:var(--mute);margin:12px 0 22px}
 .find__quick{display:flex;gap:22px;margin-top:18px;font-size:13px}
 .find__quick a{border-bottom:1px solid var(--line-2);padding-bottom:2px}
 .find__quick a:hover{border-color:var(--ink)}
+
+.find__popular{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:32px}
+.find__popular-label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-right:2px}
+.chip{display:inline-flex;align-items:center;height:34px;padding:0 15px;border:1px solid var(--line-2);font-size:13px}
+.chip:hover{border-color:var(--ink)}
+
+/* добирает высоту левой колонки до уровня правой — не заглушка, а место
+   под фотографию интерьеров магазинов, поддерживает акцент на фото из п. 9.1 */
+.find__photo{flex:1;min-height:140px;margin-top:28px}
 .suggest{
   display:none;position:absolute;left:-1px;right:-1px;top:100%;z-index:20;
   background:var(--paper);border:1px solid var(--ink);border-top:0;padding:10px 0;
@@ -372,7 +394,12 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 /* ниже 1200 поле и полное меню в строку уже не помещаются:
    поле сворачивается в иконку, поиск раскрывается оверлеем */
 @media(max-width:1200px){
-  .grid--cats{grid-template-columns:repeat(3,1fr)}
+  /* бенто — только на широком экране: на 3 и 2 колонках span-математика 2×2
+     ломается, надёжнее вернуть ровную сетку с фиксированной пропорцией */
+  .grid--cats{grid-template-columns:repeat(3,1fr);grid-auto-rows:auto}
+  .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
+  .cat{aspect-ratio:4/3}
+  .cat--big .cat__name{font-size:19px}
   .grid--4{grid-template-columns:repeat(2,1fr)}
   .brands{grid-template-columns:repeat(4,1fr)}
   .hsearch{display:none}
