@@ -63,6 +63,25 @@ input{font:inherit;color:inherit}
 
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
 
+/* ---------- фокус с клавиатуры (п. 9.6) ----------
+   :focus-visible, а не :focus — мышь не должна рисовать рамку */
+a:focus-visible,button:focus-visible,input:focus-visible,
+select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid var(--ink);outline-offset:3px;
+}
+/* ссылка «сразу к содержимому» — первое, что получает фокус на странице */
+.skip{
+  position:fixed;left:var(--pad);top:-100px;z-index:300;
+  padding:12px 20px;background:var(--ink);color:#fff;
+  font-size:13px;letter-spacing:var(--tr-nav);text-transform:uppercase;
+}
+.skip:focus{top:48px}
+
+/* длинные составные слова вроде «Декоративно-отделочные» иначе
+   распирают колонки сетки шире экрана */
+.cat__name,.catnav__name,.shopcard__name,.descard__n,.evrow__name,
+.card__title,.post__title,.srch__h,.album__h,.vid__h{overflow-wrap:anywhere}
+
 /* ---------- плейсхолдеры ---------- */
 .ph{
   position:relative;background:var(--ph);
@@ -142,7 +161,7 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .field{position:relative;display:flex;align-items:center;border:1px solid var(--line-2);background:var(--paper)}
 .field input{flex:1;min-width:0;height:56px;padding:0 56px 0 20px;border:0;background:none;outline:none}
 .field input::placeholder{color:var(--mute)}
-.field:focus-within{border-color:var(--ink)}
+.field:focus-within{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .field--sm input{height:44px;padding-right:48px}
 .field--lg input{height:60px}
 .field__go{
@@ -221,14 +240,14 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 /* ================= HERO ================= */
 .hero{border-bottom:1px solid var(--line)}
 .hero__in{display:grid;grid-template-columns:minmax(340px,44%) 1fr;gap:56px;align-items:center;padding-top:80px;padding-bottom:80px}
-.hero__h1{font-size:clamp(40px,5vw,68px);line-height:1.06}
+.hero__h1{font-size:clamp(40px,5vw,68px);line-height:1.06}   /* 1. главная */
 .hero__sub{margin:24px 0 36px;font-size:17px;line-height:1.6;color:var(--ink-2)}
 .hero__media{aspect-ratio:4/3}
 .ph--hero{min-height:380px}
 
 /* ================= ФАКТЫ ================= */
 .facts{background:var(--paper-2);border-bottom:1px solid var(--line)}
-.facts__in{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;padding-top:38px;padding-bottom:38px}
+.facts__in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding-top:38px;padding-bottom:38px}
 .fact{display:flex;flex-direction:column;gap:8px;padding-left:20px;border-left:1px solid var(--line-2)}
 .fact__num{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1;letter-spacing:var(--tr-big)}
 .fact__cap{font-size:13px;color:var(--mute);line-height:1.4}
@@ -240,15 +259,15 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .sect__h2{font-size:clamp(28px,3vw,40px);line-height:1.15}
 
 .grid{display:grid;gap:24px}
-.grid--3{grid-template-columns:repeat(3,1fr)}
-.grid--4{grid-template-columns:repeat(4,1fr)}
+.grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}
 
 /* «направления» — благородная сетка неравномерных плиток (п. 9.1), а не ровный ряд.
    Две самые крупные по числу магазинов категории выделены размером — так сетка
    читается интереснее и одновременно расставляет приоритет по факту, а не декоративно.
    grid-auto-rows задаёт единицу; порядок карточек в HTML определяет их место —
    ниже 1200px бенто отключается, см. медиазапросы. */
-.grid--cats{grid-template-columns:repeat(4,1fr);grid-auto-rows:160px}
+.grid--cats{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:160px}
 .cat--big{grid-column:span 2;grid-row:span 2}
 .cat--tall{grid-row:span 2}
 
@@ -258,14 +277,14 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 }
 .cat:hover{border-color:var(--ink)}
 .cat--big,.cat--tall{border-color:var(--ink-2)}
-.cat__name{font-family:var(--serif);font-size:19px;line-height:1.25;background:var(--paper);padding:6px 10px;align-self:flex-start}
+.cat__name{font-family:var(--serif);font-size:19px;line-height:1.25;background:var(--paper);padding:6px 10px;align-self:flex-start;overflow-wrap:anywhere}
 .cat--big .cat__name{font-size:28px}
 .cat__count{font-size:12px;color:var(--mute);background:var(--paper);padding:4px 10px;align-self:flex-start;margin-top:6px}
 
 /* ---------- найти магазин ---------- */
 /* без align-items:start — колонки растягиваются вровень с более высокой
    (схемой этажей), а не заканчиваются по своему контенту с пустотой снизу */
-.find{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.find{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px}
 .find__left{display:flex;flex-direction:column}
 .find__lead{color:var(--mute);margin:12px 0 22px}
 .find__quick{display:flex;gap:22px;margin-top:18px;font-size:13px}
@@ -342,14 +361,14 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .rent__cap{display:block;font-size:13px;color:#a9a49e;margin-top:6px}
 
 /* ---------- дизайнерам ---------- */
-.pro{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.pro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
 .pro__media{aspect-ratio:4/3}
 .pro__list{margin:24px 0 32px}
 .pro__list li{position:relative;padding-left:22px;margin-bottom:11px;color:var(--ink-2)}
 .pro__list li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1px;background:var(--ink)}
 
 /* ---------- журнал ---------- */
-.journal{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.journal{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
 /* display:block обязателен — обложка бывает ссылкой, а к инлайновому <a>
    ни высота, ни aspect-ratio не применяются, и блок схлопывается */
 .post__media{display:block;aspect-ratio:16/10;margin-bottom:16px}
@@ -363,12 +382,12 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .post--row .post__media{margin-bottom:0;aspect-ratio:4/3}
 
 /* ---------- бренды ---------- */
-.brands{display:grid;grid-template-columns:repeat(8,1fr);gap:16px}
+.brands{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:16px}
 .brand{aspect-ratio:3/2;border:1px solid var(--line);display:block}
 
 /* ---------- подписка ---------- */
 .subs{background:var(--paper-2);border-top:1px solid var(--line);padding:64px 0}
-.subs__in{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.subs__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
 .subs__h2{font-size:clamp(24px,2.4vw,32px);line-height:1.2}
 .subs__lead{color:var(--mute);margin-top:12px}
 
@@ -381,7 +400,7 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .crumbs a:hover{color:var(--ink);border-color:var(--ink)}
 .crumbs__sep{margin:0 8px;color:var(--line-2)}
 .pagehead__in{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-bottom:22px}
-.pagehead__h1{font-size:clamp(34px,4vw,54px);line-height:1.1}
+.pagehead__h1{font-size:clamp(32px,3.6vw,48px);line-height:1.1} /* 3. страницы разделов */
 .pagehead__lead{margin-top:12px;color:var(--mute)}
 
 .viewtabs{display:flex;gap:26px;flex-wrap:wrap}
@@ -427,7 +446,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .chip--rm::after{content:"✕";font-size:11px;color:var(--mute)}
 .chip--rm:hover::after{color:var(--ink)}
 
-.grid--shops{grid-template-columns:repeat(3,1fr)}
+.grid--shops{grid-template-columns:repeat(3,minmax(0,1fr))}
 .shopcard{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--paper)}
 .shopcard:hover{border-color:var(--ink)}
 .shopcard__logo{position:relative;display:block;aspect-ratio:16/9;border-bottom:1px solid var(--line)}
@@ -447,7 +466,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 /* ---------- карточка арендатора ---------- */
 .shophead{display:grid;grid-template-columns:150px 1fr auto;gap:32px;align-items:center;padding-bottom:30px}
 .shophead__logo{aspect-ratio:3/2;border:1px solid var(--line)}
-.shophead__h1{font-size:clamp(30px,3.4vw,46px);line-height:1.1}
+.shophead__h1{font-size:clamp(28px,3vw,40px);line-height:1.12} /* 4. карточка объекта */
 .taglist{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .tag{display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid var(--line-2);font-size:12px;color:var(--ink-2)}
 .tag:hover{border-color:var(--ink);color:var(--ink)}
@@ -466,7 +485,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .prose p{margin-bottom:14px;line-height:1.65;color:var(--ink-2);max-width:600px}
 .prose p:last-child{margin-bottom:0}
 
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .gallery__item{display:block;aspect-ratio:4/3;position:relative}
 .gallery__item--lead{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
 
@@ -474,7 +493,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .playmark{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border:1px solid var(--ink);border-radius:50%;background:var(--paper)}
 .playmark::after{content:"";position:absolute;left:26px;top:21px;border-left:18px solid var(--ink);border-top:11px solid transparent;border-bottom:11px solid transparent}
 
-.grid--2{grid-template-columns:repeat(2,1fr)}
+.grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
 
 .shopside{position:sticky;top:24px;display:flex;flex-direction:column;gap:20px}
 .panel{border:1px solid var(--line);padding:24px;background:var(--paper)}
@@ -493,7 +512,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .pl-txt--here{fill:#fff}
 
 /* ---------- рубрикатор категорий ---------- */
-.catnav{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.catnav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .catnav__item{display:grid;grid-template-columns:200px 1fr;border:1px solid var(--line);background:var(--paper)}
 .catnav__item:hover{border-color:var(--ink)}
 .catnav__media{position:relative;display:block;aspect-ratio:4/3}
@@ -563,8 +582,8 @@ a.viewtabs__item:hover{color:var(--ink)}
 .evrow.is-full .evrow__media{opacity:.6}
 
 /* ---------- страница события ---------- */
-.evhead{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-bottom:36px}
-.evhead__h1{font-size:clamp(28px,3.2vw,44px);line-height:1.12;margin-top:14px}
+.evhead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;padding-bottom:36px}
+.evhead__h1{font-size:clamp(28px,3vw,40px);line-height:1.12;margin-top:14px} /* 4. карточка объекта */
 .evhead__sub{margin-top:14px;font-size:17px;color:var(--mute)}
 .evhead__media{aspect-ratio:4/3}
 .evfacts{margin-top:26px;border-top:1px solid var(--line)}
@@ -575,7 +594,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .agenda li{position:relative;padding-left:26px;margin-bottom:12px;color:var(--ink-2);line-height:1.55}
 .agenda li::before{content:"";position:absolute;left:0;top:11px;width:12px;height:1px;background:var(--ink)}
 
-.speakers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.speakers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .speaker__photo{display:block;aspect-ratio:1/1;margin-bottom:14px}
 .speaker__name{display:block;font-family:var(--serif);font-size:18px}
 .speaker__role{display:block;font-size:13px;color:var(--mute);margin-top:6px;line-height:1.45}
@@ -613,7 +632,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .mt10{margin-top:10px}
 
 /* ---------- журнал ---------- */
-.postgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 28px}
+.postgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 28px}
 .post--lead{grid-column:span 2}
 .post--lead .post__media{aspect-ratio:2/1}
 .post--lead .post__title{font-size:30px}
@@ -623,7 +642,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 
 /* ---------- статья ---------- */
 .arthead{max-width:860px;padding-bottom:32px}
-.arthead__h1{font-size:clamp(30px,3.6vw,48px);line-height:1.15;margin-top:10px}
+.arthead__h1{font-size:clamp(30px,3.6vw,48px);line-height:1.15;margin-top:10px} /* 3. статья и документы */
 .arthead__lead{font-size:19px;line-height:1.55;color:var(--ink-2);margin-top:20px}
 .arthead__meta{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
   margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-size:14px}
@@ -698,12 +717,12 @@ a.viewtabs__item:hover{color:var(--ink)}
 .errpage__in{max-width:760px;text-align:center}
 .errpage__code{font-family:var(--serif);font-weight:500;font-size:clamp(80px,12vw,160px);
   line-height:1;letter-spacing:var(--tr-big);color:var(--line-2)}
-.errpage__h1{font-size:clamp(28px,3.4vw,44px);line-height:1.15;margin-top:8px}
+.errpage__h1{font-size:clamp(28px,3vw,40px);line-height:1.15;margin-top:8px} /* 4 */
 .errpage__t{margin:18px auto 0;max-width:46ch;color:var(--ink-2);line-height:1.6}
 .errpage__search{max-width:520px;margin:32px auto 40px}
 .errpage__acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
 .errpage__panel{max-width:420px;margin:40px auto 0;text-align:left}
-.errpage__links{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:40px;text-align:left}
+.errpage__links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:40px;text-align:left}
 .errlink{display:block;padding:20px;border:1px solid var(--line);background:var(--paper)}
 .errlink:hover{border-color:var(--ink)}
 .errlink__h{display:block;font-family:var(--sans);font-weight:600;font-size:17px;letter-spacing:var(--tr-h3)}
@@ -754,7 +773,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .subpage{max-width:560px}
 
 /* ---------- о комплексе ---------- */
-.aboutintro{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.aboutintro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
 .aboutintro__media{aspect-ratio:4/3}
 
 .floorsinfo{display:grid;gap:16px}
@@ -782,10 +801,10 @@ a.viewtabs__item:hover{color:var(--ink)}
 .contactmap{display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start}
 .mapbox{aspect-ratio:16/11;border:1px solid var(--line)}
 .contactside{display:flex;flex-direction:column;gap:20px}
-.entrances{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px}
+.entrances{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;margin-top:48px}
 .entrances__map{aspect-ratio:16/10;border:1px solid var(--line)}
 .sel{width:100%;height:46px;padding:0 12px;border:1px solid var(--line-2);background:var(--paper);font:inherit}
-.sel:focus{border-color:var(--ink);outline:none}
+.sel:focus{border-color:var(--ink)}
 
 /* ---------- галерея и видео ---------- */
 .album{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--paper)}
@@ -814,7 +833,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .renthero{border-bottom:1px solid var(--line)}
 .renthero__in{display:grid;grid-template-columns:minmax(340px,46%) 1fr;gap:56px;align-items:center;
   padding-top:72px;padding-bottom:72px}
-.renthero__h1{font-size:clamp(32px,4vw,56px);line-height:1.08;margin-top:6px}
+.renthero__h1{font-size:clamp(32px,4vw,56px);line-height:1.08;margin-top:6px} /* 2. лендинги */
 .renthero__sub{margin:22px 0 34px;font-size:17px;line-height:1.6;color:var(--ink-2);max-width:52ch}
 .renthero__acts{display:flex;gap:14px;flex-wrap:wrap}
 .renthero__media{aspect-ratio:4/3;min-height:340px}
@@ -850,7 +869,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .socials{display:flex;gap:16px;margin-top:20px;font-size:13px}
 .socials a{border-bottom:1px solid #4a4540;padding-bottom:2px}
 .socials a:hover{color:#fff;border-color:#fff}
-.footer__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.footer__cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
 .footer__title{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:16px}
 .footer__cols li{margin-bottom:10px;font-size:14px}
 .footer__cols a:hover{color:#fff}
@@ -883,10 +902,10 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 @media(max-width:1200px){
   /* бенто — только на широком экране: на 3 и 2 колонках span-математика 2×2
      ломается, надёжнее вернуть ровную сетку с фиксированной пропорцией */
-  .grid--cats{grid-template-columns:repeat(3,1fr);grid-auto-rows:auto}
+  .grid--cats{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto}
   .catalog{grid-template-columns:236px 1fr;gap:40px}
-  .grid--3:not(.scroller){grid-template-columns:repeat(2,1fr)}
-  .grid--shops{grid-template-columns:repeat(2,1fr)}
+  .grid--3:not(.scroller){grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid--shops{grid-template-columns:repeat(2,minmax(0,1fr))}
   .shoplayout{grid-template-columns:1fr 300px;gap:40px}
   .catnav__item{grid-template-columns:160px 1fr}
   .evrow{grid-template-columns:88px 180px 1fr 130px;gap:20px}
@@ -898,9 +917,9 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
-  .grid--4{grid-template-columns:repeat(2,1fr)}
+  .grid--4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .errpage__links{grid-template-columns:1fr}
-  .brands{grid-template-columns:repeat(4,1fr)}
+  .brands{grid-template-columns:repeat(4,minmax(0,1fr))}
   .hsearch{display:none}
   .ic-search{display:block}
 }
@@ -926,9 +945,9 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .renthero__in{grid-template-columns:1fr;gap:36px;padding-top:48px;padding-bottom:48px}
   .rentform{grid-template-columns:1fr;gap:36px}
   .aboutintro,.contactmap,.numbering,.entrances{grid-template-columns:1fr;gap:32px}
-  .grid--4{grid-template-columns:repeat(2,1fr)}
+  .grid--4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .terms__row{grid-template-columns:200px 1fr;gap:20px}
-  .postgrid{grid-template-columns:repeat(2,1fr);gap:32px 24px}
+  .postgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 24px}
   .post--lead{grid-column:span 2}
   /* обложку в строке афиши убираем — на планшете она съедает место у текста */
   .evrow{grid-template-columns:80px 1fr;gap:20px;align-items:start}
@@ -936,9 +955,9 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .evrow__act{grid-column:2;text-align:left;margin-top:14px}
   .shophead__acts{grid-column:1/-1;flex-direction:row;min-width:0}
   .hero__in{padding-top:48px;padding-bottom:48px}
-  .facts__in{grid-template-columns:repeat(2,1fr);row-gap:28px}
+  .facts__in{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
   .footer__in{grid-template-columns:1fr}
-  .footer__cols{grid-template-columns:repeat(2,1fr)}
+  .footer__cols{grid-template-columns:repeat(2,minmax(0,1fr))}
   .post--row{grid-template-columns:120px 1fr}
   .mega__in{grid-template-columns:1fr;gap:28px}
   .mega__cats{columns:2}
@@ -963,7 +982,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .menu__list{flex-direction:column;gap:0}
   .menu__link{height:52px;border-bottom:1px solid var(--line);width:100%;justify-content:space-between}
   .mega{position:static;box-shadow:none;border:0}
-  .grid--cats{grid-template-columns:repeat(2,1fr)}
+  .grid--cats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .grid--shops{grid-template-columns:1fr}
   .grid--2{grid-template-columns:1fr}
   .grid--3:not(.scroller){grid-template-columns:1fr}
@@ -985,14 +1004,14 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .catnav__item{grid-template-columns:1fr}
   .catnav__media{aspect-ratio:16/9}
   .brandsearch{width:100%}
-  .brands{grid-template-columns:repeat(2,1fr)}
-  .gallery{grid-template-columns:repeat(2,1fr)}
+  .brands{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
   .gallery__item--lead{grid-column:span 2;grid-row:auto;aspect-ratio:4/3}
   .shophead__acts{flex-direction:column}
   .viewtabs{gap:18px}
   .viewtabs__item{font-size:12px}
-  .brands{grid-template-columns:repeat(3,1fr)}
-  .facts__in{grid-template-columns:1fr 1fr}
+  .brands{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .facts__in{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .fact__num{font-size:26px}
   .ph--hero{min-height:240px}
   .sect__head{flex-direction:column;align-items:flex-start;gap:12px}
@@ -1011,4 +1030,30 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .proto-bar__btn{padding:5px 10px;font-size:10px}
   .logo__img{height:42px}
 }
+/* ---------- тач-зоны на мобильном (п. 9.4) ----------
+   Мелкие текстовые ссылки на телефоне в них не попасть.
+   Ссылкам-подчёркиваниям расширяем зону невидимым псевдоэлементом,
+   чтобы не съехало подчёркивание; спискам просто добавляем высоту. */
+@media(max-width:760px){
+  .more,.link,.utility__login,.crumbs a,.filters__reset{position:relative}
+  .more::after,.link::after,.utility__login::after,.crumbs a::after,.filters__reset::after{
+    content:"";position:absolute;left:-6px;right:-6px;top:50%;
+    height:44px;transform:translateY(-50%);
+  }
+  .footer__cols li{margin-bottom:0}
+  .footer__cols a,.footer__legal a,.mega__links a,.mega__cats a,.socials a{
+    display:inline-block;padding:12px 0;
+  }
+  .footer__legal ul{gap:0 24px}
+  .find__quick a,.footer__addr a{display:inline-block;padding:12px 0}
+  .find__quick{gap:22px 26px;flex-wrap:wrap}
+  .viewtabs__item{padding-top:12px;padding-bottom:14px}
+  .chip,.msg,.tag{min-height:44px}
+  .floors__tab{height:48px}
+  .toc__i{padding-top:13px;padding-bottom:13px}
+  .sortbox select,.sel{height:48px}
+  .check input{width:20px;height:20px}
+  .suggest__item{padding-top:14px;padding-bottom:14px}
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

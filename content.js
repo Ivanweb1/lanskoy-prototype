@@ -115,6 +115,13 @@ chipFilter({
   words: ['результат', 'результата', 'результатов']
 });
 
+chipFilter({
+  grid: 'galGrid', item: '.album', filters: 'galFilters',
+  empty: 'galEmpty', reset: 'data-galreset',
+  count: 'galCount', countWord: 'galCountWord',
+  words: ['альбом', 'альбома', 'альбомов']
+});
+
 /* ---------- оглавление статьи ---------- */
 (function () {
   var nav = document.getElementById('tocNav');
@@ -148,3 +155,34 @@ chipFilter({
   window.addEventListener('scroll', mark, { passive: true });
   mark();
 })();
+
+/* ---------- подписка с главной ----------
+   На главной по п. 6.1 стоит только поле. Полный сценарий double opt-in
+   из п. 6.15 живёт на отдельной странице, поэтому после валидации
+   уводим туда — сразу на экран «проверьте почту». */
+document.querySelectorAll('.subform').forEach(function (form) {
+  function validate(f) {
+    var wrap = f.closest('.fld') || f.closest('.check');
+    if (!wrap) return true;
+    var ok = f.checkValidity();
+    wrap.classList.toggle('is-invalid', !ok);
+    return ok;
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var fields = [].slice.call(form.querySelectorAll('[required]'));
+    if (!fields.map(validate).every(Boolean)) {
+      var first = form.querySelector('.is-invalid [required]');
+      if (first) first.focus();
+      return;
+    }
+    location.href = 'subscribe.html?state=sent';
+  });
+  form.addEventListener('input', function (e) {
+    var w = e.target.closest('.fld') || e.target.closest('.check');
+    if (w && w.classList.contains('is-invalid')) validate(e.target);
+  });
+  form.addEventListener('change', function (e) {
+    if (e.target.type === 'checkbox') validate(e.target);
+  });
+});

@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=20">
+<link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
 
 <div id="siteHeader" data-active=""></div>
 
-<main>
+<main id="main" tabindex="-1">
 
 <!-- ================= 1. HERO ================= -->
 <section class="hero">
@@ -285,12 +285,19 @@
       <h2 class="subs__h2"><a href="subscribe.html">Подписка на события и акции</a></h2>
       <p class="subs__lead">Письмо раз в две недели. Отписаться можно в один клик.</p>
     </div>
-    <form class="subs__form jsform" action="subscribe.html" novalidate>
-      <div class="field field--lg">
-        <input type="email" placeholder="Ваш e-mail">
-        <button type="submit" class="field__go" aria-label="Подписаться"></button>
+    <form class="subs__form subform" novalidate>
+      <div class="fld">
+        <div class="field field--lg">
+          <input type="email" name="email" placeholder="Ваш e-mail" required aria-label="E-mail для подписки">
+          <button type="submit" class="field__go" aria-label="Подписаться"></button>
+        </div>
+        <span class="fld__err">Проверьте адрес — на него придёт письмо для подтверждения</span>
       </div>
-      <label class="check"><input type="checkbox"><span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span></label>
+      <label class="check">
+        <input type="checkbox" name="pd" required>
+        <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
+        <span class="fld__err">Без согласия подписаться нельзя</span>
+      </label>
     </form>
   </div>
   <aside class="note"><b>11. Подписка.</b> Double opt-in по п. 6.15, значит нужны состояния: отправлено → «проверьте почту», ошибка, «вы уже подписаны». Сегментацию (акции / события) на главную не выношу, чтобы не усложнять форму — сегмент выбирается в письме подтверждения.</aside>
@@ -302,7 +309,8 @@
 
 <div id="siteCookie"></div>
 
-<script src="partials.js?v=20"></script>
-<script src="app.js?v=20"></script>
+<script src="partials.js?v=28"></script>
+<script src="app.js?v=28"></script>
+<script src="content.js?v=28"></script>
 </body>
 </html>

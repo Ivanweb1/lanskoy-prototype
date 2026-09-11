@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=20">
+<link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
 
@@ -19,7 +19,7 @@
 
 <div id="siteHeader" data-active="about"></div>
 
-<main>
+<main id="main" tabindex="-1">
 
 <section class="pagehead">
   <div class="wrap">
@@ -44,19 +44,19 @@
 <section class="sect sect--tight">
   <div class="wrap">
 
-    <div class="evfilters">
+    <div class="evfilters" id="galFilters">
       <div class="evfilters__row">
         <span class="evfilters__label">Раздел</span>
-        <button type="button" class="chip is-active">Все альбомы</button>
-        <button type="button" class="chip">Комплекс</button>
-        <button type="button" class="chip">Мероприятия</button>
+        <button type="button" class="chip is-active" data-gal="all">Все альбомы</button>
+        <button type="button" class="chip" data-gal="complex">Комплекс</button>
+        <button type="button" class="chip" data-gal="events">Мероприятия</button>
       </div>
-      <p class="evfilters__count"><b>4</b> альбома</p>
+      <p class="evfilters__count"><b id="galCount">4</b> <span id="galCountWord">альбома</span></p>
     </div>
 
-    <div class="grid grid--3">
+    <div class="grid grid--3" id="galGrid">
 
-      <a href="#" class="album">
+      <a href="#" class="album" data-gal="complex">
         <span class="album__media ph"><span class="ph__label">Обложка</span><span class="album__n">24</span></span>
         <span class="album__b">
           <span class="album__h">Интерьеры комплекса</span>
@@ -64,7 +64,7 @@
         </span>
       </a>
 
-      <a href="#" class="album">
+      <a href="#" class="album" data-gal="events">
         <span class="album__media ph"><span class="ph__label">Обложка</span><span class="album__n ph-mark">00</span></span>
         <span class="album__b">
           <span class="album__h">День цвета в Ланском</span>
@@ -72,7 +72,7 @@
         </span>
       </a>
 
-      <a href="#" class="album">
+      <a href="#" class="album" data-gal="events">
         <span class="album__media ph"><span class="ph__label">Обложка</span><span class="album__n ph-mark">00</span></span>
         <span class="album__b">
           <span class="album__h">Выставка «Строим дом»</span>
@@ -80,7 +80,7 @@
         </span>
       </a>
 
-      <a href="#" class="album">
+      <a href="#" class="album" data-gal="events">
         <span class="album__media ph"><span class="ph__label">Обложка</span><span class="album__n ph-mark">00</span></span>
         <span class="album__b">
           <span class="album__h">Новогодние праздники</span>
@@ -88,6 +88,12 @@
         </span>
       </a>
 
+    </div>
+
+    <div class="empty" id="galEmpty" hidden>
+      <p class="empty__title">В этом разделе альбомов нет</p>
+      <p class="empty__text">Посмотрите все альбомы комплекса.</p>
+      <button type="button" class="btn btn--ghost" data-galreset>Показать все</button>
     </div>
 
     <div class="results__more">
@@ -107,7 +113,8 @@
 <div id="siteFooter"></div>
 <div id="siteCookie"></div>
 
-<script src="partials.js?v=20"></script>
-<script src="app.js?v=20"></script>
+<script src="partials.js?v=28"></script>
+<script src="app.js?v=28"></script>
+<script src="content.js?v=28"></script>
 </body>
 </html>

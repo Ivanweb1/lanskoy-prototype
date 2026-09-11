@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=20">
+<link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
 
@@ -19,10 +19,17 @@
 
 <div id="siteHeader" data-active="designers"></div>
 
-<main>
+<main id="main" tabindex="-1">
 
 <!-- первый экран -->
 <section class="renthero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Дизайнерам</span>
+    </nav>
+  </div>
   <div class="wrap renthero__in">
     <div class="renthero__text">
       <p class="kicker">Дизайнерам и архитекторам</p>
@@ -215,8 +222,8 @@
 <div id="siteFooter"></div>
 <div id="siteCookie"></div>
 
-<script src="partials.js?v=20"></script>
-<script src="app.js?v=20"></script>
-<script src="content.js?v=20"></script>
+<script src="partials.js?v=28"></script>
+<script src="app.js?v=28"></script>
+<script src="content.js?v=28"></script>
 </body>
 </html>

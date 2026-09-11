@@ -114,8 +114,10 @@
     if (b) show(b.dataset.state);
   });
 
-  /* архив открывает страницу сразу в состоянии «прошло» */
-  show(location.search.indexOf('past=1') > -1 ? 'past' : 'open');
+  /* состояние можно задать адресом: ?past=1 из архива, ?state=sent с главной */
+  var qs = new URLSearchParams(location.search);
+  var want = qs.get('state') || (qs.get('past') === '1' ? 'past' : 'open');
+  show(STATES.indexOf(want) > -1 ? want : 'open');
 })();
 
 /* ---------- валидация формы регистрации ---------- */

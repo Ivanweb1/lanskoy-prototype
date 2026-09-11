@@ -45,6 +45,7 @@ var LNS = (function () {
 
   function header(active) {
     return '' +
+'  <a class="skip" href="#main">Сразу к содержимому</a>' +
 '  <div class="utility">' +
 '    <div class="wrap utility__in">' +
 '      <ul class="utility__info">' +
