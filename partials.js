@@ -51,7 +51,7 @@ var LNS = (function () {
 '        <li>10:00&nbsp;—&nbsp;20:00 ежедневно</li>' +
 '        <li>Санкт-Петербург, ул. Студенческая, 10</li>' +
 '        <li><a href="#">+7 (812) 363-00-07</a></li>' +
-'        <li><a href="#">Как добраться</a></li>' +
+'        <li><a href="contacts.html">Как добраться</a></li>' +
 '      </ul>' +
 '      <ul class="utility__actions">' +
 '        <li><a href="rent.html" class="btn btn--ghost btn--sm">Аренда</a></li>' +
@@ -123,24 +123,24 @@ var LNS = (function () {
 '        <div class="mega__col">' +
 '          <p class="mega__title">О комплексе</p>' +
 '          <ul class="mega__links">' +
-'            <li><a href="#">О комплексе</a></li>' +
+'            <li><a href="about.html">О комплексе</a></li>' +
 '            <li><a href="floors.html">Схема этажей</a></li>' +
-'            <li><a href="#">Парковка и как добраться</a></li>' +
+'            <li><a href="contacts.html">Парковка и как добраться</a></li>' +
 '          </ul>' +
 '        </div>' +
 '        <div class="mega__col">' +
 '          <p class="mega__title">Медиа</p>' +
 '          <ul class="mega__links">' +
-'            <li><a href="#">Галерея</a></li>' +
-'            <li><a href="#">Видео</a></li>' +
-'            <li><a href="#">Архив событий</a></li>' +
+'            <li><a href="gallery.html">Галерея</a></li>' +
+'            <li><a href="video.html">Видео</a></li>' +
+'            <li><a href="events.html">Архив событий</a></li>' +
 '          </ul>' +
 '        </div>' +
 '        <div class="mega__col">' +
 '          <p class="mega__title">Контакты</p>' +
 '          <ul class="mega__links">' +
-'            <li><a href="#">Контакты и реквизиты</a></li>' +
-'            <li><a href="#">Обратная связь</a></li>' +
+'            <li><a href="contacts.html">Контакты и реквизиты</a></li>' +
+'            <li><a href="contacts.html#feedback">Обратная связь</a></li>' +
 '          </ul>' +
 '        </div>' +
 '      </div>' +
@@ -176,13 +176,13 @@ var LNS = (function () {
 '        <li><a href="floors.html">Схема этажей</a></li></ul></div>' +
 '      <div><p class="footer__title">События</p><ul>' +
 '        <li><a href="events.html">Афиша</a></li><li><a href="events.html">Архив событий</a></li>' +
-'        <li><a href="#">Галерея</a></li><li><a href="#">Видео</a></li></ul></div>' +
+'        <li><a href="gallery.html">Галерея</a></li><li><a href="video.html">Видео</a></li></ul></div>' +
 '      <div><p class="footer__title">Профессионалам</p><ul>' +
 '        <li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li>' +
 '        <li><a href="journal.html">Журнал</a></li></ul></div>' +
 '      <div><p class="footer__title">Комплекс</p><ul>' +
-'        <li><a href="#">О комплексе</a></li><li><a href="rent.html">Аренда</a></li>' +
-'        <li><a href="#">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>' +
+'        <li><a href="about.html">О комплексе</a></li><li><a href="rent.html">Аренда</a></li>' +
+'        <li><a href="contacts.html">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>' +
 '    </div>' +
 '  </div>' +
 '  <div class="wrap footer__legal">' +

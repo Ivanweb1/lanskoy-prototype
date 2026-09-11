@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Галерея — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=17">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Галерея · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="about"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Галерея</span>
+    </nav>
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Галерея</h1>
+        <p class="pagehead__lead">Фотоальбомы комплекса и прошедших мероприятий</p>
+      </div>
+      <ul class="viewtabs">
+        <li><span class="viewtabs__item is-active">Фото</span></li>
+        <li><a href="video.html" class="viewtabs__item">Видео</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+
+    <div class="evfilters">
+      <div class="evfilters__row">
+        <span class="evfilters__label">Раздел</span>
+        <button type="button" class="chip is-active">Все альбомы</button>
+        <button type="button" class="chip">Комплекс</button>
+        <button type="button" class="chip">Мероприятия</button>
+      </div>
+      <p class="evfilters__count"><b>4</b> альбома</p>
+    </div>
+
+    <div class="grid grid--3">
+
+      <a href="#" class="album">
+        <span class="album__media ph"><span class="ph__label">Обложка</span><span class="album__n">24</span></span>
+        <span class="album__b">
+          <span class="album__h">Интерьеры комплекса</span>
+          <span class="album__m ph-mark">дата съёмки не указана</span>
+        </span>
+      </a>
+
+      <a href="#" class="album">
+        <span class="album__media ph"><span class="ph__label">Обложка</span><span class="album__n ph-mark">00</span></span>
+        <span class="album__b">
+          <span class="album__h">День цвета в Ланском</span>
+          <span class="album__m">12 февраля 2020</span>
+        </span>
+      </a>
+
+      <a href="#" class="album">
+        <span class="album__media ph"><span class="ph__label">Обложка</span><span class="album__n ph-mark">00</span></span>
+        <span class="album__b">
+          <span class="album__h">Выставка «Строим дом»</span>
+          <span class="album__m">16—17 марта 2019</span>
+        </span>
+      </a>
+
+      <a href="#" class="album">
+        <span class="album__media ph"><span class="ph__label">Обложка</span><span class="album__n ph-mark">00</span></span>
+        <span class="album__b">
+          <span class="album__h">Новогодние праздники</span>
+          <span class="album__m ph-mark">год не указан</span>
+        </span>
+      </a>
+
+    </div>
+
+    <div class="results__more">
+      <button type="button" class="btn btn--ghost btn--full">Показать ещё</button>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Раздел практически мёртв — и это главное, что нужно решить.</b> На действующем сайте последний альбом датирован февралём 2020 года. Пять лет без обновления. Галерея из четырёх альбомов, три из которых старше пяти лет, работает против премиального впечатления из п. 9.1: посетитель видит не живой комплекс, а заброшенную страницу. Варианты: либо заказчик берёт на себя регулярную съёмку мероприятий, либо раздел сводится к одному альбому «Интерьеры комплекса» и живёт как витрина, а фотоотчёты с событий уходят в архив афиши, где они уместнее по смыслу.</aside>
+
+  <aside class="note"><b>2. Альбом, а не свалка фотографий.</b> П. 6.9 говорит про «альбомы фото», то есть группировку. Число снимков на обложке помогает выбрать, куда заходить. Дат у большинства альбомов на старом сайте нет — без них непонятно, свежий материал или архивный, поэтому дату стоит сделать обязательным полем в CMS.</aside>
+
+  <aside class="note"><b>3. Связь с афишей.</b> Фотоотчёты с мероприятий по п. 6.8 живут в архиве событий, а по п. 6.9 — ещё и в галерее. Дублировать их в двух местах нельзя: они разъедутся. Предлагаю хранить отчёт при событии, а в галерее показывать ссылкой — тогда у каждого альбома одно место хранения.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=17"></script>
+<script src="app.js?v=17"></script>
+</body>
+</html>

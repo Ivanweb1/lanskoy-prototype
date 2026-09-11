@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Видео — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=17">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Видео · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="about"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Видео</span>
+    </nav>
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Видео</h1>
+        <p class="pagehead__lead">Обзоры магазинов, мероприятия и интервью</p>
+      </div>
+      <ul class="viewtabs">
+        <li><a href="gallery.html" class="viewtabs__item">Фото</a></li>
+        <li><span class="viewtabs__item is-active">Видео</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+
+    <div class="evfilters" id="vidFilters">
+      <div class="evfilters__row">
+        <span class="evfilters__label">Тема</span>
+        <button type="button" class="chip is-active" data-vid="all">Все</button>
+        <button type="button" class="chip" data-vid="shops">Магазины и бренды</button>
+        <button type="button" class="chip" data-vid="events">Мероприятия</button>
+        <button type="button" class="chip" data-vid="design">Интерьер и дизайн</button>
+        <button type="button" class="chip" data-vid="materials">Материалы</button>
+      </div>
+      <p class="evfilters__count"><b id="vidCount">6</b> <span id="vidCountWord">видео</span></p>
+    </div>
+
+    <div class="grid grid--3" id="vidGrid">
+
+      <a href="#" class="vid" data-vid="shops">
+        <span class="vid__media ph"><span class="ph__label">Кадр</span><span class="playmark playmark--sm" aria-hidden="true"></span><span class="vid__time ph-mark">00:00</span></span>
+        <span class="vid__h">Companion Decor: каменный шпон и панели</span>
+        <span class="vid__m ph-mark">дата не указана</span>
+      </a>
+
+      <a href="#" class="vid" data-vid="shops">
+        <span class="vid__media ph"><span class="ph__label">Кадр</span><span class="playmark playmark--sm" aria-hidden="true"></span><span class="vid__time ph-mark">00:00</span></span>
+        <span class="vid__h">Interierno Group в ТК «Ланской»</span>
+        <span class="vid__m ph-mark">дата не указана</span>
+      </a>
+
+      <a href="#" class="vid" data-vid="events">
+        <span class="vid__media ph"><span class="ph__label">Кадр</span><span class="playmark playmark--sm" aria-hidden="true"></span><span class="vid__time ph-mark">00:00</span></span>
+        <span class="vid__h">День цвета в Ланском</span>
+        <span class="vid__m">февраль 2020</span>
+      </a>
+
+      <a href="#" class="vid" data-vid="design">
+        <span class="vid__media ph"><span class="ph__label">Кадр</span><span class="playmark playmark--sm" aria-hidden="true"></span><span class="vid__time ph-mark">00:00</span></span>
+        <span class="vid__h">Тренды в интерьере: разбор с дизайнером</span>
+        <span class="vid__m ph-mark">дата не указана</span>
+      </a>
+
+      <a href="#" class="vid" data-vid="materials">
+        <span class="vid__media ph"><span class="ph__label">Кадр</span><span class="playmark playmark--sm" aria-hidden="true"></span><span class="vid__time ph-mark">00:00</span></span>
+        <span class="vid__h">Декоративная штукатурка: нанесение</span>
+        <span class="vid__m ph-mark">дата не указана</span>
+      </a>
+
+      <a href="#" class="vid" data-vid="events">
+        <span class="vid__media ph"><span class="ph__label">Кадр</span><span class="playmark playmark--sm" aria-hidden="true"></span><span class="vid__time ph-mark">00:00</span></span>
+        <span class="vid__h">Выставка «Строим дом»</span>
+        <span class="vid__m">март 2019</span>
+      </a>
+
+    </div>
+
+    <div class="empty" id="vidEmpty" hidden>
+      <p class="empty__title">Видео не найдено</p>
+      <p class="empty__text">Попробуйте другую тему.</p>
+      <button type="button" class="btn btn--ghost" data-vidreset>Показать все</button>
+    </div>
+
+    <div class="results__more">
+      <button type="button" class="btn btn--ghost btn--full">Показать ещё</button>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Пять тем вместо сорока четырёх тегов.</b> На действующем сайте у видео 44 тега подряд — «Ванны», «Бани», «Лампочки», «Статуи», «Сушилки», «Люки», «Сейфы» и так далее. Они занимают пол-экрана до первого ролика и не помогают выбирать: по тегу «Люки» одно видео. Свёл к пяти темам, под которые реально набирается контент. Мелкую детализацию, если она нужна, лучше отдать поиску, а не рядам чипов.</aside>
+
+  <aside class="note"><b>2. Загрузка файлом или встраивание.</b> П. 6.9 разрешает оба способа, и это решение с последствиями. Свои файлы — полный контроль, но вес, хранилище и трафик на CDN по п. 10.3. Встраивание с VK-Видео или RuTube из п. 13.5 — бесплатный хостинг и просмотры на стороне площадки, но чужой плеер и внешняя зависимость. Предлагаю встраивание: у комплекса уже есть канал на YouTube, а ролики про магазины всё равно живут в соцсетях.</aside>
+
+  <aside class="note"><b>3. Данные.</b> Два названия реальные, с действующего сайта: ролик про Interierno Group и «День цвета». Остальные — образцы формата под темы. Длительности и дат у видео на старом сайте нет, а они нужны: без даты непонятно, актуален ли обзор магазина, который мог давно съехать.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=17"></script>
+<script src="app.js?v=17"></script>
+<script src="content.js?v=17"></script>
+</body>
+</html>

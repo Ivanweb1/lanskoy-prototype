@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>О комплексе — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=17">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">О комплексе · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="about"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">О комплексе</span>
+    </nav>
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">О комплексе</h1>
+        <p class="pagehead__lead">Интерьерный центр на границе Приморского и Выборгского районов</p>
+      </div>
+      <a href="contacts.html" class="btn btn--ghost">Как добраться</a>
+    </div>
+  </div>
+</section>
+
+<!-- описание -->
+<section class="sect sect--tight">
+  <div class="wrap aboutintro">
+    <div class="prose">
+      <p>ТК «Ланской» — торговый комплекс, где собраны магазины материалов и решений для ремонта, строительства и дизайна интерьера. Более 150 магазинов и шоурумов на трёх этажах: отделочные материалы, плитка, обои, напольные покрытия, двери, сантехника, свет, мебель и декор.</p>
+      <p>Сюда приезжают не гулять между витрин, а выбирать: частные покупатели в ремонте, дизайнеры и архитекторы с проектами, подрядчики. Комплекс проводит мастер-классы, лекции и профессиональные семинары для дизайнерского сообщества.</p>
+    </div>
+    <div class="aboutintro__media ph"><span class="ph__label">Фотография комплекса</span></div>
+  </div>
+</section>
+
+<!-- цифры -->
+<section class="facts">
+  <div class="wrap facts__in">
+    <div class="fact"><span class="fact__num">150+</span><span class="fact__cap">магазинов<br>и шоурумов</span></div>
+    <div class="fact"><span class="fact__num">3</span><span class="fact__cap">этажа</span></div>
+    <div class="fact"><span class="fact__num ph-mark">00 000</span><span class="fact__cap">м²<br>общая площадь</span></div>
+    <div class="fact"><span class="fact__num ph-mark">000</span><span class="fact__cap">мест<br>на парковке</span></div>
+    <div class="fact"><span class="fact__num ph-mark">00</span><span class="fact__cap">лет<br>комплексу</span></div>
+  </div>
+</section>
+
+<!-- этажи -->
+<section class="sect">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Что на каком этаже</h2>
+      <a href="floors.html" class="more">Схема этажей</a>
+    </div>
+    <div class="floorsinfo">
+      <a href="floors.html" class="floorinfo">
+        <span class="floorinfo__n">1</span>
+        <span class="floorinfo__b">
+          <span class="floorinfo__h">Первый этаж</span>
+          <span class="floorinfo__t">Отделочные материалы, плитка, обои, напольные покрытия, декоративные покрытия</span>
+          <span class="floorinfo__m">Секции группы А</span>
+        </span>
+      </a>
+      <a href="floors.html" class="floorinfo">
+        <span class="floorinfo__n">2</span>
+        <span class="floorinfo__b">
+          <span class="floorinfo__h">Второй этаж</span>
+          <span class="floorinfo__t">Двери, сантехника, мебель, кухни, свет и предметы интерьера</span>
+          <span class="floorinfo__m">Секции группы Б</span>
+        </span>
+      </a>
+      <a href="floors.html" class="floorinfo">
+        <span class="floorinfo__n">3</span>
+        <span class="floorinfo__b">
+          <span class="floorinfo__h">Третий этаж</span>
+          <span class="floorinfo__t ph-mark">Состав этажа нужно уточнить</span>
+          <span class="floorinfo__m">Секции группы В · зона лекций и мероприятий</span>
+        </span>
+      </a>
+    </div>
+  </div>
+  <aside class="note"><b>1. Распределение по этажам — частично предположение.</b> Подтверждено только то, что магазины занимают первый и второй этажи: это сказано на действующем сайте. Какие именно категории на каком этаже и что на третьем — нужно уточнить. Пока раскладка построена по логике групп секций из брендбука, где секции обозначены буквами А, Б, В. Для посетителя этот блок один из самых полезных, поэтому ошибаться в нём нельзя.</aside>
+</section>
+
+<!-- нумерация -->
+<section class="sect sect--alt">
+  <div class="wrap numbering">
+    <div>
+      <h2 class="sect__h2">Как устроена нумерация</h2>
+      <p class="numbering__lead">П. 6.11 ТЗ требует объяснить нумерацию помещений, зон и этажей. Это не формальность: по номеру секции человек ориентируется на месте и ищет магазин на сайте.</p>
+      <ul class="pro__list">
+        <li><b>Буква</b> — группа секций, она же этаж: А — первый, Б — второй, В — третий</li>
+        <li><b>Число</b> — номер помещения внутри этажа: А10, А12, Б7</li>
+        <li><b>Зоны</b> — атриум, галерея, зона лекций, входные группы <span class="ph-mark">— перечень уточняется</span></li>
+      </ul>
+    </div>
+    <div class="numbering__box">
+      <p class="numbering__sample">А10</p>
+      <p class="numbering__cap">Секция 10 на первом этаже</p>
+      <a href="floors.html" class="btn btn--ghost btn--full">Найти секцию на схеме</a>
+    </div>
+  </div>
+  <aside class="note"><b>2. Буквы секций — кириллица.</b> В брендбуке секции обозначены «А Б В Г» русскими буквами. Это важно технически: в данных те же секции легко записать латиницей, и тогда поиск по номеру помещения из п. 6.2 молча не находит. В прототипе поиск приведён к единому виду, но в CMS секции нужно записывать в одной раскладке и проверять при импорте.</aside>
+</section>
+
+<!-- инфраструктура -->
+<section class="sect">
+  <div class="wrap">
+    <h2 class="sect__h2 mb36">Инфраструктура</h2>
+    <div class="grid grid--3">
+      <div class="infra">
+        <h3 class="infra__h">Парковка</h3>
+        <p class="infra__t ph-mark">Платная или бесплатная, количество мест и стоимость — данные противоречат друг другу, нужно подтверждение</p>
+      </div>
+      <div class="infra">
+        <h3 class="infra__h">Режим работы</h3>
+        <p class="infra__t">Ежедневно с 10:00 до 20:00, без выходных</p>
+      </div>
+      <div class="infra">
+        <h3 class="infra__h">Навигация внутри</h3>
+        <p class="infra__t">Подвесные указатели, информационные стойки и таблички секций. Онлайн — <a href="floors.html" class="link">схема этажей</a></p>
+      </div>
+      <div class="infra">
+        <h3 class="infra__h">Кафе и зоны отдыха</h3>
+        <p class="infra__t ph-mark">Наличие и расположение нужно уточнить</p>
+      </div>
+      <div class="infra">
+        <h3 class="infra__h">Лифты и эскалаторы</h3>
+        <p class="infra__t ph-mark">Расположение нужно уточнить</p>
+      </div>
+      <div class="infra">
+        <h3 class="infra__h">Доступная среда</h3>
+        <p class="infra__t ph-mark">Пандусы, лифты, санузлы — нужно уточнить</p>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>3. Половина инфраструктуры под вопросом.</b> Из шести пунктов подтверждён один — режим работы. Это типичная ситуация: такие данные знает администрация, но их нигде не собрано. Отдельно про <b>доступную среду</b>: п. 9.6 требует закладывать доступность сайта, но про физическую доступность здания ТЗ молчит, а для части посетителей это решающий вопрос. Стоит спросить, есть ли пандусы и лифты — если есть, об этом надо писать.</aside>
+</section>
+
+<!-- медиа -->
+<section class="sect sect--alt">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Комплекс в фотографиях</h2>
+      <a href="gallery.html" class="more">Вся галерея</a>
+    </div>
+    <div class="gallery">
+      <a href="gallery.html" class="gallery__item gallery__item--lead ph"><span class="ph__label">Фото 1</span></a>
+      <a href="gallery.html" class="gallery__item ph"><span class="ph__label">Фото 2</span></a>
+      <a href="gallery.html" class="gallery__item ph"><span class="ph__label">Фото 3</span></a>
+      <a href="gallery.html" class="gallery__item ph"><span class="ph__label">Фото 4</span></a>
+      <a href="gallery.html" class="gallery__item ph"><span class="ph__label">Фото 5</span></a>
+      <a href="video.html" class="gallery__item ph"><span class="ph__label">Видео</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=17"></script>
+<script src="app.js?v=17"></script>
+</body>
+</html>

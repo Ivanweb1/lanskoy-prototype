@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Контакты — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=17">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Контакты · Ч/Б · v1</span>
+  <span class="proto-bar__states">
+    Форма:
+    <button type="button" class="proto-bar__st is-active" data-state="open">обращение</button>
+    <button type="button" class="proto-bar__st" data-state="done">отправлено</button>
+  </span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active="about"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Контакты</span>
+    </nav>
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Контакты</h1>
+        <p class="pagehead__lead">197343, Санкт-Петербург, ул. Студенческая, 10</p>
+      </div>
+      <a href="floors.html" class="btn btn--ghost">Схема этажей</a>
+    </div>
+  </div>
+</section>
+
+<!-- карта и контакты -->
+<section class="sect sect--tight">
+  <div class="wrap contactmap">
+    <div class="mapbox ph">
+      <span class="ph__label">Интерактивная карта — Яндекс.Карты</span>
+    </div>
+
+    <aside class="contactside">
+      <div class="panel">
+        <p class="panel__title">Комплекс</p>
+        <ul class="contacts">
+          <li><span class="contacts__k">Адрес</span><span class="contacts__v">ул. Студенческая, 10<br>197343, Санкт-Петербург</span></li>
+          <li><span class="contacts__k">Режим работы</span><span class="contacts__v">10:00 — 20:00<br>ежедневно</span></li>
+          <li><span class="contacts__k">Рецепция</span><span class="contacts__v"><a href="#">+7 (812) 363-00-07</a></span></li>
+          <li><span class="contacts__k">Администрация</span><span class="contacts__v"><a href="#">+7 (812) 458-59-00</a></span></li>
+          <li><span class="contacts__k">Отдел аренды</span><span class="contacts__v"><a href="#">info@tk-lanskoy.ru</a></span></li>
+        </ul>
+        <p class="panel__sub">Мы в соцсетях</p>
+        <ul class="msgs">
+          <li><a href="#" class="msg">VK</a></li>
+          <li><a href="#" class="msg">YouTube</a></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <p class="panel__title">Реквизиты</p>
+        <ul class="contacts">
+          <li><span class="contacts__k">Организация</span><span class="contacts__v ph-mark">не указана</span></li>
+          <li><span class="contacts__k">ИНН / КПП</span><span class="contacts__v ph-mark">не указаны</span></li>
+          <li><span class="contacts__k">ОГРН</span><span class="contacts__v ph-mark">не указан</span></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <aside class="note"><b>1. Карта — Яндекс.Карты.</b> П. 6.13 и 13.3 называют их прямо. На действующем сайте стоит Google Maps, при переносе её надо менять: помимо требования ТЗ, это вопрос доступности сервиса. Карту стоит подгружать не сразу, а по клику на заглушку — она тянет заметный объём скриптов и бьёт по показателям из п. 12.1.</aside>
+
+  <aside class="note"><b>2. Реквизиты не заполнены.</b> П. 6.13 требует их. Юридического лица в исходных данных нет нигде — ни на действующем сайте, ни в брендбуке. Нужно запросить: название организации, ИНН, КПП, ОГРН, юридический адрес.</aside>
+</section>
+
+<!-- как добраться -->
+<section class="sect sect--alt">
+  <div class="wrap">
+    <h2 class="sect__h2 mb36">Как добраться</h2>
+    <div class="grid grid--3">
+      <div class="infra">
+        <h3 class="infra__h">На метро</h3>
+        <p class="infra__t">Ближайшие станции — «Чёрная речка» и «Лесная». <span class="ph-mark">Время пешком и маршрут наземного транспорта нужно уточнить</span></p>
+      </div>
+      <div class="infra">
+        <h3 class="infra__h">На машине</h3>
+        <p class="infra__t">Комплекс на границе Приморского и Выборгского районов, рядом с городскими магистралями. <span class="ph-mark">Схема въезда нужна отдельно</span></p>
+      </div>
+      <div class="infra">
+        <h3 class="infra__h">Парковка</h3>
+        <p class="infra__t ph-mark">Платная или бесплатная, стоимость и число мест — данные противоречат друг другу</p>
+      </div>
+    </div>
+
+    <div class="entrances">
+      <div class="entrances__map ph"><span class="ph__label">Схема расположения входов</span></div>
+      <div>
+        <h3 class="block__h2">Входы в комплекс</h3>
+        <p class="prose ph-mark">Количество входов, их назначение и привязка к этажам не описаны в исходных данных. П. 6.13 требует схему расположения входов — её нужно получить вместе с планировками этажей.</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="note"><b>3. Парковка — прямое противоречие в документах.</b> П. 6.13 ТЗ требует «информацию о платной парковке и её стоимости», то есть считает её платной. Макет сайта в брендбуке заявляет «БЕСПЛАТНАЯ парковка», а планировка в том же брендбуке подписана «Платная парковка». Три документа, два разных ответа. Для посетителя это один из решающих вопросов перед поездкой, поэтому здесь нужен однозначный ответ администрации, а не обтекаемая формулировка.</aside>
+</section>
+
+<!-- обратная связь -->
+<section class="sect" id="feedback">
+  <div class="wrap rentform">
+    <div class="rentform__text">
+      <h2 class="sect__h2">Обратная связь</h2>
+      <p class="rentform__lead">Вопрос по работе комплекса, предложение или жалоба. По аренде — <a href="rent.html" class="link">отдельная форма</a>.</p>
+      <ul class="contacts contacts--lg">
+        <li><span class="contacts__k">Рецепция</span><span class="contacts__v"><a href="#">+7 (812) 363-00-07</a></span></li>
+        <li><span class="contacts__k">Администрация</span><span class="contacts__v"><a href="#">+7 (812) 458-59-00</a></span></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <div class="st-open">
+        <form class="jsform" novalidate>
+          <label class="fld">
+            <span class="fld__lab">Имя</span>
+            <input type="text" name="name" required>
+            <span class="fld__err">Укажите, как к вам обращаться</span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">E-mail</span>
+            <input type="email" name="email" required>
+            <span class="fld__err">Проверьте адрес — на него придёт ответ</span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Тема</span>
+            <select name="topic" class="sel">
+              <option>Вопрос по работе комплекса</option>
+              <option>Предложение</option>
+              <option>Жалоба</option>
+              <option>Сотрудничество</option>
+            </select>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Сообщение</span>
+            <textarea name="msg" rows="5" required></textarea>
+            <span class="fld__err">Напишите, в чём вопрос</span>
+          </label>
+
+          <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
+
+          <label class="check">
+            <input type="checkbox" name="pd" required>
+            <span>Согласен на обработку персональных данных и принимаю <a href="#">политику</a></span>
+            <span class="fld__err">Без согласия отправить нельзя</span>
+          </label>
+
+          <div class="captcha ph"><span class="ph__label">Yandex SmartCaptcha</span></div>
+
+          <button type="submit" class="btn btn--primary btn--full">Отправить</button>
+          <p class="regform__hint">Обращение уходит администрации и сохраняется в CMS со статусом.</p>
+        </form>
+      </div>
+
+      <div class="st-done" hidden>
+        <p class="panel__title">Обращение отправлено</p>
+        <p class="panel__text">Администрация ответит на указанный адрес. Обычно это занимает <span class="ph-mark">0 рабочих дня</span>.</p>
+        <p class="panel__text">Если вопрос срочный, позвоните на рецепцию: <a href="#" class="link">+7 (812) 363-00-07</a></p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="note"><b>4. Тема обращения выпадающим списком.</b> В ТЗ состава формы обратной связи нет — п. 6.13 называет её одной строкой. Тема нужна администрации, чтобы сортировать поток: жалоба и предложение о сотрудничестве попадают к разным людям. По п. 8.1 заявки живут в CMS со статусами, и тема даёт по чему их фильтровать. Заявки по аренде отделены намеренно — у них своя форма и свой адресат.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=17"></script>
+<script src="app.js?v=17"></script>
+<script src="events.js?v=17"></script>
+</body>
+</html>

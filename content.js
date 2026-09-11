@@ -94,6 +94,13 @@ chipFilter({
   words: ['статья', 'статьи', 'статей']
 });
 
+chipFilter({
+  grid: 'vidGrid', item: '.vid', filters: 'vidFilters',
+  empty: 'vidEmpty', reset: 'data-vidreset',
+  count: 'vidCount', countWord: 'vidCountWord',
+  words: ['видео', 'видео', 'видео']
+});
+
 /* ---------- оглавление статьи ---------- */
 (function () {
   var nav = document.getElementById('tocNav');

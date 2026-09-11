@@ -693,6 +693,62 @@ a.viewtabs__item:hover{color:var(--ink)}
 .floorlist__s{font-size:12px;color:var(--mute);flex:none}
 .floorlist__empty{font-size:13px;padding:6px 0}
 
+/* ---------- о комплексе ---------- */
+.aboutintro{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.aboutintro__media{aspect-ratio:4/3}
+
+.floorsinfo{display:grid;gap:16px}
+.floorinfo{display:grid;grid-template-columns:96px 1fr;gap:28px;align-items:center;
+  padding:24px;border:1px solid var(--line);background:var(--paper)}
+.floorinfo:hover{border-color:var(--ink)}
+.floorinfo__n{display:flex;align-items:center;justify-content:center;height:84px;
+  font-family:var(--serif);font-weight:500;font-size:48px;letter-spacing:var(--tr-big);
+  border:1px solid var(--line-2)}
+.floorinfo__h{display:block;font-family:var(--sans);font-weight:600;font-size:19px;letter-spacing:var(--tr-h3)}
+.floorinfo__t{display:block;font-size:15px;color:var(--ink-2);margin-top:8px;line-height:1.5}
+.floorinfo__m{display:block;font-size:13px;color:var(--mute);margin-top:10px}
+
+.numbering{display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:start}
+.numbering__lead{margin:16px 0 24px;color:var(--ink-2);line-height:1.6;max-width:56ch}
+.numbering__box{border:1px solid var(--line);background:var(--paper);padding:32px;text-align:center}
+.numbering__sample{font-family:var(--serif);font-weight:500;font-size:72px;line-height:1;letter-spacing:var(--tr-big)}
+.numbering__cap{font-size:13px;color:var(--mute);margin:12px 0 24px}
+
+.infra{padding-top:18px;border-top:1px solid var(--line)}
+.infra__h{font-size:17px;margin-bottom:10px}
+.infra__t{font-size:15px;line-height:1.6;color:var(--ink-2)}
+
+/* ---------- контакты ---------- */
+.contactmap{display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start}
+.mapbox{aspect-ratio:16/11;border:1px solid var(--line)}
+.contactside{display:flex;flex-direction:column;gap:20px}
+.entrances{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px}
+.entrances__map{aspect-ratio:16/10;border:1px solid var(--line)}
+.sel{width:100%;height:46px;padding:0 12px;border:1px solid var(--line-2);background:var(--paper);font:inherit}
+.sel:focus{border-color:var(--ink);outline:none}
+
+/* ---------- галерея и видео ---------- */
+.album{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--paper)}
+.album:hover{border-color:var(--ink)}
+.album__media{position:relative;display:block;aspect-ratio:4/3}
+.album__n{position:absolute;right:0;bottom:0;background:var(--ink);color:#fff;
+  padding:6px 12px;font-size:12px;letter-spacing:var(--tr-num)}
+.album__n.ph-mark{color:#cfcac4;border-bottom-color:#6d6862}
+.album__b{display:block;padding:18px 20px}
+.album__h{display:block;font-family:var(--sans);font-weight:600;font-size:18px;letter-spacing:var(--tr-h3)}
+.album__m{display:block;font-size:13px;color:var(--mute);margin-top:8px}
+
+.vid{display:block}
+.vid__media{position:relative;display:block;aspect-ratio:16/9;margin-bottom:14px}
+.vid:hover .vid__h{border-bottom-color:var(--ink)}
+.vid__time{position:absolute;right:8px;bottom:8px;background:var(--ink);color:#fff;padding:4px 8px;font-size:11px}
+.vid__time.ph-mark{color:#cfcac4;border-bottom-color:#6d6862}
+.vid__h{display:inline-block;font-family:var(--sans);font-weight:600;font-size:17px;
+  letter-spacing:var(--tr-h3);line-height:1.35;border-bottom:1px solid transparent}
+.vid__m{display:block;font-size:13px;color:var(--mute);margin-top:8px}
+.playmark--sm{width:48px;height:48px;margin:-24px 0 0 -24px}
+.playmark--sm::after{left:19px;top:15px;border-left-width:14px;border-top-width:9px;border-bottom-width:9px}
+
 /* ---------- лендинг аренды ---------- */
 .mb36{margin-bottom:36px}
 .renthero{border-bottom:1px solid var(--line)}
@@ -777,6 +833,8 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .artlayout{grid-template-columns:minmax(0,1fr) 260px;gap:40px}
   .floorpage{grid-template-columns:1fr 300px;gap:32px}
   .rentform{grid-template-columns:1fr 400px;gap:40px}
+  .contactmap{grid-template-columns:1fr 320px;gap:32px}
+  .numbering{grid-template-columns:1fr 300px;gap:40px}
   .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
@@ -806,6 +864,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .floorside{position:static}
   .renthero__in{grid-template-columns:1fr;gap:36px;padding-top:48px;padding-bottom:48px}
   .rentform{grid-template-columns:1fr;gap:36px}
+  .aboutintro,.contactmap,.numbering,.entrances{grid-template-columns:1fr;gap:32px}
   .terms__row{grid-template-columns:200px 1fr;gap:20px}
   .postgrid{grid-template-columns:repeat(2,1fr);gap:32px 24px}
   .post--lead{grid-column:span 2}
@@ -849,6 +908,9 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .speakers{grid-template-columns:1fr}
   .terms__row{grid-template-columns:1fr;gap:6px}
   .renthero__media{min-height:220px}
+  .floorinfo{grid-template-columns:64px 1fr;gap:18px;padding:18px}
+  .floorinfo__n{height:64px;font-size:34px}
+  .numbering__sample{font-size:56px}
   .postgrid{grid-template-columns:1fr}
   .post--lead{grid-column:auto}
   .post--lead .post__media{aspect-ratio:16/10}
