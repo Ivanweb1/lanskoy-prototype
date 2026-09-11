@@ -287,7 +287,8 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 
 /* ---------- карточки ---------- */
 .card{display:flex;flex-direction:column}
-.card__media{position:relative;aspect-ratio:4/3;margin-bottom:16px}
+/* на карточках акций обложка — <span>, поэтому display задан явно */
+.card__media{display:block;position:relative;aspect-ratio:4/3;margin-bottom:16px}
 .card--sm .card__media{aspect-ratio:3/2}
 .badge{
   position:absolute;left:0;bottom:0;background:var(--ink);color:#fff;
@@ -326,7 +327,9 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 
 /* ---------- журнал ---------- */
 .journal{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-.post__media{aspect-ratio:16/10;margin-bottom:16px}
+/* display:block обязателен — обложка бывает ссылкой, а к инлайновому <a>
+   ни высота, ни aspect-ratio не применяются, и блок схлопывается */
+.post__media{display:block;aspect-ratio:16/10;margin-bottom:16px}
 .post--lead .post__media{aspect-ratio:4/3}
 .post__rubric{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
 .post__title{font-size:22px;line-height:1.3}
