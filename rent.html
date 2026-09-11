@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Аренда — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=13">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Аренда · Ч/Б · v1</span>
+  <span class="proto-bar__states">
+    Форма:
+    <button type="button" class="proto-bar__st is-active" data-state="open">заявка</button>
+    <button type="button" class="proto-bar__st" data-state="done">отправлена</button>
+  </span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active=""></div>
+
+<main>
+
+<!-- ================= ПЕРВЫЙ ЭКРАН ================= -->
+<section class="renthero">
+  <div class="wrap renthero__in">
+    <div class="renthero__text">
+      <p class="kicker">Аренда торговых площадей</p>
+      <h1 class="renthero__h1">Покупатель приходит сюда с готовым намерением</h1>
+      <p class="renthero__sub">ТК «Ланской» — интерьерный центр в Санкт-Петербурге. Сюда едут те, кто уже начал ремонт или работает над проектом, а не гуляет между витрин.</p>
+      <div class="renthero__acts">
+        <a href="#form" class="btn btn--primary">Оставить заявку</a>
+        <a href="floors.html" class="btn btn--ghost">Свободные помещения</a>
+      </div>
+    </div>
+    <div class="renthero__media ph"><span class="ph__label">Фотография галереи комплекса</span></div>
+  </div>
+  <aside class="note"><b>1. Заголовок про аудиторию, а не про метры.</b> Бизнес-цель из п. 2.1 — привлечь новые бизнесы к аренде. Арендатор выбирает не площадь, а покупателя, который до него дойдёт. Поэтому на первом экране — качество трафика, а площади и условия ниже. Вторая кнопка ведёт на схему этажей: там видно свободные секции, и это честнее любого описания.</aside>
+</section>
+
+<!-- ================= ЦИФРЫ ================= -->
+<section class="facts">
+  <div class="wrap facts__in">
+    <div class="fact"><span class="fact__num">150+</span><span class="fact__cap">магазинов<br>и шоурумов</span></div>
+    <div class="fact"><span class="fact__num">3</span><span class="fact__cap">этажа<br>торговых площадей</span></div>
+    <div class="fact"><span class="fact__num ph-mark">000 000</span><span class="fact__cap">посетителей<br>в месяц</span></div>
+    <div class="fact"><span class="fact__num ph-mark">00 000</span><span class="fact__cap">м²<br>общая площадь</span></div>
+    <div class="fact"><span class="fact__num ph-mark">00</span><span class="fact__cap">лет<br>комплексу</span></div>
+  </div>
+  <aside class="note"><b>2. Цифры трафика — самое слабое место раздела.</b> Три из пяти показателей неизвестны, а именно они убеждают арендатора. Нужны от отдела аренды: посещаемость, площадь, возраст комплекса. Если данных по трафику нет или они непоказательны, блок лучше убрать целиком, чем ставить туда общие слова — пустые обещания на этой странице считываются сразу.</aside>
+</section>
+
+<!-- ================= ПРЕИМУЩЕСТВА ================= -->
+<section class="sect">
+  <div class="wrap">
+    <h2 class="sect__h2 mb36">Почему арендаторы выбирают «Ланской»</h2>
+    <div class="grid grid--3">
+      <div class="adv">
+        <span class="adv__n">01</span>
+        <h3 class="adv__h3">Целевой покупатель</h3>
+        <p class="adv__t">В комплекс едут за материалами и мебелью осознанно: человек в ремонте, дизайнер с проектом, подрядчик. Случайного трафика почти нет, но и конверсия в покупку выше.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">02</span>
+        <h3 class="adv__h3">Соседство работает на вас</h3>
+        <p class="adv__t">150 магазинов смежных категорий в одном здании. Покупатель, который приехал за плиткой, уходит ещё и с сантехникой — и наоборот.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">03</span>
+        <h3 class="adv__h3">Продвижение включено</h3>
+        <p class="adv__t">Карточка магазина на сайте, размещение акций, участие в мероприятиях комплекса и упоминания в журнале — без отдельной платы.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">04</span>
+        <h3 class="adv__h3">Личный кабинет</h3>
+        <p class="adv__t">Контакты, акции, фотографии и видео магазина обновляются самостоятельно, без заявок в администрацию и ожидания.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">05</span>
+        <h3 class="adv__h3">Профессиональная аудитория</h3>
+        <p class="adv__t">Дизайнеры и архитекторы приходят на семинары и подбирают материалы под проекты. Один такой контакт приносит не одну покупку.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">06</span>
+        <h3 class="adv__h3">Расположение и парковка</h3>
+        <p class="adv__t ph-mark">Транспортная доступность, парковка и время от метро — данные нужно уточнить в отделе аренды.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>3. Шесть преимуществ, а не список галочек.</b> Третий пункт — реальный: на действующем сайте прямо сказано, что арендаторы бесплатно размещают акции на сайте комплекса. Четвёртый опирается на кабинет из раздела 7 ТЗ, это ощутимое отличие от площадок, где правки идут через администрацию неделями. Пятый — на модуль мероприятий из п. 6.8.</aside>
+</section>
+
+<!-- ================= АУДИТОРИЯ ================= -->
+<section class="sect sect--alt">
+  <div class="wrap pro">
+    <div class="pro__text">
+      <p class="kicker">Кто приходит в комплекс</p>
+      <h2 class="sect__h2">Две аудитории, обе с деньгами и намерением</h2>
+      <ul class="pro__list">
+        <li><b>Частный покупатель в ремонте</b> — ищет, где купить материалы, сравнивает и вдохновляется</li>
+        <li><b>Дизайнер и архитектор</b> — подбирает поставщиков под проект, приходит за образцами</li>
+        <li><b>Подрядчик и строительная бригада</b> — закупает объёмами и возвращается регулярно</li>
+      </ul>
+      <a href="#form" class="btn btn--ghost">Обсудить условия</a>
+    </div>
+    <div class="pro__media ph"><span class="ph__label">Фото посетителей</span></div>
+  </div>
+  <aside class="note"><b>4. Сегменты взяты из ТЗ.</b> Первые два — прямо из п. 3.1, где перечислена целевая аудитория сайта. Третий добавил: подрядчики в ТЗ не названы, но для арендатора это самый денежный сегмент, и стоит проверить у отдела аренды, есть ли он в реальности.</aside>
+</section>
+
+<!-- ================= УСЛОВИЯ ================= -->
+<section class="sect">
+  <div class="wrap">
+    <h2 class="sect__h2 mb36">Условия аренды</h2>
+    <div class="terms">
+      <div class="terms__row"><span class="terms__k">Площади</span><span class="terms__v ph-mark">от 00 до 000 м²</span></div>
+      <div class="terms__row"><span class="terms__k">Ставка</span><span class="terms__v ph-mark">обсуждается индивидуально</span></div>
+      <div class="terms__row"><span class="terms__k">Срок договора</span><span class="terms__v ph-mark">не указан</span></div>
+      <div class="terms__row"><span class="terms__k">Что входит</span><span class="terms__v">Карточка на сайте, размещение акций, участие в мероприятиях комплекса</span></div>
+      <div class="terms__row"><span class="terms__k">Свободные помещения</span><span class="terms__v"><a href="floors.html" class="link">Посмотреть на схеме этажей</a></span></div>
+    </div>
+  </div>
+  <aside class="note"><b>5. Условия почти пустые — и это вопрос к заказчику.</b> П. 6.10 требует раздел «условия», но что именно раскрывать, решает отдел аренды. Развилка простая: либо публикуем вилку площадей и ставок и получаем меньше заявок, но качественнее, либо оставляем «индивидуально» и разбираем поток вручную. Второе выглядит безопаснее, но на практике даёт много пустых обращений.</aside>
+</section>
+
+<!-- ================= ЗАЯВКА ================= -->
+<section class="sect sect--alt" id="form">
+  <div class="wrap rentform">
+
+    <div class="rentform__text">
+      <h2 class="sect__h2">Оставьте заявку</h2>
+      <p class="rentform__lead">Отдел аренды свяжется с вами и подберёт помещение под ваш формат.</p>
+
+      <ul class="contacts contacts--lg">
+        <li><span class="contacts__k">Отдел аренды</span><span class="contacts__v"><a href="#">+7 (812) 363-00-07</a></span></li>
+        <li><span class="contacts__k">Почта</span><span class="contacts__v"><a href="#">info@tk-lanskoy.ru</a></span></li>
+        <li><span class="contacts__k">Адрес</span><span class="contacts__v">ул. Студенческая, 10</span></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <!-- форма -->
+      <div class="st-open">
+        <form class="jsform" novalidate>
+          <label class="fld">
+            <span class="fld__lab">Имя</span>
+            <input type="text" name="name" required>
+            <span class="fld__err">Укажите, как к вам обращаться</span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Телефон</span>
+            <input type="tel" name="phone" required>
+            <span class="fld__err">Укажите телефон для связи</span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">E-mail</span>
+            <input type="email" name="email" required>
+            <span class="fld__err">Проверьте адрес</span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Чем занимаетесь и какая площадь нужна</span>
+            <textarea name="msg" rows="4"></textarea>
+          </label>
+
+          <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
+
+          <label class="check">
+            <input type="checkbox" name="pd" required>
+            <span>Согласен на обработку персональных данных и принимаю <a href="#">политику</a></span>
+            <span class="fld__err">Без согласия заявку отправить нельзя</span>
+          </label>
+
+          <div class="captcha ph"><span class="ph__label">Yandex SmartCaptcha</span></div>
+
+          <button type="submit" class="btn btn--primary btn--full">Отправить заявку</button>
+          <p class="regform__hint">Заявка уходит на почту отдела аренды и сохраняется в CMS.</p>
+        </form>
+      </div>
+
+      <!-- отправлено -->
+      <div class="st-done" hidden>
+        <p class="panel__title">Заявка отправлена</p>
+        <p class="panel__text">Отдел аренды свяжется с вами в рабочее время. Обычно это занимает <span class="ph-mark">0 рабочих дня</span>.</p>
+        <p class="panel__text">Если вопрос срочный, позвоните напрямую: <a href="#" class="link">+7 (812) 363-00-07</a></p>
+        <a href="floors.html" class="btn btn--ghost btn--full">Пока посмотреть свободные помещения</a>
+      </div>
+    </div>
+  </div>
+
+  <aside class="note"><b>6. Форма — ровно то, что требует п. 6.10: «контакт + сообщение».</b> Имя, телефон, почта и свободное поле. Поле про формат бизнеса и площадь не обязательное, но именно оно экономит отделу аренды первый звонок. Переключатель состояний в чёрной панели показывает экран после отправки.</aside>
+
+  <aside class="note"><b>7. Куда уходит заявка.</b> П. 6.10 требует двух вещей сразу: письмо на почту отдела аренды и сохранение в CMS. Второе важнее, чем кажется: почта теряется, а в CMS по п. 8.1 заявки живут со статусами, и видно, что с ними стало. Защита от спама — та же связка из п. 6.16, что и на регистрации: капча, honeypot, ограничение частоты.</aside>
+
+  <aside class="note"><b>8. Срок ответа.</b> Поставил его в экран благодарности и пометил пунктиром: обещание вроде «свяжемся в течение дня» заметно повышает доверие, но его должен подтвердить отдел аренды. Писать срок, который не выдерживают, хуже, чем не писать вовсе.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=13"></script>
+<script src="app.js?v=13"></script>
+<script src="events.js?v=13"></script>
+</body>
+</html>

@@ -54,7 +54,7 @@ var LNS = (function () {
 '        <li><a href="#">Как добраться</a></li>' +
 '      </ul>' +
 '      <ul class="utility__actions">' +
-'        <li><a href="#" class="btn btn--ghost btn--sm">Аренда</a></li>' +
+'        <li><a href="rent.html" class="btn btn--ghost btn--sm">Аренда</a></li>' +
 '        <li><a href="#" class="utility__login">Войти в кабинет</a></li>' +
 '      </ul>' +
 '    </div>' +
@@ -181,7 +181,7 @@ var LNS = (function () {
 '        <li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li>' +
 '        <li><a href="journal.html">Журнал</a></li></ul></div>' +
 '      <div><p class="footer__title">Комплекс</p><ul>' +
-'        <li><a href="#">О комплексе</a></li><li><a href="#">Аренда</a></li>' +
+'        <li><a href="#">О комплексе</a></li><li><a href="rent.html">Аренда</a></li>' +
 '        <li><a href="#">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>' +
 '    </div>' +
 '  </div>' +

@@ -668,6 +668,33 @@ a.viewtabs__item:hover{color:var(--ink)}
 .floorlist__s{font-size:12px;color:var(--mute);flex:none}
 .floorlist__empty{font-size:13px;padding:6px 0}
 
+/* ---------- лендинг аренды ---------- */
+.mb36{margin-bottom:36px}
+.renthero{border-bottom:1px solid var(--line)}
+.renthero__in{display:grid;grid-template-columns:minmax(340px,46%) 1fr;gap:56px;align-items:center;
+  padding-top:72px;padding-bottom:72px}
+.renthero__h1{font-size:clamp(32px,4vw,56px);line-height:1.08;margin-top:6px}
+.renthero__sub{margin:22px 0 34px;font-size:17px;line-height:1.6;color:var(--ink-2);max-width:52ch}
+.renthero__acts{display:flex;gap:14px;flex-wrap:wrap}
+.renthero__media{aspect-ratio:4/3;min-height:340px}
+
+.adv{padding-top:20px;border-top:2px solid var(--ink)}
+.adv__n{display:block;font-family:var(--serif);font-size:15px;color:var(--mute);margin-bottom:12px}
+.adv__h3{font-size:21px;line-height:1.25;margin-bottom:12px}
+.adv__t{font-size:15px;line-height:1.6;color:var(--ink-2)}
+
+.terms{border-top:1px solid var(--line)}
+.terms__row{display:grid;grid-template-columns:280px 1fr;gap:28px;padding:18px 0;border-bottom:1px solid var(--line)}
+.terms__k{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.terms__v{font-size:16px}
+
+.rentform{display:grid;grid-template-columns:1fr 460px;gap:64px;align-items:start}
+.rentform__lead{margin:16px 0 28px;color:var(--ink-2);font-size:17px;line-height:1.6;max-width:44ch}
+.contacts--lg li{padding:14px 0}
+.contacts--lg .contacts__v{font-size:16px}
+.fld textarea{width:100%;padding:12px 14px;border:1px solid var(--line-2);background:var(--paper);outline:none;resize:vertical}
+.fld textarea:focus{border-color:var(--ink)}
+
 /* переключатель состояний в панели прототипа */
 .proto-bar__states{display:flex;align-items:center;gap:8px;color:#a9a49e}
 .proto-bar__st{border:1px solid #4a4540;padding:4px 10px;font-size:11px;color:#cfcac4}
@@ -724,6 +751,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .evrow{grid-template-columns:88px 180px 1fr 130px;gap:20px}
   .artlayout{grid-template-columns:minmax(0,1fr) 260px;gap:40px}
   .floorpage{grid-template-columns:1fr 300px;gap:32px}
+  .rentform{grid-template-columns:1fr 400px;gap:40px}
   .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
@@ -751,6 +779,9 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .artside{position:static}
   .floorpage{grid-template-columns:1fr;gap:32px}
   .floorside{position:static}
+  .renthero__in{grid-template-columns:1fr;gap:36px;padding-top:48px;padding-bottom:48px}
+  .rentform{grid-template-columns:1fr;gap:36px}
+  .terms__row{grid-template-columns:200px 1fr;gap:20px}
   .postgrid{grid-template-columns:repeat(2,1fr);gap:32px 24px}
   .post--lead{grid-column:span 2}
   /* обложку в строке афиши убираем — на планшете она съедает место у текста */
@@ -791,6 +822,8 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .grid--2{grid-template-columns:1fr}
   .grid--3:not(.scroller){grid-template-columns:1fr}
   .speakers{grid-template-columns:1fr}
+  .terms__row{grid-template-columns:1fr;gap:6px}
+  .renthero__media{min-height:220px}
   .postgrid{grid-template-columns:1fr}
   .post--lead{grid-column:auto}
   .post--lead .post__media{aspect-ratio:16/10}

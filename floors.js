@@ -89,7 +89,7 @@
       roomBody.innerHTML =
         '<p class="room__name">Свободно</p>' +
         '<p class="room__cat">Помещение доступно для аренды.</p>' +
-        '<a href="#" class="btn btn--primary btn--full">Условия аренды</a>';
+        '<a href="rent.html" class="btn btn--primary btn--full">Условия аренды</a>';
     }
   }
 

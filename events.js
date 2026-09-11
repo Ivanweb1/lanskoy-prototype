@@ -95,7 +95,10 @@
   var bar = document.querySelector('.proto-bar__states');
   if (!bar) return;
 
-  var STATES = ['open', 'full', 'done', 'past'];
+  /* список состояний берём из кнопок панели — так блок работает
+     на любой странице, где есть свой набор */
+  var STATES = [].slice.call(bar.querySelectorAll('.proto-bar__st'))
+    .map(function (b) { return b.dataset.state; });
 
   function show(state) {
     STATES.forEach(function (s) {
@@ -116,9 +119,7 @@
 })();
 
 /* ---------- валидация формы регистрации ---------- */
-(function () {
-  var form = document.getElementById('regForm');
-  if (!form) return;
+document.querySelectorAll('.jsform').forEach(function (form) {
 
   function validate(field) {
     var wrap = field.closest('.fld') || field.closest('.check');
@@ -138,8 +139,10 @@
       return;
     }
     /* honeypot заполнен — значит бот; молча делаем вид, что всё хорошо */
-    document.querySelector('.proto-bar__st[data-state="done"]').click();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    var done = document.querySelector('.proto-bar__st[data-state="done"]');
+    if (done) done.click();
+    var panel = form.closest('.panel') || form;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
   form.addEventListener('input', function (e) {
@@ -149,4 +152,4 @@
   form.addEventListener('change', function (e) {
     if (e.target.type === 'checkbox') validate(e.target);
   });
-})();
+});
