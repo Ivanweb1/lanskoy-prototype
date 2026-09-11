@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>«Волховец» — реализация проектных продаж — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Событие · Ч/Б · v1</span>
+  <span class="proto-bar__states">
+    Состояние:
+    <button type="button" class="proto-bar__st is-active" data-state="open">регистрация</button>
+    <button type="button" class="proto-bar__st" data-state="full">мест нет</button>
+    <button type="button" class="proto-bar__st" data-state="done">отправлено</button>
+    <button type="button" class="proto-bar__st" data-state="past">прошло</button>
+  </span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active="events"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <a href="events.html">Афиша</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">«Волховец» — реализация проектных продаж</span>
+    </nav>
+
+    <div class="evhead">
+      <div class="evhead__main">
+        <ul class="taglist">
+          <li><span class="tag">Семинар</span></li>
+          <li><span class="tag">Для дизайнеров</span></li>
+        </ul>
+        <h1 class="evhead__h1">«Волховец» — реализация проектных продаж</h1>
+        <p class="evhead__sub">Специальные двери для особых задач</p>
+        <ul class="evfacts">
+          <li><span class="evfacts__k">Дата</span><span class="evfacts__v">28 августа, 15:00</span></li>
+          <li><span class="evfacts__k">Место</span><span class="evfacts__v ph-mark">этаж и зона не указаны</span></li>
+          <li><span class="evfacts__k">Участие</span><span class="evfacts__v">Бесплатно, по регистрации</span></li>
+        </ul>
+      </div>
+      <div class="evhead__media ph"><span class="ph__label">Обложка события</span></div>
+    </div>
+  </div>
+  <aside class="note"><b>1. Шапка события.</b> Состав полей задан п. 6.8: обложка, описание, дата и время, место (этаж/зона), спикеры, программа, медиа, форма регистрации. Место помечено пунктиром — на действующем сайте у событий указан только адрес комплекса, без зоны внутри. Для человека, который идёт на семинар, «3 этаж, зона лекций» важнее адреса: адрес он уже знает, раз собрался ехать.</aside>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap shoplayout">
+
+    <div class="shopmain">
+
+      <div class="block">
+        <h2 class="block__h2">О встрече</h2>
+        <div class="prose">
+          <p>Встреча для дизайнеров и архитекторов, которые работают с проектными заказами. Разбираем, как фабрика закрывает нестандартные задачи и что важно учесть на этапе проектирования.</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2 class="block__h2">Программа</h2>
+        <ul class="agenda">
+          <li>Реализация сложных заказов с продукцией специального назначения, фиксация проекта</li>
+          <li>Особенности работы в сегменте HoReCa</li>
+          <li>Техническая документация: что важно учесть</li>
+          <li>Разбор реальных кейсов</li>
+          <li>Тренды и новинки от компаний SLOTEX и WOODSTOCK</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h2 class="block__h2">Спикеры</h2>
+        <div class="speakers">
+          <div class="speaker">
+            <span class="speaker__photo ph"><span class="ph__label">Фото</span></span>
+            <span class="speaker__name">Юлия Семенова</span>
+            <span class="speaker__role">Представитель фабрики «Волховец»</span>
+          </div>
+          <div class="speaker">
+            <span class="speaker__photo ph"><span class="ph__label">Фото</span></span>
+            <span class="speaker__name">Иван Зайкин</span>
+            <span class="speaker__role">Эксперт компании SLOTEX</span>
+          </div>
+          <div class="speaker">
+            <span class="speaker__photo ph"><span class="ph__label">Фото</span></span>
+            <span class="speaker__name">Екатерина Морозова</span>
+            <span class="speaker__role">Эксперт компании WOODSTOCK</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- фотоотчёт: только для прошедшего события -->
+      <div class="block st-past" hidden>
+        <div class="block__head">
+          <h2 class="block__h2">Как прошло</h2>
+          <span class="block__meta ph-mark">00 фото</span>
+        </div>
+        <div class="prose">
+          <p class="ph-mark">Текст-резюме встречи. По п. 6.8 фотоотчёт — это галерея, текстовое резюме и видео.</p>
+        </div>
+        <div class="gallery">
+          <a href="#" class="gallery__item gallery__item--lead ph"><span class="ph__label">Фото 1</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Фото 2</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Фото 3</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Фото 4</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Фото 5</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">+1</span></a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- сайдбар регистрации -->
+    <aside class="shopside">
+
+      <!-- открыта -->
+      <div class="panel st-open">
+        <p class="panel__title">Регистрация</p>
+        <p class="seats"><b>12</b> из <span class="ph-mark">00</span> мест свободно</p>
+
+        <form class="regform" id="regForm" novalidate>
+          <label class="fld">
+            <span class="fld__lab">Имя и фамилия</span>
+            <input type="text" name="name" required>
+            <span class="fld__err">Укажите имя</span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">E-mail</span>
+            <input type="email" name="email" required>
+            <span class="fld__err">Проверьте адрес — на него придёт подтверждение</span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Телефон</span>
+            <input type="tel" name="phone" required>
+            <span class="fld__err">Укажите телефон</span>
+          </label>
+
+          <!-- honeypot: скрыт от людей, виден ботам — п. 6.16 -->
+          <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
+
+          <label class="check">
+            <input type="checkbox" name="pd" required>
+            <span>Согласен на обработку персональных данных и принимаю <a href="#">политику</a></span>
+            <span class="fld__err">Без согласия регистрация невозможна</span>
+          </label>
+
+          <div class="captcha ph"><span class="ph__label">Yandex SmartCaptcha</span></div>
+
+          <button type="submit" class="btn btn--primary btn--full">Зарегистрироваться</button>
+          <p class="regform__hint">Придёт письмо с подтверждением. Отменить регистрацию можно по ссылке из письма.</p>
+        </form>
+      </div>
+
+      <!-- мест нет -->
+      <div class="panel st-full" hidden>
+        <p class="panel__title">Регистрация</p>
+        <p class="seats seats--off">Все места заняты</p>
+        <p class="panel__text">Регистрация закрылась автоматически, когда закончились места. Лист ожидания по этому событию не ведётся.</p>
+        <a href="events.html" class="btn btn--ghost btn--full">Другие события</a>
+      </div>
+
+      <!-- успешно отправлено -->
+      <div class="panel st-done" hidden>
+        <p class="panel__title">Вы зарегистрированы</p>
+        <p class="panel__text">Письмо с подтверждением отправлено на указанный адрес. В нём ссылка для отмены регистрации.</p>
+        <p class="panel__text ph-mark">Проверьте папку «Спам», если письма нет в течение 10 минут.</p>
+        <a href="events.html" class="btn btn--ghost btn--full">Вернуться к афише</a>
+      </div>
+
+      <!-- событие прошло -->
+      <div class="panel st-past" hidden>
+        <p class="panel__title">Событие завершено</p>
+        <p class="panel__text">Встреча прошла 28 августа. Ниже — фотоотчёт и резюме.</p>
+        <a href="events.html" class="btn btn--ghost btn--full">Ближайшие события</a>
+      </div>
+
+      <div class="panel">
+        <p class="panel__title">Поделиться</p>
+        <ul class="msgs">
+          <li><a href="#" class="msg">VK</a></li>
+          <li><a href="#" class="msg">Telegram</a></li>
+          <li><a href="#" class="msg">Скопировать ссылку</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <aside class="note"><b>2. Форма регистрации.</b> Поля ровно те, что названы в п. 6.8: имя, e-mail, телефон. Ничего сверх — каждое лишнее поле снижает число регистраций, а данные всё равно некуда девать. Валидация живая: отправьте пустую форму и увидите ошибки под полями. Чекбокс согласия на обработку ПД со ссылкой на политику обязателен по п. 6.16 и без него кнопка не сработает.</aside>
+
+  <aside class="note"><b>3. Защита от спама.</b> П. 6.16 требует связку «captcha + honeypot + ограничение частоты». Капча в макете — блок под Yandex SmartCaptcha из п. 13.4, место под неё нужно заложить сразу: если добавлять потом, форма перестраивается. Honeypot — скрытое поле «company» в разметке: человек его не видит, бот заполняет, сервер такую заявку отбрасывает. Ограничение частоты — на стороне сервера, в дизайне не отражается.</aside>
+
+  <aside class="note"><b>4. Четыре состояния.</b> Переключаются в чёрной панели сверху. <b>Регистрация</b> — обычное. <b>Мест нет</b> — по п. 6.8 регистрация закрывается автоматически при заполнении лимита; ТЗ прямо говорит, что лист ожидания не нужен, поэтому предлагаем другие события. <b>Отправлено</b> — подтверждение с упоминанием письма и ссылки на отмену. <b>Прошло</b> — форма исчезает, появляется блок «Как прошло» с фотоотчётом. Это не украшение прототипа: без явных состояний разработка сделает их по-своему, и переделывать будет дороже.</aside>
+
+  <aside class="note"><b>5. Данные.</b> Событие реальное — дата, программа из пяти пунктов и три спикера взяты с афиши действующего сайта. Не хватает того, чего там нет: этажа и зоны, лимита мест и обложки в нормальном разрешении. Эти три поля нужно закладывать в карточку события в CMS.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=5"></script>
+<script src="app.js?v=5"></script>
+<script src="events.js?v=5"></script>
+</body>
+</html>

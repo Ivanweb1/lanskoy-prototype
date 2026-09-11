@@ -501,6 +501,77 @@ a.viewtabs__item:hover{color:var(--ink)}
 .brandtile:hover .brandtile__logo{border-color:var(--ink)}
 .brandtile__name{display:block;font-size:13px;margin-top:10px;color:var(--ink-2)}
 
+/* ---------- афиша ---------- */
+.evfilters{padding-bottom:26px;margin-bottom:28px;border-bottom:1px solid var(--line)}
+.evfilters__row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:12px}
+.evfilters__row:last-child{margin-bottom:0}
+.evfilters__label{width:96px;flex:none;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.evfilters .chip{cursor:pointer}
+.evfilters .chip.is-active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.evrow{display:grid;grid-template-columns:100px 220px 1fr 150px;gap:28px;align-items:center;
+  padding:22px 0;border-bottom:1px solid var(--line)}
+.evrow:first-child{border-top:1px solid var(--line)}
+.evrow:hover .evrow__name{border-bottom-color:var(--ink)}
+.evrow__date{display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:14px 8px;border:1px solid var(--line-2)}
+.evrow__day{font-family:var(--serif);font-size:32px;line-height:1}
+.evrow__mon{font-size:12px;color:var(--mute);margin-top:4px}
+.evrow__time{font-size:12px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);width:100%}
+.evrow__media{display:block;aspect-ratio:16/10}
+.evrow__tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.evrow__tags .tag{font-style:normal;height:26px;font-size:11px}
+.evrow__name{display:inline-block;font-family:var(--serif);font-size:21px;line-height:1.25;
+  border-bottom:1px solid transparent}
+.evrow__desc{display:block;font-size:14px;color:var(--ink-2);margin-top:10px;line-height:1.5}
+.evrow__meta{display:block;font-size:13px;color:var(--mute);margin-top:12px}
+.evrow__act{text-align:right}
+.evrow--past .evrow__day,.evrow--past .evrow__mon{color:var(--mute)}
+.evrow.is-full .evrow__media{opacity:.6}
+
+/* ---------- страница события ---------- */
+.evhead{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-bottom:36px}
+.evhead__h1{font-size:clamp(28px,3.2vw,44px);line-height:1.12;margin-top:14px}
+.evhead__sub{margin-top:14px;font-size:17px;color:var(--mute)}
+.evhead__media{aspect-ratio:4/3}
+.evfacts{margin-top:26px;border-top:1px solid var(--line)}
+.evfacts li{display:flex;gap:20px;padding:12px 0;border-bottom:1px solid var(--line)}
+.evfacts__k{width:110px;flex:none;font-size:13px;color:var(--mute)}
+.evfacts__v{font-size:15px}
+
+.agenda li{position:relative;padding-left:26px;margin-bottom:12px;color:var(--ink-2);line-height:1.55}
+.agenda li::before{content:"";position:absolute;left:0;top:11px;width:12px;height:1px;background:var(--ink)}
+
+.speakers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.speaker__photo{display:block;aspect-ratio:1/1;margin-bottom:14px}
+.speaker__name{display:block;font-family:var(--serif);font-size:18px}
+.speaker__role{display:block;font-size:13px;color:var(--mute);margin-top:6px;line-height:1.45}
+
+.seats{font-size:15px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.seats b{font-family:var(--serif);font-size:24px}
+.seats--off{color:var(--mute)}
+.panel__text{font-size:14px;color:var(--ink-2);line-height:1.55;margin-bottom:16px}
+
+/* ---------- форма ---------- */
+.fld{display:block;margin-bottom:16px}
+.fld__lab{display:block;font-size:13px;color:var(--mute);margin-bottom:6px}
+.fld input{width:100%;height:46px;padding:0 14px;border:1px solid var(--line-2);background:var(--paper);outline:none}
+.fld input:focus{border-color:var(--ink)}
+.fld__err{display:none;font-size:12px;color:var(--ink);margin-top:6px}
+.fld.is-invalid input{border-color:var(--ink);border-width:2px}
+.fld.is-invalid .fld__err{display:block}
+.check.is-invalid .fld__err{display:block;margin-top:6px}
+.check .fld__err{display:none;font-size:12px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.captcha{height:78px;margin:18px 0}
+.regform__hint{font-size:12px;color:var(--mute);margin-top:12px;line-height:1.5}
+
+/* переключатель состояний в панели прототипа */
+.proto-bar__states{display:flex;align-items:center;gap:8px;color:#a9a49e}
+.proto-bar__st{border:1px solid #4a4540;padding:4px 10px;font-size:11px;color:#cfcac4}
+.proto-bar__st:hover{background:#2e2a26}
+.proto-bar__st.is-active{background:#fff;color:var(--ink);border-color:#fff}
+
 /* ================= ФУТЕР ================= */
 .footer{background:var(--ink);color:#cfcac4;padding-top:64px}
 .footer__in{display:grid;grid-template-columns:280px 1fr;gap:64px;padding-bottom:48px}
@@ -548,6 +619,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .grid--shops{grid-template-columns:repeat(2,1fr)}
   .shoplayout{grid-template-columns:1fr 300px;gap:40px}
   .catnav__item{grid-template-columns:160px 1fr}
+  .evrow{grid-template-columns:88px 180px 1fr 130px;gap:20px}
   .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
@@ -569,6 +641,11 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .shopside{position:static}
   .shophead{grid-template-columns:110px 1fr;gap:24px}
   .catnav{grid-template-columns:1fr}
+  .evhead{grid-template-columns:1fr;gap:32px}
+  /* обложку в строке афиши убираем — на планшете она съедает место у текста */
+  .evrow{grid-template-columns:80px 1fr;gap:20px;align-items:start}
+  .evrow__media{display:none}
+  .evrow__act{grid-column:2;text-align:left;margin-top:14px}
   .shophead__acts{grid-column:1/-1;flex-direction:row;min-width:0}
   .hero__in{padding-top:48px;padding-bottom:48px}
   .facts__in{grid-template-columns:repeat(2,1fr);row-gap:28px}
@@ -602,6 +679,9 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .grid--shops{grid-template-columns:1fr}
   .grid--2{grid-template-columns:1fr}
   .grid--3:not(.scroller){grid-template-columns:1fr}
+  .speakers{grid-template-columns:1fr}
+  .evfilters__label{width:100%}
+  .proto-bar__states{display:none}
   .catnav__item{grid-template-columns:1fr}
   .catnav__media{aspect-ratio:16/9}
   .brandsearch{width:100%}

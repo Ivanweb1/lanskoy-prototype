@@ -25,7 +25,7 @@ var LNS = (function () {
   var NAV = [
     { key: 'shops', label: 'Магазины', mega: 'shops' },
     { key: 'promos', label: 'Акции', href: '#' },
-    { key: 'events', label: 'Афиша', href: '#' },
+    { key: 'events', label: 'Афиша', href: 'events.html' },
     { key: 'journal', label: 'Журнал', href: '#' },
     { key: 'designers', label: 'Дизайнерам', href: '#' },
     { key: 'about', label: 'О комплексе', mega: 'about' }
@@ -81,7 +81,7 @@ var LNS = (function () {
 '            <p class="suggest__group">Статьи</p>' +
 '            <a href="#" class="suggest__item"><span>Комбинированный пол: плитка и ламинат</span><span class="suggest__meta">23.06.2026</span></a>' +
 '            <p class="suggest__group">События</p>' +
-'            <a href="#" class="suggest__item"><span>Дни дизайна и интерьера</span><span class="suggest__meta">24—26 мая</span></a>' +
+'            <a href="event.html" class="suggest__item"><span>«Волховец» — реализация проектных продаж</span><span class="suggest__meta">28 августа</span></a>' +
 '          </div>' +
 '        </div>' +
 '      </div>' +
@@ -175,7 +175,7 @@ var LNS = (function () {
 '        <li><a href="#">Акции</a></li>' +
 '        <li><a href="#">Схема этажей</a></li></ul></div>' +
 '      <div><p class="footer__title">События</p><ul>' +
-'        <li><a href="#">Афиша</a></li><li><a href="#">Архив событий</a></li>' +
+'        <li><a href="events.html">Афиша</a></li><li><a href="events.html">Архив событий</a></li>' +
 '        <li><a href="#">Галерея</a></li><li><a href="#">Видео</a></li></ul></div>' +
 '      <div><p class="footer__title">Профессионалам</p><ul>' +
 '        <li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li>' +

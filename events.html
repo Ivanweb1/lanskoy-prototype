@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Афиша — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Афиша · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="events"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Афиша</span>
+    </nav>
+
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Афиша</h1>
+        <p class="pagehead__lead">Мастер-классы, лекции и семинары в комплексе</p>
+      </div>
+      <ul class="viewtabs" id="eventTabs">
+        <li><button type="button" class="viewtabs__item is-active" data-view="upcoming">Ближайшие</button></li>
+        <li><button type="button" class="viewtabs__item" data-view="archive">Архив и отчёты</button></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+
+    <!-- фильтры -->
+    <div class="evfilters" id="evFilters">
+      <div class="evfilters__row">
+        <span class="evfilters__label">Аудитория</span>
+        <button type="button" class="chip is-active" data-aud="all">Все</button>
+        <button type="button" class="chip" data-aud="public">Для покупателей</button>
+        <button type="button" class="chip" data-aud="pro">Для дизайнеров</button>
+      </div>
+      <div class="evfilters__row">
+        <span class="evfilters__label">Тип</span>
+        <button type="button" class="chip is-active" data-type="all">Любой</button>
+        <button type="button" class="chip" data-type="seminar">Семинар</button>
+        <button type="button" class="chip" data-type="lecture">Лекция</button>
+        <button type="button" class="chip" data-type="workshop">Мастер-класс</button>
+        <button type="button" class="chip" data-type="fest">Праздник</button>
+      </div>
+    </div>
+
+    <!-- ближайшие -->
+    <div class="evlist" id="viewUpcoming">
+
+      <a href="event.html" class="evrow" data-aud="pro" data-type="seminar">
+        <span class="evrow__date">
+          <span class="evrow__day">28</span>
+          <span class="evrow__mon">августа</span>
+          <span class="evrow__time">15:00</span>
+        </span>
+        <span class="evrow__media ph"><span class="ph__label">Обложка</span></span>
+        <span class="evrow__body">
+          <span class="evrow__tags"><i class="tag">Семинар</i><i class="tag">Для дизайнеров</i></span>
+          <span class="evrow__name">«Волховец» — реализация проектных продаж</span>
+          <span class="evrow__desc">Специальные двери для особых задач: сложные заказы, сегмент HoReCa, техническая документация, разбор кейсов</span>
+          <span class="evrow__meta"><span class="ph-mark">этаж и зона —</span> · осталось 12 мест</span>
+        </span>
+        <span class="evrow__act"><span class="link">Регистрация</span></span>
+      </a>
+
+      <a href="event.html" class="evrow" data-aud="pro" data-type="seminar">
+        <span class="evrow__date">
+          <span class="evrow__day ph-mark">00</span>
+          <span class="evrow__mon ph-mark">месяц</span>
+          <span class="evrow__time ph-mark">00:00</span>
+        </span>
+        <span class="evrow__media ph"><span class="ph__label">Обложка</span></span>
+        <span class="evrow__body">
+          <span class="evrow__tags"><i class="tag">Семинар</i><i class="tag">Для дизайнеров</i></span>
+          <span class="evrow__name">Натуральные масла для дерева OSMO</span>
+          <span class="evrow__desc">Практика нанесения защитных покрытий, работа с фактурой дерева</span>
+          <span class="evrow__meta"><span class="ph-mark">этаж и зона —</span> · осталось 4 места</span>
+        </span>
+        <span class="evrow__act"><span class="link">Регистрация</span></span>
+      </a>
+
+      <a href="event.html" class="evrow is-full" data-aud="public" data-type="workshop">
+        <span class="evrow__date">
+          <span class="evrow__day">26</span>
+          <span class="evrow__mon">мая</span>
+          <span class="evrow__time">14:00</span>
+        </span>
+        <span class="evrow__media ph"><span class="ph__label">Обложка</span></span>
+        <span class="evrow__body">
+          <span class="evrow__tags"><i class="tag">Мастер-класс</i><i class="tag">Для покупателей</i></span>
+          <span class="evrow__name">Мастер-класс по декору интерьера</span>
+          <span class="evrow__desc">Интерьерная картина своими руками, материалы предоставляются</span>
+          <span class="evrow__meta">2 этаж, атриум · мест нет</span>
+        </span>
+        <span class="evrow__act"><span class="link link--off">Мест нет</span></span>
+      </a>
+
+      <a href="event.html" class="evrow" data-aud="public" data-type="fest">
+        <span class="evrow__date">
+          <span class="evrow__day ph-mark">00</span>
+          <span class="evrow__mon ph-mark">месяц</span>
+          <span class="evrow__time">—</span>
+        </span>
+        <span class="evrow__media ph"><span class="ph__label">Обложка</span></span>
+        <span class="evrow__body">
+          <span class="evrow__tags"><i class="tag">Праздник</i><i class="tag">Для покупателей</i></span>
+          <span class="evrow__name">День рождения комплекса</span>
+          <span class="evrow__desc">Розыгрыши, интерактив для детей и взрослых, фотозона</span>
+          <span class="evrow__meta"><span class="ph-mark">этаж и зона —</span> · без регистрации</span>
+        </span>
+        <span class="evrow__act"><span class="link">Подробнее</span></span>
+      </a>
+
+    </div>
+
+    <!-- архив -->
+    <div class="evlist" id="viewArchive" hidden>
+
+      <a href="event.html?past=1" class="evrow evrow--past" data-aud="public" data-type="fest">
+        <span class="evrow__date">
+          <span class="evrow__day">12</span>
+          <span class="evrow__mon">февраля</span>
+          <span class="evrow__time">2020</span>
+        </span>
+        <span class="evrow__media ph"><span class="ph__label">Фотоотчёт</span></span>
+        <span class="evrow__body">
+          <span class="evrow__tags"><i class="tag">Праздник</i><i class="tag">Для покупателей</i></span>
+          <span class="evrow__name">День цвета в Ланском</span>
+          <span class="evrow__desc">Психология цветовосприятия, тренды в цвете, лекция и консультации</span>
+          <span class="evrow__meta">Фотоотчёт · <span class="ph-mark">00 фото</span></span>
+        </span>
+        <span class="evrow__act"><span class="link">Смотреть отчёт</span></span>
+      </a>
+
+      <a href="event.html?past=1" class="evrow evrow--past" data-aud="public" data-type="fest">
+        <span class="evrow__date">
+          <span class="evrow__day">16</span>
+          <span class="evrow__mon">марта</span>
+          <span class="evrow__time">2019</span>
+        </span>
+        <span class="evrow__media ph"><span class="ph__label">Фотоотчёт</span></span>
+        <span class="evrow__body">
+          <span class="evrow__tags"><i class="tag">Выставка</i><i class="tag">Для всех</i></span>
+          <span class="evrow__name">Выставка «Строим дом»</span>
+          <span class="evrow__desc">Участие комплекса в отраслевой выставке, диплом участника</span>
+          <span class="evrow__meta">Фотоотчёт · <span class="ph-mark">00 фото</span></span>
+        </span>
+        <span class="evrow__act"><span class="link">Смотреть отчёт</span></span>
+      </a>
+
+    </div>
+
+    <div class="empty" id="evEmpty" hidden>
+      <p class="empty__title">Событий не найдено</p>
+      <p class="empty__text">Попробуйте снять фильтры или загляните в архив.</p>
+      <button type="button" class="btn btn--ghost" data-evreset>Показать все</button>
+    </div>
+
+    <!-- состояние «событий нет» — обязательное, не заглушка -->
+    <div class="empty" id="evNone" hidden>
+      <p class="empty__title">Ближайших событий пока нет</p>
+      <p class="empty__text">Мы готовим новую программу. Посмотрите, как проходили прошлые встречи, или подпишитесь на анонсы.</p>
+      <button type="button" class="btn btn--ghost" data-goarchive>Смотреть архив</button>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Лента, а не календарь.</b> П. 6.8 разрешает «календарь/лента». Беру ленту: событий в комплексе несколько в месяц, и сетка календаря будет пустой на три четверти — это выглядит как заброшенный раздел. Дата вынесена в отдельную колонку слева и читается сканированием, как в афишах театров.</aside>
+
+  <aside class="note"><b>2. Фильтры по аудитории и типу.</b> Прямо из п. 6.8: «фильтр по типу и аудитории (для всех / для дизайнеров)». Разделение аудиторий здесь важнее, чем кажется: семинар про HoReCa и документацию бессмысленно показывать человеку, который пришёл выбирать обои. Фильтры работают — нажмите «Для дизайнеров».</aside>
+
+  <aside class="note"><b>3. Состояние «событий нет».</b> Обязательное, и его легко забыть. На действующем сайте галерея мероприятий стоит с 2020 года — если новая программа забуксует, раздел не должен выглядеть мёртвым. Поэтому вместо пустоты предлагается архив и подписка. Посмотреть можно: снимите все фильтры и нажмите «Для дизайнеров» вместе с типом «Праздник».</aside>
+
+  <aside class="note"><b>4. Архив отдельной вкладкой.</b> П. 6.8 требует перевода в архив с фотоотчётом. Держу архив на той же странице переключателем, а не отдельным разделом: так прошлые события работают на доверие — видно, что комплекс действительно проводит встречи. Данные в архиве реальные, с действующего сайта.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=5"></script>
+<script src="app.js?v=5"></script>
+<script src="events.js?v=5"></script>
+</body>
+</html>
