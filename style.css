@@ -346,6 +346,78 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .subs__h2{font-size:clamp(24px,2.4vw,32px);line-height:1.2}
 .subs__lead{color:var(--mute);margin-top:12px}
 
+/* ================= ВНУТРЕННИЕ СТРАНИЦЫ ================= */
+.sect--tight{padding-top:48px}
+
+.pagehead{padding:28px 0 0;border-bottom:1px solid var(--line)}
+.crumbs{font-size:13px;color:var(--mute);margin-bottom:26px}
+.crumbs a{border-bottom:1px solid var(--line-2);padding-bottom:1px}
+.crumbs a:hover{color:var(--ink);border-color:var(--ink)}
+.crumbs__sep{margin:0 8px;color:var(--line-2)}
+.pagehead__in{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-bottom:22px}
+.pagehead__h1{font-size:clamp(34px,4vw,54px);line-height:1.1}
+.pagehead__lead{margin-top:12px;color:var(--mute)}
+
+.viewtabs{display:flex;gap:26px;flex-wrap:wrap}
+.viewtabs__item{display:block;padding-bottom:10px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid transparent;color:var(--mute)}
+a.viewtabs__item:hover{color:var(--ink)}
+.viewtabs__item.is-active{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* активный раздел в основном меню */
+.menu__item.is-current .menu__link{border-bottom-color:var(--ink)}
+
+/* ---------- каталог: фильтры + результаты ---------- */
+.catalog{display:grid;grid-template-columns:264px 1fr;gap:56px;align-items:start}
+
+.filters__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.filters__title{font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.filters__reset{font-size:13px;color:var(--mute);border-bottom:1px solid var(--line-2)}
+.filters__reset:hover{color:var(--ink);border-color:var(--ink)}
+.filters__group{padding:22px 0;border-bottom:1px solid var(--line)}
+.filters__group:last-child{border-bottom:0}
+.filters__label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+
+.checklist li{margin-bottom:11px}
+.checklist li:last-child{margin-bottom:0}
+.checklist .check{margin-top:0;font-size:14px;color:var(--ink-2);line-height:1.35}
+.checklist__n{font-style:normal;font-size:12px;color:var(--mute);margin-left:4px}
+
+/* этаж — компактные переключатели вместо длинного списка из трёх пунктов */
+.segm{display:flex;gap:8px}
+.segm__item{position:relative;flex:1}
+.segm__item input{position:absolute;opacity:0;width:0;height:0}
+.segm__item span{display:flex;align-items:center;justify-content:center;height:42px;border:1px solid var(--line-2);font-size:14px;cursor:pointer}
+.segm__item input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.segm__item input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+
+.results__bar{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.results__count{font-size:14px;color:var(--mute)}
+.results__count b{color:var(--ink);font-weight:600}
+.sortbox{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mute)}
+.sortbox select{height:38px;padding:0 10px;border:1px solid var(--line-2);background:var(--paper);font:inherit;font-size:14px;color:var(--ink)}
+
+.chips-active{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.chip--rm{display:inline-flex;align-items:center;gap:9px;height:34px;padding:0 12px;border:1px solid var(--ink);font-size:13px;cursor:pointer;background:none}
+.chip--rm::after{content:"✕";font-size:11px;color:var(--mute)}
+.chip--rm:hover::after{color:var(--ink)}
+
+.grid--shops{grid-template-columns:repeat(3,1fr)}
+.shopcard{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--paper)}
+.shopcard:hover{border-color:var(--ink)}
+.shopcard__logo{position:relative;display:block;aspect-ratio:16/9;border-bottom:1px solid var(--line)}
+.shopcard__body{display:block;padding:18px 20px 20px}
+.shopcard__name{display:block;font-family:var(--serif);font-size:19px;line-height:1.25}
+.shopcard__cat{display:block;font-size:13px;color:var(--mute);margin-top:8px}
+.shopcard__place{display:block;font-size:13px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.badge--sm{padding:5px 10px;font-size:11px}
+
+.empty{padding:64px 0;text-align:center;border:1px solid var(--line);background:var(--paper)}
+.empty__title{font-family:var(--serif);font-size:24px}
+.empty__text{color:var(--mute);margin:10px 0 22px}
+
+.results__more{margin-top:32px;text-align:center}
+.results__hint{font-size:13px;color:var(--mute);margin-top:12px}
+
 /* ================= ФУТЕР ================= */
 .footer{background:var(--ink);color:#cfcac4;padding-top:64px}
 .footer__in{display:grid;grid-template-columns:280px 1fr;gap:64px;padding-bottom:48px}
@@ -388,6 +460,8 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   /* бенто — только на широком экране: на 3 и 2 колонках span-математика 2×2
      ломается, надёжнее вернуть ровную сетку с фиксированной пропорцией */
   .grid--cats{grid-template-columns:repeat(3,1fr);grid-auto-rows:auto}
+  .catalog{grid-template-columns:236px 1fr;gap:40px}
+  .grid--shops{grid-template-columns:repeat(2,1fr)}
   .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
@@ -400,6 +474,10 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   :root{--pad:24px}
   .utility__info li:nth-child(2),.utility__info li:nth-child(4){display:none}
   .hero__in,.find,.pro,.rent__in,.subs__in,.journal{grid-template-columns:1fr;gap:36px}
+  /* фильтры уходят над результатами — сайдбар на планшете съедает ширину карточек */
+  .catalog{grid-template-columns:1fr;gap:32px}
+  .filters{border:1px solid var(--line);padding:4px 20px 20px}
+  .pagehead__in{flex-direction:column;align-items:flex-start;gap:20px}
   .hero__in{padding-top:48px;padding-bottom:48px}
   .facts__in{grid-template-columns:repeat(2,1fr);row-gap:28px}
   .footer__in{grid-template-columns:1fr}
@@ -429,6 +507,9 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .menu__link{height:52px;border-bottom:1px solid var(--line);width:100%;justify-content:space-between}
   .mega{position:static;box-shadow:none;border:0}
   .grid--cats{grid-template-columns:repeat(2,1fr)}
+  .grid--shops{grid-template-columns:1fr}
+  .viewtabs{gap:18px}
+  .viewtabs__item{font-size:12px}
   .brands{grid-template-columns:repeat(3,1fr)}
   .facts__in{grid-template-columns:1fr 1fr}
   .fact__num{font-size:26px}

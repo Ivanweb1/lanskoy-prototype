@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Магазины — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= ПАНЕЛЬ ПРОТОТИПА ================= -->
+<div class="proto-bar">
+  <span class="proto-bar__title">Магазины · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<!-- ================= ШАПКА ================= -->
+<header class="header">
+
+  <div class="utility">
+    <div class="wrap utility__in">
+      <ul class="utility__info">
+        <li>10:00&nbsp;—&nbsp;20:00 ежедневно</li>
+        <li>Санкт-Петербург, ул. Студенческая, 10</li>
+        <li><a href="#">+7 (812) 363-00-07</a></li>
+        <li><a href="#">Как добраться</a></li>
+      </ul>
+      <ul class="utility__actions">
+        <li><a href="#" class="btn btn--ghost btn--sm">Аренда</a></li>
+        <li><a href="#" class="utility__login">Войти в кабинет</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="wrap nav__in">
+
+      <a href="index.html" class="logo">
+        <img src="logo.svg" alt="ТК «Ланской» — торговый центр интерьерных решений" class="logo__img" width="205" height="64">
+      </a>
+
+      <nav class="menu" id="menu">
+        <ul class="menu__list">
+          <li class="menu__item menu__item--has is-current">
+            <button type="button" class="menu__link" data-mega="shops">Магазины<span class="caret"></span></button>
+          </li>
+          <li class="menu__item"><a class="menu__link" href="#">Акции</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Афиша</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Журнал</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Дизайнерам</a></li>
+          <li class="menu__item menu__item--has">
+            <button type="button" class="menu__link" data-mega="about">О комплексе<span class="caret"></span></button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="hsearch">
+        <div class="field field--hs">
+          <input type="search" placeholder="Магазины, бренды, статьи" autocomplete="off" aria-label="Поиск по сайту">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+          <div class="suggest">
+            <p class="suggest__group">Магазины</p>
+            <a href="#" class="suggest__item"><span>VLADART STUDIO</span><span class="suggest__meta">секция А10 · 1 этаж</span></a>
+            <a href="#" class="suggest__item"><span>ПРЕМЬЕР ДЕКОР</span><span class="suggest__meta">секция А12 · 1 этаж</span></a>
+            <p class="suggest__group">Бренды</p>
+            <a href="#" class="suggest__item"><span>Kerama Marazzi</span><span class="suggest__meta">4 магазина</span></a>
+            <p class="suggest__group">Статьи</p>
+            <a href="#" class="suggest__item"><span>Комбинированный пол: плитка и ламинат</span><span class="suggest__meta">23.06.2026</span></a>
+            <p class="suggest__group">События</p>
+            <a href="#" class="suggest__item"><span>Дни дизайна и интерьера</span><span class="suggest__meta">24—26 мая</span></a>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="ic-search" id="searchToggle" aria-label="Поиск по сайту"></button>
+      <button type="button" class="burger" id="burger" aria-label="Меню"><span></span></button>
+    </div>
+
+    <!-- мегаменю: Магазины -->
+    <div class="mega" id="mega-shops" hidden>
+      <div class="wrap mega__in">
+        <div class="mega__col mega__col--wide">
+          <p class="mega__title">Категории</p>
+          <ul class="mega__cats">
+            <li><a href="#">Декоративно-отделочные материалы</a></li>
+            <li><a href="#">Плитка</a></li>
+            <li><a href="#">Обои</a></li>
+            <li><a href="#">Шторы, карнизы, ткани</a></li>
+            <li><a href="#">Лакокрасочные и клеящие материалы</a></li>
+            <li><a href="#">Напольные покрытия</a></li>
+            <li><a href="#">Потолки</a></li>
+            <li><a href="#">Двери, перегородки, фурнитура</a></li>
+            <li><a href="#">Остекление и оконная фурнитура</a></li>
+            <li><a href="#">Стекло и зеркала</a></li>
+            <li><a href="#">Сантехника</a></li>
+            <li><a href="#">Свет</a></li>
+            <li><a href="#">Лестницы</a></li>
+            <li><a href="#">Отопление и кондиционирование</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Навигация</p>
+          <ul class="mega__links">
+            <li><a href="shops.html">Все магазины</a></li>
+            <li><a href="#">По алфавиту</a></li>
+            <li><a href="#">Бренды</a></li>
+            <li><a href="#">Схема этажей</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Знаете номер помещения?</p>
+          <div class="field field--sm">
+            <input type="search" placeholder="Например, А10">
+            <button type="button" class="field__go" aria-label="Найти"></button>
+          </div>
+          <p class="mega__hint">Секции 1—3 этажей: А, B, C</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- мегаменю: О комплексе -->
+    <div class="mega" id="mega-about" hidden>
+      <div class="wrap mega__in">
+        <div class="mega__col">
+          <p class="mega__title">О комплексе</p>
+          <ul class="mega__links">
+            <li><a href="#">О комплексе</a></li>
+            <li><a href="#">Схема этажей</a></li>
+            <li><a href="#">Парковка и как добраться</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Медиа</p>
+          <ul class="mega__links">
+            <li><a href="#">Галерея</a></li>
+            <li><a href="#">Видео</a></li>
+            <li><a href="#">Архив событий</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Контакты</p>
+          <ul class="mega__links">
+            <li><a href="#">Контакты и реквизиты</a></li>
+            <li><a href="#">Обратная связь</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- оверлей поиска -->
+    <div class="searchbar" id="searchbar" hidden>
+      <div class="wrap">
+        <div class="field field--lg">
+          <input type="search" placeholder="Магазины, бренды, статьи, события, номер помещения">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+        </div>
+        <p class="searchbar__hint">Единый поиск по сайту · подсказки при вводе</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Магазины</span>
+    </nav>
+
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Магазины</h1>
+        <p class="pagehead__lead">Более 150 магазинов и шоурумов на трёх этажах комплекса</p>
+      </div>
+      <ul class="viewtabs">
+        <li><span class="viewtabs__item is-active">Списком</span></li>
+        <li><a href="#" class="viewtabs__item">По категориям</a></li>
+        <li><a href="#" class="viewtabs__item">По алфавиту</a></li>
+        <li><a href="#" class="viewtabs__item">На схеме этажей</a></li>
+      </ul>
+    </div>
+  </div>
+  <aside class="note"><b>1. Шапка страницы.</b> Хлебные крошки нужны по п. 11.3 ТЗ — он требует их для SEO, но в требованиях к разделам (п. 6) они не упомянуты ни разу. Ставлю на все внутренние страницы, размечаются как BreadcrumbList (п. 11.4). Переключатель видов повторяет находку действующего сайта — там навигация по магазинам разведена на «категории / по алфавиту / схемы этажей», и это точное попадание в то, как люди ищут магазин. «По категориям» и «По алфавиту» — отдельные страницы, соберём их следующими.</aside>
+</section>
+
+<!-- ================= КАТАЛОГ ================= -->
+<section class="sect sect--tight">
+  <div class="wrap catalog">
+
+    <!-- фильтры -->
+    <aside class="filters" id="filters">
+      <div class="filters__head">
+        <p class="filters__title">Фильтры</p>
+        <button type="button" class="filters__reset" id="filtersReset">Сбросить</button>
+      </div>
+
+      <div class="filters__group">
+        <label class="filters__label" for="catSearch">Название или номер помещения</label>
+        <div class="field field--sm">
+          <input type="search" id="catSearch" placeholder="«декор» или «А10»" autocomplete="off">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+        </div>
+      </div>
+
+      <div class="filters__group">
+        <p class="filters__label">Категория</p>
+        <ul class="checklist" id="catList">
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="decor"><span>Декоративно-отделочные материалы <i class="checklist__n">28</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="tile"><span>Плитка <i class="checklist__n">17</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="wallpaper"><span>Обои <i class="checklist__n">7</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="floor"><span>Напольные покрытия <i class="checklist__n">28</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="textile"><span>Шторы, карнизы, ткани <i class="checklist__n">11</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="paint"><span>Лакокрасочные и клеящие <i class="checklist__n">10</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="doors"><span>Двери, перегородки, фурнитура <i class="checklist__n ph-mark">00</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="plumbing"><span>Сантехника <i class="checklist__n ph-mark">00</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="light"><span>Свет <i class="checklist__n ph-mark">00</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="ceiling"><span>Потолки <i class="checklist__n ph-mark">00</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="glass"><span>Стекло и зеркала <i class="checklist__n ph-mark">00</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="windows"><span>Остекление <i class="checklist__n ph-mark">00</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="stairs"><span>Лестницы <i class="checklist__n ph-mark">00</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="hvac"><span>Отопление и кондиционирование <i class="checklist__n ph-mark">00</i></span></label></li>
+        </ul>
+      </div>
+
+      <div class="filters__group">
+        <p class="filters__label">Этаж</p>
+        <div class="segm" id="floorFilter">
+          <label class="segm__item"><input type="checkbox" data-filter="floor" value="1"><span>1</span></label>
+          <label class="segm__item"><input type="checkbox" data-filter="floor" value="2"><span>2</span></label>
+          <label class="segm__item"><input type="checkbox" data-filter="floor" value="3"><span>3</span></label>
+        </div>
+      </div>
+
+      <div class="filters__group">
+        <label class="check"><input type="checkbox" id="promoOnly"><span>Только с действующими акциями</span></label>
+      </div>
+    </aside>
+
+    <!-- результаты -->
+    <div class="results">
+      <div class="results__bar">
+        <p class="results__count">Показано <b id="shownCount">8</b> из <span class="ph-mark">150+</span></p>
+        <label class="sortbox">
+          <span>Сортировка</span>
+          <select id="sortSelect">
+            <option value="alpha">По алфавиту</option>
+            <option value="floor">По этажу</option>
+            <option value="promo">Сначала с акциями</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="chips-active" id="activeChips" hidden></div>
+
+      <div class="grid grid--shops" id="shopGrid">
+
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="1" data-name="COMPANION DECOR" data-promo="0">
+          <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">COMPANION DECOR</span>
+            <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+            <span class="shopcard__place">секция А13B · 1 этаж</span>
+          </span>
+        </a>
+
+        <a href="shop.html" class="shopcard" data-cat="doors" data-floor="1" data-name="Корал" data-promo="1">
+          <span class="shopcard__logo ph"><span class="ph__label">Логотип</span><span class="badge badge--sm">Акция</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Корал</span>
+            <span class="shopcard__cat">Двери, перегородки, фурнитура</span>
+            <span class="shopcard__place"><span class="ph-mark">секция —</span> · <span class="ph-mark">этаж —</span></span>
+          </span>
+        </a>
+
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="1" data-name="ПРЕМЬЕР ДЕКОР" data-promo="0">
+          <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">ПРЕМЬЕР ДЕКОР</span>
+            <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+            <span class="shopcard__place">секция А12 · 1 этаж</span>
+          </span>
+        </a>
+
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="2" data-name="Салон старины «Антиктайм»" data-promo="0">
+          <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Салон старины «Антиктайм»</span>
+            <span class="shopcard__cat">Декор и предметы интерьера</span>
+            <span class="shopcard__place"><span class="ph-mark">секция —</span> · <span class="ph-mark">этаж —</span></span>
+          </span>
+        </a>
+
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="2" data-name="Кухни Спутник Стиль" data-promo="1">
+          <span class="shopcard__logo ph"><span class="ph__label">Логотип</span><span class="badge badge--sm">Акция</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Кухни Спутник Стиль</span>
+            <span class="shopcard__cat">Мебель и кухни</span>
+            <span class="shopcard__place"><span class="ph-mark">секция —</span> · <span class="ph-mark">этаж —</span></span>
+          </span>
+        </a>
+
+        <a href="shop.html" class="shopcard" data-cat="glass" data-floor="1" data-name="VETRO" data-promo="0">
+          <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">VETRO</span>
+            <span class="shopcard__cat">Стекло и зеркала</span>
+            <span class="shopcard__place"><span class="ph-mark">секция —</span> · <span class="ph-mark">этаж —</span></span>
+          </span>
+        </a>
+
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="1" data-name="VLADART STUDIO" data-promo="0">
+          <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">VLADART STUDIO</span>
+            <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+            <span class="shopcard__place">секция А10 · 1 этаж</span>
+          </span>
+        </a>
+
+        <a href="shop.html" class="shopcard" data-cat="doors" data-floor="2" data-name="Хорошие двери" data-promo="0">
+          <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Хорошие двери</span>
+            <span class="shopcard__cat">Двери, перегородки, фурнитура</span>
+            <span class="shopcard__place"><span class="ph-mark">секция —</span> · <span class="ph-mark">этаж —</span></span>
+          </span>
+        </a>
+
+      </div>
+
+      <div class="empty" id="emptyState" hidden>
+        <p class="empty__title">Ничего не найдено</p>
+        <p class="empty__text">Попробуйте изменить запрос или снять часть фильтров.</p>
+        <button type="button" class="btn btn--ghost" data-reset>Сбросить фильтры</button>
+      </div>
+
+      <div class="results__more" id="moreBox">
+        <button type="button" class="btn btn--ghost btn--full">Показать ещё 24 магазина</button>
+        <p class="results__hint">Загружено 8 из <span class="ph-mark">150+</span></p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="note"><b>2. Каталог.</b> Фильтры слева, а не сверху: категорий 14, в горизонтальную полосу они не влезают, а выпадающий список прячет главный инструмент страницы. Поиск по названию <b>и номеру помещения</b> — прямое требование п. 6.2. Счётчики у категорий взяты с действующего сайта, где их нет — помечены пунктиром. Фильтры в прототипе работают по-настоящему: можно отмечать категории, этажи, искать и сортировать, пустое состояние тоже живое — снимите все фильтры кроме «Лестницы», чтобы увидеть.</aside>
+
+  <aside class="note"><b>3. Карточка в списке.</b> По п. 6.2 полный набор полей — у карточки арендатора на отдельной странице. В списке оставляю минимум, по которому выбирают: логотип, название, категория, секция и этаж. Секция и этаж — главное, зачем сюда приходят, поэтому они на карточке, а не только внутри. Бейдж «Акция» связывает каталог с разделом акций и даёт арендатору стимул их заводить.</aside>
+
+  <aside class="note"><b>4. Пагинация.</b> П. 6.2 разрешает и пагинацию, и ленивую подгрузку. Ставлю «Показать ещё» — компромисс: не ломает позицию скролла при возврате из карточки и оставляет возможность отдать поисковикам постраничные URL. Решение нужно согласовать с разработкой: бесконечная лента без реальных адресов страниц просадит индексацию 150 карточек, а это прямо противоречит п. 11.1 о сохранении трафика.</aside>
+
+  <aside class="note"><b>5. Данные.</b> Названия магазинов — реальные, собраны с действующего сайта. Секции и этажи подтверждены только у трёх (VLADART STUDIO, ПРЕМЬЕР ДЕКОР, COMPANION DECOR) — у остальных помечено пунктиром. Категории у «Антиктайм» и «Кухни Спутник Стиль» не совпадают с рубрикатором из ТЗ: это повод уточнить, полон ли список из 14 категорий или нужны ещё «Мебель» и «Декор».</aside>
+</section>
+
+</main>
+
+<!-- ================= ФУТЕР ================= -->
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div class="footer__brand">
+      <img src="logo.svg" alt="ТК «Ланской»" class="logo__img logo__img--inv" width="205" height="64">
+      <p class="footer__addr">Санкт-Петербург,<br>ул. Студенческая, 10</p>
+      <p class="footer__addr"><a href="#">+7 (812) 363-00-07</a><br>10:00 — 20:00 ежедневно</p>
+      <ul class="socials"><li><a href="#">VK</a></li><li><a href="#">YouTube</a></li></ul>
+    </div>
+    <div class="footer__cols">
+      <div><p class="footer__title">Покупателям</p><ul><li><a href="shops.html">Магазины</a></li><li><a href="#">Категории</a></li><li><a href="#">Бренды</a></li><li><a href="#">Акции</a></li><li><a href="#">Схема этажей</a></li></ul></div>
+      <div><p class="footer__title">События</p><ul><li><a href="#">Афиша</a></li><li><a href="#">Архив событий</a></li><li><a href="#">Галерея</a></li><li><a href="#">Видео</a></li></ul></div>
+      <div><p class="footer__title">Профессионалам</p><ul><li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li><li><a href="#">Журнал</a></li></ul></div>
+      <div><p class="footer__title">Комплекс</p><ul><li><a href="#">О комплексе</a></li><li><a href="#">Аренда</a></li><li><a href="#">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>
+    </div>
+  </div>
+  <div class="wrap footer__legal">
+    <p>© 2026 ТК «Ланской»</p>
+    <ul><li><a href="#">Политика обработки ПД</a></li><li><a href="#">Пользовательское соглашение</a></li><li><a href="#">Политика cookie</a></li></ul>
+  </div>
+</footer>
+
+<!-- ================= COOKIE ================= -->
+<div class="cookie" id="cookie">
+  <p class="cookie__text">Мы используем cookie. Вы можете выбрать, какие категории разрешить.</p>
+  <div class="cookie__acts">
+    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Настроить</button>
+    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Только необходимые</button>
+    <button type="button" class="btn btn--sm btn--primary" data-cookie>Принять все</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script src="catalog.js"></script>
+</body>
+</html>

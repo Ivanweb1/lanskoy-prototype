@@ -1,9 +1,12 @@
 /* ТК «Ланской» — прототип главной. Логика только для показа. */
 
 /* ---------- комментарии к блокам ---------- */
-document.getElementById('notesToggle').addEventListener('click', function () {
-  document.body.classList.toggle('notes-on');
-});
+var notesToggle = document.getElementById('notesToggle');
+if (notesToggle) {
+  notesToggle.addEventListener('click', function () {
+    document.body.classList.toggle('notes-on');
+  });
+}
 
 /* ---------- мегаменю ---------- */
 var megaBtns = document.querySelectorAll('[data-mega]');
@@ -131,14 +134,18 @@ function drawFloor(n) {
   document.getElementById('plan').innerHTML = s;
 }
 
-document.querySelectorAll('.floors__tab').forEach(function (tab) {
-  tab.addEventListener('click', function () {
-    document.querySelectorAll('.floors__tab').forEach(function (t) { t.classList.remove('is-active'); });
-    tab.classList.add('is-active');
-    drawFloor(tab.dataset.floor);
+/* схема этажей есть не на каждой странице — без этой проверки
+   drawFloor() падает на null и обрывает весь код ниже (cookie и прочее) */
+if (document.getElementById('plan')) {
+  document.querySelectorAll('.floors__tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.floors__tab').forEach(function (t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      drawFloor(tab.dataset.floor);
+    });
   });
-});
-drawFloor(1);
+  drawFloor(1);
+}
 
 /* ---------- cookie ---------- */
 document.querySelectorAll('[data-cookie]').forEach(function (b) {
