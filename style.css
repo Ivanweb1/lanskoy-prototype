@@ -625,6 +625,49 @@ a.viewtabs__item:hover{color:var(--ink)}
 .toc__i:hover{color:var(--ink);border-left-color:var(--line-2)}
 .toc__i.is-active{color:var(--ink);border-left-color:var(--ink)}
 
+/* ---------- схема этажей ---------- */
+.floorpage{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:start}
+.floorplan__bar{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:18px}
+.floorplan__bar .floors__tabs{margin-bottom:0;width:320px}
+.floorplan__hint{font-size:13px;color:var(--mute)}
+.bigplan{
+  aspect-ratio:474/276;border:1px solid var(--line);background-color:var(--paper-2);
+  background-image:
+    repeating-linear-gradient(to right,rgba(0,0,0,.05) 0 1px,transparent 1px 18px),
+    repeating-linear-gradient(to bottom,rgba(0,0,0,.05) 0 1px,transparent 1px 18px);
+}
+.bigplan svg{display:block;width:100%;height:100%}
+.pl-room--hit{cursor:pointer}
+.pl-room--hit:hover{fill:#b3aea8}
+.pl-room--free{fill:#f2f0ed}
+
+.legend{display:flex;flex-wrap:wrap;gap:22px;margin-top:18px;font-size:13px;color:var(--mute)}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend__sw{width:16px;height:16px;border:1px solid var(--line-2)}
+.legend__sw--busy{background:#bdb8b2}
+.legend__sw--free{background:#f2f0ed}
+.legend__sw--here{background:var(--ink);border-color:var(--ink)}
+.legend__sw--serv{background:#d2cec9}
+
+.floorside{position:sticky;top:24px;display:flex;flex-direction:column;gap:20px}
+.panel__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.panel__head .panel__title{margin-bottom:0}
+.panel__n{font-family:var(--serif);font-size:20px}
+.panel__hint{font-size:12px;color:var(--mute);margin-top:10px;line-height:1.45}
+
+.room__name{font-family:var(--serif);font-size:20px;margin-bottom:8px}
+.room__cat{font-size:13px;color:var(--mute);line-height:1.5;margin-bottom:6px}
+.room__place{font-size:13px;margin-bottom:16px}
+
+.floorlist{max-height:260px;overflow-y:auto}
+.floorlist__i{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;
+  padding:11px 0;border-bottom:1px solid var(--line);text-align:left}
+.floorlist li:last-child .floorlist__i{border-bottom:0}
+.floorlist__i:hover .floorlist__n{border-bottom-color:var(--ink)}
+.floorlist__n{font-size:14px;border-bottom:1px solid transparent}
+.floorlist__s{font-size:12px;color:var(--mute);flex:none}
+.floorlist__empty{font-size:13px;padding:6px 0}
+
 /* переключатель состояний в панели прототипа */
 .proto-bar__states{display:flex;align-items:center;gap:8px;color:#a9a49e}
 .proto-bar__st{border:1px solid #4a4540;padding:4px 10px;font-size:11px;color:#cfcac4}
@@ -680,6 +723,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .catnav__item{grid-template-columns:160px 1fr}
   .evrow{grid-template-columns:88px 180px 1fr 130px;gap:20px}
   .artlayout{grid-template-columns:minmax(0,1fr) 260px;gap:40px}
+  .floorpage{grid-template-columns:1fr 300px;gap:32px}
   .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
@@ -705,6 +749,8 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   /* оглавление уходит под текст и перестаёт липнуть */
   .artlayout{grid-template-columns:1fr;gap:40px}
   .artside{position:static}
+  .floorpage{grid-template-columns:1fr;gap:32px}
+  .floorside{position:static}
   .postgrid{grid-template-columns:repeat(2,1fr);gap:32px 24px}
   .post--lead{grid-column:span 2}
   /* обложку в строке афиши убираем — на планшете она съедает место у текста */

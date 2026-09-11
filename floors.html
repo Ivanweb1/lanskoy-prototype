@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Схема этажей — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=12">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Схема этажей · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="about"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Схема этажей</span>
+    </nav>
+
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Схема этажей</h1>
+        <p class="pagehead__lead">Найдите магазин на плане или посмотрите, что рядом</p>
+      </div>
+      <ul class="viewtabs">
+        <li><a href="shops.html" class="viewtabs__item">Списком</a></li>
+        <li><a href="categories.html" class="viewtabs__item">По категориям</a></li>
+        <li><span class="viewtabs__item is-active">На схеме этажей</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap floorpage">
+
+    <!-- план -->
+    <div class="floorplan">
+      <div class="floorplan__bar">
+        <div class="floors__tabs" id="floorTabs" role="tablist">
+          <button type="button" class="floors__tab is-active" data-floor="1">1 этаж</button>
+          <button type="button" class="floors__tab" data-floor="2">2 этаж</button>
+          <button type="button" class="floors__tab" data-floor="3">3 этаж</button>
+        </div>
+        <p class="floorplan__hint">Нажмите на секцию, чтобы увидеть, кто в ней</p>
+      </div>
+
+      <div class="bigplan" id="bigPlan"></div>
+
+      <ul class="legend">
+        <li><span class="legend__sw legend__sw--busy"></span>Занято</li>
+        <li><span class="legend__sw legend__sw--free"></span>Свободно</li>
+        <li><span class="legend__sw legend__sw--here"></span>Выбрано</li>
+        <li><span class="legend__sw legend__sw--serv"></span>Служебные зоны</li>
+      </ul>
+    </div>
+
+    <!-- сайдбар -->
+    <aside class="floorside">
+      <div class="panel">
+        <p class="panel__title">Найти магазин</p>
+        <div class="field field--sm">
+          <input type="search" id="planSearch" placeholder="Название или номер секции" autocomplete="off">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+        </div>
+        <p class="panel__hint" id="planHint">Поиск переключит этаж и подсветит секцию</p>
+      </div>
+
+      <!-- выбранная секция -->
+      <div class="panel" id="roomPanel" hidden>
+        <p class="panel__title">Секция <span id="roomNum">—</span></p>
+        <div id="roomBody"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head">
+          <p class="panel__title">Магазины на этаже</p>
+          <span class="panel__n" id="floorCount">0</span>
+        </div>
+        <ul class="floorlist" id="floorList"></ul>
+      </div>
+
+      <div class="panel">
+        <p class="panel__title">Свободные помещения</p>
+        <p class="panel__text">На этом этаже свободно <b id="freeCount">0</b> секций.</p>
+        <a href="#" class="btn btn--ghost btn--full">Условия аренды</a>
+      </div>
+    </aside>
+  </div>
+
+  <aside class="note"><b>1. Главный сценарий — «где магазин X».</b> П. 6.12 называет его прямо. Поэтому поиск стоит первым в сайдбаре, а не под планом: человек редко разглядывает схему просто так, он ищет конкретное. Поиск сам переключает этаж и подсвечивает секцию — попробуйте ввести «А10» или «Хорошие двери».</aside>
+
+  <aside class="note"><b>2. Связь с карточкой магазина.</b> Работает в обе стороны, как требует п. 6.12: с карточки арендатора кнопка ведёт сюда с подсвеченной секцией, а по клику на секцию открывается панель с названием, категорией и ссылкой в карточку. Без этой связи схема превращается в картинку.</aside>
+
+  <aside class="note"><b>3. Свободные секции ведут на аренду.</b> Этого в ТЗ нет — предлагаю добавить. Схема этажей единственное место на сайте, где обе аудитории из п. 9.3 смотрят на одно и то же: покупатель ищет магазин, потенциальный арендатор — свободную площадь. Пустая секция на плане это готовый повод показать ему лендинг аренды.</aside>
+
+  <aside class="note"><b>4. План здесь схематичный — это заглушка.</b> Секции нарисованы условно, чтобы показать логику. В брендбуке есть настоящие планировки трёх этажей и парковки в фирменном стиле, их надо получить в векторе и разметить. Это самая трудоёмкая часть раздела: у каждой из примерно 150 секций должна появиться привязка к арендатору, и делать её придётся вручную один раз, а потом поддерживать при каждом переезде магазина. Стоит заранее решить, кто в CMS отвечает за эту привязку.</aside>
+
+  <aside class="note"><b>5. Данные.</b> Названия и секции у четырёх магазинов реальные — VLADART STUDIO в А10, ПРЕМЬЕР ДЕКОР в А12, COMPANION DECOR в А13. Остальные занятые секции показаны без названий: привязки к ним нет. На действующем сайте схема этажей уже есть и работает похоже, но связи с карточками у неё нет — она просто раскрашена.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=12"></script>
+<script src="app.js?v=12"></script>
+<script src="floors.js?v=12"></script>
+</body>
+</html>

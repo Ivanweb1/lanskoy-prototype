@@ -12,15 +12,15 @@ function chipFilter(cfg) {
   var state = {};
 
   function apply() {
-    var q = search ? (search.value || '').trim().toLowerCase() : '';
+    var q = search ? normCode((search.value || '').trim()) : '';
     var shown = 0;
 
     items.forEach(function (el) {
       var ok = Object.keys(state).every(function (key) {
         return state[key] === 'all' || (el.dataset[key] || '').split(' ').indexOf(state[key]) > -1;
       });
-      if (ok && q) ok = el.textContent.toLowerCase().indexOf(q) > -1
-        || (el.dataset.tags || '').toLowerCase().indexOf(q) > -1;
+      if (ok && q) ok = normCode(el.textContent).indexOf(q) > -1
+        || normCode(el.dataset.tags || '').indexOf(q) > -1;
       el.hidden = !ok;
       if (ok) shown++;
     });

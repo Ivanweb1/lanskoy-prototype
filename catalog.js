@@ -69,7 +69,7 @@
   function apply() {
     var cats = checked('cat');
     var floors = checked('floor');
-    var q = (search.value || '').trim().toLowerCase();
+    var q = normCode((search.value || '').trim());
     var onlyPromo = promoOnly.checked;
     var shown = 0;
 
@@ -77,7 +77,7 @@
       var okCat = !cats.length || cats.indexOf(card.dataset.cat) > -1;
       var okFloor = !floors.length || floors.indexOf(card.dataset.floor) > -1;
       var okPromo = !onlyPromo || card.dataset.promo === '1';
-      var okQuery = !q || card.textContent.toLowerCase().indexOf(q) > -1;
+      var okQuery = !q || normCode(card.textContent).indexOf(q) > -1;
       var visible = okCat && okFloor && okPromo && okQuery;
       card.hidden = !visible;
       if (visible) shown++;
