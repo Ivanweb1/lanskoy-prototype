@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пользовательское соглашение — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=20">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Соглашение · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">текст</i> — юридический документ, даёт заказчик</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active=""></div>
+
+<main>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Пользовательское соглашение</span>
+    </nav>
+
+    <header class="arthead">
+      <h1 class="arthead__h1">Пользовательское соглашение</h1>
+      <p class="arthead__lead">Условия использования сайта ТК «Ланской» посетителями и арендаторами.</p>
+      <div class="arthead__meta">
+        <span class="arthead__stats">Редакция от <span class="ph-mark">00.00.2026</span></span>
+        <span class="arthead__stats ph-mark">Версия 1.0</span>
+      </div>
+    </header>
+  </div>
+
+  <div class="wrap artlayout">
+    <div class="artbody">
+      <div class="prose prose--article">
+        <h2>Термины</h2>
+        <p class="ph-mark">Посетитель, арендатор, личный кабинет, контент. Определения стоит свести с терминами из ТЗ, чтобы они не разошлись.</p>
+        <h2>Предмет соглашения</h2>
+        <p class="ph-mark">Сайт предоставляет информацию о комплексе и его арендаторах. Онлайн-продаж нет — это прямо указано в п. 1 ТЗ.</p>
+        <h2>Регистрация и личный кабинет</h2>
+        <p class="ph-mark">Регистрация арендаторов только по приглашению или заявке с подтверждением администрацией. Самостоятельная регистрация не допускается — п. 7.5 ТЗ.</p>
+        <h2>Обязанности арендатора</h2>
+        <p class="ph-mark">Достоверность размещаемых данных, права на загружаемые фотографии и видео, ответственность за содержание акций.</p>
+        <h2>Модерация контента</h2>
+        <p class="ph-mark">Все изменения арендатора проходят проверку и публикуются после одобрения — п. 7.4 ТЗ. Основания для отклонения.</p>
+        <h2>Интеллектуальная собственность</h2>
+        <p class="ph-mark">Права на материалы сайта, логотипы арендаторов и брендов, фотографии.</p>
+        <h2>Ответственность и её ограничение</h2>
+        <p class="ph-mark">Сайт не отвечает за товары и услуги арендаторов, актуальность цен и условий акций.</p>
+        <h2>Изменение условий</h2>
+        <p class="ph-mark">Порядок внесения изменений и уведомления пользователей.</p>
+      </div>
+    </div>
+
+    <aside class="artside">
+      <div class="panel toc" id="toc">
+        <p class="panel__title">Содержание</p>
+        <nav class="toc__nav" id="tocNav"></nav>
+      </div>
+      <div class="panel">
+        <p class="panel__title">Другие документы</p>
+        <ul class="mega__links">
+          <li><a href="privacy.html">Политика обработки ПД</a></li>
+          <li><a href="terms.html">Пользовательское соглашение</a></li>
+          <li><a href="cookie.html">Политика cookie</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="wrap">
+    <aside class="note"><b>1. Соглашение должно совпадать с логикой кабинета.</b> Два пункта следуют прямо из ТЗ и не могут противоречить интерфейсу: регистрация арендаторов только по приглашению с подтверждением администрации (п. 7.5) и обязательная модерация всех правок (п. 7.4). Если в соглашении написать иначе, документ разойдётся с продуктом.</aside>
+
+    <aside class="note"><b>2. Права на загружаемые материалы — больное место.</b> Арендатор грузит фотографии магазина, дизайнер — снимки проектов. Кто отвечает, если это чужие фотографии из интернета. Нужен пункт, что загружающий подтверждает наличие прав, иначе претензии придут владельцу сайта.</aside>
+
+    <aside class="note"><b>3. Отдельно про акции.</b> Акции заводит арендатор, а выглядят они как предложение комплекса. Нужен явный пункт, что за условия и исполнение акции отвечает магазин, а не ТК.</aside>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=20"></script>
+<script src="app.js?v=20"></script>
+<script src="content.js?v=20"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Страница не найдена — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=20">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">404 · Ч/Б · v1</span>
+  <span class="proto-bar__legend">фирменная страница ошибки — п. 10.4</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active=""></div>
+
+<main>
+<section class="errpage">
+  <div class="wrap errpage__in">
+    <p class="errpage__code">404</p>
+    <h1 class="errpage__h1">Такой страницы нет</h1>
+    <p class="errpage__t">Возможно, адрес набран с ошибкой или страницу перенесли. Найдём нужное:</p>
+
+    <div class="errpage__search">
+      <div class="field field--lg">
+        <input type="search" placeholder="Магазин, бренд, номер секции" aria-label="Поиск по сайту">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+      </div>
+    </div>
+
+    <div class="errpage__links">
+      <a href="shops.html" class="errlink"><span class="errlink__h">Магазины</span><span class="errlink__t">150+ магазинов, поиск по номеру секции</span></a>
+      <a href="floors.html" class="errlink"><span class="errlink__h">Схема этажей</span><span class="errlink__t">Найти магазин на плане комплекса</span></a>
+      <a href="events.html" class="errlink"><span class="errlink__h">Афиша</span><span class="errlink__t">Мастер-классы, лекции и семинары</span></a>
+      <a href="contacts.html" class="errlink"><span class="errlink__h">Контакты</span><span class="errlink__t">Адрес, телефоны и как добраться</span></a>
+    </div>
+
+    <a href="index.html" class="btn btn--primary">На главную</a>
+  </div>
+
+  <aside class="note"><b>1. 404 — рабочая страница, а не извинение.</b> П. 10.4 требует фирменные страницы ошибок. Человек попал сюда не по своей воле, и самое полезное — дать ему поиск и четыре главные точки входа, а не одну кнопку «на главную». Особенно это важно после миграции: п. 11.1 требует карту редиректов, но часть старых адресов неизбежно потеряется, и трафик из поиска будет приземляться именно здесь.</aside>
+
+  <aside class="note"><b>2. Что нужно от разработки.</b> Страница должна отдаваться с кодом 404, а не 200 с текстом об ошибке — иначе поисковики продолжат держать несуществующие адреса в индексе. Ошибки 404 стоит логировать: всплеск по конкретному адресу сразу после запуска означает дыру в карте редиректов.</aside>
+</section>
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=20"></script>
+<script src="app.js?v=20"></script>
+</body>
+</html>

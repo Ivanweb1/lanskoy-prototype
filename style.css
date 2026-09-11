@@ -693,6 +693,33 @@ a.viewtabs__item:hover{color:var(--ink)}
 .floorlist__s{font-size:12px;color:var(--mute);flex:none}
 .floorlist__empty{font-size:13px;padding:6px 0}
 
+/* ---------- страницы ошибок ---------- */
+.errpage{padding:80px 0 100px}
+.errpage__in{max-width:760px;text-align:center}
+.errpage__code{font-family:var(--serif);font-weight:500;font-size:clamp(80px,12vw,160px);
+  line-height:1;letter-spacing:var(--tr-big);color:var(--line-2)}
+.errpage__h1{font-size:clamp(28px,3.4vw,44px);line-height:1.15;margin-top:8px}
+.errpage__t{margin:18px auto 0;max-width:46ch;color:var(--ink-2);line-height:1.6}
+.errpage__search{max-width:520px;margin:32px auto 40px}
+.errpage__acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.errpage__panel{max-width:420px;margin:40px auto 0;text-align:left}
+.errpage__links{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:40px;text-align:left}
+.errlink{display:block;padding:20px;border:1px solid var(--line);background:var(--paper)}
+.errlink:hover{border-color:var(--ink)}
+.errlink__h{display:block;font-family:var(--sans);font-weight:600;font-size:17px;letter-spacing:var(--tr-h3)}
+.errlink__t{display:block;font-size:13px;color:var(--mute);margin-top:8px;line-height:1.45}
+
+/* ---------- настройки cookie ---------- */
+.ckpanel{max-width:760px;margin-top:40px}
+.cksw{margin-bottom:24px}
+.cksw__i{display:grid;grid-template-columns:24px 1fr;gap:16px;align-items:start;
+  padding:18px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.cksw__i:last-child{border-bottom:0}
+.cksw__i input{margin-top:3px}
+.cksw__i input:disabled{cursor:not-allowed}
+.cksw__h{display:block;font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:var(--tr-h3)}
+.cksw__t{display:block;font-size:14px;color:var(--ink-2);margin-top:6px;line-height:1.5}
+
 /* ---------- дизайнеры ---------- */
 .descard{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--paper)}
 .descard:hover{border-color:var(--ink)}
@@ -872,6 +899,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
   .grid--4{grid-template-columns:repeat(2,1fr)}
+  .errpage__links{grid-template-columns:1fr}
   .brands{grid-template-columns:repeat(4,1fr)}
   .hsearch{display:none}
   .ic-search{display:block}

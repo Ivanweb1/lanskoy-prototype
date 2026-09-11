@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ошибка на сервере — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=20">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">500 · Ч/Б · v1</span>
+  <span class="proto-bar__legend">фирменная страница ошибки — п. 10.4</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active=""></div>
+
+<main>
+<section class="errpage">
+  <div class="wrap errpage__in">
+    <p class="errpage__code">500</p>
+    <h1 class="errpage__h1">Что-то сломалось на нашей стороне</h1>
+    <p class="errpage__t">Это не ваша ошибка. Мы уже знаем о проблеме и чиним. Попробуйте обновить страницу через пару минут.</p>
+
+    <div class="errpage__acts">
+      <button type="button" class="btn btn--primary" onclick="location.reload()">Обновить страницу</button>
+      <a href="index.html" class="btn btn--ghost">На главную</a>
+    </div>
+
+    <div class="panel errpage__panel">
+      <p class="panel__title">Если нужно срочно</p>
+      <ul class="contacts">
+        <li><span class="contacts__k">Рецепция</span><span class="contacts__v"><a href="#">+7 (812) 363-00-07</a></span></li>
+        <li><span class="contacts__k">Режим работы</span><span class="contacts__v">10:00 — 20:00 ежедневно</span></li>
+        <li><span class="contacts__k">Адрес</span><span class="contacts__v">ул. Студенческая, 10</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. На 500 нельзя полагаться на сайт.</b> Если сервер отдаёт ошибку, каталог, поиск и схема этажей могут не работать тоже. Поэтому здесь нет ссылок на разделы — только телефон, режим работы и адрес: это то, что поможет человеку в любом случае. Контакты должны быть зашиты в саму страницу, а не подтягиваться из базы, иначе на 500 они не отобразятся.</aside>
+
+  <aside class="note"><b>2. Что нужно от разработки.</b> Страница отдаётся с кодом 500 и не должна зависеть от базы, шаблонизатора и внешних сервисов — по сути это статический файл. П. 10.4 требует мониторинга и логирования ошибок: сама по себе красивая страница проблему не решает, важно чтобы о ней узнали раньше посетителей.</aside>
+</section>
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=20"></script>
+<script src="app.js?v=20"></script>
+</body>
+</html>

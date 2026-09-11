@@ -187,9 +187,9 @@ var LNS = (function () {
 '  </div>' +
 '  <div class="wrap footer__legal">' +
 '    <p>© 2026 ТК «Ланской»</p>' +
-'    <ul><li><a href="#">Политика обработки ПД</a></li>' +
-'    <li><a href="#">Пользовательское соглашение</a></li>' +
-'    <li><a href="#">Политика cookie</a></li></ul>' +
+'    <ul><li><a href="privacy.html">Политика обработки ПД</a></li>' +
+'    <li><a href="terms.html">Пользовательское соглашение</a></li>' +
+'    <li><a href="cookie.html">Политика cookie</a></li></ul>' +
 '  </div>';
   }
 
@@ -197,7 +197,7 @@ var LNS = (function () {
     return '' +
 '  <p class="cookie__text">Мы используем cookie. Вы можете выбрать, какие категории разрешить.</p>' +
 '  <div class="cookie__acts">' +
-'    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Настроить</button>' +
+'    <a href="cookie.html" class="btn btn--sm btn--ghost">Настроить</a>' +
 '    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Только необходимые</button>' +
 '    <button type="button" class="btn btn--sm btn--primary" data-cookie>Принять все</button>' +
 '  </div>';
