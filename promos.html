@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Акции — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Акции · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="promos"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Акции</span>
+    </nav>
+
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Акции</h1>
+        <p class="pagehead__lead">Действующие предложения магазинов комплекса</p>
+      </div>
+      <div class="field field--sm brandsearch">
+        <input type="search" id="promoSearch" placeholder="Магазин или предложение" autocomplete="off">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+
+    <div class="evfilters" id="promoFilters">
+      <div class="evfilters__row">
+        <span class="evfilters__label">Категория</span>
+        <button type="button" class="chip is-active" data-cat="all">Любая</button>
+        <button type="button" class="chip" data-cat="doors">Двери и фурнитура</button>
+        <button type="button" class="chip" data-cat="decor">Отделочные материалы</button>
+        <button type="button" class="chip" data-cat="hvac">Отопление и климат</button>
+        <button type="button" class="chip" data-cat="kitchen">Мебель и кухни</button>
+      </div>
+
+      <span class="evfilters__sep" aria-hidden="true"></span>
+
+      <div class="evfilters__row">
+        <span class="evfilters__label">Срок</span>
+        <button type="button" class="chip is-active" data-term="all">Все</button>
+        <button type="button" class="chip" data-term="soon">Заканчиваются</button>
+      </div>
+
+      <p class="evfilters__count"><b id="promoCount">4</b> <span id="promoCountWord">акции</span></p>
+    </div>
+
+    <div class="grid grid--4" id="promoGrid">
+
+      <a href="promo.html" class="card card--sm promocard" data-cat="doors" data-term="soon">
+        <span class="card__media ph"><span class="ph__label">Фото</span><span class="badge badge--sm">до 30 июня</span></span>
+        <span class="promocard__body">
+          <span class="card__title">Распродажа дверных ручек 30—50%</span>
+          <span class="card__meta">Салон «Корал» · <span class="ph-mark">секция —</span></span>
+          <span class="card__term">Осталось 6 дней</span>
+        </span>
+      </a>
+
+      <a href="promo.html" class="card card--sm promocard" data-cat="hvac" data-term="all">
+        <span class="card__media ph"><span class="ph__label">Фото</span><span class="badge badge--sm ph-mark">до 00.00</span></span>
+        <span class="promocard__body">
+          <span class="card__title">Мойки воздуха Venta и тёплые полы Caleo −10%</span>
+          <span class="card__meta ph-mark">магазин не указан</span>
+          <span class="card__term ph-mark">срок не указан</span>
+        </span>
+      </a>
+
+      <a href="promo.html" class="card card--sm promocard" data-cat="kitchen" data-term="all">
+        <span class="card__media ph"><span class="ph__label">Фото</span><span class="badge badge--sm ph-mark">до 00.00</span></span>
+        <span class="promocard__body">
+          <span class="card__title">Специальные предложения на кухни</span>
+          <span class="card__meta">Кухни «Спутник Стиль» · <span class="ph-mark">секция —</span></span>
+          <span class="card__term ph-mark">срок не указан</span>
+        </span>
+      </a>
+
+      <a href="promo.html" class="card card--sm promocard" data-cat="decor" data-term="soon">
+        <span class="card__media ph"><span class="ph__label">Фото</span><span class="badge badge--sm">до 30 июня</span></span>
+        <span class="promocard__body">
+          <span class="card__title">Скидка 15% на декоративную штукатурку</span>
+          <span class="card__meta">VLADART STUDIO · секция А10</span>
+          <span class="card__term">Осталось 6 дней</span>
+        </span>
+      </a>
+
+    </div>
+
+    <div class="empty" id="promoEmpty" hidden>
+      <p class="empty__title">Акций не найдено</p>
+      <p class="empty__text">Попробуйте снять фильтры или изменить запрос.</p>
+      <button type="button" class="btn btn--ghost" data-promoreset>Показать все</button>
+    </div>
+
+    <div class="results__more">
+      <button type="button" class="btn btn--ghost btn--full">Показать ещё</button>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Срок — главное поле карточки.</b> П. 6.7 требует автоснятия акции с публикации по дате окончания. Значит дата окончания обязательна при заведении, и логично показывать её на карточке: она же создаёт срочность. Добавил вторую строку «Осталось 6 дней» — её считает фронтенд от той же даты, отдельного поля не нужно.</aside>
+
+  <aside class="note"><b>2. Фильтры.</b> П. 6.7 называет фильтр «по магазину/категории». Категория — чипами, магазин — поиском: магазинов 150, в чипы они не помещаются. Фильтр «Заканчиваются» добавил сверх ТЗ — это то, ради чего в раздел заходят повторно.</aside>
+
+  <aside class="note"><b>3. Данные.</b> Три акции реальные, с действующего сайта: дверные ручки в «Корале», мойки воздуха Venta с тёплыми полами Caleo, предложения «Кухни Спутник Стиль». Четвёртая — образец связки с карточкой арендатора. Сроков и привязки к секциям на старом сайте нет, поэтому пунктир: без даты окончания автоснятие из п. 6.7 работать не будет, это поле придётся делать обязательным в кабинете арендатора.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=9"></script>
+<script src="app.js?v=9"></script>
+<script src="content.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Распродажа дверных ручек — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Страница акции · Ч/Б · v1</span>
+  <span class="proto-bar__states">
+    Состояние:
+    <button type="button" class="proto-bar__st is-active" data-state="open">действует</button>
+    <button type="button" class="proto-bar__st" data-state="past">завершилась</button>
+  </span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active="promos"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <a href="promos.html">Акции</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Распродажа дверных ручек</span>
+    </nav>
+
+    <div class="evhead">
+      <div class="evhead__main">
+        <ul class="taglist">
+          <li><a href="category.html" class="tag">Двери, перегородки, фурнитура</a></li>
+        </ul>
+        <h1 class="evhead__h1">Распродажа дверных ручек 30—50%</h1>
+        <p class="evhead__sub">Салон «Корал»</p>
+
+        <p class="promostate st-open"><b>Осталось 6 дней</b> · до 30 июня</p>
+        <p class="promostate promostate--off st-past" hidden>Акция завершилась 30 июня</p>
+      </div>
+      <div class="evhead__media ph"><span class="ph__label">Изображение акции</span></div>
+    </div>
+  </div>
+  <aside class="note"><b>1. Состояние акции.</b> Переключается в чёрной панели сверху. П. 6.7 требует автоснятия с публикации по дате окончания, но «снять с публикации» и «удалить страницу» — разные вещи. Если адрес просто отдаст 404, пострадают ссылки из поиска и соцсетей, а это противоречит разделу 11 о сохранении трафика. Предлагаю оставлять страницу с пометкой «завершилась» и перекидывать внимание на другие акции магазина — так и посетителю понятно, и адрес живой.</aside>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap shoplayout">
+    <div class="shopmain">
+
+      <div class="block">
+        <h2 class="block__h2">Условия</h2>
+        <div class="prose">
+          <p>Скидка 30—50% на дверные ручки из коллекций прошлых сезонов. Размер скидки зависит от коллекции и указан на ценнике.</p>
+          <p>Предложение действует при покупке в салоне, количество товара ограничено остатками на складе. Не суммируется с другими акциями и скидками по дисконтным картам.</p>
+        </div>
+      </div>
+
+      <div class="block st-past" hidden>
+        <div class="block__head">
+          <h2 class="block__h2">Другие акции магазина</h2>
+          <a href="promos.html" class="more">Все акции</a>
+        </div>
+        <p class="empty__text">У салона «Корал» сейчас нет действующих предложений. Загляните в общий список — там акции других магазинов комплекса.</p>
+      </div>
+
+    </div>
+
+    <aside class="shopside">
+      <div class="panel">
+        <p class="panel__title">Магазин</p>
+        <p class="panel__shop">Салон «Корал»</p>
+        <ul class="contacts">
+          <li><span class="contacts__k">Расположение</span><span class="contacts__v ph-mark">секция —</span></li>
+          <li><span class="contacts__k">Категория</span><span class="contacts__v"><a href="category.html">Двери и фурнитура</a></span></li>
+          <li><span class="contacts__k">Телефон</span><span class="contacts__v ph-mark">+7 (000) 000-00-00</span></li>
+        </ul>
+        <a href="shop.html" class="btn btn--ghost btn--full">Карточка магазина</a>
+      </div>
+
+      <div class="panel st-open">
+        <p class="panel__title">Срок действия</p>
+        <ul class="contacts">
+          <li><span class="contacts__k">Начало</span><span class="contacts__v ph-mark">00.00.2026</span></li>
+          <li><span class="contacts__k">Окончание</span><span class="contacts__v">30 июня 2026</span></li>
+        </ul>
+        <p class="panel__text">После этой даты акция автоматически снимется с публикации.</p>
+      </div>
+
+      <div class="panel">
+        <p class="panel__title">Поделиться</p>
+        <ul class="msgs">
+          <li><a href="#" class="msg">VK</a></li>
+          <li><a href="#" class="msg">Telegram</a></li>
+          <li><a href="#" class="msg">Скопировать ссылку</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <aside class="note"><b>2. Привязка к арендатору.</b> П. 6.7 требует её прямо. На практике это значит, что акцию нельзя завести «ничьей»: магазин выбирается при создании в кабинете, а страница подтягивает из его карточки секцию, категорию и телефон. Дублировать эти поля в акции нельзя — иначе при переезде магазина данные разъедутся.</aside>
+
+  <aside class="note"><b>3. Чего нет в исходных данных.</b> На действующем сайте у акций нет ни даты окончания, ни привязки к секции. Оба поля нужны: без даты не работает автоснятие из п. 6.7, без привязки не собирается блок «Акции магазина» на карточке арендатора. Это требования к форме создания акции в кабинете — там оба поля должны быть обязательными.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=9"></script>
+<script src="app.js?v=9"></script>
+<script src="events.js?v=9"></script>
+</body>
+</html>

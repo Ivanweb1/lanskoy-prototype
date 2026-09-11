@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Журнал — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Журнал · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="journal"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Журнал</span>
+    </nav>
+
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Журнал</h1>
+        <p class="pagehead__lead">Идеи, разборы материалов и советы по ремонту</p>
+      </div>
+      <div class="field field--sm brandsearch">
+        <input type="search" id="postSearch" placeholder="Поиск по статьям" autocomplete="off">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+
+    <div class="evfilters" id="postFilters">
+      <div class="evfilters__row">
+        <span class="evfilters__label">Рубрика</span>
+        <button type="button" class="chip is-active" data-rub="all">Все</button>
+        <button type="button" class="chip" data-rub="interior">Дизайн интерьера</button>
+        <button type="button" class="chip" data-rub="doors">Двери</button>
+        <button type="button" class="chip" data-rub="finish">Отделка и материалы</button>
+      </div>
+      <p class="evfilters__count"><b id="postCount">6</b> <span id="postCountWord">статей</span></p>
+    </div>
+
+    <div class="postgrid" id="postGrid">
+
+      <article class="post post--lead" data-rub="finish" data-tags="ламинат плитка кухня отделка">
+        <a href="article.html" class="post__media ph"><span class="ph__label">Обложка</span></a>
+        <p class="post__rubric">Отделка и материалы</p>
+        <h2 class="post__title"><a href="article.html">Комбинированный пол: плитка и ламинат</a></h2>
+        <p class="post__lead">Керамическая плитка вместе с ламинатом позволяет с умом подойти к отделке, сэкономить и подчеркнуть зонирование помещения.</p>
+        <p class="post__meta">Дарья Филимонова · 23.06.2026 · 1122 просмотра</p>
+      </article>
+
+      <article class="post" data-rub="interior" data-tags="обои кухня-гостиная тренды стиль">
+        <a href="article.html" class="post__media ph"><span class="ph__label">Обложка</span></a>
+        <p class="post__rubric">Дизайн интерьера</p>
+        <h2 class="post__title"><a href="article.html">Модные обои для кухни-гостиной в 2026 году</a></h2>
+        <p class="post__meta">Юлия Вишневская · 22.06.2026 · 2068 просмотров</p>
+      </article>
+
+      <article class="post" data-rub="interior" data-tags="стиль тренды тихая роскошь">
+        <a href="article.html" class="post__media ph"><span class="ph__label">Обложка</span></a>
+        <p class="post__rubric">Дизайн интерьера</p>
+        <h2 class="post__title"><a href="article.html">Интерьер в стиле тихая роскошь</a></h2>
+        <p class="post__meta"><span class="ph-mark">автор —</span> · 11.06.2026</p>
+      </article>
+
+      <article class="post" data-rub="interior" data-tags="джапанди скандинавский стиль">
+        <a href="article.html" class="post__media ph"><span class="ph__label">Обложка</span></a>
+        <p class="post__rubric">Дизайн интерьера</p>
+        <h2 class="post__title"><a href="article.html">Скандинавский дзен: интерьер в стиле джапанди</a></h2>
+        <p class="post__meta"><span class="ph-mark">автор —</span> · 28.05.2026</p>
+      </article>
+
+      <article class="post" data-rub="interior" data-tags="мебель тренды уют">
+        <a href="article.html" class="post__media ph"><span class="ph__label">Обложка</span></a>
+        <p class="post__rubric">Дизайн интерьера</p>
+        <h2 class="post__title"><a href="article.html">Мебельные тренды: как создать уют и элегантность</a></h2>
+        <p class="post__meta"><span class="ph-mark">автор —</span> · <span class="ph-mark">00.00.2026</span></p>
+      </article>
+
+      <article class="post" data-rub="doors" data-tags="двери межкомнатные раздвижные входные">
+        <a href="article.html" class="post__media ph"><span class="ph__label">Обложка</span></a>
+        <p class="post__rubric">Двери</p>
+        <h2 class="post__title"><a href="article.html">Двери: новинки и тенденции</a></h2>
+        <p class="post__meta"><span class="ph-mark">автор —</span> · <span class="ph-mark">00.00.2026</span></p>
+      </article>
+
+    </div>
+
+    <div class="empty" id="postEmpty" hidden>
+      <p class="empty__title">Ничего не найдено</p>
+      <p class="empty__text">Попробуйте другой запрос или выберите рубрику.</p>
+      <button type="button" class="btn btn--ghost" data-postreset>Показать все</button>
+    </div>
+
+    <div class="results__more">
+      <button type="button" class="btn btn--ghost btn--full">Показать ещё</button>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Рубрики, а не плоская лента.</b> П. 6.6 требует «ленту с рубриками и тегами». На действующем сайте рубрики уже есть и зашиты в адреса — «дизайн интерьера: советы и идеи», «двери: новинки и тенденции». Это важно для миграции: адреса статей содержат рубрику, и при смене структуры их придётся редиректить, а п. 11.1 называет сохранение трафика критичным.</aside>
+
+  <aside class="note"><b>2. Автор и просмотры.</b> На действующем сайте у статей есть авторы и счётчик просмотров. Оставляю: авторство добавляет весу экспертному контенту, а счётчик — социальное доказательство. Но у половины статей автор не указан, поэтому блок должен корректно жить без него, а не показывать пустое место.</aside>
+
+  <aside class="note"><b>3. Первая статья крупнее.</b> Лента из одинаковых карточек читается ровно и скучно, а в журнале почти всегда есть главный материал. Крупная карточка с лидом задаёт точку входа; остальные идут обычной сеткой.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=9"></script>
+<script src="app.js?v=9"></script>
+<script src="content.js?v=9"></script>
+</body>
+</html>

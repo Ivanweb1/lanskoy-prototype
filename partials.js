@@ -24,9 +24,9 @@ var LNS = (function () {
 
   var NAV = [
     { key: 'shops', label: 'Магазины', mega: 'shops' },
-    { key: 'promos', label: 'Акции', href: '#' },
+    { key: 'promos', label: 'Акции', href: 'promos.html' },
     { key: 'events', label: 'Афиша', href: 'events.html' },
-    { key: 'journal', label: 'Журнал', href: '#' },
+    { key: 'journal', label: 'Журнал', href: 'journal.html' },
     { key: 'designers', label: 'Дизайнерам', href: '#' },
     { key: 'about', label: 'О комплексе', mega: 'about' }
   ];
@@ -79,7 +79,7 @@ var LNS = (function () {
 '            <p class="suggest__group">Бренды</p>' +
 '            <a href="brand.html" class="suggest__item"><span>Kerama Marazzi</span><span class="suggest__meta">4 магазина</span></a>' +
 '            <p class="suggest__group">Статьи</p>' +
-'            <a href="#" class="suggest__item"><span>Комбинированный пол: плитка и ламинат</span><span class="suggest__meta">23.06.2026</span></a>' +
+'            <a href="article.html" class="suggest__item"><span>Комбинированный пол: плитка и ламинат</span><span class="suggest__meta">23.06.2026</span></a>' +
 '            <p class="suggest__group">События</p>' +
 '            <a href="event.html" class="suggest__item"><span>«Волховец» — реализация проектных продаж</span><span class="suggest__meta">28 августа</span></a>' +
 '          </div>' +
@@ -172,14 +172,14 @@ var LNS = (function () {
 '        <li><a href="shops.html">Магазины</a></li>' +
 '        <li><a href="categories.html">Категории</a></li>' +
 '        <li><a href="brands.html">Бренды</a></li>' +
-'        <li><a href="#">Акции</a></li>' +
+'        <li><a href="promos.html">Акции</a></li>' +
 '        <li><a href="#">Схема этажей</a></li></ul></div>' +
 '      <div><p class="footer__title">События</p><ul>' +
 '        <li><a href="events.html">Афиша</a></li><li><a href="events.html">Архив событий</a></li>' +
 '        <li><a href="#">Галерея</a></li><li><a href="#">Видео</a></li></ul></div>' +
 '      <div><p class="footer__title">Профессионалам</p><ul>' +
 '        <li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li>' +
-'        <li><a href="#">Журнал</a></li></ul></div>' +
+'        <li><a href="journal.html">Журнал</a></li></ul></div>' +
 '      <div><p class="footer__title">Комплекс</p><ul>' +
 '        <li><a href="#">О комплексе</a></li><li><a href="#">Аренда</a></li>' +
 '        <li><a href="#">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>' +

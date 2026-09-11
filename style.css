@@ -573,6 +573,55 @@ a.viewtabs__item:hover{color:var(--ink)}
 .captcha{height:78px;margin:18px 0}
 .regform__hint{font-size:12px;color:var(--mute);margin-top:12px;line-height:1.5}
 
+/* ---------- акции ---------- */
+.promocard{display:flex;flex-direction:column}
+.promocard .card__media{margin-bottom:16px}
+.promocard__body{display:block}
+.promocard .card__title{display:block}
+.promocard .card__meta{display:block}
+.promocard .card__term{display:block;margin-top:14px}
+.promostate{margin-top:22px;font-size:15px}
+.promostate b{font-family:var(--serif);font-size:20px}
+.promostate--off{color:var(--mute)}
+.panel__shop{font-family:var(--serif);font-size:19px;margin-bottom:16px}
+.mt10{margin-top:10px}
+
+/* ---------- журнал ---------- */
+.postgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 28px}
+.post--lead{grid-column:span 2}
+.post--lead .post__media{aspect-ratio:2/1}
+.post--lead .post__title{font-size:30px}
+.post__lead{font-size:15px;line-height:1.6;color:var(--ink-2);margin-top:12px;max-width:60ch}
+.post__title a{border-bottom:1px solid transparent}
+.post__title a:hover{border-color:var(--ink)}
+
+/* ---------- статья ---------- */
+.arthead{max-width:860px;padding-bottom:32px}
+.arthead__h1{font-size:clamp(30px,3.6vw,48px);line-height:1.15;margin-top:10px}
+.arthead__lead{font-size:19px;line-height:1.55;color:var(--ink-2);margin-top:20px}
+.arthead__meta{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-size:14px}
+.artauthor{display:flex;align-items:center;gap:12px}
+.artauthor__photo{width:44px;height:44px;border-radius:50%;flex:none}
+.arthead__stats{color:var(--mute)}
+
+.artlayout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;align-items:start}
+.artcover{aspect-ratio:16/9;margin-bottom:36px}
+.prose--article{max-width:68ch}
+.prose--article p{font-size:17px;line-height:1.75;margin-bottom:20px}
+.prose--article h2{font-size:26px;line-height:1.25;margin:38px 0 16px}
+
+.arttags,.artshare{display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+.arttags__label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-right:6px}
+
+.artside{position:sticky;top:24px;display:flex;flex-direction:column;gap:20px}
+.toc__nav{display:flex;flex-direction:column;gap:2px}
+.toc__i{padding:8px 0 8px 14px;font-size:14px;line-height:1.4;color:var(--ink-2);
+  border-left:2px solid var(--line)}
+.toc__i:hover{color:var(--ink);border-left-color:var(--line-2)}
+.toc__i.is-active{color:var(--ink);border-left-color:var(--ink)}
+
 /* переключатель состояний в панели прототипа */
 .proto-bar__states{display:flex;align-items:center;gap:8px;color:#a9a49e}
 .proto-bar__st{border:1px solid #4a4540;padding:4px 10px;font-size:11px;color:#cfcac4}
@@ -627,6 +676,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .shoplayout{grid-template-columns:1fr 300px;gap:40px}
   .catnav__item{grid-template-columns:160px 1fr}
   .evrow{grid-template-columns:88px 180px 1fr 130px;gap:20px}
+  .artlayout{grid-template-columns:minmax(0,1fr) 260px;gap:40px}
   .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
@@ -649,6 +699,11 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .shophead{grid-template-columns:110px 1fr;gap:24px}
   .catnav{grid-template-columns:1fr}
   .evhead{grid-template-columns:1fr;gap:32px}
+  /* оглавление уходит под текст и перестаёт липнуть */
+  .artlayout{grid-template-columns:1fr;gap:40px}
+  .artside{position:static}
+  .postgrid{grid-template-columns:repeat(2,1fr);gap:32px 24px}
+  .post--lead{grid-column:span 2}
   /* обложку в строке афиши убираем — на планшете она съедает место у текста */
   .evrow{grid-template-columns:80px 1fr;gap:20px;align-items:start}
   .evrow__media{display:none}
@@ -687,6 +742,10 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .grid--2{grid-template-columns:1fr}
   .grid--3:not(.scroller){grid-template-columns:1fr}
   .speakers{grid-template-columns:1fr}
+  .postgrid{grid-template-columns:1fr}
+  .post--lead{grid-column:auto}
+  .post--lead .post__media{aspect-ratio:16/10}
+  .post--lead .post__title{font-size:22px}
   /* на узком экране группы фильтров прокручиваются вбок, а не ломаются */
   .evfilters__row{overflow-x:auto;padding-bottom:2px}
   .evfilters__sep{display:none}
