@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Афиша — ТК «Ланской» — прототип</title>
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
@@ -45,19 +45,24 @@
     <!-- фильтры -->
     <div class="evfilters" id="evFilters">
       <div class="evfilters__row">
-        <span class="evfilters__label">Аудитория</span>
-        <button type="button" class="chip is-active" data-aud="all">Все</button>
-        <button type="button" class="chip" data-aud="public">Для покупателей</button>
-        <button type="button" class="chip" data-aud="pro">Для дизайнеров</button>
+        <span class="evfilters__label">Кому</span>
+        <button type="button" class="chip is-active" data-aud="all">Всем</button>
+        <button type="button" class="chip" data-aud="public">Покупателям</button>
+        <button type="button" class="chip" data-aud="pro">Дизайнерам</button>
       </div>
+
+      <span class="evfilters__sep" aria-hidden="true"></span>
+
       <div class="evfilters__row">
-        <span class="evfilters__label">Тип</span>
+        <span class="evfilters__label">Формат</span>
         <button type="button" class="chip is-active" data-type="all">Любой</button>
         <button type="button" class="chip" data-type="seminar">Семинар</button>
         <button type="button" class="chip" data-type="lecture">Лекция</button>
         <button type="button" class="chip" data-type="workshop">Мастер-класс</button>
         <button type="button" class="chip" data-type="fest">Праздник</button>
       </div>
+
+      <p class="evfilters__count"><b id="evCount">4</b> <span id="evCountWord">события</span></p>
     </div>
 
     <!-- ближайшие -->
@@ -194,8 +199,8 @@
 <div id="siteFooter"></div>
 <div id="siteCookie"></div>
 
-<script src="partials.js?v=5"></script>
-<script src="app.js?v=5"></script>
-<script src="events.js?v=5"></script>
+<script src="partials.js?v=7"></script>
+<script src="app.js?v=7"></script>
+<script src="events.js?v=7"></script>
 </body>
 </html>

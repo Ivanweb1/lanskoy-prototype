@@ -35,6 +35,20 @@
     /* пусто из-за фильтров — одно сообщение, пусто само по себе — другое */
     empty.hidden = !(shown === 0 && filtersOn);
     none.hidden = !(shown === 0 && !filtersOn);
+
+    count(shown);
+  }
+
+  /* «1 событие», «2 события», «5 событий» */
+  function count(n) {
+    var box = document.getElementById('evCount');
+    if (!box) return;
+    var d10 = n % 10, d100 = n % 100;
+    var word = 'событий';
+    if (d10 === 1 && d100 !== 11) word = 'событие';
+    else if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) word = 'события';
+    box.textContent = n;
+    document.getElementById('evCountWord').textContent = word;
   }
 
   tabs.addEventListener('click', function (e) {

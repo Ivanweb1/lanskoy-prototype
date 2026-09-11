@@ -502,11 +502,18 @@ a.viewtabs__item:hover{color:var(--ink)}
 .brandtile__name{display:block;font-size:13px;margin-top:10px;color:var(--ink-2)}
 
 /* ---------- афиша ---------- */
-.evfilters{padding-bottom:26px;margin-bottom:28px;border-bottom:1px solid var(--line)}
-.evfilters__row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:12px}
-.evfilters__row:last-child{margin-bottom:0}
-.evfilters__label{width:96px;flex:none;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
-.evfilters .chip{cursor:pointer}
+/* одна строка вместо двух: подписи короткие и инлайновые, счётчик уходит
+   вправо и занимает пустоту, которая оставалась при двухрядной раскладке */
+.evfilters{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;
+  padding-bottom:18px;margin-bottom:26px;border-bottom:1px solid var(--line);
+}
+.evfilters__row{display:flex;flex-wrap:nowrap;align-items:center;gap:8px}
+.evfilters__label{flex:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-right:2px}
+.evfilters__sep{width:1px;height:22px;background:var(--line);flex:none}
+.evfilters__count{margin-left:auto;font-size:13px;color:var(--mute);white-space:nowrap}
+.evfilters__count b{color:var(--ink);font-weight:600}
+.evfilters .chip{cursor:pointer;height:32px;padding:0 13px}
 .evfilters .chip.is-active{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 .evrow{display:grid;grid-template-columns:100px 220px 1fr 150px;gap:28px;align-items:center;
@@ -680,7 +687,10 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .grid--2{grid-template-columns:1fr}
   .grid--3:not(.scroller){grid-template-columns:1fr}
   .speakers{grid-template-columns:1fr}
-  .evfilters__label{width:100%}
+  /* на узком экране группы фильтров прокручиваются вбок, а не ломаются */
+  .evfilters__row{overflow-x:auto;padding-bottom:2px}
+  .evfilters__sep{display:none}
+  .evfilters__count{margin-left:0}
   .proto-bar__states{display:none}
   .catnav__item{grid-template-columns:1fr}
   .catnav__media{aspect-ratio:16/9}
