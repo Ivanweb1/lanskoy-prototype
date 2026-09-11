@@ -16,8 +16,17 @@
   --ph:#e8e5e1;
   --ph-2:#d9d5d0;
 
-  --serif:Georgia,"Times New Roman",serif;
-  --sans:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  /* фирменные шрифты из брендбука (полоса «Типографика», версия 1.0/2026) */
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Montserrat","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+
+  /* трекинг из таблицы иерархии: значения в брендбуке даны в 1/1000 em */
+  --tr-h2:.01em;   /* +10  заголовок раздела */
+  --tr-h3:.02em;   /* +20  подзаголовок */
+  --tr-cap:.01em;  /* +10  подписи */
+  --tr-nav:.03em;  /* +30  навигационные надписи */
+  --tr-num:.02em;  /* +20  цифры этажей и секций */
+  --tr-big:-.01em; /* −10  крупные акцентные цифры */
 
   --wrap:1360px;
   --pad:40px;
@@ -34,7 +43,20 @@ body{
 img{max-width:100%}
 a{color:inherit;text-decoration:none}
 ul{margin:0;padding:0;list-style:none}
-h1,h2,h3{margin:0;font-family:var(--serif);font-weight:400;letter-spacing:.01em}
+h1,h2,h3{margin:0}
+/* H1 — Cormorant Garamond SemiBold, 110% интерлиньяж, трекинг 0 */
+h1,.hero__h1,.renthero__h1,.pagehead__h1,.arthead__h1,.evhead__h1,.shophead__h1{
+  font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:0;
+}
+/* H2 — Cormorant Garamond Medium, 115%, трекинг +10 */
+h2,.sect__h2,.block__h2,.brandgroup__letter,.empty__title,.subs__h2{
+  font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:var(--tr-h2);
+}
+/* H3 и все карточные заголовки — Montserrat SemiBold, 133%, трекинг +20 */
+h3,.card__title,.post__title,.shopcard__name,.cat__name,.evrow__name,
+.adv__h3,.catnav__name,.room__name,.panel__shop,.speaker__name,.cat__name{
+  font-family:var(--sans);font-weight:600;line-height:1.33;letter-spacing:var(--tr-h3);
+}
 p{margin:0}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 input{font:inherit;color:inherit}
@@ -90,7 +112,8 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .btn{
   display:inline-flex;align-items:center;justify-content:center;
   height:52px;padding:0 30px;border:1px solid var(--ink);
-  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  font-family:var(--sans);font-weight:500;
+  font-size:13px;letter-spacing:var(--tr-nav);text-transform:uppercase;
   transition:background .15s,color .15s;
 }
 .btn--primary{background:var(--ink);color:#fff}
@@ -106,12 +129,12 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .btn--ghost.btn--invert:hover{background:#fff;color:var(--ink)}
 
 .link{
-  display:inline-block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  display:inline-block;font-weight:500;font-size:13px;letter-spacing:var(--tr-nav);text-transform:uppercase;
   border-bottom:1px solid var(--line-2);padding-bottom:2px;
 }
 .link:hover{border-color:var(--ink)}
 .link--off{color:var(--mute);border-bottom-style:dashed;cursor:default}
-.more{font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--line-2);padding-bottom:2px}
+.more{font-weight:500;font-size:13px;letter-spacing:var(--tr-nav);text-transform:uppercase;border-bottom:1px solid var(--line-2);padding-bottom:2px}
 .more:hover{border-color:var(--ink)}
 .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
 
@@ -172,7 +195,7 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .menu__list{display:flex;gap:34px}
 .menu__link{
   display:flex;align-items:center;gap:7px;height:92px;
-  font-size:13px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
+  font-weight:500;font-size:13px;letter-spacing:var(--tr-nav);text-transform:uppercase;white-space:nowrap;
   border-bottom:2px solid transparent;
 }
 .menu__link:hover,.menu__item.is-open .menu__link{border-bottom-color:var(--ink)}
@@ -207,7 +230,7 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .facts{background:var(--paper-2);border-bottom:1px solid var(--line)}
 .facts__in{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;padding-top:38px;padding-bottom:38px}
 .fact{display:flex;flex-direction:column;gap:8px;padding-left:20px;border-left:1px solid var(--line-2)}
-.fact__num{font-family:var(--serif);font-size:34px;line-height:1}
+.fact__num{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1;letter-spacing:var(--tr-big)}
 .fact__cap{font-size:13px;color:var(--mute);line-height:1.4}
 
 /* ================= СЕКЦИИ ================= */
@@ -296,7 +319,7 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 }
 .card__title{font-size:20px;line-height:1.3;margin-bottom:8px}
 .card--sm .card__title{font-size:17px}
-.card__meta{font-size:13px;color:var(--mute);margin-bottom:14px}
+.card__meta{font-size:13px;letter-spacing:var(--tr-cap);color:var(--mute);margin-bottom:14px}
 .card__term{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
 
 /* ---------- аренда ---------- */
@@ -314,7 +337,7 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .rent__actions{display:flex;gap:14px;flex-wrap:wrap}
 .rent__args{display:flex;flex-direction:column;gap:26px}
 .rent__args li{border-left:1px solid #4a4540;padding-left:22px}
-.rent__num{display:block;font-family:var(--serif);font-size:38px;line-height:1}
+.rent__num{display:block;font-family:var(--serif);font-weight:500;font-size:38px;line-height:1;letter-spacing:var(--tr-big)}
 .rent__num.ph-mark{color:#cfcac4;border-bottom-color:#6d6862}
 .rent__cap{display:block;font-size:13px;color:#a9a49e;margin-top:6px}
 
@@ -334,7 +357,7 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .post__rubric{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
 .post__title{font-size:22px;line-height:1.3}
 .post--row .post__title{font-size:18px}
-.post__meta{font-size:13px;color:var(--mute);margin-top:8px}
+.post__meta{font-size:13px;letter-spacing:var(--tr-cap);color:var(--mute);margin-top:8px}
 .journal__list{display:flex;flex-direction:column;gap:26px}
 .post--row{display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:start}
 .post--row .post__media{margin-bottom:0;aspect-ratio:4/3}
@@ -362,7 +385,7 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 .pagehead__lead{margin-top:12px;color:var(--mute)}
 
 .viewtabs{display:flex;gap:26px;flex-wrap:wrap}
-.viewtabs__item{display:block;padding-bottom:10px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid transparent;color:var(--mute)}
+.viewtabs__item{display:block;padding-bottom:10px;font-weight:500;font-size:13px;letter-spacing:var(--tr-nav);text-transform:uppercase;border-bottom:2px solid transparent;color:var(--mute)}
 a.viewtabs__item:hover{color:var(--ink)}
 .viewtabs__item.is-active{color:var(--ink);border-bottom-color:var(--ink)}
 
@@ -411,7 +434,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .shopcard__body{display:block;padding:18px 20px 20px}
 .shopcard__name{display:block;font-family:var(--serif);font-size:19px;line-height:1.25}
 .shopcard__cat{display:block;font-size:13px;color:var(--mute);margin-top:8px}
-.shopcard__place{display:block;font-size:13px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.shopcard__place{display:block;font-weight:600;letter-spacing:var(--tr-num);font-size:13px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
 .badge--sm{padding:5px 10px;font-size:11px}
 
 .empty{padding:64px 0;text-align:center;border:1px solid var(--line);background:var(--paper)}
@@ -440,7 +463,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .block__head .block__h2{margin-bottom:0}
 .block__meta{font-size:13px;color:var(--mute)}
 .block__note{font-size:13px;color:var(--mute);margin-top:12px}
-.prose p{margin-bottom:14px;line-height:1.65;color:var(--ink-2);max-width:62ch}
+.prose p{margin-bottom:14px;line-height:1.65;color:var(--ink-2);max-width:600px}
 .prose p:last-child{margin-bottom:0}
 
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -525,7 +548,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .evrow:hover .evrow__name{border-bottom-color:var(--ink)}
 .evrow__date{display:flex;flex-direction:column;align-items:center;text-align:center;
   padding:14px 8px;border:1px solid var(--line-2)}
-.evrow__day{font-family:var(--serif);font-size:32px;line-height:1}
+.evrow__day{font-family:var(--serif);font-weight:500;font-size:32px;line-height:1;letter-spacing:var(--tr-big)}
 .evrow__mon{font-size:12px;color:var(--mute);margin-top:4px}
 .evrow__time{font-size:12px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);width:100%}
 .evrow__media{display:block;aspect-ratio:16/10}
@@ -558,7 +581,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .speaker__role{display:block;font-size:13px;color:var(--mute);margin-top:6px;line-height:1.45}
 
 .seats{font-size:15px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
-.seats b{font-family:var(--serif);font-size:24px}
+.seats b{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:var(--tr-big)}
 .seats--off{color:var(--mute)}
 .panel__text{font-size:14px;color:var(--ink-2);line-height:1.55;margin-bottom:16px}
 
@@ -584,7 +607,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .promocard .card__meta{display:block}
 .promocard .card__term{display:block;margin-top:14px}
 .promostate{margin-top:22px;font-size:15px}
-.promostate b{font-family:var(--serif);font-size:20px}
+.promostate b{font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:var(--tr-big)}
 .promostate--off{color:var(--mute)}
 .panel__shop{font-family:var(--serif);font-size:19px;margin-bottom:16px}
 .mt10{margin-top:10px}
@@ -610,8 +633,10 @@ a.viewtabs__item:hover{color:var(--ink)}
 
 .artlayout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;align-items:start}
 .artcover{aspect-ratio:16/9;margin-bottom:36px}
-.prose--article{max-width:68ch}
-.prose--article p{font-size:17px;line-height:1.75;margin-bottom:20px}
+.prose--article{max-width:640px}
+/* мера строки — 600px ≈ 64 знака в Montserrat 17px (замерено).
+   ch не используем: он завязан на ширину знака и поехал при смене шрифта */
+.prose--article p{font-size:17px;line-height:1.75;margin-bottom:20px;max-width:600px}
 .prose--article h2{font-size:26px;line-height:1.25;margin:38px 0 16px}
 
 .arttags,.artshare{display:flex;flex-wrap:wrap;align-items:center;gap:10px;
@@ -652,7 +677,7 @@ a.viewtabs__item:hover{color:var(--ink)}
 .floorside{position:sticky;top:24px;display:flex;flex-direction:column;gap:20px}
 .panel__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
 .panel__head .panel__title{margin-bottom:0}
-.panel__n{font-family:var(--serif);font-size:20px}
+.panel__n{font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:var(--tr-big)}
 .panel__hint{font-size:12px;color:var(--mute);margin-top:10px;line-height:1.45}
 
 .room__name{font-family:var(--serif);font-size:20px;margin-bottom:8px}
