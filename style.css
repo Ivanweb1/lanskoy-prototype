@@ -466,6 +466,41 @@ a.viewtabs__item:hover{color:var(--ink)}
 .pl-room--here{fill:var(--ink);stroke:var(--ink)}
 .pl-txt--here{fill:#fff}
 
+/* ---------- рубрикатор категорий ---------- */
+.catnav{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.catnav__item{display:grid;grid-template-columns:200px 1fr;border:1px solid var(--line);background:var(--paper)}
+.catnav__item:hover{border-color:var(--ink)}
+.catnav__media{position:relative;display:block;aspect-ratio:4/3}
+.catnav__body{display:block;padding:22px 24px}
+.catnav__name{display:block;font-family:var(--serif);font-size:21px;line-height:1.25}
+.catnav__n{display:block;font-size:13px;color:var(--mute);margin-top:8px}
+.catnav__subs{display:block;font-size:13px;line-height:1.5;color:var(--ink-2);margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+
+/* ---------- подкатегории чипами ---------- */
+.subchips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.subchips .chip{cursor:pointer}
+.subchips .chip.is-active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip__n{font-style:normal;font-size:12px;color:var(--mute);margin-left:6px}
+.subchips .chip.is-active .chip__n{color:#cfcac4}
+
+/* ---------- бренды ---------- */
+.brandsearch{width:280px;flex:none}
+.alpha{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding-bottom:24px;margin-bottom:32px;border-bottom:1px solid var(--line)}
+.alpha__i{min-width:36px;height:36px;padding:0 9px;border:1px solid var(--line-2);font-size:13px}
+.alpha__i:hover{border-color:var(--ink)}
+.alpha__i.is-active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.alpha__i--off{color:var(--line-2);border-color:var(--line);cursor:default}
+.alpha__i--off:hover{border-color:var(--line)}
+.alpha__sep{width:1px;height:24px;background:var(--line-2);margin:0 8px}
+
+.brandgroup{margin-bottom:40px}
+.brandgroup:last-child{margin-bottom:0}
+.brandgroup__letter{font-family:var(--serif);font-size:22px;font-weight:400;padding-bottom:12px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.brandtile{display:block}
+.brandtile__logo{display:block;aspect-ratio:3/2;border:1px solid var(--line)}
+.brandtile:hover .brandtile__logo{border-color:var(--ink)}
+.brandtile__name{display:block;font-size:13px;margin-top:10px;color:var(--ink-2)}
+
 /* ================= ФУТЕР ================= */
 .footer{background:var(--ink);color:#cfcac4;padding-top:64px}
 .footer__in{display:grid;grid-template-columns:280px 1fr;gap:64px;padding-bottom:48px}
@@ -509,8 +544,10 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
      ломается, надёжнее вернуть ровную сетку с фиксированной пропорцией */
   .grid--cats{grid-template-columns:repeat(3,1fr);grid-auto-rows:auto}
   .catalog{grid-template-columns:236px 1fr;gap:40px}
+  .grid--3:not(.scroller){grid-template-columns:repeat(2,1fr)}
   .grid--shops{grid-template-columns:repeat(2,1fr)}
   .shoplayout{grid-template-columns:1fr 300px;gap:40px}
+  .catnav__item{grid-template-columns:160px 1fr}
   .cat--big,.cat--tall{grid-column:auto;grid-row:auto}
   .cat{aspect-ratio:4/3}
   .cat--big .cat__name{font-size:19px}
@@ -531,6 +568,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .shoplayout{grid-template-columns:1fr;gap:40px}
   .shopside{position:static}
   .shophead{grid-template-columns:110px 1fr;gap:24px}
+  .catnav{grid-template-columns:1fr}
   .shophead__acts{grid-column:1/-1;flex-direction:row;min-width:0}
   .hero__in{padding-top:48px;padding-bottom:48px}
   .facts__in{grid-template-columns:repeat(2,1fr);row-gap:28px}
@@ -563,6 +601,11 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .grid--cats{grid-template-columns:repeat(2,1fr)}
   .grid--shops{grid-template-columns:1fr}
   .grid--2{grid-template-columns:1fr}
+  .grid--3:not(.scroller){grid-template-columns:1fr}
+  .catnav__item{grid-template-columns:1fr}
+  .catnav__media{aspect-ratio:16/9}
+  .brandsearch{width:100%}
+  .brands{grid-template-columns:repeat(2,1fr)}
   .gallery{grid-template-columns:repeat(2,1fr)}
   .gallery__item--lead{grid-column:span 2;grid-row:auto;aspect-ratio:4/3}
   .shophead__acts{flex-direction:column}

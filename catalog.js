@@ -2,6 +2,44 @@
    Всё на клиенте и только для показа: в бою это делает бэкенд,
    иначе 150 карточек придётся отдавать браузеру целиком. */
 
+/* Подкатегории на странице категории — уточняющий фильтр чипами.
+   Отдельно от каталога: там полный набор фильтров, здесь категория уже выбрана. */
+(function () {
+  var chips = document.getElementById('subChips');
+  var grid = document.getElementById('subGrid');
+  if (!chips || !grid) return;
+
+  var cards = [].slice.call(grid.querySelectorAll('.shopcard'));
+  var shown = document.getElementById('subShown');
+  var empty = document.getElementById('subEmpty');
+
+  function apply(sub) {
+    var n = 0;
+    cards.forEach(function (c) {
+      var visible = sub === 'all' || (c.dataset.sub || '').split(' ').indexOf(sub) > -1;
+      c.hidden = !visible;
+      if (visible) n++;
+    });
+    shown.textContent = n;
+    empty.hidden = n > 0;
+    grid.hidden = n === 0;
+  }
+
+  chips.addEventListener('click', function (e) {
+    var b = e.target.closest('.chip');
+    if (!b) return;
+    chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('is-active'); });
+    b.classList.add('is-active');
+    apply(b.dataset.sub);
+  });
+
+  document.querySelectorAll('[data-subreset]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      chips.querySelector('[data-sub="all"]').click();
+    });
+  });
+})();
+
 (function () {
   var grid = document.getElementById('shopGrid');
   if (!grid) return;

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бренды — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Бренды · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="shops"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Бренды</span>
+    </nav>
+
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Бренды</h1>
+        <p class="pagehead__lead"><span class="ph-mark">000</span> марок, представленных в магазинах комплекса</p>
+      </div>
+      <div class="field field--sm brandsearch">
+        <input type="search" id="brandSearch" placeholder="Название бренда" autocomplete="off">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+
+    <!-- алфавитный указатель -->
+    <nav class="alpha" id="alphaNav" aria-label="Указатель по алфавиту">
+      <button type="button" class="alpha__i is-active" data-letter="all">Все</button>
+      <button type="button" class="alpha__i" data-letter="А">А</button>
+      <button type="button" class="alpha__i" data-letter="Б">Б</button>
+      <button type="button" class="alpha__i" data-letter="В">В</button>
+      <button type="button" class="alpha__i alpha__i--off">Г</button>
+      <button type="button" class="alpha__i alpha__i--off">Д</button>
+      <button type="button" class="alpha__i alpha__i--off">Е</button>
+      <button type="button" class="alpha__i alpha__i--off">Ж</button>
+      <button type="button" class="alpha__i alpha__i--off">З</button>
+      <button type="button" class="alpha__i alpha__i--off">И</button>
+      <button type="button" class="alpha__i alpha__i--off">К</button>
+      <button type="button" class="alpha__i alpha__i--off">Л</button>
+      <button type="button" class="alpha__i alpha__i--off">М</button>
+      <button type="button" class="alpha__i alpha__i--off">Н</button>
+      <button type="button" class="alpha__i alpha__i--off">О</button>
+      <button type="button" class="alpha__i alpha__i--off">П</button>
+      <button type="button" class="alpha__i alpha__i--off">Р</button>
+      <button type="button" class="alpha__i alpha__i--off">С</button>
+      <button type="button" class="alpha__i alpha__i--off">Т</button>
+      <button type="button" class="alpha__i alpha__i--off">У</button>
+      <button type="button" class="alpha__i alpha__i--off">Ф</button>
+      <button type="button" class="alpha__i alpha__i--off">Х</button>
+      <button type="button" class="alpha__i alpha__i--off">Ц</button>
+      <button type="button" class="alpha__i alpha__i--off">Ч</button>
+      <button type="button" class="alpha__i alpha__i--off">Ш</button>
+      <button type="button" class="alpha__i alpha__i--off">Э</button>
+      <button type="button" class="alpha__i alpha__i--off">Ю</button>
+      <button type="button" class="alpha__i alpha__i--off">Я</button>
+      <span class="alpha__sep"></span>
+      <button type="button" class="alpha__i" data-letter="J">J</button>
+      <button type="button" class="alpha__i alpha__i--off">0—9</button>
+    </nav>
+
+    <div class="brandlist" id="brandList">
+
+      <section class="brandgroup" data-letter="А">
+        <h2 class="brandgroup__letter">А</h2>
+        <div class="brands">
+          <a href="brand.html" class="brandtile" data-name="Агрисовгаз">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Агрисовгаз</span>
+          </a>
+          <a href="brand.html" class="brandtile" data-name="Академия строительства">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Академия строительства</span>
+          </a>
+          <a href="brand.html" class="brandtile" data-name="Аквабрайт">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Аквабрайт</span>
+          </a>
+          <a href="brand.html" class="brandtile" data-name="Албес">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Албес</span>
+          </a>
+          <a href="brand.html" class="brandtile" data-name="Альта Профиль">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Альта Профиль</span>
+          </a>
+          <a href="brand.html" class="brandtile" data-name="Атлас Люкс">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Атлас Люкс</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="brandgroup" data-letter="Б">
+        <h2 class="brandgroup__letter">Б</h2>
+        <div class="brands">
+          <a href="brand.html" class="brandtile" data-name="Брянский лес">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Брянский лес</span>
+          </a>
+          <a href="brand.html" class="brandtile" data-name="БукДуб">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">БукДуб</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="brandgroup" data-letter="В">
+        <h2 class="brandgroup__letter">В</h2>
+        <div class="brands">
+          <a href="brand.html" class="brandtile" data-name="Варвара">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Варвара</span>
+          </a>
+          <a href="brand.html" class="brandtile" data-name="Верно Лестница">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Верно Лестница</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="brandgroup" data-letter="J">
+        <h2 class="brandgroup__letter">J</h2>
+        <div class="brands">
+          <a href="brand.html" class="brandtile" data-name="Jeremias">
+            <span class="brandtile__logo ph"></span>
+            <span class="brandtile__name">Jeremias</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="empty" id="brandEmpty" hidden>
+      <p class="empty__title">Бренд не найден</p>
+      <p class="empty__text">Попробуйте другое написание — часть марок указана латиницей.</p>
+      <button type="button" class="btn btn--ghost" data-brandreset>Показать все</button>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Алфавитный указатель.</b> П. 6.4 требует «алфавитный/поисковый список». Букв без брендов не прячу, а гашу — так видно масштаб раздела и не прыгает раскладка при фильтрации. Кириллица и латиница разделены: на действующем сайте марки идут вперемешку, и найти Jeremias среди «Агрисовгаз» невозможно.</aside>
+
+  <aside class="note"><b>2. Плитки логотипов.</b> Контейнер строго одной пропорции с общим фоном и подпись названием под ним. На действующем сайте логотипы разного размера и на цветных плашках — в премиальной сетке это выглядит грязно, а без подписи половина марок не читается. Подпись заодно даёт поиску текст, по которому искать.</aside>
+
+  <aside class="note"><b>3. Данные.</b> Одиннадцать названий — реальные, считаны со страницы брендов действующего сайта. Общее количество марок неизвестно, помечено пунктиром: на сайте их заметно больше, точную цифру нужно брать из выгрузки. Логотипы нужны в векторе — растровые с сайта в премиальной сетке использовать нельзя.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=3"></script>
+<script src="app.js?v=3"></script>
+<script src="brands.js?v=3"></script>
+</body>
+</html>

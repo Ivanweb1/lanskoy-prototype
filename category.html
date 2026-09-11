@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Декоративно-отделочные материалы — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Страница категории · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="shops"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <a href="categories.html">Категории</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Декоративно-отделочные материалы</span>
+    </nav>
+
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Декоративно-отделочные материалы</h1>
+        <p class="pagehead__lead">28 магазинов на 1 и 2 этажах комплекса</p>
+      </div>
+      <a href="shops.html" class="btn btn--ghost">Все магазины</a>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+
+    <!-- подкатегории -->
+    <div class="subchips" id="subChips">
+      <button type="button" class="chip is-active" data-sub="all">Все <i class="chip__n">28</i></button>
+      <button type="button" class="chip" data-sub="plaster">Декоративная штукатурка</button>
+      <button type="button" class="chip" data-sub="panels">Декоративные панели</button>
+      <button type="button" class="chip" data-sub="veneer">Каменный шпон</button>
+      <button type="button" class="chip" data-sub="mdf">Панели МДФ</button>
+      <button type="button" class="chip" data-sub="glassbrick">Стеклянные кирпичи</button>
+      <button type="button" class="chip" data-sub="facet">Фацетные композиции</button>
+      <button type="button" class="chip" data-sub="apron">Кухонные фартуки из стекла</button>
+      <button type="button" class="chip" data-sub="stucco">Лепнина</button>
+      <button type="button" class="chip" data-sub="skirting">Плинтусы, пороги</button>
+      <button type="button" class="chip" data-sub="profiles">Профили отделочные</button>
+      <button type="button" class="chip" data-sub="drymix">Сухие смеси</button>
+      <button type="button" class="chip" data-sub="fresco">Фрески</button>
+    </div>
+
+    <div class="results__bar">
+      <p class="results__count">Показано <b id="subShown">3</b> из <span class="ph-mark">28</span></p>
+      <label class="sortbox">
+        <span>Сортировка</span>
+        <select>
+          <option>По алфавиту</option>
+          <option>По этажу</option>
+          <option>Сначала с акциями</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="grid grid--shops" id="subGrid">
+      <a href="shop.html" class="shopcard" data-sub="plaster fresco">
+        <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+        <span class="shopcard__body">
+          <span class="shopcard__name">VLADART STUDIO</span>
+          <span class="shopcard__cat">Декоративная штукатурка · Фрески</span>
+          <span class="shopcard__place">секция А10 · 1 этаж</span>
+        </span>
+      </a>
+      <a href="shop.html" class="shopcard" data-sub="panels stucco">
+        <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+        <span class="shopcard__body">
+          <span class="shopcard__name">ПРЕМЬЕР ДЕКОР</span>
+          <span class="shopcard__cat">Декоративные панели · Лепнина</span>
+          <span class="shopcard__place">секция А12 · 1 этаж</span>
+        </span>
+      </a>
+      <a href="shop.html" class="shopcard" data-sub="veneer mdf">
+        <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+        <span class="shopcard__body">
+          <span class="shopcard__name">COMPANION DECOR</span>
+          <span class="shopcard__cat">Каменный шпон · Панели МДФ</span>
+          <span class="shopcard__place">секция А13B · 1 этаж</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="empty" id="subEmpty" hidden>
+      <p class="empty__title">В этой подкатегории пока нет магазинов</p>
+      <p class="empty__text">Посмотрите всю категорию или вернитесь к списку направлений.</p>
+      <button type="button" class="btn btn--ghost" data-subreset>Показать всю категорию</button>
+    </div>
+
+    <div class="results__more">
+      <button type="button" class="btn btn--ghost btn--full">Показать ещё</button>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Подкатегории вместо фильтров.</b> На странице категории нет смысла в полном фильтре из каталога — категория уже выбрана. Остаётся уточнение по подкатегории, и оно вынесено чипами наверх, как на действующем сайте. Чипы работают: нажмите «Лепнина» — останется один магазин, «Сухие смеси» — увидите пустое состояние.</aside>
+</section>
+
+<!-- связанные бренды -->
+<section class="sect sect--alt">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Бренды в категории</h2>
+      <a href="brands.html" class="more">Все бренды</a>
+    </div>
+    <div class="brands">
+      <a href="brand.html" class="brand ph"></a>
+      <a href="brand.html" class="brand ph"></a>
+      <a href="brand.html" class="brand ph"></a>
+      <a href="brand.html" class="brand ph"></a>
+      <a href="brand.html" class="brand ph"></a>
+      <a href="brand.html" class="brand ph"></a>
+      <a href="brand.html" class="brand ph"></a>
+      <a href="brand.html" class="brand ph"></a>
+    </div>
+  </div>
+</section>
+
+<!-- связанные статьи -->
+<section class="sect">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Статьи по теме</h2>
+      <a href="#" class="more">Весь журнал</a>
+    </div>
+    <div class="grid grid--3">
+      <article class="post">
+        <div class="post__media ph"><span class="ph__label">Обложка</span></div>
+        <p class="post__rubric">Дизайн интерьера</p>
+        <h3 class="post__title">Интерьер в стиле тихая роскошь</h3>
+        <p class="post__meta">11.06.2026</p>
+      </article>
+      <article class="post">
+        <div class="post__media ph"><span class="ph__label">Обложка</span></div>
+        <p class="post__rubric">Отделка и декор</p>
+        <h3 class="post__title">Модные обои 2026: какие стены в тренде</h3>
+        <p class="post__meta">02.06.2026</p>
+      </article>
+      <article class="post">
+        <div class="post__media ph"><span class="ph__label">Обложка</span></div>
+        <p class="post__rubric">Тренды</p>
+        <h3 class="post__title">Скандинавский дзен: интерьер в стиле джапанди</h3>
+        <p class="post__meta">28.05.2026</p>
+      </article>
+    </div>
+  </div>
+
+  <aside class="note"><b>2. Бренды и статьи.</b> П. 6.3 прямо говорит: страница категории показывает арендаторов «и, при необходимости, связанные статьи/бренды». Это не украшение — два блока держат человека внутри сайта и работают на перелинковку, которая нужна разделу 11 по SEO. Заголовки статей взяты реальные, с действующего сайта.</aside>
+
+  <aside class="note"><b>3. Что нужно от заказчика.</b> Связь «категория → бренды» и «категория → статьи» кто-то должен проставить. Если это ручная работа контент-менеджера по 14 категориям — это отдельная задача в CMS и в инструкции; если автоматически по тегам статей и категориям брендов — нужно закладывать в модель данных. Вопрос к разработке до старта вёрстки.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=3"></script>
+<script src="app.js?v=3"></script>
+<script src="catalog.js?v=3"></script>
+</body>
+</html>

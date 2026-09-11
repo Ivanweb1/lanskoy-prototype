@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Магазины — ТК «Ланской» — прототип</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -15,151 +15,7 @@
   <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
 </div>
 
-<!-- ================= ШАПКА ================= -->
-<header class="header">
-
-  <div class="utility">
-    <div class="wrap utility__in">
-      <ul class="utility__info">
-        <li>10:00&nbsp;—&nbsp;20:00 ежедневно</li>
-        <li>Санкт-Петербург, ул. Студенческая, 10</li>
-        <li><a href="#">+7 (812) 363-00-07</a></li>
-        <li><a href="#">Как добраться</a></li>
-      </ul>
-      <ul class="utility__actions">
-        <li><a href="#" class="btn btn--ghost btn--sm">Аренда</a></li>
-        <li><a href="#" class="utility__login">Войти в кабинет</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="nav">
-    <div class="wrap nav__in">
-
-      <a href="index.html" class="logo">
-        <img src="logo.svg" alt="ТК «Ланской» — торговый центр интерьерных решений" class="logo__img" width="205" height="64">
-      </a>
-
-      <nav class="menu" id="menu">
-        <ul class="menu__list">
-          <li class="menu__item menu__item--has is-current">
-            <button type="button" class="menu__link" data-mega="shops">Магазины<span class="caret"></span></button>
-          </li>
-          <li class="menu__item"><a class="menu__link" href="#">Акции</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">Афиша</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">Журнал</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">Дизайнерам</a></li>
-          <li class="menu__item menu__item--has">
-            <button type="button" class="menu__link" data-mega="about">О комплексе<span class="caret"></span></button>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="hsearch">
-        <div class="field field--hs">
-          <input type="search" placeholder="Магазины, бренды, статьи" autocomplete="off" aria-label="Поиск по сайту">
-          <button type="button" class="field__go" aria-label="Найти"></button>
-          <div class="suggest">
-            <p class="suggest__group">Магазины</p>
-            <a href="#" class="suggest__item"><span>VLADART STUDIO</span><span class="suggest__meta">секция А10 · 1 этаж</span></a>
-            <a href="#" class="suggest__item"><span>ПРЕМЬЕР ДЕКОР</span><span class="suggest__meta">секция А12 · 1 этаж</span></a>
-            <p class="suggest__group">Бренды</p>
-            <a href="#" class="suggest__item"><span>Kerama Marazzi</span><span class="suggest__meta">4 магазина</span></a>
-            <p class="suggest__group">Статьи</p>
-            <a href="#" class="suggest__item"><span>Комбинированный пол: плитка и ламинат</span><span class="suggest__meta">23.06.2026</span></a>
-            <p class="suggest__group">События</p>
-            <a href="#" class="suggest__item"><span>Дни дизайна и интерьера</span><span class="suggest__meta">24—26 мая</span></a>
-          </div>
-        </div>
-      </div>
-
-      <button type="button" class="ic-search" id="searchToggle" aria-label="Поиск по сайту"></button>
-      <button type="button" class="burger" id="burger" aria-label="Меню"><span></span></button>
-    </div>
-
-    <!-- мегаменю: Магазины -->
-    <div class="mega" id="mega-shops" hidden>
-      <div class="wrap mega__in">
-        <div class="mega__col mega__col--wide">
-          <p class="mega__title">Категории</p>
-          <ul class="mega__cats">
-            <li><a href="#">Декоративно-отделочные материалы</a></li>
-            <li><a href="#">Плитка</a></li>
-            <li><a href="#">Обои</a></li>
-            <li><a href="#">Шторы, карнизы, ткани</a></li>
-            <li><a href="#">Лакокрасочные и клеящие материалы</a></li>
-            <li><a href="#">Напольные покрытия</a></li>
-            <li><a href="#">Потолки</a></li>
-            <li><a href="#">Двери, перегородки, фурнитура</a></li>
-            <li><a href="#">Остекление и оконная фурнитура</a></li>
-            <li><a href="#">Стекло и зеркала</a></li>
-            <li><a href="#">Сантехника</a></li>
-            <li><a href="#">Свет</a></li>
-            <li><a href="#">Лестницы</a></li>
-            <li><a href="#">Отопление и кондиционирование</a></li>
-          </ul>
-        </div>
-        <div class="mega__col">
-          <p class="mega__title">Навигация</p>
-          <ul class="mega__links">
-            <li><a href="shops.html">Все магазины</a></li>
-            <li><a href="#">По алфавиту</a></li>
-            <li><a href="#">Бренды</a></li>
-            <li><a href="#">Схема этажей</a></li>
-          </ul>
-        </div>
-        <div class="mega__col">
-          <p class="mega__title">Знаете номер помещения?</p>
-          <div class="field field--sm">
-            <input type="search" placeholder="Например, А10">
-            <button type="button" class="field__go" aria-label="Найти"></button>
-          </div>
-          <p class="mega__hint">Секции 1—3 этажей: А, B, C</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- мегаменю: О комплексе -->
-    <div class="mega" id="mega-about" hidden>
-      <div class="wrap mega__in">
-        <div class="mega__col">
-          <p class="mega__title">О комплексе</p>
-          <ul class="mega__links">
-            <li><a href="#">О комплексе</a></li>
-            <li><a href="#">Схема этажей</a></li>
-            <li><a href="#">Парковка и как добраться</a></li>
-          </ul>
-        </div>
-        <div class="mega__col">
-          <p class="mega__title">Медиа</p>
-          <ul class="mega__links">
-            <li><a href="#">Галерея</a></li>
-            <li><a href="#">Видео</a></li>
-            <li><a href="#">Архив событий</a></li>
-          </ul>
-        </div>
-        <div class="mega__col">
-          <p class="mega__title">Контакты</p>
-          <ul class="mega__links">
-            <li><a href="#">Контакты и реквизиты</a></li>
-            <li><a href="#">Обратная связь</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- оверлей поиска -->
-    <div class="searchbar" id="searchbar" hidden>
-      <div class="wrap">
-        <div class="field field--lg">
-          <input type="search" placeholder="Магазины, бренды, статьи, события, номер помещения">
-          <button type="button" class="field__go" aria-label="Найти"></button>
-        </div>
-        <p class="searchbar__hint">Единый поиск по сайту · подсказки при вводе</p>
-      </div>
-    </div>
-  </div>
-</header>
+<div id="siteHeader" data-active="shops"></div>
 
 <main>
 
@@ -357,39 +213,12 @@
 
 </main>
 
-<!-- ================= ФУТЕР ================= -->
-<footer class="footer">
-  <div class="wrap footer__in">
-    <div class="footer__brand">
-      <img src="logo.svg" alt="ТК «Ланской»" class="logo__img logo__img--inv" width="205" height="64">
-      <p class="footer__addr">Санкт-Петербург,<br>ул. Студенческая, 10</p>
-      <p class="footer__addr"><a href="#">+7 (812) 363-00-07</a><br>10:00 — 20:00 ежедневно</p>
-      <ul class="socials"><li><a href="#">VK</a></li><li><a href="#">YouTube</a></li></ul>
-    </div>
-    <div class="footer__cols">
-      <div><p class="footer__title">Покупателям</p><ul><li><a href="shops.html">Магазины</a></li><li><a href="#">Категории</a></li><li><a href="#">Бренды</a></li><li><a href="#">Акции</a></li><li><a href="#">Схема этажей</a></li></ul></div>
-      <div><p class="footer__title">События</p><ul><li><a href="#">Афиша</a></li><li><a href="#">Архив событий</a></li><li><a href="#">Галерея</a></li><li><a href="#">Видео</a></li></ul></div>
-      <div><p class="footer__title">Профессионалам</p><ul><li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li><li><a href="#">Журнал</a></li></ul></div>
-      <div><p class="footer__title">Комплекс</p><ul><li><a href="#">О комплексе</a></li><li><a href="#">Аренда</a></li><li><a href="#">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>
-    </div>
-  </div>
-  <div class="wrap footer__legal">
-    <p>© 2026 ТК «Ланской»</p>
-    <ul><li><a href="#">Политика обработки ПД</a></li><li><a href="#">Пользовательское соглашение</a></li><li><a href="#">Политика cookie</a></li></ul>
-  </div>
-</footer>
+<div id="siteFooter"></div>
 
-<!-- ================= COOKIE ================= -->
-<div class="cookie" id="cookie">
-  <p class="cookie__text">Мы используем cookie. Вы можете выбрать, какие категории разрешить.</p>
-  <div class="cookie__acts">
-    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Настроить</button>
-    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Только необходимые</button>
-    <button type="button" class="btn btn--sm btn--primary" data-cookie>Принять все</button>
-  </div>
-</div>
+<div id="siteCookie"></div>
 
-<script src="app.js"></script>
-<script src="catalog.js"></script>
+<script src="partials.js?v=3"></script>
+<script src="app.js?v=3"></script>
+<script src="catalog.js?v=3"></script>
 </body>
 </html>

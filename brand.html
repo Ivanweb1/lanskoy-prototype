@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Албес — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Страница бренда · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="shops"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <a href="brands.html">Бренды</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Албес</span>
+    </nav>
+
+    <div class="shophead">
+      <div class="shophead__logo ph"><span class="ph__label">Логотип</span></div>
+      <div class="shophead__main">
+        <h1 class="shophead__h1">Албес</h1>
+        <ul class="taglist">
+          <li><a href="category.html" class="tag">Потолки</a></li>
+        </ul>
+        <p class="shophead__place">Представлен в <b>3 магазинах</b> комплекса</p>
+      </div>
+      <div class="shophead__acts">
+        <a href="#shops" class="btn btn--primary">Где купить</a>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>1. Главное на странице бренда — «где купить».</b> П. 6.4 описывает её ровно так: «страница бренда со списком магазинов ТК, где он представлен». Человек пришёл с намерением «мне нужен Албес» — и единственное, что ему нужно, это в какую секцию идти. Поэтому число магазинов стоит прямо под названием, а кнопка ведёт к списку.</aside>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap shoplayout">
+    <div class="shopmain">
+
+      <div class="block">
+        <h2 class="block__h2">О бренде</h2>
+        <div class="prose">
+          <p class="ph-mark">Описание бренда не заполнено. Тексты по маркам нужно собрать или запросить у арендаторов — в ТЗ источник не оговорён.</p>
+        </div>
+      </div>
+
+      <div class="block" id="shops">
+        <div class="block__head">
+          <h2 class="block__h2">Где купить в комплексе</h2>
+          <span class="block__meta">3 магазина</span>
+        </div>
+        <div class="grid grid--2">
+          <a href="shop.html" class="shopcard">
+            <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+            <span class="shopcard__body">
+              <span class="shopcard__name">COMPANION DECOR</span>
+              <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+              <span class="shopcard__place">секция А13B · 1 этаж</span>
+            </span>
+          </a>
+          <a href="shop.html" class="shopcard">
+            <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+            <span class="shopcard__body">
+              <span class="shopcard__name">ПРЕМЬЕР ДЕКОР</span>
+              <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+              <span class="shopcard__place">секция А12 · 1 этаж</span>
+            </span>
+          </a>
+          <a href="shop.html" class="shopcard">
+            <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+            <span class="shopcard__body">
+              <span class="shopcard__name">VLADART STUDIO</span>
+              <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+              <span class="shopcard__place">секция А10 · 1 этаж</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="shopside">
+      <div class="panel">
+        <p class="panel__title">Бренд</p>
+        <ul class="contacts">
+          <li><span class="contacts__k">Категория</span><span class="contacts__v"><a href="category.html">Потолки</a></span></li>
+          <li><span class="contacts__k">Магазинов</span><span class="contacts__v">3</span></li>
+          <li><span class="contacts__k">Сайт</span><span class="contacts__v ph-mark">не заполнен</span></li>
+        </ul>
+        <a href="brands.html" class="btn btn--ghost btn--full">Все бренды</a>
+      </div>
+    </aside>
+  </div>
+
+  <aside class="note"><b>2. Чего не хватает в ТЗ.</b> П. 6.4 описывает страницу бренда одной строкой и не говорит ни про описание, ни про логотип, ни про то, кто это наполняет. При этом марок в комплексе сотни. Три вопроса к заказчику: откуда берутся описания, кто грузит логотипы и кто проставляет связь «бренд → магазин». Последнее самое трудоёмкое: это сотни связей вручную, если не придумать импорт.</aside>
+
+  <aside class="note"><b>3. Риск пустых страниц.</b> Если описания не соберут, получится несколько сотен почти одинаковых страниц с логотипом и списком из одного магазина. Для SEO это хуже, чем их отсутствие. Предлагаю решить заранее: либо страницы заводятся только для брендов с заполненным описанием, либо остальные отдаются как якоря внутри списка без отдельных адресов.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=3"></script>
+<script src="app.js?v=3"></script>
+</body>
+</html>
