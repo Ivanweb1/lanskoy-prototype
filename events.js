@@ -139,8 +139,10 @@ document.querySelectorAll('.jsform').forEach(function (form) {
       return;
     }
     /* honeypot заполнен — значит бот; молча делаем вид, что всё хорошо */
-    var done = document.querySelector('.proto-bar__st[data-state="done"]');
-    if (done) done.click();
+    /* если у страницы есть промежуточный экран (double opt-in) — идём в него */
+    var next = document.querySelector('.proto-bar__st[data-state="sent"]')
+            || document.querySelector('.proto-bar__st[data-state="done"]');
+    if (next) next.click();
     var panel = form.closest('.panel') || form;
     panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });

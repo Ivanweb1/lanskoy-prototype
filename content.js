@@ -101,6 +101,20 @@ chipFilter({
   words: ['видео', 'видео', 'видео']
 });
 
+chipFilter({
+  grid: 'desGrid', item: '.descard', filters: 'desFilters',
+  empty: 'desEmpty', reset: 'data-desreset',
+  count: 'desCount', countWord: 'desCountWord',
+  words: ['специалист', 'специалиста', 'специалистов']
+});
+
+chipFilter({
+  grid: 'srchGrid', item: '.srch', filters: 'srchFilters',
+  empty: 'srchEmpty', reset: 'data-srchreset',
+  count: 'srchCount', countWord: 'srchCountWord',
+  words: ['результат', 'результата', 'результатов']
+});
+
 /* ---------- оглавление статьи ---------- */
 (function () {
   var nav = document.getElementById('tocNav');

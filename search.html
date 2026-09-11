@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Поиск — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=19">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Поиск · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active=""></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Поиск</span>
+    </nav>
+    <h1 class="pagehead__h1">Поиск по сайту</h1>
+    <div class="searchbig">
+      <div class="field field--lg">
+        <input type="search" id="bigSearch" value="плитка" autocomplete="off" aria-label="Поиск по сайту">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+      </div>
+      <p class="searchbig__hint">Ищем по магазинам, брендам, статьям, событиям и акциям. Можно вводить номер секции — «А10».</p>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap">
+
+    <div class="evfilters" id="srchFilters">
+      <div class="evfilters__row">
+        <span class="evfilters__label">Раздел</span>
+        <button type="button" class="chip is-active" data-kind="all">Везде</button>
+        <button type="button" class="chip" data-kind="shop">Магазины</button>
+        <button type="button" class="chip" data-kind="brand">Бренды</button>
+        <button type="button" class="chip" data-kind="post">Статьи</button>
+        <button type="button" class="chip" data-kind="event">События</button>
+        <button type="button" class="chip" data-kind="promo">Акции</button>
+      </div>
+      <p class="evfilters__count"><b id="srchCount">7</b> <span id="srchCountWord">результатов</span></p>
+    </div>
+
+    <div class="srchlist" id="srchGrid">
+
+      <a href="category.html" class="srch" data-kind="shop">
+        <span class="srch__kind">Категория</span>
+        <span class="srch__h">Плитка</span>
+        <span class="srch__t">17 магазинов на 1 и 2 этажах комплекса</span>
+      </a>
+
+      <a href="shop.html" class="srch" data-kind="shop">
+        <span class="srch__kind">Магазин</span>
+        <span class="srch__h">VLADART STUDIO</span>
+        <span class="srch__t">Декоративная штукатурка, фрески · секция А10, 1 этаж</span>
+      </a>
+
+      <a href="shop.html" class="srch" data-kind="shop">
+        <span class="srch__kind">Магазин</span>
+        <span class="srch__h">COMPANION DECOR</span>
+        <span class="srch__t">Каменный шпон, панели МДФ · секция А13, 1 этаж</span>
+      </a>
+
+      <a href="brand.html" class="srch" data-kind="brand">
+        <span class="srch__kind">Бренд</span>
+        <span class="srch__h">Kerama Marazzi</span>
+        <span class="srch__t ph-mark">представлен в 0 магазинах комплекса</span>
+      </a>
+
+      <a href="article.html" class="srch" data-kind="post">
+        <span class="srch__kind">Статья</span>
+        <span class="srch__h">Комбинированный пол: плитка и ламинат</span>
+        <span class="srch__t">Керамическая плитка вместе с ламинатом позволяет с умом подойти к отделке и подчеркнуть зонирование · 23.06.2026</span>
+      </a>
+
+      <a href="promo.html" class="srch" data-kind="promo">
+        <span class="srch__kind">Акция</span>
+        <span class="srch__h">Скидка 15% на декоративную штукатурку</span>
+        <span class="srch__t">VLADART STUDIO, секция А10 · до 30 июня</span>
+      </a>
+
+      <a href="event.html" class="srch" data-kind="event">
+        <span class="srch__kind">Событие</span>
+        <span class="srch__h">«Волховец» — реализация проектных продаж</span>
+        <span class="srch__t">Семинар для дизайнеров · 28 августа, 15:00</span>
+      </a>
+
+    </div>
+
+    <div class="empty" id="srchEmpty" hidden>
+      <p class="empty__title">В этом разделе ничего не нашлось</p>
+      <p class="empty__text">Попробуйте искать везде или измените запрос.</p>
+      <button type="button" class="btn btn--ghost" data-srchreset>Искать везде</button>
+    </div>
+
+    <!-- состояние «совсем ничего» -->
+    <div class="empty" id="srchNone" hidden>
+      <p class="empty__title">По запросу ничего не найдено</p>
+      <p class="empty__text">Проверьте раскладку или попробуйте одно слово вместо фразы.</p>
+      <div class="srchhints">
+        <span class="arttags__label">Часто ищут</span>
+        <a href="#" class="chip">Плитка</a>
+        <a href="#" class="chip">Двери</a>
+        <a href="#" class="chip">Сантехника</a>
+        <a href="#" class="chip">А10</a>
+      </div>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Результаты одним списком, а не вкладками по разделам.</b> П. 6.14 требует единый поиск по магазинам, брендам, статьям и событиям. Человек, который ввёл «плитка», не знает заранее, что ему нужно — категория, магазин или статья. Поэтому всё в одном потоке, а тип подписан слева. Фильтр сверху — для тех, кто уже понял, что ищет.</aside>
+
+  <aside class="note"><b>2. Кириллическая морфология — отдельная строка в ТЗ и отдельные деньги.</b> П. 6.14 требует её прямо: «плитки», «плиткой» и «плитка» должны находить одно и то же. Обычный поиск по подстроке этого не умеет. Это либо полнотекстовый поиск средствами базы с русским словарём, либо отдельный поисковый движок. Решение за разработкой, но в оценку сроков оно должно попасть: это не «поле и фильтр», а полноценная подсистема.</aside>
+
+  <aside class="note"><b>3. Поиск по номеру секции.</b> Сюда же попадает находка из схемы этажей: «А10» русскими буквами и «A10» латиницей — визуально одно, для поиска разные символы. Нормализация нужна и здесь, иначе запрос молча не сработает. В прототипе она уже сделана во всех полях.</aside>
+
+  <aside class="note"><b>4. Два разных пустых состояния.</b> «Ничего не нашлось в выбранном разделе» и «не нашлось вообще» — разные ситуации. В первой достаточно предложить искать везде, во второй нужны подсказки: частые запросы дают человеку выход, а не тупик.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=19"></script>
+<script src="app.js?v=19"></script>
+<script src="content.js?v=19"></script>
+</body>
+</html>

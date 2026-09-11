@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дизайнерам — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=19">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Дизайнерам · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="designers"></div>
+
+<main>
+
+<!-- первый экран -->
+<section class="renthero">
+  <div class="wrap renthero__in">
+    <div class="renthero__text">
+      <p class="kicker">Дизайнерам и архитекторам</p>
+      <h1 class="renthero__h1">Все поставщики проекта в одном здании</h1>
+      <p class="renthero__sub">150 магазинов смежных категорий на трёх этажах: подобрать материалы под объект можно за один выезд, а не за неделю разъездов по городу.</p>
+      <div class="renthero__acts">
+        <a href="designer-form.html" class="btn btn--primary">Попасть в каталог</a>
+        <a href="#catalog" class="btn btn--ghost">Каталог дизайнеров</a>
+      </div>
+    </div>
+    <div class="renthero__media ph"><span class="ph__label">Фото: работа с образцами</span></div>
+  </div>
+  <aside class="note"><b>1. Аргумент — экономия времени, а не «мы вас любим».</b> П. 6.5 требует «лендинг ценности для профи». Единственная ощутимая ценность комплекса для дизайнера — плотность поставщиков: подбор под объект за один выезд. Остальное (события, каталог) вторично и идёт ниже.</aside>
+</section>
+
+<!-- что даёт -->
+<section class="sect">
+  <div class="wrap">
+    <h2 class="sect__h2 mb36">Что здесь есть для работы</h2>
+    <div class="grid grid--3">
+      <div class="adv">
+        <span class="adv__n">01</span>
+        <h3 class="adv__h3">Образцы вживую</h3>
+        <p class="adv__t">Фактуру плитки, шпона и текстиля нужно трогать. В шоурумах есть выкладка и образцы под вынос — <span class="ph-mark">условия уточняются</span>.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">02</span>
+        <h3 class="adv__h3">Профессиональные события</h3>
+        <p class="adv__t">Семинары фабрик, разборы кейсов, техническая документация. Не маркетинг, а рабочие детали — вроде работы в сегменте HoReCa.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">03</span>
+        <h3 class="adv__h3">Каталог дизайнеров</h3>
+        <p class="adv__t">Комплекс публикует специалистов на сайте: покупатель в ремонте ищет дизайнера здесь же, где выбирает материалы.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">04</span>
+        <h3 class="adv__h3">Работа с поставщиками</h3>
+        <p class="adv__t ph-mark">Спецусловия, отсрочка, работа по проекту — есть ли они и какие, нужно уточнить у администрации.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">05</span>
+        <h3 class="adv__h3">Комплектация объекта</h3>
+        <p class="adv__t ph-mark">Помощь с подбором и доставкой — нужно уточнить, оказывает ли комплекс такие услуги.</p>
+      </div>
+      <div class="adv">
+        <span class="adv__n">06</span>
+        <h3 class="adv__h3">Журнал</h3>
+        <p class="adv__t">Разборы материалов и трендов. <a href="journal.html" class="link">Читать</a></p>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>2. Два пункта из шести под вопросом.</b> Спецусловия для дизайнеров и комплектация — это ровно то, что решает, придёт профи или нет. В ТЗ и на действующем сайте о них ничего нет. Если таких программ не существует, пункты надо убрать: обещать профессионалу то, чего нет, хуже, чем не обещать.</aside>
+</section>
+
+<!-- каталог дизайнеров -->
+<section class="sect sect--alt" id="catalog">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Каталог дизайнеров</h2>
+      <a href="designer-form.html" class="more">Заполнить анкету</a>
+    </div>
+
+    <div class="evfilters" id="desFilters">
+      <div class="evfilters__row">
+        <span class="evfilters__label">Направление</span>
+        <button type="button" class="chip is-active" data-spec="all">Все</button>
+        <button type="button" class="chip" data-spec="interior">Дизайн интерьеров</button>
+        <button type="button" class="chip" data-spec="arch">Архитектура</button>
+        <button type="button" class="chip" data-spec="light">Свет</button>
+      </div>
+      <p class="evfilters__count"><b id="desCount">4</b> <span id="desCountWord">специалиста</span></p>
+    </div>
+
+    <div class="grid grid--4" id="desGrid">
+
+      <a href="designer.html" class="descard" data-spec="interior">
+        <span class="descard__photo ph"><span class="ph__label">Фото</span></span>
+        <span class="descard__b">
+          <span class="descard__n">CARTELLE DESIGN</span>
+          <span class="descard__s">Дизайн интерьеров</span>
+          <span class="descard__e">Опыт 2 года</span>
+        </span>
+      </a>
+
+      <a href="designer.html" class="descard" data-spec="interior">
+        <span class="descard__photo ph"><span class="ph__label">Фото</span></span>
+        <span class="descard__b">
+          <span class="descard__n">Елена Литвякова</span>
+          <span class="descard__s">Дизайнер интерьеров</span>
+          <span class="descard__e">Опыт 10 лет</span>
+        </span>
+      </a>
+
+      <a href="designer.html" class="descard" data-spec="arch">
+        <span class="descard__photo ph"><span class="ph__label">Фото</span></span>
+        <span class="descard__b">
+          <span class="descard__n ph-mark">Имя специалиста</span>
+          <span class="descard__s">Архитектура и планировочные решения</span>
+          <span class="descard__e ph-mark">Опыт —</span>
+        </span>
+      </a>
+
+      <a href="designer.html" class="descard" data-spec="light">
+        <span class="descard__photo ph"><span class="ph__label">Фото</span></span>
+        <span class="descard__b">
+          <span class="descard__n ph-mark">Имя специалиста</span>
+          <span class="descard__s">Светодизайн</span>
+          <span class="descard__e ph-mark">Опыт —</span>
+        </span>
+      </a>
+
+    </div>
+
+    <div class="empty" id="desEmpty" hidden>
+      <p class="empty__title">По этому направлению пока никого нет</p>
+      <p class="empty__text">Посмотрите всех специалистов или заполните анкету.</p>
+      <button type="button" class="btn btn--ghost" data-desreset>Показать всех</button>
+    </div>
+  </div>
+
+  <aside class="note"><b>3. Каталог наполняет администрация.</b> П. 3.1 прямо говорит: дизайнеры — это аудиторный сегмент, а не роль с кабинетом. Они заполняют анкету, результаты видит только администрация, она же заводит карточки. Значит редактировать свою карточку дизайнер не может — при смене телефона ему придётся писать в администрацию. Стоит заранее решить, как обрабатывать такие обращения, иначе каталог протухнет за год.</aside>
+
+  <aside class="note"><b>4. Данные и приватность.</b> Два имени реальные, с действующего сайта, где у специалистов открыто указаны личные телефоны и почта. В прототипе контакты закрыл заглушками намеренно: публиковать чужие персональные данные на стороннем адресе не нужно, а в бою их можно показывать только с согласия самого дизайнера — и это согласие должно быть пунктом в анкете.</aside>
+</section>
+
+<!-- профессиональные события -->
+<section class="sect">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Профессиональные события</h2>
+      <a href="events.html" class="more">Вся афиша</a>
+    </div>
+    <div class="evlist">
+      <a href="event.html" class="evrow">
+        <span class="evrow__date">
+          <span class="evrow__day">28</span>
+          <span class="evrow__mon">августа</span>
+          <span class="evrow__time">15:00</span>
+        </span>
+        <span class="evrow__media ph"><span class="ph__label">Обложка</span></span>
+        <span class="evrow__body">
+          <span class="evrow__tags"><i class="tag">Семинар</i><i class="tag">Для дизайнеров</i></span>
+          <span class="evrow__name">«Волховец» — реализация проектных продаж</span>
+          <span class="evrow__desc">Сложные заказы, сегмент HoReCa, техническая документация, разбор кейсов</span>
+          <span class="evrow__meta"><span class="ph-mark">этаж и зона —</span> · осталось 12 мест</span>
+        </span>
+        <span class="evrow__act"><span class="link">Регистрация</span></span>
+      </a>
+      <a href="event.html" class="evrow">
+        <span class="evrow__date">
+          <span class="evrow__day ph-mark">00</span>
+          <span class="evrow__mon ph-mark">месяц</span>
+          <span class="evrow__time ph-mark">00:00</span>
+        </span>
+        <span class="evrow__media ph"><span class="ph__label">Обложка</span></span>
+        <span class="evrow__body">
+          <span class="evrow__tags"><i class="tag">Семинар</i><i class="tag">Для дизайнеров</i></span>
+          <span class="evrow__name">Натуральные масла для дерева OSMO</span>
+          <span class="evrow__desc">Практика нанесения защитных покрытий, работа с фактурой дерева</span>
+          <span class="evrow__meta"><span class="ph-mark">этаж и зона —</span> · осталось 4 места</span>
+        </span>
+        <span class="evrow__act"><span class="link">Регистрация</span></span>
+      </a>
+    </div>
+  </div>
+  <aside class="note"><b>5. События берутся из общей афиши.</b> Это тот же модуль из п. 6.8 с фильтром «для дизайнеров» — отдельной сущности не нужно. Важно, чтобы при заведении события администрация обязательно выбирала аудиторию, иначе профессиональные встречи сюда не попадут.</aside>
+</section>
+
+<!-- анкета CTA -->
+<section class="rent">
+  <div class="wrap rent__in">
+    <div class="rent__text">
+      <p class="rent__kicker">Специалистам</p>
+      <h2 class="rent__h2">Попасть в каталог дизайнеров</h2>
+      <p class="rent__lead">Заполните анкету — администрация свяжется и опубликует карточку в каталоге.</p>
+      <div class="rent__actions">
+        <a href="designer-form.html" class="btn btn--primary btn--invert">Заполнить анкету</a>
+      </div>
+    </div>
+    <ul class="rent__args">
+      <li><span class="rent__num ph-mark">000</span><span class="rent__cap">специалистов в каталоге</span></li>
+      <li><span class="rent__num ph-mark">0</span><span class="rent__cap">дней на модерацию</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=19"></script>
+<script src="app.js?v=19"></script>
+<script src="content.js?v=19"></script>
+</body>
+</html>

@@ -27,7 +27,7 @@ var LNS = (function () {
     { key: 'promos', label: 'Акции', href: 'promos.html' },
     { key: 'events', label: 'Афиша', href: 'events.html' },
     { key: 'journal', label: 'Журнал', href: 'journal.html' },
-    { key: 'designers', label: 'Дизайнерам', href: '#' },
+    { key: 'designers', label: 'Дизайнерам', href: 'designers.html' },
     { key: 'about', label: 'О комплексе', mega: 'about' }
   ];
 
@@ -178,7 +178,7 @@ var LNS = (function () {
 '        <li><a href="events.html">Афиша</a></li><li><a href="events.html">Архив событий</a></li>' +
 '        <li><a href="gallery.html">Галерея</a></li><li><a href="video.html">Видео</a></li></ul></div>' +
 '      <div><p class="footer__title">Профессионалам</p><ul>' +
-'        <li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li>' +
+'        <li><a href="designers.html">Дизайнерам</a></li><li><a href="designers.html#catalog">Каталог дизайнеров</a></li>' +
 '        <li><a href="journal.html">Журнал</a></li></ul></div>' +
 '      <div><p class="footer__title">Комплекс</p><ul>' +
 '        <li><a href="about.html">О комплексе</a></li><li><a href="rent.html">Аренда</a></li>' +

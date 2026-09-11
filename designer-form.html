@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Анкета дизайнера — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=19">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Анкета дизайнера · Ч/Б · v1</span>
+  <span class="proto-bar__states">
+    Форма:
+    <button type="button" class="proto-bar__st is-active" data-state="open">анкета</button>
+    <button type="button" class="proto-bar__st" data-state="done">отправлена</button>
+  </span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active="designers"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <a href="designers.html">Дизайнерам</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Анкета</span>
+    </nav>
+    <div class="pagehead__in">
+      <div>
+        <h1 class="pagehead__h1">Анкета дизайнера</h1>
+        <p class="pagehead__lead">Заполните, чтобы попасть в каталог специалистов комплекса</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap rentform">
+
+    <div class="rentform__text">
+      <h2 class="block__h2">Как это работает</h2>
+      <ol class="steps">
+        <li><span class="steps__n">1</span><span class="steps__t">Вы заполняете анкету — она уходит администрации комплекса</span></li>
+        <li><span class="steps__n">2</span><span class="steps__t">Администрация проверяет данные и связывается с вами</span></li>
+        <li><span class="steps__n">3</span><span class="steps__t">Карточка публикуется в <a href="designers.html" class="link">каталоге</a></span></li>
+      </ol>
+      <p class="panel__text">Анкета не публикуется автоматически. Доступ к заполненным анкетам есть только у администрации комплекса.</p>
+    </div>
+
+    <div class="panel">
+      <div class="st-open">
+        <form class="jsform" novalidate>
+          <label class="fld">
+            <span class="fld__lab">Имя и фамилия или название студии</span>
+            <input type="text" name="name" required>
+            <span class="fld__err">Укажите, как подписать карточку</span>
+          </label>
+
+          <label class="fld">
+            <span class="fld__lab">Направление</span>
+            <select name="spec" class="sel">
+              <option>Дизайн интерьеров</option>
+              <option>Архитектура и планировочные решения</option>
+              <option>Светодизайн</option>
+              <option>Декорирование и стайлинг</option>
+              <option>Другое</option>
+            </select>
+          </label>
+
+          <label class="fld">
+            <span class="fld__lab">Опыт работы, лет</span>
+            <input type="number" name="exp" min="0" max="60" required>
+            <span class="fld__err">Укажите число лет</span>
+          </label>
+
+          <label class="fld">
+            <span class="fld__lab">Телефон</span>
+            <input type="tel" name="phone" required>
+            <span class="fld__err">Телефон нужен администрации для связи</span>
+          </label>
+
+          <label class="fld">
+            <span class="fld__lab">E-mail</span>
+            <input type="email" name="email" required>
+            <span class="fld__err">Проверьте адрес</span>
+          </label>
+
+          <label class="fld">
+            <span class="fld__lab">Сайт или портфолио в соцсетях</span>
+            <input type="text" name="site">
+          </label>
+
+          <label class="fld">
+            <span class="fld__lab">О себе и подходе к работе</span>
+            <textarea name="about" rows="4"></textarea>
+          </label>
+
+          <div class="fld">
+            <span class="fld__lab">Фотографии проектов</span>
+            <div class="upload ph"><span class="ph__label">Перетащите файлы или выберите</span></div>
+            <p class="block__note">До 10 изображений, JPG или PNG, до 5 МБ каждое</p>
+          </div>
+
+          <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
+
+          <label class="check">
+            <input type="checkbox" name="pd" required>
+            <span>Согласен на обработку персональных данных и принимаю <a href="#">политику</a></span>
+            <span class="fld__err">Без согласия анкету отправить нельзя</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" name="pub">
+            <span>Разрешаю публиковать мой телефон и почту в карточке каталога</span>
+          </label>
+
+          <div class="captcha ph"><span class="ph__label">Yandex SmartCaptcha</span></div>
+
+          <button type="submit" class="btn btn--primary btn--full">Отправить анкету</button>
+        </form>
+      </div>
+
+      <div class="st-done" hidden>
+        <p class="panel__title">Анкета отправлена</p>
+        <p class="panel__text">Администрация проверит данные и свяжется с вами. Обычно это занимает <span class="ph-mark">0 рабочих дней</span>.</p>
+        <p class="panel__text">Карточка появится в каталоге после проверки.</p>
+        <a href="designers.html" class="btn btn--ghost btn--full">Вернуться в раздел</a>
+      </div>
+    </div>
+  </div>
+
+  <aside class="note"><b>1. Два разных согласия — и это принципиально.</b> Первый чекбокс обязательный: без согласия на обработку ПД анкету вообще нельзя принять (п. 6.16). Второй необязательный и отвечает на другой вопрос — можно ли <i>публиковать</i> телефон и почту в открытом каталоге. Смешивать их нельзя: человек может хотеть попасть в каталог, но не хотеть, чтобы его мобильный висел в открытом доступе. От этого чекбокса зависит, что покажет карточка и появится ли кнопка «написать через комплекс».</aside>
+
+  <aside class="note"><b>2. Состав анкеты я собрал сам.</b> В ТЗ анкета упомянута одной фразой в п. 3.1 — что она есть и что доступ к результатам только у администрации. Поля выведены из того, что должно попасть в карточку по п. 6.5: имя, специализация, портфолио, контакты. Плюс опыт работы, который есть на действующем сайте. Состав нужно согласовать с администрацией: они будут с этими анкетами работать.</aside>
+
+  <aside class="note"><b>3. Загрузка файлов от постороннего человека.</b> Дизайнер — не арендатор, кабинета у него нет, то есть файлы принимаются от неавторизованного пользователя. Это отдельный риск: нужны ограничения по типу, весу и количеству, проверка содержимого на стороне сервера и карантин до модерации. Альтернатива проще и безопаснее — принимать только ссылку на портфолио, а фотографии запрашивать почтой после проверки. Решение за разработкой, но заложить его надо сейчас.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=19"></script>
+<script src="app.js?v=19"></script>
+<script src="events.js?v=19"></script>
+</body>
+</html>

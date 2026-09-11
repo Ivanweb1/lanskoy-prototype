@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подписка — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=19">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Подписка · Ч/Б · v1</span>
+  <span class="proto-bar__states">
+    Экран:
+    <button type="button" class="proto-bar__st is-active" data-state="open">форма</button>
+    <button type="button" class="proto-bar__st" data-state="sent">письмо отправлено</button>
+    <button type="button" class="proto-bar__st" data-state="done">подтверждено</button>
+    <button type="button" class="proto-bar__st" data-state="off">отписка</button>
+    <button type="button" class="proto-bar__st" data-state="bad">ссылка устарела</button>
+  </span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии</button>
+</div>
+
+<div id="siteHeader" data-active=""></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Подписка</span>
+    </nav>
+    <h1 class="pagehead__h1">Подписка на рассылку</h1>
+  </div>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap subpage">
+
+    <!-- форма -->
+    <div class="panel st-open">
+      <p class="panel__title">Подписаться</p>
+      <p class="panel__text">Анонсы событий и подборка акций магазинов. Не чаще двух писем в месяц.</p>
+
+      <form class="jsform" novalidate>
+        <label class="fld">
+          <span class="fld__lab">E-mail</span>
+          <input type="email" name="email" required>
+          <span class="fld__err">Проверьте адрес — на него придёт письмо для подтверждения</span>
+        </label>
+
+        <p class="fld__lab">Что присылать</p>
+        <label class="check"><input type="checkbox" checked><span>Афиша событий</span></label>
+        <label class="check"><input type="checkbox" checked><span>Акции магазинов</span></label>
+        <label class="check"><input type="checkbox"><span>Профессиональные события для дизайнеров</span></label>
+
+        <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
+
+        <label class="check">
+          <input type="checkbox" name="pd" required>
+          <span>Согласен на обработку персональных данных и принимаю <a href="#">политику</a></span>
+          <span class="fld__err">Без согласия подписаться нельзя</span>
+        </label>
+
+        <div class="captcha ph"><span class="ph__label">Yandex SmartCaptcha</span></div>
+
+        <button type="submit" class="btn btn--primary btn--full">Подписаться</button>
+      </form>
+    </div>
+
+    <!-- письмо отправлено -->
+    <div class="panel st-sent" hidden>
+      <p class="panel__title">Проверьте почту</p>
+      <p class="panel__text">Мы отправили письмо на <span class="ph-mark">адрес@почта.ру</span>. Чтобы подписка заработала, перейдите по ссылке из письма.</p>
+      <p class="panel__text">Письма нет через 10 минут — загляните в «Спам» или <a href="#" class="link">отправьте ещё раз</a>.</p>
+      <a href="index.html" class="btn btn--ghost btn--full">На главную</a>
+    </div>
+
+    <!-- подтверждено -->
+    <div class="panel st-done" hidden>
+      <p class="panel__title">Подписка подтверждена</p>
+      <p class="panel__text">Теперь вы будете получать анонсы событий и подборку акций. Отписаться можно одной ссылкой в любом письме.</p>
+      <a href="events.html" class="btn btn--ghost btn--full">Посмотреть афишу</a>
+    </div>
+
+    <!-- отписка -->
+    <div class="panel st-off" hidden>
+      <p class="panel__title">Вы отписались</p>
+      <p class="panel__text">Больше писем не будет. Если это вышло случайно, подписку можно вернуть в один клик.</p>
+      <button type="button" class="btn btn--primary btn--full" data-state-go="open">Вернуть подписку</button>
+      <p class="panel__text mt16">Можно не отписываться совсем, а получать только часть писем:</p>
+      <label class="check"><input type="checkbox"><span>Только афиша событий</span></label>
+      <label class="check"><input type="checkbox"><span>Только акции магазинов</span></label>
+    </div>
+
+    <!-- ссылка устарела -->
+    <div class="panel st-bad" hidden>
+      <p class="panel__title">Ссылка больше не действует</p>
+      <p class="panel__text">Ссылка для подтверждения живёт ограниченное время. Подпишитесь заново — письмо придёт снова.</p>
+      <button type="button" class="btn btn--primary btn--full" data-state-go="open">Подписаться заново</button>
+    </div>
+
+  </div>
+
+  <aside class="note"><b>1. Double opt-in — это минимум три экрана, а не один.</b> П. 6.15 требует подтверждения адреса. Значит после формы человек попадает не на «спасибо», а на «проверьте почту», и только переход по ссылке из письма даёт третий экран — «подтверждено». Пропустить средний экран нельзя: без него человек уверен, что подписался, а подписки нет.</aside>
+
+  <aside class="note"><b>2. Отписка в один клик — и попытка удержать без принуждения.</b> П. 6.15 требует отписки одним кликом, и она должна работать <i>сразу</i>, без входа и подтверждений: ссылка в письме отписывает, экран сообщает факт. Уже после этого можно предложить вернуться или получать только часть писем. Обратный порядок — сначала «а может, останетесь» — нарушает требование.</aside>
+
+  <aside class="note"><b>3. Сегментация.</b> П. 6.15 называет сегменты «акции / события». Добавил третий — профессиональные события для дизайнеров: у них своя аудитория по п. 3.1, и слать семинар про HoReCa всем подряд бессмысленно. Чекбоксы стоят в форме, но на главной подписка остаётся одним полем: сегмент можно выбрать позже, в письме подтверждения.</aside>
+
+  <aside class="note"><b>4. Устаревшая ссылка — состояние, о котором забывают.</b> Ссылки подтверждения имеют срок жизни. Если человек открыл письмо через месяц, он должен увидеть понятное объяснение и кнопку, а не пустую страницу или ошибку. То же касается повторного перехода по уже использованной ссылке.</aside>
+
+  <aside class="note"><b>5. Что нужно от разработки.</b> Отправка через Unisender или Sendsay из п. 13.1, настроенные SPF, DKIM и DMARC — без них письма с подтверждением будут уходить в спам, и вся механика перестанет работать. Плюс п. 12.3 требует лёгкой отписки и явного согласия — оба пункта здесь закрыты.</aside>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=19"></script>
+<script src="app.js?v=19"></script>
+<script src="events.js?v=19"></script>
+<script src="subscribe.js?v=19"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Елена Литвякова — ТК «Ланской» — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=19">
+</head>
+<body>
+
+<div class="proto-bar">
+  <span class="proto-bar__title">Карточка дизайнера · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<div id="siteHeader" data-active="designers"></div>
+
+<main>
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <a href="designers.html">Дизайнерам</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Елена Литвякова</span>
+    </nav>
+
+    <div class="shophead">
+      <div class="shophead__logo ph"><span class="ph__label">Фото</span></div>
+      <div class="shophead__main">
+        <h1 class="shophead__h1">Елена Литвякова</h1>
+        <ul class="taglist">
+          <li><span class="tag">Дизайн интерьеров</span></li>
+          <li><span class="tag">Жилые пространства</span></li>
+        </ul>
+        <p class="shophead__place">Опыт работы <b>10 лет</b></p>
+      </div>
+      <div class="shophead__acts">
+        <a href="#contact" class="btn btn--primary">Связаться</a>
+        <a href="designers.html" class="btn btn--ghost">Все дизайнеры</a>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>1. Состав карточки задан п. 6.5:</b> имя, специализация, портфолио-фото, контакты. Опыт работы добавил — он есть на действующем сайте и это первое, на что смотрит заказчик. Специализация вынесена тегами, чтобы работала фильтрация в каталоге.</aside>
+</section>
+
+<section class="sect sect--tight">
+  <div class="wrap shoplayout">
+    <div class="shopmain">
+
+      <div class="block">
+        <h2 class="block__h2">О специалисте</h2>
+        <div class="prose">
+          <p class="ph-mark">Текст о себе не заполнен. Он приходит из анкеты, которую дизайнер подаёт администрации, — отдельным полем со свободным описанием подхода и опыта.</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block__head">
+          <h2 class="block__h2">Портфолио</h2>
+          <span class="block__meta ph-mark">00 работ</span>
+        </div>
+        <div class="gallery">
+          <a href="#" class="gallery__item gallery__item--lead ph"><span class="ph__label">Проект 1</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Проект 2</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Проект 3</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Проект 4</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Проект 5</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">+1</span></a>
+        </div>
+        <p class="block__note">Фотографии проектов принимаются вместе с анкетой</p>
+      </div>
+
+    </div>
+
+    <aside class="shopside">
+      <div class="panel" id="contact">
+        <p class="panel__title">Контакты</p>
+        <ul class="contacts">
+          <li><span class="contacts__k">Телефон</span><span class="contacts__v ph-mark">по согласию</span></li>
+          <li><span class="contacts__k">Почта</span><span class="contacts__v ph-mark">по согласию</span></li>
+          <li><span class="contacts__k">Сайт</span><span class="contacts__v ph-mark">не указан</span></li>
+        </ul>
+        <p class="panel__text">Контакты публикуются только с согласия специалиста, отмеченного в анкете.</p>
+        <a href="#" class="btn btn--ghost btn--full">Написать через комплекс</a>
+      </div>
+
+      <div class="panel">
+        <p class="panel__title">Поделиться</p>
+        <ul class="msgs">
+          <li><a href="#" class="msg">VK</a></li>
+          <li><a href="#" class="msg">Telegram</a></li>
+          <li><a href="#" class="msg">Скопировать ссылку</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <aside class="note"><b>2. Контакты — через согласие, и это не перестраховка.</b> На действующем сайте у дизайнеров открыто висят личные мобильные и почта на mail.ru. Это персональные данные физических лиц: по 152-ФЗ, на который ссылается п. 10.2, публиковать их можно только с согласия, и согласие должно быть зафиксировано. Поэтому в анкете нужен отдельный чекбокс «разрешаю публикацию контактов», а для тех, кто его не поставил, — кнопка «написать через комплекс», когда сообщение уходит администрации.</aside>
+
+  <aside class="note"><b>3. Кто поддерживает актуальность.</b> Кабинетов у дизайнеров по п. 3.1 нет. Значит любое изменение — новый телефон, новые работы, уход из профессии — проходит через администрацию. Через год каталог будет наполовину неактуален, если не завести процедуру: например, раз в полгода рассылка с просьбой подтвердить данные, и карточки без подтверждения скрываются.</aside>
+</section>
+
+<section class="sect sect--alt">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Другие специалисты</h2>
+      <a href="designers.html" class="more">Весь каталог</a>
+    </div>
+    <div class="grid grid--4">
+      <a href="designer.html" class="descard">
+        <span class="descard__photo ph"><span class="ph__label">Фото</span></span>
+        <span class="descard__b">
+          <span class="descard__n">CARTELLE DESIGN</span>
+          <span class="descard__s">Дизайн интерьеров</span>
+          <span class="descard__e">Опыт 2 года</span>
+        </span>
+      </a>
+      <a href="designer.html" class="descard">
+        <span class="descard__photo ph"><span class="ph__label">Фото</span></span>
+        <span class="descard__b">
+          <span class="descard__n ph-mark">Имя специалиста</span>
+          <span class="descard__s">Архитектура и планировочные решения</span>
+          <span class="descard__e ph-mark">Опыт —</span>
+        </span>
+      </a>
+      <a href="designer.html" class="descard">
+        <span class="descard__photo ph"><span class="ph__label">Фото</span></span>
+        <span class="descard__b">
+          <span class="descard__n ph-mark">Имя специалиста</span>
+          <span class="descard__s">Светодизайн</span>
+          <span class="descard__e ph-mark">Опыт —</span>
+        </span>
+      </a>
+      <a href="designer-form.html" class="descard descard--cta">
+        <span class="descard__photo ph"><span class="ph__label">Ваша карточка</span></span>
+        <span class="descard__b">
+          <span class="descard__n">Попасть в каталог</span>
+          <span class="descard__s">Заполнить анкету</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=19"></script>
+<script src="app.js?v=19"></script>
+</body>
+</html>
