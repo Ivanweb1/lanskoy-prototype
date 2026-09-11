@@ -121,17 +121,22 @@ var FLOORS = {
 };
 
 function drawFloor(n) {
+  var planEl = document.getElementById('plan');
+  /* подсветка конкретной секции — для карточки арендатора (п. 6.12 ТЗ:
+     «подсветка магазина по клику из его карточки») */
+  var here = planEl.dataset.highlight || '';
   var d = FLOORS[n], s = '<svg viewBox="0 0 474 276" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема ' + n + ' этажа">';
   d.serv.forEach(function (r) {
     s += '<rect class="pl-serv" x="' + r[0] + '" y="' + r[1] + '" width="' + r[2] + '" height="' + r[3] + '"/>';
     s += '<text class="pl-txt" x="' + (r[0] + r[2] / 2) + '" y="' + (r[1] + r[3] / 2 + 3) + '" text-anchor="middle">' + r[4] + '</text>';
   });
   d.rooms.forEach(function (r) {
-    s += '<rect class="pl-room' + (r[5] ? ' pl-room--busy' : '') + '" x="' + r[0] + '" y="' + r[1] + '" width="' + r[2] + '" height="' + r[3] + '"/>';
-    s += '<text class="pl-txt" x="' + (r[0] + r[2] / 2) + '" y="' + (r[1] + r[3] / 2 + 3) + '" text-anchor="middle">' + r[4] + '</text>';
+    var isHere = here && r[4] === here;
+    s += '<rect class="pl-room' + (r[5] ? ' pl-room--busy' : '') + (isHere ? ' pl-room--here' : '') + '" x="' + r[0] + '" y="' + r[1] + '" width="' + r[2] + '" height="' + r[3] + '"/>';
+    s += '<text class="pl-txt' + (isHere ? ' pl-txt--here' : '') + '" x="' + (r[0] + r[2] / 2) + '" y="' + (r[1] + r[3] / 2 + 3) + '" text-anchor="middle">' + r[4] + '</text>';
   });
   s += '</svg>';
-  document.getElementById('plan').innerHTML = s;
+  planEl.innerHTML = s;
 }
 
 /* схема этажей есть не на каждой странице — без этой проверки
@@ -144,7 +149,7 @@ if (document.getElementById('plan')) {
       drawFloor(tab.dataset.floor);
     });
   });
-  drawFloor(1);
+  drawFloor(document.getElementById('plan').dataset.floor || 1);
 }
 
 /* ---------- cookie ---------- */

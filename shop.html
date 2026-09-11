@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VLADART STUDIO — ТК «Ланской» — прототип</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= ПАНЕЛЬ ПРОТОТИПА ================= -->
+<div class="proto-bar">
+  <span class="proto-bar__title">Карточка арендатора · Ч/Б · v1</span>
+  <span class="proto-bar__legend"><i class="ph-mark">0 000</i> — данных нет, нужно уточнить</span>
+  <button type="button" class="proto-bar__btn" id="notesToggle">Комментарии к блокам</button>
+</div>
+
+<!-- ================= ШАПКА ================= -->
+<header class="header">
+
+  <div class="utility">
+    <div class="wrap utility__in">
+      <ul class="utility__info">
+        <li>10:00&nbsp;—&nbsp;20:00 ежедневно</li>
+        <li>Санкт-Петербург, ул. Студенческая, 10</li>
+        <li><a href="#">+7 (812) 363-00-07</a></li>
+        <li><a href="#">Как добраться</a></li>
+      </ul>
+      <ul class="utility__actions">
+        <li><a href="#" class="btn btn--ghost btn--sm">Аренда</a></li>
+        <li><a href="#" class="utility__login">Войти в кабинет</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="wrap nav__in">
+
+      <a href="index.html" class="logo">
+        <img src="logo.svg" alt="ТК «Ланской» — торговый центр интерьерных решений" class="logo__img" width="205" height="64">
+      </a>
+
+      <nav class="menu" id="menu">
+        <ul class="menu__list">
+          <li class="menu__item menu__item--has is-current">
+            <button type="button" class="menu__link" data-mega="shops">Магазины<span class="caret"></span></button>
+          </li>
+          <li class="menu__item"><a class="menu__link" href="#">Акции</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Афиша</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Журнал</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Дизайнерам</a></li>
+          <li class="menu__item menu__item--has">
+            <button type="button" class="menu__link" data-mega="about">О комплексе<span class="caret"></span></button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="hsearch">
+        <div class="field field--hs">
+          <input type="search" placeholder="Магазины, бренды, статьи" autocomplete="off" aria-label="Поиск по сайту">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+          <div class="suggest">
+            <p class="suggest__group">Магазины</p>
+            <a href="shop.html" class="suggest__item"><span>VLADART STUDIO</span><span class="suggest__meta">секция А10 · 1 этаж</span></a>
+            <a href="shop.html" class="suggest__item"><span>ПРЕМЬЕР ДЕКОР</span><span class="suggest__meta">секция А12 · 1 этаж</span></a>
+            <p class="suggest__group">Бренды</p>
+            <a href="#" class="suggest__item"><span>Kerama Marazzi</span><span class="suggest__meta">4 магазина</span></a>
+            <p class="suggest__group">Статьи</p>
+            <a href="#" class="suggest__item"><span>Комбинированный пол: плитка и ламинат</span><span class="suggest__meta">23.06.2026</span></a>
+            <p class="suggest__group">События</p>
+            <a href="#" class="suggest__item"><span>Дни дизайна и интерьера</span><span class="suggest__meta">24—26 мая</span></a>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="ic-search" id="searchToggle" aria-label="Поиск по сайту"></button>
+      <button type="button" class="burger" id="burger" aria-label="Меню"><span></span></button>
+    </div>
+
+    <!-- мегаменю: Магазины -->
+    <div class="mega" id="mega-shops" hidden>
+      <div class="wrap mega__in">
+        <div class="mega__col mega__col--wide">
+          <p class="mega__title">Категории</p>
+          <ul class="mega__cats">
+            <li><a href="#">Декоративно-отделочные материалы</a></li>
+            <li><a href="#">Плитка</a></li>
+            <li><a href="#">Обои</a></li>
+            <li><a href="#">Шторы, карнизы, ткани</a></li>
+            <li><a href="#">Лакокрасочные и клеящие материалы</a></li>
+            <li><a href="#">Напольные покрытия</a></li>
+            <li><a href="#">Потолки</a></li>
+            <li><a href="#">Двери, перегородки, фурнитура</a></li>
+            <li><a href="#">Остекление и оконная фурнитура</a></li>
+            <li><a href="#">Стекло и зеркала</a></li>
+            <li><a href="#">Сантехника</a></li>
+            <li><a href="#">Свет</a></li>
+            <li><a href="#">Лестницы</a></li>
+            <li><a href="#">Отопление и кондиционирование</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Навигация</p>
+          <ul class="mega__links">
+            <li><a href="shops.html">Все магазины</a></li>
+            <li><a href="#">По алфавиту</a></li>
+            <li><a href="#">Бренды</a></li>
+            <li><a href="#">Схема этажей</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Знаете номер помещения?</p>
+          <div class="field field--sm">
+            <input type="search" placeholder="Например, А10">
+            <button type="button" class="field__go" aria-label="Найти"></button>
+          </div>
+          <p class="mega__hint">Секции 1—3 этажей: А, B, C</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- мегаменю: О комплексе -->
+    <div class="mega" id="mega-about" hidden>
+      <div class="wrap mega__in">
+        <div class="mega__col">
+          <p class="mega__title">О комплексе</p>
+          <ul class="mega__links">
+            <li><a href="#">О комплексе</a></li>
+            <li><a href="#">Схема этажей</a></li>
+            <li><a href="#">Парковка и как добраться</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Медиа</p>
+          <ul class="mega__links">
+            <li><a href="#">Галерея</a></li>
+            <li><a href="#">Видео</a></li>
+            <li><a href="#">Архив событий</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <p class="mega__title">Контакты</p>
+          <ul class="mega__links">
+            <li><a href="#">Контакты и реквизиты</a></li>
+            <li><a href="#">Обратная связь</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- оверлей поиска -->
+    <div class="searchbar" id="searchbar" hidden>
+      <div class="wrap">
+        <div class="field field--lg">
+          <input type="search" placeholder="Магазины, бренды, статьи, события, номер помещения">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+        </div>
+        <p class="searchbar__hint">Единый поиск по сайту · подсказки при вводе</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= ШАПКА КАРТОЧКИ ================= -->
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="crumbs__sep">/</span>
+      <a href="shops.html">Магазины</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">VLADART STUDIO</span>
+    </nav>
+
+    <div class="shophead">
+      <div class="shophead__logo ph"><span class="ph__label">Логотип</span></div>
+      <div class="shophead__main">
+        <h1 class="shophead__h1">VLADART STUDIO</h1>
+        <ul class="taglist">
+          <li><a href="#" class="tag">Декоративно-отделочные материалы</a></li>
+          <li><a href="#" class="tag">Декоративная штукатурка</a></li>
+          <li><a href="#" class="tag">Фрески</a></li>
+        </ul>
+        <p class="shophead__place"><b>Секция А10</b> · 1 этаж</p>
+      </div>
+      <div class="shophead__acts">
+        <a href="#" class="btn btn--primary">Показать на схеме</a>
+        <a href="#" class="btn btn--ghost">Позвонить</a>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>1. Шапка карточки.</b> Порядок полей задан п. 6.2, но приоритет — мой: секция и этаж вынесены крупно и сразу под названием, потому что это то, зачем человек открывает карточку. Категории кликабельны и ведут обратно в отфильтрованный каталог — иначе тупик. Вторая строка категорий — подкатегории, на действующем сайте они есть внутри разделов и работают как уточнение.</aside>
+</section>
+
+<!-- ================= ТЕЛО КАРТОЧКИ ================= -->
+<section class="sect sect--tight">
+  <div class="wrap shoplayout">
+
+    <div class="shopmain">
+
+      <!-- описание -->
+      <div class="block">
+        <h2 class="block__h2">О магазине</h2>
+        <div class="prose">
+          <p>Салон декоративных покрытий и авторских настенных решений. В ассортименте — декоративная штукатурка, микроцемент, фрески и панно под индивидуальный размер, а также материалы для фактурных стен.</p>
+          <p>Консультации по подбору покрытия под проект, расчёт расхода материала, выезд на объект и услуги мастеров-аппликаторов.</p>
+        </div>
+      </div>
+
+      <!-- галерея -->
+      <div class="block">
+        <div class="block__head">
+          <h2 class="block__h2">Фотографии</h2>
+          <span class="block__meta">6 фото</span>
+        </div>
+        <div class="gallery">
+          <a href="#" class="gallery__item gallery__item--lead ph"><span class="ph__label">Фото 1</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Фото 2</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Фото 3</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Фото 4</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">Фото 5</span></a>
+          <a href="#" class="gallery__item ph"><span class="ph__label">+1</span></a>
+        </div>
+      </div>
+
+      <!-- видео -->
+      <div class="block">
+        <h2 class="block__h2">Видео</h2>
+        <div class="videobox ph">
+          <span class="ph__label">Видео магазина</span>
+          <span class="playmark" aria-hidden="true"></span>
+        </div>
+        <p class="block__note">Загрузка файлом или встраивание с видеохостинга — п. 6.9</p>
+      </div>
+
+      <!-- акции -->
+      <div class="block">
+        <div class="block__head">
+          <h2 class="block__h2">Акции магазина</h2>
+          <a href="#" class="more">Все акции ТК</a>
+        </div>
+        <div class="grid grid--2">
+          <article class="card card--sm">
+            <div class="card__media ph"><span class="ph__label">Фото</span></div>
+            <h3 class="card__title">Скидка 15% на декоративную штукатурку</h3>
+            <p class="card__meta">При покупке от 20 м²</p>
+            <p class="card__term">до 30 июня</p>
+          </article>
+          <article class="card card--sm">
+            <div class="card__media ph"><span class="ph__label">Фото</span></div>
+            <h3 class="card__title">Бесплатный выезд замерщика</h3>
+            <p class="card__meta">По Санкт-Петербургу</p>
+            <p class="card__term">до 31 августа</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- сайдбар -->
+    <aside class="shopside">
+      <div class="panel">
+        <p class="panel__title">Контакты</p>
+        <ul class="contacts">
+          <li><span class="contacts__k">Телефон</span><span class="contacts__v ph-mark">+7 (000) 000-00-00</span></li>
+          <li><span class="contacts__k">Сайт</span><span class="contacts__v ph-mark">example.ru</span></li>
+          <li><span class="contacts__k">Режим работы</span><span class="contacts__v">10:00 — 20:00<br>ежедневно</span></li>
+        </ul>
+        <p class="panel__sub">Мессенджеры и соцсети</p>
+        <ul class="msgs">
+          <li><a href="#" class="msg ph-mark">Telegram</a></li>
+          <li><a href="#" class="msg ph-mark">WhatsApp</a></li>
+          <li><a href="#" class="msg ph-mark">VK</a></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <p class="panel__title">Расположение</p>
+        <p class="panel__place"><b>Секция А10</b> · 1 этаж</p>
+        <div class="floors__plan floors__plan--mini" id="plan" data-floor="1" data-highlight="A10"></div>
+        <a href="#" class="btn btn--ghost btn--full">Открыть схему этажей</a>
+      </div>
+    </aside>
+  </div>
+
+  <aside class="note"><b>2. Что редактирует арендатор.</b> По п. 7.3 сам арендатор правит только контакты, акции, фото и видео — то есть блоки «Контакты», «Фотографии», «Видео» и «Акции магазина». Название, категории, расположение и привязку к брендам меняет администрация, арендатор видит их только для чтения. Для дизайна это значит две вещи: в кабинете эти зоны должны быть визуально разделены, а на публичной странице все блоки арендатора обязаны корректно жить пустыми — если фото, видео или акций нет, карточка не должна разваливаться. Состояния пустоты соберу в макетах кабинета.</aside>
+
+  <aside class="note"><b>3. Сайдбар и схема.</b> Контакты и расположение прижаты вправо и липнут при скролле — это то, за чем возвращаются к карточке, и это не должно требовать прокрутки обратно. Мини-схема подсвечивает секцию А10 прямо здесь, а кнопка ведёт на полную схему этажей — п. 6.12 требует «подсветку магазина по клику из его карточки», так что связь двусторонняя.</aside>
+
+  <aside class="note"><b>4. Данные.</b> Название, секция, этаж и категория у VLADART STUDIO — реальные, с действующего сайта. Описание — текст-рыба: настоящие описания приходят из кабинета арендатора, их пишет сам магазин. Телефон, сайт и мессенджеры помечены пунктиром — этих данных у нас нет. Акции придуманы как образец формата, реальные заводит арендатор.</aside>
+
+  <aside class="note"><b>5. Микроразметка.</b> П. 11.4 предлагает Store для арендаторов. Здесь есть всё, что она требует: название, адрес комплекса, телефон, режим работы, изображения. Плюс BreadcrumbList на крошках. Это задача разработки, но структура страницы под неё уже собрана.</aside>
+</section>
+
+<!-- ================= ПОХОЖИЕ ================= -->
+<section class="sect sect--alt">
+  <div class="wrap">
+    <div class="sect__head">
+      <h2 class="sect__h2">Ещё в этой категории</h2>
+      <a href="shops.html" class="more">Все магазины</a>
+    </div>
+    <div class="grid grid--shops">
+      <a href="shop.html" class="shopcard">
+        <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+        <span class="shopcard__body">
+          <span class="shopcard__name">ПРЕМЬЕР ДЕКОР</span>
+          <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+          <span class="shopcard__place">секция А12 · 1 этаж</span>
+        </span>
+      </a>
+      <a href="shop.html" class="shopcard">
+        <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+        <span class="shopcard__body">
+          <span class="shopcard__name">COMPANION DECOR</span>
+          <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+          <span class="shopcard__place">секция А13B · 1 этаж</span>
+        </span>
+      </a>
+      <a href="shop.html" class="shopcard">
+        <span class="shopcard__logo ph"><span class="ph__label">Логотип</span></span>
+        <span class="shopcard__body">
+          <span class="shopcard__name">Салон старины «Антиктайм»</span>
+          <span class="shopcard__cat">Декор и предметы интерьера</span>
+          <span class="shopcard__place"><span class="ph-mark">секция —</span> · <span class="ph-mark">этаж —</span></span>
+        </span>
+      </a>
+    </div>
+  </div>
+  <aside class="note"><b>6. Ещё в категории.</b> Блока нет в ТЗ — предлагаю добавить. Человек редко приходит за конкретным магазином: он выбирает, где купить материал. Без этого блока карточка становится тупиком, из которого остаётся только кнопка «назад».</aside>
+</section>
+
+</main>
+
+<!-- ================= ФУТЕР ================= -->
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div class="footer__brand">
+      <img src="logo.svg" alt="ТК «Ланской»" class="logo__img logo__img--inv" width="205" height="64">
+      <p class="footer__addr">Санкт-Петербург,<br>ул. Студенческая, 10</p>
+      <p class="footer__addr"><a href="#">+7 (812) 363-00-07</a><br>10:00 — 20:00 ежедневно</p>
+      <ul class="socials"><li><a href="#">VK</a></li><li><a href="#">YouTube</a></li></ul>
+    </div>
+    <div class="footer__cols">
+      <div><p class="footer__title">Покупателям</p><ul><li><a href="shops.html">Магазины</a></li><li><a href="#">Категории</a></li><li><a href="#">Бренды</a></li><li><a href="#">Акции</a></li><li><a href="#">Схема этажей</a></li></ul></div>
+      <div><p class="footer__title">События</p><ul><li><a href="#">Афиша</a></li><li><a href="#">Архив событий</a></li><li><a href="#">Галерея</a></li><li><a href="#">Видео</a></li></ul></div>
+      <div><p class="footer__title">Профессионалам</p><ul><li><a href="#">Дизайнерам</a></li><li><a href="#">Каталог дизайнеров</a></li><li><a href="#">Журнал</a></li></ul></div>
+      <div><p class="footer__title">Комплекс</p><ul><li><a href="#">О комплексе</a></li><li><a href="#">Аренда</a></li><li><a href="#">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>
+    </div>
+  </div>
+  <div class="wrap footer__legal">
+    <p>© 2026 ТК «Ланской»</p>
+    <ul><li><a href="#">Политика обработки ПД</a></li><li><a href="#">Пользовательское соглашение</a></li><li><a href="#">Политика cookie</a></li></ul>
+  </div>
+</footer>
+
+<!-- ================= COOKIE ================= -->
+<div class="cookie" id="cookie">
+  <p class="cookie__text">Мы используем cookie. Вы можете выбрать, какие категории разрешить.</p>
+  <div class="cookie__acts">
+    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Настроить</button>
+    <button type="button" class="btn btn--sm btn--ghost" data-cookie>Только необходимые</button>
+    <button type="button" class="btn btn--sm btn--primary" data-cookie>Принять все</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
