@@ -638,7 +638,10 @@ button.msg{background:none;font:inherit;color:inherit;cursor:pointer}
 
 /* ---------- журнал ---------- */
 .postgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 28px}
-.post--lead{grid-column:span 2}
+/* .post--lead без префикса .postgrid цеплял и .journal на главной — там тоже
+   grid с 2 колонками, и лид растягивался на обе, спихивая список вниз и
+   раздувая фото на всю ширину контейнера */
+.postgrid .post--lead{grid-column:span 2}
 .post--lead .post__media{aspect-ratio:2/1}
 .post--lead .post__title{font-size:30px}
 .post__lead{font-size:15px;line-height:1.6;color:var(--ink-2);margin-top:12px;max-width:60ch}
