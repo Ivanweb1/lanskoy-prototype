@@ -427,7 +427,7 @@ main > .sect--tight:first-child{padding-top:28px}
 
 .viewtabs{display:flex;gap:26px;flex-wrap:wrap}
 .viewtabs__item{display:block;padding-bottom:10px;font-weight:500;font-size:13px;letter-spacing:var(--tr-nav);text-transform:uppercase;border-bottom:2px solid transparent;color:var(--mute)}
-a.viewtabs__item:hover{color:var(--ink)}
+a.viewtabs__item:hover,button.viewtabs__item:hover{color:var(--ink)}
 .viewtabs__item.is-active{color:var(--ink);border-bottom-color:var(--ink)}
 
 /* активный раздел в основном меню */
@@ -510,6 +510,11 @@ a.viewtabs__item:hover{color:var(--ink)}
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .gallery__item{display:block;aspect-ratio:4/3;position:relative}
 .gallery__item--lead{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+
+/* слайдер фото на "О комплексе" — не ссылки, просто пролистать на месте,
+   без перехода в отдельную галерею */
+.aboutgallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.aboutgallery__item{flex:0 0 280px;aspect-ratio:4/3;scroll-snap-align:start}
 
 .videobox{position:relative;aspect-ratio:16/9}
 .playmark{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border:1px solid var(--ink);border-radius:50%;background:var(--paper)}

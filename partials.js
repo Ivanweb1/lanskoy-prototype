@@ -132,8 +132,7 @@ var LNS = (function () {
 '        <div class="mega__col">' +
 '          <p class="mega__title">Медиа</p>' +
 '          <ul class="mega__links">' +
-'            <li><a href="gallery.html">Галерея</a></li>' +
-'            <li><a href="video.html">Видео</a></li>' +
+'            <li><a href="gallery.html">Галерея и видео</a></li>' +
 '            <li><a href="events.html">Архив событий</a></li>' +
 '          </ul>' +
 '        </div>' +
@@ -177,7 +176,7 @@ var LNS = (function () {
 '        <li><a href="floors.html">Схема этажей</a></li></ul></div>' +
 '      <div><p class="footer__title">События</p><ul>' +
 '        <li><a href="events.html">Афиша</a></li><li><a href="events.html">Архив событий</a></li>' +
-'        <li><a href="gallery.html">Галерея</a></li><li><a href="video.html">Видео</a></li></ul></div>' +
+'        <li><a href="gallery.html">Галерея и видео</a></li></ul></div>' +
 '      <div><p class="footer__title">Профессионалам</p><ul>' +
 '        <li><a href="designers.html">Дизайнерам</a></li><li><a href="designers.html#catalog">Каталог дизайнеров</a></li>' +
 '        <li><a href="journal.html">Журнал</a></li></ul></div>' +

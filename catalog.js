@@ -46,7 +46,6 @@
 
   var cards = [].slice.call(grid.querySelectorAll('.shopcard'));
   var search = document.getElementById('catSearch');
-  var promoOnly = document.getElementById('promoOnly');
   var sortSelect = document.getElementById('sortSelect');
   var shownCount = document.getElementById('shownCount');
   var emptyState = document.getElementById('emptyState');
@@ -70,15 +69,13 @@
     var cats = checked('cat');
     var floors = checked('floor');
     var q = normCode((search.value || '').trim());
-    var onlyPromo = promoOnly.checked;
     var shown = 0;
 
     cards.forEach(function (card) {
       var okCat = !cats.length || cats.indexOf(card.dataset.cat) > -1;
       var okFloor = !floors.length || floors.indexOf(card.dataset.floor) > -1;
-      var okPromo = !onlyPromo || card.dataset.promo === '1';
       var okQuery = !q || normCode(card.textContent).indexOf(q) > -1;
-      var visible = okCat && okFloor && okPromo && okQuery;
+      var visible = okCat && okFloor && okQuery;
       card.hidden = !visible;
       if (visible) shown++;
     });
@@ -87,10 +84,10 @@
     emptyState.hidden = shown > 0;
     grid.hidden = shown === 0;
     moreBox.hidden = shown === 0;
-    renderChips(cats, floors, onlyPromo, q);
+    renderChips(cats, floors, q);
   }
 
-  function renderChips(cats, floors, onlyPromo, q) {
+  function renderChips(cats, floors, q) {
     activeChips.innerHTML = '';
     var items = [];
 
@@ -100,7 +97,6 @@
     floors.forEach(function (v) {
       items.push({ label: v + ' этаж', clear: function () { uncheck('floor', v); } });
     });
-    if (onlyPromo) items.push({ label: 'Только с акциями', clear: function () { promoOnly.checked = false; } });
     if (q) items.push({ label: '«' + q + '»', clear: function () { search.value = ''; } });
 
     items.forEach(function (it) {
@@ -139,12 +135,10 @@
     i.addEventListener('change', apply);
   });
   search.addEventListener('input', apply);
-  promoOnly.addEventListener('change', apply);
   sortSelect.addEventListener('change', function () { sort(sortSelect.value); });
 
   function resetAll() {
     document.querySelectorAll('[data-filter]').forEach(function (i) { i.checked = false; });
-    promoOnly.checked = false;
     search.value = '';
     apply();
   }

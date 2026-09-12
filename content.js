@@ -122,6 +122,30 @@ chipFilter({
   words: ['альбом', 'альбома', 'альбомов']
 });
 
+/* ---------- галерея и видео: переключатель «Фото / Видео» ----------
+   п. 5.1 №9 — один пункт карты сайта, а не два отдельных URL, поэтому
+   вкладки переключают видимость секции на этой же странице */
+(function () {
+  var tabs = document.getElementById('mediaTabs');
+  if (!tabs) return;
+  var views = { photo: document.getElementById('viewPhoto'), video: document.getElementById('viewVideo') };
+
+  function show(media) {
+    Object.keys(views).forEach(function (k) { views[k].hidden = k !== media; });
+    tabs.querySelectorAll('.viewtabs__item').forEach(function (b) {
+      b.classList.toggle('is-active', b.dataset.media === media);
+    });
+  }
+
+  tabs.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-media]');
+    if (b) show(b.dataset.media);
+  });
+
+  var want = new URLSearchParams(location.search).get('view');
+  if (want === 'video') show('video');
+})();
+
 /* ---------- оглавление статьи ---------- */
 (function () {
   var nav = document.getElementById('tocNav');
