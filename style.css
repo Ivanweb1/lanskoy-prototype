@@ -153,6 +153,9 @@ body.notes-on .note{margin-left:var(--pad);margin-right:var(--pad);margin-bottom
 }
 .link:hover{border-color:var(--ink)}
 .link--off{color:var(--mute);border-bottom-style:dashed;cursor:default}
+/* .link на <button> — тот же вид, что на <a>, но без рамки/фона кнопки браузера */
+button.link--btn{background:none;border:none;border-bottom:1px solid var(--line-2);padding:0 0 2px;font:inherit;color:inherit;cursor:pointer}
+button.link--btn:hover{border-color:var(--ink)}
 .more{font-weight:500;font-size:13px;letter-spacing:var(--tr-nav);text-transform:uppercase;border-bottom:1px solid var(--line-2);padding-bottom:2px}
 .more:hover{border-color:var(--ink)}
 .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
@@ -507,6 +510,8 @@ a.viewtabs__item:hover{color:var(--ink)}
 .msgs{display:flex;flex-wrap:wrap;gap:8px}
 .msg{display:inline-flex;align-items:center;height:32px;padding:0 12px;border:1px solid var(--line-2);font-size:13px}
 .msg:hover{border-color:var(--ink)}
+/* «Поделиться» — реальной ссылки для шеринга нет, это JS-действие; сбрасываем вид кнопки под .msg */
+button.msg{background:none;font:inherit;color:inherit;cursor:pointer}
 .floors__plan--mini{margin-bottom:16px}
 .pl-room--here{fill:var(--ink);stroke:var(--ink)}
 .pl-txt--here{fill:#fff}

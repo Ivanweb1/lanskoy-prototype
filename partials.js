@@ -51,7 +51,7 @@ var LNS = (function () {
 '      <ul class="utility__info">' +
 '        <li>10:00&nbsp;—&nbsp;20:00 ежедневно</li>' +
 '        <li>Санкт-Петербург, ул. Студенческая, 10</li>' +
-'        <li><a href="#">+7 (812) 363-00-07</a></li>' +
+'        <li><a href="tel:+78123630007">+7 (812) 363-00-07</a></li>' +
 '        <li><a href="contacts.html">Как добраться</a></li>' +
 '      </ul>' +
 '      <ul class="utility__actions">' +
@@ -165,7 +165,7 @@ var LNS = (function () {
 '    <div class="footer__brand">' +
 '      <img src="logo.svg" alt="ТК «Ланской»" class="logo__img logo__img--inv" width="205" height="64">' +
 '      <p class="footer__addr">Санкт-Петербург,<br>ул. Студенческая, 10</p>' +
-'      <p class="footer__addr"><a href="#">+7 (812) 363-00-07</a><br>10:00 — 20:00 ежедневно</p>' +
+'      <p class="footer__addr"><a href="tel:+78123630007">+7 (812) 363-00-07</a><br>10:00 — 20:00 ежедневно</p>' +
 '      <ul class="socials"><li><a href="#">VK</a></li><li><a href="#">YouTube</a></li></ul>' +
 '    </div>' +
 '    <div class="footer__cols">' +
