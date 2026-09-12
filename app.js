@@ -162,6 +162,22 @@ if (document.getElementById('plan')) {
   drawFloor(document.getElementById('plan').dataset.floor || 1);
 }
 
+/* ---------- слайдер фото на "О комплексе" ----------
+   Плавность даёт CSS (scroll-behavior:smooth на .aboutgallery) —
+   значит достаточно просто сдвинуть scrollLeft, без scrollBy(). */
+(function () {
+  var track = document.getElementById('aboutGallery');
+  if (!track) return;
+  var wrap = track.closest('.aboutgallery-wrap');
+  var step = function () { return track.querySelector('.aboutgallery__item').offsetWidth + 16; };
+  wrap.querySelector('.aboutgallery__nav--prev').addEventListener('click', function () {
+    track.scrollLeft -= step();
+  });
+  wrap.querySelector('.aboutgallery__nav--next').addEventListener('click', function () {
+    track.scrollLeft += step();
+  });
+})();
+
 /* ---------- cookie ---------- */
 document.querySelectorAll('[data-cookie]').forEach(function (b) {
   b.addEventListener('click', function () {

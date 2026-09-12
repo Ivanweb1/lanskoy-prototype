@@ -38,7 +38,6 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--sans);font-size:16px;line-height:1.5;
-  padding-top:38px; /* панель прототипа */
 }
 img{max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -99,22 +98,6 @@ select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{
 }
 /* числовые плейсхолдеры не должны растягивать пунктир на всю колонку */
 .fact__num.ph-mark,.rent__num.ph-mark{display:inline-block;align-self:flex-start}
-
-/* ---------- панель прототипа ---------- */
-.proto-bar{
-  position:fixed;top:0;left:0;right:0;z-index:200;height:38px;
-  display:flex;align-items:center;gap:20px;padding:0 var(--pad);
-  background:var(--ink);color:#fff;font-size:12px;letter-spacing:.04em;
-}
-.proto-bar__title{font-weight:600}
-.proto-bar__legend{color:#a9a49e}
-.proto-bar__legend .ph-mark{color:#d6d1cb;border-bottom-color:#6d6862}
-.proto-bar__btn{
-  margin-left:auto;border:1px solid #4a4540;padding:5px 14px;
-  font-size:12px;letter-spacing:.06em;text-transform:uppercase;
-}
-.proto-bar__btn:hover{background:#2e2a26}
-body.notes-on .proto-bar__btn{background:#fff;color:var(--ink);border-color:#fff}
 
 /* ---------- комментарии ---------- */
 .note{display:none}
@@ -513,8 +496,18 @@ a.viewtabs__item:hover,button.viewtabs__item:hover{color:var(--ink)}
 
 /* слайдер фото на "О комплексе" — не ссылки, просто пролистать на месте,
    без перехода в отдельную галерею */
-.aboutgallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.aboutgallery-wrap{display:flex;align-items:center;gap:12px}
+.aboutgallery{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;
+}
+.aboutgallery::-webkit-scrollbar{display:none}
 .aboutgallery__item{flex:0 0 280px;aspect-ratio:4/3;scroll-snap-align:start}
+.aboutgallery__nav{flex:none;width:44px;height:44px;border:1px solid var(--line-2)}
+.aboutgallery__nav:hover{border-color:var(--ink)}
+.aboutgallery__nav::before{content:"";display:block;width:8px;height:8px;margin:0 auto;border:1px solid var(--ink);border-width:2px 2px 0 0}
+.aboutgallery__nav--prev::before{transform:rotate(-135deg) translate(1px,-1px)}
+.aboutgallery__nav--next::before{transform:rotate(45deg) translate(-1px,-1px)}
 
 .videobox{position:relative;aspect-ratio:16/9}
 .playmark{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border:1px solid var(--ink);border-radius:50%;background:var(--paper)}
@@ -891,12 +884,6 @@ button.msg{background:none;font:inherit;color:inherit;cursor:pointer}
 .fld textarea{width:100%;padding:12px 14px;border:1px solid var(--line-2);background:var(--paper);outline:none;resize:vertical}
 .fld textarea:focus{border-color:var(--ink)}
 
-/* переключатель состояний в панели прототипа */
-.proto-bar__states{display:flex;align-items:center;gap:8px;color:#a9a49e}
-.proto-bar__st{border:1px solid #4a4540;padding:4px 10px;font-size:11px;color:#cfcac4}
-.proto-bar__st:hover{background:#2e2a26}
-.proto-bar__st.is-active{background:#fff;color:var(--ink);border-color:#fff}
-
 /* ================= ФУТЕР ================= */
 .footer{background:var(--ink);color:#cfcac4;padding-top:64px}
 .footer__in{display:grid;grid-template-columns:280px 1fr;gap:64px;padding-bottom:48px}
@@ -1093,7 +1080,6 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .evfilters__row{overflow-x:auto;padding-bottom:2px}
   .evfilters__sep{display:none}
   .evfilters__count{margin-left:0}
-  .proto-bar__states{display:none}
   .catnav__item{grid-template-columns:1fr}
   .catnav__media{aspect-ratio:16/9}
   .brandsearch{width:100%}
@@ -1117,10 +1103,6 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .brands.scroller>*{flex:0 0 40%}
   .cookie{left:12px;right:12px;bottom:12px;padding:16px}
   .btn{height:48px;padding:0 22px}
-  .proto-bar{padding:0 12px;gap:10px}
-  .proto-bar__legend{display:none}
-  .proto-bar__title{font-size:10px}
-  .proto-bar__btn{padding:5px 10px;font-size:10px}
   .logo__img{height:42px}
 }
 /* ---------- тач-зоны на мобильном (п. 9.4) ----------
