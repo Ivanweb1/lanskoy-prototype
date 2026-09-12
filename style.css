@@ -943,6 +943,9 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   width:64px;height:64px;border-radius:50%;border:1px solid rgba(255,255,255,.6);
   display:flex;align-items:center;justify-content:center;
 }
+/* без этого правила [hidden] проигрывает display:flex выше — кнопка play
+   лезла и в режим фото, хотя её должно быть видно только у видео */
+.lightbox__play[hidden]{display:none}
 .lightbox__play::before{content:"";border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff;margin-left:4px}
 .lightbox__caption{margin-top:16px;color:#fff;font-size:15px}
 .lightbox__note{margin-top:6px;color:rgba(255,255,255,.55);font-size:13px}
