@@ -404,6 +404,10 @@ button.link--btn:hover{border-color:var(--ink)}
 
 /* ================= ВНУТРЕННИЕ СТРАНИЦЫ ================= */
 .sect--tight{padding-top:48px}
+/* article.html/cookie.html/privacy.html/terms.html открываются .sect--tight
+   вместо .pagehead — крошки в нём получали чужой отступ (48px). Сводим
+   к тому же 28px, что у .pagehead, только для этого самого верхнего блока */
+main > .sect--tight:first-child{padding-top:28px}
 
 .pagehead{padding:28px 0 0;border-bottom:1px solid var(--line)}
 .crumbs{font-size:13px;color:var(--mute);margin-bottom:26px}
