@@ -897,6 +897,53 @@ button.msg{background:none;font:inherit;color:inherit;cursor:pointer}
 .cookie.is-hidden{display:none}
 body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 
+/* ---------- лайтбокс: фото и видео поверх страницы ----------
+   Общая оболочка для двух режимов. .lightbox--photo — увеличенный
+   плейсхолдер фото (пока нет реальных изображений). .lightbox--video —
+   заглушка плеера: реального встраивания с видеохостинга ждём от
+   разработки (п. 6.9), здесь только показываем, что клик открывает
+   плеер, а не уводит со страницы. */
+.lightbox{position:fixed;inset:0;z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 88px}
+.lightbox[hidden]{display:none}
+.lightbox__backdrop{position:absolute;inset:0;background:rgba(22,22,22,.94)}
+.lightbox__close{
+  position:absolute;top:20px;right:24px;width:44px;height:44px;
+  border:1px solid rgba(255,255,255,.4);color:#fff;font-size:22px;line-height:1;
+}
+.lightbox__close:hover{border-color:#fff}
+.lightbox__nav{
+  position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;
+  border:1px solid rgba(255,255,255,.4);color:#fff;
+}
+.lightbox__nav:hover{border-color:#fff}
+.lightbox__nav:disabled{opacity:.25;cursor:default}
+.lightbox__nav:disabled:hover{border-color:rgba(255,255,255,.4)}
+.lightbox__nav::before{content:"";display:block;width:9px;height:9px;margin:0 auto;border:1px solid currentColor;border-width:2px 2px 0 0}
+.lightbox__nav--prev{left:20px}
+.lightbox__nav--prev::before{transform:rotate(-135deg) translate(1px,-1px)}
+.lightbox__nav--next{right:20px}
+.lightbox__nav--next::before{transform:rotate(45deg) translate(-1px,-1px)}
+.lightbox__stage{position:relative;z-index:1;width:100%;max-width:920px;text-align:center}
+.lightbox__ph{
+  aspect-ratio:16/10;background:var(--ph-2);
+  background-image:linear-gradient(135deg,rgba(255,255,255,.06) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.06) 50%,rgba(255,255,255,.06) 75%,transparent 75%);
+  background-size:16px 16px;display:flex;align-items:center;justify-content:center;
+}
+.lightbox--video .lightbox__ph{aspect-ratio:16/9;background:#2a2a2a;background-image:none}
+.lightbox__label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(22,22,22,.7);padding:5px 12px}
+.lightbox__play{
+  width:64px;height:64px;border-radius:50%;border:1px solid rgba(255,255,255,.6);
+  display:flex;align-items:center;justify-content:center;
+}
+.lightbox__play::before{content:"";border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff;margin-left:4px}
+.lightbox__caption{margin-top:16px;color:#fff;font-size:15px}
+.lightbox__note{margin-top:6px;color:rgba(255,255,255,.55);font-size:13px}
+.lightbox__counter{margin-top:20px;color:rgba(255,255,255,.6);font-size:13px;letter-spacing:var(--tr-cap)}
+
+/* элементы, открывающие лайтбокс, — те же плитки, что и раньше, просто кликабельны */
+[data-lightbox]{cursor:pointer}
+[data-lightbox]:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
 /* ================= АДАПТИВ ================= */
 @media(max-width:1440px){
   .nav__in{gap:30px}

@@ -168,3 +168,157 @@ document.querySelectorAll('[data-cookie]').forEach(function (b) {
     document.getElementById('cookie').classList.add('is-hidden');
   });
 });
+
+/* ---------- лайтбокс: фото и видео поверх страницы ----------
+   Один компонент на все галереи сайта — карточка магазина, страница
+   события, портфолио дизайнера, общая галерея и видео. Плитки уже
+   есть в разметке (см. shop.html/event.html/designer.html/gallery.html/
+   video.html) — здесь только навешивается интерактивность и модалка,
+   верстка плиток не меняется. */
+(function () {
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.hidden = true;
+  lb.innerHTML =
+    '<div class="lightbox__backdrop"></div>' +
+    '<button type="button" class="lightbox__close" aria-label="Закрыть">×</button>' +
+    '<button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Предыдущее"></button>' +
+    '<div class="lightbox__stage">' +
+      '<div class="lightbox__ph"><span class="lightbox__label"></span><span class="lightbox__play" hidden></span></div>' +
+      '<p class="lightbox__caption" hidden></p>' +
+      '<p class="lightbox__note" hidden></p>' +
+    '</div>' +
+    '<button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Следующее"></button>' +
+    '<p class="lightbox__counter"></p>';
+  document.body.appendChild(lb);
+
+  var els = {
+    label: lb.querySelector('.lightbox__label'),
+    play: lb.querySelector('.lightbox__play'),
+    caption: lb.querySelector('.lightbox__caption'),
+    note: lb.querySelector('.lightbox__note'),
+    counter: lb.querySelector('.lightbox__counter'),
+    prev: lb.querySelector('.lightbox__nav--prev'),
+    next: lb.querySelector('.lightbox__nav--next'),
+    close: lb.querySelector('.lightbox__close')
+  };
+
+  var state = { items: [], index: 0, opener: null };
+
+  function render() {
+    var item = state.items[state.index];
+    els.label.hidden = !item.boxLabel;
+    els.label.textContent = item.boxLabel || '';
+    els.play.hidden = !item.isVideo;
+    els.caption.hidden = !item.caption;
+    els.caption.textContent = item.caption || '';
+    els.note.hidden = !item.note;
+    els.note.textContent = item.note || '';
+    els.counter.textContent = (state.index + 1) + ' из ' + state.items.length;
+    els.prev.disabled = els.next.disabled = state.items.length < 2;
+  }
+
+  function open(items, index, opener) {
+    state.items = items;
+    state.index = index;
+    state.opener = opener || null;
+    lb.classList.toggle('lightbox--video', !!items[index].isVideo);
+    render();
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    els.close.focus();
+  }
+
+  function close() {
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    if (state.opener) state.opener.focus();
+  }
+
+  function step(dir) {
+    if (state.items.length < 2) return;
+    state.index = (state.index + dir + state.items.length) % state.items.length;
+    lb.classList.toggle('lightbox--video', !!state.items[state.index].isVideo);
+    render();
+  }
+
+  els.close.addEventListener('click', close);
+  lb.querySelector('.lightbox__backdrop').addEventListener('click', close);
+  els.prev.addEventListener('click', function () { step(-1); });
+  els.next.addEventListener('click', function () { step(1); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') step(-1);
+    else if (e.key === 'ArrowRight') step(1);
+  });
+
+  /* делает плитку доступной с клавиатуры и по клику открывающей лайтбокс */
+  function makeOpenable(el, onActivate) {
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('data-lightbox', '');
+    el.addEventListener('click', onActivate);
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onActivate(); }
+    });
+  }
+
+  /* ---------- фото: любая .gallery на странице (магазин, событие, дизайнер) ---------- */
+  document.querySelectorAll('.gallery').forEach(function (gal) {
+    var tiles = [].slice.call(gal.querySelectorAll('.gallery__item'));
+    if (!tiles.length) return;
+    var items = tiles.map(function (t) {
+      var label = t.querySelector('.ph__label');
+      return { boxLabel: label ? label.textContent : 'Фото' };
+    });
+    tiles.forEach(function (t, i) {
+      makeOpenable(t, function () { open(items, i, t); });
+    });
+  });
+
+  /* ---------- альбомы общей галереи: gallery.html ----------
+     У альбома в прототипе одна обложка, а не отдельные фото. Чтобы
+     показать саму механику «открыл альбом → пролистал», генерируем
+     столько слайдов, сколько заявлено в счётчике на обложке (или 3,
+     если счётчик — ph-mark, то есть число ещё не подтверждено). */
+  var albums = [].slice.call(document.querySelectorAll('#galGrid .album'));
+  albums.forEach(function (a) {
+    function activate() {
+      if (a.hidden) return;
+      var name = a.querySelector('.album__h');
+      name = name ? name.textContent : 'Альбом';
+      var nEl = a.querySelector('.album__n');
+      var n = (nEl && !nEl.classList.contains('ph-mark')) ? parseInt(nEl.textContent, 10) : 0;
+      if (!n) n = 3;
+      var items = [];
+      for (var i = 1; i <= n; i++) {
+        items.push({ boxLabel: 'Фото ' + i + ' из ' + n, caption: name });
+      }
+      open(items, 0, a);
+    }
+    makeOpenable(a, activate);
+  });
+
+  /* ---------- видео: video.html ----------
+     Открывает ту же оболочку, но в режиме плеера: реального видео нет,
+     показываем заглушку с кнопкой воспроизведения (см. п. 6.9, 13.5 —
+     решение по встраиванию с видеохостинга остаётся за разработкой). */
+  var vids = [].slice.call(document.querySelectorAll('#vidGrid .vid'));
+  vids.forEach(function (v) {
+    function activate() {
+      if (v.hidden) return;
+      var visible = vids.filter(function (x) { return !x.hidden; });
+      var items = visible.map(function (x) {
+        var h = x.querySelector('.vid__h');
+        return {
+          isVideo: true,
+          caption: h ? h.textContent : 'Видео',
+          note: 'Плеер подключится после встраивания с видеохостинга — см. комментарий к разделу'
+        };
+      });
+      open(items, visible.indexOf(v), v);
+    }
+    makeOpenable(v, activate);
+  });
+})();
