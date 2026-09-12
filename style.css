@@ -847,6 +847,10 @@ button.msg{background:none;font:inherit;color:inherit;cursor:pointer}
 /* ---------- лендинг аренды ---------- */
 .mb36{margin-bottom:36px}
 .renthero{border-bottom:1px solid var(--line)}
+/* крошки здесь лежат в отдельном .wrap перед .renthero__in, у которого
+   свой большой паддинг (72px) — без этого правила крошки прижаты
+   прямо к шапке, как на .pagehead они не бывают */
+.renthero > .wrap:not(.renthero__in){padding-top:28px}
 .renthero__in{display:grid;grid-template-columns:minmax(340px,46%) 1fr;gap:56px;align-items:center;
   padding-top:72px;padding-bottom:72px}
 .renthero__h1{font-size:clamp(32px,4vw,56px);line-height:1.08;margin-top:6px} /* 2. лендинги */

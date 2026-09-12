@@ -31,7 +31,6 @@
   var roomBody = document.getElementById('roomBody');
   var listBox = document.getElementById('floorList');
   var linkedCount = document.getElementById('linkedCount');
-  var busyCount = document.getElementById('busyCount');
   var freeCount = document.getElementById('freeCount');
 
   function rooms(n) { return FLOORS[n].rooms; }
@@ -107,7 +106,6 @@
 
     var busy = rooms(floor).filter(function (r) { return r[5]; }).length;
     linkedCount.textContent = names.length;
-    busyCount.textContent = busy;
     freeCount.textContent = rooms(floor).length - busy;
   }
 
