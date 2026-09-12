@@ -932,9 +932,13 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   :root{--pad:24px}
   .utility__info li:nth-child(2),.utility__info li:nth-child(4){display:none}
   .hero__in,.find,.pro,.rent__in,.subs__in,.journal{grid-template-columns:1fr;gap:36px}
-  /* .journal встаёт в одну колонку — обложка на всю ширину контента,
-     пропорция 4/3 от неё делает фото в рост экрана; берём ту же, что на мобильном */
-  .post--lead .post__media{aspect-ratio:16/10}
+  /* .journal (блок на главной) встаёт в одну колонку — обложка на всю ширину контента,
+     пропорция 4/3 от неё делает фото в рост экрана; берём ту же, что на мобильном.
+     Селектор нарочно ограничен .journal — тот же .post--lead используется и в
+     .postgrid на journal.html, но там при схлопывании в 2 колонки хватает 2/1 (см. ниже) */
+  .journal .post--lead .post__media{aspect-ratio:16/10}
+  /* .postgrid (страница journal.html): при 2 колонках лид занимает обе — тоже во всю ширину */
+  .postgrid .post--lead .post__media{aspect-ratio:21/9}
   /* фильтры уходят над результатами — сайдбар на планшете съедает ширину карточек */
   .catalog{grid-template-columns:1fr;gap:32px}
   .filters{border:1px solid var(--line);padding:4px 20px 20px}
