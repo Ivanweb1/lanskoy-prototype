@@ -197,8 +197,10 @@ button.link--btn:hover{border-color:var(--ink)}
 .field--hs input{height:44px;padding:0 48px 0 16px;font-size:14px}
 .field--hs .field__go{width:46px}
 .field--hs:focus-within{width:100%}
-/* выпадающие подсказки шире самого поля и прижаты к правому краю */
-.field--hs .suggest{left:auto;right:-1px;width:440px}
+/* на 1200-1440px поле уже (240px) — в ряд «название + метка» тесно
+   переносится в 2-3 строки, складываем их друг под другом */
+.field--hs .suggest__item{flex-direction:column;align-items:flex-start;gap:2px}
+.field--hs .suggest__meta{font-size:12px}
 .ic-search{
   display:none;position:relative;width:44px;height:44px;
   -webkit-mask-image:url('icon-search.svg');mask-image:url('icon-search.svg');
