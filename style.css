@@ -179,6 +179,14 @@ button.link--btn:hover{border-color:var(--ink)}
   content:"";position:absolute;left:50%;top:50%;width:8px;height:1px;
   margin:4px 0 0 2px;background:var(--ink);transform:rotate(45deg);
 }
+/* поле подписки — не поиск, значок должен быть «отправить», а не лупа */
+.field__go--submit::before{
+  width:16px;height:1px;border-radius:0;margin:-1px 0 0 -10px;background:var(--ink);border:0;
+}
+.field__go--submit::after{
+  width:7px;height:7px;margin:-4px 0 0 2px;background:none;
+  border:1px solid var(--ink);border-width:1px 1px 0 0;transform:rotate(45deg);
+}
 .check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13px;color:var(--mute);cursor:pointer}
 .check input{margin:2px 0 0}
 .check a{border-bottom:1px solid var(--line-2)}
