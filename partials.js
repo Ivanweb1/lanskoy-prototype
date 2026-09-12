@@ -211,8 +211,11 @@ var LNS = (function () {
   var f = document.getElementById('siteFooter');
   if (f) { f.className = 'footer'; f.innerHTML = footer(); }
 
-  var c = document.getElementById('siteCookie');
-  if (c) { c.className = 'cookie'; c.id = 'cookie'; c.innerHTML = cookie(); }
+  /* баннер cookie временно отключён по просьбе — мешал знакомиться с
+     макетами при показе. Сама механика (cookie.html, cookie()) осталась
+     нетронутой, включить обратно — раскомментировать блок ниже. */
+  // var c = document.getElementById('siteCookie');
+  // if (c) { c.className = 'cookie'; c.id = 'cookie'; c.innerHTML = cookie(); }
 
   return { categories: CATS };
 })();
