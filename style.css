@@ -173,11 +173,15 @@ button.link--btn:hover{border-color:var(--ink)}
 }
 .field__go::before{
   content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;
-  margin:-6px 0 0 -7px;border:1px solid var(--ink);border-radius:50%;
+  margin:-6px 0 0 -6px;border:1px solid var(--ink);border-radius:50%;
 }
+/* ручка лупы: transform-origin в точке касания окружности, а не по
+   центру — раньше ручка на глаз залезала внутрь круга примерно на 2px
+   вместо того чтобы начинаться точно на его границе */
 .field__go::after{
-  content:"";position:absolute;left:50%;top:50%;width:8px;height:1px;
-  margin:4px 0 0 2px;background:var(--ink);transform:rotate(45deg);
+  content:"";position:absolute;left:50%;top:50%;width:7px;height:1px;
+  background:var(--ink);transform-origin:0 50%;
+  transform:translate(4.3px,4.3px) rotate(45deg);
 }
 /* поле подписки — не поиск, значок должен быть «отправить», а не лупа */
 .field__go--submit::before{
