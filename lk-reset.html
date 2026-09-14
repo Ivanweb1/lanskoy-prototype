@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Восстановление пароля — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=51">
+</head>
+<body>
+
+<main id="main" tabindex="-1">
+  <div class="lkauth">
+
+    <div class="lkauth__side">
+      <div class="lkauth__in">
+
+        <a href="index.html" class="lkauth__logo">
+          <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">
+        </a>
+
+        <h1 class="lkauth__h1">Восстановление пароля</h1>
+        <p class="lkauth__lead">Укажите почту, на которую выдан доступ в кабинет. Пришлём ссылку для смены пароля — она действует один час.</p>
+
+        <form novalidate>
+          <label class="fld">
+            <span class="fld__lab">Рабочая почта</span>
+            <input type="email" name="email" autocomplete="username" placeholder="name@company.ru" required>
+            <span class="fld__err">Проверьте адрес</span>
+          </label>
+
+          <div class="lkauth__row">
+            <a href="lk-login.html" class="lkauth__mini">Вспомнил пароль</a>
+            <a href="lk-login.html" class="btn btn--primary">Прислать ссылку</a>
+          </div>
+        </form>
+
+        <div class="lkauth__foot">
+          Почта не подходит или доступа к ней больше нет? Такие случаи решает только администрация —
+          напишите на <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a> с рабочего адреса магазина
+          или позвоните на <a href="tel:+78124585900">+7 (812) 458-59-00</a>.
+        </div>
+
+        <p class="lkauth__back"><a href="index.html">Вернуться на сайт комплекса</a></p>
+      </div>
+    </div>
+
+    <div class="lkauth__media ph"><span class="ph__label">Фотография комплекса</span></div>
+  </div>
+
+  <aside class="note"><b>1. Состояние после отправки.</b> На месте формы появляется сообщение: «Если такая почта заведена в кабинете, письмо со ссылкой уже отправлено». Формулировка намеренно обтекаемая и одинаковая для существующего и несуществующего адреса — иначе форму можно использовать как проверку, какие магазины заведены в системе (п. 7.6). Там же кнопка «Отправить ещё раз» с таймером, как на экране с кодом.</aside>
+
+  <aside class="note"><b>2. Потеря доступа к почте — сценарий, который точно случится.</b> У магазинов почта часто общая и заведена на бывшего сотрудника. Автоматического пути восстановления здесь быть не может: п. 7.5 запрещает самостоятельную регистрацию, значит и смена контактного адреса проходит через администрацию. Поэтому телефон и почта администрации стоят прямо на экране, а не прячутся в разделе помощи. Порядок действий в этом случае стоит описать в инструкции для арендаторов (п. 12.5).</aside>
+
+  <aside class="note"><b>3. Что нужно от разработки.</b> Ссылка одноразовая и с коротким сроком жизни (здесь — час), после смены пароля все активные сессии арендатора завершаются, а доверенные устройства из п. 7.5 сбрасываются: иначе смена пароля не отрезает того, кто уже вошёл. Само письмо — транзакционное, через сервис из п. 13.1.</aside>
+</main>
+
+</body>
+</html>
