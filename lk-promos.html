@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Акции — кабинет арендатора — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=54">
+</head>
+<body>
+
+<div class="lkshell">
+  <aside id="lkSide" data-lk="promos"></aside>
+
+  <div class="lkcontent">
+  <main id="main" tabindex="-1" class="lkmain">
+
+    <div class="lkhead">
+      <div>
+        <h1 class="lkhead__h1">Акции</h1>
+        <p class="lkhead__sub">Ваши предложения на сайте комплекса. Акция снимается с публикации автоматически в день окончания срока.</p>
+      </div>
+      <div class="lkhead__acts">
+        <a href="lk-promo.html" class="btn btn--primary btn--sm">Создать акцию</a>
+      </div>
+    </div>
+
+    <div class="alert">
+      <p class="alert__t">«Скидка 15% на фрески» заканчивается через 15 дней</p>
+      30 сентября акция автоматически уйдёт из ленты на сайте. Если хотите продлить — измените дату окончания,
+      правка пройдёт проверку и срок обновится.
+    </div>
+
+    <section class="block">
+      <div class="block__head">
+        <h2 class="block__h2">Действующие</h2>
+        <span class="block__meta">2 акции опубликованы</span>
+      </div>
+
+      <div class="promorow">
+        <div>
+          <p class="promorow__n">Скидка 15% на фрески</p>
+          <p class="promorow__m">Создана 5 сентября · автоснятие включено</p>
+        </div>
+        <p class="promorow__d">5 сентября — 30 сентября<span>осталось 15 дней</span></p>
+        <span class="status status--ok">Опубликовано</span>
+        <p class="promorow__a"><a href="lk-promo.html" class="shot__act">Изменить</a></p>
+      </div>
+
+      <div class="promorow">
+        <div>
+          <p class="promorow__n">Бесплатный замер и консультация дизайнера</p>
+          <p class="promorow__m">Создана 20 августа · автоснятие включено</p>
+        </div>
+        <p class="promorow__d">20 августа — 31 октября<span>осталось 46 дней</span></p>
+        <span class="status status--ok">Опубликовано</span>
+        <p class="promorow__a"><a href="lk-promo.html" class="shot__act">Изменить</a></p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block__head">
+        <h2 class="block__h2">В работе</h2>
+        <span class="block__meta">Черновики и то, что ждёт проверки</span>
+      </div>
+
+      <div class="promorow">
+        <div>
+          <p class="promorow__n">Осенние цены на декоративную штукатурку</p>
+          <p class="promorow__m">Отправлена на проверку 14 сентября</p>
+        </div>
+        <p class="promorow__d">1 октября — 30 ноября<span>ещё не началась</span></p>
+        <span class="status status--wait">На проверке</span>
+        <p class="promorow__a"><a href="lk-promo.html" class="shot__act">Отозвать</a></p>
+      </div>
+
+      <div class="promorow">
+        <div>
+          <p class="promorow__n ph-mark">Без названия</p>
+          <p class="promorow__m">Черновик сохранён 12 сентября · не заполнены срок и описание</p>
+        </div>
+        <p class="promorow__d ph-mark">Срок не указан</p>
+        <span class="status status--draft">Черновик</span>
+        <p class="promorow__a"><a href="lk-promo.html" class="shot__act">Дописать</a></p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block__head">
+        <h2 class="block__h2">Завершённые</h2>
+        <a href="lk-log.html" class="more">Журнал изменений</a>
+      </div>
+
+      <div class="promorow promorow--off">
+        <div>
+          <p class="promorow__n">Летняя распродажа образцов</p>
+          <p class="promorow__m">Снята автоматически по окончании срока</p>
+        </div>
+        <p class="promorow__d">1 июня — 31 августа<span>завершена</span></p>
+        <span class="status status--draft">Не показывается</span>
+        <p class="promorow__a"><a href="lk-promo.html" class="shot__act">Повторить</a></p>
+      </div>
+    </section>
+
+    <aside class="note"><b>1. Срок — обязательное поле, и это требование ТЗ.</b> П. 6.7 прямо говорит про «автоснятие с публикации по дате окончания». Без даты автоснятие не работает, и лента акций на сайте за полгода превращается в кладбище просроченных предложений — ровно то, что происходит на действующем сайте, где сроков у акций нет вообще. Поэтому акцию нельзя отправить на проверку без даты окончания.</aside>
+
+    <aside class="note"><b>2. Предупреждение о скором окончании — предложение, которого нет в ТЗ.</b> Автоснятие полезно сайту, но для арендатора это неприятный сюрприз: акция «пропала» без объяснений. Блок сверху и письмо за неделю до окончания (транзакционное, через сервис из п. 13.1) снимают большую часть обращений в администрацию. Заодно это повод продлить акцию, то есть в интересах комплекса.</aside>
+
+    <aside class="note"><b>3. Завершённые акции не удаляются, а повторяются.</b> Сезонные предложения повторяются из года в год, и заставлять арендатора набирать всё заново незачем. Кнопка «Повторить» создаёт копию с новыми датами — она снова пройдёт проверку, как любая правка по п. 7.4.</aside>
+
+    <aside class="note"><b>4. Три группы вместо одного списка со сроками.</b> Действующие, в работе и завершённые — разные по смыслу: первое смотрят посетители, второе ждёт вас или модератора, третье это архив. В едином списке, отсортированном по дате, черновик без названия теряется между опубликованными, и о нём вспоминают через месяц.</aside>
+
+    <aside class="note"><b>5. Привязка к магазину не показана намеренно.</b> П. 6.7 требует привязку акции к арендатору, но в кабинете выбирать нечего: арендатор один и он известен по входу. Магазин, секция и телефон подтягиваются в акцию из карточки автоматически — дублировать эти поля в акции нельзя, иначе при переезде магазина данные разъедутся (то же решение описано на promo.html в публичной части).</aside>
+
+  </main>
+  </div>
+</div>
+
+<script src="lk-parts.js?v=54"></script>
+</body>
+</html>

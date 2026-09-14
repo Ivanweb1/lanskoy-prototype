@@ -58,7 +58,8 @@ h3,.card__title,.post__title,.shopcard__name,.cat__name,.evrow__name,
 }
 p{margin:0}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-input{font:inherit;color:inherit}
+/* textarea без этого приходит моноширинным шрифтом браузера */
+input,textarea,select{font:inherit;color:inherit}
 
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
 
@@ -1354,6 +1355,31 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
 .rows li{display:grid;grid-template-columns:190px minmax(0,1fr);gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
 .rows li:last-child{border-bottom:0}
 .rows__k{color:var(--mute);font-size:13px}
+
+/* ---------- список акций в кабинете ---------- */
+.promorow{
+  display:grid;grid-template-columns:minmax(0,1fr) 210px 160px 120px;gap:24px;align-items:center;
+  padding:18px 0;border-bottom:1px solid var(--line);
+}
+.promorow:first-of-type{border-top:1px solid var(--line)}
+.promorow__n{font-size:16px;font-weight:600;letter-spacing:var(--tr-h3);overflow-wrap:anywhere}
+.promorow__m{font-size:13px;color:var(--mute);margin-top:5px}
+.promorow__d{font-size:14px}
+.promorow__d span{display:block;font-size:12px;color:var(--mute);margin-top:4px}
+.promorow__a{text-align:right}
+.promorow--off .promorow__n{color:var(--mute)}
+
+@media(max-width:1000px){
+  .promorow{grid-template-columns:minmax(0,1fr) auto;gap:10px 20px}
+  .promorow__a{grid-column:2;grid-row:1}
+  .promorow__d,.promorow>.status{grid-column:1}
+}
+@media(max-width:760px){
+  .promorow{grid-template-columns:1fr;gap:10px}
+  .promorow__a{grid-column:1;grid-row:auto;text-align:left}
+  /* иначе плашка статуса растягивается ячейкой на всю ширину строки */
+  .promorow>.status{justify-self:start}
+}
 
 /* ---------- строки журнала ---------- */
 .logrow{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:24px;align-items:center;

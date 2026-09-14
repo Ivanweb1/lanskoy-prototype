@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Акция — кабинет арендатора — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=54">
+</head>
+<body>
+
+<div class="lkshell">
+  <aside id="lkSide" data-lk="promos"></aside>
+
+  <div class="lkcontent">
+  <main id="main" tabindex="-1" class="lkmain">
+
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="lk-promos.html">Акции</a>
+      <span class="crumbs__sep">/</span>
+      <span aria-current="page">Скидка 15% на фрески</span>
+    </nav>
+
+    <div class="lkhead">
+      <div>
+        <h1 class="lkhead__h1">Скидка 15% на фрески</h1>
+        <p class="lkhead__sub">Акция опубликована. Любая правка уйдёт на проверку, а на сайте до одобрения останется текущая версия.</p>
+      </div>
+      <div class="lkhead__acts">
+        <span class="status status--ok">Опубликовано</span>
+      </div>
+    </div>
+
+    <form class="lkform" novalidate>
+
+      <section class="block">
+        <h2 class="block__h2">Что предлагаете</h2>
+
+        <label class="fld">
+          <span class="fld__lab">Название акции</span>
+          <input type="text" value="Скидка 15% на фрески">
+          <span class="fld__hint">Коротко и по делу — название видно в общей ленте акций и в карточке магазина.</span>
+        </label>
+
+        <label class="fld">
+          <span class="fld__lab">Условия</span>
+          <textarea rows="5">Скидка 15% на все фрески из каталога при заказе от 20 000 ₽. Не суммируется с другими скидками. Действует при предъявлении акции на кассе.</textarea>
+          <span class="fld__hint">Опишите ограничения здесь. Если условие всплывёт только на кассе, претензии придут и магазину, и комплексу.</span>
+        </label>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Срок действия</h2>
+        <div class="lkfields">
+          <label class="fld">
+            <span class="fld__lab">Начало</span>
+            <input type="date" value="2026-09-05">
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Окончание</span>
+            <input type="date" value="2026-09-30">
+            <span class="fld__hint">Обязательное поле: в этот день акция автоматически уйдёт с сайта.</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Изображение</h2>
+        <div class="logoedit">
+          <div class="logoedit__box ph"><span class="ph__label">Фото акции</span></div>
+          <div>
+            <p class="block__note">Показывается в ленте акций и на главной странице сайта. Если изображения нет, акция попадёт в ленту текстовой карточкой — её открывают заметно реже.</p>
+            <p class="fld__hint ph-mark">JPG, PNG или WebP · до 10 МБ · горизонтальное, не меньше 1600 px по длинной стороне</p>
+            <div class="logoedit__acts">
+              <button type="button" class="btn btn--ghost btn--sm">Загрузить изображение</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Магазин</h2>
+        <ul class="rows">
+          <li><span class="rows__k">Магазин</span><span>VLADART STUDIO</span></li>
+          <li><span class="rows__k">Расположение</span><span>Секция А10 · 1 этаж</span></li>
+          <li><span class="rows__k">Телефон</span><span class="ph-mark">подтянется из карточки магазина</span></li>
+        </ul>
+        <p class="block__note">Эти данные берутся из вашей карточки и обновляются вместе с ней — отдельно в акции их менять не нужно.</p>
+      </section>
+
+      <div class="formbar">
+        <p class="formbar__t">Черновик сохраняется автоматически. Изменения появятся на сайте после проверки.</p>
+        <button type="button" class="btn btn--ghost btn--sm">Снять с публикации</button>
+        <a href="lk-promos.html" class="btn btn--primary btn--sm">Отправить на проверку</a>
+      </div>
+
+    </form>
+
+    <aside class="note"><b>1. Дата окончания — обязательная, без неё акцию не отправить.</b> П. 6.7 требует автоснятие по дате, а оно возможно, только если дата есть у каждой акции. На действующем сайте сроков нет вообще, поэтому при переносе контента дату придётся проставлять вручную — это отдельная задача миграции по п. 11.2.</aside>
+
+    <aside class="note"><b>2. Условия — в поле, а не в названии.</b> Арендаторы склонны писать «Скидка 15%», а ограничения («от 20 000 ₽», «не суммируется») сообщать уже на кассе. Для комплекса это репутационная проблема: акция выглядит как предложение ТК. Отдельное поле с подсказкой заставляет проговорить ограничения заранее, а пользовательское соглашение (terms.html) отдельно фиксирует, что за условия отвечает магазин.</aside>
+
+    <aside class="note"><b>3. «Снять с публикации» — не удаление.</b> Кнопка убирает акцию с сайта, но оставляет её в разделе завершённых, откуда её можно повторить. Полное удаление здесь не предусмотрено: акция это часть истории изменений по п. 7.4, и журнал не должен ссылаться на несуществующие записи.</aside>
+
+    <aside class="note"><b>4. Отдельная очередь модерации для акций — вопрос к заказчику.</b> Акция обычно срочная: распродажа начинается в пятницу, и ждать проверки наравне со сменой логотипа арендатору тяжело. В ТЗ разделения нет — все правки идут одним потоком (п. 7.4). Стоит решить, делать ли для акций приоритетную очередь или хотя бы обещанный срок проверки, иначе арендаторы будут звонить администрации с просьбой «посмотрите быстрее».</aside>
+
+  </main>
+  </div>
+</div>
+
+<script src="lk-parts.js?v=54"></script>
+</body>
+</html>
