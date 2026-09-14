@@ -1141,17 +1141,21 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
    здесь только сбивает. Компоненты берутся из общей системы
    (.btn, .fld, .panel, .tag), чтобы кабинет не выглядел чужим. */
 
-/* ---------- экраны входа ---------- */
-.lkauth{
-  min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:48px var(--pad);background:var(--paper-2);
-}
-.lkauth__in{width:100%;max-width:430px}
-.lkauth__logo{display:flex;justify-content:center;margin-bottom:30px}
-.lkauth__box{background:var(--paper);border:1px solid var(--line);padding:38px 36px}
-.lkauth__h1{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.15;letter-spacing:var(--tr-h2)}
-.lkauth__lead{font-size:14px;line-height:1.6;color:var(--mute);margin:10px 0 26px}
+/* ---------- экраны входа ----------
+   Две половины: слева вход, справа фотография во всю высоту. Фото здесь
+   не украшение — п. 9.1 требует акцент на качественной фотографии, а вход
+   это единственный экран закрытой части, где она уместна и где у человека
+   есть секунда её увидеть. */
+.lkauth{min-height:100vh;display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);background:var(--paper)}
+.lkauth__side{display:flex;align-items:center;justify-content:center;padding:56px var(--pad)}
+/* диагональный срез — приём из брендбука: он же держит первый экран
+   главной. Здесь отделяет рабочую часть от фотографии, чтобы вход
+   не читался как половинка, разрезанная линейкой */
+.lkauth__media{position:relative;min-height:100%;clip-path:polygon(14% 0,100% 0,100% 100%,0 100%)}
+.lkauth__in{width:100%;max-width:400px}
+.lkauth__logo{display:flex;margin-bottom:46px}
+.lkauth__h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,2.6vw,36px);line-height:1.15;letter-spacing:var(--tr-h2)}
+.lkauth__lead{font-size:14px;line-height:1.6;color:var(--mute);margin:12px 0 30px}
 .lkauth__row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
 .lkauth__mini{font-size:13px;color:var(--mute);border-bottom:1px solid var(--line-2);padding-bottom:1px}
 .lkauth__mini:hover{color:var(--ink);border-color:var(--ink)}
@@ -1161,7 +1165,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 }
 .lkauth__foot a{border-bottom:1px solid var(--line-2)}
 .lkauth__foot a:hover{color:var(--ink);border-color:var(--ink)}
-.lkauth__back{display:block;margin-top:22px;text-align:center;font-size:13px;color:var(--mute)}
+.lkauth__back{display:block;margin-top:22px;font-size:13px;color:var(--mute)}
 .lkauth__back a{border-bottom:1px solid var(--line-2)}
 .lkauth__back a:hover{color:var(--ink);border-color:var(--ink)}
 
@@ -1176,7 +1180,14 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 .alert__t{font-weight:600;color:var(--ink);margin-bottom:3px}
 .alert--quiet{border-left-color:var(--line-2)}
 
+/* фотография уходит первой: на узком экране она отжимает форму за сгиб,
+   а пользы от неё там нет */
+@media(max-width:1000px){
+  .lkauth{grid-template-columns:1fr}
+  .lkauth__media{display:none}
+}
 @media(max-width:760px){
-  .lkauth{padding:32px 20px;min-height:auto}
-  .lkauth__box{padding:28px 22px}
+  .lkauth{min-height:auto}
+  .lkauth__side{padding:40px 20px}
+  .lkauth__logo{margin-bottom:34px}
 }

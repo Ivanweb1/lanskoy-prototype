@@ -12,48 +12,53 @@
 </head>
 <body>
 
-<main id="main" tabindex="-1" class="lkauth">
-  <div class="lkauth__in">
+<main id="main" tabindex="-1">
+  <div class="lkauth">
 
-    <a href="index.html" class="lkauth__logo">
-      <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">
-    </a>
+    <div class="lkauth__side">
+      <div class="lkauth__in">
 
-    <div class="lkauth__box">
-      <h1 class="lkauth__h1">Кабинет арендатора</h1>
-      <p class="lkauth__lead">Здесь магазин обновляет свои контакты, акции, фото и видео. Изменения публикуются после проверки администрацией.</p>
+        <a href="index.html" class="lkauth__logo">
+          <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">
+        </a>
 
-      <form novalidate>
-        <label class="fld">
-          <span class="fld__lab">Рабочая почта</span>
-          <input type="email" name="email" autocomplete="username" placeholder="name@company.ru" required>
-          <span class="fld__err">Проверьте адрес — вход по почте, на которую выдан доступ</span>
-        </label>
+        <h1 class="lkauth__h1">Кабинет арендатора</h1>
+        <p class="lkauth__lead">Здесь магазин обновляет свои контакты, акции, фото и видео. Изменения публикуются после проверки администрацией.</p>
 
-        <label class="fld">
-          <span class="fld__lab">Пароль</span>
-          <input type="password" name="password" autocomplete="current-password" required>
-          <span class="fld__err">Неверная почта или пароль</span>
-        </label>
+        <form novalidate>
+          <label class="fld">
+            <span class="fld__lab">Рабочая почта</span>
+            <input type="email" name="email" autocomplete="username" placeholder="name@company.ru" required>
+            <span class="fld__err">Проверьте адрес — вход по почте, на которую выдан доступ</span>
+          </label>
 
-        <div class="lkauth__row">
-          <a href="lk-reset.html" class="lkauth__mini">Забыли пароль?</a>
-          <a href="lk-code.html" class="btn btn--primary">Войти</a>
+          <label class="fld">
+            <span class="fld__lab">Пароль</span>
+            <input type="password" name="password" autocomplete="current-password" required>
+            <span class="fld__err">Неверная почта или пароль</span>
+          </label>
+
+          <div class="lkauth__row">
+            <a href="lk-reset.html" class="lkauth__mini">Забыли пароль?</a>
+            <a href="lk-code.html" class="btn btn--primary">Войти</a>
+          </div>
+        </form>
+
+        <div class="lkauth__foot">
+          Доступ в кабинет выдаёт администрация комплекса — самостоятельной регистрации нет.
+          Если магазин уже работает в ТК, но доступа нет, напишите на
+          <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>.
         </div>
-      </form>
 
-      <div class="lkauth__foot">
-        Доступ в кабинет выдаёт администрация комплекса — самостоятельной регистрации нет.
-        Если магазин уже работает в ТК, но доступа нет, напишите на
-        <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>.
-      </div>
+        <div class="lkauth__foot">
+          Хотите арендовать помещение? Это другой раздел — <a href="rent.html">условия аренды и заявка</a>.
+        </div>
 
-      <div class="lkauth__foot">
-        Хотите арендовать помещение? Это другой раздел — <a href="rent.html">условия аренды и заявка</a>.
+        <p class="lkauth__back"><a href="index.html">Вернуться на сайт комплекса</a></p>
       </div>
     </div>
 
-    <p class="lkauth__back"><a href="index.html">Вернуться на сайт комплекса</a></p>
+    <div class="lkauth__media ph"><span class="ph__label">Фотография комплекса</span></div>
   </div>
 
   <aside class="note"><b>1. Регистрации здесь нет — и это требование, а не упрощение.</b> П. 7.5 прямо запрещает свободную самостоятельную регистрацию арендаторов: доступ выдаёт администрация. Поэтому вместо привычной ссылки «Создать аккаунт» — объяснение, как получить доступ, и почта администрации. Без этого текста человек будет искать кнопку регистрации и звонить в ТК.</aside>
