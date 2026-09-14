@@ -1,5 +1,5 @@
-/* Оболочка кабинета арендатора: верхняя строка и боковое меню.
-   Подставляются в <div id="lkBar"> и <nav id="lkNav" data-lk="...">.
+/* Боковая панель кабинета арендатора.
+   Подставляется в <aside id="lkSide" data-lk="...">.
    Публичный header сюда не тянем сознательно: кабинет — рабочий
    инструмент, мегаменю и поиск по сайту в нём только мешают.
    app.js на страницах кабинета не подключается — он рассчитан на
@@ -23,23 +23,6 @@
     { key: 'account', label: 'Аккаунт и вход', href: 'lk-account.html' }
   ];
 
-  function bar() {
-    return '' +
-'  <div class="lkbar__in">' +
-'    <a href="lk.html" class="lkbar__logo">' +
-'      <img src="logo.svg" alt="ТК «Ланской» — кабинет арендатора" class="logo__img" width="205" height="64">' +
-'    </a>' +
-'    <div class="lkbar__shop">' +
-'      <span class="lkbar__name">' + SHOP.name + '</span>' +
-'      <span class="lkbar__place">' + SHOP.place + '</span>' +
-'    </div>' +
-'    <div class="lkbar__acts">' +
-'      <a href="shop.html" class="lkbar__link lkbar__link--site">Карточка на сайте</a>' +
-'      <a href="lk-login.html" class="lkbar__link">Выйти</a>' +
-'    </div>' +
-'  </div>';
-  }
-
   function nav(active) {
     return NAV.map(function (i) {
       if (i.t) return '<p class="lknav__t">' + i.t + '</p>';
@@ -48,10 +31,25 @@
     }).join('');
   }
 
-  var b = document.getElementById('lkBar');
-  if (b) { b.className = 'lkbar'; b.innerHTML = bar(); }
+  function side(active) {
+    return '' +
+'  <div class="lkside__top">' +
+'    <a href="lk.html" class="lkside__logo">' +
+'      <img src="logo.svg" alt="ТК «Ланской» — кабинет арендатора" class="logo__img" width="205" height="64">' +
+'    </a>' +
+'  </div>' +
+'  <nav class="lkside__nav" aria-label="Разделы кабинета">' + nav(active) + '</nav>' +
+'  <div class="lkside__foot">' +
+'    <p class="lkside__name">' + SHOP.name + '</p>' +
+'    <p class="lkside__place">' + SHOP.place + '</p>' +
+'    <div class="lkside__links">' +
+'      <a href="shop.html">Карточка на сайте</a>' +
+'      <a href="lk-login.html">Выйти</a>' +
+'    </div>' +
+'  </div>';
+  }
 
-  var n = document.getElementById('lkNav');
-  if (n) { n.className = 'lknav'; n.innerHTML = nav(n.dataset.lk || ''); }
+  var s = document.getElementById('lkSide');
+  if (s) { s.className = 'lkside'; s.innerHTML = side(s.dataset.lk || ''); }
 
 })();
