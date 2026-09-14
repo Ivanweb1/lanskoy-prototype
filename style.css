@@ -1169,6 +1169,17 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 .lkauth__back a{border-bottom:1px solid var(--line-2)}
 .lkauth__back a:hover{color:var(--ink);border-color:var(--ink)}
 
+/* ---------- ввод кода подтверждения (2FA, п. 7.5) ---------- */
+.codebox{display:flex;gap:10px}
+.codebox input{
+  width:54px;height:62px;padding:0;text-align:center;
+  font-family:var(--serif);font-size:24px;font-weight:500;
+  border:1px solid var(--line-2);background:var(--paper);outline:none;
+}
+.codebox input:focus{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.codehint{font-size:13px;color:var(--mute);margin-top:12px}
+.codehint b{color:var(--ink);font-weight:600}
+
 /* ---------- состояния и сообщения кабинета ----------
    в отличие от .note это не комментарий к макету, а часть интерфейса:
    видно всегда, потому что несёт статус модерации и ошибки */
@@ -1190,4 +1201,6 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
   .lkauth{min-height:auto}
   .lkauth__side{padding:40px 20px}
   .lkauth__logo{margin-bottom:34px}
+  .codebox{gap:8px}
+  .codebox input{width:46px;height:56px;font-size:21px}
 }

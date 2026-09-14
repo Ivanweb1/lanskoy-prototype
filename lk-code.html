@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подтверждение входа — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=51">
+</head>
+<body>
+
+<main id="main" tabindex="-1">
+  <div class="lkauth">
+
+    <div class="lkauth__side">
+      <div class="lkauth__in">
+
+        <a href="index.html" class="lkauth__logo">
+          <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">
+        </a>
+
+        <h1 class="lkauth__h1">Подтвердите вход</h1>
+        <p class="lkauth__lead">Мы отправили код на <b>v•••••t@vladart.ru</b>. Он действует 10 минут.</p>
+
+        <form novalidate>
+          <div class="codebox">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 1" autocomplete="one-time-code">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 2">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 3">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 4">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 5">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Цифра 6">
+          </div>
+          <p class="codehint">Отправить код ещё раз можно через <b>00:47</b></p>
+
+          <label class="check">
+            <input type="checkbox">
+            <span>Не спрашивать код на этом устройстве 30 дней</span>
+          </label>
+
+          <div class="lkauth__row">
+            <a href="lk-login.html" class="lkauth__mini">Другая почта</a>
+            <a href="lk.html" class="btn btn--primary">Подтвердить</a>
+          </div>
+        </form>
+
+        <div class="lkauth__foot">
+          Письмо не пришло? Проверьте папку «Спам». Если кода нет и там — напишите на
+          <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>, администрация проверит адрес,
+          на который выдан доступ.
+        </div>
+
+        <p class="lkauth__back"><a href="index.html">Вернуться на сайт комплекса</a></p>
+      </div>
+    </div>
+
+    <div class="lkauth__media ph"><span class="ph__label">Фотография комплекса</span></div>
+  </div>
+
+  <aside class="note"><b>1. Второй фактор обязателен по ТЗ.</b> П. 7.5 и 12.2 требуют 2FA для арендаторов. Способ в ТЗ не назван — здесь показан код на рабочую почту, потому что она и так известна: это единственный канал, который точно есть у каждого арендатора и не требует собирать мобильные номера сотрудников и хранить их как персональные данные. Если заказчик хочет СМС или приложение-аутентификатор, экран останется тем же, поменяется только строка «куда отправили».</aside>
+
+  <aside class="note"><b>2. «Не спрашивать код 30 дней» — предложение, которого нет в ТЗ.</b> Арендатор заходит в кабинет часто и с одного и того же компьютера в магазине. Если требовать код каждый раз, через месяц начнутся просьбы «отключите эту штуку». Доверенное устройство снимает раздражение, не ломая требование: второй фактор остаётся обязательным на новом устройстве и после смены пароля.</aside>
+
+  <aside class="note"><b>3. Адрес показан частично.</b> Полная почта на этом экране — лишняя подсказка тому, кто подобрал пароль. Маска даёт узнать свой ящик, но не выдаёт чужой. По той же причине таймер повторной отправки жёсткий: без него код можно запрашивать пачками (п. 7.6 — защита от перебора).</aside>
+
+  <aside class="note"><b>4. Что нужно решить с разработкой.</b> Сколько живёт код и сколько попыток ввода даётся до блокировки — здесь показаны 10 минут и один код за 47 секунд, это условные значения. Плюс сценарий, который легко забыть: человек потерял доступ и к паролю, и к почте. Восстановление в этом случае может быть только через администрацию, вручную — стоит описать это в инструкции для арендаторов (п. 12.5).</aside>
+</main>
+
+</body>
+</html>
