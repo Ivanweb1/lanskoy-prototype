@@ -1203,7 +1203,10 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 .lknav__i.is-current .lknav__n{color:#fff;border-color:rgba(255,255,255,.45)}
 
 .lkcontent{flex:1;min-width:0}
-.lkmain{max-width:1120px;padding:44px var(--pad) 90px}
+/* потолок высокий: в кабинете работают с таблицами и списками, и упирать
+   их в узкую колонку незачем — пустое поле справа читается как обрыв
+   вёрстки. Ограничение включается только на очень широких мониторах */
+.lkmain{max-width:1560px;padding:44px var(--pad) 90px}
 
 .lkhead{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-bottom:26px;margin-bottom:30px;border-bottom:1px solid var(--line)}
 .lkhead__h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,2.6vw,36px);line-height:1.12;letter-spacing:var(--tr-h2)}
@@ -1231,8 +1234,13 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
 .status--stop{border-color:var(--ink)}
 .status--stop::before{background:var(--ink);transform:rotate(45deg)}
 
-/* ---------- плитки разделов кабинета ---------- */
+/* ---------- плитки разделов кабинета ----------
+   2×2 на ноутбуке, в ряд на широком мониторе. Через auto-fit получалось
+   3+1 — одинокая плитка во втором ряду выглядит как ошибка вёрстки */
 .lktiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media(min-width:1500px){
+  .lktiles{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
 .lktile{display:flex;flex-direction:column;border:1px solid var(--line);padding:24px;background:var(--paper)}
 .lktile:hover{border-color:var(--ink)}
 .lktile__h{font-size:17px;font-weight:600;letter-spacing:var(--tr-h3)}
