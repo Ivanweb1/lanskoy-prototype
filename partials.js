@@ -56,7 +56,7 @@ var LNS = (function () {
 '      </ul>' +
 '      <ul class="utility__actions">' +
 '        <li><a href="rent.html" class="btn btn--ghost btn--sm">Аренда</a></li>' +
-'        <li><a href="#" class="utility__login">Войти в кабинет</a></li>' +
+'        <li><a href="lk-login.html" class="utility__login">Войти в кабинет</a></li>' +
 '      </ul>' +
 '    </div>' +
 '  </div>' +
@@ -182,7 +182,7 @@ var LNS = (function () {
 '        <li><a href="journal.html">Журнал</a></li></ul></div>' +
 '      <div><p class="footer__title">Комплекс</p><ul>' +
 '        <li><a href="about.html">О комплексе</a></li><li><a href="rent.html">Аренда</a></li>' +
-'        <li><a href="contacts.html">Контакты</a></li><li><a href="#">Войти в кабинет</a></li></ul></div>' +
+'        <li><a href="contacts.html">Контакты</a></li><li><a href="lk-login.html">Войти в кабинет</a></li></ul></div>' +
 '    </div>' +
 '  </div>' +
 '  <div class="wrap footer__legal">' +

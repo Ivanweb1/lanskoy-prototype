@@ -1134,3 +1134,49 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 }
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ================= КАБИНЕТ АРЕНДАТОРА =================
+   Закрытая часть (п. 5.2). Своя оболочка без мегаменю и подвала:
+   кабинет — рабочий инструмент, а не витрина, и публичная навигация
+   здесь только сбивает. Компоненты берутся из общей системы
+   (.btn, .fld, .panel, .tag), чтобы кабинет не выглядел чужим. */
+
+/* ---------- экраны входа ---------- */
+.lkauth{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:48px var(--pad);background:var(--paper-2);
+}
+.lkauth__in{width:100%;max-width:430px}
+.lkauth__logo{display:flex;justify-content:center;margin-bottom:30px}
+.lkauth__box{background:var(--paper);border:1px solid var(--line);padding:38px 36px}
+.lkauth__h1{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.15;letter-spacing:var(--tr-h2)}
+.lkauth__lead{font-size:14px;line-height:1.6;color:var(--mute);margin:10px 0 26px}
+.lkauth__row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
+.lkauth__mini{font-size:13px;color:var(--mute);border-bottom:1px solid var(--line-2);padding-bottom:1px}
+.lkauth__mini:hover{color:var(--ink);border-color:var(--ink)}
+.lkauth__foot{
+  margin-top:26px;padding-top:22px;border-top:1px solid var(--line);
+  font-size:13px;line-height:1.65;color:var(--mute);
+}
+.lkauth__foot a{border-bottom:1px solid var(--line-2)}
+.lkauth__foot a:hover{color:var(--ink);border-color:var(--ink)}
+.lkauth__back{display:block;margin-top:22px;text-align:center;font-size:13px;color:var(--mute)}
+.lkauth__back a{border-bottom:1px solid var(--line-2)}
+.lkauth__back a:hover{color:var(--ink);border-color:var(--ink)}
+
+/* ---------- состояния и сообщения кабинета ----------
+   в отличие от .note это не комментарий к макету, а часть интерфейса:
+   видно всегда, потому что несёт статус модерации и ошибки */
+.alert{
+  border:1px solid var(--line);border-left:3px solid var(--ink);
+  background:var(--paper-2);padding:14px 16px;margin-bottom:20px;
+  font-size:13px;line-height:1.6;color:var(--ink-2);
+}
+.alert__t{font-weight:600;color:var(--ink);margin-bottom:3px}
+.alert--quiet{border-left-color:var(--line-2)}
+
+@media(max-width:760px){
+  .lkauth{padding:32px 20px;min-height:auto}
+  .lkauth__box{padding:28px 22px}
+}
