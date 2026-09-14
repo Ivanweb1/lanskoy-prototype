@@ -1169,6 +1169,109 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 .lkauth__back a{border-bottom:1px solid var(--line-2)}
 .lkauth__back a:hover{color:var(--ink);border-color:var(--ink)}
 
+/* ---------- оболочка кабинета: шапка и боковое меню ---------- */
+.lkbar{position:sticky;top:0;z-index:90;background:var(--paper);border-bottom:1px solid var(--line)}
+.lkbar__in{display:flex;align-items:center;gap:28px;height:72px;max-width:1560px;margin:0 auto;padding:0 var(--pad)}
+.lkbar__logo{display:flex;flex:none}
+.lkbar__logo .logo__img{height:42px}
+.lkbar__shop{display:flex;flex-direction:column;gap:2px;padding-left:28px;border-left:1px solid var(--line);min-width:0}
+.lkbar__name{font-weight:600;font-size:14px;letter-spacing:var(--tr-h3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lkbar__place{font-size:12px;color:var(--mute)}
+.lkbar__acts{display:flex;align-items:center;gap:22px;margin-left:auto;flex:none}
+.lkbar__link{font-size:13px;color:var(--mute);border-bottom:1px solid var(--line-2);padding-bottom:1px}
+.lkbar__link:hover{color:var(--ink);border-color:var(--ink)}
+
+.lklayout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:56px;max-width:1560px;margin:0 auto;padding:40px var(--pad) 90px}
+.lknav{position:sticky;top:104px;align-self:start}
+.lknav__t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:0 0 14px}
+.lknav__t+.lknav__t{margin-top:30px}
+.lknav__i{display:flex;align-items:center;gap:10px;padding:10px 0;font-size:15px;color:var(--ink-2);border-bottom:1px solid transparent}
+.lknav__i:hover{color:var(--ink)}
+.lknav__i.is-current{color:var(--ink);font-weight:600}
+.lknav__i.is-current::before{content:"";width:3px;height:16px;background:var(--ink);margin-left:-12px;margin-right:-1px}
+.lknav__n{margin-left:auto;font-size:12px;color:var(--mute);border:1px solid var(--line-2);min-width:22px;height:20px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px}
+
+.lkhead{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-bottom:26px;margin-bottom:30px;border-bottom:1px solid var(--line)}
+.lkhead__h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,2.6vw,36px);line-height:1.12;letter-spacing:var(--tr-h2)}
+.lkhead__sub{font-size:14px;color:var(--mute);margin-top:10px;max-width:60ch;line-height:1.6}
+.lkhead__acts{display:flex;gap:10px;flex-wrap:wrap}
+
+.lksect{margin-top:44px}
+
+/* ссылка внутри предложения: .link по умолчанию капсом и мельче текста —
+   в строке абзаца это читается как кнопка, а не как ссылка */
+.link--inline{font-size:inherit;font-weight:inherit;letter-spacing:0;text-transform:none}
+
+/* заметки к макету внутри кабинета не должны отбивать себе поля страницы */
+body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
+
+/* ---------- статусы модерации (п. 7.4) ----------
+   в Ч/Б различаются формой маркера, а не цветом: на цветном этапе
+   маркеры получат цвета, но макет обязан читаться и без них */
+.status{display:inline-flex;align-items:center;gap:9px;height:28px;padding:0 12px;
+  border:1px solid var(--line-2);font-size:12px;letter-spacing:.03em;white-space:nowrap}
+.status::before{content:"";width:8px;height:8px;border:1px solid var(--ink);flex:none}
+.status--ok::before{background:var(--ink)}
+.status--wait::before{background:repeating-linear-gradient(45deg,var(--ink) 0 2px,transparent 2px 4px)}
+.status--draft::before{border-style:dashed}
+.status--stop{border-color:var(--ink)}
+.status--stop::before{background:var(--ink);transform:rotate(45deg)}
+
+/* ---------- плитки разделов кабинета ---------- */
+.lktiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.lktile{display:flex;flex-direction:column;border:1px solid var(--line);padding:24px;background:var(--paper)}
+.lktile:hover{border-color:var(--ink)}
+.lktile__h{font-size:17px;font-weight:600;letter-spacing:var(--tr-h3)}
+.lktile__t{font-size:13px;line-height:1.6;color:var(--mute);margin:8px 0 18px}
+.lktile__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto}
+
+/* ---------- таблица «поле — значение» для полей администрации ---------- */
+.rows li{display:grid;grid-template-columns:190px minmax(0,1fr);gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rows li:last-child{border-bottom:0}
+.rows__k{color:var(--mute);font-size:13px}
+
+/* ---------- строки журнала ---------- */
+.logrow{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:24px;align-items:center;
+  padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
+.logrow:first-child{border-top:1px solid var(--line)}
+.logrow__d{font-size:13px;color:var(--mute)}
+.logrow__t{color:var(--ink-2);line-height:1.5}
+
+@media(max-width:1200px){
+  .lklayout{grid-template-columns:210px minmax(0,1fr);gap:36px}
+}
+/* боковое меню на узком экране становится строкой: восемь пунктов
+   столбиком отжимали содержимое раздела на целый экран вниз */
+@media(max-width:1000px){
+  .lklayout{grid-template-columns:1fr;gap:22px;padding-top:24px}
+  .lknav{
+    position:static;display:flex;gap:24px;overflow-x:auto;
+    border-bottom:1px solid var(--line);
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .lknav::-webkit-scrollbar{display:none}
+  .lknav__t{display:none}
+  .lknav__i{padding:4px 0 12px;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .lknav__i.is-current{border-bottom-color:var(--ink)}
+  .lknav__i.is-current::before{display:none}
+  .lknav__n{margin-left:8px}
+  .lktiles{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .lkbar__in{height:60px;gap:14px;padding:0 20px}
+  .lkbar__logo .logo__img{height:32px}
+  .lkbar__shop{padding-left:14px}
+  /* этаж и секция уходят: в строку на 375px они переносятся в три
+     строки и наезжают на кнопку выхода. Название магазина остаётся —
+     по нему видно, чью карточку правишь */
+  .lkbar__place{display:none}
+  .lkbar__link--site{display:none}
+  .lkbar__acts{gap:14px}
+  .lklayout{padding:24px 20px 64px}
+  .rows li{grid-template-columns:1fr;gap:4px;padding:14px 0}
+  .logrow{grid-template-columns:1fr;gap:6px;padding:16px 0}
+}
+
 /* ---------- ввод кода подтверждения (2FA, п. 7.5) ---------- */
 .codebox{display:flex;gap:10px}
 .codebox input{

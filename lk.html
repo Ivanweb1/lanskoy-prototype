@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Обзор — кабинет арендатора — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=51">
+</head>
+<body>
+
+<div id="lkBar"></div>
+
+<div class="lklayout">
+  <nav id="lkNav" data-lk="overview" aria-label="Разделы кабинета"></nav>
+
+  <main id="main" tabindex="-1" class="lkmain">
+
+    <div class="lkhead">
+      <div>
+        <h1 class="lkhead__h1">Обзор</h1>
+        <p class="lkhead__sub">Что сейчас опубликовано, что ждёт проверки и что нужно поправить.</p>
+      </div>
+      <div class="lkhead__acts">
+        <a href="lk-preview.html" class="btn btn--ghost btn--sm">Предпросмотр карточки</a>
+        <a href="lk-card.html" class="btn btn--primary btn--sm">Редактировать</a>
+      </div>
+    </div>
+
+    <div class="alert">
+      <p class="alert__t">Правка отклонена — нужно исправить</p>
+      Контент-менеджер вернул изменение контактов 12 сентября с комментарием:
+      «Телефон указан без кода города, добавьте +7 (812)».
+      <a href="lk-card.html" class="link link--inline">Открыть и поправить</a>
+    </div>
+
+    <div class="alert alert--quiet">
+      <p class="alert__t">На проверке</p>
+      Три новые фотографии отправлены на модерацию 14 сентября. Пока проверка не пройдена,
+      на сайте показывается предыдущая версия галереи.
+    </div>
+
+    <h2 class="block__h2">Разделы карточки</h2>
+    <div class="lktiles">
+
+      <a href="lk-card.html" class="lktile">
+        <span class="lktile__h">Контакты и режим работы</span>
+        <span class="lktile__t">Телефоны, сайт, мессенджеры, соцсети и часы работы магазина.</span>
+        <span class="lktile__foot">
+          <span class="status status--stop">Отклонено 12.09</span>
+          <span class="more">Открыть</span>
+        </span>
+      </a>
+
+      <a href="lk-photos.html" class="lktile">
+        <span class="lktile__h">Фотографии</span>
+        <span class="lktile__t">Логотип и галерея магазина. Опубликовано 8, на проверке 3.</span>
+        <span class="lktile__foot">
+          <span class="status status--wait">На модерации</span>
+          <span class="more">Открыть</span>
+        </span>
+      </a>
+
+      <a href="lk-promos.html" class="lktile">
+        <span class="lktile__h">Акции</span>
+        <span class="lktile__t">Две действующие акции. «Скидка на фрески» снимется автоматически 30 сентября.</span>
+        <span class="lktile__foot">
+          <span class="status status--ok">Опубликовано</span>
+          <span class="more">Открыть</span>
+        </span>
+      </a>
+
+      <a href="lk-video.html" class="lktile">
+        <span class="lktile__h">Видео</span>
+        <span class="lktile__t">Ролики о магазине — ссылкой с видеохостинга или файлом.</span>
+        <span class="lktile__foot">
+          <span class="status status--draft">Не заполнено</span>
+          <span class="more">Открыть</span>
+        </span>
+      </a>
+
+    </div>
+
+    <aside class="note"><b>1. Главный вопрос на этом экране — «что с моими правками».</b> Арендатор заходит в кабинет не «посмотреть», а после того, как что-то отправил: п. 7.4 вводит статусы черновик / на модерации / опубликовано / отклонено, и именно они должны встречать на входе. Поэтому сверху не приветствие и не меню, а два блока состояний — отклонённое с комментарием модератора и то, что ждёт проверки.</aside>
+
+    <aside class="note"><b>2. Отклонение обязано приходить с причиной.</b> П. 7.4 требует «отклонено с комментарием» — без текста причины арендатор отправит то же самое ещё раз, и круг повторится. Комментарий контент-менеджера показан прямо в блоке, а не спрятан в письме: письмо потеряется, кабинет останется.</aside>
+
+    <aside class="note"><b>3. Пока правка на модерации, на сайте живёт старая версия.</b> Это решение, а не данность — в ТЗ прямо не сказано. Иначе непроверенный контент попадал бы на публичную страницу, что противоречит смыслу модерации из п. 7.4. Отсюда и подпись в блоке «На проверке»: арендатор должен понимать, почему на сайте всё ещё старые фотографии, иначе решит, что кабинет не работает, и позвонит в администрацию.</aside>
+
+    <section class="block lksect">
+      <div class="block__head">
+        <h2 class="block__h2">Последние действия</h2>
+        <a href="lk-log.html" class="more">Весь журнал</a>
+      </div>
+
+      <div class="logrow">
+        <span class="logrow__d">14.09.2026, 11:20</span>
+        <span class="logrow__t">Добавлены 3 фотографии в галерею</span>
+        <span class="status status--wait">На модерации</span>
+      </div>
+      <div class="logrow">
+        <span class="logrow__d">12.09.2026, 16:05</span>
+        <span class="logrow__t">Изменён телефон магазина</span>
+        <span class="status status--stop">Отклонено</span>
+      </div>
+      <div class="logrow">
+        <span class="logrow__d">05.09.2026, 09:41</span>
+        <span class="logrow__t">Создана акция «Скидка 15% на фрески»</span>
+        <span class="status status--ok">Опубликовано</span>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block__head">
+        <h2 class="block__h2">Данные от администрации</h2>
+        <a href="shop.html" class="more">Как на сайте</a>
+      </div>
+      <ul class="rows">
+        <li><span class="rows__k">Название</span><span>VLADART STUDIO</span></li>
+        <li><span class="rows__k">Категории</span><span>Декоративно-отделочные материалы · Декоративная штукатурка · Фрески</span></li>
+        <li><span class="rows__k">Расположение</span><span>Секция А10 · 1 этаж</span></li>
+        <li><span class="rows__k">Бренды</span><span class="ph-mark">Привязка брендов не заполнена</span></li>
+      </ul>
+      <p class="block__note">Эти поля меняет администрация комплекса. Нашли ошибку — напишите на <a href="mailto:info@tk-lanskoy.ru" class="link link--inline">info@tk-lanskoy.ru</a>.</p>
+    </section>
+
+    <aside class="note"><b>4. Поля администрации показаны, но не редактируются — так требует п. 7.3.</b> Название, категории, расположение и бренды арендатор видит только для чтения. Прятать их нельзя: человек должен видеть свою карточку целиком, иначе будет искать, «где поменять название», и писать в поддержку. Поэтому рядом сразу стоит путь, как сообщить об ошибке.</aside>
+
+    <aside class="note"><b>5. Статистики по карточке здесь намеренно нет.</b> П. 14.1 описывает аналитику только для комплекса и подрядчика — просмотров карточки, переходов к контактам и звонков арендатор по ТЗ не получает. Это стоит подтвердить с заказчиком: на приёмке арендаторы почти наверняка спросят «а где статистика», и лучше решить заранее, добавляем ли такой блок или отвечаем, что он не входит в объём.</aside>
+
+    <aside class="note"><b>6. Допущение: один магазин на кабинет.</b> Верхняя строка показывает один магазин без переключателя. Если у арендатора может быть несколько секций или два магазина разных категорий, сюда добавится выбор карточки, а разделы меню станут её подчинёнными — вопрос к заказчику, он влияет на всю структуру кабинета.</aside>
+
+  </main>
+</div>
+
+<script src="lk-parts.js?v=51"></script>
+</body>
+</html>
