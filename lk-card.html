@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточка магазина — кабинет арендатора — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=51">
+</head>
+<body>
+
+<div class="lkshell">
+  <aside id="lkSide" data-lk="card"></aside>
+
+  <div class="lkcontent">
+  <main id="main" tabindex="-1" class="lkmain">
+
+    <div class="lkhead">
+      <div>
+        <h1 class="lkhead__h1">Карточка магазина</h1>
+        <p class="lkhead__sub">Контакты и режим работы. Всё, что вы здесь измените, попадёт на сайт после проверки администрацией.</p>
+      </div>
+      <div class="lkhead__acts">
+        <span class="status status--stop">Отклонено 12.09</span>
+      </div>
+    </div>
+
+    <div class="alert">
+      <p class="alert__t">Правка отклонена — нужно исправить</p>
+      Контент-менеджер Ольга, 12 сентября в 16:40: «Телефон указан без кода города, добавьте +7 (812)».
+      Исправьте отмеченное поле и отправьте карточку на проверку ещё раз.
+    </div>
+
+    <form class="lkform" novalidate>
+
+      <section class="block">
+        <h2 class="block__h2">Телефоны</h2>
+
+        <div class="repeat__row">
+          <label class="fld is-invalid">
+            <span class="fld__lab">Основной телефон</span>
+            <input type="tel" value="363-00-07">
+            <span class="fld__err">Добавьте код города: +7 (812) 363-00-07</span>
+          </label>
+          <button type="button" class="repeat__del" aria-label="Удалить телефон">×</button>
+        </div>
+
+        <div class="repeat__row">
+          <label class="fld">
+            <span class="fld__lab">Дополнительный телефон</span>
+            <input type="tel" value="+7 (921) 000-00-00">
+          </label>
+          <button type="button" class="repeat__del" aria-label="Удалить телефон">×</button>
+        </div>
+
+        <button type="button" class="addline">+ Добавить телефон</button>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Сайт и мессенджеры</h2>
+        <div class="lkfields">
+          <label class="fld">
+            <span class="fld__lab">Сайт</span>
+            <input type="url" value="vladart.ru">
+          </label>
+          <label class="fld">
+            <span class="fld__lab">WhatsApp</span>
+            <input type="tel" placeholder="+7 (___) ___-__-__">
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Telegram</span>
+            <input type="text" placeholder="@название">
+          </label>
+          <label class="fld">
+            <span class="fld__lab">ВКонтакте</span>
+            <input type="url" placeholder="vk.com/название">
+          </label>
+        </div>
+        <button type="button" class="addline">+ Добавить соцсеть</button>
+        <p class="fld__hint">Набор площадок — тот же, что в подвале сайта: VK, Дзен, MAX, TenChat, VK Видео, RuTube, Pinterest, TikTok.</p>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Режим работы</h2>
+
+        <div class="seg">
+          <span class="seg__i is-active">Как у комплекса</span>
+          <span class="seg__i">Свой график</span>
+        </div>
+        <p class="fld__hint">Комплекс работает ежедневно с 10:00 до 20:00. Если магазин открывается позже или закрывается раньше — выберите «Свой график».</p>
+
+        <div class="hours">
+          <div class="hourrow">
+            <span class="hourrow__d">Понедельник</span>
+            <input type="time" value="10:00" aria-label="Понедельник, открытие">
+            <input type="time" value="20:00" aria-label="Понедельник, закрытие">
+            <label class="check"><input type="checkbox"><span>Выходной</span></label>
+          </div>
+          <div class="hourrow">
+            <span class="hourrow__d">Вторник — пятница</span>
+            <input type="time" value="10:00" aria-label="Вторник — пятница, открытие">
+            <input type="time" value="20:00" aria-label="Вторник — пятница, закрытие">
+            <label class="check"><input type="checkbox"><span>Выходной</span></label>
+          </div>
+          <div class="hourrow">
+            <span class="hourrow__d">Суббота</span>
+            <input type="time" value="10:00" aria-label="Суббота, открытие">
+            <input type="time" value="20:00" aria-label="Суббота, закрытие">
+            <label class="check"><input type="checkbox"><span>Выходной</span></label>
+          </div>
+          <div class="hourrow hourrow--off">
+            <span class="hourrow__d">Воскресенье</span>
+            <input type="time" value="11:00" aria-label="Воскресенье, открытие">
+            <input type="time" value="18:00" aria-label="Воскресенье, закрытие">
+            <label class="check"><input type="checkbox" checked><span>Выходной</span></label>
+          </div>
+        </div>
+      </section>
+
+      <div class="formbar">
+        <p class="formbar__t">Черновик сохраняется автоматически. На сайт изменения попадут после проверки.</p>
+        <a href="lk-preview.html" class="btn btn--ghost btn--sm">Предпросмотр</a>
+        <a href="lk.html" class="btn btn--primary btn--sm">Отправить на проверку</a>
+      </div>
+
+    </form>
+
+    <aside class="note"><b>1. Экран открывается на том, что нужно починить.</b> Комментарий модератора стоит первым, а само поле помечено ошибкой. П. 7.4 требует «отклонено с комментарием», но пользы от комментария нет, если человеку приходится искать, к какому из пятнадцати полей он относится. Поэтому причина отклонения и подсвеченное поле связаны напрямую.</aside>
+
+    <aside class="note"><b>2. Телефонов и соцсетей может быть сколько угодно.</b> На действующем сайте у магазинов по два-три телефона, а соцсети у всех разные. Фиксированный набор полей упрётся в первого же арендатора, поэтому строки добавляются. Список площадок взят из п. 13.5 — тот же, что в подвале сайта, чтобы на публичной карточке не появилась иконка, которой нет в дизайн-системе.</aside>
+
+    <aside class="note"><b>3. «Как у комплекса» — не украшение, а защита от мусора.</b> Комплекс работает 10:00—20:00 ежедневно, и у подавляющего большинства магазинов режим совпадает. Если заставить каждого заполнять семь строк вручную, в базе появятся опечатки вроде «с 10 до 20» текстом и пустые дни, а на карточках — разнобой. Свой график заполняют те, у кого он действительно другой.</aside>
+
+    <aside class="note"><b>4. Пока правка на проверке, форма блокируется.</b> Решение не из ТЗ: если разрешить править карточку с уже отправленным пакетом, у модератора и арендатора разойдутся версии и станет непонятно, что именно одобряют. Вместо редактирования в этом состоянии показывается кнопка «Отозвать с проверки» — она возвращает пакет в черновик.</aside>
+
+    <aside class="note"><b>5. Чего здесь нет намеренно.</b> Названия, категорий, секции и брендов — их по п. 7.3 меняет только администрация, они показаны на обзоре как поля для чтения. Описания магазина тоже нет: п. 7.3 не включает его в список редактируемого, хотя п. 6.2 требует описание в карточке. Это расхождение стоит снять с заказчиком — либо описание пишет администрация, либо его нужно добавить сюда, и тогда оно тоже пойдёт через модерацию.</aside>
+
+  </main>
+  </div>
+</div>
+
+<script src="lk-parts.js?v=51"></script>
+</body>
+</html>
