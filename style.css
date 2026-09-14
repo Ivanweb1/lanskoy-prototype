@@ -1308,6 +1308,48 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
   .formbar .btn{flex:1;min-width:150px}
 }
 
+/* ---------- загрузка и галерея в кабинете ---------- */
+.drop{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  min-height:200px;padding:28px;text-align:center;
+  border:1px dashed var(--line-2);background:var(--paper-2);
+}
+.drop:hover{border-color:var(--ink)}
+.drop__t{font-size:15px}
+.drop__h{font-size:12px;line-height:1.55;color:var(--mute);max-width:46ch}
+
+.shots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.shot{display:flex;flex-direction:column;gap:9px}
+.shot__img{position:relative;aspect-ratio:4/3}
+.shot__tag{
+  position:absolute;left:8px;top:8px;
+  background:var(--ink);color:#fff;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;padding:4px 9px;
+}
+.shot__row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.shot__act{font-size:12px;color:var(--mute);border-bottom:1px solid var(--line-2);padding-bottom:1px}
+.shot__act:hover{color:var(--ink);border-color:var(--ink)}
+.status--sm{height:24px;padding:0 9px;font-size:11px;gap:7px}
+.status--sm::before{width:7px;height:7px}
+
+/* логотип — отдельно от галереи: он попадает в списки и на схему, и
+   требования к нему другие, чем к фотографиям интерьера */
+.logoedit{display:grid;grid-template-columns:210px minmax(0,1fr);gap:30px;align-items:start}
+.logoedit__box{aspect-ratio:3/2;border:1px solid var(--line)}
+.logoedit__acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+@media(max-width:1200px){
+  .shots{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .shots{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  /* в колонку 160px статус и действие рядом не встают */
+  .shot__row{flex-direction:column;align-items:flex-start;gap:7px}
+  .logoedit{grid-template-columns:1fr;gap:18px}
+  .logoedit__box{max-width:210px}
+  .drop{min-height:160px;padding:22px}
+}
+
 /* ---------- таблица «поле — значение» для полей администрации ---------- */
 .rows li{display:grid;grid-template-columns:190px minmax(0,1fr);gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
 .rows li:last-child{border-bottom:0}

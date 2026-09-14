@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Фотографии — кабинет арендатора — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=53">
+</head>
+<body>
+
+<div class="lkshell">
+  <aside id="lkSide" data-lk="photos"></aside>
+
+  <div class="lkcontent">
+  <main id="main" tabindex="-1" class="lkmain">
+
+    <div class="lkhead">
+      <div>
+        <h1 class="lkhead__h1">Фотографии</h1>
+        <p class="lkhead__sub">Логотип и галерея магазина. Всё, что вы загрузите, появится на сайте после проверки администрацией.</p>
+      </div>
+      <div class="lkhead__acts">
+        <span class="status status--wait">3 на проверке</span>
+      </div>
+    </div>
+
+    <div class="alert alert--quiet">
+      <p class="alert__t">Три фотографии на проверке</p>
+      Отправлены 14 сентября. Пока проверка не пройдена, на сайте показывается предыдущая версия галереи —
+      посетители видят 8 опубликованных фотографий.
+    </div>
+
+    <section class="block">
+      <h2 class="block__h2">Логотип</h2>
+      <div class="logoedit">
+        <div class="logoedit__box ph"><span class="ph__label">Логотип</span></div>
+        <div>
+          <ul class="rows">
+            <li><span class="rows__k">Формат</span><span class="ph-mark">SVG или PNG с прозрачным фоном</span></li>
+            <li><span class="rows__k">Размер</span><span class="ph-mark">не меньше 600 × 400 px, до 5 МБ</span></li>
+            <li><span class="rows__k">Статус</span><span><span class="status status--sm status--ok">Опубликован</span></span></li>
+          </ul>
+          <p class="block__note">Логотип показывается в каталоге магазинов, на карточке и в блоке брендов. Загружайте на прозрачном фоне — на цветной плашке он будет выглядеть заплаткой.</p>
+          <div class="logoedit__acts">
+            <button type="button" class="btn btn--ghost btn--sm">Заменить логотип</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block__head">
+        <h2 class="block__h2">Галерея магазина</h2>
+        <span class="block__meta">11 фотографий: 8 опубликовано, 3 на проверке</span>
+      </div>
+
+      <div class="drop">
+        <p class="drop__t">Перетащите фотографии сюда или выберите файлы</p>
+        <p class="drop__h ph-mark">JPG, PNG или WebP · до 10 МБ каждая · не меньше 1600 px по длинной стороне · до 20 фотографий в галерее</p>
+        <button type="button" class="btn btn--ghost btn--sm">Выбрать файлы</button>
+      </div>
+
+      <p class="fld__hint">Первая фотография становится обложкой — её видно в каталоге и в поиске. Порядок меняется перетаскиванием.</p>
+
+      <div class="shots lksect">
+
+        <div class="shot">
+          <div class="shot__img ph"><span class="shot__tag">Обложка</span></div>
+          <div class="shot__row">
+            <span class="status status--sm status--ok">Опубликовано</span>
+            <button type="button" class="shot__act">Удалить</button>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot__img ph"></div>
+          <div class="shot__row">
+            <span class="status status--sm status--ok">Опубликовано</span>
+            <button type="button" class="shot__act">Удалить</button>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot__img ph"></div>
+          <div class="shot__row">
+            <span class="status status--sm status--ok">Опубликовано</span>
+            <button type="button" class="shot__act">Удалить</button>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot__img ph"></div>
+          <div class="shot__row">
+            <span class="status status--sm status--wait">На проверке</span>
+            <button type="button" class="shot__act">Отозвать</button>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot__img ph"></div>
+          <div class="shot__row">
+            <span class="status status--sm status--wait">На проверке</span>
+            <button type="button" class="shot__act">Отозвать</button>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot__img ph"></div>
+          <div class="shot__row">
+            <span class="status status--sm status--wait">На проверке</span>
+            <button type="button" class="shot__act">Отозвать</button>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot__img ph"></div>
+          <div class="shot__row">
+            <span class="status status--sm status--stop">Отклонено</span>
+            <button type="button" class="shot__act">Удалить</button>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot__img ph"></div>
+          <div class="shot__row">
+            <span class="status status--sm status--ok">Опубликовано</span>
+            <button type="button" class="shot__act">Удалить</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="alert lksect">
+        <p class="alert__t">Одна фотография отклонена</p>
+        Контент-менеджер Ольга, 10 сентября: «Фото сделано вертикально и обрезается в каталоге —
+        пришлите горизонтальный кадр». Отклонённая фотография на сайт не попала.
+      </div>
+    </section>
+
+    <div class="formbar">
+      <p class="formbar__t">Загруженные фотографии уходят на проверку пакетом. На сайт попадут после одобрения.</p>
+      <a href="lk-preview.html" class="btn btn--ghost btn--sm">Предпросмотр</a>
+      <a href="lk.html" class="btn btn--primary btn--sm">Отправить на проверку</a>
+    </div>
+
+    <aside class="note"><b>1. Статус у каждой фотографии, а не у галереи целиком.</b> П. 7.4 вводит статусы на уровне правки, и для фотографий это важнее всего: модератор может принять четыре снимка и завернуть пятый. Если показывать один статус на весь раздел, арендатор не поймёт, какой именно кадр не прошёл, — а по опыту действующего сайта заворачивают в основном вертикальные фото и снимки с чужими логотипами.</aside>
+
+    <aside class="note"><b>2. Обложка — это первая фотография, и её роль надо объяснять.</b> В каталоге магазинов и в поиске видно только один кадр (см. shops.html), и от него зависит, откроют ли карточку. Арендаторы об этом не думают и грузят файлы в случайном порядке, поэтому порядок задаётся перетаскиванием, а первая плитка подписана.</aside>
+
+    <aside class="note"><b>3. Ограничения показаны пунктиром — цифры надо утвердить.</b> П. 7.5 требует ограничения по форматам, весу и размерам с автоматической оптимизацией, но конкретных значений в ТЗ нет. Здесь предложены рабочие: до 10 МБ, от 1600 px по длинной стороне, до 20 фотографий. Их должна подтвердить разработка — от них зависит и хранилище, и скорость загрузки карточек (п. 12.1 требует LCP меньше 2,5 с).</aside>
+
+    <aside class="note"><b>4. Что происходит с уже опубликованной фотографией при удалении.</b> Удаление — тоже правка, и по логике п. 7.4 оно должно проходить модерацию, иначе арендатор может опустошить свою галерею в обход администрации. В прототипе кнопка называется «Удалить», но по факту это заявка на удаление: снимок исчезнет с сайта после одобрения. Формулировку стоит проверить на пользователях — «удалить» здесь обманывает ожидание.</aside>
+
+    <aside class="note"><b>5. Права на фотографии.</b> Та же проблема, что в анкете дизайнера: арендатор может загрузить чужие снимки из интернета, а претензии придут владельцу сайта. В пользовательском соглашении (terms.html) для этого предусмотрен пункт, но его стоит продублировать прямо здесь — короткой строкой при загрузке, а не только в документе, который никто не открывает.</aside>
+
+  </main>
+  </div>
+</div>
+
+<script src="lk-parts.js?v=53"></script>
+</body>
+</html>
