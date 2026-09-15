@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Предпросмотр карточки — кабинет арендатора — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=55">
+</head>
+<body class="pvshell">
+
+<header class="pvbar">
+  <div class="pvbar__info">
+    <p class="pvbar__t">Предпросмотр карточки</p>
+    <p class="pvbar__s">Так VLADART STUDIO будет выглядеть на сайте, когда все правки одобрят</p>
+  </div>
+
+  <div class="pvbar__tools">
+    <div class="seg seg--dark pvbar__device" role="group" aria-label="Размер экрана">
+      <button type="button" class="seg__i is-active" data-device="desktop" aria-pressed="true">Компьютер</button>
+      <button type="button" class="seg__i" data-device="phone" aria-pressed="false">Телефон</button>
+    </div>
+    <label class="pvbar__check">
+      <input type="checkbox" id="pvMarks" checked>
+      <span>Отметить изменения</span>
+    </label>
+  </div>
+
+  <div class="pvbar__acts">
+    <a href="lk-card.html" class="btn btn--ghost btn--invert btn--sm">К<span class="pvbar__x">&nbsp;редактированию</span><span class="pvbar__m">&nbsp;правке</span></a>
+    <a href="lk.html" class="btn btn--primary btn--invert btn--sm">Отправить<span class="pvbar__x">&nbsp;на проверку</span></a>
+  </div>
+</header>
+
+<div class="pvsum">
+  <span class="pvsum__i"><span class="status status--sm status--draft">Черновик</span>Контакты: исправлен телефон</span>
+  <span class="pvsum__i"><span class="status status--sm status--wait">На проверке</span>3 фотографии</span>
+  <span class="pvsum__i"><span class="status status--sm status--wait">На проверке</span>Акция «Осенние цены»</span>
+  <span class="pvsum__i"><span class="status status--sm status--draft">Не заполнено</span>Видео</span>
+</div>
+
+<main id="main" class="pvstage">
+  <iframe class="pvframe" id="pvFrame" src="lk-preview-frame.html" title="Карточка магазина так, как её увидят посетители"></iframe>
+</main>
+
+<p class="pvhint" id="pvHint" role="status" aria-live="polite"></p>
+
+<aside class="note"><b>1. Предпросмотр — отдельный экран, а не вкладка кабинета.</b> П. 7.5 требует показать карточку «как на сайте», поэтому боковой панели кабинета здесь нет: внутри рамки — настоящая публичная страница с шапкой, подвалом и схемой этажей. Всё управление вынесено в тёмную полосу сверху, чтобы её нельзя было спутать с частью сайта.</aside>
+
+<aside class="note"><b>2. Показывается итог всех правок, а не только текущей формы.</b> Арендатор правит разделы по очереди — контакты, фото, акции — и отправляет их в разное время. Карточка на сайте одна, поэтому и смотреть её надо целиком: опубликованное плюс черновики плюс то, что уже на проверке. Строка статусов под полосой перечисляет, из чего собран этот вид.</aside>
+
+<aside class="note"><b>3. «Отметить изменения» включён по умолчанию.</b> Без разметки арендатор листает знакомую карточку и не находит, что поменялось. С разметкой изменённые блоки обведены и подписаны статусом, а пустые разделы показаны заглушкой «на сайте этого блока не будет» — это заодно подсказка, что стоит заполнить. Выключив галочку, человек видит ровно то, что увидит посетитель: без заглушек и без акции, которая начнётся только 1 октября.</aside>
+
+<aside class="note"><b>4. Переключатель «Телефон».</b> Большинство посетителей откроют карточку со смартфона (п. 9.4, mobile-first), а арендатор правит её за компьютером в магазине. Длинное название акции или три телефона подряд ломаются именно на узком экране — проверить это до отправки дешевле, чем после отклонения. Рамка сужается до 390 px, и страница перестраивается по-настоящему, а не масштабируется картинкой.</aside>
+
+<aside class="note"><b>5. Ссылки внутри рамки не работают — намеренно.</b> Клик по шапке сайта или по «Все магазины» увёл бы человека из кабинета на публичный сайт внутри окна предпросмотра. Вместо перехода появляется подсказка. Работают только ссылки заглушек («Добавить видео»): они ведут обратно в нужный раздел кабинета.</aside>
+
+<aside class="note"><b>6. Что нужно разработке.</b> Предпросмотр рендерится сервером из черновика тем же шаблоном, что публичная карточка, и доступен только владельцу кабинета и модераторам (п. 7.6 — привязка арендатора строго к своей карточке). Страница закрыта от индексации. Эту же страницу стоит показывать контент-менеджеру в очереди модерации — ему тоже нужно видеть правку в контексте, а не списком полей.</aside>
+
+<script>
+(function () {
+  var frame = document.getElementById('pvFrame');
+  var stage = document.querySelector('.pvstage');
+  var marks = document.getElementById('pvMarks');
+  var hint = document.getElementById('pvHint');
+  var timer;
+
+  function applyMarks() {
+    var d = frame.contentDocument;
+    if (d && d.body) d.body.classList.toggle('pv-on', marks.checked);
+  }
+  marks.addEventListener('change', applyMarks);
+  frame.addEventListener('load', applyMarks);
+
+  document.querySelectorAll('[data-device]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-device]').forEach(function (x) {
+        x.classList.toggle('is-active', x === b);
+        x.setAttribute('aria-pressed', x === b);
+      });
+      stage.classList.toggle('is-phone', b.dataset.device === 'phone');
+    });
+  });
+
+  window.pvHint = function () {
+    hint.textContent = 'В предпросмотре ссылки не открываются — это вид карточки, а не сайт';
+    hint.classList.add('is-on');
+    clearTimeout(timer);
+    timer = setTimeout(function () { hint.classList.remove('is-on'); }, 2600);
+  };
+})();
+</script>
+</body>
+</html>

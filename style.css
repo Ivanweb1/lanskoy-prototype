@@ -1465,3 +1465,97 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
   .codebox{gap:8px}
   .codebox input{width:46px;height:56px;font-size:21px}
 }
+
+/* ---------- предпросмотр карточки «как на сайте» (п. 7.5) ----------
+   Оболочка: тёмная полоса управления + рамка с публичной страницей.
+   Полоса тёмная, чтобы её нельзя было принять за шапку сайта. */
+.pvshell{height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--paper-2)}
+.pvbar{
+  flex:none;display:flex;align-items:center;gap:16px 28px;flex-wrap:wrap;
+  padding:14px var(--pad);background:var(--ink);color:#fff;
+}
+.pvbar__info{margin-right:auto;min-width:0}
+.pvbar__t{font-weight:600;font-size:15px;letter-spacing:var(--tr-h3)}
+.pvbar__s{font-size:12px;color:rgba(255,255,255,.62);margin-top:2px}
+.pvbar__tools{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.pvbar__check{display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;white-space:nowrap}
+.pvbar__check input{accent-color:#fff;width:16px;height:16px;margin:0}
+.pvbar__acts{display:flex;gap:10px;flex-wrap:wrap}
+.pvbar__m{display:none}
+
+.seg--dark{border-color:rgba(255,255,255,.32)}
+.seg--dark .seg__i{border-right-color:rgba(255,255,255,.32);color:rgba(255,255,255,.8);padding:8px 16px}
+.seg--dark .seg__i:hover{color:#fff}
+.seg--dark .seg__i.is-active{background:#fff;color:var(--ink)}
+.seg__i:focus-visible,.pvbar__check input:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+/* из чего собран вид: опубликованное + черновики + то, что на проверке */
+.pvsum{
+  flex:none;display:flex;gap:10px 26px;flex-wrap:wrap;align-items:center;
+  padding:10px var(--pad);background:var(--paper);border-bottom:1px solid var(--line);
+  font-size:13px;color:var(--ink-2);
+}
+.pvsum__i{display:inline-flex;align-items:center;gap:10px}
+
+.pvstage{flex:1;min-height:0;display:flex;justify-content:center}
+.pvframe{display:block;width:100%;height:100%;border:0;background:var(--paper)}
+/* телефон: рамка сужается по-настоящему, медиазапросы внутри срабатывают */
+.pvstage.is-phone{padding:24px 16px;overflow:auto}
+.pvstage.is-phone .pvframe{
+  width:392px;max-width:100%;height:min(846px,100%);flex:none;
+  border:1px solid var(--line-2);box-shadow:0 18px 50px rgba(0,0,0,.14);
+}
+
+.pvhint{
+  position:fixed;left:50%;bottom:24px;z-index:200;transform:translate(-50%,12px);
+  max-width:calc(100% - 32px);padding:12px 18px;background:var(--ink);color:#fff;
+  font-size:13px;line-height:1.45;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+}
+.pvhint.is-on{opacity:1;transform:translate(-50%,0)}
+
+/* Разметка изменений внутри рамки. Без pv-on страница — ровно публичная */
+.pvlabel,.pv .pvonly{display:none}
+.pv-on .pvlabel{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;
+  margin-bottom:18px;font-size:13px;color:var(--ink-2);line-height:1.45;
+}
+.pv-on .pvonly{display:block}
+.pv-on .grid .pvonly{display:flex}
+.pv-on .pvchg,.pv-on .block.pvonly{outline:2px dashed var(--ink);outline-offset:14px}
+.pv-on .panel.pvchg{outline-offset:6px}
+.pvnew{background:none;color:inherit}
+.pv-on .pvnew{background:var(--ph-2);padding:0 3px}
+.pv-on .pvfuture{opacity:.55}
+.pvempty{
+  padding:26px;border:1px dashed var(--line-2);background:var(--paper-2);
+  font-size:14px;color:var(--mute);line-height:1.55;
+}
+.pvempty p{margin-bottom:8px}
+.pvempty--sm{padding:12px 14px;font-size:13px}
+
+/* подпись уходит раньше всего: иначе на ноутбуке полоса ломается в две
+   строки и съедает высоту, которая нужна самой карточке */
+@media(max-width:1440px){
+  .pvbar__s{display:none}
+}
+@media(max-width:1000px){
+  .pvbar{padding:12px 20px}
+  .pvsum{padding:10px 20px}
+}
+/* на телефоне переключатель устройства бессмыслен — экран и так узкий */
+@media(max-width:760px){
+  .pvbar{gap:10px 16px}
+  .pvbar__device{display:none}
+  .pvbar__info{flex:1 1 auto}
+  .pvbar__acts{flex:1 1 100%}
+  .pvbar__acts .btn{flex:1;padding:0 10px;white-space:nowrap}
+  /* «Отправить на проверку» в пол-экрана не влезает и ломается на две строки */
+  .pvbar__x{display:none}
+  .pvbar__m{display:inline}
+  /* строка статусов в одну линию с прокруткой: столбиком она отъедает
+   * четверть экрана у самой карточки */
+  .pvsum{flex-wrap:nowrap;overflow-x:auto;gap:18px;font-size:12px;white-space:nowrap;scrollbar-width:none}
+  .pvsum::-webkit-scrollbar{display:none}
+  .pvsum__i{flex:none}
+  .pv-on .pvchg,.pv-on .block.pvonly{outline-offset:8px}
+}
