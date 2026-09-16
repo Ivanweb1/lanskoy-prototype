@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=59">
+<link rel="stylesheet" href="style.css?v=62">
 </head>
 <body>
 
@@ -132,6 +132,24 @@
           </div>
         </div>
 
+        <div class="shot">
+          <div class="shot__img ph">
+            <span class="shot__load"><span class="progress"><span class="progress__bar" style="width:40%"></span></span>Загружается 40%</span>
+          </div>
+          <div class="shot__row">
+            <span class="status status--sm status--draft">Загружается</span>
+            <button type="button" class="shot__act">Отменить</button>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shot__img shot__img--err"><span>Файл не загружен: больше <span class="ph-mark">0 МБ</span></span></div>
+          <div class="shot__row">
+            <span class="status status--sm status--stop">Ошибка</span>
+            <button type="button" class="shot__act">Убрать</button>
+          </div>
+        </div>
+
       </div>
 
       <div class="alert lksect">
@@ -149,6 +167,8 @@
 
     <aside class="note"><b>1. Отметка у каждой фотографии.</b> На проверку уходит вся отправка целиком, но в галерее важно видеть, какие снимки уже на сайте, какие новые и ещё не отправлены, а какой вернули. Поэтому статус стоит на каждой плитке, а комментарий модератора к отклонённому кадру — под галереей.</aside>
 
+    <aside class="note"><b>1а. Состояния загрузки и ошибки.</b> П. 9.4 требует продуманных состояний «загрузка, пусто, ошибка». Последние две плитки — снимок, который ещё грузится, и файл, не прошедший ограничения п. 7.5: причина написана прямо на плитке, в черновик он не попадает.</aside>
+
     <aside class="note"><b>2. Обложка — это первая фотография, и её роль надо объяснять.</b> В каталоге магазинов и в поиске видно только один кадр (см. shops.html), и от него зависит, откроют ли карточку. Арендаторы об этом не думают и грузят файлы в случайном порядке, поэтому порядок задаётся перетаскиванием, а первая плитка подписана.</aside>
 
     <aside class="note"><b>3. Ограничения показаны пунктиром — цифры надо утвердить.</b> П. 7.5 требует ограничения по форматам, весу и размерам с автоматической оптимизацией, но конкретных значений в ТЗ нет. Здесь предложены рабочие: до 10 МБ, от 1600 px по длинной стороне, до 20 фотографий. Их должна подтвердить разработка — от них зависит и хранилище, и скорость загрузки карточек (п. 12.1 требует LCP меньше 2,5 с).</aside>
@@ -161,6 +181,6 @@
   </div>
 </div>
 
-<script src="lk-parts.js?v=59"></script>
+<script src="lk-parts.js?v=62"></script>
 </body>
 </html>

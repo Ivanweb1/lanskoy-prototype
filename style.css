@@ -1636,3 +1636,31 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
   .logrow__s{display:block;min-width:0;margin:0 0 2px}
 }
 .logrow[hidden],.loggroup[hidden]{display:none}
+
+/* ---------- аккаунт и вход ---------- */
+.lkpass{max-width:calc(50% - 14px)}
+.devrow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.devrow:first-of-type{border-top:1px solid var(--line)}
+.devrow__n{font-size:15px;font-weight:500}
+.devrow__m{font-size:13px;color:var(--mute);margin-top:3px}
+@media(max-width:760px){
+  .lkpass{max-width:none}
+  .devrow{align-items:flex-start}
+}
+
+/* ---------- новые состояния: блокировка входа, загрузка и ошибка фото ---------- */
+.is-locked input:disabled{background:var(--paper-2);color:var(--mute)}
+.btn.is-disabled{opacity:.35;pointer-events:none}
+.shot__load{position:absolute;left:12px;right:12px;bottom:12px;font-size:12px;color:var(--ink-2)}
+.shot__load .progress{margin:0 0 6px;background:var(--paper)}
+.shot__img--err{display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;
+  border:1px dashed var(--ink);background:var(--paper);font-size:12px;line-height:1.45;color:var(--ink-2)}
+
+/* п. 9.4 — крупные области нажатия на мобильных: текстовые действия кабинета
+   визуально остаются ссылками, но зона нажатия расширяется до ~44 px */
+@media(max-width:760px){
+  .shot__act,.addline,.lkauth__mini,.lkside__links a{position:relative}
+  .shot__act::after,.addline::after,.lkauth__mini::after,.lkside__links a::after{
+    content:"";position:absolute;left:-8px;right:-8px;top:-14px;bottom:-14px
+  }
+}

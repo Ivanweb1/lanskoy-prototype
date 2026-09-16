@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вход временно заблокирован — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=62">
+</head>
+<body>
+
+<main id="main" tabindex="-1">
+  <div class="lkauth">
+
+    <div class="lkauth__side">
+      <div class="lkauth__in">
+
+        <a href="index.html" class="lkauth__logo">
+          <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">
+        </a>
+
+        <h1 class="lkauth__h1">Кабинет арендатора</h1>
+        <p class="lkauth__lead">Здесь магазин обновляет свои контакты, акции, фото и видео. Изменения публикуются после проверки администрацией.</p>
+
+        <div class="alert">
+          <p class="alert__t">Слишком много попыток входа</p>
+          Вход с этого адреса временно приостановлен. Попробуйте снова через <b>14:32</b>
+          или восстановите пароль.
+        </div>
+
+        <form novalidate class="is-locked">
+          <label class="fld">
+            <span class="fld__lab">Рабочая почта</span>
+            <input type="email" name="email" autocomplete="username" value="name@company.ru" disabled>
+            <span class="fld__err">Проверьте адрес — вход по почте, на которую выдан доступ</span>
+          </label>
+
+          <label class="fld">
+            <span class="fld__lab">Пароль</span>
+            <input type="password" name="password" autocomplete="current-password" disabled>
+            <span class="fld__err">Неверная почта или пароль</span>
+          </label>
+
+          <div class="lkauth__row">
+            <a href="lk-reset.html" class="lkauth__mini">Забыли пароль?</a>
+            <span class="btn btn--primary is-disabled" aria-disabled="true">Войти</span>
+          </div>
+        </form>
+
+        <div class="lkauth__foot">
+          Магазин работает в ТК, но доступа в кабинет ещё нет?
+          <a href="lk-request.html">Подайте заявку</a> — администрация проверит её и сообщит о решении на рабочую почту.
+        </div>
+
+        <div class="lkauth__foot">
+          Хотите арендовать помещение? Это другой раздел — <a href="rent.html">условия аренды и заявка</a>.
+        </div>
+
+        <p class="lkauth__back"><a href="index.html">Вернуться на сайт комплекса</a></p>
+      </div>
+    </div>
+
+    <div class="lkauth__media ph"><span class="ph__label">Фотография комплекса</span></div>
+  </div>
+
+  <aside class="note"><b>1. Блокировка после неудачных попыток.</b> П. 7.6 и 12.2 — rate-limiting и защита от перебора. Форма не «молча перестаёт работать»: сверху объяснение и время до разблокировки, поля и кнопка неактивны, ссылка на восстановление пароля остаётся рабочей.</aside>
+
+  <aside class="note"><b>2. Моё, надо подтвердить с разработкой.</b> Число попыток до блокировки и её длительность в ТЗ не заданы — 15 минут здесь условно.</aside>
+</main>
+
+</body>
+</html>

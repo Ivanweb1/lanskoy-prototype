@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Смена временного пароля — ТК «Ланской» — прототип</title>
+<title>Новый пароль — ТК «Ланской» — прототип</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +22,8 @@
           <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">
         </a>
 
-        <h1 class="lkauth__h1">Придумайте свой пароль</h1>
-        <p class="lkauth__lead">Вы вошли по временному паролю, который прислал менеджер. Чтобы продолжить, замените его на свой.</p>
+        <h1 class="lkauth__h1">Новый пароль</h1>
+        <p class="lkauth__lead">Для входа в кабинет <b>v•••••t@vladart.ru</b>. После сохранения вход на других устройствах завершится.</p>
 
         <form novalidate>
           <label class="fld">
@@ -40,14 +40,13 @@
           </label>
 
           <div class="lkauth__row">
-            <a href="lk-login.html" class="lkauth__mini">Выйти</a>
-            <a href="lk.html" class="btn btn--primary">Сохранить и войти</a>
+            <a href="lk-login.html" class="lkauth__mini">Отмена</a>
+            <a href="lk-login.html" class="btn btn--primary">Сохранить пароль</a>
           </div>
         </form>
 
         <div class="lkauth__foot">
-          Временный пароль больше не подойдёт. Если что-то пошло не так, напишите на
-          <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>.
+          Ссылка устарела? <a href="lk-reset.html">Запросите новую</a>.
         </div>
       </div>
     </div>
@@ -55,9 +54,9 @@
     <div class="lkauth__media ph"><span class="ph__label">Фотография комплекса</span></div>
   </div>
 
-  <aside class="note"><b>1. Первый вход.</b> Заказчик уточнил: после одобрения заявки менеджер присылает арендатору пароль, и при первом входе арендатор сразу его меняет. Путь: вход по временному паролю → код подтверждения на почту (п. 7.5) → этот экран → обзор кабинета. Пропустить экран нельзя — «Выйти» возвращает на вход.</aside>
+  <aside class="note"><b>1. Экран по ссылке из письма.</b> П. 7.5 — восстановление пароля, п. 13.1 — письмо транзакционное. После сохранения человек возвращается на вход и проходит его обычным путём, с кодом на почту.</aside>
 
-  <aside class="note"><b>2. Требования к паролю в ТЗ не заданы.</b> Минимальная длина и прочие правила показаны пунктиром — их определяет разработка вместе с п. 12.2.</aside>
+  <aside class="note"><b>2. Моё, надо подтвердить.</b> Срок жизни ссылки (час) и завершение входа на других устройствах после смены пароля в ТЗ не описаны. Требования к паролю — пунктиром, определяет разработка.</aside>
 </main>
 
 </body>

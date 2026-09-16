@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Аккаунт и вход — кабинет арендатора — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=62">
+</head>
+<body>
+
+<div class="lkshell">
+  <aside id="lkSide" data-lk="account"></aside>
+
+  <div class="lkcontent">
+  <main id="main" tabindex="-1" class="lkmain">
+
+    <div class="lkhead">
+      <div>
+        <h1 class="lkhead__h1">Аккаунт и вход</h1>
+        <p class="lkhead__sub">Данные для входа в кабинет. Эти настройки общие для всех ваших магазинов и не проходят проверку администрацией.</p>
+      </div>
+    </div>
+
+    <div class="lkform">
+
+      <section class="block">
+        <h2 class="block__h2">Почта для входа</h2>
+        <ul class="rows">
+          <li><span class="rows__k">Логин</span><span>v•••••t@vladart.ru</span></li>
+          <li><span class="rows__k">Код подтверждения</span><span>Приходит на эту почту при каждом входе с нового устройства</span></li>
+        </ul>
+        <p class="block__note">Сменить почту для входа можно через администрацию комплекса: <a href="mailto:info@tk-lanskoy.ru" class="link link--inline">info@tk-lanskoy.ru</a>.</p>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Смена пароля</h2>
+        <form novalidate>
+          <label class="fld lkpass">
+            <span class="fld__lab">Текущий пароль</span>
+            <input type="password" autocomplete="current-password">
+            <span class="fld__err">Неверный пароль</span>
+          </label>
+          <div class="lkfields">
+            <label class="fld">
+              <span class="fld__lab">Новый пароль</span>
+              <input type="password" autocomplete="new-password">
+              <span class="fld__hint ph-mark">Не короче 0 символов</span>
+            </label>
+            <label class="fld">
+              <span class="fld__lab">Повторите новый пароль</span>
+              <input type="password" autocomplete="new-password">
+              <span class="fld__err">Пароли не совпадают</span>
+            </label>
+          </div>
+          <button type="button" class="btn btn--primary btn--sm">Сменить пароль</button>
+          <p class="fld__hint">После смены пароля на почту придёт уведомление, а вход на других устройствах завершится.</p>
+        </form>
+      </section>
+
+      <section class="block">
+        <div class="block__head">
+          <h2 class="block__h2">Устройства</h2>
+          <button type="button" class="more">Выйти на всех, кроме этого</button>
+        </div>
+
+        <div class="devrow">
+          <div>
+            <p class="devrow__n">Windows · Яндекс Браузер</p>
+            <p class="devrow__m">Санкт-Петербург · сейчас</p>
+          </div>
+          <span class="status status--sm status--ok">Это устройство</span>
+        </div>
+        <div class="devrow">
+          <div>
+            <p class="devrow__n">iPhone · Safari</p>
+            <p class="devrow__m">Санкт-Петербург · 14.09.2026, 11:20 · код не запрашивается до 14.10.2026</p>
+          </div>
+          <button type="button" class="shot__act">Выйти</button>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Ваши магазины</h2>
+        <ul class="rows">
+          <li><span class="rows__k">VLADART STUDIO</span><span>Секция А10 · 1 этаж</span></li>
+          <li><span class="rows__k ph-mark">Второй магазин арендатора</span><span class="ph-mark">Секция — · этаж —</span></li>
+        </ul>
+        <p class="block__note">Новый магазин добавляет администрация по заявке. Открыть магазин в новом помещении — <a href="lk-request.html" class="link link--inline">подать заявку</a>.</p>
+      </section>
+
+    </div>
+
+    <aside class="note"><b>1. Основание экрана.</b> П. 7.5: авторизация, восстановление пароля, 2FA. Заказчик уточнил: пароль выдаёт менеджер, при первом входе его меняют; второй фактор — код на почту; одна учётная запись на все магазины арендатора. Поэтому здесь смена пароля, способ подтверждения входа и список магазинов этой учётной записи. Действия с аккаунтом не модерируются и записываются в журнал в раздел «Аккаунт».</aside>
+
+    <aside class="note"><b>2. Моё, не из ТЗ и не из ответов заказчика — надо подтвердить.</b> Смена почты для входа только через администрацию; список устройств с выходом (связан с галочкой «не спрашивать код 30 дней» на экране кода — тоже моё предложение); завершение входа на других устройствах после смены пароля; добавление магазина через заявку.</aside>
+
+    <aside class="note"><b>3. Требования к паролю в ТЗ не заданы.</b> Помечены пунктиром — определяет разработка по п. 12.2.</aside>
+
+  </main>
+  </div>
+</div>
+
+<script src="lk-parts.js?v=62"></script>
+</body>
+</html>
