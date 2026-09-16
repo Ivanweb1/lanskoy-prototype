@@ -1752,3 +1752,14 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
 .formbar__err,.formbar__ask{flex-basis:100%;font-size:13px;color:var(--ink);font-weight:500}
 .formbar__ask .link{margin-left:10px}
 .formbar__ask button.link{background:none;border:0;padding:0;font:inherit;cursor:pointer;color:var(--mute)}
+
+/* инструкция без входа: шапка вместо меню кабинета */
+.is-guest .lkshell{display:block}
+.lkguest{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:18px var(--pad);border-bottom:1px solid var(--line);background:var(--paper-2)}
+.lkguest__logo{display:flex}
+.lkguest__logo .logo__img{height:48px;width:auto}
+.lkguest__links{display:flex;align-items:center;gap:20px}
+.is-guest .lkmain{margin:0 auto}
+@media(max-width:560px){.lkguest__logo .logo__img{height:38px}.lkguest__links .lkauth__mini{display:none}}
+@media(max-width:1000px){.is-guest .helpsec{scroll-margin-top:24px}}

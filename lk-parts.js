@@ -76,7 +76,29 @@
 '  </div>';
   }
 
+  /* Инструкция открывается и без входа — со страниц входа, кода,
+     восстановления пароля и заявки. Тогда вместо меню кабинета простая
+     шапка, а ссылки на закрытые разделы ведут на вход. */
+  function guest() {
+    return '' +
+'  <a href="index.html" class="lkguest__logo">' +
+'    <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">' +
+'  </a>' +
+'  <nav class="lkguest__links">' +
+'    <a href="index.html" class="lkauth__mini">На сайт комплекса</a>' +
+'    <a href="lk-login.html" class="btn btn--primary btn--sm">Войти в кабинет</a>' +
+'  </nav>';
+  }
+
   var s = document.getElementById('lkSide');
-  if (s) { s.className = 'lkside'; s.innerHTML = side(s.dataset.lk || ''); }
+  var isGuest = s && s.dataset.lk === 'help' && /[?&]guest=1/.test(location.search);
+  if (isGuest) {
+    s.className = 'lkguest'; s.innerHTML = guest();
+    document.body.classList.add('is-guest');
+    var CLOSED = ['lk.html', 'lk-card.html', 'lk-photos.html', 'lk-video.html', 'lk-promos.html', 'lk-log.html', 'lk-account.html'];
+    document.querySelectorAll('.lkmain a[href]').forEach(function (a) {
+      if (CLOSED.indexOf(a.getAttribute('href')) > -1) a.setAttribute('href', 'lk-login.html');
+    });
+  } else if (s) { s.className = 'lkside'; s.innerHTML = side(s.dataset.lk || ''); }
 
 })();
