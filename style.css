@@ -1185,7 +1185,7 @@ body.notes-on .note--cookie{margin:12px 0 0;width:100%}
 }
 .lkside__top{flex:none;padding:24px 26px;border-bottom:1px solid var(--line)}
 .lkside__logo{display:flex}
-.lkside__logo .logo__img{height:40px}
+.lkside__logo .logo__img{height:52px}
 .lkside__nav{flex:1;min-height:0;overflow-y:auto;padding:22px 16px}
 .lkside__foot{flex:none;padding:18px 26px;border-top:1px solid var(--line)}
 .lkside__name{font-weight:600;font-size:14px;letter-spacing:var(--tr-h3);overflow-wrap:anywhere}
@@ -1404,7 +1404,7 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
     align-items:center;border-right:0;border-bottom:1px solid var(--line);
   }
   .lkside__top{grid-area:top;border-bottom:0;padding:14px 20px}
-  .lkside__logo .logo__img{height:34px}
+  .lkside__logo .logo__img{height:44px}
   .lkside__foot{grid-area:foot;border-top:0;padding:14px 20px;text-align:right}
   .lkside__place{display:none}
   .lkside__links{justify-content:flex-end;margin-top:4px}
@@ -1421,7 +1421,7 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
   .lktiles{grid-template-columns:1fr}
 }
 @media(max-width:760px){
-  .lkside__logo .logo__img{height:30px}
+  .lkside__logo .logo__img{height:39px}
   .lkside__name{font-size:13px}
   /* «Карточка на сайте» уходит: на 375px она не помещается рядом с
      названием магазина и выходом, а попасть в неё можно из обзора */
