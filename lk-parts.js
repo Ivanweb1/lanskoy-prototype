@@ -71,7 +71,7 @@
       switcher() +
 '    <div class="lkside__links">' +
 '      <a href="shop.html">Карточка на сайте</a>' +
-'      <a href="lk-login.html">Выйти</a>' +
+'      <a href="lk-login.html?out=1">Выйти</a>' +
 '    </div>' +
 '  </div>';
   }
