@@ -1559,3 +1559,20 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
   .pvsum__i{flex:none}
   .pv-on .pvchg,.pv-on .block.pvonly{outline-offset:8px}
 }
+
+/* ---------- ссылки на мессенджеры и соцсети: тип из списка + ссылка ---------- */
+.linkrow__type{flex:0 0 200px!important}
+.lksite{max-width:420px}
+.hourrow input:disabled{color:var(--mute);background:var(--paper-2)}
+
+/* ---------- заявка на доступ в кабинет ---------- */
+.reqshop{display:grid;grid-template-columns:minmax(0,1fr) 130px;gap:0 14px}
+.reqshop+.reqshop{padding-top:14px;border-top:1px solid var(--line)}
+.reqadd{margin:0 0 8px}
+.reqgap{margin-top:22px}
+.lkauth .sel,.lkform .sel{height:46px}
+
+@media(max-width:760px){
+  .linkrow__type{flex-basis:130px!important}
+  .reqshop{grid-template-columns:minmax(0,1fr) 96px}
+}

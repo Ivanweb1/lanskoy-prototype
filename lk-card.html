@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=55">
+<link rel="stylesheet" href="style.css?v=56">
 </head>
 <body>
 
@@ -60,37 +60,50 @@
       </section>
 
       <section class="block">
-        <h2 class="block__h2">Сайт и мессенджеры</h2>
-        <div class="lkfields">
-          <label class="fld">
-            <span class="fld__lab">Сайт</span>
-            <input type="url" value="vladart.ru">
+        <h2 class="block__h2">Сайт</h2>
+        <label class="fld lksite">
+          <span class="fld__lab">Адрес сайта</span>
+          <input type="url" value="vladart.ru">
+        </label>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Мессенджеры</h2>
+        <div class="repeat__row">
+          <label class="fld linkrow__type">
+            <span class="fld__lab">Мессенджер</span>
+            <select class="sel"><option>MAX</option><option selected>Telegram</option><option>ВКонтакте</option></select>
           </label>
           <label class="fld">
-            <span class="fld__lab">WhatsApp</span>
-            <input type="tel" placeholder="+7 (___) ___-__-__">
+            <span class="fld__lab">Ссылка или номер</span>
+            <input type="text" value="@vladart_studio">
+          </label>
+          <button type="button" class="repeat__del" aria-label="Удалить мессенджер">×</button>
+        </div>
+        <button type="button" class="addline">+ Добавить мессенджер</button>
+        <p class="fld__hint ph-mark">Список мессенджеров — из разрешённых в РФ, точный набор утверждается</p>
+      </section>
+
+      <section class="block">
+        <h2 class="block__h2">Соцсети</h2>
+        <div class="repeat__row">
+          <label class="fld linkrow__type">
+            <span class="fld__lab">Соцсеть</span>
+            <select class="sel"><option selected>ВКонтакте</option><option>Дзен</option><option>MAX</option><option>TenChat</option><option>VK Видео</option><option>RuTube</option><option>Pinterest</option><option>TikTok</option></select>
           </label>
           <label class="fld">
-            <span class="fld__lab">Telegram</span>
-            <input type="text" placeholder="@название">
+            <span class="fld__lab">Ссылка</span>
+            <input type="url" value="vk.com/vladart">
           </label>
-          <label class="fld">
-            <span class="fld__lab">ВКонтакте</span>
-            <input type="url" placeholder="vk.com/название">
-          </label>
+          <button type="button" class="repeat__del" aria-label="Удалить соцсеть">×</button>
         </div>
         <button type="button" class="addline">+ Добавить соцсеть</button>
-        <p class="fld__hint">Набор площадок — тот же, что в подвале сайта: VK, Дзен, MAX, TenChat, VK Видео, RuTube, Pinterest, TikTok.</p>
+        <p class="fld__hint">Только из списка: ВКонтакте, Дзен, MAX, TenChat, VK Видео, RuTube, Pinterest, TikTok.</p>
       </section>
 
       <section class="block">
         <h2 class="block__h2">Режим работы</h2>
-
-        <div class="seg">
-          <span class="seg__i is-active">Как у комплекса</span>
-          <span class="seg__i">Свой график</span>
-        </div>
-        <p class="fld__hint">Комплекс работает ежедневно с 10:00 до 20:00. Если магазин открывается позже или закрывается раньше — выберите «Свой график».</p>
+        <p class="fld__hint">Укажите часы для каждого дня недели. Если в какой-то день магазин закрыт — отметьте «Выходной».</p>
 
         <div class="hours">
           <div class="hourrow">
@@ -100,9 +113,27 @@
             <label class="check"><input type="checkbox"><span>Выходной</span></label>
           </div>
           <div class="hourrow">
-            <span class="hourrow__d">Вторник — пятница</span>
-            <input type="time" value="10:00" aria-label="Вторник — пятница, открытие">
-            <input type="time" value="20:00" aria-label="Вторник — пятница, закрытие">
+            <span class="hourrow__d">Вторник</span>
+            <input type="time" value="10:00" aria-label="Вторник, открытие">
+            <input type="time" value="20:00" aria-label="Вторник, закрытие">
+            <label class="check"><input type="checkbox"><span>Выходной</span></label>
+          </div>
+          <div class="hourrow">
+            <span class="hourrow__d">Среда</span>
+            <input type="time" value="10:00" aria-label="Среда, открытие">
+            <input type="time" value="20:00" aria-label="Среда, закрытие">
+            <label class="check"><input type="checkbox"><span>Выходной</span></label>
+          </div>
+          <div class="hourrow">
+            <span class="hourrow__d">Четверг</span>
+            <input type="time" value="10:00" aria-label="Четверг, открытие">
+            <input type="time" value="20:00" aria-label="Четверг, закрытие">
+            <label class="check"><input type="checkbox"><span>Выходной</span></label>
+          </div>
+          <div class="hourrow">
+            <span class="hourrow__d">Пятница</span>
+            <input type="time" value="10:00" aria-label="Пятница, открытие">
+            <input type="time" value="20:00" aria-label="Пятница, закрытие">
             <label class="check"><input type="checkbox"><span>Выходной</span></label>
           </div>
           <div class="hourrow">
@@ -113,8 +144,8 @@
           </div>
           <div class="hourrow hourrow--off">
             <span class="hourrow__d">Воскресенье</span>
-            <input type="time" value="11:00" aria-label="Воскресенье, открытие">
-            <input type="time" value="18:00" aria-label="Воскресенье, закрытие">
+            <input type="time" value="" aria-label="Воскресенье, открытие" disabled>
+            <input type="time" value="" aria-label="Воскресенье, закрытие" disabled>
             <label class="check"><input type="checkbox" checked><span>Выходной</span></label>
           </div>
         </div>
@@ -130,9 +161,9 @@
 
     <aside class="note"><b>1. Экран открывается на том, что нужно починить.</b> Комментарий модератора стоит первым, а само поле помечено ошибкой. П. 7.4 требует «отклонено с комментарием», но пользы от комментария нет, если человеку приходится искать, к какому из пятнадцати полей он относится. Поэтому причина отклонения и подсвеченное поле связаны напрямую.</aside>
 
-    <aside class="note"><b>2. Телефонов и соцсетей может быть сколько угодно.</b> На действующем сайте у магазинов по два-три телефона, а соцсети у всех разные. Фиксированный набор полей упрётся в первого же арендатора, поэтому строки добавляются. Список площадок взят из п. 13.5 — тот же, что в подвале сайта, чтобы на публичной карточке не появилась иконка, которой нет в дизайн-системе.</aside>
+    <aside class="note"><b>2. Мессенджеры и соцсети — только из списков.</b> П. 6.2 и 7.3 называют контакты «соцсети, мессенджеры». Заказчик уточнил: соцсети только из набора п. 13.5, мессенджеры только из разрешённых в РФ. Поэтому тип выбирается из списка, а не вводится свободно, — на публичной карточке не появится площадка, которой нет в наборе. Точный список мессенджеров ещё не утверждён; в прототипе стоят MAX, Telegram, ВКонтакте и помечены пунктиром.</aside>
 
-    <aside class="note"><b>3. «Как у комплекса» — не украшение, а защита от мусора.</b> Комплекс работает 10:00—20:00 ежедневно, и у подавляющего большинства магазинов режим совпадает. Если заставить каждого заполнять семь строк вручную, в базе появятся опечатки вроде «с 10 до 20» текстом и пустые дни, а на карточках — разнобой. Свой график заполняют те, у кого он действительно другой.</aside>
+    <aside class="note"><b>3. Режим работы — по дням недели.</b> П. 7.3 не задаёт формат; заказчик уточнил: по дням недели с графиком. Каждый день — своя строка с часами открытия и закрытия и отметкой «Выходной». Телефонов, мессенджеров и соцсетей может быть несколько, строки добавляются.</aside>
 
     <aside class="note"><b>4. Пока правка на проверке, форма блокируется.</b> Решение не из ТЗ: если разрешить править карточку с уже отправленным пакетом, у модератора и арендатора разойдутся версии и станет непонятно, что именно одобряют. Вместо редактирования в этом состоянии показывается кнопка «Отозвать с проверки» — она возвращает пакет в черновик.</aside>
 
@@ -142,6 +173,6 @@
   </div>
 </div>
 
-<script src="lk-parts.js?v=55"></script>
+<script src="lk-parts.js?v=56"></script>
 </body>
 </html>

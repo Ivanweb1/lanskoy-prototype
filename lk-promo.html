@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=55">
+<link rel="stylesheet" href="style.css?v=56">
 </head>
 <body>
 
@@ -43,6 +43,12 @@
           <span class="fld__lab">Название акции</span>
           <input type="text" value="Скидка 15% на фрески">
           <span class="fld__hint">Коротко и по делу — название видно в общей ленте акций и в карточке магазина.</span>
+        </label>
+
+        <label class="fld">
+          <span class="fld__lab">Категория акции</span>
+          <select class="sel"><option selected>Декоративно-отделочные материалы</option><option>Плитка</option><option>Обои</option><option>Шторы, карнизы, ткани</option><option>Лакокрасочные и клеящие материалы</option><option>Напольные покрытия</option><option>Потолки</option><option>Двери, перегородки, фурнитура</option><option>Остекление и оконная фурнитура</option><option>Стекло и зеркала</option><option>Сантехника</option><option>Свет</option><option>Лестницы</option><option>Отопление и кондиционирование</option></select>
+          <span class="fld__hint">По ней акцию находят в фильтре ленты акций на сайте. Может отличаться от категорий магазина.</span>
         </label>
 
         <label class="fld">
@@ -107,10 +113,12 @@
 
     <aside class="note"><b>4. Отдельная очередь модерации для акций — вопрос к заказчику.</b> Акция обычно срочная: распродажа начинается в пятницу, и ждать проверки наравне со сменой логотипа арендатору тяжело. В ТЗ разделения нет — все правки идут одним потоком (п. 7.4). Стоит решить, делать ли для акций приоритетную очередь или хотя бы обещанный срок проверки, иначе арендаторы будут звонить администрации с просьбой «посмотрите быстрее».</aside>
 
+    <aside class="note"><b>5. Категория акции задаётся отдельно.</b> П. 6.7 требует фильтр ленты акций «по магазину/категории». Заказчик уточнил: категория выбирается при создании акции, а не берётся из категорий магазина. В списке — рубрикатор сайта из п. 6.3; подтвердить, что выбор именно из него и что категория одна, а не несколько.</aside>
+
   </main>
   </div>
 </div>
 
-<script src="lk-parts.js?v=55"></script>
+<script src="lk-parts.js?v=56"></script>
 </body>
 </html>
