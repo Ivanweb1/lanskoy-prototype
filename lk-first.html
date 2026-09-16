@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Смена временного пароля — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=58">
+</head>
+<body>
+
+<main id="main" tabindex="-1">
+  <div class="lkauth">
+
+    <div class="lkauth__side">
+      <div class="lkauth__in">
+
+        <a href="index.html" class="lkauth__logo">
+          <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">
+        </a>
+
+        <h1 class="lkauth__h1">Придумайте свой пароль</h1>
+        <p class="lkauth__lead">Вы вошли по временному паролю, который прислал менеджер. Чтобы продолжить, замените его на свой.</p>
+
+        <form novalidate>
+          <label class="fld">
+            <span class="fld__lab">Новый пароль</span>
+            <input type="password" name="new-password" autocomplete="new-password" required>
+            <span class="fld__hint ph-mark">Не короче 0 символов</span>
+            <span class="fld__err">Пароль слишком короткий</span>
+          </label>
+
+          <label class="fld">
+            <span class="fld__lab">Повторите пароль</span>
+            <input type="password" name="new-password-2" autocomplete="new-password" required>
+            <span class="fld__err">Пароли не совпадают</span>
+          </label>
+
+          <div class="lkauth__row">
+            <a href="lk-login.html" class="lkauth__mini">Выйти</a>
+            <a href="lk.html" class="btn btn--primary">Сохранить и войти</a>
+          </div>
+        </form>
+
+        <div class="lkauth__foot">
+          Временный пароль больше не подойдёт. Если что-то пошло не так, напишите на
+          <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>.
+        </div>
+      </div>
+    </div>
+
+    <div class="lkauth__media ph"><span class="ph__label">Фотография комплекса</span></div>
+  </div>
+
+  <aside class="note"><b>1. Первый вход.</b> Заказчик уточнил: после одобрения заявки менеджер присылает арендатору пароль, и при первом входе арендатор сразу его меняет. Путь: вход по временному паролю → код подтверждения на почту (п. 7.5) → этот экран → обзор кабинета. Пропустить экран нельзя — «Выйти» возвращает на вход.</aside>
+
+  <aside class="note"><b>2. Требования к паролю в ТЗ не заданы.</b> Минимальная длина и прочие правила показаны пунктиром — их определяет разработка вместе с п. 12.2.</aside>
+</main>
+
+</body>
+</html>

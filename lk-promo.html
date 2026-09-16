@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=57">
+<link rel="stylesheet" href="style.css?v=58">
 </head>
 <body>
 
@@ -45,11 +45,26 @@
           <span class="fld__hint">Коротко и по делу — название видно в общей ленте акций и в карточке магазина.</span>
         </label>
 
-        <label class="fld">
-          <span class="fld__lab">Категория акции</span>
-          <select class="sel"><option selected>Декоративно-отделочные материалы</option><option>Плитка</option><option>Обои</option><option>Шторы, карнизы, ткани</option><option>Лакокрасочные и клеящие материалы</option><option>Напольные покрытия</option><option>Потолки</option><option>Двери, перегородки, фурнитура</option><option>Остекление и оконная фурнитура</option><option>Стекло и зеркала</option><option>Сантехника</option><option>Свет</option><option>Лестницы</option><option>Отопление и кондиционирование</option></select>
-          <span class="fld__hint">По ней акцию находят в фильтре ленты акций на сайте. Может отличаться от категорий магазина.</span>
-        </label>
+        <fieldset class="catpick">
+          <legend class="fld__lab">Категории акции</legend>
+          <div class="catpick__list">
+            <label class="check"><input type="checkbox" checked><span>Декоративно-отделочные материалы</span></label>
+            <label class="check"><input type="checkbox"><span>Плитка</span></label>
+            <label class="check"><input type="checkbox"><span>Обои</span></label>
+            <label class="check"><input type="checkbox"><span>Шторы, карнизы, ткани</span></label>
+            <label class="check"><input type="checkbox"><span>Лакокрасочные и клеящие материалы</span></label>
+            <label class="check"><input type="checkbox"><span>Напольные покрытия</span></label>
+            <label class="check"><input type="checkbox"><span>Потолки</span></label>
+            <label class="check"><input type="checkbox"><span>Двери, перегородки, фурнитура</span></label>
+            <label class="check"><input type="checkbox"><span>Остекление и оконная фурнитура</span></label>
+            <label class="check"><input type="checkbox"><span>Стекло и зеркала</span></label>
+            <label class="check"><input type="checkbox"><span>Сантехника</span></label>
+            <label class="check"><input type="checkbox"><span>Свет</span></label>
+            <label class="check"><input type="checkbox"><span>Лестницы</span></label>
+            <label class="check"><input type="checkbox"><span>Отопление и кондиционирование</span></label>
+          </div>
+          <span class="fld__hint">По ним акцию находят в фильтре ленты акций на сайте. Можно выбрать несколько, они могут отличаться от категорий магазина.</span>
+        </fieldset>
 
         <label class="fld">
           <span class="fld__lab">Условия</span>
@@ -98,7 +113,7 @@
       </section>
 
       <div class="formbar">
-        <p class="formbar__t">Черновик сохраняется автоматически. Изменения появятся на сайте после проверки.</p>
+        <p class="formbar__t">Черновик сохраняется автоматически. «Отправить на проверку» отправляет все изменения карточки разом — описание, контакты, фото, видео и акции.</p>
         <button type="button" class="btn btn--ghost btn--sm">Снять с публикации</button>
         <a href="lk-promos.html" class="btn btn--primary btn--sm">Отправить на проверку</a>
       </div>
@@ -111,14 +126,14 @@
 
     <aside class="note"><b>3. «Снять с публикации» — не удаление.</b> Кнопка убирает акцию с сайта, но оставляет её в разделе завершённых, откуда её можно повторить. Полное удаление здесь не предусмотрено: акция это часть истории изменений по п. 7.4, и журнал не должен ссылаться на несуществующие записи.</aside>
 
-    <aside class="note"><b>4. Отдельная очередь модерации для акций — вопрос к заказчику.</b> Акция обычно срочная: распродажа начинается в пятницу, и ждать проверки наравне со сменой логотипа арендатору тяжело. В ТЗ разделения нет — все правки идут одним потоком (п. 7.4). Стоит решить, делать ли для акций приоритетную очередь или хотя бы обещанный срок проверки, иначе арендаторы будут звонить администрации с просьбой «посмотрите быстрее».</aside>
+    <aside class="note"><b>4. Акция проверяется вместе с остальными правками.</b> По ответу заказчика модерируется вся отправка целиком, отдельной очереди для акций нет: новая или изменённая акция уходит на проверку той же кнопкой, что и фото или контакты.</aside>
 
-    <aside class="note"><b>5. Категория акции задаётся отдельно.</b> П. 6.7 требует фильтр ленты акций «по магазину/категории». Заказчик уточнил: категория выбирается при создании акции, а не берётся из категорий магазина. В списке — рубрикатор сайта из п. 6.3; подтвердить, что выбор именно из него и что категория одна, а не несколько.</aside>
+    <aside class="note"><b>5. Категории акции задаются отдельно, их может быть несколько.</b> П. 6.7 требует фильтр ленты акций «по магазину/категории». Заказчик уточнил: категории выбираются при создании акции, а не берутся из категорий магазина, и можно выбрать несколько. В списке — рубрикатор сайта из п. 6.3.</aside>
 
   </main>
   </div>
 </div>
 
-<script src="lk-parts.js?v=57"></script>
+<script src="lk-parts.js?v=58"></script>
 </body>
 </html>
