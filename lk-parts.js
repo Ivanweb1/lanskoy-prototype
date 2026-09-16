@@ -44,7 +44,7 @@
     { key: 'photos', label: 'Фотографии', href: 'lk-photos.html' },
     { key: 'video', label: 'Видео', href: 'lk-video.html' },
     { key: 'promos', label: 'Акции', href: 'lk-promos.html', n: '2' },
-    { t: 'Прочее' },
+    { sep: true },
     { key: 'log', label: 'Журнал изменений', href: 'lk-log.html' },
     { key: 'account', label: 'Аккаунт и вход', href: 'lk-account.html' }
   ];
@@ -52,6 +52,7 @@
   function nav(active) {
     return NAV.map(function (i) {
       if (i.t) return '<p class="lknav__t">' + i.t + '</p>';
+      if (i.sep) return '<hr class="lknav__sep">';
       return '<a href="' + i.href + '" class="lknav__i' + (i.key === active ? ' is-current' : '') + '">' +
         i.label + (i.n ? '<span class="lknav__n">' + i.n + '</span>' : '') + '</a>';
     }).join('');

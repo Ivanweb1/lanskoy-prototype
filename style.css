@@ -1716,3 +1716,7 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
   .reqsend{flex-direction:column;align-items:stretch}
   .reqsend .captcha{flex-basis:auto;height:78px}
 }
+
+/* журнал и аккаунт отделены линией, а не подзаголовком «Прочее» */
+.lknav__sep{border:0;border-top:1px solid var(--line);margin:14px 12px}
+@media(max-width:1000px){.lknav__sep{display:none}}
