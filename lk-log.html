@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Журнал изменений — кабинет арендатора — ТК «Ланской» — прототип</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=59">
+</head>
+<body>
+
+<div class="lkshell">
+  <aside id="lkSide" data-lk="log"></aside>
+
+  <div class="lkcontent">
+  <main id="main" tabindex="-1" class="lkmain">
+
+    <div class="lkhead">
+      <div>
+        <h1 class="lkhead__h1">Журнал изменений</h1>
+        <p class="lkhead__sub">Ваши действия в кабинете магазина VLADART STUDIO: что изменено, когда отправлено на проверку и чем закончилась проверка.</p>
+      </div>
+    </div>
+
+    <div class="subchips" id="logChips" role="group" aria-label="Раздел">
+      <button type="button" class="chip is-active" data-sec="all">Все</button>
+      <button type="button" class="chip" data-sec="card">Описание и контакты</button>
+      <button type="button" class="chip" data-sec="photos">Фотографии</button>
+      <button type="button" class="chip" data-sec="video">Видео</button>
+      <button type="button" class="chip" data-sec="promos">Акции</button>
+      <button type="button" class="chip" data-sec="account">Аккаунт</button>
+    </div>
+
+    <!-- черновик -->
+    <section class="loggroup">
+      <div class="loggroup__head">
+        <div>
+          <p class="loggroup__t">Не отправлено</p>
+          <p class="loggroup__m">Уйдёт на проверку одной отправкой</p>
+        </div>
+        <span class="status status--draft">Черновик</span>
+      </div>
+      <div class="logrow" data-sec="video">
+        <span class="logrow__d">16.09.2026, 10:05</span>
+        <span class="logrow__t"><span class="logrow__s">Видео</span>Загружен ролик «vladart-showroom.mp4»</span>
+      </div>
+      <div class="logrow" data-sec="promos">
+        <span class="logrow__d">14.09.2026, 11:35</span>
+        <span class="logrow__t"><span class="logrow__s">Акции</span>Создана акция «Осенние цены на декоративную штукатурку»</span>
+      </div>
+      <div class="logrow" data-sec="photos">
+        <span class="logrow__d">14.09.2026, 11:20</span>
+        <span class="logrow__t"><span class="logrow__s">Фотографии</span>Добавлены 3 фотографии в галерею</span>
+      </div>
+    </section>
+
+    <!-- отклонённая отправка -->
+    <section class="loggroup">
+      <div class="loggroup__head">
+        <div>
+          <p class="loggroup__t">Отправка от 12.09.2026, 16:05</p>
+          <p class="loggroup__m">Проверена 12.09.2026, 16:40</p>
+        </div>
+        <span class="status status--stop">Отклонено</span>
+      </div>
+      <p class="loggroup__c">Комментарий модератора: «Телефон указан без кода города, добавьте +7 (812). Новое фото в галерее вертикальное и обрезается в каталоге — замените на горизонтальное».</p>
+      <div class="logrow" data-sec="card">
+        <span class="logrow__d">12.09.2026, 15:58</span>
+        <span class="logrow__t"><span class="logrow__s">Контакты</span>Основной телефон: <span class="ph-mark">прежнее значение</span> → «363-00-07»</span>
+      </div>
+      <div class="logrow" data-sec="photos">
+        <span class="logrow__d">12.09.2026, 16:02</span>
+        <span class="logrow__t"><span class="logrow__s">Фотографии</span>Добавлена 1 фотография в галерею</span>
+      </div>
+    </section>
+
+    <!-- опубликованные отправки -->
+    <section class="loggroup">
+      <div class="loggroup__head">
+        <div>
+          <p class="loggroup__t">Отправка от 05.09.2026, 09:41</p>
+          <p class="loggroup__m">Проверена 05.09.2026, 14:10</p>
+        </div>
+        <span class="status status--ok">Опубликовано</span>
+      </div>
+      <div class="logrow" data-sec="promos">
+        <span class="logrow__d">05.09.2026, 09:38</span>
+        <span class="logrow__t"><span class="logrow__s">Акции</span>Создана акция «Скидка 15% на декоративную штукатурку»</span>
+      </div>
+    </section>
+
+    <section class="loggroup">
+      <div class="loggroup__head">
+        <div>
+          <p class="loggroup__t">Отправка от 20.08.2026, 12:15</p>
+          <p class="loggroup__m">Проверена 20.08.2026, 17:30</p>
+        </div>
+        <span class="status status--ok">Опубликовано</span>
+      </div>
+      <div class="logrow" data-sec="promos">
+        <span class="logrow__d">20.08.2026, 12:10</span>
+        <span class="logrow__t"><span class="logrow__s">Акции</span>Создана акция «Бесплатный выезд замерщика»</span>
+      </div>
+    </section>
+
+    <!-- аккаунт: без модерации -->
+    <section class="loggroup">
+      <div class="loggroup__head">
+        <div>
+          <p class="loggroup__t">Аккаунт</p>
+          <p class="loggroup__m">Действия со входом не проходят проверку</p>
+        </div>
+      </div>
+      <div class="logrow" data-sec="account">
+        <span class="logrow__d">16.09.2026, 09:58</span>
+        <span class="logrow__t"><span class="logrow__s">Вход</span>Вход в кабинет с нового устройства</span>
+      </div>
+      <div class="logrow" data-sec="account">
+        <span class="logrow__d">28.05.2026, 10:12</span>
+        <span class="logrow__t"><span class="logrow__s">Пароль</span>Временный пароль заменён при первом входе</span>
+      </div>
+    </section>
+
+    <div class="empty" id="logEmpty" hidden>
+      <p class="empty__title">В этом разделе изменений нет</p>
+    </div>
+
+    <aside class="note"><b>1. Только свои действия.</b> П. 7.4–7.6 требуют журнал изменений и аудит с автором и временем. Заказчик уточнил: администратор видит все действия, арендатор — только свои. Поэтому здесь нет правок администрации (категории, расположение, бренды) — только то, что сделал сам арендатор, и итог проверки его отправок.</aside>
+
+    <aside class="note"><b>2. Записи сгруппированы по отправкам.</b> Модерируется вся отправка целиком, поэтому и в журнале правки собраны под своей отправкой: дата отправки, дата проверки, статус и общий комментарий модератора. Сверху — черновик, который ещё не отправлен.</aside>
+
+    <aside class="note"><b>3. Было → стало.</b> «Журнал изменений» из п. 7.4 показывает не только факт правки, но и сами значения. Прежнее значение телефона у нас неизвестно — оно помечено пунктиром.</aside>
+
+    <aside class="note"><b>4. Автор не показан отдельной колонкой.</b> Учётная запись у арендатора одна (ответ заказчика), и все записи здесь — его собственные. Журнал относится к магазину, выбранному в боковой панели.</aside>
+
+  </main>
+  </div>
+</div>
+
+<script src="lk-parts.js?v=59"></script>
+<script>
+/* фильтр по разделу — только для прототипа */
+(function () {
+  var chips = document.getElementById('logChips');
+  var groups = [].slice.call(document.querySelectorAll('.loggroup'));
+  var empty = document.getElementById('logEmpty');
+  chips.addEventListener('click', function (e) {
+    var b = e.target.closest('.chip');
+    if (!b) return;
+    chips.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('is-active', c === b); });
+    var sec = b.dataset.sec, shown = 0;
+    groups.forEach(function (g) {
+      var n = 0;
+      g.querySelectorAll('.logrow').forEach(function (r) {
+        var ok = sec === 'all' || r.dataset.sec === sec;
+        r.hidden = !ok;
+        if (ok) n++;
+      });
+      g.hidden = n === 0;
+      shown += n;
+    });
+    empty.hidden = shown > 0;
+  });
+})();
+</script>
+</body>
+</html>
