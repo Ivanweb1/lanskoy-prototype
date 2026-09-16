@@ -1739,3 +1739,11 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
 .helpsec .rows .status{white-space:nowrap}
 @media(max-width:760px){.helptoc ol{columns:1}}
 @media(max-width:1000px){.helpsec{scroll-margin-top:164px}}
+
+/* видео: два способа добавления */
+.vidadd__h{font-size:13px;font-weight:600;letter-spacing:.04em;margin:0 0 12px}
+.vidadd__h:not(:first-of-type){margin-top:28px}
+.vidadd__row{max-width:720px}
+.vidadd__btn{margin-top:25px;height:46px;flex:none}
+.vidrow+.vidrow{border-top:0}
+@media(max-width:760px){.vidadd__row{flex-direction:column;align-items:stretch}.vidadd__row .fld{width:100%}.vidadd__btn{margin-top:0;align-self:flex-start}}

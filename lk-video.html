@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=69">
+<link rel="stylesheet" href="style.css?v=70">
 </head>
 <body>
 
@@ -21,34 +21,46 @@
     <div class="lkhead">
       <div>
         <h1 class="lkhead__h1">Видео</h1>
-        <p class="lkhead__sub">Ролики о магазине. Всё, что вы загрузите, появится на сайте после проверки администрацией.</p>
+        <p class="lkhead__sub">Ролики о магазине — файлом или ссылкой с видеохостинга. Всё, что вы добавите, появится на сайте после проверки администрацией.</p>
       </div>
       <div class="lkhead__acts">
-        <span class="status status--draft">Не заполнено</span>
+        <span class="status status--draft">Черновик</span>
       </div>
     </div>
 
     <div class="alert alert--quiet">
-      <p class="alert__t">В карточке пока нет видео</p>
-      Пока здесь пусто, раздела «Видео» на странице магазина не видно.
+      <p class="alert__t">На сайте пока нет видео</p>
+      Раздел «Видео» на странице магазина появится, когда администрация одобрит первый ролик.
     </div>
 
     <section class="block">
       <div class="block__head">
-        <h2 class="block__h2">Загрузка</h2>
+        <h2 class="block__h2">Добавить видео</h2>
       </div>
+
+      <h3 class="vidadd__h">Файлом</h3>
 
       <div class="drop">
         <p class="drop__t">Перетащите видеофайл сюда или выберите на компьютере</p>
         <p class="drop__h">MP4 или MOV · до 500 МБ · до 3 минут · горизонтальное 16:9, не меньше 1280 × 720 · до 5 роликов</p>
         <button type="button" class="btn btn--ghost btn--sm">Выбрать файл</button>
       </div>
+
+      <h3 class="vidadd__h">Ссылкой с видеохостинга</h3>
+      <div class="repeat__row vidadd__row">
+        <label class="fld">
+          <span class="fld__lab">Ссылка на ролик</span>
+          <input type="url" placeholder="https://rutube.ru/video/…" inputmode="url">
+          <span class="fld__hint">VK Видео или RuTube · ролик должен быть открыт для всех · общий лимит — до 5 роликов вместе с файлами</span>
+        </label>
+        <button type="button" class="btn btn--ghost btn--sm vidadd__btn">Добавить</button>
+      </div>
     </section>
 
     <section class="block">
       <div class="block__head">
         <h2 class="block__h2">Ролики магазина</h2>
-        <span class="block__meta">1 загружается</span>
+        <span class="block__meta">2 в черновике · 1 загружается</span>
       </div>
 
       <div class="vidrow">
@@ -66,6 +78,19 @@
           <button type="button" class="shot__act">Отменить</button>
         </div>
       </div>
+
+      <div class="vidrow">
+        <div class="vidrow__img ph"><span class="playmark playmark--sm" aria-hidden="true"></span></div>
+        <div class="vidrow__body">
+          <p class="vidrow__n ph-mark">Название ролика подтянется с хостинга</p>
+          <p class="vidrow__m">RuTube · по ссылке · <span class="ph-mark">2:15</span></p>
+          <p class="vidrow__m"><a href="#" class="link link--inline">rutube.ru/video/…</a></p>
+        </div>
+        <div class="vidrow__side">
+          <span class="status status--sm status--draft">Черновик</span>
+          <button type="button" class="shot__act">Удалить</button>
+        </div>
+      </div>
     </section>
 
     <div class="formbar">
@@ -74,9 +99,11 @@
       <a href="lk.html" class="btn btn--primary btn--sm">Отправить на проверку</a>
     </div>
 
-    <aside class="note"><b>1. Только загрузка файлом.</b> П. 7.3 допускает «загрузку/встраивание»; заказчик выбрал загрузку. Поэтому поля для ссылки с видеохостинга здесь нет.</aside>
+    <aside class="note"><b>1. Файлом и ссылкой.</b> П. 7.3 — «видеоконтент (загрузка/встраивание)», п. 6.9 — «загрузка файлов и/или встраивание с видеохостингов». Сначала по ответу заказчика оставляли только загрузку, 16.09 вернули оба способа. Ролик по ссылке не хранится на нашем сервере — меньше нагрузка на хранилище (п. 10.2), обложка, название и длительность подтягиваются с хостинга. Проходит ту же проверку, что и файл.</aside>
 
-    <aside class="note"><b>2. Показан момент загрузки.</b> Видео у VLADART STUDIO ещё нет (так и на обзоре), поэтому экран в состоянии «первый ролик загружается»: прогресс, размер, длительность и отмена. После загрузки у ролика появляются статусы из п. 7.4 — черновик, на модерации, опубликовано, отклонено с комментарием, — как у фотографий.</aside>
+    <aside class="note"><b>1а. Моё, надо подтвердить.</b> Хостинги — VK Видео и RuTube: оба из списка разрешённых соцсетей п. 13.5 и работают в РФ без ограничений; YouTube не предлагаю — в РФ воспроизводится нестабильно. Общий лимит 5 роликов на оба способа. Ссылки на закрытые ролики и на другие сайты поле не принимает — ошибка сразу при добавлении.</aside>
+
+    <aside class="note"><b>2. Показаны оба способа в черновике.</b> Опубликованных видео у VLADART STUDIO ещё нет (так и на обзоре): один ролик загружается файлом — прогресс, размер, длительность и отмена; второй добавлен ссылкой. Название и длительность у ролика по ссылке — заглушки, реального ролика нет. После загрузки у ролика появляются статусы из п. 7.4 — черновик, на модерации, опубликовано, отклонено с комментарием, — как у фотографий.</aside>
 
     <aside class="note"><b>3. Ограничения — моё предложение.</b> Значений в ТЗ нет. Поставлено: MP4/MOV до 500 МБ и до 3 минут, горизонтальное 16:9 от 1280 × 720, до 5 роликов. Три минуты — достаточно для обзора магазина; 500 МБ вмещает такой ролик в Full HD с телефона. Объём влияет на хранилище в РФ (п. 10.2) и CDN (п. 10.3) — разработка может скорректировать.</aside>
 
@@ -84,6 +111,6 @@
   </div>
 </div>
 
-<script src="lk-parts.js?v=69"></script>
+<script src="lk-parts.js?v=70"></script>
 </body>
 </html>
