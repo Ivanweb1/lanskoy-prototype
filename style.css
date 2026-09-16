@@ -1576,3 +1576,18 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
   .linkrow__type{flex-basis:130px!important}
   .reqshop{grid-template-columns:minmax(0,1fr) 96px}
 }
+
+/* ---------- видео в кабинете: только загрузка файлом ---------- */
+.vidrow{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:24px;align-items:center;
+  padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.vidrow__img{position:relative;aspect-ratio:16/9}
+.vidrow__n{font-size:15px;font-weight:600;overflow-wrap:anywhere}
+.vidrow__m{font-size:13px;color:var(--mute);margin-top:4px}
+.vidrow__side{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.progress{height:4px;background:var(--line);margin-top:12px;max-width:420px}
+.progress__bar{display:block;height:100%;background:var(--ink)}
+
+@media(max-width:760px){
+  .vidrow{grid-template-columns:120px minmax(0,1fr);gap:14px 16px}
+  .vidrow__side{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between}
+}
