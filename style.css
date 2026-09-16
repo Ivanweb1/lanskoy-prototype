@@ -1747,3 +1747,5 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
 .vidadd__btn{margin-top:25px;height:46px;flex:none}
 .vidrow+.vidrow{border-top:0}
 @media(max-width:760px){.vidadd__row{flex-direction:column;align-items:stretch}.vidadd__row .fld{width:100%}.vidadd__btn{margin-top:0;align-self:flex-start}}
+.vidadd__more{font-size:13px;line-height:1.55;color:var(--ink-2);margin-top:14px;max-width:720px}
+.vidadd__row input:disabled,.vidadd__btn:disabled{opacity:.45;cursor:not-allowed}
