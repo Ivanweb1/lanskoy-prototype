@@ -8,24 +8,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=64">
+<link rel="stylesheet" href="style.css?v=65">
 </head>
 <body>
 
 <main id="main" tabindex="-1">
-  <div class="lkauth">
+  <div class="lkauth lkauth--fit">
 
     <div class="lkauth__side">
-      <div class="lkauth__in">
-
+      <div class="lkauth__top">
         <a href="index.html" class="lkauth__logo">
           <img src="logo.svg" alt="ТК «Ланской» — на главную" class="logo__img" width="205" height="64">
         </a>
+        <a href="index.html" class="lkauth__mini">На сайт комплекса</a>
+      </div>
+
+      <div class="lkauth__in lkauth__in--wide">
 
         <!-- форма -->
         <div id="reqForm">
           <h1 class="lkauth__h1">Заявка на доступ в кабинет</h1>
-          <p class="lkauth__lead">Для магазинов, которые уже работают в ТК. Администрация проверит заявку и сообщит о решении на рабочую почту.</p>
+          <p class="lkauth__lead">Для магазинов, которые уже работают в ТК. Решение придёт на рабочую почту.</p>
 
           <form novalidate>
             <div class="reqshop">
@@ -42,24 +45,25 @@
             </div>
             <button type="button" class="addline reqadd">+ Добавить ещё магазин</button>
 
-            <label class="fld reqgap">
-              <span class="fld__lab">Контактное лицо</span>
-              <input type="text" name="name" autocomplete="name" required>
-              <span class="fld__err">Укажите имя и фамилию</span>
-            </label>
+            <div class="reqgrid">
+              <label class="fld">
+                <span class="fld__lab">Контактное лицо</span>
+                <input type="text" name="name" autocomplete="name" required>
+                <span class="fld__err">Укажите имя и фамилию</span>
+              </label>
 
-            <label class="fld">
-              <span class="fld__lab">Рабочая почта</span>
-              <input type="email" name="email" autocomplete="email" placeholder="name@company.ru" required>
-              <span class="fld__hint">На неё придёт решение по заявке. Этот адрес станет логином для входа.</span>
-              <span class="fld__err">Проверьте адрес</span>
-            </label>
+              <label class="fld">
+                <span class="fld__lab">Телефон</span>
+                <input type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+                <span class="fld__err">Укажите телефон для связи</span>
+              </label>
 
-            <label class="fld">
-              <span class="fld__lab">Телефон</span>
-              <input type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
-              <span class="fld__err">Укажите телефон для связи</span>
-            </label>
+              <label class="fld reqgrid__wide">
+                <span class="fld__lab">Рабочая почта — станет логином для входа</span>
+                <input type="email" name="email" autocomplete="email" placeholder="name@company.ru" required>
+                <span class="fld__err">Проверьте адрес</span>
+              </label>
+            </div>
 
             <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
 
@@ -69,10 +73,8 @@
               <span class="fld__err">Без согласия заявку отправить нельзя</span>
             </label>
 
-            <div class="captcha ph"><span class="ph__label">Yandex SmartCaptcha</span></div>
-
-            <div class="lkauth__row">
-              <a href="lk-login.html" class="lkauth__mini">У меня уже есть доступ</a>
+            <div class="reqsend">
+              <div class="captcha ph"><span class="ph__label">Yandex SmartCaptcha</span></div>
               <button type="button" class="btn btn--primary" id="reqSend">Отправить заявку</button>
             </div>
           </form>
@@ -87,17 +89,11 @@
             <a href="lk-login.html" class="btn btn--ghost">Ко входу в кабинет</a>
           </div>
         </div>
+      </div>
 
-        <div class="lkauth__foot">
-          Вопросы по доступу — <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>
-          или <a href="tel:+78124585900">+7 (812) 458-59-00</a>.
-        </div>
-
-        <div class="lkauth__foot">
-          Хотите арендовать помещение? Это другой раздел — <a href="rent.html">условия аренды и заявка</a>.
-        </div>
-
-        <p class="lkauth__back"><a href="index.html">Вернуться на сайт комплекса</a></p>
+      <div class="lkauth__bottom lkauth__bottom--wide">
+        <p>Уже есть доступ? <a href="lk-login.html">Войти в кабинет</a></p>
+        <p>Вопросы по доступу — <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>, <a href="tel:+78124585900">+7 (812) 458-59-00</a></p>
       </div>
     </div>
 

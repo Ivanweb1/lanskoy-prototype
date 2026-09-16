@@ -1698,3 +1698,21 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
   .lkauth--fit .lkauth__row{margin-top:12px}
   .lkauth__bottom{padding-top:12px}
 }
+
+/* ---------- заявка на доступ в один экран: форма шире, поля в две колонки,
+   капча рядом с кнопкой отправки ---------- */
+.lkauth__in--wide{max-width:520px}
+.lkauth__bottom--wide{max-width:520px}
+.reqgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px;margin-top:14px}
+.reqgrid__wide{grid-column:1/-1}
+.reqgrid .fld{margin-bottom:12px}
+.lkauth--fit .reqshop .fld{margin-bottom:6px}
+.lkauth--fit .reqadd{margin:0}
+.lkauth--fit .check{margin-top:4px}
+.reqsend{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:14px}
+.reqsend .captcha{flex:0 1 300px;height:66px;margin:0}
+@media(max-width:760px){
+  .reqgrid{grid-template-columns:1fr}
+  .reqsend{flex-direction:column;align-items:stretch}
+  .reqsend .captcha{flex-basis:auto;height:78px}
+}
