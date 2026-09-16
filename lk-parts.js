@@ -46,7 +46,8 @@
     { key: 'promos', label: 'Акции', href: 'lk-promos.html', n: '2' },
     { sep: true },
     { key: 'log', label: 'Журнал изменений', href: 'lk-log.html' },
-    { key: 'account', label: 'Аккаунт и вход', href: 'lk-account.html' }
+    { key: 'account', label: 'Аккаунт и вход', href: 'lk-account.html' },
+    { key: 'help', label: 'Инструкция', href: 'lk-help.html' }
   ];
 
   function nav(active) {

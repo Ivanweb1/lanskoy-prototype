@@ -1724,3 +1724,18 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
 /* название магазина и место — каждое на своей строке: в переключателе это span, и без этого «Секция» прилипала к названию */
 .lkswitch__btn .lkside__name,.lkswitch__btn .lkside__place{display:block}
 .lkswitch__btn .lkside__place{white-space:nowrap}
+
+/* ---------- инструкция для арендаторов (lk-help) ---------- */
+.helptoc{border:1px solid var(--line);padding:22px 24px;margin-bottom:44px}
+.helptoc .lknav__t{padding:0}
+.helptoc ol{columns:2;column-gap:32px;list-style:none;counter-reset:toc}
+.helptoc li{counter-increment:toc;break-inside:avoid;padding:6px 0;font-size:14px}
+.helptoc li::before{content:counter(toc) ". ";color:var(--mute)}
+.helptoc a{border-bottom:1px solid var(--line-2)}
+.helptoc a:hover{border-color:var(--ink)}
+.helpsec{scroll-margin-top:24px}
+.helptext{font-size:15px;line-height:1.6;color:var(--ink-2);max-width:68ch}
+.helpsec .rows{margin-top:8px}
+.helpsec .rows .status{white-space:nowrap}
+@media(max-width:760px){.helptoc ol{columns:1}}
+@media(max-width:1000px){.helpsec{scroll-margin-top:164px}}
