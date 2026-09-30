@@ -16,8 +16,13 @@
 
     // логотип: на тёмном фоне знак тёмно-синим не читается.
     // Брендбук стр. 08 — на тёмном фоне используется инверсная версия.
-    var logo = document.querySelector('.logo__img');
+    var logo = document.querySelector('.nav .logo__img');
     if (logo) logo.src = theme === 'dark' ? 'logo-dark.svg' : 'logo.svg';
+
+    // подвал тёмно-синий в обеих темах, поэтому там всегда инверсная версия:
+    // тёмный знак логотипа на тёмном фоне не читался
+    var flogo = document.querySelector('.footer .logo__img--inv');
+    if (flogo) flogo.src = 'logo-dark.svg';
 
     // фотография первого экрана: светлая — просторный светлый интерьер (стр. 39),
     // тёмная — вечерний шоурум с тёплым светом (стр. 38)
@@ -65,7 +70,7 @@
   }
 
   watch(document.getElementById('heroPhoto'));
-  [].forEach.call(document.querySelectorAll('.cat__img, .ecard__img, .pcard__img, .jimg, .fimg'), watch);
+  [].forEach.call(document.querySelectorAll('.cat__img, .ecard__img, .pcard__img, .jimg, .fimg, .rimg'), watch);
 
   // состояние «событий нет» — п. 6.8 ТЗ. Показывается по адресу ?events=0,
   // панели состояний в прототипе нет, как и на страницах кабинета.
