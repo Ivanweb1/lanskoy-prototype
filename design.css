@@ -23,14 +23,14 @@
   --b-copper-ink:#8E6034;
 
   /* Шрифты — брендбук, стр. 35 и 36, блок «Типографика»:
-     заголовки Playfair Display, текст Montserrat.
-     Отдельной полосы про типографику в брендбуке нет, она в боковых колонках
-     разделов «Рекламные конструкции» и «Внутренний ТВ». */
+     заголовки Playfair Display, текст Montserrat. Отдельной полосы про
+     типографику нет, она в боковых колонках разделов применения. */
   --d-serif:"Playfair Display",Georgia,serif;
   --d-sans:"Montserrat","Segoe UI",system-ui,sans-serif;
 
   --d-wrap:1360px;
   --d-ease:cubic-bezier(.22,.61,.36,1);
+  --d-skew:-12deg;           /* наклон параллелограмма — графический элемент, стр. 36 */
 }
 
 /* ============ 2. СЕМАНТИЧЕСКИЕ ТОКЕНЫ (ТЗ п. 9.2) ============ */
@@ -48,6 +48,8 @@
   --s-hero-bg:var(--b-cream);
   --s-util-bg:var(--b-cream-2);
   --s-nav-bg:rgba(246,244,237,.92);
+  --s-field-bg:rgba(255,255,255,.72);
+  --s-plate:rgba(22,38,61,.04);
   --s-pattern-op:.5;
   --s-btn-fill-fg:var(--b-navy);   /* навй на медном = 5.1:1; сочетание разрешено стр. 06 */
 }
@@ -64,6 +66,8 @@
   --s-hero-bg:var(--b-navy);
   --s-util-bg:#0B1522;
   --s-nav-bg:rgba(14,26,43,.92);
+  --s-field-bg:rgba(246,244,237,.06);
+  --s-plate:rgba(196,154,108,.07);
   --s-pattern-op:.85;
   --s-btn-fill-fg:var(--b-navy);
 }
@@ -79,7 +83,15 @@ body{
 .utility__in{min-height:44px}
 .utility a{color:inherit}
 .utility a:hover{color:var(--s-accent-ink)}
-.utility__login{color:var(--s-accent-ink)}
+.utility__login{color:var(--s-accent-ink);text-decoration:none}
+.utility__login:hover{text-decoration:underline;text-underline-offset:3px}
+.utility__actions{display:flex;align-items:center;gap:18px}
+/* «Аренда» — единственное действие для бизнеса, даём ему медную обводку */
+.utility .btn--ghost{
+  border:1px solid var(--s-accent);color:var(--s-accent-ink);
+  border-radius:2px;letter-spacing:.1em;text-transform:uppercase;font-size:11px;
+}
+.utility .btn--ghost:hover{background:var(--s-accent);color:var(--s-btn-fill-fg)}
 
 .nav{background:var(--s-nav-bg);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--s-line)}
 .nav__in{min-height:92px}
@@ -90,14 +102,18 @@ body{
 }
 .menu__item.is-current>.menu__link,.menu__link:hover{color:var(--s-accent-ink)}
 
-/* переключатель темы — решение 30.09.2026: в утилитарной строке шапки */
-.themetog{
-  display:inline-flex;align-items:center;gap:9px;
-  height:28px;padding:0 13px;border:1px solid var(--s-line-strong);border-radius:999px;
-  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--s-fg-soft);
-  transition:border-color .2s,color .2s;
+/* переключатель темы — служебный элемент, поэтому уведён в самый край
+   утилитарной строки и отделён от «Аренды» разделителем */
+.utility__actions .themetog-li{
+  order:9;margin-left:2px;padding-left:18px;
+  border-left:1px solid var(--s-line-strong);
 }
-.themetog:hover{border-color:var(--s-accent);color:var(--s-accent-ink)}
+.themetog{
+  display:inline-flex;align-items:center;gap:9px;height:28px;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--s-fg-soft);
+  transition:color .2s;
+}
+.themetog:hover{color:var(--s-accent-ink)}
 .themetog__ic{
   width:13px;height:13px;border-radius:50%;flex:none;background:var(--s-accent);
   box-shadow:inset -4px -2px 0 0 var(--s-util-bg);
@@ -113,34 +129,34 @@ body{
 }
 [data-theme="dark"] .dhero{background:var(--g-navy)}
 
-/* паттерн 01 «Геометрия архитектуры», стр. 09 — фоновым элементом, не перетягивая внимание */
+/* паттерн 01 «Геометрия архитектуры», стр. 09 — фоновым элементом */
 .dhero__pattern{
   position:absolute;inset:0;pointer-events:none;
-  color:var(--s-fg);
   opacity:calc(var(--s-pattern-op) * .16);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='240' viewBox='0 0 180 240'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.4'%3E%3Cpath d='M10 240V96l22-20 22 20v144'/%3E%3Cpath d='M54 240V60l20-18 20 18v180'/%3E%3Cpath d='M94 240V120l22-20 22 20v120'/%3E%3Cpath d='M138 240V78l21-19 21 19v162'/%3E%3C/g%3E%3C/svg%3E");
   background-size:180px 240px;
-  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 44%,transparent 66%);
-          mask-image:linear-gradient(90deg,#000 0%,#000 44%,transparent 66%);
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 52%);
+          mask-image:linear-gradient(90deg,#000 0%,transparent 52%);
 }
 /* на тёмном медные линии видны сильнее — приглушаем, чтобы не спорили с заголовком
    (брендбук, стр. 09: паттерн не должен перетягивать на себя внимание) */
 [data-theme="dark"] .dhero__pattern{opacity:.2}
 
-/* сетка первого экрана шире контейнера: левая колонка выровнена по общей сетке сайта,
-   правая — фотопанель — уходит в край страницы (как в макете брендбука, стр. 38) */
+/* сетка первого экрана шире контейнера: левая колонка по общей сетке сайта,
+   правая — фотопанель — уходит в край страницы (макет брендбука, стр. 38) */
 .dhero__in{
   position:relative;z-index:2;
   max-width:none;width:100%;margin:0;
   padding-left:max(20px,calc((100% - var(--d-wrap)) / 2));padding-right:0;
   display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);
-  align-items:center;min-height:clamp(560px,72vh,760px);
+  /* высота подобрана так, чтобы полоса услуг попадала в первый экран, а не за сгиб */
+  align-items:center;min-height:clamp(560px,70vh,760px);
 }
-.dhero__text{padding:72px 56px 72px 0;max-width:700px}
+.dhero__text{padding:64px 56px 64px 0;max-width:700px}
 
 .dhero__eyebrow{
   font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--s-accent-ink);margin:0 0 26px;
+  color:var(--s-accent-ink);margin:0 0 22px;
   display:flex;align-items:center;gap:14px;
 }
 .dhero__eyebrow::before{content:"";width:46px;height:1px;background:var(--s-accent);flex:none}
@@ -149,26 +165,64 @@ body{
   font-family:var(--d-serif);font-weight:600;
   /* Playfair шире Cormorant: «ВДОХНОВЕНИЯ» в 72px упиралось в край колонки */
   font-size:clamp(42px,4.85vw,70px);line-height:1.06;letter-spacing:.01em;
-  text-transform:uppercase;margin:0 0 26px;
+  text-transform:uppercase;margin:0 0 22px;
 }
 .dhero__h1 em{display:block;font-style:normal;color:var(--s-accent)}
 
 .dhero__sub{
-  font-size:17px;line-height:1.65;color:var(--s-fg-soft);
-  max-width:470px;margin:0 0 40px;
+  font-size:16px;line-height:1.6;color:var(--s-fg-soft);
+  max-width:490px;margin:0 0 30px;
 }
-.dhero__cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* --- поиск: главный инструмент экрана, а не кнопка-плакат --- */
+.dsearch{display:flex;max-width:560px;margin:0 0 18px;border:1px solid var(--s-line-strong);border-radius:2px;background:var(--s-field-bg);transition:border-color .2s}
+.dsearch:focus-within{border-color:var(--s-accent)}
+.dsearch__inp{
+  flex:1;min-width:0;height:58px;padding:0 18px;border:0;background:none;
+  font:inherit;font-size:15px;color:var(--s-fg);
+}
+.dsearch__inp::placeholder{color:var(--s-fg-soft)}
+.dsearch__inp:focus{outline:none}
+.dsearch__inp::-webkit-search-cancel-button{filter:grayscale(1) opacity(.5)}
+.dsearch__go{
+  display:inline-flex;align-items:center;gap:10px;flex:none;
+  height:58px;padding:0 26px;margin:-1px -1px -1px 0;
+  background:var(--s-accent);color:var(--s-btn-fill-fg);
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  transition:filter .25s;
+}
+.dsearch__go:hover{filter:brightness(1.07)}
+
+/* --- быстрые входы по направлениям --- */
+.dchips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 32px;max-width:600px}
+.dchip{
+  display:inline-flex;align-items:center;gap:8px;
+  height:36px;padding:0 15px;border:1px solid var(--s-line);border-radius:2px;
+  font-size:12px;letter-spacing:.03em;color:var(--s-fg-soft);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.dchip:hover{border-color:var(--s-accent);color:var(--s-accent-ink);background:var(--s-plate)}
+.dchip--all{border-color:transparent;color:var(--s-accent-ink);padding-left:6px}
+.dchip--all:hover{background:none;border-color:transparent}
+
+.dhero__cta{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
 
 .dbtn{
   display:inline-flex;align-items:center;gap:12px;
   height:56px;padding:0 32px;border-radius:2px;
   font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  transition:background .25s var(--d-ease),color .25s,border-color .25s,transform .25s;
+  transition:filter .25s var(--d-ease),transform .25s var(--d-ease);
 }
 .dbtn--fill{background:var(--s-accent);color:var(--s-btn-fill-fg)}
 .dbtn--fill:hover{filter:brightness(1.07);transform:translateY(-2px)}
-.dbtn--line{border:1px solid var(--s-line-strong);color:var(--s-fg)}
-.dbtn--line:hover{border-color:var(--s-accent);color:var(--s-accent-ink);transform:translateY(-2px)}
+/* «Аренда» — сценарий для малой доли аудитории, поэтому не кнопка, а ссылка */
+.dlink{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--s-accent-ink);padding-bottom:3px;border-bottom:1px solid transparent;
+  transition:border-color .2s;
+}
+.dlink:hover{border-bottom-color:var(--s-accent)}
 .dbtn__arr{
   width:16px;height:9px;flex:none;background:currentColor;
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
@@ -192,27 +246,51 @@ body{
   position:absolute;z-index:1;inset:0;width:100%;height:100%;object-fit:cover;display:block;
   /* кадр смещён вправо: слева на фото пустая стена, её же срезает диагональ */
   object-position:70% 50%;
-  visibility:hidden;                 /* показываем только после успешной загрузки, см. design.js */
+  visibility:hidden;                 /* показываем после успешной загрузки, см. design.js */
 }
-.dhero__ph{
-  position:absolute;z-index:2;left:0;right:0;bottom:0;
-  padding:13px 18px;text-align:center;
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(246,244,237,.75);background:rgba(14,26,43,.74);
-  border-top:1px dashed rgba(196,154,108,.5);
-}
-.dhero__media.has-photo::after,.dhero__media.has-photo .dhero__ph{display:none}
 
-/* ============ 5. ЦИФРЫ ПОД ПЕРВЫМ ЭКРАНОМ ============ */
-.dstats{position:relative;z-index:2;border-top:1px solid var(--s-line);background:var(--s-bg)}
-[data-theme="dark"] .dstats{background:var(--b-navy)}
-.dstats__in{display:grid;grid-template-columns:repeat(4,1fr)}
-.dstat{padding:30px 28px;border-left:1px solid var(--s-line)}
-.dstat:first-child{border-left:0;padding-left:0}
-.dstat__num{font-family:var(--d-serif);font-size:34px;line-height:1;letter-spacing:-.01em;color:var(--s-fg)}
-.dstat__lb{display:block;margin-top:8px;font-size:12px;line-height:1.45;letter-spacing:.04em;color:var(--s-fg-soft)}
-/* пунктир = данные не подтверждены заказчиком, правило прототипа */
-.dstat--check .dstat__num{border-bottom:1px dashed var(--s-accent);padding-bottom:3px;display:inline-block}
+/* ============ 5. УСЛУГИ КОМПЛЕКСА ============ */
+/* состав — брендбук, стр. 36 (слайд «Услуги комплекса») и стр. 38 */
+.dserv{position:relative;z-index:2;border-top:1px solid var(--s-line);background:var(--s-bg)}
+[data-theme="dark"] .dserv{background:var(--b-navy)}
+.dserv__in{display:grid;grid-template-columns:repeat(4,1fr)}
+.dserv__i{
+  display:flex;align-items:center;gap:18px;
+  padding:26px 28px;border-left:1px solid var(--s-line);
+}
+.dserv__i:first-child{border-left:0;padding-left:0}
+
+/* иконка в параллелограмме — графический элемент брендбука, стр. 36 */
+.dserv__ic{position:relative;width:48px;height:48px;flex:none;display:grid;place-items:center}
+.dserv__ic::before{
+  content:"";position:absolute;inset:0;
+  transform:skewX(var(--d-skew));
+  border:1px solid var(--s-line-strong);background:var(--s-plate);
+}
+.dserv__ic::after{
+  content:"";position:relative;width:24px;height:24px;background:var(--s-accent);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:contain;mask-size:contain;
+}
+.dserv__ic--design::after{-webkit-mask-image:var(--i-design);mask-image:var(--i-design)}
+.dserv__ic--truck::after{-webkit-mask-image:var(--i-truck);mask-image:var(--i-truck)}
+.dserv__ic--box::after{-webkit-mask-image:var(--i-box);mask-image:var(--i-box)}
+.dserv__ic--park::after{-webkit-mask-image:var(--i-park);mask-image:var(--i-park)}
+:root{
+  --i-design:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M3 3h18v18H3z'/%3E%3Cpath d='M3 9h18M9 9v12'/%3E%3C/svg%3E");
+  --i-truck:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M1 6h13v10H1zM14 9h4l3 3v4h-7z'/%3E%3Ccircle cx='6' cy='18' r='2'/%3E%3Ccircle cx='17' cy='18' r='2'/%3E%3C/svg%3E");
+  --i-box:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M3 7l9-4 9 4v10l-9 4-9-4z'/%3E%3Cpath d='M3 7l9 4 9-4M12 11v10'/%3E%3C/svg%3E");
+  --i-park:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M3 3h18v18H3z'/%3E%3Cpath d='M9 17V8h3.5a2.5 2.5 0 0 1 0 5H9'/%3E%3C/svg%3E");
+}
+.dserv__t{font-size:13px;line-height:1.45;letter-spacing:.02em;color:var(--s-fg)}
+/* пунктир = сведения не подтверждены заказчиком, правило прототипа */
+.dserv__t{border-bottom:1px dotted var(--s-line-strong);padding-bottom:2px}
+.dserv__note{
+  font-size:11px;letter-spacing:.04em;color:var(--s-fg-soft);opacity:.75;
+  padding-bottom:18px;margin:-6px 0 0;
+}
+.dserv__note>.wrap{display:block}
 
 /* ============ 6. ГРАНИЦА ЭТАПА ============ */
 .dstage{background:var(--b-choc);color:var(--b-cream)}
@@ -221,38 +299,84 @@ body{
   font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.92;
 }
 .dstage__dot{width:6px;height:6px;border-radius:50%;background:var(--b-copper);flex:none}
-/* ниже границы — прототип как есть, приглушён */
 .dstage ~ .sect,.dstage ~ .rent,.dstage ~ .subs{filter:saturate(0) opacity(.8)}
 
-/* ============ 7. АДАПТИВ (ТЗ п. 9.4, 320–1920+) ============ */
+/* ============ 7. МИКРО-АНИМАЦИИ (ТЗ п. 9.5) ============ */
+@keyframes d-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes d-fade{from{opacity:0}to{opacity:1}}
+.dhero__text>*{animation:d-rise .75s var(--d-ease) both}
+.dhero__text>*:nth-child(1){animation-delay:.04s}
+.dhero__text>*:nth-child(2){animation-delay:.10s}
+.dhero__text>*:nth-child(3){animation-delay:.16s}
+.dhero__text>*:nth-child(4){animation-delay:.22s}
+.dhero__text>*:nth-child(5){animation-delay:.28s}
+.dhero__text>*:nth-child(6){animation-delay:.34s}
+.dhero__media{animation:d-fade 1.1s var(--d-ease) both}
+.dserv__i{animation:d-rise .7s var(--d-ease) both .40s}
+
+/* ============ 8. АДАПТИВ (ТЗ п. 9.4, 320–1920+) ============ */
 @media (max-width:1100px){
   .dhero__in{grid-template-columns:1fr;min-height:0;padding-right:max(20px,calc((100% - var(--d-wrap)) / 2))}
-  .dhero__text{padding:56px 0 40px;max-width:none}
+  .dhero__text{padding:52px 0 36px;max-width:none}
   .dhero__media{
     margin:0 calc(max(20px,(100% - var(--d-wrap)) / 2) * -1);
-    height:52vw;min-height:320px;clip-path:polygon(0 7%,100% 0,100% 100%,0 100%);
+    height:50vw;min-height:300px;clip-path:polygon(0 7%,100% 0,100% 100%,0 100%);
   }
-  .dhero__pattern{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 40%,transparent 60%);
-                          mask-image:linear-gradient(180deg,#000 0%,#000 40%,transparent 60%)}
-  .dstats__in{grid-template-columns:repeat(2,1fr)}
-  .dstat{padding:24px}
-  .dstat:nth-child(odd){border-left:0;padding-left:0}
-  .dstat:nth-child(n+3){border-top:1px solid var(--s-line)}
+  .dhero__pattern{-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 55%);
+                          mask-image:linear-gradient(180deg,#000 0%,transparent 55%)}
+  .dserv__in{grid-template-columns:repeat(2,1fr)}
+  .dserv__i{padding:22px 24px}
+  .dserv__i:nth-child(odd){border-left:0;padding-left:0}
+  .dserv__i:nth-child(n+3){border-top:1px solid var(--s-line)}
 }
+
+/* до 640 первый экран строится иначе: фотография становится фоном,
+   иначе на телефоне торговый центр уезжает за сгиб и его не видно */
 @media (max-width:640px){
-  /* на узком экране переключатель — только иконка, подпись съедает строку */
-  .themetog{padding:0;width:30px;height:30px;justify-content:center}
+  .themetog{gap:0}
   .themetog__t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .utility__actions .themetog-li{padding-left:14px}
   .nav__in{min-height:72px}
   .logo__img{height:44px}
-  .dhero__text{padding:40px 0 32px}
-  .dhero__h1{font-size:clamp(38px,11vw,54px)}
-  .dhero__sub{font-size:15px;margin-bottom:30px}
-  .dhero__cta{flex-direction:column;align-items:stretch;width:100%}
+
+  .dhero{background:var(--b-navy)}
+  [data-theme="dark"] .dhero{background:var(--b-navy)}
+  .dhero__pattern{display:none}
+  .dhero__in{display:block;padding:0 20px;min-height:82vh;position:static}
+  .dhero__media{
+    position:absolute;inset:0;z-index:0;height:auto;min-height:0;margin:0;
+    clip-path:none;
+  }
+  .dhero__media::before{
+    content:"";position:absolute;inset:0;z-index:2;
+    background:linear-gradient(180deg,rgba(14,26,43,.94) 0%,rgba(14,26,43,.66) 52%,rgba(14,26,43,.9) 100%);
+  }
+  .dhero__media img{object-position:62% 50%}
+  .dhero__text{position:relative;z-index:3;padding:46px 0 40px;color:var(--b-cream)}
+  .dhero__text .dhero__sub{color:rgba(246,244,237,.8)}
+  .dhero__h1{font-size:clamp(36px,10.5vw,50px)}
+  .dhero__eyebrow{color:var(--b-copper);font-size:10px;letter-spacing:.18em}
+  .dhero__eyebrow::before{width:28px}
+
+  .dsearch{max-width:none;background:rgba(14,26,43,.5);border-color:rgba(196,154,108,.5)}
+  .dsearch__inp{color:var(--b-cream);height:52px}
+  .dsearch__inp::placeholder{color:rgba(246,244,237,.6)}
+  .dsearch__go{height:52px;padding:0 18px;font-size:0;gap:0}
+  .dsearch__go .dbtn__arr{width:18px;height:11px}
+  .dchips{max-width:none;margin-bottom:26px}
+  .dchip{color:rgba(246,244,237,.82);border-color:rgba(196,154,108,.35)}
+  .dchip--all{color:var(--b-copper)}
+  .dhero__cta{flex-direction:column;align-items:stretch;gap:16px}
   .dbtn{height:52px;padding:0 24px;width:100%;justify-content:center}
-  .dstats__in{grid-template-columns:1fr}
-  .dstat{border-left:0;padding:22px 0;border-top:1px solid var(--s-line)}
-  .dstat:first-child{border-top:0}
+  .dlink{color:var(--b-copper);justify-content:center}
+
+  /* полоса услуг продолжает тёмный первый экран, а не режет его светлой плашкой */
+  .dserv{background:var(--b-navy);border-top-color:rgba(196,154,108,.22)}
+  .dserv__in{grid-template-columns:1fr}
+  .dserv__i{border-left:0;padding:18px 0;border-top:1px solid rgba(196,154,108,.16)}
+  .dserv__i:first-child{border-top:0}
+  .dserv__t{color:var(--b-cream);border-bottom-color:rgba(196,154,108,.4)}
+  .dserv__note{padding:0 0 18px;color:rgba(246,244,237,.6)}
 }
 
 /* ТЗ п. 9.5 — уважать prefers-reduced-motion */

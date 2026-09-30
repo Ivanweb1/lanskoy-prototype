@@ -42,10 +42,11 @@
     var host = document.querySelector('.utility__actions');
     if (!host || document.getElementById('themeTog')) return;
     var li = document.createElement('li');
+    li.className = 'themetog-li';
     li.innerHTML = '<button type="button" class="themetog" id="themeTog" aria-pressed="false">' +
                    '<span class="themetog__ic" aria-hidden="true"></span>' +
                    '<span class="themetog__t">Тёмная тема</span></button>';
-    host.insertBefore(li, host.firstChild);
+    host.appendChild(li);   // служебный элемент — в самый край, после «Войти в кабинет»
     li.querySelector('button').addEventListener('click', toggle);
   }
 
