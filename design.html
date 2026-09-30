@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=73">
-<link rel="stylesheet" href="design.css?v=6">
+<link rel="stylesheet" href="design.css?v=7">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t)})();</script>
@@ -66,32 +66,79 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
   </div>
 </section>
 
-<div class="dstage"><div class="wrap dstage__in"><span class="dstage__dot"></span>Ниже — прототип без дизайна: собираем сверху вниз<span class="dstage__dot"></span></div></div>
-
-<!-- ================= 2. НАПРАВЛЕНИЯ ================= -->
-<section class="sect">
+<!-- ================= 2. НАПРАВЛЕНИЯ (дизайн) ================= -->
+<section class="sect sect--cats">
   <div class="wrap">
     <div class="sect__head">
       <h2 class="sect__h2">Направления</h2>
-      <a href="categories.html" class="more">Все категории</a>
+      <a href="categories.html" class="more">Все категории<span class="dbtn__arr" aria-hidden="true"></span></a>
     </div>
     <div class="grid grid--cats">
-      <a href="category.html" class="cat cat--big ph"><span class="cat__name">Декоративно-отделочные материалы</span><span class="cat__count">28 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Обои</span><span class="cat__count">7 магазинов</span></a>
-      <a href="category.html" class="cat cat--tall ph"><span class="cat__name">Напольные покрытия</span><span class="cat__count">28 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Лакокрасочные и клеящие</span><span class="cat__count">10 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Плитка</span><span class="cat__count">17 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Шторы, карнизы, ткани</span><span class="cat__count">11 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Двери и перегородки</span><span class="cat__count ph-mark">00 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Сантехника</span><span class="cat__count ph-mark">00 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Свет</span><span class="cat__count ph-mark">00 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Потолки</span><span class="cat__count ph-mark">00 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Стекло и зеркала</span><span class="cat__count ph-mark">00 магазинов</span></a>
-      <a href="category.html" class="cat ph"><span class="cat__name">Остекление</span><span class="cat__count ph-mark">00 магазинов</span></a>
+      <a href="category.html" class="cat cat--big">
+        <img class="cat__img" src="img/cat-dekor.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Декоративно-отделочные материалы</span><span class="cat__count">28 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-oboi.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Обои</span><span class="cat__count">7 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat cat--tall">
+        <img class="cat__img" src="img/cat-pol.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Напольные покрытия</span><span class="cat__count">28 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-lkm.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Лакокрасочные и клеящие</span><span class="cat__count">10 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-plitka.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Плитка</span><span class="cat__count">17 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-tekstil.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Шторы, карнизы, ткани</span><span class="cat__count">11 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-dveri.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Двери и перегородки</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-santeh.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Сантехника</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-svet.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Свет</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-potolki.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Потолки</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-steklo.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Стекло и зеркала</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
+      <a href="category.html" class="cat">
+        <img class="cat__img" src="img/cat-osteklenie.webp" alt="" loading="lazy">
+        <span class="cat__body"><span class="cat__name">Остекление</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__arr" aria-hidden="true"></span>
+      </a>
     </div>
   </div>
-  <aside class="note"><b>2. Направления.</b> 12 плиток из 14+, остальные — по ссылке: полный список съедает пол-экрана. Счётчики магазинов забраны со старого сайта, они работают. Нужно решить, какие 12 приоритетны, и найти фото под каждую. Плитка без фото — фон-паттерн вместо изображения.</aside>
 </section>
+
+<div class="dstage"><div class="wrap dstage__in"><span class="dstage__dot"></span>Ниже — прототип без дизайна: собираем сверху вниз<span class="dstage__dot"></span></div></div>
 
 <!-- ================= 3. АФИША ================= -->
 <section class="sect">
@@ -272,6 +319,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
 <script src="partials.js?v=73"></script>
 <script src="app.js?v=73"></script>
 <script src="content.js?v=73"></script>
-<script src="design.js?v=6"></script>
+<script src="design.js?v=7"></script>
 </body>
 </html>

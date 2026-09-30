@@ -53,17 +53,17 @@
   mount();
   apply(current());
 
-  // если фото ещё не загружено — остаётся подложка-паттерн с подписью,
-  // а сам <img> прячем, чтобы не показывать alt-текст битой картинки
-  var photo = document.getElementById('heroPhoto');
-  if (photo) {
-    photo.addEventListener('load', function () {
-      photo.style.visibility = 'visible';
-      photo.closest('.dhero__media').classList.add('has-photo');
-    });
-    photo.addEventListener('error', function () {
-      photo.style.visibility = 'hidden';
-      photo.closest('.dhero__media').classList.remove('has-photo');
-    });
+  // пока фотографии нет — остаётся подложка-паттерн, а сам <img> спрятан,
+  // чтобы не показывать alt-текст битой картинки
+  function watch(img) {
+    if (!img) return;
+    var show = function () { img.style.visibility = 'visible'; };
+    var hide = function () { img.style.visibility = 'hidden'; };
+    img.addEventListener('load', show);
+    img.addEventListener('error', hide);
+    if (img.complete) { img.naturalWidth ? show() : hide(); }
   }
+
+  watch(document.getElementById('heroPhoto'));
+  [].forEach.call(document.querySelectorAll('.cat__img'), watch);
 })();

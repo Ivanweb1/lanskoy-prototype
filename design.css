@@ -383,3 +383,85 @@ body{
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
+
+/* ============ 9. НАПРАВЛЕНИЯ ============ */
+/* Плитки-фотографии с тёмной подложкой — приём из макета брендбука, стр. 39
+   («Категории материалов»). Бенто-сетка и состав из 12 направлений остались
+   от согласованного прототипа, структуру главной не меняем. */
+.sect--cats{padding:96px 0 104px;background:var(--s-bg)}
+.sect--cats .sect__head{
+  margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--s-line);
+}
+.sect--cats .sect__h2{
+  font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
+  font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
+}
+.sect--cats .more{
+  display:inline-flex;align-items:center;gap:10px;border:0;padding:0;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--s-accent-ink);
+}
+.sect--cats .more:hover .dbtn__arr{transform:translateX(4px)}
+.sect--cats .more .dbtn__arr{transition:transform .25s var(--d-ease)}
+
+.grid--cats{gap:16px;grid-auto-rows:172px}
+.cat{
+  position:relative;overflow:hidden;isolation:isolate;
+  border:0;padding:22px;justify-content:flex-end;
+  background:var(--b-navy);
+}
+/* подложка на случай, когда фотографии ещё нет — паттерн 03 «Монограмма», стр. 09 */
+.cat::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.2' opacity='.4'%3E%3Cpath d='M38 80V52l10-9 10 9v28M58 80V44l11-10 11 10v36'/%3E%3Cpath d='M34 86c10-7 22-7 32 0s22 7 32 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:110px 110px;
+}
+.cat__img{
+  position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;
+  visibility:hidden;                      /* показываем после загрузки, см. design.js */
+  transition:transform .9s var(--d-ease);
+}
+/* затемнение снизу: подпись читается на любом кадре */
+.cat::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(14,26,43,0) 28%,rgba(14,26,43,.5) 60%,rgba(14,26,43,.93) 100%);
+  transition:background .35s var(--d-ease);
+}
+.cat__body{position:relative;z-index:3;display:flex;flex-direction:column;gap:7px;align-items:flex-start}
+.cat__name{
+  font-family:var(--d-sans);font-weight:600;font-size:13px;line-height:1.35;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--b-cream);
+  background:none;padding:0;max-width:22ch;
+}
+.cat--big .cat__name{font-size:17px;letter-spacing:.05em;max-width:18ch}
+.cat__count{
+  font-size:11px;letter-spacing:.06em;color:var(--b-copper);
+  background:none;padding:0;margin:0;
+}
+.cat__count.ph-mark{color:rgba(196,154,108,.75);border-bottom:1px dashed rgba(196,154,108,.5)}
+.cat__arr{
+  position:absolute;z-index:3;right:22px;bottom:22px;
+  width:18px;height:10px;background:var(--b-copper);opacity:0;
+  transition:opacity .3s var(--d-ease),transform .3s var(--d-ease);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.cat:hover{border-color:transparent}
+.cat:hover .cat__img{transform:scale(1.06)}
+.cat:hover::after{background:linear-gradient(180deg,rgba(14,26,43,.18) 0%,rgba(14,26,43,.58) 58%,rgba(14,26,43,.95) 100%)}
+.cat:hover .cat__arr{opacity:1;transform:translateX(3px)}
+.cat:focus-visible{outline:2px solid var(--b-copper);outline-offset:3px}
+
+@media (max-width:1200px){
+  .grid--cats{grid-auto-rows:auto}
+  .cat{aspect-ratio:4/3}
+  .cat--big{aspect-ratio:16/10}
+}
+@media (max-width:640px){
+  .sect--cats{padding:64px 0 72px}
+  .cat{aspect-ratio:5/4;padding:16px}
+  .cat__arr{right:16px;bottom:16px}
+  .cat__name,.cat--big .cat__name{font-size:12px;max-width:none}
+  /* на телефоне стрелка показывается всегда — состояния hover там нет */
+  .cat__arr{opacity:.85}
+}
