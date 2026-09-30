@@ -123,7 +123,9 @@ body{
   -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 44%,transparent 66%);
           mask-image:linear-gradient(90deg,#000 0%,#000 44%,transparent 66%);
 }
-[data-theme="dark"] .dhero__pattern{opacity:.5}
+/* на тёмном медные линии видны сильнее — приглушаем, чтобы не спорили с заголовком
+   (брендбук, стр. 09: паттерн не должен перетягивать на себя внимание) */
+[data-theme="dark"] .dhero__pattern{opacity:.2}
 
 /* сетка первого экрана шире контейнера: левая колонка выровнена по общей сетке сайта,
    правая — фотопанель — уходит в край страницы (как в макете брендбука, стр. 38) */
@@ -188,6 +190,8 @@ body{
 }
 .dhero__media img{
   position:absolute;z-index:1;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  /* кадр смещён вправо: слева на фото пустая стена, её же срезает диагональ */
+  object-position:70% 50%;
   visibility:hidden;                 /* показываем только после успешной загрузки, см. design.js */
 }
 .dhero__ph{
