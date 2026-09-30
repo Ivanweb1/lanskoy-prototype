@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=73">
-<link rel="stylesheet" href="design.css?v=17">
+<link rel="stylesheet" href="design.css?v=18">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t)})();</script>
@@ -249,108 +249,110 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
   </div>
 </section>
 
-<div class="dstage"><div class="wrap dstage__in"><span class="dstage__dot"></span>Ниже — прототип без дизайна: собираем сверху вниз<span class="dstage__dot"></span></div></div>
-
-<!-- ================= 5. АРЕНДА ================= -->
-<section class="rent">
-  <div class="wrap rent__in">
-    <div class="rent__text">
-      <p class="rent__kicker">Бизнесу</p>
-      <h2 class="rent__h2">Аренда площадей<br>в ТК «Ланской»</h2>
-      <p class="rent__lead">Аудитория в ремонте и на этапе дизайна проекта — покупатель приходит с готовым намерением.</p>
-      <div class="rent__actions">
-        <a href="rent.html#form" class="btn btn--primary btn--invert">Оставить заявку</a>
-        <a href="rent.html" class="btn btn--ghost btn--invert">Условия аренды</a>
+<!-- ================= 5. АРЕНДА (дизайн) ================= -->
+<section class="rblock">
+  <div class="rblock__pattern" aria-hidden="true"></div>
+  <div class="wrap rblock__in">
+    <div class="rblock__text">
+      <p class="rblock__kicker">Бизнесу</p>
+      <h2 class="rblock__h2">Аренда площадей<br>в ТК «Ланской»</h2>
+      <p class="rblock__lead">Аудитория в ремонте и на этапе дизайна проекта — покупатель приходит с готовым намерением.</p>
+      <div class="rblock__cta">
+        <a href="rent.html#form" class="dbtn dbtn--fill">Оставить заявку<span class="dbtn__arr" aria-hidden="true"></span></a>
+        <a href="rent.html" class="dlink dlink--inv">Условия аренды<span class="dbtn__arr" aria-hidden="true"></span></a>
       </div>
     </div>
-    <ul class="rent__args">
-      <li><span class="rent__num ph-mark">000 000</span><span class="rent__cap">посетителей в месяц</span></li>
-      <li><span class="rent__num ph-mark">00 000</span><span class="rent__cap">м² торговых площадей</span></li>
-      <li><span class="rent__num ph-mark">00</span><span class="rent__cap">лет комплексу</span></li>
+    <ul class="rargs">
+      <li><span class="rargs__n ph-mark">000 000</span><span class="rargs__c">посетителей в месяц</span></li>
+      <li><span class="rargs__n ph-mark">00 000</span><span class="rargs__c">м² торговых площадей</span></li>
+      <li><span class="rargs__n ph-mark">00</span><span class="rargs__c">лет комплексу</span></li>
     </ul>
   </div>
-  <aside class="note"><b>5. Аренда.</b> Единственный крупный блок под бизнес — так путь арендатора не спорит с покупательским (п. 9.3). Остальные точки входа для бизнеса живут в верхней утилитарной строке. Цифры нужны от отдела аренды.</aside>
 </section>
 
-<!-- ================= 6. ЖУРНАЛ ================= -->
-<section class="sect sect--alt">
+<!-- ================= 6. ЖУРНАЛ (дизайн) ================= -->
+<section class="sect sect--journal">
   <div class="wrap">
     <div class="sect__head">
       <h2 class="sect__h2">Журнал</h2>
-      <a href="journal.html" class="more">Все статьи</a>
+      <a href="journal.html" class="more">Все статьи<span class="dbtn__arr" aria-hidden="true"></span></a>
     </div>
-    <div class="journal">
-      <article class="post post--lead">
-        <div class="post__media ph"><span class="ph__label">Обложка</span></div>
-        <p class="post__rubric">Дизайн интерьера</p>
-        <h3 class="post__title">Комбинированный пол: плитка и ламинат</h3>
-        <p class="post__meta">23.06.2026</p>
+    <div class="jgrid">
+      <article class="jlead">
+        <a class="jlead__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-1.webp" alt="" loading="lazy"></a>
+        <p class="jrubric">Дизайн интерьера</p>
+        <h3 class="jlead__title"><a href="article.html">Комбинированный пол: плитка и ламинат</a></h3>
+        <p class="jmeta">23.06.2026</p>
       </article>
-      <div class="journal__list">
-        <article class="post post--row">
-          <div class="post__media ph"><span class="ph__label">Фото</span></div>
-          <div><p class="post__rubric">Тренды</p><h3 class="post__title">Модные обои для кухни-гостиной</h3><p class="post__meta">22.06.2026</p></div>
+      <div class="jlist">
+        <article class="jrow">
+          <a class="jrow__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-2.webp" alt="" loading="lazy"></a>
+          <div class="jrow__body">
+            <p class="jrubric">Тренды</p>
+            <h3 class="jrow__title"><a href="article.html">Модные обои для кухни-гостиной</a></h3>
+            <p class="jmeta">22.06.2026</p>
+          </div>
         </article>
-        <article class="post post--row">
-          <div class="post__media ph"><span class="ph__label">Фото</span></div>
-          <div><p class="post__rubric">Двери</p><h3 class="post__title">Как выбрать межкомнатные двери</h3><p class="post__meta">18.06.2026</p></div>
+        <article class="jrow">
+          <a class="jrow__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-3.webp" alt="" loading="lazy"></a>
+          <div class="jrow__body">
+            <p class="jrubric">Двери</p>
+            <h3 class="jrow__title"><a href="article.html">Как выбрать межкомнатные двери</a></h3>
+            <p class="jmeta">18.06.2026</p>
+          </div>
         </article>
-        <article class="post post--row">
-          <div class="post__media ph"><span class="ph__label">Фото</span></div>
-          <div><p class="post__rubric">Дизайн интерьера</p><h3 class="post__title">Интерьер в стиле тихая роскошь</h3><p class="post__meta">11.06.2026</p></div>
+        <article class="jrow">
+          <a class="jrow__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-4.webp" alt="" loading="lazy"></a>
+          <div class="jrow__body">
+            <p class="jrubric">Дизайн интерьера</p>
+            <h3 class="jrow__title"><a href="article.html">Интерьер в стиле тихая роскошь</a></h3>
+            <p class="jmeta">11.06.2026</p>
+          </div>
         </article>
       </div>
     </div>
   </div>
-  <aside class="note"><b>6. Журнал.</b> Важен для органики (раздел 11 ТЗ), контент живой — на текущем сайте статьи обновляются. Рубрики уже двухуровневые, это учтено. Заголовки взяты с текущего сайта как реальные образцы длины.</aside>
 </section>
 
-<!-- ================= 7. НАЙТИ МАГАЗИН ================= -->
-<section class="sect">
-  <div class="wrap">
-    <div class="find">
-      <div class="find__left">
-        <h2 class="sect__h2">Найти магазин на этаже</h2>
-        <p class="find__lead">150+ магазинов на трёх этажах. Введите название, бренд или номер секции — покажем на плане.</p>
-        <div class="field field--lg">
-          <input type="search" placeholder="Магазин, бренд, номер секции" aria-label="Поиск по комплексу" autocomplete="off">
-          <button type="button" class="field__go field__go--submit" aria-label="Найти"></button>
-        </div>
-        <div class="find__quick">
-          <a href="floors.html">Схема этажей</a>
-          <a href="shops.html">Все магазины</a>
-          <a href="categories.html">По категориям</a>
-        </div>
-      </div>
-      <div class="find__photo ph"><span class="ph__label">Фотография интерьера</span></div>
+<!-- ================= 7. НАЙТИ МАГАЗИН (дизайн) ================= -->
+<section class="sect sect--find">
+  <div class="wrap fgrid">
+    <div class="fgrid__text">
+      <h2 class="sect__h2">Найти магазин<br>на этаже</h2>
+      <p class="fgrid__lead">Более 150 магазинов на трёх этажах. Введите название, бренд или номер секции — покажем на плане.</p>
+      <form class="dsearch" role="search" onsubmit="return false">
+        <input class="dsearch__inp" type="search" placeholder="Магазин, бренд, номер секции" aria-label="Поиск по комплексу" autocomplete="off">
+        <button class="dsearch__go" type="submit">Найти<span class="dbtn__arr" aria-hidden="true"></span></button>
+      </form>
+      <nav class="dchips" aria-label="Навигация по комплексу">
+        <a class="dchip" href="floors.html">Схема этажей</a>
+        <a class="dchip" href="shops.html">Все магазины</a>
+        <a class="dchip" href="categories.html">По категориям</a>
+      </nav>
     </div>
+    <div class="fgrid__media"><img class="fimg" src="img/find.webp" alt="" loading="lazy"></div>
   </div>
-  <aside class="note"><b>7. Найти магазин, а не бренды.</b> По правке из ревью прототипа: блок логотипов брендов меняю на поиск по этажам — это и есть главный сценарий «где магазин X» из п. 6.12, вынесенный уже на главную, а не только на страницу схемы этажей. Каталог брендов никуда не делся, он доступен из шапки и со страницы «О комплексе». Поле здесь визуальное, как и остальные поля поиска в прототипе — переход на схему этажей с уже введённым запросом делает разработка.</aside>
 </section>
 
-<!-- ================= 8. ПОДПИСКА ================= -->
-<section class="subs">
-  <div class="wrap subs__in">
-    <div class="subs__text">
-      <h2 class="subs__h2"><a href="subscribe.html">Подписка на события и акции</a></h2>
-      <p class="subs__lead">Письмо раз в две недели. Отписаться можно в один клик.</p>
+<!-- ================= 8. ПОДПИСКА (дизайн) ================= -->
+<section class="sblock">
+  <div class="sblock__pattern" aria-hidden="true"></div>
+  <div class="wrap sblock__in">
+    <div class="sblock__text">
+      <h2 class="sblock__h2"><a href="subscribe.html">Подписка на события и акции</a></h2>
+      <p class="sblock__lead">Письмо раз в две недели. Отписаться можно в один клик.</p>
     </div>
-    <form class="subs__form subform" novalidate>
-      <div class="fld">
-        <div class="field field--lg">
-          <input type="email" name="email" placeholder="Ваш e-mail" required aria-label="E-mail для подписки">
-          <button type="submit" class="field__go field__go--submit" aria-label="Подписаться"></button>
-        </div>
-        <span class="fld__err">Проверьте адрес — на него придёт письмо для подтверждения</span>
+    <form class="sform" novalidate>
+      <div class="sform__row">
+        <input class="sform__inp" type="email" name="email" placeholder="Ваш e-mail" required aria-label="E-mail для подписки">
+        <button class="sform__go" type="submit">Подписаться<span class="dbtn__arr" aria-hidden="true"></span></button>
       </div>
-      <label class="check">
+      <label class="scheck">
         <input type="checkbox" name="pd" required>
         <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
-        <span class="fld__err">Без согласия подписаться нельзя</span>
       </label>
     </form>
   </div>
-  <aside class="note"><b>8. Подписка.</b> Double opt-in по п. 6.15, значит нужны состояния: отправлено → «проверьте почту», ошибка, «вы уже подписаны». Сегментацию (акции / события) на главную не выношу, чтобы не усложнять форму — сегмент выбирается в письме подтверждения.</aside>
 </section>
 
 </main>
@@ -362,6 +364,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
 <script src="partials.js?v=73"></script>
 <script src="app.js?v=73"></script>
 <script src="content.js?v=73"></script>
-<script src="design.js?v=15"></script>
+<script src="design.js?v=18"></script>
 </body>
 </html>

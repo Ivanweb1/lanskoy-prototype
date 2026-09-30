@@ -676,3 +676,175 @@ body{
   .pcard{flex:0 0 74%;scroll-snap-align:start}
   .pcard__title{font-size:14px}
 }
+
+/* ============ 12. АРЕНДА ============ */
+/* Единственный крупный блок под бизнес (п. 9.3 ТЗ). Тёмно-синяя полоса
+   разбивает светлый ритм страницы и отделяет деловой сценарий от покупательского. */
+.rblock{position:relative;overflow:hidden;background:var(--g-navy);color:var(--b-cream);padding:96px 0 104px}
+.rblock__pattern{
+  position:absolute;inset:0;pointer-events:none;opacity:.22;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='240' viewBox='0 0 180 240'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.4'%3E%3Cpath d='M10 240V96l22-20 22 20v144'/%3E%3Cpath d='M54 240V60l20-18 20 18v180'/%3E%3Cpath d='M94 240V120l22-20 22 20v120'/%3E%3Cpath d='M138 240V78l21-19 21 19v162'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:180px 240px;
+  -webkit-mask-image:linear-gradient(270deg,#000 0%,transparent 55%);
+          mask-image:linear-gradient(270deg,#000 0%,transparent 55%);
+}
+.rblock__in{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:center}
+.rblock__kicker{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--b-copper);
+  margin:0 0 20px;display:flex;align-items:center;gap:14px;
+}
+.rblock__kicker::before{content:"";width:46px;height:1px;background:var(--b-copper);flex:none}
+.rblock__h2{
+  font-family:var(--d-serif);font-weight:600;text-transform:uppercase;
+  font-size:clamp(30px,3.6vw,52px);line-height:1.08;letter-spacing:.01em;margin:0 0 22px;
+}
+.rblock__lead{font-size:16px;line-height:1.65;color:rgba(246,244,237,.75);max-width:480px;margin:0 0 36px}
+.rblock__cta{display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.dlink--inv{color:var(--b-copper)}
+.dlink--inv:hover{border-bottom-color:var(--b-copper)}
+
+.rargs{display:flex;flex-direction:column;gap:26px}
+.rargs li{display:flex;flex-direction:column;gap:6px;padding-left:24px;border-left:1px solid rgba(196,154,108,.4)}
+.rargs__n{
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(30px,3.2vw,44px);line-height:1;
+  letter-spacing:-.01em;color:var(--b-cream);align-self:flex-start;
+}
+.rargs__n.ph-mark{border-bottom:1px dashed rgba(196,154,108,.6);color:rgba(246,244,237,.55);padding-bottom:4px}
+.rargs__c{font-size:12px;letter-spacing:.06em;color:rgba(246,244,237,.65)}
+
+/* ============ 13. ЖУРНАЛ ============ */
+.sect--journal{padding:96px 0 104px;background:var(--s-bg-2)}
+[data-theme="dark"] .sect--journal{background:#0E1A2B}
+.sect--journal .sect__head,.sect--find .sect__head{margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--s-line)}
+.sect--journal .sect__h2,.sect--find .sect__h2{
+  font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
+  font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
+}
+.sect--journal .more{
+  display:inline-flex;align-items:center;gap:10px;border:0;padding:0;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);
+}
+.sect--journal .more .dbtn__arr{transition:transform .25s var(--d-ease)}
+.sect--journal .more:hover .dbtn__arr{transform:translateX(4px)}
+
+.jgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start}
+.jlead__media,.jrow__media{position:relative;display:block;overflow:hidden;background:var(--b-navy)}
+.jlead__media{aspect-ratio:16/10;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 26px));margin-bottom:22px}
+.jrow__media{flex:0 0 132px;aspect-ratio:4/3}
+.jlead__media::before,.jrow__media::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.2' opacity='.4'%3E%3Cpath d='M38 80V52l10-9 10 9v28M58 80V44l11-10 11 10v36'/%3E%3Cpath d='M34 86c10-7 22-7 32 0s22 7 32 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:110px 110px;
+}
+.jimg{
+  position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;
+  visibility:hidden;transition:transform .9s var(--d-ease);
+}
+.jlead:hover .jimg,.jrow:hover .jimg{transform:scale(1.05)}
+.jrubric{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);margin:0 0 10px}
+.jlead__title{font-family:var(--d-serif);font-weight:600;font-size:clamp(22px,2.1vw,30px);line-height:1.2;margin:0 0 12px;color:var(--s-fg)}
+.jlead__title a,.jrow__title a{color:inherit}
+.jlead:hover .jlead__title a,.jrow:hover .jrow__title a{color:var(--s-accent-ink)}
+.jmeta{font-size:12px;letter-spacing:.04em;color:var(--s-fg-soft);margin:0}
+.jlist{display:flex;flex-direction:column}
+.jrow{display:flex;gap:20px;align-items:flex-start;padding:22px 0;border-top:1px solid var(--s-line)}
+.jlist .jrow:first-child{padding-top:0;border-top:0}
+.jrow__body{flex:1;min-width:0}
+.jrow__title{font-family:var(--d-sans);font-weight:600;font-size:15px;line-height:1.4;margin:0 0 8px;color:var(--s-fg)}
+.jrow .jrubric{margin-bottom:8px}
+
+/* ============ 14. НАЙТИ МАГАЗИН ============ */
+.sect--find{padding:96px 0 104px;background:var(--s-bg)}
+[data-theme="dark"] .sect--find{background:var(--b-navy)}
+.fgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center}
+.sect--find .sect__h2{margin:0 0 20px;display:block}
+.fgrid__lead{font-size:16px;line-height:1.65;color:var(--s-fg-soft);max-width:440px;margin:0 0 30px}
+.fgrid .dsearch{margin-bottom:18px;max-width:520px}
+.fgrid .dchips{margin:0}
+.fgrid__media{
+  position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--b-navy);
+  clip-path:polygon(9% 0,100% 0,100% 100%,0 100%);
+}
+.fgrid__media::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.2' opacity='.4'%3E%3Cpath d='M38 80V52l10-9 10 9v28M58 80V44l11-10 11 10v36'/%3E%3Cpath d='M34 86c10-7 22-7 32 0s22 7 32 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:110px 110px;
+}
+.fimg{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;visibility:hidden}
+
+/* ============ 15. ПОДПИСКА ============ */
+/* Паттерн 02 «Линии движения» из брендбука (стр. 09) — единственное место,
+   где он уместен: спокойная финальная полоса перед подвалом. */
+.sblock{position:relative;overflow:hidden;background:var(--s-bg-2);padding:80px 0}
+[data-theme="dark"] .sblock{background:#0E1A2B}
+.sblock__pattern{
+  position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='200' viewBox='0 0 420 200'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1'%3E%3Cpath d='M0 30C90 10 150 70 210 60S330 0 420 24'/%3E%3Cpath d='M0 54C90 34 150 94 210 84S330 24 420 48'/%3E%3Cpath d='M0 78C90 58 150 118 210 108S330 48 420 72'/%3E%3Cpath d='M0 108C90 88 150 148 210 138S330 78 420 102'/%3E%3Cpath d='M0 138C90 118 150 178 210 168S330 108 420 132'/%3E%3Cpath d='M0 168C90 148 150 208 210 198S330 138 420 162'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:420px 200px;
+}
+[data-theme="dark"] .sblock__pattern{opacity:.28}
+.sblock__in{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
+.sblock__h2{
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(24px,2.4vw,34px);line-height:1.15;
+  letter-spacing:.01em;margin:0 0 12px;color:var(--s-fg);
+}
+.sblock__h2 a{color:inherit}
+.sblock__h2 a:hover{color:var(--s-accent-ink)}
+.sblock__lead{font-size:15px;line-height:1.6;color:var(--s-fg-soft);margin:0}
+.sform{display:flex;flex-direction:column;gap:14px}
+.sform__row{display:flex;border:1px solid var(--s-line-strong);background:var(--s-field-bg);transition:border-color .2s}
+.sform__row:focus-within{border-color:var(--s-accent)}
+.sform__inp{flex:1;min-width:0;height:58px;padding:0 18px;border:0;background:none;font:inherit;font-size:15px;color:var(--s-fg)}
+.sform__inp::placeholder{color:var(--s-fg-soft)}
+.sform__inp:focus{outline:none}
+.sform__go{
+  display:inline-flex;align-items:center;gap:10px;flex:none;height:58px;padding:0 26px;margin:-1px -1px -1px 0;
+  background:var(--s-accent);color:var(--s-btn-fill-fg);
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:filter .25s;
+}
+.sform__go:hover{filter:brightness(1.07)}
+.scheck{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.5;color:var(--s-fg-soft);cursor:pointer}
+.scheck input{margin-top:2px;accent-color:var(--b-copper);width:15px;height:15px;flex:none}
+.scheck a{color:var(--s-accent-ink);border-bottom:1px solid var(--s-line-strong)}
+
+/* ============ 16. ПОДВАЛ ============ */
+.footer{background:var(--b-navy);color:rgba(246,244,237,.72);padding:64px 0 0}
+[data-theme="dark"] .footer{background:#0B1522}
+.footer a{color:inherit}
+.footer a:hover{color:var(--b-copper)}
+.footer .logo__img--inv{filter:none;height:56px;width:auto}
+.footer__addr{font-size:13px;line-height:1.6}
+.footer__title{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--b-copper);margin-bottom:14px}
+.footer__cols ul li{font-size:13px;line-height:2}
+.socials a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(196,154,108,.4);padding-bottom:2px}
+.footer__legal{
+  border-top:1px solid rgba(196,154,108,.2);margin-top:56px;padding-top:22px;padding-bottom:26px;
+  font-size:12px;color:rgba(246,244,237,.55);
+}
+
+/* ============ 17. АДАПТИВ ОСТАЛЬНЫХ БЛОКОВ ============ */
+@media (max-width:1100px){
+  .rblock__in{grid-template-columns:1fr;gap:44px}
+  .rargs{flex-direction:row;flex-wrap:wrap;gap:32px}
+  .rargs li{flex:1 1 180px}
+  .jgrid{grid-template-columns:1fr;gap:36px}
+  .fgrid,.sblock__in{grid-template-columns:1fr;gap:36px}
+  .fgrid__media{aspect-ratio:16/9}
+}
+@media (max-width:640px){
+  .rblock{padding:64px 0 72px}
+  .rblock__cta{flex-direction:column;align-items:stretch;gap:18px}
+  .rblock__cta .dbtn{width:100%;justify-content:center}
+  .rblock__cta .dlink{justify-content:center}
+  .rargs{flex-direction:column;gap:22px}
+  .sect--journal,.sect--find{padding:64px 0 72px}
+  .jlead__title{font-size:21px}
+  .jrow__media{flex-basis:96px}
+  .jrow__title{font-size:14px}
+  .fgrid__media{aspect-ratio:4/3;margin:0 calc(var(--pad) * -1);clip-path:polygon(0 7%,100% 0,100% 100%,0 100%)}
+  .sblock{padding:56px 0}
+  .sform__go{padding:0 16px;font-size:0;gap:0}
+  .sform__go .dbtn__arr{width:18px;height:11px}
+  .sform__inp,.sform__go{height:52px}
+  .footer{padding-top:48px}
+}

@@ -65,7 +65,7 @@
   }
 
   watch(document.getElementById('heroPhoto'));
-  [].forEach.call(document.querySelectorAll('.cat__img, .ecard__img, .pcard__img'), watch);
+  [].forEach.call(document.querySelectorAll('.cat__img, .ecard__img, .pcard__img, .jimg, .fimg'), watch);
 
   // состояние «событий нет» — п. 6.8 ТЗ. Показывается по адресу ?events=0,
   // панели состояний в прототипе нет, как и на страницах кабинета.
