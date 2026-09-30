@@ -108,18 +108,23 @@ body{
   order:9;margin-left:2px;padding-left:18px;
   border-left:1px solid var(--s-line-strong);
 }
+/* тумблер: только значок, без подписи. Геометрия прямоугольная — как у кнопок
+   и полей сайта, а не капсула */
 .themetog{
-  display:inline-flex;align-items:center;gap:9px;height:28px;
-  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--s-fg-soft);
-  transition:color .2s;
+  display:inline-flex;align-items:center;justify-content:flex-start;
+  width:44px;height:22px;padding:0;border:1px solid var(--s-line-strong);border-radius:2px;
+  background:transparent;transition:border-color .2s,background-color .25s var(--d-ease);
 }
-.themetog:hover{color:var(--s-accent-ink)}
+.themetog:hover{border-color:var(--s-accent)}
 .themetog__ic{
-  width:13px;height:13px;border-radius:50%;flex:none;background:var(--s-accent);
-  box-shadow:inset -4px -2px 0 0 var(--s-util-bg);
-  transition:box-shadow .3s var(--d-ease);
+  width:16px;height:16px;flex:none;margin:0 0 0 2px;border-radius:1px;
+  background:var(--s-accent);box-shadow:none;
+  transition:transform .28s var(--d-ease),background-color .25s;
 }
-[data-theme="dark"] .themetog__ic{box-shadow:inset 0 0 0 0 var(--s-util-bg)}
+[data-theme="dark"] .themetog{background:rgba(196,154,108,.12)}
+[data-theme="dark"] .themetog__ic{transform:translateX(22px);box-shadow:none}
+/* подпись остаётся для доступности, но не видна */
+.themetog__t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ============ 4. ПЕРВЫЙ ЭКРАН ============ */
 .dhero{
@@ -265,11 +270,9 @@ body{
 
 /* иконка в параллелограмме — графический элемент брендбука, стр. 36 */
 .dserv__ic{position:relative;width:48px;height:48px;flex:none;display:grid;place-items:center}
-.dserv__ic::before{
-  content:"";position:absolute;inset:0;
-  transform:skewX(var(--d-skew));
-  border:1px solid var(--s-line-strong);background:var(--s-plate);
-}
+/* была скошенная подложка — на светлом фоне читалась серым квадратом,
+   а не графическим элементом. Иконка стоит сама по себе. */
+.dserv__ic{width:34px;height:34px}
 .dserv__ic::after{
   content:"";position:relative;width:24px;height:24px;background:var(--s-accent);
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
@@ -287,13 +290,7 @@ body{
   --i-park:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M3 3h18v18H3z'/%3E%3Cpath d='M9 17V8h3.5a2.5 2.5 0 0 1 0 5H9'/%3E%3C/svg%3E");
 }
 .dserv__t{font-size:13px;line-height:1.45;letter-spacing:.02em;color:var(--s-fg)}
-/* пунктир = сведения не подтверждены заказчиком, правило прототипа */
-.dserv__t{border-bottom:1px dotted var(--s-line-strong);padding-bottom:2px}
-.dserv__note{
-  font-size:11px;letter-spacing:.04em;color:var(--s-fg-soft);opacity:.75;
-  padding-bottom:18px;margin:-6px 0 0;
-}
-.dserv__note>.wrap{display:block}
+
 
 /* ============ 6. ГРАНИЦА ЭТАПА ============ */
 .dstage{background:var(--b-choc);color:var(--b-cream)}
@@ -336,8 +333,6 @@ body{
 /* до 640 первый экран строится иначе: фотография становится фоном,
    иначе на телефоне торговый центр уезжает за сгиб и его не видно */
 @media (max-width:640px){
-  .themetog{gap:0}
-  .themetog__t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .utility__actions .themetog-li{padding-left:14px}
   .nav__in{min-height:72px}
   .logo__img{height:44px}
@@ -378,8 +373,7 @@ body{
   .dserv__in{grid-template-columns:1fr}
   .dserv__i{border-left:0;padding:18px 0;border-top:1px solid rgba(196,154,108,.16)}
   .dserv__i:first-child{border-top:0}
-  .dserv__t{color:var(--b-cream);border-bottom-color:rgba(196,154,108,.4)}
-  .dserv__note{padding:0 0 18px;color:rgba(246,244,237,.6)}
+  .dserv__t{color:var(--b-cream)}
 }
 
 /* ТЗ п. 9.5 — уважать prefers-reduced-motion */
