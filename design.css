@@ -22,8 +22,11 @@
      ТЗ п. 9.6 требует достаточный контраст, поэтому мелкий текст — этим. */
   --b-copper-ink:#8E6034;
 
-  /* Шрифты. Полосы «Типографика» в брендбуке НЕТ — это подбор под его же макеты. */
-  --d-serif:"Cormorant Garamond",Georgia,serif;
+  /* Шрифты — брендбук, стр. 35 и 36, блок «Типографика»:
+     заголовки Playfair Display, текст Montserrat.
+     Отдельной полосы про типографику в брендбуке нет, она в боковых колонках
+     разделов «Рекламные конструкции» и «Внутренний ТВ». */
+  --d-serif:"Playfair Display",Georgia,serif;
   --d-sans:"Montserrat","Segoe UI",system-ui,sans-serif;
 
   --d-wrap:1360px;
@@ -142,7 +145,8 @@ body{
 
 .dhero__h1{
   font-family:var(--d-serif);font-weight:600;
-  font-size:clamp(44px,5vw,72px);line-height:1.03;letter-spacing:.01em;
+  /* Playfair шире Cormorant: «ВДОХНОВЕНИЯ» в 72px упиралось в край колонки */
+  font-size:clamp(42px,4.85vw,70px);line-height:1.06;letter-spacing:.01em;
   text-transform:uppercase;margin:0 0 26px;
 }
 .dhero__h1 em{display:block;font-style:normal;color:var(--s-accent)}
