@@ -994,3 +994,80 @@ body{
   .searchbar{padding:20px 0 24px}
   .searchbar .field--lg input{height:54px;font-size:15px}
 }
+
+/* ============ 20. МЕНЮ ПО ЦЕНТРУ ============ */
+/* Сетка «1fr — меню — 1fr»: меню центрируется по контейнеру страницы,
+   а не по остатку между логотипом и иконкой поиска. */
+.nav__in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+.nav__in>.logo{justify-self:start}
+.nav__in>.menu{justify-self:center}
+.nav__side{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.ic-search{margin-left:0}
+.menu__list{gap:30px}
+
+/* ============ 21. ВЫПАДАЮЩИЕ ПАНЕЛИ МЕНЮ ============ */
+.mega{border-top:1px solid rgba(196,154,108,.35)}
+.mega__in{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr) minmax(0,1.05fr);gap:52px;padding-top:40px;padding-bottom:44px}
+#mega-about .mega__in{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+.mega__title{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--s-accent-ink);margin-bottom:20px;
+  padding-bottom:12px;border-bottom:1px solid var(--s-line);
+}
+.mega__cats a,.mega__links a{
+  position:relative;display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;line-height:1.4;color:var(--s-fg);border-bottom:1px solid transparent;
+  transition:color .18s,border-color .18s,transform .18s var(--d-ease);
+}
+/* стрелка появляется на наведении и не двигает соседей */
+.mega__cats a::after,.mega__links a::after{
+  content:"";width:0;height:9px;background:var(--s-accent);opacity:0;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+  transition:width .18s var(--d-ease),opacity .18s;
+}
+.mega__cats a:hover,.mega__links a:hover{color:var(--s-accent-ink);border-color:transparent}
+.mega__cats a:hover::after,.mega__links a:hover::after{width:15px;opacity:1}
+.mega__cats{columns:2;column-gap:40px}
+.mega__cats li{margin-bottom:12px;break-inside:avoid}
+.mega__links li{margin-bottom:13px}
+
+/* третья колонка «Магазинов» — плашка: единственное действие в панели */
+#mega-shops .mega__col:last-child{
+  border:1px solid var(--s-line);background:var(--s-plate);
+  padding:22px 22px 24px;align-self:start;
+}
+#mega-shops .mega__col:last-child .mega__title{margin-bottom:16px}
+.mega__hint{font-size:12px;line-height:1.5;color:var(--s-fg-soft);margin-top:12px}
+.mega .field--sm{border:1px solid var(--s-line-strong);background:var(--s-bg);border-radius:0}
+.mega .field--sm:focus-within{border-color:var(--s-accent);box-shadow:none}
+.mega .field--sm input{height:46px;padding:0 52px 0 14px;font-size:14px;color:var(--s-fg);background:none}
+.mega .field--sm input::placeholder{color:var(--s-fg-soft)}
+.mega .field--sm .field__go{width:48px;border-left:1px solid var(--s-line);background-color:var(--s-accent-ink)}
+
+@media (max-width:1100px){
+  .menu__list{gap:22px}
+  .mega__in{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px}
+  #mega-shops .mega__col:last-child{grid-column:span 2}
+}
+@media (max-width:1000px){
+  /* меню уходит в выдвижную панель — сетка больше не нужна */
+  .nav__in{display:flex;justify-content:space-between}
+  .nav__side{gap:4px}
+}
+@media (max-width:640px){
+  .mega__in{grid-template-columns:1fr;gap:26px;padding-top:24px;padding-bottom:28px}
+  #mega-about .mega__in{grid-template-columns:1fr}
+  #mega-shops .mega__col:last-child{grid-column:auto}
+  .mega__cats{columns:1}
+  /* на телефоне 14 категорий с полями по 13px давали простыню на 800px —
+     делаем строки списка с разделителями */
+  .mega__cats li,.mega__links li{margin-bottom:0}
+  .mega__cats a,.mega__links a{
+    display:flex;width:100%;justify-content:space-between;
+    padding:13px 0;border-bottom:1px solid var(--s-line);
+  }
+  .mega__cats a::after,.mega__links a::after{width:15px;opacity:.5}
+  .mega__title{margin-bottom:8px}
+}

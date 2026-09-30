@@ -73,6 +73,22 @@
   [].forEach.call(document.querySelectorAll('.cat__img, .ecard__img, .pcard__img, .jimg, .fimg, .rimg'), watch);
 
 
+  /* ---------- меню по центру строки навигации ----------
+     Иконку поиска и бургер собираем в одну группу, чтобы строка стала
+     сеткой «1fr — меню — 1fr»: тогда меню центрируется по контейнеру,
+     а не по остатку между логотипом и иконкой. */
+  (function () {
+    var navIn = document.querySelector('.nav__in');
+    if (!navIn || navIn.querySelector('.nav__side')) return;
+    var side = document.createElement('div');
+    side.className = 'nav__side';
+    var ic = navIn.querySelector('.ic-search');
+    var bg = navIn.querySelector('.burger');
+    if (ic) side.appendChild(ic);   // обработчики app.js остаются: узлы те же
+    if (bg) side.appendChild(bg);
+    navIn.appendChild(side);
+  })();
+
   /* ---------- шапка: липкая + компактное состояние ---------- */
   var header = document.querySelector('.header');
   if (header) {
