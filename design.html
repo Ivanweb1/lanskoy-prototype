@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=73">
-<link rel="stylesheet" href="design.css?v=13">
+<link rel="stylesheet" href="design.css?v=15">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t)})();</script>
@@ -197,44 +197,59 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
   </div>
 </section>
 
-<div class="dstage"><div class="wrap dstage__in"><span class="dstage__dot"></span>Ниже — прототип без дизайна: собираем сверху вниз<span class="dstage__dot"></span></div></div>
-
-<!-- ================= 4. АКЦИИ ================= -->
-<section class="sect sect--alt">
+<!-- ================= 4. АКЦИИ (дизайн) ================= -->
+<section class="sect sect--promos">
   <div class="wrap">
     <div class="sect__head">
       <h2 class="sect__h2">Акции магазинов</h2>
-      <a href="promos.html" class="more">Все акции</a>
+      <a href="promos.html" class="more">Все акции<span class="dbtn__arr" aria-hidden="true"></span></a>
     </div>
-    <div class="grid grid--4 scroller">
-      <article class="card card--sm">
-        <div class="card__media ph"><span class="ph__label">Фото</span></div>
-        <h3 class="card__title">Скидка 30% на дверную фурнитуру</h3>
-        <p class="card__meta">Салон «Корал» · секция B14</p>
-        <p class="card__term">до 30 июня</p>
+    <div class="pgrid">
+      <article class="pcard">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/pr-1.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 30 июня</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Скидка 30% на дверную фурнитуру</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">Салон «Корал»</span><span class="pcard__sec">B14</span></p>
+        </div>
       </article>
-      <article class="card card--sm">
-        <div class="card__media ph"><span class="ph__label">Фото</span></div>
-        <h3 class="card__title">Весенние цены на керамогранит</h3>
-        <p class="card__meta">Магазин · секция А22</p>
-        <p class="card__term">до 15 июня</p>
+      <article class="pcard">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/pr-2.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 15 июня</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Весенние цены на керамогранит</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop ph-mark">Магазин</span><span class="pcard__sec">А22</span></p>
+        </div>
       </article>
-      <article class="card card--sm">
-        <div class="card__media ph"><span class="ph__label">Фото</span></div>
-        <h3 class="card__title">Мойки воздуха и тёплые полы —10%</h3>
-        <p class="card__meta">Магазин · секция C3</p>
-        <p class="card__term">до 1 июля</p>
+      <article class="pcard">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/pr-3.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 1 июля</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Мойки воздуха и тёплые полы —10%</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop ph-mark">Магазин</span><span class="pcard__sec">C3</span></p>
+        </div>
       </article>
-      <article class="card card--sm">
-        <div class="card__media ph"><span class="ph__label">Фото</span></div>
-        <h3 class="card__title">Распродажа коллекций текстиля</h3>
-        <p class="card__meta">Магазин · секция B7</p>
-        <p class="card__term">до 20 июня</p>
+      <article class="pcard">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/pr-4.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 20 июня</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Распродажа коллекций текстиля</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop ph-mark">Магазин</span><span class="pcard__sec">B7</span></p>
+        </div>
       </article>
     </div>
   </div>
-  <aside class="note"><b>4. Акции.</b> Срок действия виден на карточке — по п. 6.7 акция снимается с публикации автоматически по дате. Сетка должна корректно жить при 1—2 акциях, а не только при четырёх. Порядок блоков 5 и 6 обсуждаемый: события поставил выше, потому что у них есть срок и регистрация.</aside>
 </section>
+
+<div class="dstage"><div class="wrap dstage__in"><span class="dstage__dot"></span>Ниже — прототип без дизайна: собираем сверху вниз<span class="dstage__dot"></span></div></div>
 
 <!-- ================= 5. АРЕНДА ================= -->
 <section class="rent">
@@ -347,6 +362,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
 <script src="partials.js?v=73"></script>
 <script src="app.js?v=73"></script>
 <script src="content.js?v=73"></script>
-<script src="design.js?v=13"></script>
+<script src="design.js?v=15"></script>
 </body>
 </html>
