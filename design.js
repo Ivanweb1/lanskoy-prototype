@@ -72,6 +72,52 @@
   watch(document.getElementById('heroPhoto'));
   [].forEach.call(document.querySelectorAll('.cat__img, .ecard__img, .pcard__img, .jimg, .fimg, .rimg'), watch);
 
+
+  /* ---------- шапка: липкая + компактное состояние ---------- */
+  var header = document.querySelector('.header');
+  if (header) {
+    // затемнение под раскрытой шапкой
+    var scrim = document.createElement('div');
+    scrim.className = 'hscrim';
+    document.body.appendChild(scrim);
+
+    var compact = false;
+    function onScroll() {
+      var next = window.scrollY > 24;
+      if (next !== compact) {
+        compact = next;
+        document.body.classList.toggle('is-sticky', compact);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // подсветка иконки и затемнение страницы, пока открыт поиск или мегаменю.
+    // Обработчики прототипа (app.js) сами открывают панели — мы только следим
+    // за их состоянием, чтобы не дублировать логику.
+    var bar = document.getElementById('searchbar');
+    function syncPanels() {
+      var searchOpen = bar && !bar.hidden;
+      var megaOpen = !![].filter.call(document.querySelectorAll('.mega'), function (m) { return !m.hidden; }).length;
+      document.body.classList.toggle('is-search-open', !!searchOpen);
+      document.body.classList.toggle('is-mega-open', megaOpen);
+    }
+    var mo = new MutationObserver(syncPanels);
+    [].forEach.call(document.querySelectorAll('.mega, #searchbar'), function (el) {
+      mo.observe(el, { attributes: true, attributeFilter: ['hidden'] });
+    });
+    syncPanels();
+
+    scrim.addEventListener('click', function () {
+      if (bar) bar.hidden = true;
+      [].forEach.call(document.querySelectorAll('.mega'), function (m) { m.hidden = true; });
+      [].forEach.call(document.querySelectorAll('.menu__item--has'), function (i) { i.classList.remove('is-open'); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') scrim.click();
+    });
+  }
+
   // состояние «событий нет» — п. 6.8 ТЗ. Показывается по адресу ?events=0,
   // панели состояний в прототипе нет, как и на страницах кабинета.
   if (/[?&]events=0(&|$)/.test(location.search)) {
