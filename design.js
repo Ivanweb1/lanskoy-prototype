@@ -65,5 +65,13 @@
   }
 
   watch(document.getElementById('heroPhoto'));
-  [].forEach.call(document.querySelectorAll('.cat__img'), watch);
+  [].forEach.call(document.querySelectorAll('.cat__img, .ecard__img'), watch);
+
+  // состояние «событий нет» — п. 6.8 ТЗ. Показывается по адресу ?events=0,
+  // панели состояний в прототипе нет, как и на страницах кабинета.
+  if (/[?&]events=0(&|$)/.test(location.search)) {
+    var grid = document.getElementById('eventsGrid');
+    var empty = document.getElementById('eventsEmpty');
+    if (grid && empty) { grid.hidden = true; empty.hidden = false; }
+  }
 })();

@@ -493,3 +493,104 @@ body{
   .cat__name,.cat--big .cat__name,.cat--tall .cat__name{font-size:12px;max-width:none}
   .cat__body,.cat--big .cat__body{padding-right:0}
 }
+
+/* ============ 10. БЛИЖАЙШИЕ СОБЫТИЯ ============ */
+/* Карточка по макету брендбука стр. 38 («События») и стр. 39 («Актуальные
+   события»): дата медным, заголовок антиквой, «Регистрация» ссылкой.
+   Диагональ по нижней кромке обложки — тот же приём, что в первом экране. */
+.sect--events{padding:96px 0 104px;background:var(--s-bg-2)}
+[data-theme="dark"] .sect--events{background:#0E1A2B}
+.sect--events .sect__head{margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--s-line)}
+.sect--events .sect__h2{
+  font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
+  font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
+}
+.sect--events .more{
+  display:inline-flex;align-items:center;gap:10px;border:0;padding:0;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);
+}
+.sect--events .more .dbtn__arr{transition:transform .25s var(--d-ease)}
+.sect--events .more:hover .dbtn__arr{transform:translateX(4px)}
+
+.egrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.ecard{display:flex;flex-direction:column;background:var(--s-bg);border:1px solid var(--s-line)}
+[data-theme="dark"] .ecard{background:var(--b-navy);border-color:rgba(196,154,108,.18)}
+.ecard:hover{border-color:var(--s-accent)}
+
+.ecard__media{
+  position:relative;display:block;overflow:hidden;
+  aspect-ratio:3/2;background:var(--b-navy);
+  /* срез по нижней кромке обложки — графический элемент брендбука, стр. 36 */
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 26px));
+}
+.ecard__media::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.2' opacity='.4'%3E%3Cpath d='M38 80V52l10-9 10 9v28M58 80V44l11-10 11 10v36'/%3E%3Cpath d='M34 86c10-7 22-7 32 0s22 7 32 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:110px 110px;
+}
+.ecard__img{
+  position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;
+  visibility:hidden;                    /* показываем после загрузки, см. design.js */
+  transition:transform .9s var(--d-ease);
+}
+.ecard:hover .ecard__img{transform:scale(1.05)}
+
+/* дата — плашка медным по левому верхнему углу, как в афише брендбука (стр. 36) */
+.ecard__date{
+  position:absolute;z-index:2;left:0;top:22px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:9px 16px 9px 18px;background:var(--b-copper);color:var(--b-navy);
+}
+.ecard__date b{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1}
+.ecard__date i{font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+
+.ecard__body{display:flex;flex-direction:column;gap:12px;padding:22px 24px 26px;flex:1}
+.ecard__title{
+  font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.24;
+  letter-spacing:.01em;color:var(--s-fg);margin:0;
+}
+.ecard__title a{color:inherit}
+.ecard:hover .ecard__title a{color:var(--s-accent-ink)}
+.ecard__meta{
+  display:flex;align-items:center;flex-wrap:wrap;gap:10px;
+  font-size:13px;color:var(--s-fg-soft);
+}
+.ecard__dot{width:4px;height:4px;border-radius:50%;background:var(--s-accent);flex:none}
+.ecard__cta{
+  margin-top:auto;padding-top:6px;display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--s-accent-ink);border-bottom:1px solid transparent;
+}
+.ecard__cta:hover{border-bottom-color:var(--s-accent)}
+/* состояние «мест нет» — п. 6.8 ТЗ: регистрация закрывается автоматически */
+.ecard--off .ecard__img{filter:grayscale(1) brightness(.72)}
+.ecard--off .ecard__date{background:var(--b-grey);color:var(--b-navy)}
+[data-theme="dark"] .ecard--off .ecard__date{background:#4A5568;color:var(--b-cream)}
+.ecard__cta--off{color:var(--s-fg-soft);border-bottom:1px dotted var(--s-line-strong);cursor:default}
+.ecard__cta--off:hover{border-bottom-color:var(--s-line-strong)}
+
+/* состояние «событий нет» */
+.eempty[hidden]{display:none}
+.eempty{
+  display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;
+  padding:72px 24px;border:1px dashed var(--s-line-strong);
+}
+.eempty__t{font-family:var(--d-serif);font-size:28px;line-height:1.2;color:var(--s-fg);margin:0}
+.eempty__d{font-size:15px;line-height:1.6;color:var(--s-fg-soft);margin:0}
+.eempty__cta{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:center;margin-top:10px}
+
+@media (max-width:1100px){
+  .egrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+  .ecard:last-child{grid-column:span 2}
+  .ecard:last-child .ecard__media{aspect-ratio:21/9}
+}
+@media (max-width:640px){
+  .sect--events{padding:64px 0 72px}
+  .egrid{grid-template-columns:1fr;gap:18px}
+  .ecard:last-child{grid-column:auto}
+  .ecard:last-child .ecard__media,.ecard__media{aspect-ratio:16/10}
+  .ecard__title{font-size:19px}
+  .ecard__body{padding:18px 18px 22px}
+  .eempty{padding:48px 18px}
+  .eempty__t{font-size:22px}
+}

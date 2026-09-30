@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=73">
-<link rel="stylesheet" href="design.css?v=11">
+<link rel="stylesheet" href="design.css?v=13">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t)})();</script>
@@ -138,38 +138,66 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
   </div>
 </section>
 
-<div class="dstage"><div class="wrap dstage__in"><span class="dstage__dot"></span>Ниже — прототип без дизайна: собираем сверху вниз<span class="dstage__dot"></span></div></div>
-
-<!-- ================= 3. АФИША ================= -->
-<section class="sect">
+<!-- ================= 3. АФИША (дизайн) ================= -->
+<section class="sect sect--events">
   <div class="wrap">
     <div class="sect__head">
       <h2 class="sect__h2">Ближайшие события</h2>
-      <a href="events.html" class="more">Вся афиша</a>
+      <a href="events.html" class="more">Вся афиша<span class="dbtn__arr" aria-hidden="true"></span></a>
     </div>
-    <div class="grid grid--3 scroller">
-      <article class="card">
-        <div class="card__media ph"><span class="ph__label">Обложка</span><span class="badge">24—26 мая</span></div>
-        <h3 class="card__title">Дни дизайна и интерьера</h3>
-        <p class="card__meta">3 этаж, зона лекций · 12:00</p>
-        <a href="event.html" class="link">Регистрация</a>
+
+    <div class="egrid" id="eventsGrid">
+      <article class="ecard">
+        <a class="ecard__media" href="event.html" tabindex="-1" aria-hidden="true">
+          <img class="ecard__img" src="img/ev-1.webp" alt="" loading="lazy">
+          <span class="ecard__date"><b>24—26</b><i>мая</i></span>
+        </a>
+        <div class="ecard__body">
+          <h3 class="ecard__title"><a href="event.html">Дни дизайна и интерьера</a></h3>
+          <p class="ecard__meta">3 этаж, зона лекций<span class="ecard__dot"></span>12:00</p>
+          <a href="event.html" class="ecard__cta">Регистрация<span class="dbtn__arr" aria-hidden="true"></span></a>
+        </div>
       </article>
-      <article class="card">
-        <div class="card__media ph"><span class="ph__label">Обложка</span><span class="badge">25 мая</span></div>
-        <h3 class="card__title">Лекция дизайнера: тренды в интерьере</h3>
-        <p class="card__meta">3 этаж, зона лекций · 19:00</p>
-        <a href="event.html" class="link">Регистрация</a>
+
+      <article class="ecard">
+        <a class="ecard__media" href="event.html" tabindex="-1" aria-hidden="true">
+          <img class="ecard__img" src="img/ev-2.webp" alt="" loading="lazy">
+          <span class="ecard__date"><b>25</b><i>мая</i></span>
+        </a>
+        <div class="ecard__body">
+          <h3 class="ecard__title"><a href="event.html">Лекция дизайнера: тренды в интерьере</a></h3>
+          <p class="ecard__meta">3 этаж, зона лекций<span class="ecard__dot"></span>19:00</p>
+          <a href="event.html" class="ecard__cta">Регистрация<span class="dbtn__arr" aria-hidden="true"></span></a>
+        </div>
       </article>
-      <article class="card">
-        <div class="card__media ph"><span class="ph__label">Обложка</span><span class="badge">26 мая</span></div>
-        <h3 class="card__title">Мастер-класс по декору</h3>
-        <p class="card__meta">2 этаж, атриум · 14:00</p>
-        <span class="link link--off">Мест нет</span>
+
+      <article class="ecard ecard--off">
+        <a class="ecard__media" href="event.html" tabindex="-1" aria-hidden="true">
+          <img class="ecard__img" src="img/ev-3.webp" alt="" loading="lazy">
+          <span class="ecard__date"><b>26</b><i>мая</i></span>
+        </a>
+        <div class="ecard__body">
+          <h3 class="ecard__title"><a href="event.html">Мастер-класс по декору</a></h3>
+          <p class="ecard__meta">2 этаж, атриум<span class="ecard__dot"></span>14:00</p>
+          <span class="ecard__cta ecard__cta--off">Мест нет</span>
+        </div>
       </article>
+    </div>
+
+    <!-- обязательное состояние по п. 6.8 ТЗ: регистрация закрывается автоматически,
+         значит афиша может оказаться пустой. Показывается по адресу ?events=0 -->
+    <div class="eempty" id="eventsEmpty" hidden>
+      <p class="eempty__t">Ближайших событий пока нет</p>
+      <p class="eempty__d">Мы готовим новую программу лекций и мастер-классов.<br>Посмотрите фотоотчёты с прошедших встреч или подпишитесь на анонсы.</p>
+      <div class="eempty__cta">
+        <a href="events.html" class="dbtn dbtn--fill">Архив событий<span class="dbtn__arr" aria-hidden="true"></span></a>
+        <a href="subscribe.html" class="dlink">Подписаться на анонсы<span class="dbtn__arr" aria-hidden="true"></span></a>
+      </div>
     </div>
   </div>
-  <aside class="note"><b>3. Афиша.</b> Даты обязательно в списке — на текущем сайте их нет, и афиша от этого нечитаемая. Третья карточка показывает состояние «мест нет»: по п. 6.8 регистрация закрывается автоматически при заполнении лимита. Обязательное состояние блока — <b>событий нет</b>: тогда показываем ссылку на архив с фотоотчётами или блок выключается из CMS.</aside>
 </section>
+
+<div class="dstage"><div class="wrap dstage__in"><span class="dstage__dot"></span>Ниже — прототип без дизайна: собираем сверху вниз<span class="dstage__dot"></span></div></div>
 
 <!-- ================= 4. АКЦИИ ================= -->
 <section class="sect sect--alt">
@@ -319,6 +347,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
 <script src="partials.js?v=73"></script>
 <script src="app.js?v=73"></script>
 <script src="content.js?v=73"></script>
-<script src="design.js?v=11"></script>
+<script src="design.js?v=13"></script>
 </body>
 </html>
