@@ -1,0 +1,253 @@
+/* ТК «Ланской» — дизайн главной. Этап 1: первый экран.
+   Подключается ПОСЛЕ style.css и перекрывает Ч/Б прототип.
+   Значения — из брендбука ТК «Ланской», версия 1.0 / 2026.
+   Расхождения внутри самого брендбука помечены в комментариях. */
+
+/* ============ 1. КОНСТАНТЫ БРЕНДА ============ */
+:root{
+  /* Фирменные цвета, стр. 06 «Фирменные цвета» */
+  --b-navy:#16263D;          /* тёмно-синий, основной цвет бренда, 60% */
+  --b-cream:#F6F4ED;         /* основной светлый фон, стр. 07 (в таблице стр. 06 — #F6F2ED) */
+  --b-cream-2:#EAE7E1;       /* дополнительный фон, стр. 07 */
+  --b-copper:#C49A6C;        /* акцент, стр. 07 и стр. 09 (в таблице стр. 06 — #C99A6C) */
+  --b-choc:#443228;          /* шоколадный, 3% */
+  --b-grey:#DAD7CE;          /* серый, 2% */
+
+  /* Градиенты, стр. 06 */
+  --g-navy:linear-gradient(135deg,#0E1A2B 0%,#2D4A73 100%);
+  --g-copper:linear-gradient(135deg,#B5834F 0%,#E2C39A 100%);
+
+  /* Медный, затемнённый до контраста AA на кремовом (4.87:1).
+     Брендбук ставит #C49A6C на кремовый — это 2.26:1 и не проходит.
+     ТЗ п. 9.6 требует достаточный контраст, поэтому мелкий текст — этим. */
+  --b-copper-ink:#8E6034;
+
+  /* Шрифты. Полосы «Типографика» в брендбуке НЕТ — это подбор под его же макеты. */
+  --d-serif:"Cormorant Garamond",Georgia,serif;
+  --d-sans:"Montserrat","Segoe UI",system-ui,sans-serif;
+
+  --d-wrap:1360px;
+  --d-ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* ============ 2. СЕМАНТИЧЕСКИЕ ТОКЕНЫ (ТЗ п. 9.2) ============ */
+/* Светлая тема — по макету брендбука стр. 39 */
+:root,
+[data-theme="light"]{
+  --s-bg:var(--b-cream);
+  --s-bg-2:var(--b-cream-2);
+  --s-fg:var(--b-navy);
+  --s-fg-soft:rgba(22,38,61,.68);
+  --s-accent:var(--b-copper);
+  --s-accent-ink:var(--b-copper-ink);
+  --s-line:rgba(22,38,61,.14);
+  --s-line-strong:rgba(22,38,61,.26);
+  --s-hero-bg:var(--b-cream);
+  --s-util-bg:var(--b-cream-2);
+  --s-nav-bg:rgba(246,244,237,.92);
+  --s-pattern-op:.5;
+  --s-btn-fill-fg:var(--b-navy);   /* навй на медном = 5.1:1; сочетание разрешено стр. 06 */
+}
+/* Тёмная тема — по макету брендбука стр. 38. ТЗ п. 9.7 «Тёмная тема — необходимо сделать» */
+[data-theme="dark"]{
+  --s-bg:#0E1A2B;
+  --s-bg-2:#16263D;
+  --s-fg:var(--b-cream);
+  --s-fg-soft:rgba(246,244,237,.72);
+  --s-accent:var(--b-copper);
+  --s-accent-ink:var(--b-copper);  /* медный на тёмно-синем = 6.04:1, проходит AA */
+  --s-line:rgba(196,154,108,.22);
+  --s-line-strong:rgba(196,154,108,.44);
+  --s-hero-bg:var(--b-navy);
+  --s-util-bg:#0B1522;
+  --s-nav-bg:rgba(14,26,43,.92);
+  --s-pattern-op:.85;
+  --s-btn-fill-fg:var(--b-navy);
+}
+
+html{background:var(--s-bg)}
+body{
+  background:var(--s-bg);color:var(--s-fg);
+  transition:background .35s var(--d-ease),color .35s var(--d-ease);
+}
+
+/* ============ 3. ШАПКА ============ */
+.utility{background:var(--s-util-bg);border-bottom:1px solid var(--s-line);color:var(--s-fg-soft)}
+.utility__in{min-height:44px}
+.utility a{color:inherit}
+.utility a:hover{color:var(--s-accent-ink)}
+.utility__login{color:var(--s-accent-ink)}
+
+.nav{background:var(--s-nav-bg);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--s-line)}
+.nav__in{min-height:92px}
+.logo__img{filter:none;height:58px;width:auto}
+.menu__link{
+  font-family:var(--d-sans);font-weight:500;font-size:13px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--s-fg);
+}
+.menu__item.is-current>.menu__link,.menu__link:hover{color:var(--s-accent-ink)}
+
+/* переключатель темы — решение 30.09.2026: в утилитарной строке шапки */
+.themetog{
+  display:inline-flex;align-items:center;gap:9px;
+  height:28px;padding:0 13px;border:1px solid var(--s-line-strong);border-radius:999px;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--s-fg-soft);
+  transition:border-color .2s,color .2s;
+}
+.themetog:hover{border-color:var(--s-accent);color:var(--s-accent-ink)}
+.themetog__ic{
+  width:13px;height:13px;border-radius:50%;flex:none;background:var(--s-accent);
+  box-shadow:inset -4px -2px 0 0 var(--s-util-bg);
+  transition:box-shadow .3s var(--d-ease);
+}
+[data-theme="dark"] .themetog__ic{box-shadow:inset 0 0 0 0 var(--s-util-bg)}
+
+/* ============ 4. ПЕРВЫЙ ЭКРАН ============ */
+.dhero{
+  position:relative;overflow:hidden;
+  background:var(--s-hero-bg);color:var(--s-fg);
+  transition:background .35s var(--d-ease),color .35s var(--d-ease);
+}
+[data-theme="dark"] .dhero{background:var(--g-navy)}
+
+/* паттерн 01 «Геометрия архитектуры», стр. 09 — фоновым элементом, не перетягивая внимание */
+.dhero__pattern{
+  position:absolute;inset:0;pointer-events:none;
+  color:var(--s-fg);
+  opacity:calc(var(--s-pattern-op) * .16);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='240' viewBox='0 0 180 240'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.4'%3E%3Cpath d='M10 240V96l22-20 22 20v144'/%3E%3Cpath d='M54 240V60l20-18 20 18v180'/%3E%3Cpath d='M94 240V120l22-20 22 20v120'/%3E%3Cpath d='M138 240V78l21-19 21 19v162'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:180px 240px;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 44%,transparent 66%);
+          mask-image:linear-gradient(90deg,#000 0%,#000 44%,transparent 66%);
+}
+[data-theme="dark"] .dhero__pattern{opacity:.5}
+
+/* сетка первого экрана шире контейнера: левая колонка выровнена по общей сетке сайта,
+   правая — фотопанель — уходит в край страницы (как в макете брендбука, стр. 38) */
+.dhero__in{
+  position:relative;z-index:2;
+  max-width:none;width:100%;margin:0;
+  padding-left:max(20px,calc((100% - var(--d-wrap)) / 2));padding-right:0;
+  display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);
+  align-items:center;min-height:clamp(560px,72vh,760px);
+}
+.dhero__text{padding:72px 56px 72px 0;max-width:700px}
+
+.dhero__eyebrow{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--s-accent-ink);margin:0 0 26px;
+  display:flex;align-items:center;gap:14px;
+}
+.dhero__eyebrow::before{content:"";width:46px;height:1px;background:var(--s-accent);flex:none}
+
+.dhero__h1{
+  font-family:var(--d-serif);font-weight:600;
+  font-size:clamp(44px,5vw,72px);line-height:1.03;letter-spacing:.01em;
+  text-transform:uppercase;margin:0 0 26px;
+}
+.dhero__h1 em{display:block;font-style:normal;color:var(--s-accent)}
+
+.dhero__sub{
+  font-size:17px;line-height:1.65;color:var(--s-fg-soft);
+  max-width:470px;margin:0 0 40px;
+}
+.dhero__cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+.dbtn{
+  display:inline-flex;align-items:center;gap:12px;
+  height:56px;padding:0 32px;border-radius:2px;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  transition:background .25s var(--d-ease),color .25s,border-color .25s,transform .25s;
+}
+.dbtn--fill{background:var(--s-accent);color:var(--s-btn-fill-fg)}
+.dbtn--fill:hover{filter:brightness(1.07);transform:translateY(-2px)}
+.dbtn--line{border:1px solid var(--s-line-strong);color:var(--s-fg)}
+.dbtn--line:hover{border-color:var(--s-accent);color:var(--s-accent-ink);transform:translateY(-2px)}
+.dbtn__arr{
+  width:16px;height:9px;flex:none;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+
+/* фотопанель с диагональным срезом — приём из макета брендбука, стр. 38 */
+.dhero__media{
+  position:relative;align-self:stretch;min-height:100%;
+  clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);
+  background:var(--b-navy);
+  overflow:hidden;
+}
+/* состояние «фото ещё нет»: подложка паттерном 03 «Монограмма», стр. 09 */
+.dhero__media::after{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.2' opacity='.45'%3E%3Cpath d='M38 80V52l10-9 10 9v28M58 80V44l11-10 11 10v36'/%3E%3Cpath d='M34 86c10-7 22-7 32 0s22 7 32 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:120px 120px;
+}
+.dhero__media img{
+  position:absolute;z-index:1;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  visibility:hidden;                 /* показываем только после успешной загрузки, см. design.js */
+}
+.dhero__ph{
+  position:absolute;z-index:2;left:0;right:0;bottom:0;
+  padding:13px 18px;text-align:center;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(246,244,237,.75);background:rgba(14,26,43,.74);
+  border-top:1px dashed rgba(196,154,108,.5);
+}
+.dhero__media.has-photo::after,.dhero__media.has-photo .dhero__ph{display:none}
+
+/* ============ 5. ЦИФРЫ ПОД ПЕРВЫМ ЭКРАНОМ ============ */
+.dstats{position:relative;z-index:2;border-top:1px solid var(--s-line);background:var(--s-bg)}
+[data-theme="dark"] .dstats{background:var(--b-navy)}
+.dstats__in{display:grid;grid-template-columns:repeat(4,1fr)}
+.dstat{padding:30px 28px;border-left:1px solid var(--s-line)}
+.dstat:first-child{border-left:0;padding-left:0}
+.dstat__num{font-family:var(--d-serif);font-size:34px;line-height:1;letter-spacing:-.01em;color:var(--s-fg)}
+.dstat__lb{display:block;margin-top:8px;font-size:12px;line-height:1.45;letter-spacing:.04em;color:var(--s-fg-soft)}
+/* пунктир = данные не подтверждены заказчиком, правило прототипа */
+.dstat--check .dstat__num{border-bottom:1px dashed var(--s-accent);padding-bottom:3px;display:inline-block}
+
+/* ============ 6. ГРАНИЦА ЭТАПА ============ */
+.dstage{background:var(--b-choc);color:var(--b-cream)}
+.dstage__in{
+  padding:15px 0;display:flex;gap:12px;align-items:center;justify-content:center;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.92;
+}
+.dstage__dot{width:6px;height:6px;border-radius:50%;background:var(--b-copper);flex:none}
+/* ниже границы — прототип как есть, приглушён */
+.dstage ~ .sect,.dstage ~ .rent,.dstage ~ .subs{filter:saturate(0) opacity(.8)}
+
+/* ============ 7. АДАПТИВ (ТЗ п. 9.4, 320–1920+) ============ */
+@media (max-width:1100px){
+  .dhero__in{grid-template-columns:1fr;min-height:0;padding-right:max(20px,calc((100% - var(--d-wrap)) / 2))}
+  .dhero__text{padding:56px 0 40px;max-width:none}
+  .dhero__media{
+    margin:0 calc(max(20px,(100% - var(--d-wrap)) / 2) * -1);
+    height:52vw;min-height:320px;clip-path:polygon(0 7%,100% 0,100% 100%,0 100%);
+  }
+  .dhero__pattern{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 40%,transparent 60%);
+                          mask-image:linear-gradient(180deg,#000 0%,#000 40%,transparent 60%)}
+  .dstats__in{grid-template-columns:repeat(2,1fr)}
+  .dstat{padding:24px}
+  .dstat:nth-child(odd){border-left:0;padding-left:0}
+  .dstat:nth-child(n+3){border-top:1px solid var(--s-line)}
+}
+@media (max-width:640px){
+  /* на узком экране переключатель — только иконка, подпись съедает строку */
+  .themetog{padding:0;width:30px;height:30px;justify-content:center}
+  .themetog__t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .nav__in{min-height:72px}
+  .logo__img{height:44px}
+  .dhero__text{padding:40px 0 32px}
+  .dhero__h1{font-size:clamp(38px,11vw,54px)}
+  .dhero__sub{font-size:15px;margin-bottom:30px}
+  .dhero__cta{flex-direction:column;align-items:stretch;width:100%}
+  .dbtn{height:52px;padding:0 24px;width:100%;justify-content:center}
+  .dstats__in{grid-template-columns:1fr}
+  .dstat{border-left:0;padding:22px 0;border-top:1px solid var(--s-line)}
+  .dstat:first-child{border-top:0}
+}
+
+/* ТЗ п. 9.5 — уважать prefers-reduced-motion */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
