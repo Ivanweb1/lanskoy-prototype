@@ -147,7 +147,10 @@ body{
 .dhero__in{
   position:relative;z-index:2;
   max-width:none;width:100%;margin:0;
-  padding-left:max(20px,calc((100% - var(--d-wrap)) / 2));padding-right:0;
+  /* край текстовой колонки должен совпасть с контентом остальных блоков:
+     .wrap прототипа имеет max-width 1360 ВМЕСТЕ с падингом --pad,
+     поэтому к половине остатка добавляем --pad */
+  padding-left:calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad));padding-right:0;
   display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);
   /* высота подобрана так, чтобы полоса услуг попадала в первый экран, а не за сгиб */
   align-items:center;min-height:clamp(560px,70vh,760px);
@@ -342,7 +345,7 @@ body{
   .dhero{background:var(--b-navy)}
   [data-theme="dark"] .dhero{background:var(--b-navy)}
   .dhero__pattern{display:none}
-  .dhero__in{display:block;padding:0 20px;min-height:82vh;position:static}
+  .dhero__in{display:block;padding:0 calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad));min-height:82vh;position:static}
   .dhero__media{
     position:absolute;inset:0;z-index:0;height:auto;min-height:0;margin:0;
     clip-path:none;
@@ -693,7 +696,7 @@ body{
 .rblock__in{
   position:relative;z-index:2;
   max-width:none;width:100%;margin:0;
-  padding-left:0;padding-right:max(20px,calc((100% - var(--d-wrap)) / 2));
+  padding-left:0;padding-right:calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad));
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);
   gap:0;align-items:stretch;min-height:clamp(520px,62vh,680px);
 }
@@ -850,23 +853,19 @@ body{
 
 /* ============ 17. АДАПТИВ ОСТАЛЬНЫХ БЛОКОВ ============ */
 @media (max-width:1100px){
-  .rblock__in{
-    grid-template-columns:1fr;min-height:0;
-    padding-left:max(20px,calc((100% - var(--d-wrap)) / 2));
-  }
+  .rblock__in{grid-template-columns:1fr;min-height:0;padding:0}
   .rblock__media{
-    height:46vw;min-height:280px;
-    margin:0 calc(max(20px,(100% - var(--d-wrap)) / 2) * -1);
+    height:46vw;min-height:280px;margin:0;
     clip-path:polygon(0 0,100% 0,100% 93%,0 100%);
   }
-  .rblock__text{padding:48px 0 64px;align-self:start}
+  .rblock__text{padding:48px calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad)) 64px;align-self:start}
   .jgrid{grid-template-columns:1fr;gap:36px}
   .fgrid,.sblock__in{grid-template-columns:1fr;gap:36px}
   .fgrid__media{aspect-ratio:16/9}
 }
 @media (max-width:640px){
   .rblock__media{height:60vw;min-height:230px}
-  .rblock__text{padding:36px 0 56px}
+  .rblock__text{padding:36px calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad)) 56px}
   .rblock__cta{flex-direction:column;align-items:stretch;gap:18px}
   .rblock__cta .dbtn{width:100%;justify-content:center}
   .rblock__cta .dlink{justify-content:center}
