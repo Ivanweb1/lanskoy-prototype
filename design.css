@@ -664,7 +664,12 @@ body{
   /* четыре акции в одну колонку дают простыню — уводим в горизонтальную ленту */
   .pgrid{
     display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
-    margin:0 -20px;padding:0 20px 8px;
+    /* --pad — переменная контейнера прототипа, на 640 она 24px;
+       фиксированные 20px уводили ленту из общей сетки */
+    margin:0 calc(var(--pad) * -1);padding:0 var(--pad) 8px;
+    /* без scroll-padding снап прилипал к краю экрана и сдвигал ленту
+       на 24px из общей сетки */
+    scroll-padding-left:var(--pad);
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
   }
   .pgrid::-webkit-scrollbar{display:none}
