@@ -434,11 +434,16 @@ body{
   background:linear-gradient(180deg,rgba(14,26,43,0) 28%,rgba(14,26,43,.5) 60%,rgba(14,26,43,.93) 100%);
   transition:background .35s var(--d-ease);
 }
-.cat__body{position:relative;z-index:3;display:flex;flex-direction:column;gap:7px;align-items:flex-start}
+/* padding-right резервирует место под плашку со стрелкой в правом нижнем углу */
+.cat__body{position:relative;z-index:3;display:flex;flex-direction:column;gap:7px;align-items:flex-start;padding-right:54px}
+.cat--big .cat__body{padding-right:80px}
 .cat__name{
   font-family:var(--d-sans);font-weight:600;font-size:13px;line-height:1.35;
   letter-spacing:.06em;text-transform:uppercase;color:var(--b-cream);
   background:none;padding:0;max-width:22ch;
+  /* в прототипе стоит overflow-wrap:anywhere — на узких плитках он рвал
+     «ЛАКОКРАСОЧНЫЕ» посреди слова */
+  overflow-wrap:break-word;hyphens:manual;
 }
 .cat--big .cat__name{font-size:clamp(20px,1.8vw,26px);line-height:1.2;letter-spacing:.04em;max-width:14ch}
 .cat--tall .cat__name{font-size:15px;max-width:16ch}
@@ -484,8 +489,7 @@ body{
 @media (max-width:640px){
   .sect--cats{padding:64px 0 72px}
   .cat{aspect-ratio:5/4;padding:16px}
-  .cat__go{right:14px;bottom:14px;width:38px;height:38px}
+  .cat__go{display:none}
   .cat__name,.cat--big .cat__name,.cat--tall .cat__name{font-size:12px;max-width:none}
-  /* на телефоне стрелка показывается всегда — состояния hover там нет */
-  .cat__go{opacity:.9}
+  .cat__body,.cat--big .cat__body{padding-right:0}
 }
