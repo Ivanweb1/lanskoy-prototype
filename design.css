@@ -186,14 +186,6 @@ body{
   color:var(--s-accent-ink);margin:0 0 22px;
   display:flex;align-items:center;gap:14px;
 }
-/* Зачин надстрочника. Была произвольная волосяная линия в 46px — своя
-   выдумка без опоры на брендбук. Заменена на параллелограмм с наклоном
-   −12°: это графический элемент брендбука (стр. 36), тот же, что держит
-   иконки услуг и стрелку на плитках направлений. */
-.dhero__eyebrow::before{
-  content:"";width:16px;height:7px;flex:none;
-  background:var(--s-accent);transform:skewX(var(--d-skew));
-}
 
 .dhero__h1{
   font-family:var(--d-serif);font-weight:600;
@@ -263,11 +255,6 @@ body{
   transition:border-color .2s;
 }
 .dlink:hover{border-bottom-color:var(--s-accent)}
-.dbtn__arr{
-  width:16px;height:9px;flex:none;background:currentColor;
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
-          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
-}
 
 /* фотопанель с диагональным срезом — приём из макета брендбука, стр. 38 */
 .dhero__media{
@@ -381,13 +368,11 @@ body{
   .dhero__text .dhero__sub{color:rgba(246,244,237,.8)}
   .dhero__h1{font-size:clamp(36px,10.5vw,50px)}
   .dhero__eyebrow{color:var(--b-copper);font-size:10px;letter-spacing:.18em}
-  .dhero__eyebrow::before{width:13px;height:6px}
 
   .dsearch{max-width:none;background:rgba(14,26,43,.5);border-color:rgba(196,154,108,.5)}
   .dsearch__inp{color:var(--b-cream);height:52px}
   .dsearch__inp::placeholder{color:rgba(246,244,237,.6)}
   .dsearch__go{height:52px;padding:0 18px;font-size:0;gap:0}
-  .dsearch__go .dbtn__arr{width:18px;height:11px}
   .dchips{max-width:none;margin-bottom:26px}
   .dchip{color:rgba(246,244,237,.82);border-color:rgba(196,154,108,.35)}
   .dhero__cta{flex-direction:column;align-items:stretch;gap:16px}
@@ -425,13 +410,14 @@ body{
   font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
   font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
 }
+/* стрелки у ссылок-переходов сняты — признаком ссылки остаётся
+   медный цвет и линия, проявляющаяся по наведению */
 .sect--cats .more{
-  display:inline-flex;align-items:center;gap:10px;border:0;padding:0;
+  display:inline-flex;align-items:center;gap:10px;padding:0 0 3px;
+  border:0;border-bottom:1px solid transparent;transition:border-color .2s;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   color:var(--s-accent-ink);
 }
-.sect--cats .more:hover .dbtn__arr{transform:translateX(4px)}
-.sect--cats .more .dbtn__arr{transition:transform .25s var(--d-ease)}
 
 .grid--cats{gap:16px;grid-auto-rows:172px}
 .cat{
@@ -530,11 +516,10 @@ body{
   font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
 }
 .sect--events .more{
-  display:inline-flex;align-items:center;gap:10px;border:0;padding:0;
+  display:inline-flex;align-items:center;gap:10px;padding:0 0 3px;
+  border:0;border-bottom:1px solid transparent;transition:border-color .2s;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);
 }
-.sect--events .more .dbtn__arr{transition:transform .25s var(--d-ease)}
-.sect--events .more:hover .dbtn__arr{transform:translateX(4px)}
 
 .egrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
 .ecard{display:flex;flex-direction:column;background:var(--s-bg);border:1px solid var(--s-line)}
@@ -636,11 +621,10 @@ body{
   font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
 }
 .sect--promos .more{
-  display:inline-flex;align-items:center;gap:10px;border:0;padding:0;
+  display:inline-flex;align-items:center;gap:10px;padding:0 0 3px;
+  border:0;border-bottom:1px solid transparent;transition:border-color .2s;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);
 }
-.sect--promos .more .dbtn__arr{transition:transform .25s var(--d-ease)}
-.sect--promos .more:hover .dbtn__arr{transform:translateX(4px)}
 
 .pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .pcard{display:flex;flex-direction:column}
@@ -683,10 +667,16 @@ body{
 .pcard:hover .pcard__title a{color:var(--s-accent-ink)}
 .pcard__meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--s-fg-soft);margin:0}
 /* номер секции — по нему посетитель находит магазин в комплексе */
+/* Номер секции был в рамке и перетягивал правый край строки на себя:
+   в ряду карточек получалась цепочка одинаковых коробочек. Рамка снята,
+   номер отделяется точкой и держится медным цветом и разрядкой. */
 .pcard__sec{
-  display:inline-flex;align-items:center;height:22px;padding:0 9px;
-  border:1px solid var(--s-line-strong);color:var(--s-accent-ink);
-  font-size:11px;letter-spacing:.08em;
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--s-accent-ink);font-size:11px;letter-spacing:.12em;
+}
+.pcard__sec::before{
+  content:"";width:3px;height:3px;border-radius:50%;
+  background:var(--s-line-strong);flex:none;
 }
 
 @media (max-width:1100px){
@@ -735,12 +725,11 @@ body{
 }
 .rimg{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;visibility:hidden}
 /* кадр светлый, блок тёмный: у среза растушёвка в тёмно-синий,
-   по самой диагонали — медная линия (приём из макета брендбука, стр. 38) */
+   медная линия по самой диагонали убрана: срез и так читается стыком
+   фотографии с тёмной плашкой, а линия подчёркивала его лишний раз */
 .rblock__media::after{
   content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M100 0 L87 100' stroke='%23C49A6C' stroke-width='.35' fill='none'/%3E%3C/svg%3E") no-repeat center/100% 100%,
-    linear-gradient(100deg,rgba(14,26,43,0) 58%,rgba(14,26,43,.62) 100%);
+  background:linear-gradient(100deg,rgba(14,26,43,0) 58%,rgba(14,26,43,.62) 100%);
 }
 
 .rblock__text{align-self:center;padding:72px 0 72px 64px;max-width:none}
@@ -778,11 +767,10 @@ body{
   font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
 }
 .sect--journal .more{
-  display:inline-flex;align-items:center;gap:10px;border:0;padding:0;
+  display:inline-flex;align-items:center;gap:10px;padding:0 0 3px;
+  border:0;border-bottom:1px solid transparent;transition:border-color .2s;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);
 }
-.sect--journal .more .dbtn__arr{transition:transform .25s var(--d-ease)}
-.sect--journal .more:hover .dbtn__arr{transform:translateX(4px)}
 
 .jgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start}
 .jlead__media,.jrow__media{position:relative;display:block;overflow:hidden;background:var(--b-navy)}
@@ -904,7 +892,6 @@ body{
   .fgrid__media{aspect-ratio:4/3;margin:0 calc(var(--pad) * -1);clip-path:polygon(0 7%,100% 0,100% 100%,0 100%)}
   .sblock{padding:56px 0}
   .sform__go{padding:0 16px;font-size:0;gap:0}
-  .sform__go .dbtn__arr{width:18px;height:11px}
   .sform__inp,.sform__go{height:52px}
   .footer{padding-top:48px}
 }
@@ -1208,13 +1195,12 @@ html{scroll-padding-top:76px}
   line-height:1.2;color:var(--s-fg);margin-bottom:6px;
 }
 .mprev__c{display:block;font-size:12px;line-height:1.5;color:var(--s-fg-soft)}
+.mprev:hover .mprev__go{border-bottom-color:var(--s-accent)}
 .mprev__go{
   display:inline-flex;align-items:center;gap:9px;margin-top:14px;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   color:var(--s-accent-ink);
 }
-.mprev__go .dbtn__arr{transition:transform .22s var(--d-ease)}
-.mprev:hover .mprev__go .dbtn__arr{transform:translateX(5px)}
 
 /* ---- панель «О комплексе»: три колонки ссылок и та же превьюшка ---- */
 #mega-about .mega__in{
@@ -1245,7 +1231,8 @@ html{scroll-padding-top:76px}
   .mprev__media{aspect-ratio:1/1;clip-path:none}
   .mprev__body{padding:12px 14px}
   .mprev__t{font-size:15px}
-  .mprev__go{margin-top:10px}
+  .mprev:hover .mprev__go{border-bottom-color:var(--s-accent)}
+.mprev__go{margin-top:10px}
 }
 
 /* Шапка фиксированная, а на телефоне выдвижное меню (.menu) и панели лежат
@@ -1257,6 +1244,11 @@ html{scroll-padding-top:76px}
     overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
   }
 }
+
+/* ссылки-переходы разделов: без стрелки признаком остаётся линия по наведению */
+.sect--cats .more:hover,.sect--events .more:hover,
+.sect--promos .more:hover,.sect--journal .more:hover,
+.sect--find .more:hover{border-bottom-color:var(--s-accent)}
 
 /* ============ 23. ПОДВАЛ: ВЕДУЩАЯ СТРОКА И ЛИНЕЙКА КОЛОНОК ============ */
 .footer__in{display:block;padding-bottom:52px}

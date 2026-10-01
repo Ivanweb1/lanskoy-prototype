@@ -190,7 +190,7 @@
              '      <span class="mprev__kicker"></span>' +
              '      <span class="mprev__t"></span>' +
              '      <span class="mprev__c"></span>' +
-             '      <span class="mprev__go">Смотреть<span class="dbtn__arr" aria-hidden="true"></span></span>' +
+             '      <span class="mprev__go">Смотреть</span>' +
              '    </span>' +
              '  </a>' +
              '</div>';
