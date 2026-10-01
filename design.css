@@ -1398,8 +1398,8 @@ html{scroll-padding-top:76px}
      разные: между © и первой ссылкой — зазор флекса, между самими
      ссылками — ноль. Ставим одну колонку с единым шагом */
   .footer__legal{display:block;padding-bottom:30px}
-  .footer__legal>p{margin:0 0 14px}
-  .footer__legal ul{flex-direction:column;gap:14px}
+  .footer__legal>p{margin:0 0 7px}
+  .footer__legal ul{flex-direction:column;gap:7px}
 }
 @media (max-width:359px){
   .footer__nav{grid-template-columns:1fr}
