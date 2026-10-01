@@ -733,11 +733,12 @@ body{
 }
 
 .rblock__text{align-self:center;padding:72px 0 72px 64px;max-width:none}
+/* волосяная линия перед надстрочником убрана — как и в первом экране:
+   своя выдумка без опоры на брендбук */
 .rblock__kicker{
   font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--b-copper);
-  margin:0 0 20px;display:flex;align-items:center;gap:14px;
+  margin:0 0 20px;
 }
-.rblock__kicker::before{content:"";width:46px;height:1px;background:var(--b-copper);flex:none}
 .rblock__h2{
   font-family:var(--d-serif);font-weight:600;text-transform:uppercase;
   font-size:clamp(28px,3.1vw,46px);line-height:1.08;letter-spacing:.01em;margin:0 0 20px;
