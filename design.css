@@ -1125,31 +1125,37 @@ html{scroll-padding-top:76px}
 .mega__in{position:relative;z-index:1}
 
 /* ---- оглавление категорий ---- */
-#mega-shops .mega__in{grid-template-columns:minmax(0,2fr) minmax(0,.95fr) minmax(0,1.15fr);gap:48px}
-.mcats{columns:2;column-gap:40px;margin:0;padding:0;list-style:none}
+#mega-shops .mega__in{grid-template-columns:minmax(0,2.2fr) minmax(0,.9fr) minmax(0,1.1fr);gap:40px}
+.mcats{columns:2;column-gap:28px;margin:0;padding:0;list-style:none}
 .mcats li{break-inside:avoid;margin:0}
 /* Разделители у каждой строки были: четырнадцать линеек в двух колонках
    читались как таблица и спорили с линией под заголовком колонки.
    Ряды держит только ритм отступов, а наведение даёт плашку и медную
    засечку — линий в покое нет вовсе. */
+/* Строка — сетка «значок · название · число»: названия начинаются от
+   одной вертикали и в двухстрочных строках не разъезжаются, числа стоят
+   собственной колонкой. Раньше это был flex, и при переносе названия
+   число отрывалось от него к дальнему краю. */
 .mcats a{
-  position:relative;display:flex;align-items:baseline;gap:12px;
-  padding:9px 10px 9px 16px;
+  position:relative;display:grid;
+  grid-template-columns:20px minmax(0,1fr) 24px;
+  align-items:center;gap:12px;
+  padding:9px 10px;
   font-size:14px;line-height:1.35;color:var(--s-fg);
   transition:color .18s,background-color .18s;
 }
-.mcats a::after{content:none}
-.mcats a::before{
-  content:"";position:absolute;left:0;top:50%;width:0;height:1px;
-  background:var(--s-accent);transform:translateY(-50%);
-  transition:width .18s var(--d-ease);
+.mcats a::after,.mcats a::before{content:none}
+.mcats__ic{
+  width:20px;height:20px;display:block;flex:none;
+  color:var(--s-accent);opacity:.75;transition:opacity .18s;
 }
+.mcats__ic svg{width:100%;height:100%;display:block}
 .mcats a:hover,.mcats a:focus-visible{color:var(--s-accent-ink);background:var(--s-plate)}
-.mcats a:hover::before,.mcats a:focus-visible::before{width:9px}
+.mcats a:hover .mcats__ic,.mcats a:focus-visible .mcats__ic{opacity:1}
 .mcats__n{flex:1;min-width:0}
 .mcats__c{
-  flex:none;font-size:11px;letter-spacing:.08em;color:var(--s-fg-soft);
-  font-variant-numeric:tabular-nums;
+  font-size:11px;letter-spacing:.06em;color:var(--s-fg-soft);
+  font-variant-numeric:tabular-nums;text-align:right;
 }
 .mcats a:hover .mcats__c{color:var(--s-accent)}
 .mcats__c.ph-mark{border-bottom:1px dashed var(--s-line-strong)}
@@ -1219,7 +1225,7 @@ html{scroll-padding-top:76px}
   .mcats{columns:1}
   /* в одну колонку это уже не таблица, а длинный список для пальца —
      тонкая линия помогает отделить строки друг от друга */
-  .mcats a{padding:13px 0 13px 14px;border-bottom:1px solid var(--s-line)}
+  .mcats a{padding:13px 2px;border-bottom:1px solid var(--s-line)}
   .mcats li:last-child a{border-bottom:0}
   /* строки списка на телефоне уже с разделителями — своя линия у блока
      «номер помещения» давала двойную черту и пустую полосу между ними */

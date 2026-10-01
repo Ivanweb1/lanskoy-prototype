@@ -121,6 +121,56 @@
       'Отопление и кондиционирование':    [null, null]
     };
 
+    /* Линейные значки на сетке 24 со штрихом 1.1 — та же манера, что у
+       иконок полосы услуг. Нужны, чтобы строки не сливались: линейки
+       между ними убраны, и якорь у строки остался только один — значок. */
+    var CATICON = {
+      // мастерок — отделочные работы
+      'Декоративно-отделочные материалы':
+        '<path d="M3 10 12 3.5l9 6.5-9 5z"/><path d="M12 15v3.5"/><rect x="10.3" y="18.5" width="3.4" height="3"/>',
+      'Плитка':
+        '<rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/>' +
+        '<rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/>',
+      // полотна со швами
+      'Обои':
+        '<rect x="3.5" y="3" width="17" height="18"/><path d="M9.2 3v18M14.8 3v18"/>',
+      // драпировка — три волны ткани
+      'Шторы, карнизы, ткани':
+        '<path d="M3 6.5c3-3 6 3 9 0s6-3 9 0"/><path d="M3 12c3-3 6 3 9 0s6-3 9 0"/>' +
+        '<path d="M3 17.5c3-3 6 3 9 0s6-3 9 0"/>',
+      'Лакокрасочные и клеящие материалы':
+        '<ellipse cx="12" cy="6.5" rx="7" ry="2.5"/><path d="M5 6.5v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-12"/>',
+      'Напольные покрытия':
+        '<rect x="3" y="5" width="18" height="14"/><path d="M3 9.7h18M3 14.3h18M12 5v4.7M8 9.7v4.6M15.5 14.3V19"/>',
+      // потолок и подвес
+      'Потолки':
+        '<path d="M3 4.5h18"/><path d="M12 4.5v6"/><path d="M7 17.5a5 5 0 0 1 10 0z"/>',
+      'Двери, перегородки, фурнитура':
+        '<rect x="5.5" y="2.5" width="13" height="19"/><circle cx="15" cy="12" r="1.1"/>',
+      // рама с импостом и подоконником
+      'Остекление и оконная фурнитура':
+        '<rect x="3.5" y="3" width="17" height="14"/><path d="M12 3v14M3.5 10h17"/><path d="M2.5 20.5h19"/>',
+      'Стекло и зеркала':
+        '<ellipse cx="12" cy="11" rx="6.5" ry="8"/><path d="M9 6.5c-1.3 1.3-2 3.2-2 5"/>',
+      'Сантехника':
+        '<path d="M3 11.5h18v2.5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"/><path d="M12 11.5V7a3 3 0 0 1 3-3h2.5"/>',
+      'Свет':
+        '<path d="M12 2.5v4"/><path d="M5 14.5a7 7 0 0 1 14 0z"/><path d="M9 18.5h6"/>',
+      'Лестницы':
+        '<path d="M2.5 20.5h5v-5h5v-5h5v-5h4"/>',
+      'Отопление и кондиционирование':
+        '<rect x="4.5" y="5" width="15" height="14"/><path d="M8.25 5v14M12 5v14M15.75 5v14"/>' +
+        '<path d="M4.5 8.5H2.5M21.5 15.5h-2"/>'
+    };
+
+    function icon(name) {
+      var g = CATICON[name];
+      if (!g) return '<span class="mcats__ic" aria-hidden="true"></span>';
+      return '<span class="mcats__ic" aria-hidden="true">' +
+             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" ' +
+             'stroke-linecap="round" stroke-linejoin="round">' + g + '</svg></span>';
+    }
+
     function plural(n) {
       var d = n % 100, u = n % 10;
       if (d > 10 && d < 20) return 'магазинов';
@@ -170,6 +220,7 @@
         return '<li><a href="' + c.href + '"' +
                ' data-img="' + (d[0] || '') + '"' +
                ' data-count="' + (d[1] || '') + '">' +
+               icon(c.name) +
                '<span class="mcats__n">' + c.name + '</span>' + cnt + '</a></li>';
       }).join('');
 
