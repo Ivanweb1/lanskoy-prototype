@@ -33,35 +33,28 @@
   --d-skew:-12deg;           /* наклон параллелограмма — графический элемент, стр. 36 */
 
   /* ===== СРЕЗ — ПРАВИЛО НА ВСЮ ГЛАВНУЮ =====
-     Диагональ — графический элемент брендбука (стр. 36). Чтобы он не
-     превратился в украшение, он ставится только в трёх случаях.
+     Диагональ ставится только в полноширинных баннерах, где крупный кадр
+     уходит за край экрана и граничит с текстовой половиной макета. Там она
+     работает границей двух половин, а не отделкой картинки. Срезается тот
+     угол, что со стороны текста — кадр как будто уступает место словам.
+     Три места на всю страницу: первый экран, «Аренда», «Найти магазин».
 
-     1. БОКОВАЯ ДИАГОНАЛЬ — кадр уходит за край экрана и граничит с
-        текстовой половиной макета. Диагональ там работает границей двух
-        половин, а не отделкой картинки. Срезается всегда тот угол, что
-        со стороны текста — кадр как будто уступает место словам.
-        Три места на всю страницу: первый экран, «Аренда», «Найти магазин».
-        Больше не добавлять.
+     Везде больше кадры прямые. Было иначе: срез стоял у каждого
+     кадра-обложки, то есть правило было привязано к типу элемента. Типов с
+     обложками много, и каждый идёт сеткой, поэтому на один прокрут выходило
+     одиннадцать одинаковых диагоналей — приём переставал читаться как приём
+     и читался как способ обрезки картинок. Попытка починить это «уникальностью»
+     (оставить срез там, где элемент один) не выдержала проверки: у лида
+     «Журнала» нет ни края экрана, ни текстовой половины рядом, то есть срез
+     там нечем обосновать. Либо срез у всех обложек, либо ни у одной —
+     выбрано второе.
 
-     2. СРЕЗ ПО НИЖНЕЙ КРОМКЕ — кадр-обложка, под которым идёт своя
-        подпись: плитки «Направлений», «Акции», лид «Журнала», превью в меню.
+     Фирменность без среза держат палитра, антиква в заголовках, разрядка
+     в капсе, медные акценты и паттерн-монограмма.
 
-     3. БЕЗ СРЕЗА — кадр внутри строки списка (афиша, мелкие строки
-        журнала). Там у кадра нет собственной подписи снизу, срезать нечему.
-
-     ВЕЛИЧИНА. Срез — графическая деталь того же рода, что линейка: он не
-     масштабируется вместе с кадром, как не масштабируется линия в 1px.
-     Везде 22px. Единственное исключение — кадр ниже 150px: там 22px
-     съедают пятую часть снимка и читаются как брак, а не как приём —
-     там 11px. Промежуточных значений нет.
-
-     АДАПТИВ. Направление среза меняется только вместе с ролью кадра.
-     Боковая диагональ на узком экране разворачивается в пологую верхнюю
-     (0 7%): кадр становится полосой во всю ширину, и вертикальная диагональ
-     на ней не читается. В остальном один элемент не меняет тип среза
-     при смене ширины. */
-  --d-cut:22px;              /* срез по нижней кромке */
-  --d-cut-sm:11px;           /* то же для кадра ниже 150px */
+     АДАПТИВ. На узком экране боковая диагональ разворачивается в пологую
+     верхнюю (0 7%): кадр становится полосой во всю ширину, и вертикальная
+     диагональ на ней не читается. */
 }
 
 /* ============ 2. СЕМАНТИЧЕСКИЕ ТОКЕНЫ (ТЗ п. 9.2) ============ */
@@ -75,6 +68,7 @@
   --s-accent:var(--b-copper);
   --s-accent-ink:var(--b-copper-ink);
   --s-line:rgba(22,38,61,.14);
+  --s-line-faint:rgba(22,38,61,.07);
   --s-line-strong:rgba(22,38,61,.26);
   --s-hero-bg:var(--b-cream);
   --s-util-bg:var(--b-cream-2);
@@ -92,6 +86,7 @@
   --s-accent:var(--b-copper);
   --s-accent-ink:var(--b-copper);  /* медный на тёмно-синем = 6.04:1, проходит AA */
   --s-line:rgba(196,154,108,.22);
+  --s-line-faint:rgba(196,154,108,.11);
   --s-line-strong:rgba(196,154,108,.44);
   --s-hero-bg:var(--b-navy);
   --s-util-bg:#0B1522;
@@ -108,7 +103,9 @@ body{
 }
 
 /* ============ 3. ШАПКА ============ */
-.utility{background:var(--s-util-bg);border-bottom:1px solid var(--s-hairline);color:var(--s-fg-soft)}
+/* без линии снизу: утилитарная строка и шапка разных тонов, граница
+   читается самой сменой фона */
+.utility{background:var(--s-util-bg);border-bottom:0;color:var(--s-fg-soft)}
 .utility__in{height:34px;min-height:0}
 .utility a{color:inherit}
 .utility a:hover{color:var(--s-accent-ink)}
@@ -331,9 +328,11 @@ body{
 .dserv{position:relative;z-index:2;border-top:1px solid var(--s-hairline);background:var(--s-bg-2)}
 [data-theme="dark"] .dserv{background:var(--b-navy)}
 .dserv__in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+/* разделители светлее общей линейки сайта: их четыре в ряд и на всю
+   высоту полосы — в полную силу они читались таблицей */
 .dserv__i{
   display:flex;align-items:center;justify-content:center;gap:16px;
-  padding:32px 18px;border-left:1px solid var(--s-line);
+  padding:32px 18px;border-left:1px solid var(--s-line-faint);
 }
 .dserv__i:first-child{border-left:0}
 .dserv__ic{
@@ -530,18 +529,10 @@ body{
      обрезало подпись: высоту задаёт кадр плюс подпись */
   aspect-ratio:auto;
 }
-/* Срез по нижней кромке кадра — тот же графический элемент брендбука, что
-   у обложек «Акций», лида «Журнала» и превью в мегаменю. Правило на сайте
-   такое: кадр у края секции — боковая диагональ, кадр-обложка над собственным
-   заголовком — срез снизу. Плитка с полкой — ровно второй случай.
-   Треугольник под срезом открывает фон плитки, а он того же цвета, что полка —
-   полка будто врезается в снимок по диагонали.
-   Обёртка .cat__media нужна именно под срез: clip-path на самом снимке
-   масштабировался бы вместе с ним на наведении, и диагональ бы ехала */
+/* обёртка держит пропорцию кадра и подложку-монограмму на случай отсутствия фото */
 .cat__media{
   position:relative;z-index:1;display:block;overflow:hidden;
   aspect-ratio:16/9;background:var(--cat-bg);
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));
 }
 /* подложка на случай, когда фотографии ещё нет — паттерн 03 «Монограмма», стр. 09 */
 .cat__media::before{
@@ -598,8 +589,7 @@ body{
 }
 @media (max-width:640px){
   .sect--cats{padding:64px 0 72px}
-  /* кадр здесь ниже 150px — срез по правилу уменьшенный */
-  .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut-sm)))}
+  .cat__media{aspect-ratio:4/3}
   .cat__body{padding-top:12px}
   .cat__name{font-size:12px}
   .cmore{margin-top:40px}
@@ -663,8 +653,6 @@ body{
 .pcard__media{
   position:relative;display:block;overflow:hidden;
   aspect-ratio:4/3;background:var(--b-navy);
-  /* срез в ту же сторону, что у обложек событий и у фотопанели первого экрана */
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));
 }
 .pcard__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -808,7 +796,7 @@ body{
 
 .jgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start}
 .jlead__media,.jrow__media{position:relative;display:block;overflow:hidden;background:var(--b-navy)}
-.jlead__media{aspect-ratio:16/10;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));margin-bottom:22px}
+.jlead__media{aspect-ratio:16/10;margin-bottom:22px}
 .jrow__media{flex:0 0 132px;aspect-ratio:4/3}
 .jlead__media::before,.jrow__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -1223,8 +1211,6 @@ html{scroll-padding-top:76px}
 .mprev__media{
   display:block;position:relative;overflow:hidden;
   aspect-ratio:16/10;background:var(--s-plate);
-  /* диагональный срез — тот же приём, что в первом экране и блоке «Аренда» */
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));   /* тот же срез, что у карточек */
 }
 .mprev__media img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -1258,7 +1244,7 @@ html{scroll-padding-top:76px}
   #mega-shops .mega__in,#mega-about .mega__in{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:34px}
   #mega-shops .mega__col--prev,#mega-about .mega__col--prev{grid-column:span 2}
   .mprev{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);align-items:center}
-  .mprev__media{aspect-ratio:16/9;clip-path:polygon(0 0,100% 0,87% 100%,0 100%)}
+  .mprev__media{aspect-ratio:16/9}
   .mprev__body{padding:16px 20px}
 }
 @media (max-width:640px){
