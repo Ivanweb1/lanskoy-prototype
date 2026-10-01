@@ -1014,9 +1014,13 @@ html{scroll-padding-top:76px}
 }
 
 /* ============ 20. МЕНЮ ПО ЦЕНТРУ ============ */
-/* Сетка «1fr — меню — 1fr»: меню центрируется по контейнеру страницы,
-   а не по остатку между логотипом и иконкой поиска. */
-.nav__in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+/* Было «1fr — меню — 1fr»: меню вставало ровно по центру контейнера
+   страницы. Геометрически верно, но логотип занимает 184px, а справа
+   только иконка поиска 44px — просвет слева получался 64px, справа 204,
+   и строка читалась сдвинутой влево. Теперь крайние колонки по ширине
+   своего содержимого, а меню центрируется в остатке между ними:
+   просветы равны. Вернуть прежнее — заменить auto на 1fr по краям. */
+.nav__in{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:24px}
 .nav__in>.logo{justify-self:start}
 .nav__in>.menu{justify-self:center}
 .nav__side{display:flex;align-items:center;justify-content:flex-end;gap:10px}
