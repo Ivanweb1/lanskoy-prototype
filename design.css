@@ -37,7 +37,8 @@
      уходит за край экрана и граничит с текстовой половиной макета. Там она
      работает границей двух половин, а не отделкой картинки. Срезается тот
      угол, что со стороны текста — кадр как будто уступает место словам.
-     Два места на всю страницу: первый экран и «Аренда».
+     Три места на всю страницу: первый экран, «Аренда» и «Найти магазин»
+     (последний — только пока колонки стоят рядом).
 
      Везде больше кадры прямые. Было иначе: срез стоял у каждого
      кадра-обложки, то есть правило было привязано к типу элемента. Типов с
@@ -855,13 +856,9 @@ body{
 .fgrid__lead{font-size:16px;line-height:1.65;color:var(--s-fg-soft);max-width:440px;margin:0 0 30px}
 .fgrid .dsearch{margin-bottom:18px;max-width:520px}
 .fgrid .dchips{margin:0}
-/* Без среза. Правило среза требует, чтобы кадр уходил за край экрана и
-   граничил с текстовой половиной — здесь кадр стоит внутри контейнера, оба
-   его края на виду, и диагональ читалась обрезкой фотографии, а не границей
-   двух половин. Остаются первый экран и «Аренда», где кадр действительно
-   уходит в край. */
 .fgrid__media{
   position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--b-navy);
+  clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);   /* тот же боковой срез, что в первом экране и «Аренде» */
 }
 .fgrid__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -939,7 +936,9 @@ body{
   /* minmax(0,1fr), а не 1fr: при 1fr колонка растягивается по min-content
      формы и блок вылезал за правый падинг на 28px на 375px */
   .fgrid,.sblock__in{grid-template-columns:minmax(0,1fr);gap:36px}
-  .fgrid__media{aspect-ratio:16/9}
+  /* колонки схлопнулись — текстовой половины рядом с кадром нет, границу
+     рисовать нечему, и срез читался бы обрезкой фотографии */
+  .fgrid__media{aspect-ratio:16/9;clip-path:none}
 }
 @media (max-width:640px){
   .rblock__media{height:60vw;min-height:230px}
@@ -1520,7 +1519,9 @@ html{scroll-padding-top:76px}
 .erow:hover .erow__media .erow__img{transform:scale(1.05)}
 /* 2px сверху — оптическая компенсация полуинтерлиньяжа заголовка, без неё
    верх названия не совпадает с верхом цифры даты */
-.erow__body{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding-top:2px}
+/* колонка тянется на высоту строки — её задаёт кадр, — чтобы действие
+   встало на нижнюю кромку снимка, а не сразу под подписью */
+.erow__body{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding-top:2px;align-self:stretch}
 .erow__title{
   font-family:var(--d-serif);font-weight:600;font-size:clamp(18px,1.3vw,21px);
   line-height:1.25;letter-spacing:.01em;color:var(--s-fg);margin:0;
@@ -1529,19 +1530,27 @@ html{scroll-padding-top:76px}
 .erow:hover .erow__title a{color:var(--s-accent-ink)}
 .erow__meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--s-fg-soft);margin:0}
 .erow__dot{width:4px;height:4px;border-radius:50%;background:var(--s-accent);flex:none}
+/* Было подчёркивание по наведению — в покое действие не отличалось от
+   подписи под ним. Теперь медная обводка той же логики, что у .dbtn--ghost,
+   только ростом под строку афиши; прижата к низу колонки, то есть к нижней
+   кромке кадра. */
 .erow__cta{
-  display:inline-block;margin-top:2px;
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-top:auto;height:40px;padding:0 20px;border-radius:2px;
   font-size:11px;font-weight:600;letter-spacing:.14em;
   text-transform:uppercase;white-space:nowrap;
-  color:var(--s-accent-ink);border-bottom:1px solid transparent;padding-bottom:3px;
-  transition:border-color .2s;
+  color:var(--s-accent-ink);border:1px solid var(--s-accent);
+  transition:background-color .2s,color .2s,border-color .2s;
 }
-.erow__cta:hover{border-bottom-color:var(--s-accent)}
+.erow__cta:hover{background:var(--s-accent);color:var(--s-btn-fill-fg)}
 /* состояние «мест нет» — п. 6.8 ТЗ. Меняются только статус и кадр: дата и
    её линейка остаются в цвете, иначе строка перестраивается структурно и
    читается как сбой вёрстки, а не как статус события */
-.erow__cta--off{color:var(--s-fg-soft);cursor:default;border-bottom-color:transparent}
-.erow__cta--off:hover{border-bottom-color:transparent}
+/* «Мест нет» обводки не получает: это статус, а не действие, и рамка
+   обещала бы нажатие. Высота и место в колонке те же, чтобы строки
+   стояли на одной линии */
+.erow__cta--off{color:var(--s-fg-soft);cursor:default;border-color:transparent;padding:0}
+.erow__cta--off:hover{background:none;color:var(--s-fg-soft);border-color:transparent}
 .erow--off .erow__media .erow__img{filter:grayscale(1) brightness(.85)}
 
 @media (max-width:1100px){
@@ -1555,4 +1564,5 @@ html{scroll-padding-top:76px}
   .erow__date{order:1;align-self:start;padding-left:14px}
   .erow__body{order:2;padding-top:0}
   .erow__media{order:3;grid-column:1 / -1}
+  .erow__cta{margin-top:4px}
 }
