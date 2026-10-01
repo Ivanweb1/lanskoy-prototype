@@ -1072,6 +1072,23 @@ html{scroll-padding-top:76px}
   .mega__in{gap:32px}
 }
 @media (max-width:760px){
+  /* Утилитарная строка на телефоне спрятана в бургер (перенос — в design.js):
+     ради трёх элементов она занимала целую полосу над шапкой. */
+  .utility{display:none}
+  .utility__actions--inmenu{
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+    margin:18px 0 2px;padding-top:20px;border-top:1px solid var(--s-line);
+  }
+  /* «Аренда» — единственное действие для бизнеса, ему вся ширина строки */
+  .utility__actions--inmenu>li:first-child{flex:0 0 100%}
+  .utility__actions--inmenu .btn--ghost{
+    display:flex;align-items:center;justify-content:center;width:100%;height:46px;
+    border:1px solid var(--s-accent);color:var(--s-accent-ink);border-radius:2px;
+    letter-spacing:.1em;text-transform:uppercase;font-size:11px;
+  }
+  .utility__actions--inmenu .utility__login{display:inline-block;padding:11px 0}
+  .utility__actions--inmenu .themetog-li{margin-left:auto;padding-left:0;border-left:0}
+
   /* бургер рисовался цветом Ч/Б прототипа (--ink) — на тёмной шапке
      чёрных полосок не видно, в тёмной теме кнопка пропадала совсем */
   .burger span,.burger::before,.burger::after{background:var(--s-fg)}

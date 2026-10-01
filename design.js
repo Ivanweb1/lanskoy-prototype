@@ -97,6 +97,35 @@
     navIn.appendChild(side);
   })();
 
+  /* ---------- на телефоне утилитарная строка уезжает в бургер ----------
+     Решение Ивана: «Аренда», «Войти в кабинет» и переключатель темы на
+     узком экране занимали целую полосу над шапкой ради трёх элементов.
+     Узлы переносятся, а не клонируются: обработчики (переключатель темы)
+     остаются рабочими, а дублей в разметке не возникает. При возврате на
+     широкий экран они встают обратно в утилитарную строку. */
+  (function () {
+    var acts = document.querySelector('.utility__actions');
+    var utilIn = document.querySelector('.utility__in');
+    var menu = document.getElementById('menu');
+    if (!acts || !utilIn || !menu) return;
+
+    var mq = window.matchMedia('(max-width:760px)');
+    function place() {
+      if (mq.matches) {
+        if (acts.parentNode !== menu) {
+          acts.classList.add('utility__actions--inmenu');
+          menu.appendChild(acts);
+        }
+      } else if (acts.parentNode !== utilIn) {
+        acts.classList.remove('utility__actions--inmenu');
+        utilIn.appendChild(acts);
+      }
+    }
+    place();
+    if (mq.addEventListener) mq.addEventListener('change', place);
+    else if (mq.addListener) mq.addListener(place);
+  })();
+
   /* ---------- мегаменю: оглавление категорий и панель-превью ----------
      Разметку шапки даёт partials.js, общий для всего Ч/Б-прототипа, —
      трогать его нельзя, иначе фотографии уедут и на чёрно-белые страницы.
