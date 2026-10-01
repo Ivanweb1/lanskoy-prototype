@@ -1119,20 +1119,23 @@ html{scroll-padding-top:76px}
 #mega-shops .mega__in{grid-template-columns:minmax(0,2fr) minmax(0,.95fr) minmax(0,1.15fr);gap:48px}
 .mcats{columns:2;column-gap:40px;margin:0;padding:0;list-style:none}
 .mcats li{break-inside:avoid;margin:0}
+/* Разделители у каждой строки были: четырнадцать линеек в двух колонках
+   читались как таблица и спорили с линией под заголовком колонки.
+   Ряды держит только ритм отступов, а наведение даёт плашку и медную
+   засечку — линий в покое нет вовсе. */
 .mcats a{
-  position:relative;display:flex;align-items:baseline;gap:10px;
-  padding:9px 0 9px 16px;border-bottom:1px solid var(--s-line);
+  position:relative;display:flex;align-items:baseline;gap:12px;
+  padding:9px 10px 9px 16px;
   font-size:14px;line-height:1.35;color:var(--s-fg);
-  transition:color .18s,border-color .18s,padding-left .18s var(--d-ease);
+  transition:color .18s,background-color .18s;
 }
 .mcats a::after{content:none}
-/* медная засечка слева — вместо стрелки, которая раздвигала строку */
 .mcats a::before{
   content:"";position:absolute;left:0;top:50%;width:0;height:1px;
   background:var(--s-accent);transform:translateY(-50%);
   transition:width .18s var(--d-ease);
 }
-.mcats a:hover,.mcats a:focus-visible{color:var(--s-accent-ink);border-color:var(--s-accent)}
+.mcats a:hover,.mcats a:focus-visible{color:var(--s-accent-ink);background:var(--s-plate)}
 .mcats a:hover::before,.mcats a:focus-visible::before{width:9px}
 .mcats__n{flex:1;min-width:0}
 .mcats__c{
@@ -1205,7 +1208,10 @@ html{scroll-padding-top:76px}
   #mega-shops .mega__in,#mega-about .mega__in{grid-template-columns:1fr;gap:24px}
   #mega-shops .mega__col--prev,#mega-about .mega__col--prev{grid-column:auto}
   .mcats{columns:1}
-  .mcats a{padding:12px 0 12px 14px}
+  /* в одну колонку это уже не таблица, а длинный список для пальца —
+     тонкая линия помогает отделить строки друг от друга */
+  .mcats a{padding:13px 0 13px 14px;border-bottom:1px solid var(--s-line)}
+  .mcats li:last-child a{border-bottom:0}
   /* строки списка на телефоне уже с разделителями — своя линия у блока
      «номер помещения» давала двойную черту и пустую полосу между ними */
   .mroom{border-top:0;margin-top:16px;padding-top:0}
