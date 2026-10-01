@@ -68,7 +68,7 @@
   --s-accent:var(--b-copper);
   --s-accent-ink:var(--b-copper-ink);
   --s-line:rgba(22,38,61,.14);
-  --s-line-faint:rgba(22,38,61,.07);
+  --s-line-faint:rgba(22,38,61,.11);
   --s-bg-soft:#F2EFE9;
   --s-line-strong:rgba(22,38,61,.26);
   --s-hero-bg:var(--b-cream);
@@ -87,7 +87,7 @@
   --s-accent:var(--b-copper);
   --s-accent-ink:var(--b-copper);  /* медный на тёмно-синем = 6.04:1, проходит AA */
   --s-line:rgba(196,154,108,.22);
-  --s-line-faint:rgba(196,154,108,.11);
+  --s-line-faint:rgba(196,154,108,.16);
   --s-bg-soft:#13223A;
   --s-line-strong:rgba(196,154,108,.44);
   --s-hero-bg:var(--b-navy);
