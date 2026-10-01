@@ -483,15 +483,28 @@ body{
      обрезало полку с подписью: высоту задаёт кадр плюс полка */
   aspect-ratio:auto;
 }
+/* Срез по нижней кромке кадра — тот же графический элемент брендбука, что
+   у обложек «Акций», лида «Журнала» и превью в мегаменю. Правило на сайте
+   такое: кадр у края секции — боковая диагональ, кадр-обложка над собственным
+   заголовком — срез снизу. Плитка с полкой — ровно второй случай.
+   Треугольник под срезом открывает фон плитки, а он того же цвета, что полка —
+   полка будто врезается в снимок по диагонали.
+   Обёртка .cat__media нужна именно под срез: clip-path на самом снимке
+   масштабировался бы вместе с ним на наведении, и диагональ бы ехала */
+.cat__media{
+  position:relative;z-index:1;display:block;overflow:hidden;
+  aspect-ratio:16/10;background:var(--cat-bg);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));
+}
 /* подложка на случай, когда фотографии ещё нет — паттерн 03 «Монограмма», стр. 09 */
-.cat::before{
-  content:"";position:absolute;z-index:0;left:0;right:0;top:0;aspect-ratio:16/10;
+.cat__media::before{
+  content:"";position:absolute;z-index:0;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.2' opacity='.4'%3E%3Cpath d='M38 80V52l10-9 10 9v28M58 80V44l11-10 11 10v36'/%3E%3Cpath d='M34 86c10-7 22-7 32 0s22 7 32 0'/%3E%3C/g%3E%3C/svg%3E");
   background-size:110px 110px;
 }
 .cat__img{
-  position:relative;z-index:1;display:block;width:100%;height:auto;
-  aspect-ratio:16/10;object-fit:cover;
+  position:absolute;z-index:1;inset:0;display:block;width:100%;height:100%;
+  object-fit:cover;
   /* кадрируем по товару, а не под подпись: подпись теперь под кадром */
   object-position:50% 46%;
   visibility:hidden;                      /* показываем после загрузки, см. design.js */
@@ -532,7 +545,8 @@ body{
 }
 @media (max-width:640px){
   .sect--cats{padding:64px 0 72px}
-  .cat__img{aspect-ratio:4/3}
+  /* кадр здесь около 100px высотой — 22px среза съедали бы пятую часть */
+  .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 13px))}
   .cat__body{min-height:0;padding:14px 16px 16px}
   .cat__name{font-size:12px}
 }
@@ -1368,11 +1382,12 @@ html{scroll-padding-top:76px}
 .erow{
   display:grid;grid-template-columns:96px 200px minmax(0,1fr);
   align-items:start;gap:0 24px;padding:24px 0;
-  border-bottom:1px solid var(--s-line);
 }
-/* чётная колонка отбита вертикалью; высота ячеек в ряду одинаковая,
-   поэтому линейка идёт от кромки до кромки, а не по содержанию */
-.erow:nth-child(even){border-left:1px solid var(--s-line);padding-left:44px}
+/* Разделитель между колонками и линия под рядом сняты — вместе с
+   линией под заголовком секции получалась решётка из трёх линеек на два
+   события. События делит разрыв в 88px и медная линейка даты — она же
+   начало каждого события */
+.erow:nth-child(even){padding-left:44px}
 .erow:nth-child(odd){padding-right:44px}
 /* нечётная последняя строка разворачивается на оба столбца —
    ряд не остаётся наполовину пустым */
