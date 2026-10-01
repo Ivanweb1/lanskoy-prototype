@@ -895,9 +895,13 @@ button.msg{background:none;font:inherit;color:inherit;cursor:pointer}
 .footer__in{display:grid;grid-template-columns:280px 1fr;gap:64px;padding-bottom:48px}
 .footer__addr{font-size:14px;line-height:1.6;margin-top:18px}
 .footer__addr a:hover{color:#fff}
-.socials{display:flex;gap:16px;margin-top:20px;font-size:13px}
-.socials a{border-bottom:1px solid #4a4540;padding-bottom:2px}
-.socials a:hover{color:#fff;border-color:#fff}
+.socials{display:flex;gap:22px;margin-top:20px;align-items:center}
+/* знаки собраны под тёмный фон (слово белое, значок фирменный). В Ч/Б
+   прототипе обесцвечены тем же фильтром, что и логотип комплекса — цвет
+   вернётся на этапе дизайна */
+.socials a{display:block;border:0;padding:0;opacity:.8;transition:opacity .2s}
+.socials a:hover{opacity:1}
+.socials img{display:block;height:19px;width:auto;filter:grayscale(1)}
 .footer__cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
 .footer__title{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:16px}
 .footer__cols li{margin-bottom:10px;font-size:14px}

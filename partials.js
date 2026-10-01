@@ -165,7 +165,10 @@ var LNS = (function () {
 '      <img src="logo.svg" alt="ТК «Ланской»" class="logo__img logo__img--inv" width="205" height="64">' +
 '      <p class="footer__addr">Санкт-Петербург,<br>ул. Студенческая, 10</p>' +
 '      <p class="footer__addr"><a href="tel:+78123630007">+7 (812) 363-00-07</a><br>10:00 — 20:00 ежедневно</p>' +
-'      <ul class="socials"><li><a href="#">ВКонтакте</a></li><li><a href="#">YouTube</a></li></ul>' +
+'      <ul class="socials">' +
+'        <li><a href="#"><img src="logo-vk.svg" alt="ВКонтакте" width="138" height="24" loading="lazy"></a></li>' +
+'        <li><a href="#"><img src="logo-youtube.svg" alt="YouTube" width="111" height="24" loading="lazy"></a></li>' +
+'      </ul>' +
 '    </div>' +
 '    <div class="footer__cols">' +
 '      <div><p class="footer__title">Покупателям</p><ul>' +

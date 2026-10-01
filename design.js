@@ -363,8 +363,10 @@
      будущее — п. 13.5 ТЗ перечисляет ВКонтакте, Дзен, MAX, TenChat,
      VK Видео, RuTube, Pinterest, TikTok; YouTube в этот набор не входит
      (сам набор продублирован в карточке арендатора, lk-card). */
-'  <ul class="footer__soc"><li><a href="#">ВКонтакте</a></li>' +
-'    <li><a href="#">YouTube</a></li></ul>' +
+'  <ul class="footer__soc">' +
+'    <li><a href="#"><img src="logo-vk.svg" alt="ВКонтакте" width="138" height="24" loading="lazy"></a></li>' +
+'    <li><a href="#"><img src="logo-youtube.svg" alt="YouTube" width="111" height="24" loading="lazy"></a></li>' +
+'  </ul>' +
       '</div>' +
       '<div class="footer__nav">' + navHTML + '</div>';
 
