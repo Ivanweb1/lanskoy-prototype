@@ -52,9 +52,12 @@
      Фирменность без среза держат палитра, антиква в заголовках, разрядка
      в капсе, медные акценты и паттерн-монограмма.
 
-     АДАПТИВ. На узком экране боковая диагональ разворачивается в пологую
-     верхнюю (0 7%): кадр становится полосой во всю ширину, и вертикальная
-     диагональ на ней не читается. */
+     АДАПТИВ. На узком экране боковой диагонали нет вовсе: кадр становится
+     полосой во всю ширину, текстовой половины рядом с ним не остаётся, и
+     граница двух половин, которую диагональ рисовала, пропадает — пологий
+     срез сверху читался случайной обрезкой фотографии. Исключение одно —
+     «Аренда»: там кадр и текст по-прежнему стоят друг над другом одним
+     блоком, и диагональ по нижней кромке их связывает. */
 }
 
 /* ============ 2. СЕМАНТИЧЕСКИЕ ТОКЕНЫ (ТЗ п. 9.2) ============ */
@@ -421,7 +424,7 @@ body{
   .dhero__text{padding:52px 0 36px;max-width:none}
   .dhero__media{
     margin:0 calc(max(20px,(100% - var(--d-wrap)) / 2) * -1);
-    height:50vw;min-height:300px;clip-path:polygon(0 7%,100% 0,100% 100%,0 100%);
+    height:50vw;min-height:300px;clip-path:none;
   }
   .dserv__in{grid-template-columns:repeat(2,1fr)}
   .dserv__i{padding:22px 16px;justify-content:flex-start}
@@ -945,7 +948,7 @@ body{
   .jlead__title{font-size:21px}
   .jrow__media{flex-basis:96px}
   .jrow__title{font-size:14px}
-  .fgrid__media{aspect-ratio:4/3;margin:0 calc(var(--pad) * -1);clip-path:polygon(0 7%,100% 0,100% 100%,0 100%)}
+  .fgrid__media{aspect-ratio:4/3;margin:0 calc(var(--pad) * -1)}
   .sblock{padding:56px 0}
   .sform__go{padding:0 16px;font-size:11px;letter-spacing:.1em}
   .sform__inp{height:52px}   /* кнопка тянется по высоте строки, своя height ломала стык */
