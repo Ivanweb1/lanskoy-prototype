@@ -1390,9 +1390,18 @@ html{scroll-padding-top:76px}
   .footer__nav{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:760px){
-  .footer__nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 24px}
-  .footer__lead{padding-bottom:24px}
-  .footer .logo__img--inv{height:52px}
+  .footer__nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 24px;order:2}
+  /* Ведущая строка разбирается: на телефоне знак и соцсети стояли рядом
+     в одной строке у самого верха подвала — знак занимал треть ширины,
+     соцсети прижимались к правому краю. Теперь .footer__lead раскрывается
+     (display:contents), и её содержимое становится строками подвала:
+     знак во всю ширину, следом колонки, соцсети — в самый низ,
+     перед правовой строкой. */
+  .footer__in{display:flex;flex-direction:column}
+  .footer__lead{display:contents}
+  .footer__logo{order:1;padding-bottom:26px}
+  .footer .logo__img--inv{width:100%;height:auto;max-width:none}
+  .footer__soc{order:3;gap:28px;margin-top:30px;padding-top:26px;border-top:1px solid rgba(196,154,108,.22)}
 }
 /* на 375px две колонки ещё читаются, в одну подвал вытягивался на экран
    с лишним — одна колонка остаётся для совсем узких */
@@ -1402,8 +1411,13 @@ html{scroll-padding-top:76px}
      ссылками — ноль. Ставим одну колонку с единым шагом.
      Порог тот же, что у бургера: на 700px строка тоже переносилась */
   .footer__legal{display:block;padding-bottom:30px}
-  .footer__legal>p{margin:0 0 7px}
-  .footer__legal ul{flex-direction:column;gap:7px}
+  /* шаг держат не зазоры флекса, а тач-зоны ссылок: в прототипе каждой
+     ссылке подвала добавлено по 12px сверху и снизу (п. 9.4), и строки
+     расходились на 31px при семипиксельном зазоре. Зазор убран, тач-зона
+     ужата до 10px — между строками ровно 20px, зона остаётся 38px */
+  .footer__legal>p{margin:0 0 10px}
+  .footer__legal ul{flex-direction:column;gap:0}
+  .footer__legal a{padding:10px 0}
 }
 @media (max-width:359px){
   .footer__nav{grid-template-columns:1fr}
