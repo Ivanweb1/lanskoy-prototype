@@ -118,15 +118,19 @@ body{
 }
 /* тумблер: только значок, без подписи. Геометрия прямоугольная — как у кнопок
    и полей сайта, а не капсула */
+/* Дорожка — две равные половины. Плашка раньше была 16px внутри 44px:
+   она не добирала до своей половины, вокруг неё оставались неравные
+   поля, и значок сидел в плашке не по центру. Теперь плашка ровно
+   половина дорожки и встык к её краям, а значки центрируются каждый в
+   своей ячейке сетки. */
 .themetog{
-  position:relative;display:inline-flex;align-items:center;justify-content:flex-start;
-  width:44px;height:22px;padding:0;border:1px solid var(--s-line-strong);border-radius:2px;
+  position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  width:48px;height:24px;padding:0;border:1px solid var(--s-line-strong);border-radius:2px;
   background:transparent;transition:border-color .2s,background-color .25s var(--d-ease);
 }
 .themetog:hover{border-color:var(--s-accent)}
 .themetog__ic{
-  position:absolute;left:2px;top:2px;
-  width:16px;height:16px;border-radius:1px;
+  position:absolute;left:0;top:0;width:50%;height:100%;
   background:var(--s-accent);box-shadow:none;
   transition:transform .28s var(--d-ease),background-color .25s;
 }
@@ -134,18 +138,18 @@ body{
    что это переключатель темы, а не произвольный тумблер. Медная плашка
    стоит на действующей теме, её значок читается навй по медному. */
 .themetog__sun,.themetog__moon{
-  position:absolute;top:50%;width:12px;height:12px;transform:translateY(-50%);
+  position:relative;z-index:1;justify-self:center;width:13px;height:13px;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-position:center;mask-position:center;
   -webkit-mask-size:contain;mask-size:contain;
   transition:background-color .25s;
 }
-.themetog__sun{left:4px;-webkit-mask-image:var(--i-sun);mask-image:var(--i-sun)}
-.themetog__moon{right:4px;-webkit-mask-image:var(--i-moon);mask-image:var(--i-moon)}
+.themetog__sun{-webkit-mask-image:var(--i-sun);mask-image:var(--i-sun)}
+.themetog__moon{-webkit-mask-image:var(--i-moon);mask-image:var(--i-moon)}
 .themetog__sun{background-color:var(--s-btn-fill-fg)}
 .themetog__moon{background-color:var(--s-fg-soft)}
 [data-theme="dark"] .themetog{background:rgba(196,154,108,.12)}
-[data-theme="dark"] .themetog__ic{transform:translateX(22px);box-shadow:none}
+[data-theme="dark"] .themetog__ic{transform:translateX(100%);box-shadow:none}
 [data-theme="dark"] .themetog__sun{background-color:var(--s-fg-soft)}
 [data-theme="dark"] .themetog__moon{background-color:var(--s-btn-fill-fg)}
 :root{
@@ -372,7 +376,9 @@ body{
   .dsearch{max-width:none;background:rgba(14,26,43,.5);border-color:rgba(196,154,108,.5)}
   .dsearch__inp{color:var(--b-cream);height:52px}
   .dsearch__inp::placeholder{color:rgba(246,244,237,.6)}
-  .dsearch__go{height:52px;padding:0 18px;font-size:0;gap:0}
+  /* подпись была скрыта (font-size:0), кнопку обозначала одна стрелка —
+     после её снятия осталась бы пустая плашка */
+  .dsearch__go{padding:0 18px;font-size:11px;letter-spacing:.1em}
   .dchips{max-width:none;margin-bottom:26px}
   .dchip{color:rgba(246,244,237,.82);border-color:rgba(196,154,108,.35)}
   .dhero__cta{flex-direction:column;align-items:stretch;gap:16px}
@@ -892,8 +898,8 @@ body{
   .jrow__title{font-size:14px}
   .fgrid__media{aspect-ratio:4/3;margin:0 calc(var(--pad) * -1);clip-path:polygon(0 7%,100% 0,100% 100%,0 100%)}
   .sblock{padding:56px 0}
-  .sform__go{padding:0 16px;font-size:0;gap:0}
-  .sform__inp,.sform__go{height:52px}
+  .sform__go{padding:0 16px;font-size:11px;letter-spacing:.1em}
+  .sform__inp{height:52px}   /* кнопка тянется по высоте строки, своя height ломала стык */
   .footer{padding-top:48px}
 }
 
