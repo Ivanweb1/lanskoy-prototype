@@ -330,7 +330,11 @@ body{
 /* подложка на полшага темнее страницы, а не на полный: полоса услуг —
    служебная, она не должна спорить с первым экраном над ней */
 .dserv{position:relative;z-index:2;border-top:0;background:var(--s-bg-soft)}
-[data-theme="dark"] .dserv{background:var(--b-navy)}
+/* в тёмной теме полоса стояла на том же #16263D, что и секция «Направления»
+   под ней, и они читались одним полем. Поднимаем полосу на тон вверх —
+   тот же приём, что в светлой теме, только в другую сторону: там полоса
+   на полшага темнее страницы, здесь на полшага светлее */
+[data-theme="dark"] .dserv{background:#1E3352}
 .dserv__in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
 /* разделители светлее общей линейки сайта: их четыре в ряд и на всю
    высоту полосы — в полную силу они читались таблицей */
@@ -430,46 +434,51 @@ body{
    иначе на телефоне торговый центр уезжает за сгиб и его не видно */
 @media (max-width:640px){
   .utility__actions .themetog-li{padding-left:14px}
+  /* действия были прижаты вправо (justify-content:flex-end из прототипа), и
+     слева от «Аренды» оставалось пустое поле в треть строки — читалось
+     отступом непонятно от чего. Раскладываем по ширине: «Аренда» встаёт на
+     левую границу контента, под логотип, тумблер — на правую */
+  .utility__in{justify-content:stretch}
+  .utility__actions{flex:1;justify-content:space-between;gap:10px}
   .nav__in{min-height:72px}
   .logo__img{height:44px}
 
-  .dhero{background:var(--b-navy)}
-  [data-theme="dark"] .dhero{background:var(--b-navy)}
-  .dhero__in{display:block;padding:0 calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad));min-height:82vh;position:static}
-  .dhero__media{
-    position:absolute;inset:0;z-index:0;height:auto;min-height:0;margin:0;
-    clip-path:none;
-  }
-  .dhero__media::before{
-    content:"";position:absolute;inset:0;z-index:2;
-    background:linear-gradient(180deg,rgba(14,26,43,.94) 0%,rgba(14,26,43,.66) 52%,rgba(14,26,43,.9) 100%);
-  }
-  .dhero__media img{object-position:62% 50%}
-  .dhero__text{position:relative;z-index:3;padding:46px 0 40px;color:var(--b-cream)}
-  .dhero__text .dhero__sub{color:rgba(246,244,237,.8)}
+  /* Фотография уходит вниз, под текст, тем же порядком, что на планшете.
+     Было: кадр фоном во всю высоту экрана, поверх него затемнение и белый
+     текст. Это ломало две вещи. Первая — светлой темы на первом экране не
+     существовало: телефон всегда показывал тёмный экран, а дальше шёл
+     кремовый сайт. Вторая — нигде больше на главной текст не лежит на
+     фотографии, и первый экран жил по своим правилам. Теперь порядок как
+     на большом экране: сначала слово, следом кадр. */
+  .dhero__text{padding:40px 0 32px}
   .dhero__h1{font-size:clamp(36px,10.5vw,50px)}
-  .dhero__eyebrow{color:var(--b-copper);font-size:10px;letter-spacing:.18em}
+  .dhero__eyebrow{font-size:10px;letter-spacing:.18em}
+  .dhero__media{height:64vw;min-height:250px}
+  .dhero__media img{object-position:62% 50%}
 
-  .dsearch{max-width:none;background:rgba(14,26,43,.5);border-color:rgba(196,154,108,.5)}
-  .dsearch__inp{color:var(--b-cream);height:52px}
-  .dsearch__inp::placeholder{color:rgba(246,244,237,.6)}
+  .dsearch{max-width:none}
+  .dsearch__inp{height:52px}
   /* подпись была скрыта (font-size:0), кнопку обозначала одна стрелка —
      после её снятия осталась бы пустая плашка */
   .dsearch__go{padding:0 18px;font-size:11px;letter-spacing:.1em}
   .dchips{max-width:none;margin-bottom:26px}
-  .dchip{color:rgba(246,244,237,.82);border-color:rgba(196,154,108,.35)}
   .dhero__cta{flex-direction:column;align-items:stretch;gap:16px}
   .dbtn{height:52px;padding:0 24px;width:100%;justify-content:center}
-  .dbtn--ghost{color:var(--b-copper);border-color:rgba(196,154,108,.6)}
 
-  /* полоса услуг продолжает тёмный первый экран, а не режет его светлой плашкой */
-  .dserv{background:var(--b-navy)}
+  /* полоса услуг держит свою тему, а не тёмный первый экран: на телефоне
+     кадр затемнён в обеих темах, и полоса за ним оставалась тёмной даже на
+     светлом сайте — дальше шёл кремовый фон, и полоса читалась чужой.
+     Теперь она такая же, как на большом экране, и закрывает тёмный первый
+     экран, а не продолжает его */
   .dserv__in{grid-template-columns:1fr}
-  .dserv__i{border-left:0;padding:16px 0;border-top:1px solid rgba(196,154,108,.16);justify-content:flex-start;gap:14px}
+  .dserv__i{border-left:0;padding:16px 0;border-top:1px solid var(--s-line);justify-content:flex-start;gap:14px}
+  /* правило из блока до 1100px specificity-ой перебивало строку выше, и в
+     светлой теме линии 3—5 рисовались навью по навью, то есть никак:
+     на телефоне была видна одна-единственная черта */
+  .dserv__i:nth-child(n+3){border-top:1px solid var(--s-line)}
   .dserv__i:last-child{grid-column:auto}
   .dserv__ic{width:32px;height:32px}
   .dserv__i:first-child{border-top:0}
-  .dserv__t{color:var(--b-cream)}
 }
 
 /* ТЗ п. 9.5 — уважать prefers-reduced-motion */
@@ -493,7 +502,6 @@ body{
 /* в тёмной теме фон секции = #0E1A2B совпадал с низом затемнения плиток (.93 от #0E1A2B),
    и нижняя кромка карточек растворялась в фоне. Поднимаем фон на тон. */
 [data-theme="dark"] .sect--cats{background:var(--b-navy)}
-[data-theme="dark"] .cat{box-shadow:inset 0 0 0 1px rgba(196,154,108,.16)}
 /* линия под шапкой снята: она отбивала заголовок от ссылки справа,
    а ссылка ушла вниз кнопкой — под одиноким заголовком ей нечего
    разделять. В остальных секциях ссылка в шапке есть, там линия остаётся */
@@ -1056,6 +1064,26 @@ html{scroll-padding-top:76px}
 @media (max-width:1100px){
   .mega__in{gap:32px}
 }
+@media (max-width:760px){
+  /* бургер рисовался цветом Ч/Б прототипа (--ink) — на тёмной шапке
+     чёрных полосок не видно, в тёмной теме кнопка пропадала совсем */
+  .burger span,.burger::before,.burger::after{background:var(--s-fg)}
+  /* Панель меню вставала посреди экрана шириной по содержимому: у .nav
+     есть backdrop-filter, он делает её containing block для панели, и
+     пара left:0/right:0 из прототипа ширину не удержала. Задаём ширину
+     явно. Заодно панель получает цвета темы — в прототипе она белая,
+     и в тёмной теме меню открывалось белым листом поверх тёмной шапки. */
+  .menu{
+    left:0;width:100%;
+    /* фон непрозрачный: с полупрозрачным сквозь панель просвечивал
+       заголовок первого экрана */
+    background:var(--s-bg);
+    border-top:1px solid var(--s-hairline);border-bottom:1px solid var(--s-hairline-soft);
+  }
+  .menu__link{border-bottom:1px solid var(--s-line)}
+  .menu__list>.menu__item:last-child .menu__link{border-bottom:0}
+}
+
 @media (max-width:640px){
   .is-sticky .nav__in{min-height:58px}
   .is-sticky .logo__img{height:36px}
@@ -1365,6 +1393,14 @@ html{scroll-padding-top:76px}
 }
 /* на 375px две колонки ещё читаются, в одну подвал вытягивался на экран
    с лишним — одна колонка остаётся для совсем узких */
+@media (max-width:640px){
+  /* ссылки переносились по ширине, и расстояния между строками выходили
+     разные: между © и первой ссылкой — зазор флекса, между самими
+     ссылками — ноль. Ставим одну колонку с единым шагом */
+  .footer__legal{display:block;padding-bottom:30px}
+  .footer__legal>p{margin:0 0 14px}
+  .footer__legal ul{flex-direction:column;gap:14px}
+}
 @media (max-width:359px){
   .footer__nav{grid-template-columns:1fr}
 }
