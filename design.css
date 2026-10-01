@@ -179,11 +179,14 @@ body{
      .wrap прототипа имеет max-width 1360 ВМЕСТЕ с падингом --pad,
      поэтому к половине остатка добавляем --pad */
   padding-left:calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad));padding-right:0;
-  /* без поля поиска левая колонка опустела — фотопанель сдвинута влево:
-     было 1.04fr/1fr (текст 51%), стало 0.95fr/1fr (текст 48.7%).
-     Ниже ужать нельзя: «ПРОСТРАНСТВО» при 4.85vw упрётся в край
-     колонки на ширинах около 1100px. */
-  display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);
+  /* Доля текстовой колонки с потолком. Простая доля вела себя плохо на
+     краях: на 1100px «ПРОСТРАНСТВО» упиралось в край колонки, а на
+     1920px колонка разрасталась до 700px при нужных 591 — фотопанель
+     начиналась только на 57% экрана. Теперь 48.7%, но не больше 660px
+     (591 на самый длинный замер + 40 внутреннего отступа + запас):
+     на широких экранах фото выходит к середине, на узких заголовок
+     по-прежнему помещается в строку. */
+  display:grid;grid-template-columns:minmax(0,min(48.7%,660px)) minmax(0,1fr);
   /* высота подобрана так, чтобы полоса услуг попадала в первый экран, а не за сгиб */
   align-items:center;min-height:clamp(560px,70vh,760px);
 }
@@ -267,7 +270,7 @@ body{
 /* фотопанель с диагональным срезом — приём из макета брендбука, стр. 38 */
 .dhero__media{
   position:relative;align-self:stretch;min-height:100%;
-  clip-path:polygon(6% 0,100% 0,100% 100%,0 100%);   /* диагональ сдвинута влево вместе с панелью */
+  clip-path:polygon(4% 0,100% 0,100% 100%,0 100%);   /* диагональ сдвинута влево вместе с панелью */
   background:var(--b-navy);
   overflow:hidden;
 }
@@ -458,16 +461,19 @@ body{
    подписью. Контраст: навй по кремовому ≈ 13:1, затемнённый медный
    (#8E6034) по кремовому — 4.87:1, мелкий текст проходит AA. */
 :root,[data-theme="light"]{
-  /* Кремовая вуаль сливалась с кремовым фоном страницы — плитки теряли
-     край. Берём медный из кнопок: он и отделяет плитку от фона, и держит
-     подпись. Контраст по медному #C49A6C: тёмно-синий 6.0:1,
-     шоколадный 4.73:1 — оба проходят AA для мелкого текста. */
+  /* Вуаль медная (цвет кнопок), но лёгкая: в полную силу она перекрашивала
+     весь кадр. У нижней кромки снимков и так светлый план, подпись по нему
+     читается, поэтому вуаль только подцвечивает край плитки и отделяет её
+     от кремового фона страницы.
+     ВАЖНО: раз вуаль лёгкая, читаемость подписи держится светлым низом
+     самих фотографий. Если заказчик подставит кадр с тёмным низом,
+     тёмно-синяя подпись на нём пропадёт — вуаль придётся усилить. */
   --cat-veil-0:rgba(196,154,108,0);
-  --cat-veil-1:rgba(196,154,108,.72);
-  --cat-veil-2:rgba(196,154,108,.96);
-  --cat-veil-hover-0:rgba(196,154,108,.22);
-  --cat-veil-hover-1:rgba(196,154,108,.8);
-  --cat-veil-hover-2:rgba(196,154,108,.98);
+  --cat-veil-1:rgba(196,154,108,.34);
+  --cat-veil-2:rgba(196,154,108,.78);
+  --cat-veil-hover-0:rgba(196,154,108,.08);
+  --cat-veil-hover-1:rgba(196,154,108,.44);
+  --cat-veil-hover-2:rgba(196,154,108,.84);
   --cat-fg:var(--b-navy);
   --cat-count:var(--b-choc);
   --cat-rule:rgba(22,38,61,.35);
@@ -515,7 +521,12 @@ body{
 /* затемнение снизу: подпись читается на любом кадре */
 .cat::after{
   content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(180deg,var(--cat-veil-0) 28%,var(--cat-veil-1) 60%,var(--cat-veil-2) 100%);
+  /* Градиент в пикселях от нижней кромки, а не в процентах: в процентах
+     на невысоких плитках (170px) подпись попадала в почти прозрачную
+     зону и терялась на светлом кадре, а на широкой плитке в 300px та же
+     доля перекрывала полкадра. Теперь подложка одинаковая везде —
+     подпись всегда на одной и той же плотности, а верх кадра чистый. */
+  background:linear-gradient(0deg,var(--cat-veil-2) 0,var(--cat-veil-1) 92px,var(--cat-veil-0) 185px);
   transition:background .35s var(--d-ease);
 }
 /* padding-right резервирует место под плашку со стрелкой в правом нижнем углу */
@@ -560,7 +571,7 @@ body{
 
 .cat:hover{border-color:transparent}
 .cat:hover .cat__img{transform:scale(1.06)}
-.cat:hover::after{background:linear-gradient(180deg,var(--cat-veil-hover-0) 0%,var(--cat-veil-hover-1) 58%,var(--cat-veil-hover-2) 100%)}
+.cat:hover::after{background:linear-gradient(0deg,var(--cat-veil-hover-2) 0,var(--cat-veil-hover-1) 92px,var(--cat-veil-hover-0) 200px)}
 .cat:hover .cat__go{opacity:1;transform:translateX(3px)}
 .cat:focus-visible{outline:2px solid var(--b-copper);outline-offset:3px}
 
@@ -1340,9 +1351,9 @@ html{scroll-padding-top:76px}
 }
 .footer__logo{display:block}
 .footer .logo__img--inv{filter:none;height:64px;width:auto;display:block}
-.footer__soc{display:flex;flex-wrap:wrap;gap:8px;margin:0;font-size:inherit;justify-content:flex-end;max-width:70%}
+.footer__soc{display:flex;flex-wrap:wrap;gap:10px;margin:0;font-size:inherit}
 .footer__soc a{
-  display:inline-flex;align-items:center;height:32px;padding:0 13px;border-radius:2px;
+  display:inline-flex;align-items:center;height:34px;padding:0 18px;border-radius:2px;
   border:1px solid rgba(196,154,108,.38);color:var(--b-copper);
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   transition:background-color .2s,color .2s,border-color .2s;
@@ -1369,9 +1380,6 @@ html{scroll-padding-top:76px}
   .footer__nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 24px}
   .footer__lead{padding-bottom:24px}
   .footer .logo__img--inv{height:52px}
-  /* на телефоне строка знака и соцсетей разворачивается в два ряда,
-     ограничение ширины загоняло восемь плашек в узкую колонку */
-  .footer__soc{max-width:none;justify-content:flex-start}
 }
 /* на 375px две колонки ещё читаются, в одну подвал вытягивался на экран
    с лишним — одна колонка остаётся для совсем узких */
@@ -1391,18 +1399,19 @@ html{scroll-padding-top:76px}
    целиком — так ряд не остаётся наполовину пустым. */
 .eposter{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 52px}
 .erow{
-  display:grid;grid-template-columns:96px minmax(0,1fr) 164px;
-  align-items:center;gap:20px;padding:24px 0;
+  display:grid;grid-template-columns:104px minmax(0,1fr) 190px;
+  align-items:center;gap:22px;padding:26px 0;
 }
 .erow:nth-child(n+3){border-top:1px solid var(--s-line)}
 /* нечётная последняя строка разворачивается на оба столбца */
 .erow:last-child:nth-child(odd){
   grid-column:1 / -1;
-  grid-template-columns:132px minmax(0,1fr) 300px;gap:32px;
+  grid-template-columns:104px minmax(0,1fr) 300px;gap:32px;
 }
 .erow__date{
   display:flex;flex-direction:column;align-items:flex-start;gap:4px;
   padding-left:18px;border-left:2px solid var(--s-accent);
+  white-space:nowrap;          /* «24—26» ломалось на две строки */
 }
 .erow__date b{
   font-family:var(--d-serif);font-weight:600;font-size:clamp(22px,1.9vw,28px);
@@ -1431,6 +1440,9 @@ html{scroll-padding-top:76px}
 .erow__media{
   display:block;position:relative;overflow:hidden;
   aspect-ratio:16/10;background:var(--s-plate);
+  /* срез по нижней кромке — тот же графический элемент брендбука
+     (стр. 36), что был у обложек событий до переделки в строки */
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 18px));
 }
 .erow__media .ecard__img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
@@ -1445,9 +1457,8 @@ html{scroll-padding-top:76px}
 
 @media (max-width:1100px){
   .eposter{grid-template-columns:1fr;gap:0}
-  .erow{grid-template-columns:110px minmax(0,1fr) 220px;gap:24px}
+  .erow,.erow:last-child:nth-child(odd){grid-template-columns:110px minmax(0,1fr) 220px;gap:24px}
   .erow:nth-child(n+2){border-top:1px solid var(--s-line)}
-  .erow:last-child:nth-child(odd){grid-template-columns:110px minmax(0,1fr) 220px;gap:24px}
 }
 @media (max-width:760px){
   .erow,.erow:last-child:nth-child(odd){grid-template-columns:92px minmax(0,1fr);gap:18px;padding:22px 0}

@@ -359,14 +359,12 @@
     inner.innerHTML =
       '<div class="footer__lead">' +
       '  <a class="footer__logo" href="index.html"></a>' +
-      /* Соцсети — набор п. 13.5 ТЗ целиком, тот же список, что в карточке
-     арендатора (lk-card). Стоявший здесь раньше YouTube в него не входил.
-     Какие из восьми площадок у комплекса заведены на самом деле —
-     вопрос к заказчику, ссылки пока заглушки. */
-'  <ul class="footer__soc">' +
-     ['ВКонтакте','Дзен','MAX','TenChat','VK Видео','RuTube','Pinterest','TikTok']
-       .map(function (n) { return '<li><a href="#">' + n + '</a></li>'; }).join('') +
-'  </ul>' +
+      /* Решение Ивана: в подвале только две площадки комплекса. Отметка на
+     будущее — п. 13.5 ТЗ перечисляет ВКонтакте, Дзен, MAX, TenChat,
+     VK Видео, RuTube, Pinterest, TikTok; YouTube в этот набор не входит
+     (сам набор продублирован в карточке арендатора, lk-card). */
+'  <ul class="footer__soc"><li><a href="#">ВКонтакте</a></li>' +
+'    <li><a href="#">YouTube</a></li></ul>' +
       '</div>' +
       '<div class="footer__nav">' + navHTML + '</div>';
 
