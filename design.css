@@ -1470,25 +1470,25 @@ html{scroll-padding-top:76px}
    всё содержание события — название, место со временем и действие — собрано
    в один столбик слева. Действие ушло из правой кромки под мету — строка
    стала вдвое уже, и в ряд встают два события. */
-/* Одно событие в строке, а не два. В две колонки колонка описания выходила
-   252px на 1440 и 122px на 1101 — туда не помещалась даже пара действий
-   («Регистрация» 133 + «Подробнее» 120), и «Подробнее» переносилось вниз,
-   съезжая с нижней кромки кадра. Во всю ширину строка держит и дату, и
-   кадр, и описание, и оба действия у правого края. Ниже 1100px эта
-   раскладка и так была единственной. */
-.eposter{display:grid;grid-template-columns:1fr;gap:0}
+.eposter{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
 /* display:grid бьёт [hidden], и состояние ?events=0 не срабатывало */
 .eposter[hidden]{display:none}
 /* линия под заголовком секции — верхняя кромка списка, своей границы
    .eposter не ставит, иначе две линии в 36px друг от друга */
 
 .erow{
-  display:grid;grid-template-columns:110px 260px minmax(0,1fr) auto;
-  align-items:start;gap:0 28px;padding:26px 0;
+  display:grid;grid-template-columns:96px 200px minmax(0,1fr);
+  align-items:start;gap:0 24px;padding:24px 0;
 }
-/* Разделители и линии под рядами сняты — вместе с линией под заголовком
-   секции получалась решётка из линеек на два события. События делит
-   разрыв и медная линейка даты — она же начало каждого события */
+/* Разделитель между колонками и линия под рядом сняты — вместе с
+   линией под заголовком секции получалась решётка из трёх линеек на два
+   события. События делит разрыв в 88px и медная линейка даты — она же
+   начало каждого события */
+.erow:nth-child(even){padding-left:44px}
+.erow:nth-child(odd){padding-right:44px}
+/* нечётная последняя строка разворачивается на оба столбца —
+   ряд не остаётся наполовину пустым */
+.erow:last-child:nth-child(odd){grid-column:1 / -1;padding-right:0;grid-template-columns:96px 240px minmax(0,1fr)}
 /* медная линейка во всю высоту строки — якорь по левому краю события */
 .erow__date{
   display:flex;flex-direction:column;align-items:flex-start;gap:6px;
@@ -1521,7 +1521,7 @@ html{scroll-padding-top:76px}
    верх названия не совпадает с верхом цифры даты */
 /* колонка тянется на высоту строки — её задаёт кадр, — чтобы действие
    встало на нижнюю кромку снимка, а не сразу под подписью */
-.erow__body{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding-top:2px}
+.erow__body{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding-top:2px;align-self:stretch}
 .erow__title{
   font-family:var(--d-serif);font-weight:600;font-size:clamp(18px,1.3vw,21px);
   line-height:1.25;letter-spacing:.01em;color:var(--s-fg);margin:0;
@@ -1536,17 +1536,17 @@ html{scroll-padding-top:76px}
    кромке кадра. */
 /* два действия в строке: «Регистрация» и «Подробнее». Нижний отступ
    держит обёртка, а не сами кнопки */
-/* действия — своя колонка у правого края, прижата к низу строки: её низ
-   совпадает с нижней кромкой кадра */
-.erow__acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px;align-self:end}
+/* действия прижаты к низу колонки описания: их низ совпадает с нижней
+   кромкой кадра */
+.erow__acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:auto}
 /* Шаг букв и поля ужаты против .dbtn: колонка описания в строке афиши
    вдвое уже контейнера, и пара кнопок в обычных метриках в неё не
    помещалась — «Подробнее» переносилось под «Регистрацию» и съезжало
    ниже кромки кадра. */
 .erow__cta{
   display:inline-flex;align-items:center;justify-content:center;
-  height:44px;padding:0 22px;border-radius:2px;
-  font-size:11px;font-weight:600;letter-spacing:.14em;
+  height:40px;padding:0 16px;border-radius:2px;
+  font-size:11px;font-weight:600;letter-spacing:.1em;
   text-transform:uppercase;white-space:nowrap;
   border:1px solid transparent;
   transition:background-color .2s,color .2s,border-color .2s,filter .2s;
@@ -1564,20 +1564,32 @@ html{scroll-padding-top:76px}
    стояли на одной линии */
 .erow__cta--off{color:var(--s-fg-soft);cursor:default;background:none;border-color:transparent;padding:0}
 .erow__cta--off:hover{background:none;color:var(--s-fg-soft);border-color:transparent;filter:none}
-/* «Подробнее» — второе действие, поэтому обводка нейтральная, а не медная:
-   медного в строке остаётся одно пятно на действие, как и было задумано */
-.erow__cta--more{color:var(--s-fg);border-color:var(--s-line-strong)}
-.erow__cta--more:hover{background:none;color:var(--s-accent-ink);border-color:var(--s-accent)}
+/* «Подробнее» — второе действие и живёт ссылкой, без рамки: колонка
+   описания в афише из двух столбцов — 252px на 1440, и две кнопки туда
+   не помещаются. Заодно пара читается иерархией: залитая кнопка —
+   главное действие, ссылка — вспомогательное */
+.erow__cta--more{
+  background:none;border-color:transparent;padding:0;color:var(--s-fg-soft);
+  border-bottom:1px solid transparent;
+}
+.erow__cta--more:hover{background:none;color:var(--s-accent-ink);border-bottom-color:var(--s-accent)}
 .erow--off .erow__media .erow__img{filter:grayscale(1) brightness(.85)}
 
-@media (max-width:1100px){
-  .erow{grid-template-columns:110px 220px minmax(0,1fr) auto;gap:0 24px}
+/* Порог поднят с 1100 до 1340. Колонка описания в афише из двух столбцов
+   равна половине контента минус 388px (дата, кадр и зазоры), а паре
+   действий нужно 235px — значит два столбца держатся только от 1326px.
+   Ниже «Подробнее» переносилось под «Регистрацию» и съезжало с нижней
+   кромки кадра: на 1150px колонка описания — 140px. */
+@media (max-width:1340px){
+  /* в две колонки событие сжимается до нечитаемого — раскладываем стопкой */
+  .eposter{grid-template-columns:1fr}
+  .erow,.erow:last-child:nth-child(odd){grid-template-columns:110px 220px minmax(0,1fr);gap:0 28px}
+  .erow:nth-child(odd),.erow:nth-child(even){padding-left:0;padding-right:0;border-left:0}
 }
 @media (max-width:760px){
-  .erow{grid-template-columns:92px minmax(0,1fr);gap:16px 18px;padding:20px 0}
+  .erow,.erow:last-child:nth-child(odd){grid-template-columns:92px minmax(0,1fr);gap:16px 18px;padding:20px 0}
   .erow__date{order:1;align-self:start;padding-left:14px}
   .erow__body{order:2;padding-top:0}
   .erow__media{order:3;grid-column:1 / -1}
-  /* колонок нет — действия встают под кадр во всю ширину */
-  .erow__acts{order:4;grid-column:1 / -1;align-self:start}
+  .erow__acts{margin-top:4px}
 }
