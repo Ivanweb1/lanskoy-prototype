@@ -69,6 +69,7 @@
   --s-accent-ink:var(--b-copper-ink);
   --s-line:rgba(22,38,61,.14);
   --s-line-faint:rgba(22,38,61,.07);
+  --s-bg-soft:#F2EFE9;
   --s-line-strong:rgba(22,38,61,.26);
   --s-hero-bg:var(--b-cream);
   --s-util-bg:var(--b-cream-2);
@@ -87,6 +88,7 @@
   --s-accent-ink:var(--b-copper);  /* медный на тёмно-синем = 6.04:1, проходит AA */
   --s-line:rgba(196,154,108,.22);
   --s-line-faint:rgba(196,154,108,.11);
+  --s-bg-soft:#13223A;
   --s-line-strong:rgba(196,154,108,.44);
   --s-hero-bg:var(--b-navy);
   --s-util-bg:#0B1522;
@@ -325,7 +327,9 @@ body{
 /* состав — брендбук, стр. 36 (слайд «Услуги комплекса»).
    Пять пунктов, а не четыре: с четырьмя ячейки были вдвое шире подписей
    и полоса читалась пустой. */
-.dserv{position:relative;z-index:2;border-top:1px solid var(--s-hairline);background:var(--s-bg-2)}
+/* подложка на полшага темнее страницы, а не на полный: полоса услуг —
+   служебная, она не должна спорить с первым экраном над ней */
+.dserv{position:relative;z-index:2;border-top:1px solid var(--s-hairline);background:var(--s-bg-soft)}
 [data-theme="dark"] .dserv{background:var(--b-navy)}
 .dserv__in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
 /* разделители светлее общей линейки сайта: их четыре в ряд и на всю
@@ -1264,34 +1268,43 @@ html{scroll-padding-top:76px}
    короткими зияла пустота, а ведущая строка была полосой в 94px с двумя
    мелкими объектами по краям.
    Стало: треть на визитку, две трети на ссылки. */
-.footer__in{
-  display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,2fr);gap:64px;
-  padding-bottom:56px;
+.footer__in{display:block;padding-bottom:0}
+/* Подвал полосами, а не двумя колонками. Визитка во всю высоту
+   слева давала ровно ту же дыру, что и пять колонок до неё, только
+   зеркально: ссылки кончались на 190px, визитка шла до 325px, и справа
+   внизу оставалось 140px пустоты. У полос вертикальных дыр не бывает:
+   каждая занимает ровно столько, сколько нужно её содержимому. */
+.footer__top{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;gap:48px;
+  padding-bottom:36px;margin-bottom:36px;
+  border-bottom:1px solid rgba(196,154,108,.16);
 }
-.footer__card{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .footer__logo{display:block}
-.footer .logo__img--inv{filter:none;height:64px;width:auto;display:block}
-.footer__addr{font-size:13px;line-height:1.6;margin:0;color:rgba(246,244,237,.72)}
+.footer .logo__img--inv{filter:none;height:58px;width:auto;display:block}
+.footer__contacts{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 28px}
+.footer__addr{font-size:13px;line-height:1.5;margin:0;color:rgba(246,244,237,.72)}
 /* телефон — единственный крупный текст в подвале, тот же приём, что
    у цифр в «Аренде» (rargs__n) — антиква кремовым */
 .footer__tel{
-  font-family:var(--d-serif);font-weight:600;font-size:clamp(22px,1.8vw,28px);
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(19px,1.4vw,22px);
   line-height:1;letter-spacing:-.01em;color:var(--b-cream);
   border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .2s;
 }
 .footer__tel:hover{color:var(--b-cream);border-bottom-color:var(--b-copper)}
-.footer__hours{font-size:13px;line-height:1.6;margin:0;color:rgba(246,244,237,.55)}
-.footer__way{margin-top:4px}
+.footer__hours{font-size:13px;line-height:1.5;margin:0;color:rgba(246,244,237,.55)}
+.footer__acts{display:flex;align-items:center;gap:28px}
+.footer__way.dbtn{height:46px;padding:0 24px}
 .footer__way.dbtn--ghost{border-color:rgba(196,154,108,.5);color:var(--b-copper)}
 .footer__way.dbtn--ghost:hover{background:var(--b-copper);color:var(--b-navy);border-color:var(--b-copper)}
 /* знаки одноцветные и мелкие: цветные версии были самыми яркими
    пятнами подвала и перетягивали внимание с логотипа комплекса */
-.footer__soc{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin:6px 0 0;padding:0;list-style:none}
+.footer__soc{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin:0;padding:0;list-style:none}
 .footer__soc a{display:block;padding:0;border:0;opacity:.78;transition:opacity .2s}
 .footer__soc a:hover{opacity:1}
 .footer__soc img{display:block;height:18px;width:auto}
 
-.footer__nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;align-items:start}
+.footer__nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;align-items:start;padding-bottom:56px}
 .footer__title{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--b-copper);margin:0 0 16px}
 .footer__col ul{list-style:none;margin:0;padding:0}
 .footer__col li{font-size:13px;line-height:2}
@@ -1302,8 +1315,9 @@ html{scroll-padding-top:76px}
 }
 
 @media (max-width:1100px){
-  .footer__in{grid-template-columns:1fr;gap:48px}
-  .footer__nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+  .footer__top{grid-template-columns:auto minmax(0,1fr);gap:28px 36px}
+  .footer__acts{grid-column:1 / -1;justify-content:flex-start}
+  .footer__nav{gap:24px}
 }
 @media (max-width:760px){
   .footer__nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px}
@@ -1327,7 +1341,10 @@ html{scroll-padding-top:76px}
    всё содержание события — название, место со временем и действие — собрано
    в один столбик слева. Действие ушло из правой кромки под мету — строка
    стала вдвое уже, и в ряд встают два события. */
-.eposter{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+/* линия под рядом событий — нижняя кромка списка, отделяет его от
+   кнопки. Уходит вместе со списком в состоянии ?events=0 */
+.eposter{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;
+  border-bottom:1px solid var(--s-line)}
 /* display:grid бьёт [hidden], и состояние ?events=0 не срабатывало */
 .eposter[hidden]{display:none}
 /* линия под заголовком секции — верхняя кромка списка, своей границы

@@ -349,24 +349,27 @@
 
     inner.className = 'wrap footer__in';
     inner.innerHTML =
-      '<div class="footer__card">' +
+      '<div class="footer__top">' +
       '  <a class="footer__logo" href="index.html"></a>' +
-      '  <p class="footer__addr">Санкт-Петербург,<br>ул. Студенческая, 10</p>' +
-      '  <a class="footer__tel" href="tel:+78123630007">+7 (812) 363-00-07</a>' +
-      '  <p class="footer__hours">10:00 — 20:00 ежедневно</p>' +
-      '  <a href="contacts.html" class="dbtn dbtn--ghost footer__way">Как добраться</a>' +
+      '  <div class="footer__contacts">' +
+      '    <p class="footer__addr">Санкт-Петербург, ул. Студенческая, 10</p>' +
+      '    <a class="footer__tel" href="tel:+78123630007">+7 (812) 363-00-07</a>' +
+      '    <p class="footer__hours">10:00 — 20:00 ежедневно</p>' +
+      '  </div>' +
+      '  <div class="footer__acts">' +
+      '    <a href="contacts.html" class="dbtn dbtn--ghost footer__way">Как добраться</a>' +
       /* Решение Ивана: в подвале только две площадки комплекса. Отметка на
          будущее — п. 13.5 ТЗ перечисляет ВКонтакте, Дзен, MAX, TenChat,
          VK Видео, RuTube, Pinterest, TikTok; YouTube в этот набор не входит
          (сам набор продублирован в карточке арендатора, lk-card).
-         Знаки одноцветные: цветные версии были самыми яркими пятнами
-         подвала и перетягивали внимание с логотипа комплекса. Файлы
-         собраны из исходных: геометрия та же, все заливки кремовые.
-         Перед сдачей заменить на официальные одноцветные с бренд-страниц площадок. */
-'  <ul class="footer__soc">' +
-'    <li><a href="#"><img src="logo-vk-mono.svg" alt="ВКонтакте" width="138" height="24" loading="lazy"></a></li>' +
-'    <li><a href="#"><img src="logo-youtube-mono.svg" alt="YouTube" width="111" height="24" loading="lazy"></a></li>' +
-'  </ul>' +
+         Знаки одноцветные: значок кремовый, внутренняя деталь цвета подвала,
+         иначе при сплошной заливке буква ВК и треугольник YouTube пропадают.
+         Перед сдачей заменить на официальные с бренд-страниц площадок. */
+'    <ul class="footer__soc">' +
+'      <li><a href="#"><img src="logo-vk-mono.svg" alt="ВКонтакте" width="138" height="24" loading="lazy"></a></li>' +
+'      <li><a href="#"><img src="logo-youtube-mono.svg" alt="YouTube" width="111" height="24" loading="lazy"></a></li>' +
+'    </ul>' +
+      '  </div>' +
       '</div>' +
       '<div class="footer__nav">' + navHTML + '</div>';
 
