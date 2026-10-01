@@ -445,10 +445,40 @@ body{
 /* в широком кадре спокойная середина снимка важнее низа */
 .cat--wide .cat__img{object-position:50% 54%}
 .cat--wide .cat__go{opacity:1;width:52px;height:52px;right:24px;bottom:24px}
+/* Подложка подписи своя в каждой теме. Снимки направлений светлые и
+   тёплые, и тёмно-синяя вуаль на светлой теме читалась чужеродной
+   заплатой поверх кадра. На светлой теме вуаль кремовая, подпись
+   тёмно-синяя; на тёмной остаётся прежняя тёмно-синяя с кремовой
+   подписью. Контраст: навй по кремовому ≈ 13:1, затемнённый медный
+   (#8E6034) по кремовому — 4.87:1, мелкий текст проходит AA. */
+:root,[data-theme="light"]{
+  --cat-veil-0:rgba(246,244,237,0);
+  --cat-veil-1:rgba(246,244,237,.66);
+  --cat-veil-2:rgba(246,244,237,.97);
+  --cat-veil-hover-0:rgba(246,244,237,.2);
+  --cat-veil-hover-1:rgba(246,244,237,.74);
+  --cat-veil-hover-2:rgba(246,244,237,.99);
+  --cat-fg:var(--b-navy);
+  --cat-count:var(--b-copper-ink);
+  --cat-plate:rgba(246,244,237,.55);
+  --cat-bg:var(--b-cream-2);
+}
+[data-theme="dark"]{
+  --cat-veil-0:rgba(14,26,43,0);
+  --cat-veil-1:rgba(14,26,43,.5);
+  --cat-veil-2:rgba(14,26,43,.93);
+  --cat-veil-hover-0:rgba(14,26,43,.18);
+  --cat-veil-hover-1:rgba(14,26,43,.58);
+  --cat-veil-hover-2:rgba(14,26,43,.95);
+  --cat-fg:var(--b-cream);
+  --cat-count:var(--b-copper);
+  --cat-plate:rgba(14,26,43,.35);
+  --cat-bg:var(--b-navy);
+}
 .cat{
   position:relative;overflow:hidden;isolation:isolate;
   border:0;padding:22px;justify-content:flex-end;
-  background:var(--b-navy);
+  background:var(--cat-bg);
 }
 /* подложка на случай, когда фотографии ещё нет — паттерн 03 «Монограмма», стр. 09 */
 .cat::before{
@@ -467,7 +497,7 @@ body{
 /* затемнение снизу: подпись читается на любом кадре */
 .cat::after{
   content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(180deg,rgba(14,26,43,0) 28%,rgba(14,26,43,.5) 60%,rgba(14,26,43,.93) 100%);
+  background:linear-gradient(180deg,var(--cat-veil-0) 28%,var(--cat-veil-1) 60%,var(--cat-veil-2) 100%);
   transition:background .35s var(--d-ease);
 }
 /* padding-right резервирует место под плашку со стрелкой в правом нижнем углу */
@@ -475,7 +505,7 @@ body{
 .cat--big .cat__body{padding-right:80px}
 .cat__name{
   font-family:var(--d-sans);font-weight:600;font-size:13px;line-height:1.35;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--b-cream);
+  letter-spacing:.06em;text-transform:uppercase;color:var(--cat-fg);
   background:none;padding:0;max-width:22ch;
   /* в прототипе стоит overflow-wrap:anywhere — на узких плитках он рвал
      «ЛАКОКРАСОЧНЫЕ» посреди слова */
@@ -484,10 +514,10 @@ body{
 .cat--big .cat__name{font-size:clamp(20px,1.8vw,26px);line-height:1.2;letter-spacing:.04em;max-width:14ch}
 .cat--tall .cat__name{font-size:15px;max-width:16ch}
 .cat__count{
-  font-size:11px;letter-spacing:.06em;color:var(--b-copper);
+  font-size:11px;letter-spacing:.06em;color:var(--cat-count);
   background:none;padding:0;margin:0;
 }
-.cat--big .cat__count{font-size:12px;padding-top:9px;border-top:1px solid rgba(196,154,108,.45)}
+.cat--big .cat__count{font-size:12px;padding-top:9px;border-top:1px solid rgba(196,154,108,.5)}
 /* стрелка в параллелограмме — тот же графический элемент, что у иконок услуг (стр. 36) */
 .cat__go{
   position:absolute;z-index:3;right:20px;bottom:20px;
@@ -497,7 +527,7 @@ body{
 .cat__go::before{
   content:"";position:absolute;inset:0;
   transform:skewX(var(--d-skew));
-  border:1px solid rgba(196,154,108,.55);background:rgba(14,26,43,.35);
+  border:1px solid rgba(196,154,108,.55);background:var(--cat-plate);
 }
 .cat__arr{
   position:relative;width:16px;height:9px;background:var(--b-copper);
@@ -512,7 +542,7 @@ body{
 
 .cat:hover{border-color:transparent}
 .cat:hover .cat__img{transform:scale(1.06)}
-.cat:hover::after{background:linear-gradient(180deg,rgba(14,26,43,.18) 0%,rgba(14,26,43,.58) 58%,rgba(14,26,43,.95) 100%)}
+.cat:hover::after{background:linear-gradient(180deg,var(--cat-veil-hover-0) 0%,var(--cat-veil-hover-1) 58%,var(--cat-veil-hover-2) 100%)}
 .cat:hover .cat__go{opacity:1;transform:translateX(3px)}
 .cat:focus-visible{outline:2px solid var(--b-copper);outline-offset:3px}
 
@@ -771,7 +801,9 @@ body{
 .rblock__lead{font-size:16px;line-height:1.65;color:rgba(246,244,237,.75);max-width:460px;margin:0 0 30px}
 
 /* цифры строкой, а не колонкой: так они держат ширину текста и не висят отдельно */
-.rargs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:0 0 10px}
+/* отступ до кнопок держала подпись под цифрами; её убрали, и ряд сел
+   кнопкам на голову — отступ перенесён на сам ряд */
+.rargs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:0 0 40px}
 .rargs li{display:flex;flex-direction:column;gap:8px;padding-left:18px;border-left:1px solid rgba(196,154,108,.4)}
 .rargs__n{
   font-family:var(--d-serif);font-weight:600;font-size:clamp(24px,2.1vw,32px);line-height:1;
@@ -1324,4 +1356,69 @@ html{scroll-padding-top:76px}
    с лишним — одна колонка остаётся для совсем узких */
 @media (max-width:359px){
   .footer__nav{grid-template-columns:1fr}
+}
+
+/* ============ 24. АФИША СТРОКАМИ ============
+   Было: три карточки «фото сверху, текст снизу» — ровно то же построение,
+   что у акций следом, и два одинаковых блока шли подряд. Стало: афишная
+   строка — крупная дата антиквой, название с местом и временем, кадр
+   справа. Семантически вернее (афиша — это расписание, а не витрина) и
+   снимает два тяжёлых приёма сразу: череду одинаковых сеток и плашку
+   даты поверх фотографии — дата вышла из кадра. */
+.eposter{display:flex;flex-direction:column}
+.erow{
+  display:grid;grid-template-columns:132px minmax(0,1fr) 300px;
+  align-items:center;gap:32px;padding:26px 0;
+}
+.erow + .erow{border-top:1px solid var(--s-line)}
+.erow__date{
+  display:flex;flex-direction:column;align-items:flex-start;gap:4px;
+  padding-left:18px;border-left:2px solid var(--s-accent);
+}
+.erow__date b{
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(26px,2.4vw,34px);
+  line-height:1;letter-spacing:-.01em;color:var(--s-fg);
+}
+.erow__date i{
+  font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--s-accent-ink);
+}
+.erow__body{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.erow__title{
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(20px,1.8vw,26px);
+  line-height:1.2;letter-spacing:.01em;color:var(--s-fg);margin:0;
+}
+.erow__title a{color:inherit;transition:color .2s}
+.erow:hover .erow__title a{color:var(--s-accent-ink)}
+.erow__meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--s-fg-soft);margin:0}
+.erow__cta{
+  margin-top:2px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--s-accent-ink);border-bottom:1px solid transparent;padding-bottom:2px;
+  transition:border-color .2s;
+}
+.erow__cta:hover{border-bottom-color:var(--s-accent)}
+.erow__cta--off{color:var(--s-fg-soft);cursor:default}
+.erow__cta--off:hover{border-bottom-color:transparent}
+.erow__media{
+  display:block;position:relative;overflow:hidden;
+  aspect-ratio:16/10;background:var(--s-plate);
+}
+.erow__media .ecard__img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s var(--d-ease);
+}
+.erow:hover .erow__media .ecard__img{transform:scale(1.05)}
+/* состояние «мест нет» — п. 6.8 ТЗ */
+.erow--off .erow__media .ecard__img{filter:grayscale(1) brightness(.78)}
+.erow--off .erow__date{border-left-color:var(--s-line-strong)}
+.erow--off .erow__date b{color:var(--s-fg-soft)}
+.erow--off .erow__date i{color:var(--s-fg-soft)}
+
+@media (max-width:1100px){
+  .erow{grid-template-columns:110px minmax(0,1fr) 220px;gap:24px}
+}
+@media (max-width:760px){
+  .erow{grid-template-columns:92px minmax(0,1fr);gap:18px;padding:22px 0}
+  .erow__media{grid-column:1 / -1;order:3;aspect-ratio:16/9}
+  .erow__date{padding-left:14px}
 }
