@@ -404,7 +404,11 @@ body{
 /* Плитки-фотографии с тёмной подложкой — приём из макета брендбука, стр. 39
    («Категории материалов»). Бенто-сетка и состав из 12 направлений остались
    от согласованного прототипа, структуру главной не меняем. */
-.sect--cats{padding:96px 0 104px;background:var(--s-bg)}
+/* Вертикальный ритм. Было 96/104 у всех блоков подряд — страница шла
+   ровным шагом без акцентов. Между однотипными карточными блоками шаг
+   сокращён до 76, а перед «Арендой» и подпиской оставлен большой
+   просвет: это две смысловые паузы страницы. */
+.sect--cats{padding:96px 0 76px;background:var(--s-bg)}
 /* в тёмной теме фон секции = #0E1A2B совпадал с низом затемнения плиток (.93 от #0E1A2B),
    и нижняя кромка карточек растворялась в фоне. Поднимаем фон на тон. */
 [data-theme="dark"] .sect--cats{background:var(--b-navy)}
@@ -425,7 +429,22 @@ body{
   color:var(--s-accent-ink);
 }
 
-.grid--cats{gap:16px;grid-auto-rows:172px}
+/* Было 12 плиток сеткой 4×3 с шагом 16px: цветные снимки спорили друг с
+   другом и глазу негде было остановиться. Осталось 8, шаг крупнее, а
+   последняя плитка идёт во всю ширину — широкий кадр закрывает блок и
+   даёт передышку перед «Ближайшими событиями». Нового блока на странице
+   не появилось: полоса остаётся плиткой того же «Направления». */
+.grid--cats{gap:20px;grid-auto-rows:190px}
+@media (min-width:1101px){
+  .grid--cats{grid-template-rows:190px 190px 190px 300px}
+}
+.cat--half{grid-column:span 2}
+.cat--wide{grid-column:1 / -1}
+.cat--wide .cat__name{font-size:clamp(18px,1.6vw,24px);line-height:1.2;letter-spacing:.04em;max-width:18ch}
+.cat--wide .cat__count{font-size:12px}
+/* в широком кадре спокойная середина снимка важнее низа */
+.cat--wide .cat__img{object-position:50% 54%}
+.cat--wide .cat__go{opacity:1;width:52px;height:52px;right:24px;bottom:24px}
 .cat{
   position:relative;overflow:hidden;isolation:isolate;
   border:0;padding:22px;justify-content:flex-end;
@@ -514,7 +533,7 @@ body{
 /* Карточка по макету брендбука стр. 38 («События») и стр. 39 («Актуальные
    события»): дата медным, заголовок антиквой, «Регистрация» ссылкой.
    Диагональ по нижней кромке обложки — тот же приём, что в первом экране. */
-.sect--events{padding:96px 0 104px;background:var(--s-bg-2)}
+.sect--events{padding:76px 0 76px;background:var(--s-bg-2)}
 [data-theme="dark"] .sect--events{background:#0E1A2B}
 .sect--events .sect__head{margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--s-line)}
 .sect--events .sect__h2{
@@ -586,7 +605,7 @@ body{
 .ecard--off .ecard__img{filter:grayscale(1) brightness(.72)}
 .ecard--off .ecard__date{background:var(--b-grey);color:var(--b-navy);border-right-color:#B4AEA1}
 [data-theme="dark"] .ecard--off .ecard__date{background:#4A5568;color:var(--b-cream)}
-.ecard__cta--off{color:var(--s-fg-soft);border-bottom:1px dotted var(--s-line-strong);cursor:default}
+.ecard__cta--off{color:var(--s-fg-soft);border-bottom:0;cursor:default}
 .ecard__cta--off:hover{border-bottom-color:var(--s-line-strong)}
 
 /* состояние «событий нет» */
@@ -619,7 +638,7 @@ body{
 /* Акция — коммерческая карточка, поэтому гротеск, а не антиква:
    антиква закреплена за вдохновением и афишей, гротеск — за навигацией
    и торговой частью. Срок действия вынесен на обложку: он и есть срочность. */
-.sect--promos{padding:96px 0 104px;background:var(--s-bg)}
+.sect--promos{padding:76px 0 120px;background:var(--s-bg)}   /* дальше «Аренда» */
 [data-theme="dark"] .sect--promos{background:var(--b-navy)}
 .sect--promos .sect__head{margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--s-line)}
 .sect--promos .sect__h2{
@@ -766,7 +785,7 @@ body{
 .dlink--inv:hover{border-bottom-color:var(--b-copper)}
 
 /* ============ 13. ЖУРНАЛ ============ */
-.sect--journal{padding:96px 0 104px;background:var(--s-bg-2)}
+.sect--journal{padding:112px 0 76px;background:var(--s-bg-2)} /* после «Аренды» */
 [data-theme="dark"] .sect--journal{background:#0E1A2B}
 .sect--journal .sect__head,.sect--find .sect__head{margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--s-line)}
 .sect--journal .sect__h2,.sect--find .sect__h2{
@@ -806,7 +825,7 @@ body{
 .jrow .jrubric{margin-bottom:8px}
 
 /* ============ 14. НАЙТИ МАГАЗИН ============ */
-.sect--find{padding:96px 0 104px;background:var(--s-bg)}
+.sect--find{padding:76px 0 120px;background:var(--s-bg)}     /* дальше подписка */
 [data-theme="dark"] .sect--find{background:var(--b-navy)}
 .fgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center}
 .sect--find .sect__h2{margin:0 0 20px;display:block}
@@ -827,7 +846,7 @@ body{
 /* ============ 15. ПОДПИСКА ============ */
 /* Паттерн 02 «Линии движения» из брендбука (стр. 09) — единственное место,
    где он уместен: спокойная финальная полоса перед подвалом. */
-.sblock{position:relative;overflow:hidden;background:var(--s-bg-2);padding:80px 0}
+.sblock{position:relative;overflow:hidden;background:var(--s-bg-2);padding:96px 0}
 [data-theme="dark"] .sblock{background:#0E1A2B}
 /* поле ввода полупрозрачное — сквозь него просвечивали волны */
 .sblock .sform__row{background:var(--s-bg)}
