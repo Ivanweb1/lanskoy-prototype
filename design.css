@@ -186,7 +186,14 @@ body{
   color:var(--s-accent-ink);margin:0 0 22px;
   display:flex;align-items:center;gap:14px;
 }
-.dhero__eyebrow::before{content:"";width:46px;height:1px;background:var(--s-accent);flex:none}
+/* Зачин надстрочника. Была произвольная волосяная линия в 46px — своя
+   выдумка без опоры на брендбук. Заменена на параллелограмм с наклоном
+   −12°: это графический элемент брендбука (стр. 36), тот же, что держит
+   иконки услуг и стрелку на плитках направлений. */
+.dhero__eyebrow::before{
+  content:"";width:16px;height:7px;flex:none;
+  background:var(--s-accent);transform:skewX(var(--d-skew));
+}
 
 .dhero__h1{
   font-family:var(--d-serif);font-weight:600;
@@ -374,7 +381,7 @@ body{
   .dhero__text .dhero__sub{color:rgba(246,244,237,.8)}
   .dhero__h1{font-size:clamp(36px,10.5vw,50px)}
   .dhero__eyebrow{color:var(--b-copper);font-size:10px;letter-spacing:.18em}
-  .dhero__eyebrow::before{width:28px}
+  .dhero__eyebrow::before{width:13px;height:6px}
 
   .dsearch{max-width:none;background:rgba(14,26,43,.5);border-color:rgba(196,154,108,.5)}
   .dsearch__inp{color:var(--b-cream);height:52px}
