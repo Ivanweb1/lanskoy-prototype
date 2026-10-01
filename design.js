@@ -298,6 +298,74 @@
     }
   })();
 
+  /* ---------- подвал: ведущая строка и одна линейка колонок ----------
+     Было: логотип с адресом слева и четыре колонки ссылок справа. Левый
+     блок не имел заголовка, поэтому выпадал из линейки остальных, а сами
+     колонки шли 5-3-3-4 — правый край получался рваным, под короткими
+     колонками зияла пустота.
+
+     Стало: ведущая строка (логотип и соцсети по краям), под ней медная
+     линия и одна линейка из пяти равных колонок — контакты встали такой
+     же колонкой с заголовком, и все заголовки сели на общую строку.
+     Ссылки перераспределены на 4-4-3-4: «Журнал» ушёл к событиям как
+     контентный раздел, «Аренда» — к профессионалам, «Схема этажей» — к
+     комплексу. Состав ссылок прежний, ничего не добавлено.
+
+     Разметку даёт partials.js, общий для Ч/Б-прототипа, — пересобираем
+     здесь, на странице дизайна. */
+  (function () {
+    var foot = document.querySelector('.footer');
+    if (!foot || foot.querySelector('.footer__nav')) return;
+    var inner = foot.querySelector('.footer__in');
+    if (!inner) return;
+
+    var logo = inner.querySelector('.logo__img');
+    var cols = [
+      ['Контакты', [
+        ['Санкт-Петербург,<br>ул. Студенческая, 10', null],
+        ['+7 (812) 363-00-07', 'tel:+78123630007'],
+        ['10:00 — 20:00 ежедневно', null],
+        ['Как добраться', 'contacts.html']
+      ]],
+      ['Покупателям', [
+        ['Магазины', 'shops.html'], ['Категории', 'categories.html'],
+        ['Бренды', 'brands.html'], ['Акции', 'promos.html']
+      ]],
+      ['События', [
+        ['Афиша', 'events.html'], ['Архив событий', 'events.html'],
+        ['Галерея и видео', 'gallery.html'], ['Журнал', 'journal.html']
+      ]],
+      ['Профессионалам', [
+        ['Дизайнерам', 'designers.html'], ['Каталог дизайнеров', 'designers.html#catalog'],
+        ['Аренда площадей', 'rent.html']
+      ]],
+      ['Комплекс', [
+        ['О комплексе', 'about.html'], ['Схема этажей', 'floors.html'],
+        ['Контакты и реквизиты', 'contacts.html'], ['Войти в кабинет', 'lk-login.html']
+      ]]
+    ];
+
+    var navHTML = cols.map(function (c) {
+      var items = c[1].map(function (it) {
+        return '<li>' + (it[1]
+          ? '<a href="' + it[1] + '">' + it[0] + '</a>'
+          : '<span>' + it[0] + '</span>') + '</li>';
+      }).join('');
+      return '<div class="footer__col"><p class="footer__title">' + c[0] + '</p>' +
+             '<ul>' + items + '</ul></div>';
+    }).join('');
+
+    inner.className = 'wrap footer__in';
+    inner.innerHTML =
+      '<div class="footer__lead">' +
+      '  <a class="footer__logo" href="index.html"></a>' +
+      '  <ul class="footer__soc"><li><a href="#">VK</a></li><li><a href="#">YouTube</a></li></ul>' +
+      '</div>' +
+      '<div class="footer__nav">' + navHTML + '</div>';
+
+    if (logo) inner.querySelector('.footer__logo').appendChild(logo);
+  })();
+
   /* ---------- шапка: липкая + компактное состояние ---------- */
   var header = document.querySelector('.header');
   if (header) {
