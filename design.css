@@ -497,27 +497,13 @@ body{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px;
 }
 
-/* Перечень остальных направлений. Две колонки, а не четыре: длинные
-   названия («Остекление и оконная фурнитура») в узкой колонке ломаются,
-   а счётчик некуда поставить. В двух строка читается как строка
-   расписания: имя слева, число у правой кромки колонки. */
-.catlist{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 64px;
-  list-style:none;margin:48px 0 0;padding:0;
-}
-.catlist__i{
-  display:flex;align-items:baseline;justify-content:space-between;gap:24px;
-  padding:13px 0;border-top:1px solid var(--s-line);
-}
-/* нижняя кромка — только у последнего ряда, иначе линии удваиваются */
-.catlist li:nth-last-child(-n+2) .catlist__i{border-bottom:1px solid var(--s-line)}
-.catlist__n{
-  font-family:var(--d-sans);font-weight:600;font-size:12px;line-height:1.35;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--cat-fg);
-  transition:color .2s;
-}
-.catlist__i:hover .catlist__n{color:var(--s-accent-ink)}
-.catlist__c{font-size:11px;letter-spacing:.06em;color:var(--cat-count);white-space:nowrap}
+/* Остальные направления — за кнопкой по центру, на рубрикаторе (п. 6.3 ТЗ),
+   где у каждой категории ещё и подкатегории. Кнопка закрывает блок и
+   даёт ему нижнюю границу — раньше сетка просто обрывалась.
+   Ссылка «Все категории» из шапки секции убрана: две ссылки на одну и
+   ту же страницу в одном блоке — избыток. В остальных секциях ссылка
+   в шапке остаётся. */
+.cmore{display:flex;justify-content:center;margin-top:52px}
 
 /* Подпись снята с фотографии и лежит на кремовой полке внутри плитки.
    Раньше читаемость держалась тем, что у всех двенадцати снимков светлая
@@ -608,7 +594,6 @@ body{
 
 @media (max-width:900px){
   .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 24px}
-  .catlist{gap:0 36px;margin-top:48px}
 }
 @media (max-width:640px){
   .sect--cats{padding:64px 0 72px}
@@ -616,9 +601,7 @@ body{
   .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut-sm)))}
   .cat__body{padding-top:12px}
   .cat__name{font-size:12px}
-  .catlist{grid-template-columns:1fr;margin-top:40px}
-  .catlist li:nth-last-child(-n+2) .catlist__i{border-bottom:0}
-  .catlist li:last-child .catlist__i{border-bottom:1px solid var(--s-line)}
+  .cmore{margin-top:40px}
 }
 
 /* ============ 10. БЛИЖАЙШИЕ СОБЫТИЯ ============ */
