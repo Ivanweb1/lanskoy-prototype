@@ -483,31 +483,41 @@ body{
    приёма больше нигде на главной нет: «Акции» — карточки с зазором 24px,
    «Журнал» — лид и строки. Состав прежний — только категории с реальными
    счётчиками заказчика, выдуманных чисел в блоке нет. */
-/* Три яруса с убывающим размером: 3 — 4 — 7. Размер кодирует ранг
-   направления по числу магазинов, а не декоративное разнообразие — это была
-   слабость прежнего бенто, где две категории по 28 магазинов подавались
-   по-разному. Все четырнадцать направлений на главной, без карусели и без
-   кнопки «показать ещё»: перечень виден сразу. */
-/* без align-items:start — плитки тянутся на всю высоту ряда, иначе подписи
-   негде прижать счётчик к низу и двухстрочные названия сдвигают свой */
-.cgrid{display:grid}
-.cgrid--lead{grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 28px}
-.cgrid--mid{grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 24px;margin-top:48px}
-/* последний ярус собран на auto-fill: категорий может стать больше или
-   меньше семи, и ряд не придётся пересчитывать руками */
-/* перед мелким ярусом разрыв вдвое больше, чем между первым и вторым:
-   при одинаковых отступах три яруса читались одним списком, который
-   почему-то мельчает. Воздух отделяет «весь остальной перечень» в свой регистр */
-.cgrid--rest{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:28px 18px;margin-top:76px}
+/* Три яруса 3—4—7 разобраны: деление на 3 и на 4 даёт разные вертикали,
+   и внутри блока не совпадала ни одна из двенадцати колоночных линий —
+   три сетки читались тремя независимыми блоками друг под другом. К тому же
+   четырнадцать кадров в одной тёплой гамме читаются текстурой, а не набором
+   разных направлений, и глазу не за что зацепиться.
+   Стало: одна сетка 3×2 на шесть крупнейших направлений — несовпадающих
+   вертикалей не остаётся вовсе — и перечень остальных строками под ней.
+   Все четырнадцать по-прежнему на главной, но кадр остался там, где он
+   работает — на крупном размере. В полоске 167×126 он всё равно не показывал
+   товар, и навигацию вёла подпись. */
+.cgrid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px;
+}
 
-/* ступени размера: кадр, срез и кегль уменьшаются вместе, иначе
-   мелкая плитка с крупной подписью читается как сбой, а не как ступень */
-.cgrid--mid .cat__body{padding-top:14px;gap:5px}
-.cgrid--mid .cat__name{font-size:12px}
-.cgrid--rest .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut-sm)))}
-.cgrid--rest .cat__body{padding-top:12px;gap:4px}
-.cgrid--rest .cat__name{font-size:11px;line-height:1.3;letter-spacing:.05em}
-.cgrid--rest .cat__count{font-size:10px}
+/* Перечень остальных направлений. Две колонки, а не четыре: длинные
+   названия («Остекление и оконная фурнитура») в узкой колонке ломаются,
+   а счётчик некуда поставить. В двух строка читается как строка
+   расписания: имя слева, число у правой кромки колонки. */
+.catlist{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 64px;
+  list-style:none;margin:48px 0 0;padding:0;
+}
+.catlist__i{
+  display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+  padding:13px 0;border-top:1px solid var(--s-line);
+}
+/* нижняя кромка — только у последнего ряда, иначе линии удваиваются */
+.catlist li:nth-last-child(-n+2) .catlist__i{border-bottom:1px solid var(--s-line)}
+.catlist__n{
+  font-family:var(--d-sans);font-weight:600;font-size:12px;line-height:1.35;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--cat-fg);
+  transition:color .2s;
+}
+.catlist__i:hover .catlist__n{color:var(--s-accent-ink)}
+.catlist__c{font-size:11px;letter-spacing:.06em;color:var(--cat-count);white-space:nowrap}
 
 /* Подпись снята с фотографии и лежит на кремовой полке внутри плитки.
    Раньше читаемость держалась тем, что у всех двенадцати снимков светлая
@@ -543,7 +553,7 @@ body{
    масштабировался бы вместе с ним на наведении, и диагональ бы ехала */
 .cat__media{
   position:relative;z-index:1;display:block;overflow:hidden;
-  aspect-ratio:16/10;background:var(--cat-bg);
+  aspect-ratio:16/9;background:var(--cat-bg);
   clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));
 }
 /* подложка на случай, когда фотографии ещё нет — паттерн 03 «Монограмма», стр. 09 */
@@ -596,26 +606,19 @@ body{
 .cat:hover .cat__img{transform:scale(1.06)}
 .cat:focus-visible{outline:2px solid var(--b-copper);outline-offset:-3px}
 
-@media (max-width:1100px){
-  .cgrid--mid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .cgrid--rest{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
-}
 @media (max-width:900px){
-  .cgrid--lead{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 24px}
-  .cgrid--mid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .cgrid--rest{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 24px}
+  .catlist{gap:0 36px;margin-top:48px}
 }
 @media (max-width:640px){
   .sect--cats{padding:64px 0 72px}
   /* кадр здесь ниже 150px — срез по правилу уменьшенный */
-  .cat__media,.cgrid--rest .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut-sm)))}
+  .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut-sm)))}
   .cat__body{padding-top:12px}
-  .cat__name,.cgrid--mid .cat__name{font-size:12px}
-  /* в две колонки ступени не читаются — ярусы выравниваются */
-  .cgrid--lead,.cgrid--mid,.cgrid--rest{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}
-  .cgrid--mid,.cgrid--rest{margin-top:28px}
-  .cgrid--rest .cat__name{font-size:12px;letter-spacing:.06em}
-  .cgrid--rest .cat__count{font-size:11px}
+  .cat__name{font-size:12px}
+  .catlist{grid-template-columns:1fr;margin-top:40px}
+  .catlist li:nth-last-child(-n+2) .catlist__i{border-bottom:0}
+  .catlist li:last-child .catlist__i{border-bottom:1px solid var(--s-line)}
 }
 
 /* ============ 10. БЛИЖАЙШИЕ СОБЫТИЯ ============ */

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
-<link rel="stylesheet" href="design.css?v=87">
+<link rel="stylesheet" href="design.css?v=89">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t)})();</script>
@@ -58,7 +58,7 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
       <h2 class="sect__h2">Направления</h2>
       <a href="categories.html" class="more">Все категории</a>
     </div>
-    <div class="cgrid cgrid--lead">
+    <div class="cgrid">
       <a href="category.html" class="cat">
         <span class="cat__media"><img class="cat__img" src="img/cat-dekor.webp" alt="" loading="lazy"></span>
         <span class="cat__body"><span class="cat__name">Декоративно-отделочные материалы</span><span class="cat__count">28 магазинов</span></span>
@@ -71,8 +71,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
         <span class="cat__media"><img class="cat__img" src="img/cat-plitka.webp" alt="" loading="lazy"></span>
         <span class="cat__body"><span class="cat__name">Плитка</span><span class="cat__count">17 магазинов</span></span>
       </a>
-    </div>
-    <div class="cgrid cgrid--mid">
       <a href="category.html" class="cat">
         <span class="cat__media"><img class="cat__img" src="img/cat-tekstil.webp" alt="" loading="lazy"></span>
         <span class="cat__body"><span class="cat__name">Шторы, карнизы, ткани</span><span class="cat__count">11 магазинов</span></span>
@@ -85,41 +83,35 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
         <span class="cat__media"><img class="cat__img" src="img/cat-oboi.webp" alt="" loading="lazy"></span>
         <span class="cat__body"><span class="cat__name">Обои</span><span class="cat__count">7 магазинов</span></span>
       </a>
-      <a href="category.html" class="cat">
-        <span class="cat__media"><img class="cat__img" src="img/cat-dveri.webp" alt="" loading="lazy"></span>
-        <span class="cat__body"><span class="cat__name">Двери, перегородки, фурнитура</span><span class="cat__count">00 магазинов</span></span>
-      </a>
     </div>
-    <div class="cgrid cgrid--rest">
-      <a href="category.html" class="cat">
-        <span class="cat__media"><img class="cat__img" src="img/cat-santeh.webp" alt="" loading="lazy"></span>
-        <span class="cat__body"><span class="cat__name">Сантехника</span><span class="cat__count">00 магазинов</span></span>
-      </a>
-      <a href="category.html" class="cat">
-        <span class="cat__media"><img class="cat__img" src="img/cat-svet.webp" alt="" loading="lazy"></span>
-        <span class="cat__body"><span class="cat__name">Свет</span><span class="cat__count">00 магазинов</span></span>
-      </a>
-      <a href="category.html" class="cat">
-        <span class="cat__media"><img class="cat__img" src="img/cat-potolki.webp" alt="" loading="lazy"></span>
-        <span class="cat__body"><span class="cat__name">Потолки</span><span class="cat__count">00 магазинов</span></span>
-      </a>
-      <a href="category.html" class="cat">
-        <span class="cat__media"><img class="cat__img" src="img/cat-steklo.webp" alt="" loading="lazy"></span>
-        <span class="cat__body"><span class="cat__name">Стекло и зеркала</span><span class="cat__count">00 магазинов</span></span>
-      </a>
-      <a href="category.html" class="cat">
-        <span class="cat__media"><img class="cat__img" src="img/cat-osteklenie.webp" alt="" loading="lazy"></span>
-        <span class="cat__body"><span class="cat__name">Остекление и оконная фурнитура</span><span class="cat__count">00 магазинов</span></span>
-      </a>
-      <a href="category.html" class="cat">
-        <span class="cat__media"><img class="cat__img" src="img/cat-lestnicy.webp" alt="" loading="lazy"></span>
-        <span class="cat__body"><span class="cat__name">Лестницы</span><span class="cat__count">00 магазинов</span></span>
-      </a>
-      <a href="category.html" class="cat">
-        <span class="cat__media"><img class="cat__img" src="img/cat-otoplenie.webp" alt="" loading="lazy"></span>
-        <span class="cat__body"><span class="cat__name">Отопление и кондиционирование</span><span class="cat__count">00 магазинов</span></span>
-      </a>
-    </div>
+
+    <!-- остальные направления — перечнем, без кадров -->
+    <ul class="catlist">
+      <li><a href="category.html" class="catlist__i">
+        <span class="catlist__n">Двери, перегородки, фурнитура</span><span class="catlist__c">00 магазинов</span>
+      </a></li>
+      <li><a href="category.html" class="catlist__i">
+        <span class="catlist__n">Сантехника</span><span class="catlist__c">00 магазинов</span>
+      </a></li>
+      <li><a href="category.html" class="catlist__i">
+        <span class="catlist__n">Свет</span><span class="catlist__c">00 магазинов</span>
+      </a></li>
+      <li><a href="category.html" class="catlist__i">
+        <span class="catlist__n">Потолки</span><span class="catlist__c">00 магазинов</span>
+      </a></li>
+      <li><a href="category.html" class="catlist__i">
+        <span class="catlist__n">Стекло и зеркала</span><span class="catlist__c">00 магазинов</span>
+      </a></li>
+      <li><a href="category.html" class="catlist__i">
+        <span class="catlist__n">Остекление и оконная фурнитура</span><span class="catlist__c">00 магазинов</span>
+      </a></li>
+      <li><a href="category.html" class="catlist__i">
+        <span class="catlist__n">Лестницы</span><span class="catlist__c">00 магазинов</span>
+      </a></li>
+      <li><a href="category.html" class="catlist__i">
+        <span class="catlist__n">Отопление и кондиционирование</span><span class="catlist__c">00 магазинов</span>
+      </a></li>
+    </ul>
   </div>
 </section>
 
