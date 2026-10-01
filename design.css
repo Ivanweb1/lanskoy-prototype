@@ -213,8 +213,6 @@ body{
   transition:border-color .2s,color .2s,background .2s;
 }
 .dchip:hover{border-color:var(--s-accent);color:var(--s-accent-ink);background:var(--s-plate)}
-.dchip--all{border-color:transparent;color:var(--s-accent-ink);padding-left:6px}
-.dchip--all:hover{background:none;border-color:transparent}
 
 .dhero__cta{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
 
@@ -364,7 +362,6 @@ body{
   .dsearch__go .dbtn__arr{width:18px;height:11px}
   .dchips{max-width:none;margin-bottom:26px}
   .dchip{color:rgba(246,244,237,.82);border-color:rgba(196,154,108,.35)}
-  .dchip--all{color:var(--b-copper)}
   .dhero__cta{flex-direction:column;align-items:stretch;gap:16px}
   .dbtn{height:52px;padding:0 24px;width:100%;justify-content:center}
   .dlink{color:var(--b-copper);justify-content:center}
@@ -814,14 +811,26 @@ body{
    где он уместен: спокойная финальная полоса перед подвалом. */
 .sblock{position:relative;overflow:hidden;background:var(--s-bg-2);padding:80px 0}
 [data-theme="dark"] .sblock{background:#0E1A2B}
+/* Волна лежала плиткой 420px на всю ширину полосы при непрозрачности .45:
+   четыре с половиной повтора поперёк экрана давали рябь, стыки плиток
+   читались вертикальными полосами, а линии шли прямо под заголовком и
+   полем ввода. Приведено к той же логике, что паттерн первого экрана и
+   «Аренды»: плитка вдвое крупнее (на ширину контейнера укладывается
+   полтора раза — повтор не считывается), непрозрачность втрое ниже,
+   и маска уводит паттерн в ноль там, где начинается содержимое. */
 .sblock__pattern{
-  position:absolute;inset:0;pointer-events:none;opacity:.45;
+  position:absolute;inset:0;pointer-events:none;opacity:.3;
   /* плитка бесшовная: каждая волна начинается и заканчивается на одной высоте
      и с одинаковым наклоном — иначе на стыках плиток были видны разрывы */
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='220' viewBox='0 0 420 220'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1'%3E%3Cpath d='M0 26C105 6 315 46 420 26'/%3E%3Cpath d='M0 52C105 26 315 78 420 52'/%3E%3Cpath d='M0 80C105 62 315 98 420 80'/%3E%3Cpath d='M0 108C105 84 315 132 420 108'/%3E%3Cpath d='M0 136C105 116 315 156 420 136'/%3E%3Cpath d='M0 164C105 138 315 190 420 164'/%3E%3Cpath d='M0 192C105 174 315 210 420 192'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:420px 220px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='840' height='440' viewBox='0 0 840 440'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1'%3E%3Cpath d='M0 52C210 12 630 92 840 52'/%3E%3Cpath d='M0 104C210 52 630 156 840 104'/%3E%3Cpath d='M0 160C210 124 630 196 840 160'/%3E%3Cpath d='M0 216C210 168 630 264 840 216'/%3E%3Cpath d='M0 272C210 232 630 312 840 272'/%3E%3Cpath d='M0 328C210 276 630 380 840 328'/%3E%3Cpath d='M0 384C210 348 630 420 840 384'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:840px 440px;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 58%);
+          mask-image:linear-gradient(90deg,#000 0%,transparent 58%);
 }
-[data-theme="dark"] .sblock__pattern{opacity:.28}
+[data-theme="dark"] .sblock__pattern{opacity:.22}
+/* поле ввода полупрозрачное — сквозь него просвечивали волны */
+.sblock .sform__row{background:var(--s-bg)}
+[data-theme="dark"] .sblock .sform__row{background:rgba(246,244,237,.06)}
 .sblock__in{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
 .sblock__h2{
   font-family:var(--d-serif);font-weight:600;font-size:clamp(24px,2.4vw,34px);line-height:1.15;
