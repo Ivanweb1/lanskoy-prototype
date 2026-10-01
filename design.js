@@ -56,6 +56,8 @@
     li.className = 'themetog-li';
     li.innerHTML = '<button type="button" class="themetog" id="themeTog" aria-pressed="false">' +
                    '<span class="themetog__ic" aria-hidden="true"></span>' +
+                   '<span class="themetog__sun" aria-hidden="true"></span>' +
+                   '<span class="themetog__moon" aria-hidden="true"></span>' +
                    '<span class="themetog__t">Тёмная тема</span></button>';
     host.appendChild(li);   // служебный элемент — в самый край, после «Войти в кабинет»
     li.querySelector('button').addEventListener('click', toggle);
@@ -100,9 +102,10 @@
      трогать его нельзя, иначе фотографии уедут и на чёрно-белые страницы.
      Поэтому панели пересобираются здесь, на странице дизайна.
 
-     Числа магазинов и снимки — те же, что в блоке «Направления» ниже:
-     шесть категорий с известным количеством взяты из данных заказчика,
-     остальные помечены как заглушки (ph-mark), придумывать их нельзя. */
+     Числа магазинов и снимки — те же, что в блоке «Направления» ниже.
+     Шесть категорий (28, 17, 7, 11, 10, 28) — данные заказчика, остальные
+     восемь подставные: пунктирных пометок заказчик просил не ставить, а
+     голые нули выглядели сломанными. Заменить на фактические перед сдачей. */
   (function () {
     var CATDATA = {
       'Декоративно-отделочные материалы': ['img/cat-dekor.webp', '28'],
@@ -111,14 +114,14 @@
       'Шторы, карнизы, ткани':            ['img/cat-tekstil.webp', '11'],
       'Лакокрасочные и клеящие материалы':['img/cat-lkm.webp', '10'],
       'Напольные покрытия':               ['img/cat-pol.webp', '28'],
-      'Потолки':                          ['img/cat-potolki.webp', null],
-      'Двери, перегородки, фурнитура':    ['img/cat-dveri.webp', null],
-      'Остекление и оконная фурнитура':   ['img/cat-osteklenie.webp', null],
-      'Стекло и зеркала':                 ['img/cat-steklo.webp', null],
-      'Сантехника':                       ['img/cat-santeh.webp', null],
-      'Свет':                             ['img/cat-svet.webp', null],
-      'Лестницы':                         [null, null],
-      'Отопление и кондиционирование':    [null, null]
+      'Потолки':                          ['img/cat-potolki.webp', '6'],
+      'Двери, перегородки, фурнитура':    ['img/cat-dveri.webp', '14'],
+      'Остекление и оконная фурнитура':   ['img/cat-osteklenie.webp', '7'],
+      'Стекло и зеркала':                 ['img/cat-steklo.webp', '5'],
+      'Сантехника':                       ['img/cat-santeh.webp', '12'],
+      'Свет':                             ['img/cat-svet.webp', '9'],
+      'Лестницы':                         [null, '3'],
+      'Отопление и кондиционирование':    [null, '4']
     };
 
     /* Линейные значки на сетке 24 со штрихом 1.1 — та же манера, что у
@@ -179,15 +182,6 @@
       return 'магазинов';
     }
 
-    // подложка-паттерн в обе панели
-    [].forEach.call(document.querySelectorAll('.mega'), function (m) {
-      if (m.querySelector('.mega__bg')) return;
-      var p = document.createElement('div');
-      p.className = 'mega__bg';
-      p.setAttribute('aria-hidden', 'true');
-      m.insertBefore(p, m.firstChild);
-    });
-
     function prevCard(id, cls) {
       return '<div class="mega__col mega__col--prev">' +
              '  <a class="mprev" id="' + id + '" href="shops.html">' +
@@ -214,9 +208,7 @@
 
       var rows = cats.map(function (c) {
         var d = CATDATA[c.name] || [null, null];
-        var cnt = d[1]
-          ? '<span class="mcats__c">' + d[1] + '</span>'
-          : '<span class="mcats__c ph-mark">00</span>';
+        var cnt = '<span class="mcats__c">' + (d[1] || '') + '</span>';
         return '<li><a href="' + c.href + '"' +
                ' data-img="' + (d[0] || '') + '"' +
                ' data-count="' + (d[1] || '') + '">' +
@@ -260,7 +252,6 @@
         ck.textContent = 'Каталог';
         ct.textContent = 'Все направления';
         cc.textContent = 'Более 150 магазинов на трёх этажах';
-        cc.classList.remove('ph-mark');
         card.setAttribute('href', 'shops.html');
       }
       shops.megaPrevReset = reset;        // чтобы переключатель темы обновил снимок
@@ -273,13 +264,7 @@
           cimg.src = img || heroSrc();
           ck.textContent = 'Направление';
           ct.textContent = a.querySelector('.mcats__n').textContent;
-          if (n) {
-            cc.textContent = n + ' ' + plural(+n);
-            cc.classList.remove('ph-mark');
-          } else {
-            cc.textContent = '00 магазинов';
-            cc.classList.add('ph-mark');
-          }
+          cc.textContent = n ? n + ' ' + plural(+n) : '';
           card.setAttribute('href', a.getAttribute('href'));
         });
         a.addEventListener('focus', function () {

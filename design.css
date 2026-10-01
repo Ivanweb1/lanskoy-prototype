@@ -50,7 +50,6 @@
   --s-nav-bg:rgba(246,244,237,.92);
   --s-field-bg:rgba(255,255,255,.72);
   --s-plate:rgba(22,38,61,.04);
-  --s-pattern-op:.5;
   --s-btn-fill-fg:var(--b-navy);   /* навй на медном = 5.1:1; сочетание разрешено стр. 06 */
 }
 /* Тёмная тема — по макету брендбука стр. 38. ТЗ п. 9.7 «Тёмная тема — необходимо сделать» */
@@ -68,7 +67,6 @@
   --s-nav-bg:rgba(14,26,43,.92);
   --s-field-bg:rgba(246,244,237,.06);
   --s-plate:rgba(196,154,108,.07);
-  --s-pattern-op:.85;
   --s-btn-fill-fg:var(--b-navy);
 }
 
@@ -80,7 +78,7 @@ body{
 
 /* ============ 3. ШАПКА ============ */
 .utility{background:var(--s-util-bg);border-bottom:1px solid var(--s-hairline);color:var(--s-fg-soft)}
-.utility__in{min-height:44px}
+.utility__in{height:34px;min-height:0}
 .utility a{color:inherit}
 .utility a:hover{color:var(--s-accent-ink)}
 .utility__login{color:var(--s-accent-ink);text-decoration:none}
@@ -88,6 +86,8 @@ body{
 .utility__actions{display:flex;align-items:center;gap:18px}
 /* «Аренда» — единственное действие для бизнеса, даём ему медную обводку */
 .utility .btn--ghost{
+  /* .btn--sm держит 38px и не давала строке стать ниже 44 */
+  height:30px;padding:0 14px;
   border:1px solid var(--s-accent);color:var(--s-accent-ink);
   border-radius:2px;letter-spacing:.1em;text-transform:uppercase;font-size:11px;
 }
@@ -96,7 +96,12 @@ body{
 /* серая граница под шапкой читалась жёсткой чертой поперёк экрана.
    В покое её нет вовсе — первый экран отделяет себя сам,
    в закреплённом состоянии остаётся медная волосяная линия. */
-.nav{background:var(--s-nav-bg);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent}
+/* строка навигации встык с первым экраном сливалась с ним: шапка светлая
+   и первый экран светлый, границы между ними не читалось. Медная
+   волосяная линия в четверть силы — заметно, но не чертой поперёк
+   экрана, как была серая. В закреплённом состоянии она усиливается. */
+.nav{background:var(--s-nav-bg);backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--s-hairline-soft)}
 .nav__in{min-height:92px}
 .logo__img{filter:none;height:58px;width:auto}
 .menu__link{
@@ -114,18 +119,39 @@ body{
 /* тумблер: только значок, без подписи. Геометрия прямоугольная — как у кнопок
    и полей сайта, а не капсула */
 .themetog{
-  display:inline-flex;align-items:center;justify-content:flex-start;
+  position:relative;display:inline-flex;align-items:center;justify-content:flex-start;
   width:44px;height:22px;padding:0;border:1px solid var(--s-line-strong);border-radius:2px;
   background:transparent;transition:border-color .2s,background-color .25s var(--d-ease);
 }
 .themetog:hover{border-color:var(--s-accent)}
 .themetog__ic{
-  width:16px;height:16px;flex:none;margin:0 0 0 2px;border-radius:1px;
+  position:absolute;left:2px;top:2px;
+  width:16px;height:16px;border-radius:1px;
   background:var(--s-accent);box-shadow:none;
   transition:transform .28s var(--d-ease),background-color .25s;
 }
+/* солнце и луна нарисованы прямо в дорожке: без них было непонятно,
+   что это переключатель темы, а не произвольный тумблер. Медная плашка
+   стоит на действующей теме, её значок читается навй по медному. */
+.themetog__sun,.themetog__moon{
+  position:absolute;top:50%;width:12px;height:12px;transform:translateY(-50%);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:contain;mask-size:contain;
+  transition:background-color .25s;
+}
+.themetog__sun{left:4px;-webkit-mask-image:var(--i-sun);mask-image:var(--i-sun)}
+.themetog__moon{right:4px;-webkit-mask-image:var(--i-moon);mask-image:var(--i-moon)}
+.themetog__sun{background-color:var(--s-btn-fill-fg)}
+.themetog__moon{background-color:var(--s-fg-soft)}
 [data-theme="dark"] .themetog{background:rgba(196,154,108,.12)}
 [data-theme="dark"] .themetog__ic{transform:translateX(22px);box-shadow:none}
+[data-theme="dark"] .themetog__sun{background-color:var(--s-fg-soft)}
+[data-theme="dark"] .themetog__moon{background-color:var(--s-btn-fill-fg)}
+:root{
+  --i-sun:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4.4'/%3E%3Cpath d='M12 1.6v2.8M12 19.6v2.8M1.6 12h2.8M19.6 12h2.8M4.7 4.7l2 2M17.3 17.3l2 2M19.3 4.7l-2 2M6.7 17.3l-2 2'/%3E%3C/svg%3E");
+  --i-moon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M20.8 15.2A9.3 9.3 0 0 1 8.8 3.2a9.3 9.3 0 1 0 12 12z'/%3E%3C/svg%3E");
+}
 /* подпись остаётся для доступности, но не видна */
 .themetog__t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -137,18 +163,8 @@ body{
 }
 [data-theme="dark"] .dhero{background:var(--g-navy)}
 
-/* паттерн 01 «Геометрия архитектуры», стр. 09 — фоновым элементом */
-.dhero__pattern{
-  position:absolute;inset:0;pointer-events:none;
-  opacity:calc(var(--s-pattern-op) * .16);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='240' viewBox='0 0 180 240'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.4'%3E%3Cpath d='M10 240V96l22-20 22 20v144'/%3E%3Cpath d='M54 240V60l20-18 20 18v180'/%3E%3Cpath d='M94 240V120l22-20 22 20v120'/%3E%3Cpath d='M138 240V78l21-19 21 19v162'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:180px 240px;
-  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 52%);
-          mask-image:linear-gradient(90deg,#000 0%,transparent 52%);
-}
-/* на тёмном медные линии видны сильнее — приглушаем, чтобы не спорили с заголовком
-   (брендбук, стр. 09: паттерн не должен перетягивать на себя внимание) */
-[data-theme="dark"] .dhero__pattern{opacity:.2}
+/* Паттерны с главной сняты: в вёрстке они были перерисованы по памяти,
+   а не взяты из брендбука. Вернём, когда придут оригинальные файлы. */
 
 /* сетка первого экрана шире контейнера: левая колонка по общей сетке сайта,
    правая — фотопанель — уходит в край страницы (макет брендбука, стр. 38) */
@@ -196,8 +212,11 @@ body{
 .dsearch__inp:focus{outline:none}
 .dsearch__inp::-webkit-search-cancel-button{filter:grayscale(1) opacity(.5)}
 .dsearch__go{
-  display:inline-flex;align-items:center;gap:10px;flex:none;
-  height:58px;padding:0 26px;margin:-1px -1px -1px 0;
+  /* было height:58px при margin:-1px: кнопка начиналась на пиксель выше
+     рамки и на столько же не доходила до её низа — снизу оставалась
+     светлая щель. Растягиваем по высоте поля вместо жёсткого размера. */
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:none;
+  align-self:stretch;padding:0 26px;margin:-1px -1px -1px 0;
   background:var(--s-accent);color:var(--s-btn-fill-fg);
   font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   transition:filter .25s;
@@ -224,7 +243,12 @@ body{
 }
 .dbtn--fill{background:var(--s-accent);color:var(--s-btn-fill-fg)}
 .dbtn--fill:hover{filter:brightness(1.07);transform:translateY(-2px)}
-/* «Аренда» — сценарий для малой доли аудитории, поэтому не кнопка, а ссылка */
+/* «Аренда площадей» — вторая по важности кнопка первого экрана. Была
+   подчёркнутой ссылкой и терялась рядом с залитой; получила медную
+   обводку: вес ниже залитой, но это уже кнопка той же высоты. */
+.dbtn--ghost{background:transparent;border:1px solid var(--s-accent);color:var(--s-accent-ink)}
+.dbtn--ghost:hover{background:var(--s-accent);color:var(--s-btn-fill-fg);transform:translateY(-2px)}
+/* ссылка-стрелка осталась в «Аренде» и других блоках */
 .dlink{
   display:inline-flex;align-items:center;gap:10px;
   font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
@@ -320,7 +344,6 @@ body{
     margin:0 calc(max(20px,(100% - var(--d-wrap)) / 2) * -1);
     height:50vw;min-height:300px;clip-path:polygon(0 7%,100% 0,100% 100%,0 100%);
   }
-  .dhero__pattern{-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 55%);
                           mask-image:linear-gradient(180deg,#000 0%,transparent 55%)}
   .dserv__in{grid-template-columns:repeat(2,1fr)}
   .dserv__i{padding:22px 16px;justify-content:flex-start}
@@ -338,7 +361,6 @@ body{
 
   .dhero{background:var(--b-navy)}
   [data-theme="dark"] .dhero{background:var(--b-navy)}
-  .dhero__pattern{display:none}
   .dhero__in{display:block;padding:0 calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad));min-height:82vh;position:static}
   .dhero__media{
     position:absolute;inset:0;z-index:0;height:auto;min-height:0;margin:0;
@@ -364,7 +386,7 @@ body{
   .dchip{color:rgba(246,244,237,.82);border-color:rgba(196,154,108,.35)}
   .dhero__cta{flex-direction:column;align-items:stretch;gap:16px}
   .dbtn{height:52px;padding:0 24px;width:100%;justify-content:center}
-  .dlink{color:var(--b-copper);justify-content:center}
+  .dbtn--ghost{color:var(--b-copper);border-color:rgba(196,154,108,.6)}
 
   /* полоса услуг продолжает тёмный первый экран, а не режет его светлой плашкой */
   .dserv{background:var(--b-navy);border-top-color:rgba(196,154,108,.22)}
@@ -449,7 +471,6 @@ body{
   background:none;padding:0;margin:0;
 }
 .cat--big .cat__count{font-size:12px;padding-top:9px;border-top:1px solid rgba(196,154,108,.45)}
-.cat__count.ph-mark{color:rgba(196,154,108,.75);border-bottom:1px dashed rgba(196,154,108,.5)}
 /* стрелка в параллелограмме — тот же графический элемент, что у иконок услуг (стр. 36) */
 .cat__go{
   position:absolute;z-index:3;right:20px;bottom:20px;
@@ -532,11 +553,16 @@ body{
 }
 .ecard:hover .ecard__img{transform:scale(1.05)}
 
-/* дата — плашка медным по левому верхнему углу, как в афише брендбука (стр. 36) */
+/* Дата. В афише брендбука (стр. 36) плашка медная с тёмным текстом, но
+   на наших снимках — светлых и тёплых — медное по бежевому теряется.
+   Приведено к плашке срока на карточках акций: непрозрачный навй,
+   кремовый текст, медная линия с внутренней стороны. Отступление от
+   брендбука ради читаемости — вынести на согласование. */
 .ecard__date{
   position:absolute;z-index:2;left:0;top:22px;
   display:flex;flex-direction:column;align-items:center;gap:2px;
-  padding:9px 16px 9px 18px;background:var(--b-copper);color:var(--b-navy);
+  padding:9px 16px 9px 18px;background:var(--b-navy);color:var(--b-cream);
+  border-right:3px solid var(--b-copper);
 }
 .ecard__date b{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1}
 .ecard__date i{font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
@@ -561,7 +587,7 @@ body{
 .ecard__cta:hover{border-bottom-color:var(--s-accent)}
 /* состояние «мест нет» — п. 6.8 ТЗ: регистрация закрывается автоматически */
 .ecard--off .ecard__img{filter:grayscale(1) brightness(.72)}
-.ecard--off .ecard__date{background:var(--b-grey);color:var(--b-navy)}
+.ecard--off .ecard__date{background:var(--b-grey);color:var(--b-navy);border-right-color:#B4AEA1}
 [data-theme="dark"] .ecard--off .ecard__date{background:#4A5568;color:var(--b-cream)}
 .ecard__cta--off{color:var(--s-fg-soft);border-bottom:1px dotted var(--s-line-strong);cursor:default}
 .ecard__cta--off:hover{border-bottom-color:var(--s-line-strong)}
@@ -570,7 +596,7 @@ body{
 .eempty[hidden]{display:none}
 .eempty{
   display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;
-  padding:72px 24px;border:1px dashed var(--s-line-strong);
+  padding:72px 24px;border:1px solid var(--s-line-strong);
 }
 .eempty__t{font-family:var(--d-serif);font-size:28px;line-height:1.2;color:var(--s-fg);margin:0}
 .eempty__d{font-size:15px;line-height:1.6;color:var(--s-fg-soft);margin:0}
@@ -656,7 +682,6 @@ body{
   border:1px solid var(--s-line-strong);color:var(--s-accent-ink);
   font-size:11px;letter-spacing:.08em;
 }
-.pcard__shop.ph-mark{border-bottom:1px dashed var(--s-line-strong);color:var(--s-fg-soft)}
 
 @media (max-width:1100px){
   .pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
@@ -683,13 +708,6 @@ body{
 /* Единственный крупный блок под бизнес (п. 9.3 ТЗ). Тёмно-синяя полоса
    разбивает светлый ритм страницы и отделяет деловой сценарий от покупательского. */
 .rblock{position:relative;overflow:hidden;background:var(--g-navy);color:var(--b-cream)}
-.rblock__pattern{
-  position:absolute;inset:0;pointer-events:none;opacity:.22;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='240' viewBox='0 0 180 240'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.4'%3E%3Cpath d='M10 240V96l22-20 22 20v144'/%3E%3Cpath d='M54 240V60l20-18 20 18v180'/%3E%3Cpath d='M94 240V120l22-20 22 20v120'/%3E%3Cpath d='M138 240V78l21-19 21 19v162'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:180px 240px;
-  -webkit-mask-image:linear-gradient(270deg,#000 0%,transparent 52%);
-          mask-image:linear-gradient(270deg,#000 0%,transparent 52%);
-}
 /* Композиция зеркальна первому экрану: там фото справа, тут слева.
    Раньше правая треть блока оставалась пустой, а цифры висели в воздухе. */
 .rblock__in{
@@ -738,7 +756,6 @@ body{
   font-family:var(--d-serif);font-weight:600;font-size:clamp(24px,2.1vw,32px);line-height:1;
   letter-spacing:-.01em;color:var(--b-cream);align-self:flex-start;
 }
-.rargs__n.ph-mark{border-bottom:1px dashed rgba(196,154,108,.6);color:rgba(246,244,237,.5);padding-bottom:4px}
 .rargs__c{font-size:12px;line-height:1.4;letter-spacing:.05em;color:rgba(246,244,237,.6)}
 .rargs__note{font-size:11px;letter-spacing:.03em;color:rgba(246,244,237,.45);margin:0 0 30px}
 
@@ -811,23 +828,6 @@ body{
    где он уместен: спокойная финальная полоса перед подвалом. */
 .sblock{position:relative;overflow:hidden;background:var(--s-bg-2);padding:80px 0}
 [data-theme="dark"] .sblock{background:#0E1A2B}
-/* Волна лежала плиткой 420px на всю ширину полосы при непрозрачности .45:
-   четыре с половиной повтора поперёк экрана давали рябь, стыки плиток
-   читались вертикальными полосами, а линии шли прямо под заголовком и
-   полем ввода. Приведено к той же логике, что паттерн первого экрана и
-   «Аренды»: плитка вдвое крупнее (на ширину контейнера укладывается
-   полтора раза — повтор не считывается), непрозрачность втрое ниже,
-   и маска уводит паттерн в ноль там, где начинается содержимое. */
-.sblock__pattern{
-  position:absolute;inset:0;pointer-events:none;opacity:.3;
-  /* плитка бесшовная: каждая волна начинается и заканчивается на одной высоте
-     и с одинаковым наклоном — иначе на стыках плиток были видны разрывы */
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='840' height='440' viewBox='0 0 840 440'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1'%3E%3Cpath d='M0 52C210 12 630 92 840 52'/%3E%3Cpath d='M0 104C210 52 630 156 840 104'/%3E%3Cpath d='M0 160C210 124 630 196 840 160'/%3E%3Cpath d='M0 216C210 168 630 264 840 216'/%3E%3Cpath d='M0 272C210 232 630 312 840 272'/%3E%3Cpath d='M0 328C210 276 630 380 840 328'/%3E%3Cpath d='M0 384C210 348 630 420 840 384'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:840px 440px;
-  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 58%);
-          mask-image:linear-gradient(90deg,#000 0%,transparent 58%);
-}
-[data-theme="dark"] .sblock__pattern{opacity:.22}
 /* поле ввода полупрозрачное — сквозь него просвечивали волны */
 .sblock .sform__row{background:var(--s-bg)}
 [data-theme="dark"] .sblock .sform__row{background:rgba(246,244,237,.06)}
@@ -846,7 +846,9 @@ body{
 .sform__inp::placeholder{color:var(--s-fg-soft)}
 .sform__inp:focus{outline:none}
 .sform__go{
-  display:inline-flex;align-items:center;gap:10px;flex:none;height:58px;padding:0 26px;margin:-1px -1px -1px 0;
+  /* та же щель снизу, что была у «Найти» в первом экране */
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:none;
+  align-self:stretch;padding:0 26px;margin:-1px -1px -1px 0;
   background:var(--s-accent);color:var(--s-btn-fill-fg);
   font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:filter .25s;
 }
@@ -902,8 +904,10 @@ body{
 }
 
 /* ============ 18. ШАПКА: ЛИПКАЯ, КОМПАКТНАЯ, ПОИСК В ОВЕРЛЕЕ ============ */
-:root,[data-theme="light"]{--s-nav-solid:rgba(246,244,237,.97);--s-overlay:rgba(22,38,61,.45);--s-hairline:rgba(196,154,108,.3)}
-[data-theme="dark"]{--s-nav-solid:rgba(14,26,43,.97);--s-overlay:rgba(5,10,18,.6);--s-hairline:rgba(196,154,108,.24)}
+:root,[data-theme="light"]{--s-nav-solid:rgba(246,244,237,.97);--s-overlay:rgba(22,38,61,.45);
+  --s-hairline:rgba(196,154,108,.3);--s-hairline-soft:rgba(196,154,108,.22)}
+[data-theme="dark"]{--s-nav-solid:rgba(14,26,43,.97);--s-overlay:rgba(5,10,18,.6);
+  --s-hairline:rgba(196,154,108,.24);--s-hairline-soft:rgba(196,154,108,.16)}
 
 /* Шапка выведена из потока. При сжатии она теряет разом три высоты —
    утилитарную строку, 28 px строки навигации и 16 px логотипа, — и со
@@ -1112,21 +1116,23 @@ html{scroll-padding-top:76px}
    «Направления» ниже по странице). Разметку собирает design.js, чтобы
    partials.js и Ч/Б-прототип остались нетронутыми. */
 
-/* паттерн 01 «Геометрия архитектуры» — панель перестаёт быть плоской плашкой */
 .mega{position:relative;overflow:hidden}
-.mega__bg{
-  position:absolute;inset:0;pointer-events:none;z-index:0;
-  opacity:calc(var(--s-pattern-op) * .13);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='240' viewBox='0 0 180 240'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.4'%3E%3Cpath d='M10 240V96l22-20 22 20v144'/%3E%3Cpath d='M54 240V60l20-18 20 18v180'/%3E%3Cpath d='M94 240V120l22-20 22 20v120'/%3E%3Cpath d='M138 240V78l21-19 21 19v162'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:180px 240px;
-  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 42%);
-          mask-image:linear-gradient(90deg,#000 0%,transparent 42%);
-}
 .mega__in{position:relative;z-index:1}
 
 /* ---- оглавление категорий ---- */
 #mega-shops .mega__in{grid-template-columns:minmax(0,2.2fr) minmax(0,.9fr) minmax(0,1.1fr);gap:40px}
-.mcats{columns:2;column-gap:28px;margin:0;padding:0;list-style:none}
+/* Было: CSS-колонки. Они раскладывают строки независимо, поэтому
+   двухстрочные названия сдвигали свою колонку относительно соседней и
+   ряды разъезжались. Стало: сетка в две колонки с заполнением сверху
+   вниз — высота ряда общая для обеих колонок, строки стоят друг против
+   друга. Порядок категорий при этом сохранён. */
+.mcats{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:repeat(7,auto);grid-auto-flow:column;
+  column-gap:28px;margin:0;padding:0;list-style:none;
+}
+.mcats li{display:flex}
+.mcats li>a{width:100%}
 .mcats li{break-inside:avoid;margin:0}
 /* Разделители у каждой строки были: четырнадцать линеек в двух колонках
    читались как таблица и спорили с линией под заголовком колонки.
@@ -1158,7 +1164,6 @@ html{scroll-padding-top:76px}
   font-variant-numeric:tabular-nums;text-align:right;
 }
 .mcats a:hover .mcats__c{color:var(--s-accent)}
-.mcats__c.ph-mark{border-bottom:1px dashed var(--s-line-strong)}
 
 /* ---- средняя колонка: навигация + номер помещения ---- */
 .mroom{margin-top:30px;padding-top:24px;border-top:1px solid var(--s-line)}
@@ -1197,7 +1202,6 @@ html{scroll-padding-top:76px}
   line-height:1.2;color:var(--s-fg);margin-bottom:6px;
 }
 .mprev__c{display:block;font-size:12px;line-height:1.5;color:var(--s-fg-soft)}
-.mprev__c.ph-mark{border-bottom:1px dashed var(--s-line-strong)}
 .mprev__go{
   display:inline-flex;align-items:center;gap:9px;margin-top:14px;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
@@ -1230,7 +1234,6 @@ html{scroll-padding-top:76px}
   /* строки списка на телефоне уже с разделителями — своя линия у блока
      «номер помещения» давала двойную черту и пустую полосу между ними */
   .mroom{border-top:0;margin-top:16px;padding-top:0}
-  .mega__bg{display:none}
   .mroom{margin-top:22px;padding-top:20px}
   .mprev{grid-template-columns:minmax(0,108px) minmax(0,1fr)}
   .mprev__media{aspect-ratio:1/1;clip-path:none}

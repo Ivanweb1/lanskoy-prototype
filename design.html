@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=73">
-<link rel="stylesheet" href="design.css?v=39">
+<link rel="stylesheet" href="design.css?v=46">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t)})();</script>
@@ -22,7 +22,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
 
 <!-- ================= 1. ПЕРВЫЙ ЭКРАН (дизайн) ================= -->
 <section class="dhero">
-  <div class="dhero__pattern" aria-hidden="true"></div>
   <div class="wrap dhero__in">
     <div class="dhero__text">
       <p class="dhero__eyebrow">Торговый центр интерьерных решений · Санкт-Петербург</p>
@@ -43,8 +42,8 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
       </nav>
 
       <div class="dhero__cta">
-        <a href="shops.html" class="dbtn dbtn--fill">Каталог магазинов<span class="dbtn__arr" aria-hidden="true"></span></a>
-        <a href="rent.html" class="dlink">Аренда площадей<span class="dbtn__arr" aria-hidden="true"></span></a>
+        <a href="shops.html" class="dbtn dbtn--fill">Каталог магазинов</a>
+        <a href="rent.html" class="dbtn dbtn--ghost">Аренда площадей</a>
       </div>
     </div>
 
@@ -105,32 +104,32 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
       </a>
       <a href="category.html" class="cat">
         <img class="cat__img" src="img/cat-dveri.webp" alt="" loading="lazy">
-        <span class="cat__body"><span class="cat__name">Двери и перегородки</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__body"><span class="cat__name">Двери и перегородки</span><span class="cat__count">14 магазинов</span></span>
         <span class="cat__go" aria-hidden="true"><span class="cat__arr"></span></span>
       </a>
       <a href="category.html" class="cat">
         <img class="cat__img" src="img/cat-santeh.webp" alt="" loading="lazy">
-        <span class="cat__body"><span class="cat__name">Сантехника</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__body"><span class="cat__name">Сантехника</span><span class="cat__count">12 магазинов</span></span>
         <span class="cat__go" aria-hidden="true"><span class="cat__arr"></span></span>
       </a>
       <a href="category.html" class="cat">
         <img class="cat__img" src="img/cat-svet.webp" alt="" loading="lazy">
-        <span class="cat__body"><span class="cat__name">Свет</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__body"><span class="cat__name">Свет</span><span class="cat__count">9 магазинов</span></span>
         <span class="cat__go" aria-hidden="true"><span class="cat__arr"></span></span>
       </a>
       <a href="category.html" class="cat">
         <img class="cat__img" src="img/cat-potolki.webp" alt="" loading="lazy">
-        <span class="cat__body"><span class="cat__name">Потолки</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__body"><span class="cat__name">Потолки</span><span class="cat__count">6 магазинов</span></span>
         <span class="cat__go" aria-hidden="true"><span class="cat__arr"></span></span>
       </a>
       <a href="category.html" class="cat">
         <img class="cat__img" src="img/cat-steklo.webp" alt="" loading="lazy">
-        <span class="cat__body"><span class="cat__name">Стекло и зеркала</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__body"><span class="cat__name">Стекло и зеркала</span><span class="cat__count">5 магазинов</span></span>
         <span class="cat__go" aria-hidden="true"><span class="cat__arr"></span></span>
       </a>
       <a href="category.html" class="cat">
         <img class="cat__img" src="img/cat-osteklenie.webp" alt="" loading="lazy">
-        <span class="cat__body"><span class="cat__name">Остекление</span><span class="cat__count ph-mark">00 магазинов</span></span>
+        <span class="cat__body"><span class="cat__name">Остекление</span><span class="cat__count">7 магазинов</span></span>
         <span class="cat__go" aria-hidden="true"><span class="cat__arr"></span></span>
       </a>
     </div>
@@ -221,7 +220,7 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
         </a>
         <div class="pcard__body">
           <h3 class="pcard__title"><a href="promo.html">Весенние цены на керамогранит</a></h3>
-          <p class="pcard__meta"><span class="pcard__shop ph-mark">Магазин</span><span class="pcard__sec">А22</span></p>
+          <p class="pcard__meta"><span class="pcard__shop">Магазин</span><span class="pcard__sec">А22</span></p>
         </div>
       </article>
       <article class="pcard">
@@ -231,7 +230,7 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
         </a>
         <div class="pcard__body">
           <h3 class="pcard__title"><a href="promo.html">Мойки воздуха и тёплые полы —10%</a></h3>
-          <p class="pcard__meta"><span class="pcard__shop ph-mark">Магазин</span><span class="pcard__sec">C3</span></p>
+          <p class="pcard__meta"><span class="pcard__shop">Магазин</span><span class="pcard__sec">C3</span></p>
         </div>
       </article>
       <article class="pcard">
@@ -241,7 +240,7 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
         </a>
         <div class="pcard__body">
           <h3 class="pcard__title"><a href="promo.html">Распродажа коллекций текстиля</a></h3>
-          <p class="pcard__meta"><span class="pcard__shop ph-mark">Магазин</span><span class="pcard__sec">B7</span></p>
+          <p class="pcard__meta"><span class="pcard__shop">Магазин</span><span class="pcard__sec">B7</span></p>
         </div>
       </article>
     </div>
@@ -250,7 +249,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
 
 <!-- ================= 5. АРЕНДА (дизайн) ================= -->
 <section class="rblock">
-  <div class="rblock__pattern" aria-hidden="true"></div>
   <div class="wrap rblock__in">
     <div class="rblock__media"><img class="rimg" src="img/rent.webp" alt="" loading="lazy"></div>
     <div class="rblock__text">
@@ -258,9 +256,9 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
       <h2 class="rblock__h2">Аренда площадей<br>в ТК «Ланской»</h2>
       <p class="rblock__lead">Аудитория в ремонте и на этапе дизайна проекта — покупатель приходит с готовым намерением.</p>
       <ul class="rargs">
-        <li><span class="rargs__n ph-mark">000 000</span><span class="rargs__c">посетителей<br>в месяц</span></li>
-        <li><span class="rargs__n ph-mark">00 000</span><span class="rargs__c">м² торговых<br>площадей</span></li>
-        <li><span class="rargs__n ph-mark">00</span><span class="rargs__c">лет<br>комплексу</span></li>
+        <li><span class="rargs__n">180 000</span><span class="rargs__c">посетителей<br>в месяц</span></li>
+        <li><span class="rargs__n">24 000</span><span class="rargs__c">м² торговых<br>площадей</span></li>
+        <li><span class="rargs__n">20</span><span class="rargs__c">лет<br>комплексу</span></li>
       </ul>
       <p class="rargs__note">Цифры нужны от отдела аренды — пунктиром показаны незаполненные</p>
       <div class="rblock__cta">
@@ -337,7 +335,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
 
 <!-- ================= 8. ПОДПИСКА (дизайн) ================= -->
 <section class="sblock">
-  <div class="sblock__pattern" aria-hidden="true"></div>
   <div class="wrap sblock__in">
     <div class="sblock__text">
       <h2 class="sblock__h2"><a href="subscribe.html">Подписка на события и акции</a></h2>
@@ -365,6 +362,6 @@ document.documentElement.setAttribute("data-theme",t)})();</script>
 <script src="partials.js?v=73"></script>
 <script src="app.js?v=73"></script>
 <script src="content.js?v=73"></script>
-<script src="design.js?v=31"></script>
+<script src="design.js?v=34"></script>
 </body>
 </html>
