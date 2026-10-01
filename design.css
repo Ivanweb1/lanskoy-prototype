@@ -31,6 +31,37 @@
   --d-wrap:1360px;
   --d-ease:cubic-bezier(.22,.61,.36,1);
   --d-skew:-12deg;           /* наклон параллелограмма — графический элемент, стр. 36 */
+
+  /* ===== СРЕЗ — ПРАВИЛО НА ВСЮ ГЛАВНУЮ =====
+     Диагональ — графический элемент брендбука (стр. 36). Чтобы он не
+     превратился в украшение, он ставится только в трёх случаях.
+
+     1. БОКОВАЯ ДИАГОНАЛЬ — кадр уходит за край экрана и граничит с
+        текстовой половиной макета. Диагональ там работает границей двух
+        половин, а не отделкой картинки. Срезается всегда тот угол, что
+        со стороны текста — кадр как будто уступает место словам.
+        Три места на всю страницу: первый экран, «Аренда», «Найти магазин».
+        Больше не добавлять.
+
+     2. СРЕЗ ПО НИЖНЕЙ КРОМКЕ — кадр-обложка, под которым идёт своя
+        подпись: плитки «Направлений», «Акции», лид «Журнала», превью в меню.
+
+     3. БЕЗ СРЕЗА — кадр внутри строки списка (афиша, мелкие строки
+        журнала). Там у кадра нет собственной подписи снизу, срезать нечему.
+
+     ВЕЛИЧИНА. Срез — графическая деталь того же рода, что линейка: он не
+     масштабируется вместе с кадром, как не масштабируется линия в 1px.
+     Везде 22px. Единственное исключение — кадр ниже 150px: там 22px
+     съедают пятую часть снимка и читаются как брак, а не как приём —
+     там 11px. Промежуточных значений нет.
+
+     АДАПТИВ. Направление среза меняется только вместе с ролью кадра.
+     Боковая диагональ на узком экране разворачивается в пологую верхнюю
+     (0 7%): кадр становится полосой во всю ширину, и вертикальная диагональ
+     на ней не читается. В остальном один элемент не меняет тип среза
+     при смене ширины. */
+  --d-cut:22px;              /* срез по нижней кромке */
+  --d-cut-sm:11px;           /* то же для кадра ниже 150px */
 }
 
 /* ============ 2. СЕМАНТИЧЕСКИЕ ТОКЕНЫ (ТЗ п. 9.2) ============ */
@@ -457,19 +488,23 @@ body{
    слабость прежнего бенто, где две категории по 28 магазинов подавались
    по-разному. Все четырнадцать направлений на главной, без карусели и без
    кнопки «показать ещё»: перечень виден сразу. */
-.cgrid{display:grid;align-items:start}
+/* без align-items:start — плитки тянутся на всю высоту ряда, иначе подписи
+   негде прижать счётчик к низу и двухстрочные названия сдвигают свой */
+.cgrid{display:grid}
 .cgrid--lead{grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 28px}
 .cgrid--mid{grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 24px;margin-top:48px}
 /* последний ярус собран на auto-fill: категорий может стать больше или
    меньше семи, и ряд не придётся пересчитывать руками */
-.cgrid--rest{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:28px 18px;margin-top:44px}
+/* перед мелким ярусом разрыв вдвое больше, чем между первым и вторым:
+   при одинаковых отступах три яруса читались одним списком, который
+   почему-то мельчает. Воздух отделяет «весь остальной перечень» в свой регистр */
+.cgrid--rest{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:28px 18px;margin-top:76px}
 
 /* ступени размера: кадр, срез и кегль уменьшаются вместе, иначе
    мелкая плитка с крупной подписью читается как сбой, а не как ступень */
-.cgrid--mid .cat__media{clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 17px))}
 .cgrid--mid .cat__body{padding-top:14px;gap:5px}
 .cgrid--mid .cat__name{font-size:12px}
-.cgrid--rest .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 11px))}
+.cgrid--rest .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut-sm)))}
 .cgrid--rest .cat__body{padding-top:12px;gap:4px}
 .cgrid--rest .cat__name{font-size:11px;line-height:1.3;letter-spacing:.05em}
 .cgrid--rest .cat__count{font-size:10px}
@@ -509,7 +544,7 @@ body{
 .cat__media{
   position:relative;z-index:1;display:block;overflow:hidden;
   aspect-ratio:16/10;background:var(--cat-bg);
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));
 }
 /* подложка на случай, когда фотографии ещё нет — паттерн 03 «Монограмма», стр. 09 */
 .cat__media::before{
@@ -530,10 +565,15 @@ body{
    нигде на сайте нет. Читаемость не страдает: подпись всё равно не на
    фотографии, а на ровном фоне секции — навй по кремовому ≈ 13:1. */
 .cat__body{
-  position:relative;z-index:3;
+  position:relative;z-index:3;flex:1 0 auto;
   display:flex;flex-direction:column;gap:6px;align-items:flex-start;
+  /* счётчик прижат к низу ячейки, а не к имени: в ряду из семи
+     двухстрочные названия сдвигали свой счётчик на 14px вниз, и линия
+     счётчиков ломалась. Теперь имя растёт вверх, счётчик стоит на месте */
+  justify-content:space-between;
   padding:16px 0 0;
 }
+.cat__count{margin-top:auto}
 /* наведение отмечается именем, как у строк афиши и статей журнала */
 .cat:hover .cat__name{color:var(--s-accent-ink)}
 .cat__name{transition:color .2s}
@@ -567,8 +607,8 @@ body{
 }
 @media (max-width:640px){
   .sect--cats{padding:64px 0 72px}
-  /* кадр здесь около 100px высотой — 22px среза съедали бы пятую часть */
-  .cat__media,.cgrid--rest .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 13px))}
+  /* кадр здесь ниже 150px — срез по правилу уменьшенный */
+  .cat__media,.cgrid--rest .cat__media{aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut-sm)))}
   .cat__body{padding-top:12px}
   .cat__name,.cgrid--mid .cat__name{font-size:12px}
   /* в две колонки ступени не читаются — ярусы выравниваются */
@@ -596,68 +636,8 @@ body{
 }
 
 .egrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
-.ecard{display:flex;flex-direction:column;background:var(--s-bg);border:1px solid var(--s-line)}
-[data-theme="dark"] .ecard{background:var(--b-navy);border-color:rgba(196,154,108,.18)}
-.ecard:hover{border-color:var(--s-accent)}
-
-.ecard__media{
-  position:relative;display:block;overflow:hidden;
-  aspect-ratio:3/2;background:var(--b-navy);
-  /* срез по нижней кромке обложки — графический элемент брендбука, стр. 36 */
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));
-}
-.ecard__media::before{
-  content:"";position:absolute;inset:0;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.2' opacity='.4'%3E%3Cpath d='M38 80V52l10-9 10 9v28M58 80V44l11-10 11 10v36'/%3E%3Cpath d='M34 86c10-7 22-7 32 0s22 7 32 0'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:110px 110px;
-}
-.ecard__img{
-  position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;
-  visibility:hidden;                    /* показываем после загрузки, см. design.js */
-  transition:transform .9s var(--d-ease);
-}
-.ecard:hover .ecard__img{transform:scale(1.05)}
-
-/* Дата. В афише брендбука (стр. 36) плашка медная с тёмным текстом, но
-   на наших снимках — светлых и тёплых — медное по бежевому теряется.
-   Приведено к плашке срока на карточках акций: непрозрачный навй,
-   кремовый текст, медная линия с внутренней стороны. Отступление от
-   брендбука ради читаемости — вынести на согласование. */
-.ecard__date{
-  position:absolute;z-index:2;left:0;top:22px;
-  display:flex;flex-direction:column;align-items:center;gap:2px;
-  padding:9px 16px 9px 18px;background:var(--b-navy);color:var(--b-cream);
-  border-right:3px solid var(--b-copper);
-}
-.ecard__date b{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1}
-.ecard__date i{font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
-
-.ecard__body{display:flex;flex-direction:column;gap:12px;padding:22px 24px 26px;flex:1}
-.ecard__title{
-  font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.24;
-  letter-spacing:.01em;color:var(--s-fg);margin:0;
-}
-.ecard__title a{color:inherit}
-.ecard:hover .ecard__title a{color:var(--s-accent-ink)}
-.ecard__meta{
-  display:flex;align-items:center;flex-wrap:wrap;gap:10px;
-  font-size:13px;color:var(--s-fg-soft);
-}
-.ecard__dot{width:4px;height:4px;border-radius:50%;background:var(--s-accent);flex:none}
-.ecard__cta{
-  margin-top:auto;padding-top:6px;display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
-  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--s-accent-ink);border-bottom:1px solid transparent;
-}
-.ecard__cta:hover{border-bottom-color:var(--s-accent)}
-/* состояние «мест нет» — п. 6.8 ТЗ: регистрация закрывается автоматически */
-.ecard--off .ecard__img{filter:grayscale(1) brightness(.72)}
-.ecard--off .ecard__date{background:var(--b-grey);color:var(--b-navy);border-right-color:#B4AEA1}
-[data-theme="dark"] .ecard--off .ecard__date{background:#4A5568;color:var(--b-cream)}
-.ecard__cta--off{color:var(--s-fg-soft);border-bottom:0;cursor:default}
-.ecard__cta--off:hover{border-bottom-color:var(--s-line-strong)}
-
-/* состояние «событий нет» */
+/* обязательное состояние по п. 6.8 ТЗ: регистрация закрывается автоматически,
+   значит афиша может оказаться пустой. Показывается по адресу ?events=0 */
 .eempty[hidden]{display:none}
 .eempty{
   display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;
@@ -667,18 +647,8 @@ body{
 .eempty__d{font-size:15px;line-height:1.6;color:var(--s-fg-soft);margin:0}
 .eempty__cta{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:center;margin-top:10px}
 
-@media (max-width:1100px){
-  .egrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-  .ecard:last-child{grid-column:span 2}
-  .ecard:last-child .ecard__media{aspect-ratio:21/9}
-}
 @media (max-width:640px){
   .sect--events{padding:64px 0 72px}
-  .egrid{grid-template-columns:1fr;gap:18px}
-  .ecard:last-child{grid-column:auto}
-  .ecard:last-child .ecard__media,.ecard__media{aspect-ratio:16/10}
-  .ecard__title{font-size:19px}
-  .ecard__body{padding:18px 18px 22px}
   .eempty{padding:48px 18px}
   .eempty__t{font-size:22px}
 }
@@ -707,7 +677,7 @@ body{
   position:relative;display:block;overflow:hidden;
   aspect-ratio:4/3;background:var(--b-navy);
   /* срез в ту же сторону, что у обложек событий и у фотопанели первого экрана */
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));
 }
 .pcard__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -851,7 +821,7 @@ body{
 
 .jgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start}
 .jlead__media,.jrow__media{position:relative;display:block;overflow:hidden;background:var(--b-navy)}
-.jlead__media{aspect-ratio:16/10;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));margin-bottom:22px}
+.jlead__media{aspect-ratio:16/10;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));margin-bottom:22px}
 .jrow__media{flex:0 0 132px;aspect-ratio:4/3}
 .jlead__media::before,.jrow__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -1267,7 +1237,7 @@ html{scroll-padding-top:76px}
   display:block;position:relative;overflow:hidden;
   aspect-ratio:16/10;background:var(--s-plate);
   /* диагональный срез — тот же приём, что в первом экране и блоке «Аренда» */
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));   /* тот же срез, что у карточек */
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--d-cut)));   /* тот же срез, что у карточек */
 }
 .mprev__media img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -1442,11 +1412,11 @@ html{scroll-padding-top:76px}
 }
 /* срез брендбука здесь снят: на кадре в 125px высотой те же 22px съедали
    пятую часть снимка. Он остался на крупных обложках внутри события */
-.erow__media .ecard__img{
+.erow__media .erow__img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
   transition:transform .7s var(--d-ease);
 }
-.erow:hover .erow__media .ecard__img{transform:scale(1.05)}
+.erow:hover .erow__media .erow__img{transform:scale(1.05)}
 /* 2px сверху — оптическая компенсация полуинтерлиньяжа заголовка, без неё
    верх названия не совпадает с верхом цифры даты */
 .erow__body{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding-top:2px}
@@ -1457,6 +1427,7 @@ html{scroll-padding-top:76px}
 .erow__title a{color:inherit;transition:color .2s}
 .erow:hover .erow__title a{color:var(--s-accent-ink)}
 .erow__meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--s-fg-soft);margin:0}
+.erow__dot{width:4px;height:4px;border-radius:50%;background:var(--s-accent);flex:none}
 .erow__cta{
   display:inline-block;margin-top:2px;
   font-size:11px;font-weight:600;letter-spacing:.14em;
@@ -1470,7 +1441,7 @@ html{scroll-padding-top:76px}
    читается как сбой вёрстки, а не как статус события */
 .erow__cta--off{color:var(--s-fg-soft);cursor:default;border-bottom-color:transparent}
 .erow__cta--off:hover{border-bottom-color:transparent}
-.erow--off .erow__media .ecard__img{filter:grayscale(1) brightness(.85)}
+.erow--off .erow__media .erow__img{filter:grayscale(1) brightness(.85)}
 
 @media (max-width:1100px){
   /* в две колонки событие сжимается до нечитаемого — раскладываем стопкой */
