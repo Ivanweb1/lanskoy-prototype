@@ -457,9 +457,10 @@ body{
    и нижняя кромка карточек растворялась в фоне. Поднимаем фон на тон. */
 [data-theme="dark"] .sect--cats{background:var(--b-navy)}
 [data-theme="dark"] .cat{box-shadow:inset 0 0 0 1px rgba(196,154,108,.16)}
-.sect--cats .sect__head{
-  margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--s-line);
-}
+/* линия под шапкой снята: она отбивала заголовок от ссылки справа,
+   а ссылка ушла вниз кнопкой — под одиноким заголовком ей нечего
+   разделять. В остальных секциях ссылка в шапке есть, там линия остаётся */
+.sect--cats .sect__head{margin-bottom:40px;padding-bottom:0;border-bottom:0}
 .sect--cats .sect__h2{
   font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
   font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;
