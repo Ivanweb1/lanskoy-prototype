@@ -921,7 +921,9 @@ body{
   }
   .rblock__text{padding:48px calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad)) 64px;align-self:start}
   .jgrid{grid-template-columns:1fr;gap:36px}
-  .fgrid,.sblock__in{grid-template-columns:1fr;gap:36px}
+  /* minmax(0,1fr), а не 1fr: при 1fr колонка растягивается по min-content
+     формы и блок вылезал за правый падинг на 28px на 375px */
+  .fgrid,.sblock__in{grid-template-columns:minmax(0,1fr);gap:36px}
   .fgrid__media{aspect-ratio:16/9}
 }
 @media (max-width:640px){
@@ -954,7 +956,10 @@ body{
    возврате наверх). Fixed + отступ body на полную высоту шапки: поток
    не меняется вовсе, сжимается только сама шапка.
    --hdr-h измеряет design.js, значение здесь — на первый кадр. */
-.header{position:fixed;left:0;right:0;top:0;z-index:100;border-bottom:0}
+/* фон снят: в прототипе шапка красится белым, и в тёмной теме этот белый
+   просвечивал сквозь полупрозрачную навигацию (8% от --s-nav-bg).
+   Фон дают сами полосы: утилитарная непрозрачная, навигация с размытием */
+.header{position:fixed;left:0;right:0;top:0;z-index:100;border-bottom:0;background:transparent}
 body{padding-top:var(--hdr-h,138px)}
 html{scroll-padding-top:76px}
 /* на время замера высоты шапки гасим переходы, иначе она моргает */
@@ -1313,9 +1318,20 @@ html{scroll-padding-top:76px}
    заливке пропадают буква ВК и треугольник YouTube.
    Перед сдачей заменить на официальные с бренд-страниц площадок. */
 .footer__soc{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin:0;padding:0;list-style:none}
-.footer__soc a{display:block;padding:0;border:0;opacity:.78;transition:opacity .2s}
+/* в покое одноцветные, по наведению — фирменные цвета площадок.
+   Два файла друг над другом, а не фильтр: переход из серого фильтром
+   даёт грязный оттенок, а здесь оба начертания настоящие */
+.footer__soc a{
+  position:relative;display:block;padding:0;border:0;
+  opacity:.78;transition:opacity .2s;
+}
 .footer__soc a:hover{opacity:1}
-.footer__soc img{display:block;height:18px;width:auto}
+.soc__mark{display:block;height:18px;width:auto;transition:opacity .22s var(--d-ease)}
+.soc__mark--color{position:absolute;left:0;top:0;opacity:0}
+.footer__soc a:hover .soc__mark--color,
+.footer__soc a:focus-visible .soc__mark--color{opacity:1}
+.footer__soc a:hover .soc__mark:not(.soc__mark--color),
+.footer__soc a:focus-visible .soc__mark:not(.soc__mark--color){opacity:0}
 
 /* одна линейка колонок: контакты встали такой же колонкой, как разделы,
    поэтому все заголовки сидят на общей строке */

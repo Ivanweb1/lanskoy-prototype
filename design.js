@@ -367,8 +367,14 @@
      VK Видео, RuTube, Pinterest, TikTok; YouTube в этот набор не входит
      (сам набор продублирован в карточке арендатора, lk-card). */
 '  <ul class="footer__soc">' +
-'    <li><a href="#"><img src="logo-vk-mono.svg?v=2" alt="ВКонтакте" width="138" height="24" loading="lazy"></a></li>' +
-'    <li><a href="#"><img src="logo-youtube-mono.svg?v=2" alt="YouTube" width="111" height="24" loading="lazy"></a></li>' +
+'    <li><a href="#">' +
+'      <img class="soc__mark" src="logo-vk-mono.svg?v=2" alt="ВКонтакте" width="138" height="24" loading="lazy">' +
+'      <img class="soc__mark soc__mark--color" src="logo-vk.svg" alt="" aria-hidden="true" width="138" height="24" loading="lazy">' +
+'    </a></li>' +
+'    <li><a href="#">' +
+'      <img class="soc__mark" src="logo-youtube-mono.svg?v=2" alt="YouTube" width="111" height="24" loading="lazy">' +
+'      <img class="soc__mark soc__mark--color" src="logo-youtube.svg" alt="" aria-hidden="true" width="111" height="24" loading="lazy">' +
+'    </a></li>' +
 '  </ul>' +
       '</div>' +
       '<div class="footer__nav">' + navHTML + '</div>';
