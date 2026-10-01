@@ -1400,7 +1400,7 @@ html{scroll-padding-top:76px}
   .footer__in{display:flex;flex-direction:column}
   .footer__lead{display:contents}
   .footer__logo{order:1;padding-bottom:26px}
-  .footer .logo__img--inv{width:100%;height:auto;max-width:none}
+  .footer .logo__img--inv{height:52px}
   .footer__soc{order:3;gap:28px;margin-top:30px;padding-top:26px;border-top:1px solid rgba(196,154,108,.22)}
 }
 /* на 375px две колонки ещё читаются, в одну подвал вытягивался на экран
