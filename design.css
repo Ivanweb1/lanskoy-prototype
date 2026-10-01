@@ -837,7 +837,9 @@ body{
 }
 .jlead:hover .jimg,.jrow:hover .jimg{transform:scale(1.05)}
 .jrubric{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);margin:0 0 10px}
-.jlead__title{font-family:var(--d-serif);font-weight:600;font-size:clamp(22px,2.1vw,30px);line-height:1.2;margin:0 0 12px;color:var(--s-fg)}
+/* Гротеск, а не антиква: лид журнала — такая же статья, как строки рядом,
+   только крупнее. Антиква осталась на заголовках блоков и на числах. */
+.jlead__title{font-family:var(--d-sans);font-weight:600;font-size:clamp(20px,1.9vw,26px);line-height:1.25;letter-spacing:0;margin:0 0 12px;color:var(--s-fg)}
 .jlead__title a,.jrow__title a{color:inherit}
 .jlead:hover .jlead__title a,.jrow:hover .jrow__title a{color:var(--s-accent-ink)}
 .jmeta{font-size:12px;letter-spacing:.04em;color:var(--s-fg-soft);margin:0}
@@ -1522,9 +1524,12 @@ html{scroll-padding-top:76px}
 /* колонка тянется на высоту строки — её задаёт кадр, — чтобы действие
    встало на нижнюю кромку снимка, а не сразу под подписью */
 .erow__body{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding-top:2px;align-self:stretch}
+/* Гротеск: название события — строка перечня, а не заголовок блока.
+   Кегль чуть ниже прежнего — гротеск в том же размере читается крупнее
+   антиквы и начинал спорить с заголовком секции */
 .erow__title{
-  font-family:var(--d-serif);font-weight:600;font-size:clamp(18px,1.3vw,21px);
-  line-height:1.25;letter-spacing:.01em;color:var(--s-fg);margin:0;
+  font-family:var(--d-sans);font-weight:600;font-size:clamp(16px,1.15vw,18px);
+  line-height:1.35;letter-spacing:.01em;color:var(--s-fg);margin:0;
 }
 .erow__title a{color:inherit;transition:color .2s}
 .erow:hover .erow__title a{color:var(--s-accent-ink)}
