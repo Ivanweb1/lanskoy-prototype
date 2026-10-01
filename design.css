@@ -179,11 +179,15 @@ body{
      .wrap прототипа имеет max-width 1360 ВМЕСТЕ с падингом --pad,
      поэтому к половине остатка добавляем --pad */
   padding-left:calc(max(0px, (100% - var(--d-wrap)) / 2) + var(--pad));padding-right:0;
-  display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);
+  /* без поля поиска левая колонка опустела — фотопанель сдвинута влево:
+     было 1.04fr/1fr (текст 51%), стало 0.95fr/1fr (текст 48.7%).
+     Ниже ужать нельзя: «ПРОСТРАНСТВО» при 4.85vw упрётся в край
+     колонки на ширинах около 1100px. */
+  display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);
   /* высота подобрана так, чтобы полоса услуг попадала в первый экран, а не за сгиб */
   align-items:center;min-height:clamp(560px,70vh,760px);
 }
-.dhero__text{padding:64px 56px 64px 0;max-width:700px}
+.dhero__text{padding:64px 40px 64px 0;max-width:700px}
 
 .dhero__eyebrow{
   font-size:11px;letter-spacing:.22em;text-transform:uppercase;
@@ -263,7 +267,7 @@ body{
 /* фотопанель с диагональным срезом — приём из макета брендбука, стр. 38 */
 .dhero__media{
   position:relative;align-self:stretch;min-height:100%;
-  clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);
+  clip-path:polygon(6% 0,100% 0,100% 100%,0 100%);   /* диагональ сдвинута влево вместе с панелью */
   background:var(--b-navy);
   overflow:hidden;
 }
@@ -434,11 +438,13 @@ body{
    последняя плитка идёт во всю ширину — широкий кадр закрывает блок и
    даёт передышку перед «Ближайшими событиями». Нового блока на странице
    не появилось: полоса остаётся плиткой того же «Направления». */
-.grid--cats{gap:20px;grid-auto-rows:190px}
+/* Шесть плиток вместо восьми, ряды ниже: блок занимал почти полтора
+   экрана. Состав — только категории с данными заказчика, выдуманных
+   чисел в блоке не осталось. */
+.grid--cats{gap:18px;grid-auto-rows:170px}
 @media (min-width:1101px){
-  .grid--cats{grid-template-rows:190px 190px 190px 300px}
+  .grid--cats{grid-template-rows:170px 170px 240px}
 }
-.cat--half{grid-column:span 2}
 .cat--wide{grid-column:1 / -1}
 .cat--wide .cat__name{font-size:clamp(18px,1.6vw,24px);line-height:1.2;letter-spacing:.04em;max-width:18ch}
 .cat--wide .cat__count{font-size:12px}
@@ -452,15 +458,23 @@ body{
    подписью. Контраст: навй по кремовому ≈ 13:1, затемнённый медный
    (#8E6034) по кремовому — 4.87:1, мелкий текст проходит AA. */
 :root,[data-theme="light"]{
-  --cat-veil-0:rgba(246,244,237,0);
-  --cat-veil-1:rgba(246,244,237,.66);
-  --cat-veil-2:rgba(246,244,237,.97);
-  --cat-veil-hover-0:rgba(246,244,237,.2);
-  --cat-veil-hover-1:rgba(246,244,237,.74);
-  --cat-veil-hover-2:rgba(246,244,237,.99);
+  /* Кремовая вуаль сливалась с кремовым фоном страницы — плитки теряли
+     край. Берём медный из кнопок: он и отделяет плитку от фона, и держит
+     подпись. Контраст по медному #C49A6C: тёмно-синий 6.0:1,
+     шоколадный 4.73:1 — оба проходят AA для мелкого текста. */
+  --cat-veil-0:rgba(196,154,108,0);
+  --cat-veil-1:rgba(196,154,108,.72);
+  --cat-veil-2:rgba(196,154,108,.96);
+  --cat-veil-hover-0:rgba(196,154,108,.22);
+  --cat-veil-hover-1:rgba(196,154,108,.8);
+  --cat-veil-hover-2:rgba(196,154,108,.98);
   --cat-fg:var(--b-navy);
-  --cat-count:var(--b-copper-ink);
-  --cat-plate:rgba(246,244,237,.55);
+  --cat-count:var(--b-choc);
+  --cat-rule:rgba(22,38,61,.35);
+  --cat-plate:rgba(22,38,61,.14);
+  --cat-plate-line:rgba(22,38,61,.45);
+  --cat-plate-strong:var(--b-navy);
+  --cat-plate-arr:var(--b-cream);
   --cat-bg:var(--b-cream-2);
 }
 [data-theme="dark"]{
@@ -472,7 +486,11 @@ body{
   --cat-veil-hover-2:rgba(14,26,43,.95);
   --cat-fg:var(--b-cream);
   --cat-count:var(--b-copper);
+  --cat-rule:rgba(196,154,108,.5);
   --cat-plate:rgba(14,26,43,.35);
+  --cat-plate-line:rgba(196,154,108,.55);
+  --cat-plate-strong:var(--b-copper);
+  --cat-plate-arr:var(--b-navy);
   --cat-bg:var(--b-navy);
 }
 .cat{
@@ -517,7 +535,7 @@ body{
   font-size:11px;letter-spacing:.06em;color:var(--cat-count);
   background:none;padding:0;margin:0;
 }
-.cat--big .cat__count{font-size:12px;padding-top:9px;border-top:1px solid rgba(196,154,108,.5)}
+.cat--big .cat__count{font-size:12px;padding-top:9px;border-top:1px solid var(--cat-rule)}
 /* стрелка в параллелограмме — тот же графический элемент, что у иконок услуг (стр. 36) */
 .cat__go{
   position:absolute;z-index:3;right:20px;bottom:20px;
@@ -527,17 +545,17 @@ body{
 .cat__go::before{
   content:"";position:absolute;inset:0;
   transform:skewX(var(--d-skew));
-  border:1px solid rgba(196,154,108,.55);background:var(--cat-plate);
+  border:1px solid var(--cat-plate-line);background:var(--cat-plate);
 }
 .cat__arr{
-  position:relative;width:16px;height:9px;background:var(--b-copper);
+  position:relative;width:16px;height:9px;background:var(--cat-fg);
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
           mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
 }
 /* крупная плитка — ведущая: её кнопка залита медным и видна без наведения */
 .cat--big .cat__go{opacity:1;width:58px;height:58px;right:24px;bottom:24px}
-.cat--big .cat__go::before{background:var(--b-copper);border-color:var(--b-copper)}
-.cat--big .cat__arr{background:var(--b-navy);width:19px;height:11px}
+.cat--big .cat__go::before{background:var(--cat-plate-strong);border-color:var(--cat-plate-strong)}
+.cat--big .cat__arr{background:var(--cat-plate-arr);width:19px;height:11px}
 .cat--big:hover .cat__go{transform:translateX(4px)}
 
 .cat:hover{border-color:transparent}
@@ -1322,9 +1340,9 @@ html{scroll-padding-top:76px}
 }
 .footer__logo{display:block}
 .footer .logo__img--inv{filter:none;height:64px;width:auto;display:block}
-.footer__soc{display:flex;gap:10px;margin:0;font-size:inherit}
+.footer__soc{display:flex;flex-wrap:wrap;gap:8px;margin:0;font-size:inherit;justify-content:flex-end;max-width:70%}
 .footer__soc a{
-  display:inline-flex;align-items:center;height:34px;padding:0 18px;border-radius:2px;
+  display:inline-flex;align-items:center;height:32px;padding:0 13px;border-radius:2px;
   border:1px solid rgba(196,154,108,.38);color:var(--b-copper);
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   transition:background-color .2s,color .2s,border-color .2s;
@@ -1351,6 +1369,9 @@ html{scroll-padding-top:76px}
   .footer__nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 24px}
   .footer__lead{padding-bottom:24px}
   .footer .logo__img--inv{height:52px}
+  /* на телефоне строка знака и соцсетей разворачивается в два ряда,
+     ограничение ширины загоняло восемь плашек в узкую колонку */
+  .footer__soc{max-width:none;justify-content:flex-start}
 }
 /* на 375px две колонки ещё читаются, в одну подвал вытягивался на экран
    с лишним — одна колонка остаётся для совсем узких */
@@ -1365,18 +1386,26 @@ html{scroll-padding-top:76px}
    справа. Семантически вернее (афиша — это расписание, а не витрина) и
    снимает два тяжёлых приёма сразу: череду одинаковых сеток и плашку
    даты поверх фотографии — дата вышла из кадра. */
-.eposter{display:flex;flex-direction:column}
+/* По одной строке на всю ширину блок уходил на полтора экрана. Две в
+   ряд: сами строки стали компактнее, а нечётная последняя занимает ряд
+   целиком — так ряд не остаётся наполовину пустым. */
+.eposter{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 52px}
 .erow{
-  display:grid;grid-template-columns:132px minmax(0,1fr) 300px;
-  align-items:center;gap:32px;padding:26px 0;
+  display:grid;grid-template-columns:96px minmax(0,1fr) 164px;
+  align-items:center;gap:20px;padding:24px 0;
 }
-.erow + .erow{border-top:1px solid var(--s-line)}
+.erow:nth-child(n+3){border-top:1px solid var(--s-line)}
+/* нечётная последняя строка разворачивается на оба столбца */
+.erow:last-child:nth-child(odd){
+  grid-column:1 / -1;
+  grid-template-columns:132px minmax(0,1fr) 300px;gap:32px;
+}
 .erow__date{
   display:flex;flex-direction:column;align-items:flex-start;gap:4px;
   padding-left:18px;border-left:2px solid var(--s-accent);
 }
 .erow__date b{
-  font-family:var(--d-serif);font-weight:600;font-size:clamp(26px,2.4vw,34px);
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(22px,1.9vw,28px);
   line-height:1;letter-spacing:-.01em;color:var(--s-fg);
 }
 .erow__date i{
@@ -1385,7 +1414,7 @@ html{scroll-padding-top:76px}
 }
 .erow__body{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .erow__title{
-  font-family:var(--d-serif);font-weight:600;font-size:clamp(20px,1.8vw,26px);
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(18px,1.4vw,21px);
   line-height:1.2;letter-spacing:.01em;color:var(--s-fg);margin:0;
 }
 .erow__title a{color:inherit;transition:color .2s}
@@ -1415,10 +1444,13 @@ html{scroll-padding-top:76px}
 .erow--off .erow__date i{color:var(--s-fg-soft)}
 
 @media (max-width:1100px){
+  .eposter{grid-template-columns:1fr;gap:0}
   .erow{grid-template-columns:110px minmax(0,1fr) 220px;gap:24px}
+  .erow:nth-child(n+2){border-top:1px solid var(--s-line)}
+  .erow:last-child:nth-child(odd){grid-template-columns:110px minmax(0,1fr) 220px;gap:24px}
 }
 @media (max-width:760px){
-  .erow{grid-template-columns:92px minmax(0,1fr);gap:18px;padding:22px 0}
+  .erow,.erow:last-child:nth-child(odd){grid-template-columns:92px minmax(0,1fr);gap:18px;padding:22px 0}
   .erow__media{grid-column:1 / -1;order:3;aspect-ratio:16/9}
   .erow__date{padding-left:14px}
 }
