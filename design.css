@@ -634,10 +634,15 @@ body{
 }
 .pcard:hover .pcard__img{transform:scale(1.05)}
 /* срок действия — главное в акции после самой скидки */
+/* Срок акции. Было: медный текст на полупрозрачном навй — 11 px капителью
+   поверх фотографии, фактура снимка просвечивала и съедала и без того
+   невысокий контраст. Стало: непрозрачный навй и кремовый текст (12.8:1),
+   медная линия слева оставляет акцент бренда. */
 .pcard__term{
   position:absolute;z-index:2;right:0;top:18px;
-  padding:7px 14px;background:rgba(14,26,43,.86);color:var(--b-copper);
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
+  padding:8px 14px;background:var(--b-navy);color:var(--b-cream);
+  border-left:3px solid var(--b-copper);
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
 }
 
 .pcard__body{display:flex;flex-direction:column;gap:12px;padding:18px 0 0}
@@ -891,7 +896,17 @@ body{
 :root,[data-theme="light"]{--s-nav-solid:rgba(246,244,237,.97);--s-overlay:rgba(22,38,61,.45);--s-hairline:rgba(196,154,108,.3)}
 [data-theme="dark"]{--s-nav-solid:rgba(14,26,43,.97);--s-overlay:rgba(5,10,18,.6);--s-hairline:rgba(196,154,108,.24)}
 
-.header{position:sticky;top:0;z-index:100}
+/* Шапка выведена из потока. При сжатии она теряет разом три высоты —
+   утилитарную строку, 28 px строки навигации и 16 px логотипа, — и со
+   sticky весь контент под ней скакал вверх на эти ~73 px (и обратно при
+   возврате наверх). Fixed + отступ body на полную высоту шапки: поток
+   не меняется вовсе, сжимается только сама шапка.
+   --hdr-h измеряет design.js, значение здесь — на первый кадр. */
+.header{position:fixed;left:0;right:0;top:0;z-index:100;border-bottom:0}
+body{padding-top:var(--hdr-h,138px)}
+html{scroll-padding-top:76px}
+/* на время замера высоты шапки гасим переходы, иначе она моргает */
+.no-anim,.no-anim *{transition:none !important}
 
 /* утилитарная строка сворачивается при прокрутке */
 .utility{
@@ -1077,4 +1092,138 @@ body{
   }
   .mega__cats a::after,.mega__links a::after{width:15px;opacity:.5}
   .mega__title{margin-bottom:8px}
+}
+
+/* ============ 22. МЕГАМЕНЮ: СПИСОК-ОГЛАВЛЕНИЕ И ЖИВАЯ ПРЕВЬЮШКА ============
+   Было: три колонки одинаковых текстовых ссылок — панель читалась как
+   список ссылок в подвале и ничем не отличалась от остальных выпадашек.
+   Стало: категории превращены в оглавление «название — число магазинов»
+   с медной линией-наведением, а правая колонка — панель-превью, которая
+   показывает фотографию наведённой категории (снимки те же, что в блоке
+   «Направления» ниже по странице). Разметку собирает design.js, чтобы
+   partials.js и Ч/Б-прототип остались нетронутыми. */
+
+/* паттерн 01 «Геометрия архитектуры» — панель перестаёт быть плоской плашкой */
+.mega{position:relative;overflow:hidden}
+.mega__bg{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  opacity:calc(var(--s-pattern-op) * .13);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='240' viewBox='0 0 180 240'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.4'%3E%3Cpath d='M10 240V96l22-20 22 20v144'/%3E%3Cpath d='M54 240V60l20-18 20 18v180'/%3E%3Cpath d='M94 240V120l22-20 22 20v120'/%3E%3Cpath d='M138 240V78l21-19 21 19v162'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:180px 240px;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 42%);
+          mask-image:linear-gradient(90deg,#000 0%,transparent 42%);
+}
+.mega__in{position:relative;z-index:1}
+
+/* ---- оглавление категорий ---- */
+#mega-shops .mega__in{grid-template-columns:minmax(0,2fr) minmax(0,.95fr) minmax(0,1.15fr);gap:48px}
+.mcats{columns:2;column-gap:40px;margin:0;padding:0;list-style:none}
+.mcats li{break-inside:avoid;margin:0}
+.mcats a{
+  position:relative;display:flex;align-items:baseline;gap:10px;
+  padding:9px 0 9px 16px;border-bottom:1px solid var(--s-line);
+  font-size:14px;line-height:1.35;color:var(--s-fg);
+  transition:color .18s,border-color .18s,padding-left .18s var(--d-ease);
+}
+.mcats a::after{content:none}
+/* медная засечка слева — вместо стрелки, которая раздвигала строку */
+.mcats a::before{
+  content:"";position:absolute;left:0;top:50%;width:0;height:1px;
+  background:var(--s-accent);transform:translateY(-50%);
+  transition:width .18s var(--d-ease);
+}
+.mcats a:hover,.mcats a:focus-visible{color:var(--s-accent-ink);border-color:var(--s-accent)}
+.mcats a:hover::before,.mcats a:focus-visible::before{width:9px}
+.mcats__n{flex:1;min-width:0}
+.mcats__c{
+  flex:none;font-size:11px;letter-spacing:.08em;color:var(--s-fg-soft);
+  font-variant-numeric:tabular-nums;
+}
+.mcats a:hover .mcats__c{color:var(--s-accent)}
+.mcats__c.ph-mark{border-bottom:1px dashed var(--s-line-strong)}
+
+/* ---- средняя колонка: навигация + номер помещения ---- */
+.mroom{margin-top:30px;padding-top:24px;border-top:1px solid var(--s-line)}
+.mroom__t{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--s-accent-ink);margin:0 0 14px;
+}
+#mega-shops .mega__col:last-child{border:0;background:none;padding:0}
+
+/* ---- панель-превью ---- */
+.mprev{
+  display:block;position:relative;align-self:start;
+  color:inherit;text-decoration:none;
+  border:1px solid var(--s-line);background:var(--s-plate);
+  transition:border-color .22s;
+}
+.mprev:hover{border-color:var(--s-accent)}
+.mprev__media{
+  display:block;position:relative;overflow:hidden;
+  aspect-ratio:16/10;background:var(--s-plate);
+  /* диагональный срез — тот же приём, что в первом экране и блоке «Аренда» */
+  clip-path:polygon(0 0,100% 0,100% 100%,0 88%);
+}
+.mprev__media img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:opacity .25s var(--d-ease),transform .5s var(--d-ease);
+}
+.mprev:hover .mprev__media img{transform:scale(1.04)}
+.mprev__body{display:block;padding:14px 18px 18px}
+.mprev__kicker{
+  display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--s-accent-ink);margin-bottom:7px;
+}
+.mprev__t{
+  display:block;font-family:var(--d-serif);font-weight:600;font-size:18px;
+  line-height:1.2;color:var(--s-fg);margin-bottom:6px;
+}
+.mprev__c{display:block;font-size:12px;line-height:1.5;color:var(--s-fg-soft)}
+.mprev__c.ph-mark{border-bottom:1px dashed var(--s-line-strong)}
+.mprev__go{
+  display:inline-flex;align-items:center;gap:9px;margin-top:14px;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--s-accent-ink);
+}
+.mprev__go .dbtn__arr{transition:transform .22s var(--d-ease)}
+.mprev:hover .mprev__go .dbtn__arr{transform:translateX(5px)}
+
+/* ---- панель «О комплексе»: три колонки ссылок и та же превьюшка ---- */
+#mega-about .mega__in{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.3fr);
+  gap:44px;
+}
+
+@media (max-width:1100px){
+  #mega-shops .mega__in,#mega-about .mega__in{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:34px}
+  #mega-shops .mega__col--prev,#mega-about .mega__col--prev{grid-column:span 2}
+  .mprev{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);align-items:center}
+  .mprev__media{aspect-ratio:16/9;clip-path:polygon(0 0,100% 0,88% 100%,0 100%)}
+  .mprev__body{padding:16px 20px}
+}
+@media (max-width:640px){
+  #mega-shops .mega__in,#mega-about .mega__in{grid-template-columns:1fr;gap:24px}
+  #mega-shops .mega__col--prev,#mega-about .mega__col--prev{grid-column:auto}
+  .mcats{columns:1}
+  .mcats a{padding:12px 0 12px 14px}
+  /* строки списка на телефоне уже с разделителями — своя линия у блока
+     «номер помещения» давала двойную черту и пустую полосу между ними */
+  .mroom{border-top:0;margin-top:16px;padding-top:0}
+  .mega__bg{display:none}
+  .mroom{margin-top:22px;padding-top:20px}
+  .mprev{grid-template-columns:minmax(0,108px) minmax(0,1fr)}
+  .mprev__media{aspect-ratio:1/1;clip-path:none}
+  .mprev__body{padding:12px 14px}
+  .mprev__t{font-size:15px}
+  .mprev__go{margin-top:10px}
+}
+
+/* Шапка фиксированная, а на телефоне выдвижное меню (.menu) и панели лежат
+   внутри неё: без ограничения высоты длинный список категорий уходил за
+   нижний край экрана и доскроллить до него было нечем. */
+@media (max-width:760px){
+  .menu,.searchbar,.mega{
+    max-height:calc(100dvh - var(--hdr-h,138px));
+    overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  }
 }

@@ -16,18 +16,24 @@
 
     // логотип: на тёмном фоне знак тёмно-синим не читается.
     // Брендбук стр. 08 — на тёмном фоне используется инверсная версия.
+    // Белый локап заказчика (logo-white.png, обрезан по артворку из исходного
+    // «Логотип_ТЦ_Белый.png» 4500×4500) — он же идёт в подвал.
     var logo = document.querySelector('.nav .logo__img');
-    if (logo) logo.src = theme === 'dark' ? 'logo-dark.svg' : 'logo.svg';
+    if (logo) logo.src = theme === 'dark' ? 'logo-white.png' : 'logo.svg';
 
     // подвал тёмно-синий в обеих темах, поэтому там всегда инверсная версия:
     // тёмный знак логотипа на тёмном фоне не читался
     var flogo = document.querySelector('.footer .logo__img--inv');
-    if (flogo) flogo.src = 'logo-dark.svg';
+    if (flogo) flogo.src = 'logo-white.png';
 
     // фотография первого экрана: светлая — просторный светлый интерьер (стр. 39),
     // тёмная — вечерний шоурум с тёплым светом (стр. 38)
     var photo = document.getElementById('heroPhoto');
     if (photo) photo.src = theme === 'dark' ? 'img/hero-dark.webp' : 'img/hero-light.webp';
+
+    // в покое превью мегаменю показывает тот же снимок комплекса
+    var mshops = document.getElementById('mega-shops');
+    if (mshops && mshops.megaPrevReset) mshops.megaPrevReset();
 
     var tog = document.getElementById('themeTog');
     if (tog) {
@@ -89,6 +95,173 @@
     navIn.appendChild(side);
   })();
 
+  /* ---------- мегаменю: оглавление категорий и панель-превью ----------
+     Разметку шапки даёт partials.js, общий для всего Ч/Б-прототипа, —
+     трогать его нельзя, иначе фотографии уедут и на чёрно-белые страницы.
+     Поэтому панели пересобираются здесь, на странице дизайна.
+
+     Числа магазинов и снимки — те же, что в блоке «Направления» ниже:
+     шесть категорий с известным количеством взяты из данных заказчика,
+     остальные помечены как заглушки (ph-mark), придумывать их нельзя. */
+  (function () {
+    var CATDATA = {
+      'Декоративно-отделочные материалы': ['img/cat-dekor.webp', '28'],
+      'Плитка':                           ['img/cat-plitka.webp', '17'],
+      'Обои':                             ['img/cat-oboi.webp', '7'],
+      'Шторы, карнизы, ткани':            ['img/cat-tekstil.webp', '11'],
+      'Лакокрасочные и клеящие материалы':['img/cat-lkm.webp', '10'],
+      'Напольные покрытия':               ['img/cat-pol.webp', '28'],
+      'Потолки':                          ['img/cat-potolki.webp', null],
+      'Двери, перегородки, фурнитура':    ['img/cat-dveri.webp', null],
+      'Остекление и оконная фурнитура':   ['img/cat-osteklenie.webp', null],
+      'Стекло и зеркала':                 ['img/cat-steklo.webp', null],
+      'Сантехника':                       ['img/cat-santeh.webp', null],
+      'Свет':                             ['img/cat-svet.webp', null],
+      'Лестницы':                         [null, null],
+      'Отопление и кондиционирование':    [null, null]
+    };
+
+    function plural(n) {
+      var d = n % 100, u = n % 10;
+      if (d > 10 && d < 20) return 'магазинов';
+      if (u === 1) return 'магазин';
+      if (u > 1 && u < 5) return 'магазина';
+      return 'магазинов';
+    }
+
+    // подложка-паттерн в обе панели
+    [].forEach.call(document.querySelectorAll('.mega'), function (m) {
+      if (m.querySelector('.mega__bg')) return;
+      var p = document.createElement('div');
+      p.className = 'mega__bg';
+      p.setAttribute('aria-hidden', 'true');
+      m.insertBefore(p, m.firstChild);
+    });
+
+    function prevCard(id, cls) {
+      return '<div class="mega__col mega__col--prev">' +
+             '  <a class="mprev" id="' + id + '" href="shops.html">' +
+             '    <span class="mprev__media"><img alt="" loading="lazy" ' + cls + '></span>' +
+             '    <span class="mprev__body">' +
+             '      <span class="mprev__kicker"></span>' +
+             '      <span class="mprev__t"></span>' +
+             '      <span class="mprev__c"></span>' +
+             '      <span class="mprev__go">Смотреть<span class="dbtn__arr" aria-hidden="true"></span></span>' +
+             '    </span>' +
+             '  </a>' +
+             '</div>';
+    }
+
+    /* ---- панель «Магазины» ---- */
+    var shops = document.getElementById('mega-shops');
+    if (shops && !shops.querySelector('.mcats')) {
+      var inS  = shops.querySelector('.mega__in');
+      var cats = [].map.call(shops.querySelectorAll('.mega__cats a'), function (a) {
+        return { name: a.textContent.trim(), href: a.getAttribute('href') };
+      });
+      var navHTML = shops.querySelector('.mega__links').innerHTML;
+      var field   = shops.querySelector('.field--sm');   // переносим узел, а не копируем
+
+      var rows = cats.map(function (c) {
+        var d = CATDATA[c.name] || [null, null];
+        var cnt = d[1]
+          ? '<span class="mcats__c">' + d[1] + '</span>'
+          : '<span class="mcats__c ph-mark">00</span>';
+        return '<li><a href="' + c.href + '"' +
+               ' data-img="' + (d[0] || '') + '"' +
+               ' data-count="' + (d[1] || '') + '">' +
+               '<span class="mcats__n">' + c.name + '</span>' + cnt + '</a></li>';
+      }).join('');
+
+      inS.innerHTML =
+        '<div class="mega__col mega__col--wide">' +
+        '  <p class="mega__title">Категории · число магазинов</p>' +
+        '  <ul class="mcats">' + rows + '</ul>' +
+        '</div>' +
+        '<div class="mega__col">' +
+        '  <p class="mega__title">Навигация</p>' +
+        '  <ul class="mega__links">' + navHTML + '</ul>' +
+        '  <div class="mroom">' +
+        '    <p class="mroom__t">Знаете номер помещения?</p>' +
+        '    <div class="mroom__field"></div>' +
+        '    <p class="mega__hint">Секции 1—3 этажей: А, B, C</p>' +
+        '  </div>' +
+        '</div>' +
+        prevCard('megaPrev', 'id="megaPrevImg"');
+
+      if (field) inS.querySelector('.mroom__field').appendChild(field);
+
+      /* превью: в покое — весь каталог, при наведении на строку — категория.
+         Фотография комплекса остаётся и для категорий без своего снимка:
+         подставлять чужой кадр вместо отсутствующего нельзя. */
+      var card = document.getElementById('megaPrev');
+      var cimg = document.getElementById('megaPrevImg');
+      var ck   = card.querySelector('.mprev__kicker');
+      var ct   = card.querySelector('.mprev__t');
+      var cc   = card.querySelector('.mprev__c');
+
+      function heroSrc() {
+        return root.getAttribute('data-theme') === 'dark'
+          ? 'img/hero-dark.webp' : 'img/hero-light.webp';
+      }
+      function reset() {
+        cimg.src = heroSrc();
+        ck.textContent = 'Каталог';
+        ct.textContent = 'Все направления';
+        cc.textContent = 'Более 150 магазинов на трёх этажах';
+        cc.classList.remove('ph-mark');
+        card.setAttribute('href', 'shops.html');
+      }
+      shops.megaPrevReset = reset;        // чтобы переключатель темы обновил снимок
+      reset();
+
+      [].forEach.call(inS.querySelectorAll('.mcats a'), function (a) {
+        a.addEventListener('mouseenter', function () {
+          var img = a.getAttribute('data-img');
+          var n   = a.getAttribute('data-count');
+          cimg.src = img || heroSrc();
+          ck.textContent = 'Направление';
+          ct.textContent = a.querySelector('.mcats__n').textContent;
+          if (n) {
+            cc.textContent = n + ' ' + plural(+n);
+            cc.classList.remove('ph-mark');
+          } else {
+            cc.textContent = '00 магазинов';
+            cc.classList.add('ph-mark');
+          }
+          card.setAttribute('href', a.getAttribute('href'));
+        });
+        a.addEventListener('focus', function () {
+          a.dispatchEvent(new Event('mouseenter'));
+        });
+      });
+      inS.querySelector('.mcats').addEventListener('mouseleave', reset);
+
+      // снимки подгружаем один раз при первом раскрытии — чтобы превью
+      // не мигало белым на каждом наведении
+      var warmed = false;
+      new MutationObserver(function () {
+        if (warmed || shops.hidden) return;
+        warmed = true;
+        Object.keys(CATDATA).forEach(function (k) {
+          if (CATDATA[k][0]) { var i = new Image(); i.src = CATDATA[k][0]; }
+        });
+      }).observe(shops, { attributes: true, attributeFilter: ['hidden'] });
+    }
+
+    /* ---- панель «О комплексе»: та же карточка, но постоянная ---- */
+    var about = document.getElementById('mega-about');
+    if (about && !about.querySelector('.mprev')) {
+      about.querySelector('.mega__in').insertAdjacentHTML('beforeend', prevCard('megaPrevAbout', ''));
+      var ac = document.getElementById('megaPrevAbout');
+      ac.setAttribute('href', 'floors.html');
+      ac.querySelector('img').src = 'img/find.webp';
+      ac.querySelector('.mprev__kicker').textContent = 'Навигация по комплексу';
+      ac.querySelector('.mprev__t').textContent = 'Схема этажей';
+      ac.querySelector('.mprev__c').textContent = 'Три этажа, секции А, B и C — найти магазин на плане';
+    }
+  })();
+
   /* ---------- шапка: липкая + компактное состояние ---------- */
   var header = document.querySelector('.header');
   if (header) {
@@ -97,16 +270,49 @@
     scrim.className = 'hscrim';
     document.body.appendChild(scrim);
 
+    /* Шапка фиксированная (design.css, разд. 18), поэтому её высоту надо
+       отдать потоку отступом body. Меряем в покое: в сжатом состоянии
+       шапка ниже на утилитарную строку и на 28px строки навигации. */
+    var root = document.documentElement;
+    var restH = 0;
+
+    function measure() {
+      var was = document.body.classList.contains('is-sticky');
+      if (was) {
+        document.body.classList.add('no-anim');
+        document.body.classList.remove('is-sticky');
+      }
+      restH = header.offsetHeight;
+      if (was) {
+        document.body.classList.add('is-sticky');
+        void header.offsetHeight;          // применяем без анимации
+        document.body.classList.remove('no-anim');
+      }
+      root.style.setProperty('--hdr-h', restH + 'px');
+    }
+
+    /* Порог с гистерезисом: сжимаем после 48px, разжимаем только ниже 12px.
+       С одним порогом состояние дребезжало при мелкой прокрутке у границы. */
     var compact = false;
     function onScroll() {
-      var next = window.scrollY > 24;
+      var y = window.scrollY;
+      var next = compact ? y > 12 : y > 48;
       if (next !== compact) {
         compact = next;
         document.body.classList.toggle('is-sticky', compact);
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(measure, 150);
+    });
+    measure();
     onScroll();
+    // шрифты Google меняют высоту строки навигации уже после первого кадра
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 
     // подсветка иконки и затемнение страницы, пока открыт поиск или мегаменю.
     // Обработчики прототипа (app.js) сами открывают панели — мы только следим
