@@ -365,15 +365,24 @@
          Знаки одноцветные: значок кремовый, внутренняя деталь цвета подвала,
          иначе при сплошной заливке буква ВК и треугольник YouTube пропадают.
          Перед сдачей заменить на официальные с бренд-страниц площадок. */
-'    <ul class="footer__soc">' +
-'      <li><a href="#"><img src="logo-vk-mono.svg" alt="ВКонтакте" width="138" height="24" loading="lazy"></a></li>' +
-'      <li><a href="#"><img src="logo-youtube-mono.svg" alt="YouTube" width="111" height="24" loading="lazy"></a></li>' +
-'    </ul>' +
+
       '  </div>' +
       '</div>' +
       '<div class="footer__nav">' + navHTML + '</div>';
 
     if (logo) inner.querySelector('.footer__logo').appendChild(logo);
+
+    /* соцсети — в правовую строку, между копирайтом и ссылками: рядом
+       с кнопкой наверху они спорили с ней по весу */
+    var legal = foot.querySelector('.footer__legal');
+    if (legal && !legal.querySelector('.footer__soc')) {
+      var soc = document.createElement('ul');
+      soc.className = 'footer__soc';
+      soc.innerHTML =
+        '<li><a href="#"><img src="logo-vk-mono.svg?v=2" alt="ВКонтакте" width="138" height="24" loading="lazy"></a></li>' +
+        '<li><a href="#"><img src="logo-youtube-mono.svg?v=2" alt="YouTube" width="111" height="24" loading="lazy"></a></li>';
+      legal.insertBefore(soc, legal.lastElementChild);
+    }
   })();
 
   /* ---------- шапка: липкая + компактное состояние ---------- */
@@ -462,3 +471,64 @@
     if (grid && empty) { grid.hidden = true; empty.hidden = false; }
   }
 })();
+
+  /* ---------- появление снизу по скроллу ----------
+     Скрытие делает CSS по классу js-rv на <html> (ставится инлайн-скриптом
+     в <head>), здесь только наблюдение. IntersectionObserver, а не
+     animation-timeline: второе работает не во всех браузерах, а прототип
+     смотрят с разных машин.
+     Наблюдение снимается после первого показа: повторное появление при
+     прокрутке вверх раздражает сильнее, чем радует. */
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('js-rv')) return;
+
+    var sel = '.sect__head, .cgrid > *, .cmore, .eposter > *, .eempty, .pgrid > *,' +
+              '.rblock__media, .rblock__text, .jgrid > *, .fgrid > *, .sblock__in > *,' +
+              '.footer__top > *, .footer__nav > *';
+    var items = [].slice.call(document.querySelectorAll(sel));
+
+    /* без IntersectionObserver показываем всё сразу — сайт не должен остаться пустым */
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+
+    /* задержка по порядку внутри своего родителя, но не больше четырёх
+       шагов: дальше последняя плитка ряда догоняет слишком долго */
+    items.forEach(function (el) {
+      var i = [].indexOf.call(el.parentNode.children, el);
+      el.style.setProperty('--rv-d', Math.min(i, 4) * 70 + 'ms');
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.06 });
+
+    items.forEach(function (el) { io.observe(el); });
+
+    /* Страховка. В скрытой вкладке IntersectionObserver не считает
+       пересечения вообще, и если страницу открыли в фоне, а потом
+       сохранили страницу или распечатали — контент останется прозрачным.
+       Через четыре секунды показываем всё, что уже в кадре, независимо от
+       наблюдателя. То же самое при печати. */
+    function showVisible() {
+      items.forEach(function (el) {
+        if (el.classList.contains('is-in')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          el.classList.add('is-in');
+          io.unobserve(el);
+        }
+      });
+    }
+    setTimeout(showVisible, 4000);
+    window.addEventListener('beforeprint', function () {
+      items.forEach(function (el) { el.classList.add('is-in'); });
+    });
+  })();
+
