@@ -1384,10 +1384,19 @@ html{scroll-padding-top:76px}
 
 /* отступ до правовой строки сокращён с 56 до 32px: при колонках
    в 3–4 пункта большой разрыв читался пустотой, а не воздухом */
+/* Линейка не во всю ширину, а по колонкам контента: .footer__legal сам
+   является .wrap, и его border-top уходил в края страницы, тогда как
+   линейка над колонками (.footer__nav) и над соцсетями нарисована внутри
+   контейнера. Рисуем её псевдоэлементом с тем же отступом. */
 .footer__legal{
+  position:relative;
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
-  border-top:1px solid rgba(196,154,108,.2);margin-top:32px;padding-top:22px;padding-bottom:26px;
+  border-top:0;margin-top:32px;padding-top:22px;padding-bottom:26px;
   font-size:12px;color:rgba(246,244,237,.55);
+}
+.footer__legal::before{
+  content:"";position:absolute;left:var(--pad);right:var(--pad);top:0;
+  height:1px;background:rgba(196,154,108,.2);
 }
 
 @media (max-width:1100px){
