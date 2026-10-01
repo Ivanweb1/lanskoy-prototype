@@ -270,7 +270,13 @@ body{
 /* фотопанель с диагональным срезом — приём из макета брендбука, стр. 38 */
 .dhero__media{
   position:relative;align-self:stretch;min-height:100%;
-  clip-path:polygon(4% 0,100% 0,100% 100%,0 100%);   /* диагональ сдвинута влево вместе с панелью */
+  /* Боковой срез крупных панелей — единый на всю страницу: 13% ширины
+     панели. Столько же у «Аренды» (87% с правого края) и у блока
+     «Найти магазин». Сюда я его временно ужал до 4%, когда вытаскивал
+     фотографию влево, и наклон выбился из общего ряда. Вытаскивание
+     при этом не потерялось: сама панель начинается на 51% экрана
+     вместо прежних 58.6%, просто срез снова той же крутизны. */
+  clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);
   background:var(--b-navy);
   overflow:hidden;
 }
@@ -614,7 +620,7 @@ body{
   position:relative;display:block;overflow:hidden;
   aspect-ratio:3/2;background:var(--b-navy);
   /* срез по нижней кромке обложки — графический элемент брендбука, стр. 36 */
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 26px));
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));
 }
 .ecard__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -861,7 +867,7 @@ body{
 
 .jgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start}
 .jlead__media,.jrow__media{position:relative;display:block;overflow:hidden;background:var(--b-navy)}
-.jlead__media{aspect-ratio:16/10;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 26px));margin-bottom:22px}
+.jlead__media{aspect-ratio:16/10;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));margin-bottom:22px}
 .jrow__media{flex:0 0 132px;aspect-ratio:4/3}
 .jlead__media::before,.jrow__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -895,7 +901,7 @@ body{
 .fgrid .dchips{margin:0}
 .fgrid__media{
   position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--b-navy);
-  clip-path:polygon(9% 0,100% 0,100% 100%,0 100%);
+  clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);   /* тот же боковой срез, что в первом экране и «Аренде» */
 }
 .fgrid__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -1269,7 +1275,7 @@ html{scroll-padding-top:76px}
   display:block;position:relative;overflow:hidden;
   aspect-ratio:16/10;background:var(--s-plate);
   /* диагональный срез — тот же приём, что в первом экране и блоке «Аренда» */
-  clip-path:polygon(0 0,100% 0,100% 100%,0 88%);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));   /* тот же срез, что у карточек */
 }
 .mprev__media img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -1303,7 +1309,7 @@ html{scroll-padding-top:76px}
   #mega-shops .mega__in,#mega-about .mega__in{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:34px}
   #mega-shops .mega__col--prev,#mega-about .mega__col--prev{grid-column:span 2}
   .mprev{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);align-items:center}
-  .mprev__media{aspect-ratio:16/9;clip-path:polygon(0 0,100% 0,88% 100%,0 100%)}
+  .mprev__media{aspect-ratio:16/9;clip-path:polygon(0 0,100% 0,87% 100%,0 100%)}
   .mprev__body{padding:16px 20px}
 }
 @media (max-width:640px){
@@ -1442,7 +1448,7 @@ html{scroll-padding-top:76px}
   aspect-ratio:16/10;background:var(--s-plate);
   /* срез по нижней кромке — тот же графический элемент брендбука
      (стр. 36), что был у обложек событий до переделки в строки */
-  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 18px));
+  clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 22px));
 }
 .erow__media .ecard__img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
