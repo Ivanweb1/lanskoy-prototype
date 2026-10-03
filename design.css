@@ -83,8 +83,12 @@
   --s-btn-fill-fg:var(--b-navy);   /* навй на медном = 5.1:1; сочетание разрешено стр. 06 */
 }
 /* Тёмная тема — по макету брендбука стр. 38. ТЗ п. 9.7 «Тёмная тема — необходимо сделать» */
+/* Тёмная тема — строго палитрой брендбука: один тёмно-синий #16263D
+   (стр. 09, тот же, что текст и подвал в светлой теме). Свои промежуточные
+   синие (#0E1A2B, #0B1522, #13223A, #1E3352) сняты: соседние секции
+   разделяет медная волосяная линия, как разделители в брендбуке. */
 [data-theme="dark"]{
-  --s-bg:#0E1A2B;
+  --s-bg:var(--b-navy);
   --s-bg-2:#16263D;
   --s-fg:var(--b-cream);
   --s-fg-soft:rgba(246,244,237,.72);
@@ -92,11 +96,11 @@
   --s-accent-ink:var(--b-copper);  /* медный на тёмно-синем = 6.04:1, проходит AA */
   --s-line:rgba(196,154,108,.22);
   --s-line-faint:rgba(196,154,108,.08);
-  --s-bg-soft:#13223A;
+  --s-bg-soft:var(--b-navy);
   --s-line-strong:rgba(196,154,108,.44);
   --s-hero-bg:var(--b-navy);
-  --s-util-bg:#0B1522;
-  --s-nav-bg:rgba(14,26,43,.92);
+  --s-util-bg:var(--b-navy);
+  --s-nav-bg:rgba(22,38,61,.92);
   --s-field-bg:rgba(246,244,237,.06);
   --s-plate:rgba(196,154,108,.07);
   --s-btn-fill-fg:var(--b-navy);
@@ -112,6 +116,8 @@ body{
 /* без линии снизу: утилитарная строка и шапка разных тонов, граница
    читается самой сменой фона */
 .utility{background:var(--s-util-bg);border-bottom:0;color:var(--s-fg-soft)}
+/* в тёмной теме строка на том же синем, что навигация, — отбивка линией */
+[data-theme="dark"] .utility{border-bottom:1px solid var(--s-hairline-soft)}
 .utility__in{height:34px;min-height:0}
 .utility a{color:inherit}
 .utility a:hover{color:var(--s-accent-ink)}
@@ -199,6 +205,7 @@ body{
   background:var(--s-hero-bg);color:var(--s-fg);
   transition:background .35s var(--d-ease),color .35s var(--d-ease);
 }
+/* первый экран — тёмно-синий градиент брендбука, стр. 09 */
 [data-theme="dark"] .dhero{background:var(--g-navy)}
 
 /* Паттерны с главной сняты: в вёрстке они были перерисованы по памяти,
@@ -334,11 +341,9 @@ body{
 /* подложка на полшага темнее страницы, а не на полный: полоса услуг —
    служебная, она не должна спорить с первым экраном над ней */
 .dserv{position:relative;z-index:2;border-top:0;background:var(--s-bg-soft)}
-/* в тёмной теме полоса стояла на том же #16263D, что и секция «Направления»
-   под ней, и они читались одним полем. Поднимаем полосу на тон вверх —
-   тот же приём, что в светлой теме, только в другую сторону: там полоса
-   на полшага темнее страницы, здесь на полшага светлее */
-[data-theme="dark"] .dserv{background:#1E3352}
+/* в тёмной теме полоса на том же синем, что первый экран и «Направления»,
+   поэтому от соседей её отбивают медные волосяные линии */
+[data-theme="dark"] .dserv{border-top:1px solid var(--s-hairline-soft);border-bottom:1px solid var(--s-hairline-soft)}
 .dserv__in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
 /* разделители светлее общей линейки сайта: их четыре в ряд и на всю
    высоту полосы — в полную силу они читались таблицей */
@@ -503,9 +508,6 @@ body{
    и расстояния между блоками гуляли от 152 до 232px */
 .sect{padding:88px 0}
 .sect--cats{padding:88px 0;background:var(--s-bg)}
-/* в тёмной теме фон секции = #0E1A2B совпадал с низом затемнения плиток (.93 от #0E1A2B),
-   и нижняя кромка карточек растворялась в фоне. Поднимаем фон на тон. */
-[data-theme="dark"] .sect--cats{background:var(--b-navy)}
 /* линия под шапкой снята: она отбивала заголовок от ссылки справа,
    а ссылка ушла вниз кнопкой — под одиноким заголовком ей нечего
    разделять. В остальных секциях ссылка в шапке есть, там линия остаётся */
@@ -562,7 +564,7 @@ body{
 [data-theme="dark"]{
   --cat-fg:var(--b-cream);
   --cat-count:var(--b-copper);
-  --cat-bg:#0E1A2B;
+  --cat-bg:var(--b-navy);
 }
 .cat{
   position:relative;isolation:isolate;
@@ -643,7 +645,7 @@ body{
    события»): дата медным, заголовок антиквой, «Регистрация» ссылкой.
    Диагональ по нижней кромке обложки — тот же приём, что в первом экране. */
 .sect--events{padding:88px 0;background:var(--s-bg-2)}
-[data-theme="dark"] .sect--events{background:#0E1A2B}
+[data-theme="dark"] .sect--events{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
 
 .sect--events .sect__h2{
   font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
@@ -673,7 +675,7 @@ body{
    антиква закреплена за вдохновением и афишей, гротеск — за навигацией
    и торговой частью. Срок действия вынесен на обложку: он и есть срочность. */
 .sect--promos{padding:88px 0;background:var(--s-bg)}
-[data-theme="dark"] .sect--promos{background:var(--b-navy)}
+[data-theme="dark"] .sect--promos{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
 
 .sect--promos .sect__h2{
   font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
@@ -768,7 +770,7 @@ body{
 .rblock__media{
   position:relative;overflow:hidden;align-self:stretch;
   clip-path:polygon(0 0,100% 0,87% 100%,0 100%);
-  background:#0B1522;
+  background:var(--b-navy);
 }
 .rblock__media::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -815,7 +817,7 @@ body{
 
 /* ============ 13. ЖУРНАЛ ============ */
 .sect--journal{padding:88px 0;background:var(--s-bg-2)}
-[data-theme="dark"] .sect--journal{background:#0E1A2B}
+[data-theme="dark"] .sect--journal{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
 
 .sect--journal .sect__h2,.sect--find .sect__h2{
   font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
@@ -852,7 +854,7 @@ body{
 
 /* ============ 14. НАЙТИ МАГАЗИН ============ */
 .sect--find{padding:88px 0;background:var(--s-bg)}
-[data-theme="dark"] .sect--find{background:var(--b-navy)}
+[data-theme="dark"] .sect--find{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
 .fgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center}
 .sect--find .sect__h2{margin:0 0 20px;display:block}
 .fgrid__lead{font-size:16px;line-height:1.65;color:var(--s-fg-soft);max-width:440px;margin:0 0 30px}
@@ -873,7 +875,7 @@ body{
 /* Паттерн 02 «Линии движения» из брендбука (стр. 09) — единственное место,
    где он уместен: спокойная финальная полоса перед подвалом. */
 .sblock{position:relative;overflow:hidden;background:var(--s-bg-2);padding:96px 0}
-[data-theme="dark"] .sblock{background:#0E1A2B}
+[data-theme="dark"] .sblock{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
 /* поле ввода полупрозрачное — сквозь него просвечивали волны */
 .sblock .sform__row{background:var(--s-bg)}
 [data-theme="dark"] .sblock .sform__row{background:rgba(246,244,237,.06)}
@@ -905,7 +907,7 @@ body{
 
 /* ============ 16. ПОДВАЛ ============ */
 .footer{background:var(--b-navy);color:rgba(246,244,237,.72);padding:64px 0 0}
-[data-theme="dark"] .footer{background:#0B1522}
+[data-theme="dark"] .footer{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
 .footer a{color:inherit}
 .footer a:hover{color:var(--b-copper)}
 .footer .logo__img--inv{filter:none;height:56px;width:auto}
@@ -963,7 +965,7 @@ body{
 /* ============ 18. ШАПКА: ЛИПКАЯ, КОМПАКТНАЯ, ПОИСК В ОВЕРЛЕЕ ============ */
 :root,[data-theme="light"]{--s-nav-solid:rgba(246,244,237,.97);--s-overlay:rgba(22,38,61,.45);
   --s-hairline:rgba(196,154,108,.3);--s-hairline-soft:rgba(196,154,108,.22)}
-[data-theme="dark"]{--s-nav-solid:rgba(14,26,43,.97);--s-overlay:rgba(5,10,18,.6);
+[data-theme="dark"]{--s-nav-solid:rgba(22,38,61,.97);--s-overlay:rgba(5,10,18,.6);
   --s-hairline:rgba(196,154,108,.24);--s-hairline-soft:rgba(196,154,108,.16)}
 
 /* Шапка выведена из потока. При сжатии она теряет разом три высоты —
