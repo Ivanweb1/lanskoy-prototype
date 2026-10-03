@@ -116,8 +116,6 @@ body{
 /* без линии снизу: утилитарная строка и шапка разных тонов, граница
    читается самой сменой фона */
 .utility{background:var(--s-util-bg);border-bottom:0;color:var(--s-fg-soft)}
-/* в тёмной теме строка на том же синем, что навигация, — отбивка линией */
-[data-theme="dark"] .utility{border-bottom:1px solid var(--s-hairline-soft)}
 .utility__in{height:34px;min-height:0}
 .utility a{color:inherit}
 .utility a:hover{color:var(--s-accent-ink)}
@@ -341,9 +339,11 @@ body{
 /* подложка на полшага темнее страницы, а не на полный: полоса услуг —
    служебная, она не должна спорить с первым экраном над ней */
 .dserv{position:relative;z-index:2;border-top:0;background:var(--s-bg-soft)}
-/* в тёмной теме полоса на том же синем, что первый экран и «Направления»,
-   поэтому от соседей её отбивают медные волосяные линии */
-[data-theme="dark"] .dserv{border-top:1px solid var(--s-hairline-soft);border-bottom:1px solid var(--s-hairline-soft)}
+/* тёмная тема: секции чередуют сплошной синий и градиент брендбука (стр. 09),
+   соседние блоки отличаются цветом, без линий-разделителей.
+   Порядок: первый экран Г · услуги С · направления Г · события С · акции Г ·
+   аренда С · журнал Г · найти магазин С · подписка Г · подвал С */
+[data-theme="dark"] .dserv{background:var(--b-navy)}
 .dserv__in{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
 /* разделители светлее общей линейки сайта: их четыре в ряд и на всю
    высоту полосы — в полную силу они читались таблицей */
@@ -508,6 +508,7 @@ body{
    и расстояния между блоками гуляли от 152 до 232px */
 .sect{padding:88px 0}
 .sect--cats{padding:88px 0;background:var(--s-bg)}
+[data-theme="dark"] .sect--cats{background:var(--g-navy)}
 /* линия под шапкой снята: она отбивала заголовок от ссылки справа,
    а ссылка ушла вниз кнопкой — под одиноким заголовком ей нечего
    разделять. В остальных секциях ссылка в шапке есть, там линия остаётся */
@@ -645,7 +646,7 @@ body{
    события»): дата медным, заголовок антиквой, «Регистрация» ссылкой.
    Диагональ по нижней кромке обложки — тот же приём, что в первом экране. */
 .sect--events{padding:88px 0;background:var(--s-bg-2)}
-[data-theme="dark"] .sect--events{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
+[data-theme="dark"] .sect--events{background:var(--b-navy)}
 
 .sect--events .sect__h2{
   font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
@@ -675,7 +676,7 @@ body{
    антиква закреплена за вдохновением и афишей, гротеск — за навигацией
    и торговой частью. Срок действия вынесен на обложку: он и есть срочность. */
 .sect--promos{padding:88px 0;background:var(--s-bg)}
-[data-theme="dark"] .sect--promos{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
+[data-theme="dark"] .sect--promos{background:var(--g-navy)}
 
 .sect--promos .sect__h2{
   font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
@@ -785,6 +786,9 @@ body{
   content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(100deg,rgba(14,26,43,0) 58%,rgba(14,26,43,.62) 100%);
 }
+/* в тёмной теме «Аренда» сплошная — между градиентными «Акциями» и «Журналом» */
+[data-theme="dark"] .rblock{background:var(--b-navy)}
+[data-theme="dark"] .rblock__media::after{background:linear-gradient(100deg,rgba(22,38,61,0) 58%,rgba(22,38,61,.62) 100%)}
 
 .rblock__text{align-self:center;padding:72px 0 72px 64px;max-width:none}
 /* волосяная линия перед надстрочником убрана — как и в первом экране:
@@ -817,7 +821,7 @@ body{
 
 /* ============ 13. ЖУРНАЛ ============ */
 .sect--journal{padding:88px 0;background:var(--s-bg-2)}
-[data-theme="dark"] .sect--journal{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
+[data-theme="dark"] .sect--journal{background:var(--g-navy)}
 
 .sect--journal .sect__h2,.sect--find .sect__h2{
   font-family:var(--d-serif);font-weight:600;color:var(--s-fg);
@@ -854,7 +858,7 @@ body{
 
 /* ============ 14. НАЙТИ МАГАЗИН ============ */
 .sect--find{padding:88px 0;background:var(--s-bg)}
-[data-theme="dark"] .sect--find{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
+[data-theme="dark"] .sect--find{background:var(--b-navy)}
 .fgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center}
 .sect--find .sect__h2{margin:0 0 20px;display:block}
 .fgrid__lead{font-size:16px;line-height:1.65;color:var(--s-fg-soft);max-width:440px;margin:0 0 30px}
@@ -875,7 +879,7 @@ body{
 /* Паттерн 02 «Линии движения» из брендбука (стр. 09) — единственное место,
    где он уместен: спокойная финальная полоса перед подвалом. */
 .sblock{position:relative;overflow:hidden;background:var(--s-bg-2);padding:96px 0}
-[data-theme="dark"] .sblock{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
+[data-theme="dark"] .sblock{background:var(--g-navy)}
 /* поле ввода полупрозрачное — сквозь него просвечивали волны */
 .sblock .sform__row{background:var(--s-bg)}
 [data-theme="dark"] .sblock .sform__row{background:rgba(246,244,237,.06)}
@@ -907,7 +911,7 @@ body{
 
 /* ============ 16. ПОДВАЛ ============ */
 .footer{background:var(--b-navy);color:rgba(246,244,237,.72);padding:64px 0 0}
-[data-theme="dark"] .footer{background:var(--b-navy);border-top:1px solid var(--s-hairline-soft)}
+[data-theme="dark"] .footer{background:var(--b-navy)}
 .footer a{color:inherit}
 .footer a:hover{color:var(--b-copper)}
 .footer .logo__img--inv{filter:none;height:56px;width:auto}
