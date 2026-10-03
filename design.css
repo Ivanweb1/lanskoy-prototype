@@ -1598,3 +1598,23 @@ html{scroll-padding-top:76px}
   .erow__media{order:3;grid-column:1 / -1}
   .erow__acts{margin-top:4px}
 }
+
+/* ============ ШАПКА ТЁМНО-СИНЯЯ В ОБЕИХ ТЕМАХ ============ */
+/* По просьбе заказчика строка навигации — тёмно-синяя плашка и в светлой
+   теме, как подвал. Цвета темы переопределены только на самой строке
+   (.nav__in): выпадающие мегаменю и поиск лежат рядом с ней и остаются
+   светлыми. Мобильная панель меню — внутри строки, поэтому тоже тёмная. */
+html:not([data-theme="dark"]) .nav{background:rgba(22,38,61,.96);border-bottom-color:rgba(196,154,108,.28)}
+html:not([data-theme="dark"]) .is-sticky .nav{background:rgba(22,38,61,.98);border-bottom-color:rgba(196,154,108,.4)}
+html:not([data-theme="dark"]) .nav__in{
+  --s-bg:var(--b-navy);
+  --s-fg:var(--b-cream);
+  --s-fg-soft:rgba(246,244,237,.72);
+  --s-accent-ink:var(--b-copper);      /* медный на тёмно-синем = 6.04:1 */
+  --s-line:rgba(196,154,108,.22);
+  --s-line-strong:rgba(196,154,108,.44);
+  --s-hairline:rgba(196,154,108,.24);
+  --s-hairline-soft:rgba(196,154,108,.16);
+  color:var(--s-fg);
+}
+html:not([data-theme="dark"]) .nav__in .themetog{background:rgba(196,154,108,.12)}
