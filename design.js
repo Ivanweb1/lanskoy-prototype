@@ -114,7 +114,7 @@
       if (mq.matches) {
         if (acts.parentNode !== menu) {
           acts.classList.add('utility__actions--inmenu');
-          menu.appendChild(acts);
+          menu.insertBefore(acts, menu.querySelector('.mcontacts'));
         }
       } else if (acts.parentNode !== utilIn) {
         acts.classList.remove('utility__actions--inmenu');
@@ -557,4 +557,120 @@
       items.forEach(function (el) { el.classList.add('is-in'); });
     });
   })();
+
+/* ---------- мобильное меню: подменю аккордеоном, крестик, контакты ----------
+   На телефоне выпадающие панели десктопа (#mega-shops, #mega-about) открывались
+   под панелью бургера, и пункты со стрелкой ничего не делали. Подменю
+   собираются из ссылок тех же панелей и раскрываются на месте. */
+(function () {
+  var menu = document.getElementById('menu');
+  var burger = document.getElementById('burger');
+  var nav = document.querySelector('.nav');
+  if (!menu || !burger || !nav) return;
+  var mq = window.matchMedia('(max-width:760px)');
+  var root = document.documentElement;
+
+  function group(title, anchors) {
+    if (!anchors.length) return '';
+    return (title ? '<p class="msub__t">' + title + '</p>' : '') + '<ul>' +
+      [].map.call(anchors, function (a) {
+        var n = a.querySelector('.mcats__n');
+        var c = a.getAttribute('data-count');
+        return '<li><a href="' + a.getAttribute('href') + '"><span>' +
+          (n ? n.textContent : a.textContent).trim() + '</span>' +
+          (c ? '<span class="msub__c">' + c + '</span>' : '') + '</a></li>';
+      }).join('') + '</ul>';
+  }
+
+  [].forEach.call(menu.querySelectorAll('[data-mega]'), function (btn) {
+    var key = btn.getAttribute('data-mega');
+    var panel = document.getElementById('mega-' + key);
+    if (!panel) return;
+    var html = '';
+    if (key === 'shops') {
+      html = group('', panel.querySelectorAll('.mega__links a')) +
+             group('Категории', panel.querySelectorAll('.mcats a, .mega__cats a'));
+    } else {
+      [].forEach.call(panel.querySelectorAll('.mega__col'), function (col) {
+        var t = col.querySelector('.mega__title');
+        html += group(t ? t.textContent.trim() : '', col.querySelectorAll('.mega__links a'));
+      });
+    }
+    var sub = document.createElement('div');
+    sub.className = 'msub';
+    sub.id = 'msub-' + key;
+    sub.hidden = true;
+    sub.innerHTML = html;
+    btn.closest('.menu__item').appendChild(sub);
+    btn.setAttribute('aria-controls', sub.id);
+    btn.setAttribute('aria-expanded', 'false');
+  });
+
+  // контакты из утилитарной строки — на телефоне она скрыта целиком
+  var info = document.querySelector('.utility__info');
+  if (info) {
+    var tel = info.querySelector('a[href^="tel:"]');
+    var way = info.querySelector('a[href*="contacts"]');
+    var plain = [].filter.call(info.querySelectorAll('li'), function (li) { return !li.querySelector('a'); });
+    var box = document.createElement('div');
+    box.className = 'mcontacts';
+    box.innerHTML =
+      (tel ? '<a class="mcontacts__tel" href="' + tel.getAttribute('href') + '">' + tel.textContent + '</a>' : '') +
+      plain.map(function (li) { return '<p>' + li.innerHTML + '</p>'; }).join('') +
+      (way ? '<p><a class="mcontacts__way" href="' + way.getAttribute('href') + '">' + way.textContent + '</a></p>' : '');
+    menu.appendChild(box);
+  }
+
+  function close() { menu.classList.remove('is-open'); }
+  function fit() {
+    menu.style.setProperty('--mnav-h', (window.innerHeight - nav.getBoundingClientRect().bottom) + 'px');
+  }
+
+  // аккордеон: перехватываем клик раньше обработчика мегаменю из app.js
+  menu.addEventListener('click', function (e) {
+    if (!mq.matches) return;
+    var btn = e.target.closest('[data-mega]');
+    if (btn) {
+      e.stopPropagation();
+      e.preventDefault();
+      var li = btn.closest('.menu__item');
+      var open = !li.classList.contains('is-sub-open');
+      [].forEach.call(menu.querySelectorAll('.menu__item--has'), function (o) {
+        var on = o === li && open;
+        o.classList.toggle('is-sub-open', on);
+        o.querySelector('[data-mega]').setAttribute('aria-expanded', String(on));
+        var s = o.querySelector('.msub');
+        if (s) s.hidden = !on;
+      });
+      return;
+    }
+    if (e.target.closest('a')) close();
+  }, true);
+
+  // бургер переключает класс в app.js — здесь только следим за состоянием
+  function sync() {
+    var open = menu.classList.contains('is-open');
+    burger.classList.toggle('is-active', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Меню');
+    root.classList.toggle('is-menu-open', open);
+    if (open) {
+      fit();
+      var bar = document.getElementById('searchbar');
+      if (bar) bar.hidden = true;
+      [].forEach.call(document.querySelectorAll('.mega'), function (m) { m.hidden = true; });
+    }
+  }
+  burger.setAttribute('aria-controls', 'menu');
+  new MutationObserver(sync).observe(menu, { attributes: true, attributeFilter: ['class'] });
+  sync();
+
+  var st = document.getElementById('searchToggle');
+  if (st) st.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  window.addEventListener('resize', function () { if (menu.classList.contains('is-open')) fit(); });
+  function onMq() { if (!mq.matches) close(); }
+  if (mq.addEventListener) mq.addEventListener('change', onMq);
+  else if (mq.addListener) mq.addListener(onMq);
+})();
 
