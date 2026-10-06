@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=42">
+<link rel="stylesheet" href="design-pages.css?v=43">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -27,43 +27,50 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   <div class="wrap d404__in">
     <div class="d404__text">
       <p class="rblock__kicker">Ошибка 404</p>
-      <h1 class="d404__h1">Секции 404<em>в комплексе нет</em></h1>
-      <p class="d404__lead">У нас 150+ магазинов на трёх этажах, но такой секции нет даже на третьем. Похоже, ссылка устарела или адрес набран с ошибкой — найдём нужное.</p>
-      <div class="dsearch d404__search">
-        <input class="dsearch__inp" type="search" placeholder="Магазин, бренд или номер секции, например А10" aria-label="Поиск по сайту">
-        <button type="button" class="dsearch__go">Найти</button>
-      </div>
-      <div class="d404__links">
-        <a href="shops.html" class="d404__link"><b>Магазины</b><span>150+ магазинов</span></a>
-        <a href="floors.html" class="d404__link"><b>Схема этажей</b><span>Найти секцию на плане</span></a>
-        <a href="events.html" class="d404__link"><b>Афиша</b><span>Лекции и мастер-классы</span></a>
-        <a href="design.html" class="d404__link"><b>На главную</b><span>Начать сначала</span></a>
-      </div>
+      <h1 class="d404__h1">Такой страницы<em>в комплексе нет</em></h1>
+      <p class="d404__lead">Похоже, ссылка устарела или адрес набран с ошибкой. Вы стоите у указателя — выберите, куда пойти дальше, или найдите нужное поиском.</p>
     </div>
-    <div class="d404__art" aria-hidden="false">
-      <div class="d404__sign">
-        <span class="d404__wire d404__wire--l"></span><span class="d404__wire d404__wire--r"></span>
-        <span class="d404__plate">
-          <span class="d404__plate-k">Секция</span>
-          <span class="d404__plate-n">404</span>
-          <span class="d404__plate-arr"></span>
-        </span>
-      </div>
-      <div class="d404__planbox">
-        <svg class="d404__plan" viewBox="0 0 520 300" role="img" aria-label="Схема этажа: маршрут к секции 404 никуда не ведёт">
-          <rect class="p4-room" x="40" y="40" width="64" height="56"/><text class="p4-txt" x="72" y="73" text-anchor="middle">А1</text><rect class="p4-room" x="112" y="40" width="64" height="56"/><text class="p4-txt" x="144" y="73" text-anchor="middle">А2</text><rect class="p4-room" x="184" y="40" width="64" height="56"/><text class="p4-txt" x="216" y="73" text-anchor="middle">А3</text><rect class="p4-room" x="256" y="40" width="64" height="56"/><text class="p4-txt" x="288" y="73" text-anchor="middle">А4</text><rect class="p4-room" x="328" y="40" width="64" height="56"/><text class="p4-txt" x="360" y="73" text-anchor="middle">А5</text><rect class="p4-room" x="40" y="176" width="64" height="56"/><text class="p4-txt" x="72" y="209" text-anchor="middle">А6</text><rect class="p4-room" x="112" y="176" width="64" height="56"/><text class="p4-txt" x="144" y="209" text-anchor="middle">А7</text><rect class="p4-room" x="184" y="176" width="64" height="56"/><text class="p4-txt" x="216" y="209" text-anchor="middle">А8</text><rect class="p4-room" x="256" y="176" width="64" height="56"/><text class="p4-txt" x="288" y="209" text-anchor="middle">А9</text><rect class="p4-room" x="328" y="176" width="64" height="56"/><text class="p4-txt" x="360" y="209" text-anchor="middle">А10</text>
-          <rect class="p4-hall" x="40" y="112" width="352" height="48"/>
-          <text class="p4-txt p4-txt--hall" x="230" y="128" text-anchor="middle">галерея</text>
-          <rect class="p4-ghost" x="420" y="108" width="72" height="104"/>
-          <text class="p4-q" x="456" y="176" text-anchor="middle">?</text>
-          <text class="p4-ghostn" x="456" y="232" text-anchor="middle">404</text>
-          <path class="p4-route" d="M70 146 H392 Q406 146 406 156 V160 H418"/>
-          <circle class="p4-you-ring" cx="70" cy="146" r="16"/>
-          <circle class="p4-you" cx="70" cy="146" r="7"/>
-          <text class="p4-youlab" x="70" y="268" text-anchor="middle">вы здесь</text>
-          <path class="p4-youline" d="M70 162 V252"/>
-        </svg>
-      </div>
+    <div class="dway-wrap">
+      <span class="dway__wire dway__wire--l" aria-hidden="true"></span>
+      <span class="dway__wire dway__wire--r" aria-hidden="true"></span>
+      <nav class="dway" aria-label="Куда пойти">
+        <div class="dway__here">
+          <span class="dway__pin" aria-hidden="true"></span>
+          <span class="dway__here-k">Вы здесь</span>
+          <span class="dway__here-n">404</span>
+          <span class="dway__here-t">такой страницы нет</span>
+        </div>
+          <a href="design.html" class="dway__row">
+            <span class="dway__arr dway__arr--l" aria-hidden="true"></span>
+            <span class="dway__name">Главная</span>
+            <span class="dway__hint">на первый экран</span>
+          </a>
+          <a href="shops.html" class="dway__row">
+            <span class="dway__arr dway__arr--r" aria-hidden="true"></span>
+            <span class="dway__name">Магазины</span>
+            <span class="dway__hint">150+ магазинов</span>
+          </a>
+          <a href="floors.html" class="dway__row">
+            <span class="dway__arr dway__arr--u" aria-hidden="true"></span>
+            <span class="dway__name">Схема этажей</span>
+            <span class="dway__hint">найти секцию</span>
+          </a>
+          <a href="events.html" class="dway__row">
+            <span class="dway__arr dway__arr--ur" aria-hidden="true"></span>
+            <span class="dway__name">Афиша</span>
+            <span class="dway__hint">лекции и мастер-классы</span>
+          </a>
+          <a href="contacts.html" class="dway__row">
+            <span class="dway__arr dway__arr--d" aria-hidden="true"></span>
+            <span class="dway__name">Контакты</span>
+            <span class="dway__hint">как добраться</span>
+          </a>
+        <form class="dway__search" role="search" onsubmit="event.preventDefault();location.href='search.html'">
+          <span class="dway__arr dway__arr--search" aria-hidden="true"></span>
+          <input type="search" placeholder="Поиск: магазин, бренд, секция А10" aria-label="Поиск по сайту">
+          <button type="submit">Найти</button>
+        </form>
+      </nav>
     </div>
   </div>
 </section>

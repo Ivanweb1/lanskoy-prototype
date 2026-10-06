@@ -1554,3 +1554,77 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .d404__plate{padding:16px 22px 18px}
   .d404__plate-arr{width:40px;height:18px}
 }
+
+/* ============ 31. 404 — НАВИГАЦИОННЫЙ УКАЗАТЕЛЬ ============ */
+/* Подвесная доска-указатель, как в галерее ТЦ: верхняя медная строка
+   «Вы здесь — 404», ниже направления строками со стрелками в квадратах,
+   последняя строка — поиск. Доска кремовая на синем фоне, текст синий —
+   так читаются указатели в реальном здании */
+.d404__in{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center}
+.dway-wrap{position:relative;padding-top:64px;margin-top:-64px}
+.dway__wire{position:absolute;top:0;width:1px;height:64px;background:rgba(196,154,108,.6)}
+.dway__wire--l{left:18%}
+.dway__wire--r{right:18%}
+.dway{display:flex;flex-direction:column;background:var(--b-cream);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);border-top:6px solid var(--b-copper)}
+
+.dway__here{
+  display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:0 16px;
+  padding:20px 26px;background:var(--b-copper);color:var(--b-navy);
+}
+.dway__pin{grid-row:span 2;width:30px;height:30px;background:var(--b-navy);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6'%3E%3Cpath d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z'/%3E%3Ccircle cx='12' cy='9.5' r='2.5'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6'%3E%3Cpath d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z'/%3E%3Ccircle cx='12' cy='9.5' r='2.5'/%3E%3C/svg%3E") no-repeat center/contain}
+.dway__here-k{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.dway__here-n{grid-row:span 2;grid-column:3;justify-self:end;font-family:var(--d-serif);font-weight:600;font-size:clamp(56px,6vw,84px);line-height:.9}
+.dway__here-t{grid-column:2;font-family:var(--d-serif);font-weight:600;font-size:18px;text-transform:uppercase;letter-spacing:.02em}
+
+.dway__row{
+  display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:18px;
+  padding:16px 26px;border-bottom:1px solid rgba(1,20,39,.12);color:var(--b-navy);
+  transition:background-color .2s;
+}
+.dway__name{font-family:var(--d-serif);font-weight:600;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.dway__hint{font-size:12px;letter-spacing:.06em;color:rgba(1,20,39,.55);text-align:right}
+.dway__row:hover{background:#EFE9DE}
+.dway__row:hover .dway__arr{background:var(--b-copper)}
+.dway__row:hover .dway__arr::after{background:var(--b-navy)}
+
+/* стрелка — синий квадрат с медной стрелкой, повёрнутой по направлению */
+.dway__arr{position:relative;display:block;width:44px;height:44px;background:var(--b-navy);transition:background-color .2s}
+.dway__arr::after{content:"";position:absolute;inset:0;background:var(--b-copper);transition:background-color .2s;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M5 12h13M13 6l6 6-6 6'/%3E%3C/svg%3E") no-repeat center/22px 22px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M5 12h13M13 6l6 6-6 6'/%3E%3C/svg%3E") no-repeat center/22px 22px}
+.dway__arr--l::after{transform:rotate(180deg)}
+.dway__arr--u::after{transform:rotate(-90deg)}
+.dway__arr--ur::after{transform:rotate(-45deg)}
+.dway__arr--d::after{transform:rotate(90deg)}
+.dway__arr--search::after{
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='M15 15l5 5'/%3E%3C/svg%3E") no-repeat center/20px 20px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='M15 15l5 5'/%3E%3C/svg%3E") no-repeat center/20px 20px}
+
+.dway__search{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:0 18px;padding:16px 26px 20px}
+.dway__search input{
+  height:44px;min-width:0;padding:0 14px;border:1px solid rgba(1,20,39,.25);border-right:0;border-radius:0;
+  background:#fff;font:inherit;font-size:14px;color:var(--b-navy);
+}
+.dway__search input:focus{outline:none;border-color:var(--b-copper)}
+.dway__search button{
+  height:44px;margin-left:-18px;padding:0 20px;border:0;background:var(--b-copper);color:var(--b-navy);
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+}
+.dway__search button:hover{filter:brightness(1.07)}
+
+@media (max-width:1000px){
+  .d404__in{grid-template-columns:1fr}
+  .dway-wrap{order:2}
+}
+@media (max-width:760px){
+  .dway__here{padding:16px 18px}
+  .dway__row{grid-template-columns:36px minmax(0,1fr);gap:14px;padding:14px 18px}
+  .dway__arr{width:36px;height:36px}
+  .dway__name{font-size:18px}
+  .dway__hint{display:none}
+  .dway__search{grid-template-columns:36px minmax(0,1fr) auto;gap:0 14px;padding:14px 18px 18px}
+  .dway__search button{margin-left:-14px;padding:0 14px}
+  .dway__here-t{font-size:15px}
+}
