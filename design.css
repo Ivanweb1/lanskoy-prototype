@@ -1630,8 +1630,15 @@ html{scroll-padding-top:76px}
    и остаются светлыми. Мобильная панель меню — внутри строки, тоже тёмная. */
 html:not([data-theme="dark"]) .nav,
 html:not([data-theme="dark"]) .is-sticky .nav{background:var(--g-navy);border-bottom-color:rgba(196,154,108,.28)}
-html:not([data-theme="dark"]) .nav__in{
+/* выпадающие панели и поиск — тоже синие, продолжение шапки (06.10) */
+html:not([data-theme="dark"]) .nav__in,
+html:not([data-theme="dark"]) .mega,
+html:not([data-theme="dark"]) .searchbar{
   --s-bg:var(--b-navy);
+  --s-bg-soft:var(--b-navy);
+  --s-field-bg:rgba(246,244,237,.06);
+  --s-plate:rgba(196,154,108,.07);
+  --s-line-faint:rgba(196,154,108,.08);
   --s-fg:var(--b-cream);
   --s-fg-soft:rgba(246,244,237,.72);
   --s-accent-ink:var(--b-copper);      /* медный на тёмно-синем = 6.04:1 */
@@ -1642,6 +1649,8 @@ html:not([data-theme="dark"]) .nav__in{
   --s-nav-solid:var(--b-navy);
   color:var(--s-fg);
 }
+html:not([data-theme="dark"]) .mega,
+html:not([data-theme="dark"]) .searchbar{border-top-color:rgba(196,154,108,.28);border-bottom-color:rgba(196,154,108,.22)}
 html:not([data-theme="dark"]) .nav__in .themetog{background:rgba(196,154,108,.12)}
 
 /* ============ МОБИЛЬНОЕ МЕНЮ ============ */
