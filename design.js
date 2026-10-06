@@ -917,3 +917,21 @@
     });
   });
 })();
+
+/* ---------- снимок под тему ----------
+   Как первый экран главной: у картинки с data-src-dark в тёмной теме —
+   вечерний кадр, в светлой — исходный */
+(function () {
+  var imgs = [].slice.call(document.querySelectorAll('img[data-src-dark]'));
+  if (!imgs.length) return;
+  imgs.forEach(function (i) { i.setAttribute('data-src-light', i.getAttribute('src')); });
+  function sync() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    imgs.forEach(function (i) {
+      var want = i.getAttribute(dark ? 'data-src-dark' : 'data-src-light');
+      if (i.getAttribute('src') !== want) i.setAttribute('src', want);
+    });
+  }
+  new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  sync();
+})();
