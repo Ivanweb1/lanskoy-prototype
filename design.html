@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
-<link rel="stylesheet" href="design.css?v=133">
+<link rel="stylesheet" href="design.css?v=134">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -302,10 +302,16 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <input class="sform__inp" type="email" name="email" placeholder="Ваш e-mail" required aria-label="E-mail для подписки">
         <button class="sform__go" type="submit">Подписаться</button>
       </div>
-      <label class="scheck">
-        <input type="checkbox" name="pd" required>
-        <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
-      </label>
+      <div class="sform__checks">
+        <label class="scheck">
+          <input type="checkbox" name="pd" required>
+          <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
+        </label>
+        <label class="scheck">
+          <input type="checkbox" name="ads" required>
+          <span>Согласен получать рекламные и информационные рассылки ТК «Ланской»</span>
+        </label>
+      </div>
     </form>
   </div>
 </section>
