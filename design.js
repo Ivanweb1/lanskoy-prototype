@@ -684,7 +684,8 @@
     'index.html': 'design.html',
     'shops.html': 'design-shops.html',
     'categories.html': 'design-categories.html',
-    'category.html': 'design-category.html'
+    'category.html': 'design-category.html',
+    'shop.html': 'design-shop.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
@@ -718,4 +719,28 @@
   document.addEventListener('click', function (e) {
     if (e.target.closest('[data-reset], .chip--rm')) setTimeout(count, 0);
   });
+})();
+
+/* ---------- лайтбокс показывает настоящие снимки ----------
+   Лайтбокс прототипа (app.js) рисует только подпись «Фото N». Если в плитке
+   галереи есть снимок, кладём его фоном в окно лайтбокса и меняем при
+   листании — номер кадра берём из счётчика «N из M». */
+(function () {
+  var cur = null;
+  document.addEventListener('click', function (e) {
+    var tile = e.target.closest('.gallery__item');
+    if (tile) cur = tile.closest('.gallery');
+  }, true);
+  function sync() {
+    var lb = document.querySelector('.lightbox');
+    if (!lb || lb.hidden || !cur) return;
+    var n = parseInt(lb.querySelector('.lightbox__counter').textContent || '1', 10) - 1;
+    var tile = cur.querySelectorAll('.gallery__item')[n];
+    var img = tile && tile.querySelector('img');
+    var ok = img && img.naturalWidth;
+    lb.querySelector('.lightbox__ph').style.backgroundImage = ok ? 'url(' + JSON.stringify(img.currentSrc) + ')' : '';
+    lb.querySelector('.lightbox__label').style.display = ok ? 'none' : '';
+  }
+  var lb = document.querySelector('.lightbox');
+  if (lb) new MutationObserver(sync).observe(lb, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
 })();
