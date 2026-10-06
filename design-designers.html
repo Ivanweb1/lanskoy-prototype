@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дизайнерам — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="design.css?v=136">
+<link rel="stylesheet" href="design-pages.css?v=30">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+/* без JS сайт остаётся видимым: класс включает прятание перед появлением */
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body>
+
+<div id="siteHeader" data-active="designers"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= ПЕРВЫЙ ЭКРАН РАЗДЕЛА ================= -->
+<section class="dpage dpromo">
+  <div class="wrap">
+    <nav class="dcrumbs" aria-label="Хлебные крошки">
+      <a href="design.html">Главная</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <span aria-current="page">Дизайнерам</span>
+    </nav>
+    <div class="dpromo__in">
+      <div class="dpromo__main">
+        <div class="dpromo__top">
+          <p class="dpage__eyebrow">Дизайнерам и архитекторам</p>
+          <h1 class="dpage__h1 dpromo__h1">Все поставщики проекта в одном здании</h1>
+          <p class="dpage__lead">150 магазинов смежных категорий на трёх этажах: подобрать материалы под объект можно за один выезд, а не за неделю разъездов по городу.</p>
+        </div>
+        <div class="dpromo__bottom dpromo__acts">
+          <a href="designer-form.html" class="dbtn dbtn--fill">Попасть в каталог</a>
+          <a href="#catalog" class="dbtn dbtn--ghost">Каталог дизайнеров</a>
+        </div>
+      </div>
+      <div class="dpromo__media"><img class="jimg" src="img/designers/hero.webp" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ЧТО ЗДЕСЬ ЕСТЬ ================= -->
+<section class="sect">
+  <div class="wrap">
+    <div class="dhead"><h2 class="dhead__h2">Что здесь есть для работы</h2></div>
+    <div class="dadvs">
+      <div class="dadv">
+        <span class="dadv__n">01</span>
+        <h3 class="dadv__h">Образцы вживую</h3>
+        <p class="dadv__t">Фактуру плитки, шпона и текстиля нужно трогать. В шоурумах — выкладка и образцы, которые можно взять на объект.</p>
+      </div>
+      <div class="dadv">
+        <span class="dadv__n">02</span>
+        <h3 class="dadv__h">Профессиональные события</h3>
+        <p class="dadv__t">Семинары фабрик, разборы кейсов, техническая документация. Не маркетинг, а рабочие детали — вроде работы в сегменте HoReCa.</p>
+      </div>
+      <div class="dadv">
+        <span class="dadv__n">03</span>
+        <h3 class="dadv__h">Каталог дизайнеров</h3>
+        <p class="dadv__t">Комплекс публикует специалистов на сайте: покупатель в ремонте ищет дизайнера здесь же, где выбирает материалы.</p>
+      </div>
+      <div class="dadv">
+        <span class="dadv__n">04</span>
+        <h3 class="dadv__h">Работа с поставщиками</h3>
+        <p class="dadv__t">Магазины работают с дизайнерами напрямую: подбор под проект, расчёт по спецификации, резерв материалов.</p>
+      </div>
+      <div class="dadv">
+        <span class="dadv__n">05</span>
+        <h3 class="dadv__h">Комплектация объекта</h3>
+        <p class="dadv__t">Материалы под один проект можно собрать в нескольких магазинах за один выезд и согласовать доставку.</p>
+      </div>
+      <div class="dadv">
+        <span class="dadv__n">06</span>
+        <h3 class="dadv__h">Журнал</h3>
+        <p class="dadv__t">Разборы материалов и трендов — пригодятся, чтобы показать заказчику варианты.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= КАТАЛОГ ДИЗАЙНЕРОВ ================= -->
+<section class="sect dsect--alt" id="catalog">
+  <div class="wrap">
+    <div class="dhead">
+      <h2 class="dhead__h2">Каталог дизайнеров</h2>
+      <a href="designer-form.html" class="dlink">Заполнить анкету</a>
+    </div>
+    <div class="evfilters dfilters" id="desFilters">
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Направление</span>
+        <button type="button" class="chip dchip is-active" data-spec="all">Все</button>
+        <button type="button" class="chip dchip" data-spec="interior">Дизайн интерьеров</button>
+        <button type="button" class="chip dchip" data-spec="arch">Архитектура</button>
+        <button type="button" class="chip dchip" data-spec="light">Свет</button>
+      </div>
+      <p class="evfilters__count dfilters__count"><b id="desCount">4</b> <span id="desCountWord">специалиста</span></p>
+    </div>
+    <div class="ddess" id="desGrid">
+      <a href="designer.html" class="descard ddes" data-spec="interior">
+        <span class="ddes__ph" aria-hidden="true">CD</span>
+        <span class="ddes__n">CARTELLE DESIGN</span>
+        <span class="ddes__s">Дизайн интерьеров</span>
+        <span class="ddes__e">Опыт 2 года</span>
+      </a>
+      <a href="designer.html" class="descard ddes" data-spec="interior">
+        <span class="ddes__ph" aria-hidden="true">ЕЛ</span>
+        <span class="ddes__n">Елена Литвякова</span>
+        <span class="ddes__s">Дизайнер интерьеров</span>
+        <span class="ddes__e">Опыт 10 лет</span>
+      </a>
+      <a href="designer.html" class="descard ddes" data-spec="arch">
+        <span class="ddes__ph" aria-hidden="true">АС</span>
+        <span class="ddes__n">Анна Соколова</span>
+        <span class="ddes__s">Архитектура и планировочные решения</span>
+        <span class="ddes__e">Опыт 7 лет</span>
+      </a>
+      <a href="designer.html" class="descard ddes" data-spec="light">
+        <span class="ddes__ph" aria-hidden="true">МВ</span>
+        <span class="ddes__n">Максим Волков</span>
+        <span class="ddes__s">Светодизайн</span>
+        <span class="ddes__e">Опыт 5 лет</span>
+      </a>
+    </div>
+    <div class="empty" id="desEmpty" hidden>
+      <p class="empty__title">По этому направлению пока никого нет</p>
+      <p class="empty__text">Посмотрите всех специалистов или заполните анкету.</p>
+      <button type="button" class="dbtn dbtn--ghost" data-desreset>Показать всех</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= СОБЫТИЯ ДЛЯ ДИЗАЙНЕРОВ ================= -->
+<section class="sect">
+  <div class="wrap">
+    <div class="dhead">
+      <h2 class="dhead__h2">Профессиональные события</h2>
+      <a href="events.html" class="dlink">Вся афиша</a>
+    </div>
+    <div class="delist">
+      <article class="evrow erow derow">
+        <div class="erow__date"><b>28</b><i>августа</i><i class="derow__time">15:00</i></div>
+        <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-2.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Семинар</span><span class="dtag">Для дизайнеров</span></p>
+          <h3 class="erow__title"><a href="event.html">«Волховец» — реализация проектных продаж</a></h3>
+          <p class="derow__desc">Сложные заказы, сегмент HoReCa, техническая документация, разбор кейсов</p>
+          <p class="erow__meta">3 этаж, зона лекций<span class="erow__dot"></span>осталось 12 мест</p>
+        </div>
+        <div class="derow__act"><a href="event.html" class="erow__cta">Регистрация</a></div>
+      </article>
+      <article class="evrow erow derow">
+        <div class="erow__date"><b>4</b><i>сентября</i><i class="derow__time">16:00</i></div>
+        <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/events/osmo.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Семинар</span><span class="dtag">Для дизайнеров</span></p>
+          <h3 class="erow__title"><a href="event.html">Натуральные масла для дерева OSMO</a></h3>
+          <p class="derow__desc">Практика нанесения защитных покрытий, работа с фактурой дерева</p>
+          <p class="erow__meta">3 этаж, зона лекций<span class="erow__dot"></span>осталось 4 места</p>
+        </div>
+        <div class="derow__act"><a href="event.html" class="erow__cta">Регистрация</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ПОПАСТЬ В КАТАЛОГ ================= -->
+<section class="dcta">
+  <div class="wrap dcta__in">
+    <div class="dcta__text">
+      <p class="rblock__kicker">Специалистам</p>
+      <h2 class="rblock__h2">Попасть в каталог дизайнеров</h2>
+      <p class="rblock__lead">Заполните анкету — администрация свяжется и опубликует карточку в каталоге.</p>
+      <a href="designer-form.html" class="dbtn dbtn--fill">Заполнить анкету</a>
+    </div>
+    <ul class="rargs dcta__args">
+      <li><span class="rargs__n">40+</span><span class="rargs__c">специалистов в каталоге</span></li>
+      <li><span class="rargs__n">3 дня</span><span class="rargs__c">на проверку анкеты</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=73"></script>
+<script src="content.js?v=73"></script>
+<script src="design.js?v=63"></script>
+</body>
+</html>

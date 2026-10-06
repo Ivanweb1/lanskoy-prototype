@@ -694,7 +694,10 @@
     'events.html': 'design-events.html',
     'event.html': 'design-event.html',
     'journal.html': 'design-journal.html',
-    'article.html': 'design-article.html'
+    'article.html': 'design-article.html',
+    'designers.html': 'design-designers.html',
+    'designer.html': 'design-designer.html',
+    'designer-form.html': 'design-designer-form.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
@@ -796,5 +799,23 @@
     });
     box.insertBefore(bar, box.firstChild);
     box.classList.add('is-selects');
+  });
+})();
+
+/* ---------- экран «отправлено» у форм ----------
+   В прототипе состояния переключала служебная панель, в дизайне её нет:
+   если проверка (events.js) прошла без ошибок, прячем форму и показываем
+   соседний блок .st-done внутри того же контейнера с data-states */
+(function () {
+  [].forEach.call(document.querySelectorAll('[data-states] .jsform'), function (form) {
+    form.addEventListener('submit', function () {
+      setTimeout(function () {
+        if (form.querySelector('.is-invalid')) return;
+        var box = form.closest('[data-states]');
+        [].forEach.call(box.querySelectorAll('.st-open'), function (el) { el.hidden = true; });
+        [].forEach.call(box.querySelectorAll('.st-done'), function (el) { el.hidden = false; });
+        box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 0);
+    });
   });
 })();

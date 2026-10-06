@@ -969,3 +969,105 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 @media (max-width:760px){
   .dpage__h1,.dart__h1,.dpromo__h1{font-size:clamp(22px,6.8vw,34px);hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
 }
+
+/* ============ 19. ДИЗАЙНЕРАМ ============ */
+.dpromo__acts{display:flex;flex-wrap:wrap;gap:16px}
+
+/* преимущества — номер антиквой медью, как пункты программы события */
+.dadvs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;border-top:1px solid var(--s-line)}
+.dadv{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 16px;padding:32px 0;border-bottom:1px solid var(--s-line)}
+.dadv__n{grid-row:span 2;font-family:var(--d-serif);font-weight:600;font-size:26px;line-height:1;color:var(--s-accent-ink)}
+.dadv__h{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em;color:var(--s-fg);margin:0 0 8px}
+.dadv__t{font-size:14px;line-height:1.6;color:var(--s-fg-soft);margin:0}
+
+/* карточка специалиста: фото пока нет — инициалы антиквой, как у спикеров */
+.ddess{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 24px}
+.ddes{display:flex;flex-direction:column;gap:6px;color:var(--s-fg)}
+.ddes[hidden]{display:none}
+.ddes__ph{
+  display:flex;align-items:center;justify-content:center;aspect-ratio:4/5;margin-bottom:12px;
+  background:var(--s-bg);font-family:var(--d-serif);font-weight:600;font-size:48px;letter-spacing:.04em;color:var(--s-accent);
+  transition:background-color .25s;
+}
+[data-theme="dark"] .ddes__ph{background:var(--s-plate)}
+.ddes:hover .ddes__ph{background:var(--s-plate)}
+.ddes__n{font-family:var(--d-serif);font-weight:600;font-size:19px;line-height:1.25;transition:color .2s}
+.ddes:hover .ddes__n{color:var(--s-accent-ink)}
+.ddes__s{font-size:13px;line-height:1.45;color:var(--s-fg-soft)}
+.ddes__e{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink)}
+.ddes--cta .ddes__ph{background:transparent;border:1px dashed var(--s-accent);font-size:56px}
+.ddes--cta .ddes__s{color:var(--s-accent-ink)}
+
+/* синяя полоса «Попасть в каталог» — цвета блока «Аренда» главной */
+.dcta{background:var(--g-navy);color:var(--b-cream);padding:88px 0}
+.dcta__in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:56px;align-items:center}
+.dcta__args{grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
+
+.dshophead__logo--mono span{font-size:44px;letter-spacing:.04em;color:var(--s-accent)}
+
+/* анкета */
+.dformpage{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:start}
+.dformpage__text{position:sticky;top:calc(var(--hdr-sticky,64px) + 24px)}
+.dformpage__text .dagenda{margin-bottom:24px}
+.dlink--in{display:inline;padding:0;font-size:inherit;letter-spacing:0;text-transform:none;border-bottom:1px solid var(--s-accent)}
+.dformpage__panel{padding:36px 36px 32px}
+.dform__two{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.dform input[type=number],.dform textarea,.dform select{
+  width:100%;border:1px solid var(--s-line-strong);border-radius:2px;background:var(--s-field-bg);
+  font:inherit;font-size:15px;color:var(--s-fg);transition:border-color .2s;
+}
+.dform input[type=number]{height:50px;padding:0 14px}
+.dform textarea{padding:12px 14px;resize:vertical;min-height:110px}
+.dform textarea:focus,.dform select:focus{outline:none;border-color:var(--s-accent)}
+.dform__sel{position:relative;display:block}
+.dform__sel select{-webkit-appearance:none;appearance:none;height:50px;padding:0 40px 0 14px;cursor:pointer}
+.dform__sel::after{
+  content:"";position:absolute;right:16px;top:50%;width:10px;height:6px;margin-top:-3px;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23C49A6C' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.dform select option{background:var(--s-bg);color:var(--s-fg)}
+.dform .fld__err{display:none}
+.dform .is-invalid .fld__err{display:block}
+.dform .is-invalid input{border-color:#B5483A}
+.dform .check .fld__err{margin-top:4px}
+
+.dupload{
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  min-height:140px;padding:20px;border:1px dashed var(--s-line-strong);text-align:center;cursor:pointer;
+  transition:border-color .2s,background-color .2s;
+}
+.dupload:hover{border-color:var(--s-accent);background:var(--s-plate)}
+.dupload input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.dupload__ic{width:28px;height:28px;background:var(--s-accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3'/%3E%3C/svg%3E") no-repeat center/contain}
+.dupload__t{font-size:14px;color:var(--s-fg)}
+.dupload__t u{color:var(--s-accent-ink);text-underline-offset:3px}
+.dupload__h{font-size:12px;color:var(--s-fg-soft)}
+[data-states] [hidden]{display:none}
+
+@media (max-width:1100px){
+  .dadvs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ddess{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:1000px){
+  .dcta__in{grid-template-columns:1fr;gap:36px}
+  .dformpage{grid-template-columns:1fr;gap:40px}
+  .dformpage__text{position:static}
+}
+@media (max-width:760px){
+  .dadvs{grid-template-columns:1fr}
+  .dadv{padding:24px 0}
+  .ddess{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 12px}
+  .ddes__ph{font-size:34px}
+  .ddes__n{font-size:16px}
+  .dcta{padding:56px 0}
+  .dformpage__panel{padding:24px 20px}
+  .dform__two{grid-template-columns:1fr}
+}
+/* на телефоне ссылка «Все …» уходит под заголовок секции: длинный заголовок
+   вместе с ней не помещался в 327px и распирал страницу */
+@media (max-width:760px){
+  .dhead{flex-direction:column;align-items:flex-start;gap:12px}
+  .dhead__h2{min-width:0;overflow-wrap:break-word}
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Анкета дизайнера — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="design.css?v=136">
+<link rel="stylesheet" href="design-pages.css?v=30">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+/* без JS сайт остаётся видимым: класс включает прятание перед появлением */
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body>
+
+<div id="siteHeader" data-active="designers"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
+<section class="dpage">
+  <div class="wrap">
+    <nav class="dcrumbs" aria-label="Хлебные крошки">
+      <a href="design.html">Главная</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <a href="designers.html">Дизайнерам</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <span aria-current="page">Анкета</span>
+    </nav>
+    <div class="dpage__in">
+      <div>
+        <p class="dpage__eyebrow">Каталог специалистов</p>
+        <h1 class="dpage__h1">Анкета дизайнера</h1>
+        <p class="dpage__lead">Заполните, чтобы попасть в каталог специалистов комплекса</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dcat">
+  <div class="wrap dformpage">
+    <div class="dformpage__text">
+      <h2 class="dblock__h2">Как это работает</h2>
+      <ol class="dagenda">
+        <li>Вы заполняете анкету — она уходит администрации комплекса</li>
+        <li>Администрация проверяет данные и связывается с вами</li>
+        <li><span>Карточка публикуется в <a href="designers.html" class="dlink dlink--in">каталоге</a></span></li>
+      </ol>
+      <p class="dpanel__hint">Анкета не публикуется автоматически. Заполненные анкеты видит только администрация комплекса.</p>
+    </div>
+    <div class="dpanel dformpage__panel" data-states>
+      <div class="st-open">
+        <form class="jsform dform" novalidate>
+          <label class="fld">
+            <span class="fld__lab">Имя и фамилия или название студии</span>
+            <input type="text" name="name" required>
+            <span class="fld__err">Укажите, как подписать карточку</span>
+          </label>
+          <div class="dform__two">
+            <label class="fld">
+              <span class="fld__lab">Направление</span>
+              <span class="dform__sel">
+                <select name="spec">
+                  <option>Дизайн интерьеров</option>
+                  <option>Архитектура и планировочные решения</option>
+                  <option>Светодизайн</option>
+                  <option>Декорирование и стайлинг</option>
+                  <option>Другое</option>
+                </select>
+              </span>
+            </label>
+            <label class="fld">
+              <span class="fld__lab">Опыт работы, лет</span>
+              <input type="number" name="exp" min="0" max="60" required>
+              <span class="fld__err">Укажите число лет</span>
+            </label>
+          </div>
+          <div class="dform__two">
+            <label class="fld">
+              <span class="fld__lab">Телефон</span>
+              <input type="tel" name="phone" required>
+              <span class="fld__err">Телефон нужен администрации для связи</span>
+            </label>
+            <label class="fld">
+              <span class="fld__lab">E-mail</span>
+              <input type="email" name="email" required>
+              <span class="fld__err">Проверьте адрес</span>
+            </label>
+          </div>
+          <label class="fld">
+            <span class="fld__lab">Сайт или портфолио в соцсетях</span>
+            <input type="text" name="site">
+          </label>
+          <label class="fld">
+            <span class="fld__lab">О себе и подходе к работе</span>
+            <textarea name="about" rows="4"></textarea>
+          </label>
+          <div class="fld">
+            <span class="fld__lab">Фотографии проектов</span>
+            <label class="dupload">
+              <input type="file" accept="image/jpeg,image/png" multiple>
+              <span class="dupload__ic" aria-hidden="true"></span>
+              <span class="dupload__t">Перетащите файлы или <u>выберите</u></span>
+              <span class="dupload__h">До 10 изображений, JPG или PNG, до 5 МБ каждое</span>
+            </label>
+          </div>
+          <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
+          <label class="check">
+            <input type="checkbox" name="pd" required>
+            <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
+            <span class="fld__err">Без согласия анкету отправить нельзя</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="pub">
+            <span>Разрешаю публиковать мой телефон и почту в карточке каталога</span>
+          </label>
+          <div class="dcaptcha">Yandex SmartCaptcha</div>
+          <button type="submit" class="dbtn dbtn--fill dbtn--full">Отправить анкету</button>
+        </form>
+      </div>
+      <div class="st-done" hidden>
+        <p class="dpanel__title">Анкета отправлена</p>
+        <p class="dpanel__text">Администрация проверит данные и свяжется с вами. Обычно это занимает до трёх рабочих дней.</p>
+        <p class="dpanel__text">Карточка появится в каталоге после проверки.</p>
+        <a href="designers.html" class="dbtn dbtn--ghost dbtn--full">Вернуться в раздел</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=73"></script>
+<script src="events.js?v=73"></script>
+<script src="design.js?v=63"></script>
+</body>
+</html>
