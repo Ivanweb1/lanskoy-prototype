@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Акции — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="design.css?v=136">
+<link rel="stylesheet" href="design-pages.css?v=22">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+/* без JS сайт остаётся видимым: класс включает прятание перед появлением */
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body>
+
+<div id="siteHeader" data-active="promos"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
+<section class="dpage">
+  <div class="wrap">
+    <nav class="dcrumbs" aria-label="Хлебные крошки">
+      <a href="design.html">Главная</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <span aria-current="page">Акции</span>
+    </nav>
+    <div class="dpage__in">
+      <div>
+        <p class="dpage__eyebrow">Предложения магазинов комплекса</p>
+        <h1 class="dpage__h1">Акции</h1>
+        <p class="dpage__lead">Скидки, распродажи и специальные условия магазинов — с адресом секции и сроком действия.</p>
+      </div>
+      <div class="dpage__act">
+        <div class="field field--sm dbsearch">
+          <input type="search" id="promoSearch" placeholder="Магазин или предложение" autocomplete="off" aria-label="Поиск по акциям">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= СПИСОК ================= -->
+<section class="dcat">
+  <div class="wrap">
+    <div class="evfilters dfilters" id="promoFilters">
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Категория</span>
+        <button type="button" class="chip dchip is-active" data-cat="all">Любая</button>
+        <button type="button" class="chip dchip" data-cat="doors">Двери и фурнитура</button>
+        <button type="button" class="chip dchip" data-cat="decor">Отделочные материалы</button>
+        <button type="button" class="chip dchip" data-cat="hvac">Отопление и климат</button>
+        <button type="button" class="chip dchip" data-cat="kitchen">Мебель и кухни</button>
+      </div>
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Срок</span>
+        <button type="button" class="chip dchip is-active" data-term="all">Все</button>
+        <button type="button" class="chip dchip" data-term="soon">Заканчиваются</button>
+      </div>
+      <p class="evfilters__count dfilters__count"><b id="promoCount">4</b> <span id="promoCountWord">акции</span></p>
+    </div>
+    <div class="pgrid dpgrid" id="promoGrid">
+      <article class="pcard promocard" data-cat="doors" data-term="soon">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/pr-1.webp" alt="" loading="lazy">
+          <span class="pcard__term pcard__term--soon">до 30 июня</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Распродажа дверных ручек 30—50%</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">Салон «Корал»</span><span class="pcard__sec">А14</span></p>
+          <p class="dpcard__left">Осталось 6 дней</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="hvac" data-term="all">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/pr-3.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 31 июля</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Мойки воздуха Venta и тёплые полы Caleo −10%</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">Климат-салон</span><span class="pcard__sec">B9</span></p>
+          <p class="dpcard__left">До конца июля</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="kitchen" data-term="all">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/promos/sputnik-kitchen.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 15 августа</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Специальные предложения на кухни</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">Кухни «Спутник Стиль»</span><span class="pcard__sec">B12</span></p>
+          <p class="dpcard__left">До середины августа</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="decor" data-term="soon">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/promos/vladart-plaster.webp" alt="" loading="lazy">
+          <span class="pcard__term pcard__term--soon">до 30 июня</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Скидка 15% на декоративную штукатурку</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">VLADART STUDIO</span><span class="pcard__sec">А10</span></p>
+          <p class="dpcard__left">Осталось 6 дней</p>
+        </div>
+      </article>
+    </div>
+    <div class="empty" id="promoEmpty" hidden>
+      <p class="empty__title">Акций не найдено</p>
+      <p class="empty__text">Попробуйте снять фильтры или изменить запрос.</p>
+      <button type="button" class="dbtn dbtn--ghost" data-promoreset>Показать все</button>
+    </div>
+    <div class="results__more">
+      <button type="button" class="dbtn dbtn--ghost">Показать ещё</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=73"></script>
+<script src="content.js?v=73"></script>
+<script src="design.js?v=60"></script>
+</body>
+</html>

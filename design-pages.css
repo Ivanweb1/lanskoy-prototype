@@ -646,3 +646,63 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dbigplan svg{width:640px;height:auto}
   .dlegend{gap:14px 18px}
 }
+
+/* ============ 11. АКЦИИ ============ */
+/* фильтры — подпись капсом и чипы главной, выбранный — медная заливка */
+.dfilters{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;margin:0 0 36px;padding-bottom:24px;border-bottom:1px solid var(--s-line)}
+.dfilters__row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.dfilters__label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);margin-right:6px}
+.dfilters .dchip.is-active{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-btn-fill-fg)}
+.dfilters__count{margin-left:auto;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dfilters__count b{font-family:var(--d-serif);font-size:20px;letter-spacing:0;color:var(--s-fg);margin-right:4px}
+
+.dpgrid{gap:40px 24px}
+.dpgrid .promocard[hidden]{display:none}
+/* срок на исходе — медная плашка вместо синей */
+.pcard__term--soon{background:var(--b-copper);color:var(--b-navy)}
+.dpcard__left{font-size:12px;letter-spacing:.06em;color:var(--s-fg-soft);margin:10px 0 0}
+
+/* ============ 12. АКЦИЯ ============ */
+.dpromo__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:56px;align-items:end;padding-bottom:48px}
+.dpromo .dtags{margin:0 0 20px}
+.dpromo__h1{font-size:clamp(30px,3.2vw,48px)}
+.dpromo__shop{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--s-fg-soft);margin:20px 0 0}
+.dpromo__shop b{font-family:var(--d-serif);font-size:18px;letter-spacing:.02em;color:var(--s-accent-ink)}
+.dpromo__state{
+  display:inline-flex;align-items:center;gap:8px;margin:24px 0 0;padding:10px 16px;
+  background:var(--s-accent);color:var(--s-btn-fill-fg);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+}
+.dpromo__state b{font-family:var(--d-sans);font-size:12px;font-weight:600;letter-spacing:.08em}
+.dpromo__state--off{background:transparent;border:1px solid var(--s-line-strong);color:var(--s-fg-soft)}
+.dpromo__state[hidden]{display:none}
+.dpromo__media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--s-bg)}
+.dpanel__shop{font-family:var(--d-serif);font-weight:600;font-size:22px;color:var(--s-fg);margin:0 0 8px}
+.dcontacts__sec{font-family:var(--d-serif);font-size:18px;color:var(--s-accent-ink)}
+
+@media (max-width:1100px){
+  .dpgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:1000px){
+  .dpromo__in{grid-template-columns:1fr;gap:28px;padding-bottom:32px}
+  .dpromo__media{order:-1}
+}
+@media (max-width:760px){
+  .dfilters{gap:12px;margin:0 calc(var(--pad) * -1) 28px;padding:0 var(--pad) 18px}
+  /* каждая строка фильтров листается вбок отдельно */
+  .dfilters__row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;width:100%}
+  .dfilters__row::-webkit-scrollbar{display:none}
+  .dfilters__row .dchip,.dfilters__label{flex:none;white-space:nowrap}
+  .dfilters__count{margin-left:0}
+  .dpgrid{grid-template-columns:1fr;gap:32px}
+}
+/* без паттерна под снимком на внутренних страницах — пока файла нет, ровная плашка */
+.dpgrid .pcard__media,.dpromos .pcard__media{background:var(--s-bg-2)}
+.dpgrid .pcard__media::before,.dpromos .pcard__media::before{display:none}
+/* на телефоне — список сверху вниз: лента вбок, как на главной, годится для
+   четырёх акций в превью, а не для полного раздела */
+@media (max-width:640px){
+  .dpgrid{display:grid;grid-template-columns:1fr;gap:32px;overflow:visible;margin:0;padding:0;scroll-snap-type:none}
+  .dpgrid .pcard{flex:none}
+  .dpgrid .pcard__title{font-size:16px}
+}
