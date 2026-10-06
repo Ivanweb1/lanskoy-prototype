@@ -701,7 +701,14 @@
     'about.html': 'design-about.html',
     'gallery.html': 'design-gallery.html',
     'contacts.html': 'design-contacts.html',
-    'rent.html': 'design-rent.html'
+    'rent.html': 'design-rent.html',
+    'search.html': 'design-search.html',
+    'subscribe.html': 'design-subscribe.html',
+    'privacy.html': 'design-privacy.html',
+    'terms.html': 'design-terms.html',
+    'cookie.html': 'design-cookie.html',
+    '404.html': 'design-404.html',
+    '500.html': 'design-500.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
@@ -843,4 +850,33 @@
     lb.querySelector('.lightbox__ph').style.backgroundImage = 'url("' + list[n % list.length] + '")';
     lb.querySelector('.lightbox__label').style.display = 'none';
   }).observe(lb, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
+})();
+
+/* ---------- экраны подписки ----------
+   [data-flow] — набор экранов .st-*: после отправки формы — «проверьте
+   почту» с введённым адресом, кнопки data-state-go переключают экраны,
+   ?state=done|off|bad открывает экран напрямую (как ссылки из письма) */
+(function () {
+  var box = document.querySelector('[data-flow]');
+  if (!box) return;
+  function show(st) {
+    [].forEach.call(box.querySelectorAll('[class*="st-"]'), function (el) {
+      var m = el.className.match(/\bst-(\w+)/);
+      if (m) el.hidden = m[1] !== st;
+    });
+  }
+  var want = (location.search.match(/[?&]state=(\w+)/) || [])[1];
+  if (want && box.querySelector('.st-' + want)) show(want);
+  [].forEach.call(box.querySelectorAll('[data-state-go]'), function (b) {
+    b.addEventListener('click', function () { show(b.getAttribute('data-state-go')); });
+  });
+  var form = box.querySelector('form');
+  if (form) form.addEventListener('submit', function () {
+    setTimeout(function () {
+      if (form.querySelector('.is-invalid')) return;
+      var mail = form.querySelector('[type=email]').value;
+      [].forEach.call(box.querySelectorAll('[data-email]'), function (e) { e.textContent = mail; });
+      show('sent');
+    }, 0);
+  });
 })();
