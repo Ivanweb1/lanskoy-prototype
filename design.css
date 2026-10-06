@@ -88,8 +88,15 @@
    синие (#0E1A2B, #0B1522, #13223A, #1E3352) сняты: соседние секции
    разделяет медная волосяная линия, как разделители в брендбуке. */
 [data-theme="dark"]{
+  /* синий тёмной темы — как в макете сайта заказчика (брендбук стр. 42):
+     фон шапки, первого экрана и карточек там #011427 (замер по PDF).
+     Близко к логотипу (#001930) и стр. 02 (#0F2339); #16263D со стр. 06
+     рядом с макетом выглядел серым и светлым. Градиент — тот же синий
+     с лёгким высветлением, чтобы секции по-прежнему чередовались. */
+  --b-navy:#011427;
+  --g-navy:linear-gradient(135deg,#000C1A 0%,#0B2645 100%);
   --s-bg:var(--b-navy);
-  --s-bg-2:#16263D;
+  --s-bg-2:var(--b-navy);
   --s-fg:var(--b-cream);
   --s-fg-soft:rgba(246,244,237,.72);
   --s-accent:var(--b-copper);
@@ -100,7 +107,7 @@
   --s-line-strong:rgba(196,154,108,.44);
   --s-hero-bg:var(--b-navy);
   --s-util-bg:var(--b-navy);
-  --s-nav-bg:rgba(22,38,61,.92);
+  --s-nav-bg:rgba(1,20,39,.92);
   --s-field-bg:rgba(246,244,237,.06);
   --s-plate:rgba(196,154,108,.07);
   --s-btn-fill-fg:var(--b-navy);
@@ -788,7 +795,7 @@ body{
 }
 /* в тёмной теме «Аренда» сплошная — между градиентными «Акциями» и «Журналом» */
 [data-theme="dark"] .rblock{background:var(--b-navy)}
-[data-theme="dark"] .rblock__media::after{background:linear-gradient(100deg,rgba(22,38,61,0) 58%,rgba(22,38,61,.62) 100%)}
+[data-theme="dark"] .rblock__media::after{background:linear-gradient(100deg,rgba(1,20,39,0) 58%,rgba(1,20,39,.62) 100%)}
 
 .rblock__text{align-self:center;padding:72px 0 72px 64px;max-width:none}
 /* волосяная линия перед надстрочником убрана — как и в первом экране:
@@ -969,7 +976,7 @@ body{
 /* ============ 18. ШАПКА: ЛИПКАЯ, КОМПАКТНАЯ, ПОИСК В ОВЕРЛЕЕ ============ */
 :root,[data-theme="light"]{--s-nav-solid:rgba(246,244,237,.97);--s-overlay:rgba(22,38,61,.45);
   --s-hairline:rgba(196,154,108,.3);--s-hairline-soft:rgba(196,154,108,.22)}
-[data-theme="dark"]{--s-nav-solid:rgba(22,38,61,.97);--s-overlay:rgba(5,10,18,.6);
+[data-theme="dark"]{--s-nav-solid:rgba(1,20,39,.97);--s-overlay:rgba(5,10,18,.6);
   --s-hairline:rgba(196,154,108,.24);--s-hairline-soft:rgba(196,154,108,.16)}
 
 /* Шапка выведена из потока. При сжатии она теряет разом три высоты —
@@ -1605,3 +1612,23 @@ html{scroll-padding-top:76px}
   .erow__acts{margin-top:4px}
 }
 
+/* ============ ШАПКА ТЁМНО-СИНЯЯ В ОБЕИХ ТЕМАХ ============ */
+/* Строка навигации в светлой теме — тёмно-синяя плашка тем же градиентом,
+   что блок «Аренда» (по просьбе заказчика, 06.10). Цвета темы переопределены
+   только на самой строке (.nav__in): мегаменю и поиск лежат рядом с ней
+   и остаются светлыми. Мобильная панель меню — внутри строки, тоже тёмная. */
+html:not([data-theme="dark"]) .nav,
+html:not([data-theme="dark"]) .is-sticky .nav{background:var(--g-navy);border-bottom-color:rgba(196,154,108,.28)}
+html:not([data-theme="dark"]) .nav__in{
+  --s-bg:var(--b-navy);
+  --s-fg:var(--b-cream);
+  --s-fg-soft:rgba(246,244,237,.72);
+  --s-accent-ink:var(--b-copper);      /* медный на тёмно-синем = 6.04:1 */
+  --s-line:rgba(196,154,108,.22);
+  --s-line-strong:rgba(196,154,108,.44);
+  --s-hairline:rgba(196,154,108,.24);
+  --s-hairline-soft:rgba(196,154,108,.16);
+  --s-nav-solid:var(--b-navy);
+  color:var(--s-fg);
+}
+html:not([data-theme="dark"]) .nav__in .themetog{background:rgba(196,154,108,.12)}
