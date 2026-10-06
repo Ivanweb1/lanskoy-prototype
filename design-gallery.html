@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Галерея и видео — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="design.css?v=136">
+<link rel="stylesheet" href="design-pages.css?v=33">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+/* без JS сайт остаётся видимым: класс включает прятание перед появлением */
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body>
+
+<div id="siteHeader" data-active="about"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
+<section class="dpage">
+  <div class="wrap">
+    <nav class="dcrumbs" aria-label="Хлебные крошки">
+      <a href="design.html">Главная</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <a href="about.html">О комплексе</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <span aria-current="page">Галерея и видео</span>
+    </nav>
+    <div class="dpage__in">
+      <div>
+        <p class="dpage__eyebrow">Медиа</p>
+        <h1 class="dpage__h1">Галерея и видео</h1>
+        <p class="dpage__lead">Фотоальбомы комплекса и видео с мероприятий</p>
+      </div>
+      <ul class="viewtabs dtabs" id="mediaTabs">
+        <li><button type="button" class="viewtabs__item dtabs__item is-active" data-media="photo">Фото</button></li>
+        <li><button type="button" class="viewtabs__item dtabs__item" data-media="video">Видео</button></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="dcat" id="viewPhoto">
+  <div class="wrap">
+    <div class="evfilters dfilters" id="galFilters">
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Раздел</span>
+        <button type="button" class="chip dchip is-active" data-gal="all">Все альбомы</button>
+        <button type="button" class="chip dchip" data-gal="complex">Комплекс</button>
+        <button type="button" class="chip dchip" data-gal="events">Мероприятия</button>
+      </div>
+      <p class="evfilters__count dfilters__count"><b id="galCount">4</b> <span id="galCountWord">альбома</span></p>
+    </div>
+    <div class="dalbums" id="galGrid">
+      <div class="album dalbum" data-gal="complex">
+        <span class="album__media dalbum__media"><img class="jimg" src="img/hero-light.webp" alt="" loading="lazy"><span class="album__n dalbum__n">24 фото</span></span>
+        <span class="album__b">
+          <span class="album__h dalbum__h">Интерьеры комплекса</span>
+          <span class="album__m dalbum__m">Съёмка 2026 года</span>
+        </span>
+      </div>
+      <div class="album dalbum" data-gal="events">
+        <span class="album__media dalbum__media"><img class="jimg" src="img/events/color-day.webp" alt="" loading="lazy"><span class="album__n dalbum__n">48 фото</span></span>
+        <span class="album__b">
+          <span class="album__h dalbum__h">День цвета в Ланском</span>
+          <span class="album__m dalbum__m">12 февраля 2020</span>
+        </span>
+      </div>
+      <div class="album dalbum" data-gal="events">
+        <span class="album__media dalbum__media"><img class="jimg" src="img/events/stroim-dom.webp" alt="" loading="lazy"><span class="album__n dalbum__n">36 фото</span></span>
+        <span class="album__b">
+          <span class="album__h dalbum__h">Выставка «Строим дом»</span>
+          <span class="album__m dalbum__m">16—17 марта 2019</span>
+        </span>
+      </div>
+      <div class="album dalbum" data-gal="events">
+        <span class="album__media dalbum__media"><img class="jimg" src="img/gallery/newyear.webp" alt="" loading="lazy"><span class="album__n dalbum__n">30 фото</span></span>
+        <span class="album__b">
+          <span class="album__h dalbum__h">Новогодние праздники</span>
+          <span class="album__m dalbum__m">Декабрь 2025</span>
+        </span>
+      </div>
+    </div>
+    <div class="empty" id="galEmpty" hidden>
+      <p class="empty__title">В этом разделе альбомов нет</p>
+      <p class="empty__text">Посмотрите все альбомы комплекса.</p>
+      <button type="button" class="dbtn dbtn--ghost" data-galreset>Показать все</button>
+    </div>
+  </div>
+</section>
+
+<section class="dcat" id="viewVideo" hidden>
+  <div class="wrap">
+    <div class="evfilters dfilters" id="vidFilters">
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Тема</span>
+        <button type="button" class="chip dchip is-active" data-vid="all">Все</button>
+        <button type="button" class="chip dchip" data-vid="shops">Магазины и бренды</button>
+        <button type="button" class="chip dchip" data-vid="events">Мероприятия</button>
+        <button type="button" class="chip dchip" data-vid="design">Интерьер и дизайн</button>
+        <button type="button" class="chip dchip" data-vid="materials">Материалы</button>
+      </div>
+      <p class="evfilters__count dfilters__count"><b id="vidCount">6</b> <span id="vidCountWord">видео</span></p>
+    </div>
+    <div class="dalbums" id="vidGrid">
+      <div class="vid dvid" data-vid="shops">
+        <span class="vid__media dvid__media"><img class="jimg" src="img/shops/companion-decor.webp" alt="" loading="lazy"><span class="dvideo__play dvid__play" aria-hidden="true"></span><span class="vid__time dvid__time">2:48</span></span>
+        <span class="vid__h dalbum__h">Companion Decor: каменный шпон и панели</span>
+        <span class="vid__m dalbum__m">Май 2026</span>
+      </div>
+      <div class="vid dvid" data-vid="shops">
+        <span class="vid__media dvid__media"><img class="jimg" src="img/shops/premier-decor.webp" alt="" loading="lazy"><span class="dvideo__play dvid__play" aria-hidden="true"></span><span class="vid__time dvid__time">3:15</span></span>
+        <span class="vid__h dalbum__h">Interierno Group в ТК «Ланской»</span>
+        <span class="vid__m dalbum__m">Апрель 2026</span>
+      </div>
+      <div class="vid dvid" data-vid="events">
+        <span class="vid__media dvid__media"><img class="jimg" src="img/events/color-day.webp" alt="" loading="lazy"><span class="dvideo__play dvid__play" aria-hidden="true"></span><span class="vid__time dvid__time">4:02</span></span>
+        <span class="vid__h dalbum__h">День цвета в Ланском</span>
+        <span class="vid__m dalbum__m">Февраль 2020</span>
+      </div>
+      <div class="vid dvid" data-vid="design">
+        <span class="vid__media dvid__media"><img class="jimg" src="img/ev-2.webp" alt="" loading="lazy"><span class="dvideo__play dvid__play" aria-hidden="true"></span><span class="vid__time dvid__time">12:30</span></span>
+        <span class="vid__h dalbum__h">Тренды в интерьере: разбор с дизайнером</span>
+        <span class="vid__m dalbum__m">Март 2026</span>
+      </div>
+      <div class="vid dvid" data-vid="materials">
+        <span class="vid__media dvid__media"><img class="jimg" src="img/shops/vladart.webp" alt="" loading="lazy"><span class="dvideo__play dvid__play" aria-hidden="true"></span><span class="vid__time dvid__time">1:42</span></span>
+        <span class="vid__h dalbum__h">Декоративная штукатурка: нанесение</span>
+        <span class="vid__m dalbum__m">Июнь 2026</span>
+      </div>
+      <div class="vid dvid" data-vid="events">
+        <span class="vid__media dvid__media"><img class="jimg" src="img/events/stroim-dom.webp" alt="" loading="lazy"><span class="dvideo__play dvid__play" aria-hidden="true"></span><span class="vid__time dvid__time">2:20</span></span>
+        <span class="vid__h dalbum__h">Выставка «Строим дом»</span>
+        <span class="vid__m dalbum__m">Март 2019</span>
+      </div>
+    </div>
+    <div class="empty" id="vidEmpty" hidden>
+      <p class="empty__title">Видео не найдено</p>
+      <p class="empty__text">Попробуйте другую тему.</p>
+      <button type="button" class="dbtn dbtn--ghost" data-vidreset>Показать все</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=73"></script>
+<script src="content.js?v=73"></script>
+<script src="design.js?v=64"></script>
+</body>
+</html>

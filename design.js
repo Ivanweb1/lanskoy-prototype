@@ -697,7 +697,10 @@
     'article.html': 'design-article.html',
     'designers.html': 'design-designers.html',
     'designer.html': 'design-designer.html',
-    'designer-form.html': 'design-designer-form.html'
+    'designer-form.html': 'design-designer-form.html',
+    'about.html': 'design-about.html',
+    'gallery.html': 'design-gallery.html',
+    'contacts.html': 'design-contacts.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
