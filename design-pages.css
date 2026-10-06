@@ -1365,3 +1365,40 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dmap__frame{height:600px;min-height:0}
 @media (max-width:1000px){.dmap__frame{height:380px}}
 @media (max-width:1000px){.dentr{grid-template-columns:minmax(0,1fr)}}
+
+/* ============ 25. АРЕНДА ============ */
+.dstats__in--5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.dterms-wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:56px;align-items:start}
+.dterms{border-top:1px solid var(--s-line-strong)}
+.dterm{display:grid;grid-template-columns:240px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--s-line)}
+.dterm__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);padding-top:4px}
+.dterm__v{font-size:17px;line-height:1.5;color:var(--s-fg)}
+/* карточка «свободно сейчас» — цифра антиквой, как «А10» в нумерации */
+.dfree{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:40px 36px;background:var(--g-navy);color:var(--b-cream);margin-top:76px;transition:transform .25s var(--d-ease)}
+.dfree:hover{transform:translateY(-3px)}
+.dfree .dpage__eyebrow{color:var(--b-copper);margin:0}
+.dfree__n{font-family:var(--d-serif);font-weight:600;font-size:96px;line-height:.9;color:var(--b-copper)}
+.dfree__t{font-size:15px;line-height:1.55;color:rgba(246,244,237,.75);margin-bottom:8px}
+.dfree .dlink{color:var(--b-copper)}
+.rblock .dnum__list{margin:0 0 32px}
+
+@media (max-width:1100px){
+  .dstats__in--5{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .dstats__in--5 li:nth-child(4){border-left:0;padding-left:0}
+  .dstats__in--5 li:nth-child(n+4){border-top:1px solid var(--s-line)}
+}
+@media (max-width:1000px){
+  .dterms-wrap{grid-template-columns:1fr;gap:32px}
+  .dfree{margin-top:0}
+}
+@media (max-width:760px){
+  .dstats__in--5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dstats__in--5 li{border-left:0;padding-left:0;border-top:1px solid var(--s-line)}
+  .dstats__in--5 li:nth-child(even){padding-left:16px;border-left:1px solid var(--s-line)}
+  .dstats__in--5 li:nth-child(-n+2){border-top:0}
+  .dstats__in--5 li:last-child{grid-column:span 2}
+  .dterm{grid-template-columns:1fr;gap:6px}
+  .dfree__n{font-size:72px}
+}
+/* на внутренних страницах под кадром синей полосы — без паттерна */
+.dpage ~ .rblock .rblock__media::before{display:none}

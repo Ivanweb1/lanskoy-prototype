@@ -700,7 +700,8 @@
     'designer-form.html': 'design-designer-form.html',
     'about.html': 'design-about.html',
     'gallery.html': 'design-gallery.html',
-    'contacts.html': 'design-contacts.html'
+    'contacts.html': 'design-contacts.html',
+    'rent.html': 'design-rent.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
