@@ -1722,3 +1722,18 @@ html:not([data-theme="dark"]) .nav__in .themetog{background:rgba(196,154,108,.12
   .burger.is-active::before{top:21px;transform:rotate(45deg)}
   .burger.is-active::after{top:21px;transform:rotate(-45deg)}
 }
+
+/* ============ ПОДПИСКА: ЭКРАН «ПРОВЕРЬТЕ ПОЧТУ» ============ */
+/* встаёт в ту же ячейку сетки, что и форма: отдельной страницы подписки нет */
+.sblock .sform[hidden],.sblock .sdone[hidden]{display:none}
+.sblock .sdone{grid-column:2;grid-row:1;display:flex;gap:20px;align-items:flex-start;padding:28px 30px;border:1px solid var(--s-accent);background:var(--s-field-bg)}
+.sdone__ic{flex:none;width:40px;height:40px;background:var(--s-accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M3 5h18v14H3z'/%3E%3Cpath d='M3 5l9 8 9-8'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M3 5h18v14H3z'/%3E%3Cpath d='M3 5l9 8 9-8'/%3E%3C/svg%3E") no-repeat center/contain}
+.sdone__h{font-family:var(--d-serif);font-weight:600;font-size:22px;text-transform:uppercase;letter-spacing:.01em;color:var(--s-fg);margin:0 0 8px}
+.sdone__t{font-size:14px;line-height:1.6;color:var(--s-fg-soft);margin:0}
+.sdone__t b{color:var(--s-fg)}
+.sdone .dlink--btn{background:none;border:0;border-bottom:1px solid var(--s-accent);padding:0;font:inherit;color:var(--s-accent-ink);cursor:pointer}
+.sform__row.is-invalid{border-color:#B5483A}
+.scheck.is-invalid input{border-color:#B5483A}
+@media (max-width:1000px){.sblock .sdone{grid-column:auto;grid-row:auto}}

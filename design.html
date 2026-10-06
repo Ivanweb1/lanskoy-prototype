@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
-<link rel="stylesheet" href="design.css?v=136">
+<link rel="stylesheet" href="design.css?v=137">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -137,7 +137,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <p class="eempty__d">Мы готовим новую программу лекций и мастер-классов.<br>Посмотрите фотоотчёты с прошедших встреч или подпишитесь на анонсы.</p>
       <div class="eempty__cta">
         <a href="events.html" class="dbtn dbtn--fill">Архив событий</a>
-        <a href="subscribe.html" class="dlink">Подписаться на анонсы</a>
+        <a href="#subscribe" class="dlink">Подписаться на анонсы</a>
       </div>
     </div>
 
@@ -291,10 +291,10 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 </section>
 
 <!-- ================= 8. ПОДПИСКА (дизайн) ================= -->
-<section class="sblock">
+<section class="sblock" id="subscribe">
   <div class="wrap sblock__in">
     <div class="sblock__text">
-      <h2 class="sblock__h2"><a href="subscribe.html">Подписка на события и акции</a></h2>
+      <h2 class="sblock__h2">Подписка на события и акции</h2>
       <p class="sblock__lead">Письмо раз в две недели. Отписаться можно в один клик.</p>
     </div>
     <form class="sform" novalidate>
@@ -313,6 +313,13 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </label>
       </div>
     </form>
+    <div class="sdone" hidden>
+      <span class="sdone__ic" aria-hidden="true"></span>
+      <div>
+        <p class="sdone__h">Проверьте почту</p>
+        <p class="sdone__t">Мы отправили письмо на <b data-email></b>. Перейдите по ссылке из письма, чтобы подписка заработала. Письма нет через 10 минут — загляните в «Спам» или <button type="button" class="dlink--btn" data-sub-again>укажите другой адрес</button>.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -325,6 +332,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=73"></script>
 <script src="content.js?v=73"></script>
-<script src="design.js?v=67"></script>
+<script src="design.js?v=68"></script>
 </body>
 </html>

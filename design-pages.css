@@ -1480,3 +1480,77 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .derr{padding:56px 0 72px}
   .derr__links{grid-template-columns:1fr}
 }
+
+/* ============ 30. 404 — «СЕКЦИИ 404 В КОМПЛЕКСЕ НЕТ» ============ */
+/* Обыгрывает нумерацию секций: подвесной указатель, как в галерее
+   комплекса, и схема этажа, где маршрут от «вы здесь» ведёт к секции,
+   которой нет — пунктирный контур и знак вопроса. Синий фон и медь —
+   палитра первого экрана тёмной темы и блока «Аренда» */
+.d404{background:var(--g-navy);color:var(--b-cream);padding:72px 0 96px;overflow:hidden}
+.d404__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.d404__h1{
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(40px,4.6vw,68px);line-height:1.04;
+  letter-spacing:.01em;text-transform:uppercase;margin:0 0 22px;color:var(--b-cream);
+}
+.d404__h1 em{display:block;font-style:normal;color:var(--b-copper)}
+.d404__lead{font-size:16px;line-height:1.65;color:rgba(246,244,237,.75);max-width:520px;margin:0 0 30px}
+.d404__search{max-width:560px;border-color:rgba(196,154,108,.45);background:rgba(246,244,237,.06)}
+.d404__search .dsearch__inp{color:var(--b-cream)}
+.d404__search .dsearch__inp::placeholder{color:rgba(246,244,237,.55)}
+.d404__links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:28px;max-width:560px;background:rgba(196,154,108,.25);border:1px solid rgba(196,154,108,.25)}
+.d404__link{display:flex;flex-direction:column;gap:4px;padding:18px 20px;background:#021a33;transition:background-color .2s}
+.d404__link b{font-family:var(--d-serif);font-weight:600;font-size:18px;color:var(--b-cream);transition:color .2s}
+.d404__link span{font-size:12px;letter-spacing:.04em;color:rgba(246,244,237,.6)}
+.d404__link:hover{background:#06274a}
+.d404__link:hover b{color:var(--b-copper)}
+
+/* подвесной указатель: тросы и медная табличка, слегка покачивается */
+.d404__art{display:flex;flex-direction:column;align-items:center}
+.d404__sign{position:relative;display:flex;justify-content:center;padding-top:72px;margin-top:-72px;transform-origin:50% 0;animation:d404-swing 6s ease-in-out infinite}
+.d404__wire{position:absolute;top:0;width:1px;height:72px;background:rgba(196,154,108,.6)}
+.d404__wire--l{left:22%}
+.d404__wire--r{right:22%}
+.d404__plate{
+  display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:22px;align-items:center;
+  padding:22px 32px 24px;background:var(--b-copper);color:var(--b-navy);box-shadow:0 24px 40px -24px rgba(0,0,0,.6);
+}
+.d404__plate-k{grid-column:1 / -1;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.d404__plate-n{font-family:var(--d-serif);font-weight:600;font-size:clamp(84px,9vw,128px);line-height:.95}
+.d404__plate-arr{width:56px;height:24px;background:var(--b-navy);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='24'%3E%3Cpath d='M0 12h52M42 2l10 10-10 10' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='24'%3E%3Cpath d='M0 12h52M42 2l10 10-10 10' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3C/svg%3E") no-repeat center/contain}
+@keyframes d404-swing{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+
+/* схема: секции тонкой линией, маршрут — бегущий медный пунктир */
+.d404__planbox{width:100%;margin-top:40px;padding:20px;border:1px solid rgba(196,154,108,.25)}
+.d404__plan{display:block;width:100%;height:auto}
+.p4-room{fill:rgba(246,244,237,.04);stroke:rgba(246,244,237,.28);stroke-width:1}
+.p4-hall{fill:rgba(196,154,108,.08);stroke:rgba(196,154,108,.25)}
+.p4-txt{font-family:var(--d-sans);font-size:11px;fill:rgba(246,244,237,.55);letter-spacing:.06em}
+.p4-txt--hall{font-size:10px;letter-spacing:.2em;text-transform:uppercase;fill:rgba(196,154,108,.7)}
+.p4-ghost{fill:none;stroke:var(--b-copper);stroke-width:1.5;stroke-dasharray:6 6;animation:d404-blink 2.4s ease-in-out infinite}
+.p4-q{font-family:var(--d-serif);font-weight:600;font-size:48px;fill:var(--b-copper)}
+.p4-ghostn{font-family:var(--d-serif);font-weight:600;font-size:15px;fill:rgba(196,154,108,.85);letter-spacing:.08em}
+.p4-route{fill:none;stroke:var(--b-copper);stroke-width:2;stroke-dasharray:2 7;stroke-linecap:round;animation:d404-run 1.6s linear infinite}
+.p4-you{fill:var(--b-copper)}
+.p4-you-ring{fill:none;stroke:var(--b-copper);stroke-width:1;opacity:.6;transform-origin:70px 146px;animation:d404-pulse 2.2s ease-out infinite}
+.p4-youline{stroke:rgba(196,154,108,.5);stroke-width:1}
+.p4-youlab{font-family:var(--d-sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;fill:var(--b-copper)}
+@keyframes d404-run{to{stroke-dashoffset:-18}}
+@keyframes d404-blink{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes d404-pulse{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .d404__sign,.p4-ghost,.p4-route,.p4-you-ring{animation:none}
+}
+
+@media (max-width:1000px){
+  .d404__in{grid-template-columns:1fr;gap:48px}
+  .d404__art{order:-1}
+}
+@media (max-width:760px){
+  .d404{padding:48px 0 64px}
+  .d404__links{grid-template-columns:1fr}
+  .d404__planbox{padding:10px;margin-top:28px}
+  .d404__plate{padding:16px 22px 18px}
+  .d404__plate-arr{width:40px;height:18px}
+}

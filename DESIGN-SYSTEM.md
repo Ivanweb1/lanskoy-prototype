@@ -104,5 +104,5 @@
 10. `design-designers.html`, `design-designer.html`, `design-designer-form.html` — дизайнерам
 11. `design-about.html`, `design-gallery.html`, `design-contacts.html` — о комплексе
 12. `design-rent.html` — аренда
-13. `design-search.html`, `design-subscribe.html`, служебные (политики, 404, 500)
+13. `design-search.html`, служебные (политики, 404, 500). Отдельной страницы подписки нет (06.10): подписка — форма внизу главной, «Проверьте почту» показывается на месте
 14. Кабинет арендатора `lk-*`

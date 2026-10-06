@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
-<link rel="stylesheet" href="design.css?v=136">
-<link rel="stylesheet" href="design-pages.css?v=40">
+<link rel="stylesheet" href="design.css?v=137">
+<link rel="stylesheet" href="design-pages.css?v=42">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -23,18 +23,47 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <main id="main" tabindex="-1">
 
-<section class="derr">
-  <div class="wrap derr__in">
-    <p class="derr__code">404</p>
-    <div class="derr__body">
-      <h1 class="dpage__h1">Такой страницы нет</h1>
-      <p class="dpage__lead">Возможно, адрес набран с ошибкой или страницу перенесли. Найдём нужное:</p>
-      <div class="dsearch dsearch--page">
-        <input class="dsearch__inp" type="search" placeholder="Магазин, бренд, номер секции" aria-label="Поиск по сайту">
+<section class="d404">
+  <div class="wrap d404__in">
+    <div class="d404__text">
+      <p class="rblock__kicker">Ошибка 404</p>
+      <h1 class="d404__h1">Секции 404<em>в комплексе нет</em></h1>
+      <p class="d404__lead">У нас 150+ магазинов на трёх этажах, но такой секции нет даже на третьем. Похоже, ссылка устарела или адрес набран с ошибкой — найдём нужное.</p>
+      <div class="dsearch d404__search">
+        <input class="dsearch__inp" type="search" placeholder="Магазин, бренд или номер секции, например А10" aria-label="Поиск по сайту">
         <button type="button" class="dsearch__go">Найти</button>
       </div>
-      <div class="derr__links"><a href="shops.html" class="derrlink"><span class="derrlink__h">Магазины</span><span class="derrlink__t">150+ магазинов, поиск по номеру секции</span></a><a href="floors.html" class="derrlink"><span class="derrlink__h">Схема этажей</span><span class="derrlink__t">Найти магазин на плане комплекса</span></a><a href="events.html" class="derrlink"><span class="derrlink__h">Афиша</span><span class="derrlink__t">Мастер-классы, лекции и семинары</span></a><a href="contacts.html" class="derrlink"><span class="derrlink__h">Контакты</span><span class="derrlink__t">Адрес, телефоны и как добраться</span></a></div>
-      <a href="design.html" class="dbtn dbtn--fill">На главную</a>
+      <div class="d404__links">
+        <a href="shops.html" class="d404__link"><b>Магазины</b><span>150+ магазинов</span></a>
+        <a href="floors.html" class="d404__link"><b>Схема этажей</b><span>Найти секцию на плане</span></a>
+        <a href="events.html" class="d404__link"><b>Афиша</b><span>Лекции и мастер-классы</span></a>
+        <a href="design.html" class="d404__link"><b>На главную</b><span>Начать сначала</span></a>
+      </div>
+    </div>
+    <div class="d404__art" aria-hidden="false">
+      <div class="d404__sign">
+        <span class="d404__wire d404__wire--l"></span><span class="d404__wire d404__wire--r"></span>
+        <span class="d404__plate">
+          <span class="d404__plate-k">Секция</span>
+          <span class="d404__plate-n">404</span>
+          <span class="d404__plate-arr"></span>
+        </span>
+      </div>
+      <div class="d404__planbox">
+        <svg class="d404__plan" viewBox="0 0 520 300" role="img" aria-label="Схема этажа: маршрут к секции 404 никуда не ведёт">
+          <rect class="p4-room" x="40" y="40" width="64" height="56"/><text class="p4-txt" x="72" y="73" text-anchor="middle">А1</text><rect class="p4-room" x="112" y="40" width="64" height="56"/><text class="p4-txt" x="144" y="73" text-anchor="middle">А2</text><rect class="p4-room" x="184" y="40" width="64" height="56"/><text class="p4-txt" x="216" y="73" text-anchor="middle">А3</text><rect class="p4-room" x="256" y="40" width="64" height="56"/><text class="p4-txt" x="288" y="73" text-anchor="middle">А4</text><rect class="p4-room" x="328" y="40" width="64" height="56"/><text class="p4-txt" x="360" y="73" text-anchor="middle">А5</text><rect class="p4-room" x="40" y="176" width="64" height="56"/><text class="p4-txt" x="72" y="209" text-anchor="middle">А6</text><rect class="p4-room" x="112" y="176" width="64" height="56"/><text class="p4-txt" x="144" y="209" text-anchor="middle">А7</text><rect class="p4-room" x="184" y="176" width="64" height="56"/><text class="p4-txt" x="216" y="209" text-anchor="middle">А8</text><rect class="p4-room" x="256" y="176" width="64" height="56"/><text class="p4-txt" x="288" y="209" text-anchor="middle">А9</text><rect class="p4-room" x="328" y="176" width="64" height="56"/><text class="p4-txt" x="360" y="209" text-anchor="middle">А10</text>
+          <rect class="p4-hall" x="40" y="112" width="352" height="48"/>
+          <text class="p4-txt p4-txt--hall" x="230" y="128" text-anchor="middle">галерея</text>
+          <rect class="p4-ghost" x="420" y="108" width="72" height="104"/>
+          <text class="p4-q" x="456" y="176" text-anchor="middle">?</text>
+          <text class="p4-ghostn" x="456" y="232" text-anchor="middle">404</text>
+          <path class="p4-route" d="M70 146 H392 Q406 146 406 156 V160 H418"/>
+          <circle class="p4-you-ring" cx="70" cy="146" r="16"/>
+          <circle class="p4-you" cx="70" cy="146" r="7"/>
+          <text class="p4-youlab" x="70" y="268" text-anchor="middle">вы здесь</text>
+          <path class="p4-youline" d="M70 162 V252"/>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
@@ -47,6 +76,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=73"></script>
-<script src="design.js?v=67"></script>
+<script src="design.js?v=68"></script>
 </body>
 </html>

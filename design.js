@@ -703,7 +703,6 @@
     'contacts.html': 'design-contacts.html',
     'rent.html': 'design-rent.html',
     'search.html': 'design-search.html',
-    'subscribe.html': 'design-subscribe.html',
     'privacy.html': 'design-privacy.html',
     'terms.html': 'design-terms.html',
     'cookie.html': 'design-cookie.html',
@@ -878,5 +877,43 @@
       [].forEach.call(box.querySelectorAll('[data-email]'), function (e) { e.textContent = mail; });
       show('sent');
     }, 0);
+  });
+})();
+
+/* ---------- подписка на главной ----------
+   Отдельной страницы подписки пока нет (решение Ивана 06.10): форма внизу
+   главной проверяет адрес и обе галочки и прямо на месте сменяется
+   экраном «Проверьте почту» — первый шаг double opt-in (ТЗ п. 6.15) */
+(function () {
+  [].forEach.call(document.querySelectorAll('.sblock .sform'), function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var mail = form.querySelector('[type=email]');
+      var ok = !!(mail.checkValidity() && mail.value.trim());
+      form.querySelector('.sform__row').classList.toggle('is-invalid', !ok);
+      [].forEach.call(form.querySelectorAll('.scheck input[required]'), function (c) {
+        c.closest('.scheck').classList.toggle('is-invalid', !c.checked);
+        if (!c.checked) ok = false;
+      });
+      if (!ok) return;
+      var done = form.parentNode.querySelector('.sdone');
+      done.querySelector('[data-email]').textContent = mail.value.trim();
+      form.hidden = true;
+      done.hidden = false;
+    });
+    form.addEventListener('change', function (e) {
+      var s = e.target.closest('.scheck');
+      if (s && e.target.checked) s.classList.remove('is-invalid');
+    });
+    form.addEventListener('input', function (e) {
+      if (e.target.type === 'email') form.querySelector('.sform__row').classList.remove('is-invalid');
+    });
+  });
+  [].forEach.call(document.querySelectorAll('[data-sub-again]'), function (b) {
+    b.addEventListener('click', function () {
+      var box = b.closest('.sblock');
+      box.querySelector('.sdone').hidden = true;
+      box.querySelector('.sform').hidden = false;
+    });
   });
 })();
