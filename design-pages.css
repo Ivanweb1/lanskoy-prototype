@@ -551,3 +551,87 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dbgroup .dbrand span{font-size:13px}
   .dbrandshops{grid-template-columns:1fr}
 }
+
+/* ============ 10. СХЕМА ЭТАЖЕЙ ============ */
+.dfloor{grid-template-columns:minmax(0,1fr) 360px;gap:56px}
+.dfloor>*,.dfloor .dpanel{min-width:0}
+.dfloor__bar{margin-bottom:20px}
+/* этажи — те же сегменты, что в фильтре каталога: цифра антиквой */
+.dfloor__tabs{display:flex;gap:0;width:auto}
+.dfloor__tabs .floors__tab{
+  flex:none;height:48px;padding:0 22px;border:1px solid var(--s-line-strong);border-radius:0;background:none;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg);
+  transition:background-color .18s,color .18s,border-color .18s;
+}
+.dfloor__tabs .floors__tab+.floors__tab{border-left:0}
+.dfloor__tabs .floors__tab b{font-family:var(--d-serif);font-size:18px;letter-spacing:0;margin-right:4px}
+.dfloor__tabs .floors__tab:hover{background:var(--s-plate)}
+.dfloor__tabs .floors__tab.is-active{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-btn-fill-fg)}
+.dfloor__hint{font-size:13px;color:var(--s-fg-soft)}
+
+.dbigplan{aspect-ratio:474/276;padding:18px}
+.dplan .pl-room--free{fill:transparent;stroke-dasharray:3 3}
+.dplan .pl-room--hit{cursor:pointer;transition:fill .18s}
+.dplan .pl-room--hit:hover{fill:var(--s-plate);stroke:var(--s-accent)}
+.dplan .pl-room--here,.dplan .pl-room--here:hover{fill:var(--b-copper);stroke:var(--b-copper)}
+
+.dlegend{display:flex;flex-wrap:wrap;gap:24px;margin-top:18px;font-size:12px;letter-spacing:.04em;color:var(--s-fg-soft)}
+.dlegend .legend__sw{width:16px;height:16px;border:1px solid var(--s-line-strong);border-radius:0}
+.dlegend .legend__sw--busy{background:var(--s-bg)}
+.dlegend .legend__sw--free{background:transparent;border-style:dashed}
+.dlegend .legend__sw--here{background:var(--b-copper);border-color:var(--b-copper)}
+.dlegend .legend__sw--serv{background:var(--s-plate);border-color:var(--s-line)}
+
+.dbsearch--full{width:100%}
+.dpanel__hint{font-size:12px;line-height:1.5;color:var(--s-fg-soft);margin:12px 0 0}
+.dpanel__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  margin:0 0 6px;padding-bottom:16px;border-bottom:1px solid var(--s-line-strong)}
+.dpanel__head .dpanel__title{margin:0;padding:0;border:0}
+.dpanel__n{font-family:var(--d-serif);font-weight:600;font-size:24px;color:var(--s-accent-ink)}
+.dpanel__text{font-size:14px;line-height:1.6;color:var(--s-fg);margin:0 0 18px}
+.dpanel__text b{font-family:var(--d-serif);font-size:18px;color:var(--s-accent-ink)}
+
+.dfloorlist{max-height:280px;overflow-y:auto}
+.dfloorlist .floorlist__i{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;
+  padding:13px 0;border:0;border-bottom:1px solid var(--s-line);background:none;text-align:left;cursor:pointer;
+}
+.dfloorlist li:last-child .floorlist__i{border-bottom:0}
+.dfloorlist .floorlist__n{font-size:14px;color:var(--s-fg);border:0;transition:color .2s}
+.dfloorlist .floorlist__i:hover .floorlist__n{color:var(--s-accent-ink)}
+.dfloorlist .floorlist__s{font-family:var(--d-serif);font-size:16px;font-weight:600;color:var(--s-accent-ink)}
+
+/* выбранная секция — содержимое рисует floors.js классами прототипа */
+.droom{border-color:var(--s-accent)}
+.droom #roomNum{color:var(--s-accent-ink)}
+.droom .room__name{font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.2;color:var(--s-fg);margin:0 0 6px}
+.droom .room__name.ph-mark{border:0;color:var(--s-fg)}
+.droom .room__cat{font-size:13px;line-height:1.5;color:var(--s-fg-soft);margin:0 0 6px}
+.droom .room__place{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft);margin:0 0 18px}
+.droom .btn{
+  display:flex;align-items:center;justify-content:center;width:100%;height:52px;margin-top:14px;
+  border:1px solid var(--s-accent);border-radius:2px;background:transparent;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);
+  transition:background-color .2s,color .2s;
+}
+.droom .btn:hover,.droom .btn--primary{background:var(--s-accent);color:var(--s-btn-fill-fg)}
+
+@media (max-width:1100px){
+  .dfloor{grid-template-columns:minmax(0,1fr) 300px;gap:32px}
+}
+@media (max-width:1000px){
+  .dfloor{grid-template-columns:1fr;gap:24px}
+  /* поиск — над планом: на телефоне это главный способ найти магазин */
+  .dfloor .dside{display:contents}
+  .dfloor .dside>.dpanel:first-child{order:-1}
+}
+@media (max-width:760px){
+  .dfloor__tabs{width:100%}
+  .dfloor__tabs .floors__tab{flex:1;padding:0 8px}
+  .dfloor__hint{font-size:12px}
+  /* план шире экрана и листается вбок: в ширину 327px секции выходили
+     по 40px, в них не попасть пальцем */
+  .dbigplan{aspect-ratio:auto;padding:10px;overflow-x:auto;margin:0 calc(var(--pad) * -1);border-left:0;border-right:0}
+  .dbigplan svg{width:640px;height:auto}
+  .dlegend{gap:14px 18px}
+}

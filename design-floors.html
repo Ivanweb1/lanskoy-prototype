@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Схема этажей — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="design.css?v=136">
+<link rel="stylesheet" href="design-pages.css?v=18">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+/* без JS сайт остаётся видимым: класс включает прятание перед появлением */
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body>
+
+<div id="siteHeader" data-active="about"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
+<section class="dpage">
+  <div class="wrap">
+    <nav class="dcrumbs" aria-label="Хлебные крошки">
+      <a href="design.html">Главная</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <span aria-current="page">Схема этажей</span>
+    </nav>
+    <div class="dpage__in">
+      <div>
+        <p class="dpage__eyebrow">3 этажа · 150+ магазинов</p>
+        <h1 class="dpage__h1">Схема этажей</h1>
+        <p class="dpage__lead">Найдите магазин на плане или посмотрите, что рядом</p>
+      </div>
+      <ul class="dtabs">
+        <li><a href="shops.html" class="dtabs__item">Списком</a></li>
+        <li><a href="categories.html" class="dtabs__item">По категориям</a></li>
+        <li><span class="dtabs__item is-active">На схеме этажей</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ПЛАН ================= -->
+<section class="dcat">
+  <div class="wrap floorpage dfloor">
+    <div class="floorplan">
+      <div class="floorplan__bar dfloor__bar">
+        <div class="floors__tabs dfloor__tabs" id="floorTabs" role="tablist">
+          <button type="button" class="floors__tab is-active" data-floor="1"><b>1</b> этаж</button>
+          <button type="button" class="floors__tab" data-floor="2"><b>2</b> этаж</button>
+          <button type="button" class="floors__tab" data-floor="3"><b>3</b> этаж</button>
+        </div>
+        <p class="floorplan__hint dfloor__hint">Нажмите на секцию, чтобы увидеть, кто в ней</p>
+      </div>
+      <div class="bigplan dplan dbigplan" id="bigPlan"></div>
+      <ul class="legend dlegend">
+        <li><span class="legend__sw legend__sw--busy"></span>Занято</li>
+        <li><span class="legend__sw legend__sw--free"></span>Свободно</li>
+        <li><span class="legend__sw legend__sw--here"></span>Выбрано</li>
+        <li><span class="legend__sw legend__sw--serv"></span>Служебные зоны</li>
+      </ul>
+    </div>
+
+    <aside class="floorside dside">
+      <div class="dpanel">
+        <p class="dpanel__title">Найти магазин</p>
+        <div class="field field--sm dbsearch dbsearch--full">
+          <input type="search" id="planSearch" placeholder="Название или номер секции" autocomplete="off" aria-label="Название или номер секции">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+        </div>
+        <p class="dpanel__hint" id="planHint">Поиск переключит этаж и подсветит секцию</p>
+      </div>
+      <div class="dpanel droom" id="roomPanel" hidden>
+        <p class="dpanel__title">Секция <span id="roomNum">—</span></p>
+        <div id="roomBody"></div>
+      </div>
+      <div class="dpanel">
+        <div class="dpanel__head">
+          <p class="dpanel__title">Магазины на этаже</p>
+          <span class="dpanel__n" id="linkedCount">0</span>
+        </div>
+        <ul class="floorlist dfloorlist" id="floorList"></ul>
+      </div>
+      <div class="dpanel">
+        <p class="dpanel__title">Свободные помещения</p>
+        <p class="dpanel__text">На этом этаже свободно <b id="freeCount">0</b> секций.</p>
+        <a href="rent.html" class="dbtn dbtn--ghost dbtn--full">Условия аренды</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=73"></script>
+<script src="floors.js?v=73"></script>
+<script src="design.js?v=59"></script>
+</body>
+</html>

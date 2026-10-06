@@ -687,7 +687,8 @@
     'category.html': 'design-category.html',
     'shop.html': 'design-shop.html',
     'brands.html': 'design-brands.html',
-    'brand.html': 'design-brand.html'
+    'brand.html': 'design-brand.html',
+    'floors.html': 'design-floors.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
