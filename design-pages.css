@@ -1182,3 +1182,186 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 /* у альбомов и видео прототипа рамка, белый фон и поля — снимаем */
 .dalbum,.dvid{border:0;background:none;padding:0}
 .dalbum .album__b{display:flex;flex-direction:column;gap:6px;padding:0;border:0}
+
+/* ============ 23. О КОМПЛЕКСЕ — В МАНЕРЕ ГЛАВНОЙ ============ */
+/* первый экран — как на главной: крупная антиква капсом, вторая строка медью,
+   кадр со срезом уходит в правый край */
+.dabout-hero .dpromo__in{min-height:clamp(460px,44vw,620px)}
+.dabout-hero__h1{margin:0 0 22px}
+
+/* цифры комплекса — строка под первым экраном, как линейка «Аренды» */
+.dstats{background:var(--s-bg);border-bottom:1px solid var(--s-line)}
+.dstats__in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:0}
+.dstats__in li{display:flex;flex-direction:column;gap:8px;padding:32px 28px;border-left:1px solid var(--s-line)}
+.dstats__in li:first-child{border-left:0;padding-left:0}
+.dstats__in b{font-family:var(--d-serif);font-weight:600;font-size:clamp(32px,3.2vw,48px);line-height:1;color:var(--s-fg)}
+.dstats__in span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--s-fg-soft)}
+
+/* высказывание — крупная антиква, ключевое слово медью */
+.dstate{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:72px;align-items:end;margin-bottom:72px}
+.dstate__big{
+  font-family:var(--d-serif);font-weight:500;font-size:clamp(26px,2.6vw,40px);line-height:1.25;color:var(--s-fg);margin:0;
+}
+.dstate__big em{font-style:normal;color:var(--s-accent-ink)}
+.dstate__side p{font-size:15px;line-height:1.7;color:var(--s-fg-soft);margin:0 0 14px}
+
+/* для кого — три колонки с медными номерами */
+.daudience{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--s-line-strong)}
+.daud{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:36px 32px 8px 0}
+.daud+.daud{padding-left:32px;border-left:1px solid var(--s-line)}
+.daud__n{font-family:var(--d-serif);font-weight:600;font-size:26px;color:var(--s-accent-ink)}
+.daud__h{font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em;color:var(--s-fg);margin:0}
+.daud__t{font-size:14px;line-height:1.6;color:var(--s-fg-soft);margin:0 0 6px;flex:1}
+
+/* разрез здания: этажи строками сверху вниз — 3, 2, 1 читаются как дом */
+.dlevels{display:flex;flex-direction:column-reverse;border-top:1px solid var(--s-line-strong)}
+.dlevel{
+  display:grid;grid-template-columns:120px minmax(0,1fr) 260px 52px;gap:32px;align-items:center;
+  padding:28px 0;border-bottom:1px solid var(--s-line-strong);color:var(--s-fg);
+}
+.dlevels .dlevel:last-child{border-top:0}
+.dlevel__n{font-family:var(--d-serif);font-weight:600;font-size:96px;line-height:.85;color:var(--s-accent);transition:color .25s}
+.dlevel__body{display:flex;flex-direction:column;gap:10px}
+.dlevel__h{font-family:var(--d-serif);font-weight:600;font-size:26px;text-transform:uppercase;letter-spacing:.01em}
+.dlevel__sub{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dlevel__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.dlevel__media{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--s-bg)}
+.dlevel:hover .jimg{transform:scale(1.05)}
+.dlevel__go{width:52px;height:52px;border:1px solid var(--s-accent);position:relative;transition:background-color .2s}
+.dlevel__go::after{
+  content:"";position:absolute;inset:0;background:var(--s-accent-ink);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/16px 9px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/16px 9px;
+}
+.dlevel:hover .dlevel__go{background:var(--s-accent)}
+.dlevel:hover .dlevel__go::after{background:var(--s-btn-fill-fg)}
+.dlevel:hover .dlevel__h{color:var(--s-accent-ink)}
+
+/* полоса удобств — та же, что услуги под первым экраном главной */
+.dserv--about{border-top:1px solid var(--s-line);border-bottom:1px solid var(--s-line);background:var(--s-bg)}
+.dserv--about .dserv__in{grid-template-columns:repeat(6,minmax(0,1fr))}
+.dserv__ic--clock{-webkit-mask-image:var(--i-clock);mask-image:var(--i-clock)}
+.dserv__ic--lift{-webkit-mask-image:var(--i-lift);mask-image:var(--i-lift)}
+.dserv__ic--cup{-webkit-mask-image:var(--i-cup);mask-image:var(--i-cup)}
+.dserv__ic--nav{-webkit-mask-image:var(--i-nav);mask-image:var(--i-nav)}
+.dserv__ic--access{-webkit-mask-image:var(--i-access);mask-image:var(--i-access)}
+:root{
+  --i-clock:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E");
+  --i-lift:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M3 3h18v18H3z'/%3E%3Cpath d='M12 3v18M7 10l-2 2.5h4zM17 14l2-2.5h-4z'/%3E%3C/svg%3E");
+  --i-cup:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3'/%3E%3C/svg%3E");
+  --i-nav:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M12 2v20M5 5h11l3 3-3 3H5zM19 13H8l-3 3 3 3h11z'/%3E%3C/svg%3E");
+  --i-access:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Ccircle cx='11' cy='4' r='1.6'/%3E%3Cpath d='M11 7v6h5l2 6M11 10h5'/%3E%3Cpath d='M8 12a5 5 0 1 0 6 7'/%3E%3C/svg%3E");
+}
+
+/* мозаика фото: два крупных кадра и три малых */
+.dmosaic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(160px,15vw,240px);gap:8px}
+.dmosaic__i{position:relative;overflow:hidden;background:var(--s-bg)}
+.dmosaic__i--a{grid-column:span 2;grid-row:span 2}
+.dmosaic__i--b{grid-column:span 2}
+.dmosaic__i:hover .jimg{transform:scale(1.04)}
+
+/* две финальные карточки: синяя «Аренда» и светлая «Как добраться» */
+.dnext{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.dnext__card{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:44px 40px;border:1px solid var(--s-line);background:var(--s-bg-2);color:var(--s-fg);transition:transform .25s var(--d-ease)}
+.dnext__card:hover{transform:translateY(-3px)}
+.dnext__card--navy{background:var(--g-navy);border-color:transparent;color:var(--b-cream)}
+.dnext__card .rblock__kicker,.dnext__card .dpage__eyebrow{margin:0}
+.dnext__h{font-family:var(--d-serif);font-weight:600;font-size:clamp(26px,2.4vw,36px);line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
+.dnext__t{font-size:15px;line-height:1.6;color:var(--s-fg-soft);max-width:440px;flex:1}
+.dnext__card--navy .dnext__t{color:rgba(246,244,237,.72)}
+[data-theme="dark"] .dnext__card{background:var(--s-plate)}
+
+@media (max-width:1100px){
+  .dlevel{grid-template-columns:90px minmax(0,1fr) 200px;gap:24px}
+  .dlevel__go{display:none}
+  .dlevel__n{font-size:72px}
+  .dserv--about .dserv__in{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .dserv--about .dserv__i:nth-child(n+4){border-top:1px solid var(--s-line)}
+  .dserv--about .dserv__i:nth-child(4){border-left:0}
+  .dserv--about .dserv__i:last-child{grid-column:auto}
+}
+@media (max-width:1000px){
+  .dstats__in{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dstats__in li:nth-child(3){border-left:0;padding-left:0}
+  .dstats__in li:nth-child(n+3){border-top:1px solid var(--s-line)}
+  .dstate{grid-template-columns:1fr;gap:28px;margin-bottom:48px}
+  .daudience{grid-template-columns:1fr}
+  .daud,.daud+.daud{padding:28px 0;border-left:0;border-bottom:1px solid var(--s-line)}
+  .dnext{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .dstats__in li{padding:22px 16px}
+  .dlevel{grid-template-columns:64px minmax(0,1fr);gap:16px;align-items:start}
+  .dlevel__n{font-size:56px}
+  .dlevel__h{font-size:20px}
+  .dlevel__media{grid-column:1 / -1}
+  .dserv--about .dserv__in{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dserv--about .dserv__i{border-left:0;padding-left:0}
+  .dserv--about .dserv__i:nth-child(even){padding-left:16px;border-left:1px solid var(--s-line)}
+  .dserv--about .dserv__i:nth-child(n+3){border-top:1px solid var(--s-line)}
+  .dserv--about .dserv__i:last-child{grid-column:auto;flex-direction:column;align-items:flex-start}
+  .dmosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:140px}
+  .dmosaic__i--a{grid-column:span 2;grid-row:span 2}
+  .dmosaic__i--b{grid-column:span 2}
+  .dnext__card{padding:32px 24px}
+}
+/* настоящая Яндекс Карта: виджет во всю колонку */
+.dmap--live{padding:0;display:block;min-height:0;overflow:hidden}
+.dmap__frame{display:block;width:100%;height:100%;min-height:520px;border:0}
+/* соцсети логотипами, как в подвале */
+.dsocials{display:flex;flex-wrap:wrap;gap:8px}
+.dsocial{display:flex;align-items:center;height:48px;padding:0 18px;border:1px solid var(--s-line);transition:border-color .2s}
+.dsocial:hover{border-color:var(--s-accent)}
+.dsocial img{display:block;height:20px;width:auto}
+@media (max-width:1000px){.dmap__frame{min-height:360px}}
+
+/* ============ 24. КАК ДОБРАТЬСЯ ============ */
+.droutes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.droute{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:36px 32px;background:var(--s-bg);border:1px solid var(--s-line)}
+[data-theme="dark"] .droute{background:var(--s-plate)}
+.droute--navy{background:var(--g-navy);border-color:transparent;color:var(--b-cream)}
+.droute__ic{width:40px;height:40px;margin-bottom:10px;background:var(--b-copper);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.droute__ic--metro{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M6 16.5l3-9 3 5.5 3-5.5 3 9'/%3E%3C/svg%3E")}
+.droute__ic--car{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M3 15v-3l2.2-5h13.6L21 12v3H3zM3 15v3h3v-3M18 15v3h3v-3M3 12h18'/%3E%3Ccircle cx='7' cy='13.5' r='.8'/%3E%3Ccircle cx='17' cy='13.5' r='.8'/%3E%3C/svg%3E")}
+.droute__p{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin-bottom:10px;border:1px solid var(--b-copper);font-family:var(--d-serif);font-weight:600;font-size:24px;color:var(--b-copper)}
+.droute__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);margin:0}
+.droute--navy .droute__k{color:rgba(246,244,237,.65)}
+.droute__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(34px,3.2vw,48px);line-height:1;margin:4px 0 8px;color:inherit}
+.droute__big small{font-family:var(--d-sans);font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--b-copper);margin-left:6px}
+.droute__big--addr{font-size:clamp(22px,1.9vw,28px);line-height:1.2}
+.droute__t{font-size:14px;line-height:1.6;color:var(--s-fg-soft);margin:0 0 8px;flex:1}
+.droute__st{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.droute__st li{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--b-cream)}
+/* метка линии метро — её собственный цвет, единственное отступление от палитры */
+.droute__line{width:12px;height:12px;border-radius:50%;background:var(--line);box-shadow:0 0 0 3px rgba(246,244,237,.12)}
+
+/* схема входов — линии и метки палитрой сайта */
+.dentr{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.dentr__map{aspect-ratio:auto;border:1px solid var(--s-line);background:var(--s-bg);padding:24px}
+.dentr__map svg{display:block;width:100%;height:auto}
+.ent-bld{fill:var(--s-bg-2);stroke:var(--s-fg);stroke-width:1.5}
+.ent-park{fill:none;stroke:var(--s-line-strong);stroke-dasharray:5 4}
+.ent-street{stroke:var(--s-fg-soft);stroke-width:1;stroke-dasharray:14 8}
+.ent-name{font-family:var(--d-serif);font-weight:600;font-size:20px;fill:var(--s-fg);letter-spacing:.04em}
+.ent-sm{font-family:var(--d-sans);font-size:11px;fill:var(--s-fg-soft);letter-spacing:.12em;text-transform:uppercase}
+.ent-plab{font-family:var(--d-serif);font-weight:600;font-size:44px;fill:var(--s-accent)}
+.ent-door{fill:var(--b-copper)}
+.ent-door--alt{fill:var(--s-bg);stroke:var(--b-copper);stroke-width:1.5}
+.ent-n{font-family:var(--d-serif);font-weight:600;font-size:15px;fill:var(--b-navy)}
+.dentr__list{margin:20px 0 0;padding:0;list-style:none}
+.dentr__list li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start;padding:14px 0;border-top:1px solid var(--s-line);font-size:15px;line-height:1.55;color:var(--s-fg-soft)}
+.dentr__list b{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--b-copper);color:var(--b-navy);font-family:var(--d-serif);font-size:15px}
+.dentr__list li:last-child b{background:none;border:1.5px solid var(--b-copper);color:var(--s-accent-ink)}
+.dentr__list strong{color:var(--s-fg);font-weight:600}
+
+@media (max-width:1000px){
+  .droutes{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .droute{padding:28px 22px}
+  .dentr__map{padding:12px}
+}
+.dcontact{align-items:start}
+.dmap__frame{height:600px;min-height:0}
+@media (max-width:1000px){.dmap__frame{height:380px}}
+@media (max-width:1000px){.dentr{grid-template-columns:minmax(0,1fr)}}

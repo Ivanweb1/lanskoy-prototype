@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
 <link rel="stylesheet" href="design.css?v=136">
-<link rel="stylesheet" href="design-pages.css?v=33">
+<link rel="stylesheet" href="design-pages.css?v=38">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -23,71 +23,159 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <main id="main" tabindex="-1">
 
-<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
-<section class="dpage">
+<!-- ================= ПЕРВЫЙ ЭКРАН ================= -->
+<section class="dpage dpromo dabout-hero">
   <div class="wrap">
     <nav class="dcrumbs" aria-label="Хлебные крошки">
       <a href="design.html">Главная</a>
       <span class="dcrumbs__sep" aria-hidden="true"></span>
       <span aria-current="page">О комплексе</span>
     </nav>
-    <div class="dpage__in">
-      <div>
-        <p class="dpage__eyebrow">Торговый центр интерьерных решений</p>
-        <h1 class="dpage__h1">О комплексе</h1>
-        <p class="dpage__lead">Интерьерный центр на границе Приморского и Выборгского районов</p>
+    <div class="dpromo__in">
+      <div class="dpromo__main">
+        <div class="dpromo__top">
+          <p class="dpage__eyebrow">Торговый центр интерьерных решений · Санкт-Петербург</p>
+          <h1 class="dhero__h1 dabout-hero__h1">Всё для интерьера<em>в одном здании</em></h1>
+          <p class="dhero__sub">Магазины материалов и решений для ремонта, строительства и дизайна интерьера — на границе Приморского и Выборгского районов.</p>
+        </div>
+        <div class="dpromo__bottom dpromo__acts">
+          <a href="shops.html" class="dbtn dbtn--fill">Каталог магазинов</a>
+          <a href="contacts.html" class="dbtn dbtn--ghost">Как добраться</a>
+        </div>
       </div>
-      <div class="dpage__act"><a href="contacts.html" class="dbtn dbtn--ghost">Как добраться</a></div>
+      <div class="dpromo__media"><img class="jimg" src="img/hero-light.webp" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
 
-<section class="dcat">
-  <div class="wrap dintro">
-    <div class="dprose dintro__text">
-      <p class="dintro__big">ТК «Ланской» — торговый комплекс, где собраны магазины материалов и решений для ремонта, строительства и дизайна интерьера.</p>
-      <p>Более 150 магазинов и шоурумов на трёх этажах: отделочные материалы, плитка, обои, напольные покрытия, двери, сантехника, свет, мебель и декор.</p>
-      <p>Сюда приезжают не гулять между витрин, а выбирать: частные покупатели в ремонте, дизайнеры и архитекторы с проектами, подрядчики. Комплекс проводит мастер-классы, лекции и профессиональные семинары для дизайнерского сообщества.</p>
-    </div>
-    <div class="dintro__media"><img class="jimg" src="img/find.webp" alt="" loading="lazy"></div>
+<!-- ================= ЦИФРЫ ================= -->
+<section class="dstats">
+  <div class="wrap">
+    <ul class="dstats__in">
+      <li><b>150+</b><span>магазинов и шоурумов</span></li>
+      <li><b>3</b><span>этажа</span></li>
+      <li><b>14</b><span>направлений</span></li>
+      <li><b>10—20</b><span>ежедневно, без выходных</span></li>
+    </ul>
   </div>
 </section>
 
+<!-- ================= О КОМПЛЕКСЕ ================= -->
+<section class="sect">
+  <div class="wrap dstate">
+    <p class="dstate__big">Сюда приезжают не гулять между витрин, а <em>выбирать</em>: плитку, двери, свет и всё, из чего складывается интерьер.</p>
+    <div class="dstate__side">
+      <p>ТК «Ланской» собрал магазины материалов и решений для ремонта, строительства и дизайна интерьера. Более 150 магазинов и шоурумов на трёх этажах: отделочные материалы, плитка, обои, напольные покрытия, двери, сантехника, свет, мебель и декор.</p>
+      <p>Комплекс проводит мастер-классы, лекции и профессиональные семинары для дизайнерского сообщества.</p>
+    </div>
+  </div>
+  <div class="wrap daudience">
+      <div class="daud">
+        <span class="daud__n">01</span>
+        <h3 class="daud__h">Покупателям в ремонте</h3>
+        <p class="daud__t">Все материалы для квартиры или дома в одном здании: сравнить, потрогать и заказать за один выезд.</p>
+        <a href="shops.html" class="dlink">Каталог магазинов</a>
+      </div>
+      <div class="daud">
+        <span class="daud__n">02</span>
+        <h3 class="daud__h">Дизайнерам и архитекторам</h3>
+        <p class="daud__t">Образцы под проект, семинары фабрик и каталог специалистов, где вас находят заказчики.</p>
+        <a href="designers.html" class="dlink">Раздел для дизайнеров</a>
+      </div>
+      <div class="daud">
+        <span class="daud__n">03</span>
+        <h3 class="daud__h">Подрядчикам и бригадам</h3>
+        <p class="daud__t">Отделка, инженерия и комплектующие для объекта — без разъездов по городу.</p>
+        <a href="categories.html" class="dlink">Все направления</a>
+      </div>
+  </div>
+</section>
+
+<!-- ================= ЭТАЖИ ================= -->
 <section class="sect dsect--alt">
   <div class="wrap">
     <div class="dhead">
       <h2 class="dhead__h2">Что на каком этаже</h2>
       <a href="floors.html" class="dlink">Схема этажей</a>
     </div>
-    <div class="dfloorcards">
-      <a href="floors.html" class="dfloorcard">
-        <span class="dfloorcard__n">1</span>
-        <span class="dfloorcard__h">Первый этаж</span>
-        <span class="dfloorcard__t">Отделочные материалы, плитка, обои, напольные покрытия, декоративные покрытия</span>
-        <span class="dfloorcard__m">Секции группы А</span>
+    <div class="dlevels">
+      <a href="floors.html" class="dlevel">
+        <span class="dlevel__n">1</span>
+        <span class="dlevel__body">
+          <span class="dlevel__h">Первый этаж</span>
+          <span class="dlevel__sub">Атриум и главный вход · секции группы А</span>
+          <span class="dlevel__tags"><span class="dtag">Отделочные материалы</span><span class="dtag">Плитка</span><span class="dtag">Обои</span><span class="dtag">Напольные покрытия</span><span class="dtag">Декоративные покрытия</span></span>
+        </span>
+        <span class="dlevel__media"><img class="jimg" src="img/cat-plitka.webp" alt="" loading="lazy"></span>
+        <span class="dlevel__go" aria-hidden="true"></span>
       </a>
-      <a href="floors.html" class="dfloorcard">
-        <span class="dfloorcard__n">2</span>
-        <span class="dfloorcard__h">Второй этаж</span>
-        <span class="dfloorcard__t">Двери, сантехника, мебель, кухни, свет и предметы интерьера</span>
-        <span class="dfloorcard__m">Секции группы Б</span>
+      <a href="floors.html" class="dlevel">
+        <span class="dlevel__n">2</span>
+        <span class="dlevel__body">
+          <span class="dlevel__h">Второй этаж</span>
+          <span class="dlevel__sub">Галерея шоурумов · секции группы Б</span>
+          <span class="dlevel__tags"><span class="dtag">Двери</span><span class="dtag">Сантехника</span><span class="dtag">Мебель и кухни</span><span class="dtag">Свет</span><span class="dtag">Предметы интерьера</span></span>
+        </span>
+        <span class="dlevel__media"><img class="jimg" src="img/cat-santeh.webp" alt="" loading="lazy"></span>
+        <span class="dlevel__go" aria-hidden="true"></span>
       </a>
-      <a href="floors.html" class="dfloorcard">
-        <span class="dfloorcard__n">3</span>
-        <span class="dfloorcard__h">Третий этаж</span>
-        <span class="dfloorcard__t">Потолки, лестницы, отопление и кондиционирование, дизайн-студии</span>
-        <span class="dfloorcard__m">Секции группы В · зона лекций и мероприятий</span>
+      <a href="floors.html" class="dlevel">
+        <span class="dlevel__n">3</span>
+        <span class="dlevel__body">
+          <span class="dlevel__h">Третий этаж</span>
+          <span class="dlevel__sub">Зона лекций и мероприятий · секции группы В</span>
+          <span class="dlevel__tags"><span class="dtag">Потолки</span><span class="dtag">Лестницы</span><span class="dtag">Отопление и климат</span><span class="dtag">Дизайн-студии</span></span>
+        </span>
+        <span class="dlevel__media"><img class="jimg" src="img/cat-otoplenie.webp" alt="" loading="lazy"></span>
+        <span class="dlevel__go" aria-hidden="true"></span>
       </a>
     </div>
   </div>
 </section>
 
+<!-- ================= НАПРАВЛЕНИЯ ================= -->
+<section class="sect sect--cats">
+  <div class="wrap">
+    <div class="dhead">
+      <h2 class="dhead__h2">Крупнейшие направления</h2>
+      <a href="categories.html" class="dlink">Все 14 направлений</a>
+    </div>
+    <div class="cgrid">
+      <a href="category.html" class="cat">
+        <span class="cat__media"><img class="cat__img" src="img/cat-dekor.webp" alt="" loading="lazy"></span>
+        <span class="cat__body"><span class="cat__name">Декоративно-отделочные материалы</span><span class="cat__count">28 магазинов</span></span>
+      </a>
+      <a href="category.html" class="cat">
+        <span class="cat__media"><img class="cat__img" src="img/cat-pol.webp" alt="" loading="lazy"></span>
+        <span class="cat__body"><span class="cat__name">Напольные покрытия</span><span class="cat__count">28 магазинов</span></span>
+      </a>
+      <a href="category.html" class="cat">
+        <span class="cat__media"><img class="cat__img" src="img/cat-plitka.webp" alt="" loading="lazy"></span>
+        <span class="cat__body"><span class="cat__name">Плитка</span><span class="cat__count">17 магазинов</span></span>
+      </a>
+      <a href="category.html" class="cat">
+        <span class="cat__media"><img class="cat__img" src="img/cat-dveri.webp" alt="" loading="lazy"></span>
+        <span class="cat__body"><span class="cat__name">Двери, перегородки, фурнитура</span><span class="cat__count">14 магазинов</span></span>
+      </a>
+      <a href="category.html" class="cat">
+        <span class="cat__media"><img class="cat__img" src="img/cat-santeh.webp" alt="" loading="lazy"></span>
+        <span class="cat__body"><span class="cat__name">Сантехника</span><span class="cat__count">12 магазинов</span></span>
+      </a>
+      <a href="category.html" class="cat">
+        <span class="cat__media"><img class="cat__img" src="img/cat-svet.webp" alt="" loading="lazy"></span>
+        <span class="cat__body"><span class="cat__name">Свет</span><span class="cat__count">9 магазинов</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= НУМЕРАЦИЯ ================= -->
 <section class="dnum">
   <div class="wrap dnum__in">
     <div>
       <p class="rblock__kicker">Навигация</p>
-      <h2 class="rblock__h2">Как устроена нумерация</h2>
-      <p class="rblock__lead">Секции комплекса пронумерованы по единой системе — она работает и на указателях внутри здания, и в поиске на сайте.</p>
+      <h2 class="rblock__h2">Как найти секцию</h2>
+      <p class="rblock__lead">Секции пронумерованы по единой системе — она работает и на указателях внутри здания, и в поиске на сайте.</p>
       <ul class="dnum__list">
         <li><b>Буква</b> — группа секций, она же этаж: А — первый, Б — второй, В — третий</li>
         <li><b>Число</b> — номер помещения внутри этажа: А10, А12, Б7</li>
@@ -102,52 +190,55 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   </div>
 </section>
 
+<!-- ================= ИНФРАСТРУКТУРА ================= -->
 <section class="sect">
   <div class="wrap">
-    <div class="dhead"><h2 class="dhead__h2">Инфраструктура</h2></div>
-    <div class="dadvs">
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Парковка</h3>
-        <p class="dadv__t">Парковка для посетителей у входов в комплекс.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Режим работы</h3>
-        <p class="dadv__t">Ежедневно с 10:00 до 20:00, без выходных.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Навигация внутри</h3>
-        <p class="dadv__t">Подвесные указатели, информационные стойки и таблички секций. Онлайн — <a href="floors.html" class="dlink dlink--in">схема этажей</a>.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Кафе и зоны отдыха</h3>
-        <p class="dadv__t">Кафе и места для отдыха на этажах — чтобы выбор материалов не превращался в марафон.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Лифты и эскалаторы</h3>
-        <p class="dadv__t">Лифты и эскалаторы соединяют все три этажа.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Доступная среда</h3>
-        <p class="dadv__t">Пандусы у входов, лифты и санузел для маломобильных посетителей.</p>
-      </div>
+    <div class="dhead"><h2 class="dhead__h2">Удобства комплекса</h2></div>
+  </div>
+  <div class="dserv dserv--about">
+    <div class="wrap dserv__in">
+      <div class="dserv__i"><span class="dserv__ic dserv__ic--clock" aria-hidden="true"></span><span class="dserv__t">Ежедневно<br>10:00 — 20:00</span></div>
+      <div class="dserv__i"><span class="dserv__ic dserv__ic--park" aria-hidden="true"></span><span class="dserv__t">Парковка<br>у входов</span></div>
+      <div class="dserv__i"><span class="dserv__ic dserv__ic--lift" aria-hidden="true"></span><span class="dserv__t">Лифты<br>и эскалаторы</span></div>
+      <div class="dserv__i"><span class="dserv__ic dserv__ic--cup" aria-hidden="true"></span><span class="dserv__t">Кафе и зоны<br>отдыха</span></div>
+      <div class="dserv__i"><span class="dserv__ic dserv__ic--nav" aria-hidden="true"></span><span class="dserv__t">Указатели<br>и стойки</span></div>
+      <div class="dserv__i"><span class="dserv__ic dserv__ic--access" aria-hidden="true"></span><span class="dserv__t">Доступная<br>среда</span></div>
     </div>
   </div>
 </section>
 
+<!-- ================= ФОТО ================= -->
 <section class="sect dsect--alt">
   <div class="wrap">
-    <div class="dhead"><h2 class="dhead__h2">Фото комплекса</h2></div>
-    <div class="aboutgallery-wrap dabout__gal">
-      <button type="button" class="aboutgallery__nav aboutgallery__nav--prev dabout__nav" aria-label="Предыдущее фото"></button>
-      <div class="aboutgallery dabout__track" id="aboutGallery">
-        <div class="aboutgallery__item dabout__shot"><img class="jimg" src="img/hero-light.webp" alt="" loading="lazy"></div>
-        <div class="aboutgallery__item dabout__shot"><img class="jimg" src="img/find.webp" alt="" loading="lazy"></div>
-        <div class="aboutgallery__item dabout__shot"><img class="jimg" src="img/rent.webp" alt="" loading="lazy"></div>
-        <div class="aboutgallery__item dabout__shot"><img class="jimg" src="img/hero-dark.webp" alt="" loading="lazy"></div>
-        <div class="aboutgallery__item dabout__shot"><img class="jimg" src="img/ev-1.webp" alt="" loading="lazy"></div>
-      </div>
-      <button type="button" class="aboutgallery__nav aboutgallery__nav--next dabout__nav" aria-label="Следующее фото"></button>
+    <div class="dhead">
+      <h2 class="dhead__h2">Фото комплекса</h2>
+      <a href="gallery.html" class="dlink">Галерея и видео</a>
     </div>
+    <div class="dmosaic">
+      <div class="dmosaic__i dmosaic__i--a"><img class="jimg" src="img/find.webp" alt="" loading="lazy"></div>
+      <div class="dmosaic__i dmosaic__i--b"><img class="jimg" src="img/hero-dark.webp" alt="" loading="lazy"></div>
+      <div class="dmosaic__i"><img class="jimg" src="img/ev-1.webp" alt="" loading="lazy"></div>
+      <div class="dmosaic__i"><img class="jimg" src="img/rent.webp" alt="" loading="lazy"></div>
+      <div class="dmosaic__i"><img class="jimg" src="img/shops/vladart/1.webp" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ДАЛЬШЕ ================= -->
+<section class="sect">
+  <div class="wrap dnext">
+    <a href="rent.html" class="dnext__card dnext__card--navy">
+      <span class="rblock__kicker">Бизнесу</span>
+      <span class="dnext__h">Аренда площадей</span>
+      <span class="dnext__t">Аудитория в ремонте и на этапе проекта — покупатель приходит с готовым намерением.</span>
+      <span class="dlink dlink--inv">Условия аренды</span>
+    </a>
+    <a href="contacts.html" class="dnext__card">
+      <span class="dpage__eyebrow">Ул. Студенческая, 10</span>
+      <span class="dnext__h">Как добраться</span>
+      <span class="dnext__t">Метро «Чёрная речка» и «Лесная», парковка у входов. Ежедневно с 10:00 до 20:00.</span>
+      <span class="dlink">Контакты и схема проезда</span>
+    </a>
   </div>
 </section>
 
@@ -159,6 +250,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=73"></script>
-<script src="design.js?v=64"></script>
+<script src="design.js?v=65"></script>
 </body>
 </html>

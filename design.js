@@ -822,3 +822,24 @@
     });
   });
 })();
+
+/* ---------- лайтбокс альбомов показывает снимки ----------
+   У альбома в разметке одна обложка, список кадров — в data-photos.
+   Номер кадра берём из счётчика лайтбокса «N из M» и показываем
+   кадры по кругу, пока в альбоме нет полного набора */
+(function () {
+  var list = null;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-photos]');
+    if (a) list = a.getAttribute('data-photos').split(',');
+    else if (e.target.closest('.gallery__item')) list = null;
+  }, true);
+  var lb = document.querySelector('.lightbox');
+  if (!lb) return;
+  new MutationObserver(function () {
+    if (lb.hidden || !list) return;
+    var n = parseInt(lb.querySelector('.lightbox__counter').textContent || '1', 10) - 1;
+    lb.querySelector('.lightbox__ph').style.backgroundImage = 'url("' + list[n % list.length] + '")';
+    lb.querySelector('.lightbox__label').style.display = 'none';
+  }).observe(lb, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
+})();
