@@ -890,3 +890,82 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dpromo__main{gap:24px}
 }
 .nw{white-space:nowrap}
+
+/* ============ 17. ЖУРНАЛ ============ */
+/* сетка 3 колонки; первая статья — лид на две колонки и две строки,
+   остальные одиннадцать заполняют сетку без дыр (4 + 11 = 15 ячеек) */
+.djgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 24px}
+.djgrid .djpost[hidden]{display:none}
+.djpost{display:flex;flex-direction:column}
+.djpost--lead{grid-column:span 2;grid-row:span 2}
+.djpost--lead .dpost__media{flex:1;aspect-ratio:auto;min-height:320px}
+.djpost--lead .dpost__title{font-size:clamp(22px,2vw,30px);line-height:1.25}
+.djpost__lead{font-size:15px;line-height:1.6;color:var(--s-fg-soft);margin:0 0 12px;max-width:640px}
+
+@media (max-width:1100px){
+  .djgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .djpost--lead{grid-row:auto}
+  .djpost--lead .dpost__media{flex:none;aspect-ratio:16/9;min-height:0}
+}
+@media (max-width:760px){
+  .djgrid{grid-template-columns:1fr;gap:36px}
+  .djpost--lead{grid-column:auto}
+}
+
+/* ============ 18. СТАТЬЯ ============ */
+.dart__head{max-width:860px;padding-bottom:48px}
+.dart__h1{font-size:clamp(32px,3.6vw,52px)}
+.dart__lead{font-size:18px;line-height:1.6;color:var(--s-fg);margin:22px 0 0}
+.dart__meta{display:flex;flex-wrap:wrap;gap:8px 0;margin:24px 0 0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dart__meta span:not(:last-child)::after{content:"";display:inline-block;width:3px;height:3px;margin:0 14px 3px;border-radius:50%;background:currentColor;opacity:.55}
+
+.dart__body{padding-top:0}
+.dart__cover{position:relative;aspect-ratio:21/9;overflow:hidden;background:var(--s-bg-2);margin:0 0 56px}
+.dartlayout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:72px;align-items:start}
+
+.dprose--article{max-width:720px}
+.dprose--article p{font-size:17px;line-height:1.75}
+.dprose--article h2{
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(22px,2vw,28px);line-height:1.2;
+  letter-spacing:.01em;text-transform:uppercase;color:var(--s-fg);margin:44px 0 16px;scroll-margin-top:100px;
+}
+.dart__row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:28px;padding-top:24px;border-top:1px solid var(--s-line);max-width:720px}
+.dart__row+.dart__row{margin-top:0;border-top:0;padding-top:12px}
+.dart__row .dfilters__label{margin-right:8px}
+.dart__row button.dchip{cursor:pointer;background:none}
+
+/* оглавление: пункты строками, текущий раздел — медная черта слева */
+.dtoc .toc__nav{display:flex;flex-direction:column}
+.dtoc .toc__i{
+  display:block;padding:10px 0 10px 16px;border-left:2px solid var(--s-line);
+  font-size:14px;line-height:1.4;color:var(--s-fg-soft);transition:color .2s,border-color .2s;
+}
+.dtoc .toc__i:hover{color:var(--s-fg)}
+.dtoc .toc__i.is-active{color:var(--s-fg);border-left-color:var(--s-accent)}
+.dwhere{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 0;
+  border-top:1px solid var(--s-line);font-size:15px;color:var(--s-fg);transition:color .2s;
+}
+.dwhere b{font-family:var(--d-serif);font-size:20px;color:var(--s-accent-ink)}
+.dwhere:hover{color:var(--s-accent-ink)}
+
+@media (max-width:1100px){
+  .dartlayout{grid-template-columns:minmax(0,1fr) 260px;gap:40px}
+}
+@media (max-width:1000px){
+  .dartlayout{grid-template-columns:1fr}
+  .dartlayout .dside{position:static;order:-1}
+  .dartlayout .dtoc{display:none}
+}
+@media (max-width:760px){
+  .dart__cover{aspect-ratio:16/10;margin:0 calc(var(--pad) * -1) 36px}
+  .dart__lead{font-size:16px}
+  .dprose--article p{font-size:16px}
+  .dartlayout .dside{order:2}
+}
+/* длинные слова капсом («Комбинированный», «Декоративно-отделочные») не
+   влезали в 327px и распирали страницу: на телефоне кегль от ширины экрана
+   и переносы по слогам */
+@media (max-width:760px){
+  .dpage__h1,.dart__h1,.dpromo__h1{font-size:clamp(22px,6.8vw,34px);hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+}

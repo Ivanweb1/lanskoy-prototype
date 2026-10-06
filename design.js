@@ -692,7 +692,9 @@
     'promos.html': 'design-promos.html',
     'promo.html': 'design-promo.html',
     'events.html': 'design-events.html',
-    'event.html': 'design-event.html'
+    'event.html': 'design-event.html',
+    'journal.html': 'design-journal.html',
+    'article.html': 'design-article.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
