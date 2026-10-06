@@ -430,10 +430,13 @@ body{
 
 /* ============ 8. АДАПТИВ (ТЗ п. 9.4, 320–1920+) ============ */
 @media (max-width:1100px){
-  .dhero__in{grid-template-columns:1fr;min-height:0;padding-right:max(20px,calc((100% - var(--d-wrap)) / 2))}
+  /* до 1100px контейнер уже ширины макета, поэтому поле одно — --pad.
+     Было: справа отступ 20px, а поле слева --pad (24px), и кадр, выведенный
+     за края на 20px, не доходил до левого края на 4px и вылезал справа */
+  .dhero__in{grid-template-columns:minmax(0,1fr);min-height:0;padding-left:var(--pad);padding-right:var(--pad)}
   .dhero__text{padding:52px 0 36px;max-width:none}
   .dhero__media{
-    margin:0 calc(max(20px,(100% - var(--d-wrap)) / 2) * -1);
+    margin:0 calc(var(--pad) * -1);
     height:50vw;min-height:300px;clip-path:none;
   }
   .dserv__in{grid-template-columns:repeat(2,1fr)}

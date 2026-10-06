@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Магазины — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="design.css?v=136">
+<link rel="stylesheet" href="design-pages.css?v=3">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+/* без JS сайт остаётся видимым: класс включает прятание перед появлением */
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body>
+
+<div id="siteHeader" data-active="shops"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
+<section class="dpage">
+  <div class="wrap">
+    <nav class="dcrumbs" aria-label="Хлебные крошки">
+      <a href="design.html">Главная</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <span aria-current="page">Магазины</span>
+    </nav>
+    <div class="dpage__in">
+      <div>
+        <p class="dpage__eyebrow">150+ магазинов и шоурумов · 3 этажа</p>
+        <h1 class="dpage__h1">Магазины</h1>
+        <p class="dpage__lead">Мебель, свет, отделочные материалы и всё для интерьера — найдите магазин по названию, категории или номеру помещения.</p>
+      </div>
+      <ul class="dtabs">
+        <li><span class="dtabs__item is-active">Списком</span></li>
+        <li><a href="categories.html" class="dtabs__item">По категориям</a></li>
+        <li><a href="floors.html" class="dtabs__item">На схеме этажей</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= КАТАЛОГ ================= -->
+<section class="dcat">
+  <div class="wrap catalog">
+
+    <button type="button" class="dfilt-toggle" id="filtersToggle" aria-controls="filters" aria-expanded="false">
+      <span class="dfilt-toggle__ic" aria-hidden="true"></span>Фильтры<span class="dfilt-toggle__n" id="filtersN" hidden></span>
+    </button>
+
+    <aside class="filters" id="filters">
+      <div class="filters__head">
+        <p class="filters__title">Фильтры</p>
+        <button type="button" class="filters__reset" id="filtersReset">Сбросить</button>
+      </div>
+      <div class="filters__group">
+        <label class="filters__label" for="catSearch">Название или номер помещения</label>
+        <div class="field field--sm">
+          <input type="search" id="catSearch" placeholder="«декор» или «А10»" autocomplete="off">
+          <button type="button" class="field__go" aria-label="Найти"></button>
+        </div>
+      </div>
+      <div class="filters__group">
+        <p class="filters__label">Категория</p>
+        <ul class="checklist" id="catList">
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="decor"><span>Декоративно-отделочные материалы <i class="checklist__n">28</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="tile"><span>Плитка <i class="checklist__n">17</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="wallpaper"><span>Обои <i class="checklist__n">7</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="floor"><span>Напольные покрытия <i class="checklist__n">28</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="textile"><span>Шторы, карнизы, ткани <i class="checklist__n">11</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="paint"><span>Лакокрасочные и клеящие <i class="checklist__n">10</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="doors"><span>Двери, перегородки, фурнитура <i class="checklist__n">14</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="plumbing"><span>Сантехника <i class="checklist__n">12</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="light"><span>Свет <i class="checklist__n">9</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="ceiling"><span>Потолки <i class="checklist__n">6</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="glass"><span>Стекло и зеркала <i class="checklist__n">5</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="windows"><span>Остекление <i class="checklist__n">7</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="stairs"><span>Лестницы <i class="checklist__n">3</i></span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="cat" value="hvac"><span>Отопление и кондиционирование <i class="checklist__n">4</i></span></label></li>
+        </ul>
+      </div>
+      <div class="filters__group">
+        <p class="filters__label">Этаж</p>
+        <div class="segm" id="floorFilter">
+          <label class="segm__item"><input type="checkbox" data-filter="floor" value="1"><span>1</span></label>
+          <label class="segm__item"><input type="checkbox" data-filter="floor" value="2"><span>2</span></label>
+          <label class="segm__item"><input type="checkbox" data-filter="floor" value="3"><span>3</span></label>
+        </div>
+      </div>
+    </aside>
+
+    <div class="results">
+      <div class="results__bar">
+        <p class="results__count">Показано <b id="shownCount">8</b> из 150+</p>
+        <label class="sortbox">
+          <span>Сортировка</span>
+          <select id="sortSelect">
+            <option value="alpha">По алфавиту</option>
+            <option value="floor">По этажу</option>
+            <option value="promo">Сначала с акциями</option>
+          </select>
+        </label>
+      </div>
+      <div class="chips-active" id="activeChips" hidden></div>
+      <div class="grid grid--shops" id="shopGrid">
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="1" data-name="COMPANION DECOR" data-promo="0">
+          <span class="shopcard__logo"><span class="shopcard__mark">COMPANION DECOR</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">COMPANION DECOR</span>
+            <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+            <span class="shopcard__place"><b>А13B</b> · 1 этаж</span>
+          </span>
+        </a>
+        <a href="shop.html" class="shopcard" data-cat="doors" data-floor="1" data-name="Корал" data-promo="1">
+          <span class="shopcard__logo"><span class="shopcard__mark">Корал</span><span class="shopcard__badge">Акция</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Корал</span>
+            <span class="shopcard__cat">Двери, перегородки, фурнитура</span>
+            <span class="shopcard__place"><b>А14</b> · 1 этаж</span>
+          </span>
+        </a>
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="1" data-name="ПРЕМЬЕР ДЕКОР" data-promo="0">
+          <span class="shopcard__logo"><span class="shopcard__mark">ПРЕМЬЕР ДЕКОР</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">ПРЕМЬЕР ДЕКОР</span>
+            <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+            <span class="shopcard__place"><b>А12</b> · 1 этаж</span>
+          </span>
+        </a>
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="2" data-name="Салон старины «Антиктайм»" data-promo="0">
+          <span class="shopcard__logo"><span class="shopcard__mark">Салон старины «Антиктайм»</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Салон старины «Антиктайм»</span>
+            <span class="shopcard__cat">Декор и предметы интерьера</span>
+            <span class="shopcard__place"><b>B7</b> · 2 этаж</span>
+          </span>
+        </a>
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="2" data-name="Кухни Спутник Стиль" data-promo="1">
+          <span class="shopcard__logo"><span class="shopcard__mark">Кухни Спутник Стиль</span><span class="shopcard__badge">Акция</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Кухни Спутник Стиль</span>
+            <span class="shopcard__cat">Мебель и кухни</span>
+            <span class="shopcard__place"><b>B12</b> · 2 этаж</span>
+          </span>
+        </a>
+        <a href="shop.html" class="shopcard" data-cat="glass" data-floor="1" data-name="VETRO" data-promo="0">
+          <span class="shopcard__logo"><span class="shopcard__mark">VETRO</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">VETRO</span>
+            <span class="shopcard__cat">Стекло и зеркала</span>
+            <span class="shopcard__place"><b>А5</b> · 1 этаж</span>
+          </span>
+        </a>
+        <a href="shop.html" class="shopcard" data-cat="decor" data-floor="1" data-name="VLADART STUDIO" data-promo="0">
+          <span class="shopcard__logo"><span class="shopcard__mark">VLADART STUDIO</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">VLADART STUDIO</span>
+            <span class="shopcard__cat">Декоративно-отделочные материалы</span>
+            <span class="shopcard__place"><b>А10</b> · 1 этаж</span>
+          </span>
+        </a>
+        <a href="shop.html" class="shopcard" data-cat="doors" data-floor="2" data-name="Хорошие двери" data-promo="0">
+          <span class="shopcard__logo"><span class="shopcard__mark">Хорошие двери</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Хорошие двери</span>
+            <span class="shopcard__cat">Двери, перегородки, фурнитура</span>
+            <span class="shopcard__place"><b>B2</b> · 2 этаж</span>
+          </span>
+        </a>
+      </div>
+      <div class="empty" id="emptyState" hidden>
+        <p class="empty__title">Ничего не найдено</p>
+        <p class="empty__text">Попробуйте изменить запрос или снять часть фильтров.</p>
+        <button type="button" class="dbtn dbtn--ghost" data-reset>Сбросить фильтры</button>
+      </div>
+      <div class="results__more" id="moreBox">
+        <button type="button" class="dbtn dbtn--ghost">Показать ещё 24 магазина</button>
+        <p class="results__hint">Загружено 8 из 150+</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=73"></script>
+<script src="catalog.js?v=73"></script>
+<script src="design.js?v=54"></script>
+</body>
+</html>

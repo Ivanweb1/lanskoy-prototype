@@ -674,3 +674,46 @@
   else if (mq.addListener) mq.addListener(onMq);
 })();
 
+
+/* ---------- ссылки на дизайн-версии страниц ----------
+   Шапку и подвал даёт partials.js, общий с Ч/Б-прототипом, и ссылки там
+   ведут на прототипы. Пока страница не перерисована, ведём на прототип;
+   как только дизайн-версия готова — дописываем её сюда. */
+(function () {
+  var DESIGN_PAGES = {
+    'index.html': 'design.html',
+    'shops.html': 'design-shops.html'
+  };
+  [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
+    var h = a.getAttribute('href');
+    var m = h.match(/^([a-z0-9-]+\.html)(.*)$/);
+    if (m && DESIGN_PAGES[m[1]]) a.setAttribute('href', DESIGN_PAGES[m[1]] + m[2]);
+  });
+})();
+
+/* ---------- фильтры каталога на телефоне ----------
+   Четырнадцать категорий списком занимали два экрана до первой карточки.
+   До 1000px фильтры свёрнуты под кнопку, на ней — число выбранных. */
+(function () {
+  var btn = document.getElementById('filtersToggle');
+  var box = document.getElementById('filters');
+  if (!btn || !box) return;
+  var n = document.getElementById('filtersN');
+  btn.addEventListener('click', function () {
+    var open = box.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  function count() {
+    var k = box.querySelectorAll('[data-filter]:checked').length;
+    var q = box.querySelector('input[type=search]');
+    if (q && q.value.trim()) k++;
+    n.textContent = k;
+    n.hidden = !k;
+  }
+  box.addEventListener('change', count);
+  box.addEventListener('input', count);
+  box.addEventListener('click', function () { setTimeout(count, 0); });
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-reset], .chip--rm')) setTimeout(count, 0);
+  });
+})();
