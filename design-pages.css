@@ -5,21 +5,10 @@
 
 /* ============ 1. ШАПКА СТРАНИЦЫ ============ */
 /* Кремовая полоса под синей шапкой сайта — тот же приём, что первый экран
-   главной: синяя навигация сверху, светлое поле под заголовок. Монограмма
-   брендбука в правом углу — та же, что подложка под кадром первого экрана */
-.dpage{
-  position:relative;overflow:hidden;
-  background:var(--s-bg-2);border-bottom:1px solid var(--s-line);
-}
+   главной: синяя навигация сверху, светлое поле под заголовок.
+   Паттерн-монограмму здесь не ставим (решение Ивана 06.10) */
+.dpage{background:var(--s-bg-2);border-bottom:1px solid var(--s-line)}
 [data-theme="dark"] .dpage{background:var(--g-navy)}
-.dpage::after{
-  content:"";position:absolute;top:0;right:0;bottom:0;width:min(42%,560px);pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23C49A6C' stroke-width='1.2' opacity='.45'%3E%3Cpath d='M38 80V52l10-9 10 9v28M58 80V44l11-10 11 10v36'/%3E%3Cpath d='M34 86c10-7 22-7 32 0s22 7 32 0'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:120px 120px;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 70%);
-          mask-image:linear-gradient(90deg,transparent,#000 70%);
-  opacity:.5;
-}
 .dpage .wrap{position:relative;z-index:1;padding-top:32px}
 
 .dcrumbs{
@@ -156,6 +145,13 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
   padding:0 24px;background:var(--s-bg-2);border-bottom:1px solid var(--s-line);
 }
 [data-theme="dark"] .shopcard__logo{background:var(--s-plate)}
+/* фото шоурума поверх плашки: пока файла нет, onerror убирает <img>
+   и остаётся название словесным знаком */
+.shopcard__logo{position:relative;overflow:hidden}
+.shopcard__img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .8s var(--d-ease)}
+.shopcard:hover .shopcard__img{transform:scale(1.05)}
+.shopcard__badge{z-index:2}
 .shopcard__mark{
   font-family:var(--d-serif);font-weight:600;font-size:17px;line-height:1.25;
   letter-spacing:.08em;text-transform:uppercase;text-align:center;color:var(--s-fg);
@@ -167,11 +163,13 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
   background:var(--s-accent);color:var(--s-btn-fill-fg);
   font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
 }
-.shopcard__body{padding:20px 22px 22px}
+/* тело тянется на всю высоту карточки, строка с секцией прижата к низу —
+   в ряду она стоит на одной линии, сколько бы строк ни занимало название */
+.shopcard__body{display:flex;flex-direction:column;flex:1;padding:20px 22px 22px}
 .shopcard__name{font-family:var(--d-serif);font-weight:600;font-size:19px;line-height:1.25;color:var(--s-fg)}
-.shopcard__cat{font-size:13px;line-height:1.45;color:var(--s-fg-soft);margin-top:8px}
+.shopcard__cat{font-size:13px;line-height:1.45;color:var(--s-fg-soft);margin:8px 0 16px}
 .shopcard__place{
-  display:flex;align-items:baseline;gap:6px;margin-top:16px;padding-top:14px;
+  display:flex;align-items:baseline;gap:6px;margin-top:auto;padding-top:14px;
   border-top:1px solid var(--s-line);
   font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--s-fg-soft);
 }
@@ -238,8 +236,67 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
   .shopcard__badge{padding:4px 7px;font-size:9px;letter-spacing:.12em}
   .shopcard__body{padding:14px 16px 14px}
   .shopcard__name{font-size:17px}
-  .shopcard__cat{font-size:12px;margin-top:4px}
-  .shopcard__place{margin-top:10px;padding-top:10px}
+  .shopcard__cat{font-size:12px;margin:4px 0 10px}
+  .shopcard__place{padding-top:10px}
   .shopcard__place b{font-size:15px}
   .sortbox>span{display:none}
+}
+
+/* ============ 5. КАТЕГОРИИ ============ */
+/* Те же снимки, что в «Направлениях» главной, и та же манера: кадр без рамки,
+   при наведении фото чуть приближается, название — медным. Под названием —
+   подкатегории строкой через тонкие медные точки: по ним человек узнаёт свой
+   запрос («керамогранит», «ламинат») раньше, чем название раздела */
+.dcats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 24px}
+.dcats__item{display:flex;flex-direction:column;color:var(--s-fg)}
+.dcats__media{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--s-bg-2)}
+.dcats__img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--d-ease)}
+.dcats__item:hover .dcats__img{transform:scale(1.05)}
+.dcats__body{display:flex;flex-direction:column;flex:1;padding:22px 0 0}
+.dcats__n{
+  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--s-accent-ink);margin-bottom:10px;
+}
+.dcats__name{
+  font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.2;
+  letter-spacing:.01em;text-transform:uppercase;transition:color .25s;
+}
+.dcats__item:hover .dcats__name{color:var(--s-accent-ink)}
+.dcats__subs{
+  display:flex;flex-wrap:wrap;gap:4px 0;margin:16px 0 0;padding:16px 0 0;
+  border-top:1px solid var(--s-line);
+  font-size:13px;line-height:1.5;color:var(--s-fg-soft);
+}
+.dcats__subs li{display:inline-flex;align-items:center}
+.dcats__subs li+li::before{
+  content:"";width:3px;height:3px;margin:0 10px;background:var(--s-accent);transform:rotate(45deg);
+}
+.dcats__more{color:var(--s-accent-ink)}
+.dcats__go{
+  display:inline-flex;align-items:center;gap:10px;margin-top:auto;padding-top:20px;align-self:flex-start;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);
+  border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .2s,gap .25s var(--d-ease);
+}
+.dcats__go::after{
+  content:"";width:16px;height:9px;background:var(--s-accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.dcats__item:hover .dcats__go{border-bottom-color:var(--s-accent);gap:14px}
+
+@media (max-width:1100px){
+  .dcats{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 20px}
+}
+/* на телефоне — строкой: кадр слева, текст справа, подкатегории скрыты —
+   в узкой колонке они превращались в столбик из пяти строк */
+@media (max-width:560px){
+  .dcats{grid-template-columns:1fr;gap:0}
+  .dcats__item{display:grid;grid-template-columns:112px minmax(0,1fr);gap:16px;align-items:center;
+    padding:14px 0;border-bottom:1px solid var(--s-line)}
+  .dcats__item:first-child{padding-top:0}
+  .dcats__media{aspect-ratio:1/1}
+  .dcats__body{padding:0}
+  .dcats__n{font-size:10px;margin-bottom:6px}
+  .dcats__name{font-size:16px}
+  .dcats__subs,.dcats__go{display:none}
 }

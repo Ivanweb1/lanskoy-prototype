@@ -682,7 +682,8 @@
 (function () {
   var DESIGN_PAGES = {
     'index.html': 'design.html',
-    'shops.html': 'design-shops.html'
+    'shops.html': 'design-shops.html',
+    'categories.html': 'design-categories.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
