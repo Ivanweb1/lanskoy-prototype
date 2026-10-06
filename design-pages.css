@@ -272,10 +272,11 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
   font-size:13px;line-height:1.5;color:var(--s-fg-soft);
 }
 .dcats__subs li{display:inline-flex;align-items:center}
-/* разделитель — после пункта, а не перед ним: при переносе ромбик
-   остаётся в конце строки, а не открывает следующую */
+/* разделитель — круглая точка, как в строке «Мебель • Свет • Декор» на
+   макете сайта (брендбук стр. 42). Стоит после пункта, а не перед ним:
+   при переносе точка остаётся в конце строки, а не открывает следующую */
 .dcats__subs li:not(:last-child)::after{
-  content:"";width:3px;height:3px;margin:0 10px;background:var(--s-accent);transform:rotate(45deg);
+  content:"";width:3px;height:3px;margin:0 10px;border-radius:50%;background:currentColor;opacity:.55;
 }
 .dcats__more{color:var(--s-accent-ink)}
 .dcats__go{
