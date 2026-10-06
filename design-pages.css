@@ -247,15 +247,19 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
    при наведении фото чуть приближается, название — медным. Под названием —
    подкатегории строкой через тонкие медные точки: по ним человек узнаёт свой
    запрос («керамогранит», «ламинат») раньше, чем название раздела */
-.dcats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 24px}
-.dcats__item{display:flex;flex-direction:column;color:var(--s-fg)}
+/* Каждая карточка — пять строк общей сетки (subgrid): фото, счётчик,
+   название, подкатегории, ссылка. Высота строки берётся по самой длинной
+   карточке ряда, поэтому линия под названием, подкатегории и «Смотреть
+   магазины» стоят на одной высоте, даже если название в две строки */
+.dcats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 24px}
+.dcats__item{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;color:var(--s-fg)}
+.dcats__body{display:contents}
 .dcats__media{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--s-bg-2)}
 .dcats__img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--d-ease)}
 .dcats__item:hover .dcats__img{transform:scale(1.05)}
-.dcats__body{display:flex;flex-direction:column;flex:1;padding:22px 0 0}
 .dcats__n{
   font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--s-accent-ink);margin-bottom:10px;
+  color:var(--s-accent-ink);margin:22px 0 10px;
 }
 .dcats__name{
   font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.2;
@@ -263,17 +267,19 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
 }
 .dcats__item:hover .dcats__name{color:var(--s-accent-ink)}
 .dcats__subs{
-  display:flex;flex-wrap:wrap;gap:4px 0;margin:16px 0 0;padding:16px 0 0;
+  display:flex;flex-wrap:wrap;align-content:flex-start;gap:4px 0;margin:16px 0 0;padding:16px 0 0;
   border-top:1px solid var(--s-line);
   font-size:13px;line-height:1.5;color:var(--s-fg-soft);
 }
 .dcats__subs li{display:inline-flex;align-items:center}
-.dcats__subs li+li::before{
+/* разделитель — после пункта, а не перед ним: при переносе ромбик
+   остаётся в конце строки, а не открывает следующую */
+.dcats__subs li:not(:last-child)::after{
   content:"";width:3px;height:3px;margin:0 10px;background:var(--s-accent);transform:rotate(45deg);
 }
 .dcats__more{color:var(--s-accent-ink)}
 .dcats__go{
-  display:inline-flex;align-items:center;gap:10px;margin-top:auto;padding-top:20px;align-self:flex-start;
+  display:inline-flex;align-items:center;gap:10px;margin-top:20px;align-self:start;justify-self:start;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);
   border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .2s,gap .25s var(--d-ease);
 }
@@ -291,12 +297,70 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
    в узкой колонке они превращались в столбик из пяти строк */
 @media (max-width:560px){
   .dcats{grid-template-columns:1fr;gap:0}
-  .dcats__item{display:grid;grid-template-columns:112px minmax(0,1fr);gap:16px;align-items:center;
+  .dcats__item{display:grid;grid-row:auto;grid-template-rows:none;grid-template-columns:112px minmax(0,1fr);gap:16px;align-items:center;
     padding:14px 0;border-bottom:1px solid var(--s-line)}
   .dcats__item:first-child{padding-top:0}
   .dcats__media{aspect-ratio:1/1}
-  .dcats__body{padding:0}
-  .dcats__n{font-size:10px;margin-bottom:6px}
-  .dcats__name{font-size:16px}
+  .dcats__body{display:block;padding:0}
+  .dcats__n{display:block;font-size:10px;margin:0 0 6px}
+  .dcats__name{display:block;font-size:16px}
   .dcats__subs,.dcats__go{display:none}
+}
+
+/* ============ 6. КАТЕГОРИЯ ============ */
+.dpage__act{padding-bottom:40px;flex:none}
+
+/* подкатегории — чипы главной; выбранный — медная заливка */
+.dsubs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 32px}
+.dchip{cursor:pointer;background:transparent;font-family:var(--d-sans)}
+.dsubs .dchip.is-active{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-btn-fill-fg)}
+.dsubs .dchip .chip__n,.dsubs .dchip.is-active .chip__n{font-style:normal;font-size:11px;color:inherit;opacity:.7;margin-left:6px}
+
+/* шапка секции внутренней страницы: заголовок слева, ссылка-действие справа */
+.dhead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px}
+.dhead__h2{
+  font-family:var(--d-serif);font-weight:600;font-size:clamp(26px,2.6vw,38px);line-height:1.1;
+  letter-spacing:.01em;text-transform:uppercase;color:var(--s-fg);margin:0;
+}
+.dsect--alt{background:var(--s-bg-2)}
+[data-theme="dark"] .dsect--alt{background:var(--g-navy)}
+
+/* бренды — плашки со словесным знаком, как логотипы магазинов в каталоге */
+.dbrands{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--s-line);border:1px solid var(--s-line)}
+.dbrand{
+  display:flex;align-items:center;justify-content:center;aspect-ratio:2/1;padding:0 20px;
+  background:var(--s-bg-2);text-align:center;transition:background-color .25s;
+}
+.dsect--alt .dbrand{background:var(--s-bg)}
+[data-theme="dark"] .dbrand,[data-theme="dark"] .dsect--alt .dbrand{background:var(--b-navy)}
+.dbrand span{
+  font-family:var(--d-serif);font-weight:600;font-size:17px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--s-fg);transition:color .25s;
+}
+.dbrand:hover span{color:var(--s-accent-ink)}
+
+/* статьи — карточки как лид журнала на главной, только три в ряд */
+.dposts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px}
+.dpost__media{position:relative;display:block;overflow:hidden;aspect-ratio:16/10;margin-bottom:20px;background:var(--s-bg-2)}
+.dpost:hover .jimg{transform:scale(1.05)}
+.dpost__title{font-family:var(--d-sans);font-weight:600;font-size:18px;line-height:1.35;margin:0 0 10px;color:var(--s-fg)}
+.dpost__title a{color:inherit;transition:color .2s}
+.dpost:hover .dpost__title a{color:var(--s-accent-ink)}
+
+@media (max-width:1100px){
+  .dbrands{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .dposts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:1000px){
+  .dpage__act{padding-bottom:28px}
+}
+@media (max-width:760px){
+  /* подкатегории — лентой вбок, а не стеной из двенадцати строк */
+  .dsubs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--pad) * -1) 24px;padding:0 var(--pad)}
+  .dsubs::-webkit-scrollbar{display:none}
+  .dsubs .dchip{flex:none;white-space:nowrap}
+  .dhead{margin-bottom:24px}
+  .dbrands{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dbrand span{font-size:14px}
+  .dposts{grid-template-columns:1fr;gap:32px}
 }
