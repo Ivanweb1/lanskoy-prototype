@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Афиша — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="design.css?v=136">
+<link rel="stylesheet" href="design-pages.css?v=25">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+/* без JS сайт остаётся видимым: класс включает прятание перед появлением */
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body>
+
+<div id="siteHeader" data-active="events"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
+<section class="dpage">
+  <div class="wrap">
+    <nav class="dcrumbs" aria-label="Хлебные крошки">
+      <a href="design.html">Главная</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <span aria-current="page">Афиша</span>
+    </nav>
+    <div class="dpage__in">
+      <div>
+        <p class="dpage__eyebrow">Бесплатно · по регистрации</p>
+        <h1 class="dpage__h1">Афиша</h1>
+        <p class="dpage__lead">Мастер-классы, лекции и семинары в комплексе</p>
+      </div>
+      <ul class="viewtabs dtabs" id="eventTabs">
+        <li><button type="button" class="viewtabs__item dtabs__item is-active" data-view="upcoming">Ближайшие</button></li>
+        <li><button type="button" class="viewtabs__item dtabs__item" data-view="archive">Архив и отчёты</button></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= СОБЫТИЯ ================= -->
+<section class="dcat">
+  <div class="wrap">
+    <div class="evfilters dfilters" id="evFilters">
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Кому</span>
+        <button type="button" class="chip dchip is-active" data-aud="all">Всем</button>
+        <button type="button" class="chip dchip" data-aud="public">Покупателям</button>
+        <button type="button" class="chip dchip" data-aud="pro">Дизайнерам</button>
+      </div>
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Формат</span>
+        <button type="button" class="chip dchip is-active" data-type="all">Любой</button>
+        <button type="button" class="chip dchip" data-type="seminar">Семинар</button>
+        <button type="button" class="chip dchip" data-type="lecture">Лекция</button>
+        <button type="button" class="chip dchip" data-type="workshop">Мастер-класс</button>
+        <button type="button" class="chip dchip" data-type="fest">Праздник</button>
+      </div>
+      <p class="evfilters__count dfilters__count"><b id="evCount">4</b> <span id="evCountWord">события</span></p>
+    </div>
+
+    <div class="evlist delist" id="viewUpcoming">
+      <article class="evrow erow derow" data-aud="pro" data-type="seminar">
+        <div class="erow__date"><b>28</b><i>августа</i><i class="derow__time">15:00</i></div>
+        <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-2.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Семинар</span><span class="dtag">Для дизайнеров</span></p>
+          <h3 class="erow__title"><a href="event.html">«Волховец» — реализация проектных продаж</a></h3>
+          <p class="derow__desc">Специальные двери для особых задач: сложные заказы, сегмент HoReCa, техническая документация, разбор кейсов</p>
+          <p class="erow__meta">3 этаж, зона лекций<span class="erow__dot"></span>осталось 12 мест</p>
+        </div>
+        <div class="derow__act"><a href="event.html" class="erow__cta">Регистрация</a></div>
+      </article>
+      <article class="evrow erow derow" data-aud="pro" data-type="seminar">
+        <div class="erow__date"><b>4</b><i>сентября</i><i class="derow__time">16:00</i></div>
+        <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/events/osmo.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Семинар</span><span class="dtag">Для дизайнеров</span></p>
+          <h3 class="erow__title"><a href="event.html">Натуральные масла для дерева OSMO</a></h3>
+          <p class="derow__desc">Практика нанесения защитных покрытий, работа с фактурой дерева</p>
+          <p class="erow__meta">3 этаж, зона лекций<span class="erow__dot"></span>осталось 4 места</p>
+        </div>
+        <div class="derow__act"><a href="event.html" class="erow__cta">Регистрация</a></div>
+      </article>
+      <article class="evrow erow derow is-full erow--off" data-aud="public" data-type="workshop">
+        <div class="erow__date"><b>26</b><i>мая</i><i class="derow__time">14:00</i></div>
+        <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-3.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Мастер-класс</span><span class="dtag">Для покупателей</span></p>
+          <h3 class="erow__title"><a href="event.html">Мастер-класс по декору интерьера</a></h3>
+          <p class="derow__desc">Интерьерная картина своими руками, материалы предоставляются</p>
+          <p class="erow__meta">2 этаж, атриум<span class="erow__dot"></span>мест нет</p>
+        </div>
+        <div class="derow__act"><span class="erow__cta erow__cta--off">Мест нет</span></div>
+      </article>
+      <article class="evrow erow derow" data-aud="public" data-type="fest">
+        <div class="erow__date"><b>20</b><i>сентября</i><i class="derow__time">12:00</i></div>
+        <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-1.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Праздник</span><span class="dtag">Для покупателей</span></p>
+          <h3 class="erow__title"><a href="event.html">День рождения комплекса</a></h3>
+          <p class="derow__desc">Розыгрыши, интерактив для детей и взрослых, фотозона</p>
+          <p class="erow__meta">1 этаж, атриум<span class="erow__dot"></span>без регистрации</p>
+        </div>
+        <div class="derow__act"><a href="event.html" class="erow__cta erow__cta--ghost">Подробнее</a></div>
+      </article>
+    </div>
+    <div class="evlist delist" id="viewArchive" hidden>
+      <article class="evrow erow derow evrow--past" data-aud="public" data-type="fest">
+        <div class="erow__date"><b>12</b><i>февраля</i><i class="derow__time">2020</i></div>
+        <a class="erow__media" href="event.html?past=1" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/events/color-day.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Праздник</span><span class="dtag">Для покупателей</span></p>
+          <h3 class="erow__title"><a href="event.html?past=1">День цвета в Ланском</a></h3>
+          <p class="derow__desc">Психология цветовосприятия, тренды в цвете, лекция и консультации</p>
+          <p class="erow__meta">Фотоотчёт<span class="erow__dot"></span>48 фото</p>
+        </div>
+        <div class="derow__act"><a href="event.html?past=1" class="erow__cta erow__cta--ghost">Смотреть отчёт</a></div>
+      </article>
+      <article class="evrow erow derow evrow--past" data-aud="public" data-type="fest">
+        <div class="erow__date"><b>16</b><i>марта</i><i class="derow__time">2019</i></div>
+        <a class="erow__media" href="event.html?past=1" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/events/stroim-dom.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Выставка</span><span class="dtag">Для всех</span></p>
+          <h3 class="erow__title"><a href="event.html?past=1">Выставка «Строим дом»</a></h3>
+          <p class="derow__desc">Участие комплекса в отраслевой выставке, диплом участника</p>
+          <p class="erow__meta">Фотоотчёт<span class="erow__dot"></span>36 фото</p>
+        </div>
+        <div class="derow__act"><a href="event.html?past=1" class="erow__cta erow__cta--ghost">Смотреть отчёт</a></div>
+      </article>
+    </div>
+
+    <div class="empty" id="evEmpty" hidden>
+      <p class="empty__title">Событий не найдено</p>
+      <p class="empty__text">Попробуйте снять фильтры или загляните в архив.</p>
+      <button type="button" class="dbtn dbtn--ghost" data-evreset>Показать все</button>
+    </div>
+    <div class="empty" id="evNone" hidden>
+      <p class="empty__title">Ближайших событий пока нет</p>
+      <p class="empty__text">Мы готовим новую программу. Посмотрите, как проходили прошлые встречи, или подпишитесь на анонсы.</p>
+      <button type="button" class="dbtn dbtn--ghost" data-goarchive>Смотреть архив</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=73"></script>
+<script src="events.js?v=73"></script>
+<script src="design.js?v=61"></script>
+</body>
+</html>

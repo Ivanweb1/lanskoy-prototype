@@ -706,3 +706,187 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dpgrid .pcard{flex:none}
   .dpgrid .pcard__title{font-size:16px}
 }
+
+/* ============ 13. АФИША ============ */
+/* строка — та же, что «Ближайшие события» на главной (дата с медной чертой,
+   обложка, название), плюс теги, описание и действие справа */
+.dtabs button.dtabs__item{background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;font-family:var(--d-sans)}
+.delist{border-top:1px solid var(--s-line)}
+.delist[hidden]{display:none}
+.derow,.derow:nth-child(odd),.derow:nth-child(even),.derow:last-child:nth-child(odd){
+  grid-template-columns:110px 280px minmax(0,1fr) 180px;gap:0 32px;align-items:start;
+  padding:32px 0;border:0;border-bottom:1px solid var(--s-line);grid-column:auto;
+}
+.derow[hidden]{display:none}
+.derow:hover .erow__title a{color:var(--s-accent-ink)}
+.derow__time{margin-top:6px;padding-top:8px;border-top:1px solid var(--s-line);width:100%;color:var(--s-fg)!important}
+.derow__tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 4px}
+.dtag{
+  display:inline-flex;align-items:center;height:26px;padding:0 10px;border:1px solid var(--s-line);
+  font-size:11px;letter-spacing:.04em;color:var(--s-fg-soft);
+}
+.derow .erow__title{font-size:clamp(17px,1.3vw,20px)}
+.derow__desc{font-size:14px;line-height:1.55;color:var(--s-fg-soft);margin:0}
+.derow__act{display:flex;justify-content:flex-end;align-self:center}
+.erow__cta--ghost{background:none;border-color:var(--s-accent);color:var(--s-accent-ink)}
+.erow__cta--ghost:hover{background:var(--s-accent);color:var(--s-btn-fill-fg)}
+.derow .erow__cta{height:44px;padding:0 20px}
+.derow .erow__cta--off{height:auto;padding:0}
+.evrow--past .erow__date b{color:var(--s-fg-soft)}
+
+@media (max-width:1200px){
+  .derow,.derow:nth-child(odd),.derow:nth-child(even),.derow:last-child:nth-child(odd){grid-template-columns:96px 220px minmax(0,1fr);gap:16px 28px}
+  .derow__act{grid-column:3;justify-content:flex-start}
+}
+@media (max-width:760px){
+  .derow,.derow:nth-child(odd),.derow:nth-child(even),.derow:last-child:nth-child(odd){grid-template-columns:84px minmax(0,1fr);gap:14px 16px;padding:24px 0}
+  .derow .erow__media{order:3;grid-column:1 / -1}
+  .derow__act{order:4;grid-column:1 / -1}
+  .derow .erow__cta:not(.erow__cta--off){width:100%}
+}
+
+/* ============ 14. СОБЫТИЕ ============ */
+.devfacts{display:grid;grid-template-columns:repeat(3,minmax(0,auto));gap:20px 40px;justify-content:start;margin:28px 0 0;padding-top:22px;border-top:1px solid var(--s-line-strong)}
+.devfacts li{display:flex;flex-direction:column;gap:6px}
+.devfacts__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
+.devfacts__v{font-size:15px;color:var(--s-fg)}
+.devfacts__v b{font-family:var(--d-serif);font-size:20px;color:var(--s-accent-ink)}
+
+/* программа — пункты с номерами антиквой */
+.dagenda{counter-reset:ag;margin:0;padding:0;list-style:none}
+.dagenda li{
+  counter-increment:ag;display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;align-items:baseline;
+  padding:16px 0;border-bottom:1px solid var(--s-line);font-size:16px;line-height:1.55;color:var(--s-fg);
+}
+.dagenda li:last-child{border-bottom:0}
+.dagenda li::before{content:counter(ag,decimal-leading-zero);font-family:var(--d-serif);font-weight:600;font-size:20px;color:var(--s-accent-ink)}
+
+/* спикеры: фото пока нет — инициалы антиквой на ровной плашке */
+.dspeakers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.dspeaker{display:flex;flex-direction:column;gap:6px}
+.dspeaker__ph{
+  display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;margin-bottom:10px;
+  background:var(--s-bg-2);font-family:var(--d-serif);font-weight:600;font-size:40px;letter-spacing:.04em;color:var(--s-accent);
+}
+[data-theme="dark"] .dspeaker__ph{background:var(--s-plate)}
+.dspeaker__name{font-family:var(--d-serif);font-weight:600;font-size:18px;color:var(--s-fg)}
+.dspeaker__role{font-size:13px;line-height:1.45;color:var(--s-fg-soft)}
+
+/* регистрация */
+.dpanel[hidden]{display:none}
+.dseats{font-size:13px;letter-spacing:.04em;color:var(--s-fg-soft);margin:0 0 20px}
+.dseats b{font-family:var(--d-serif);font-size:26px;color:var(--s-accent-ink);margin-right:4px}
+.dseats--off{font-family:var(--d-serif);font-size:20px;color:var(--s-fg)}
+.dform .fld{display:flex;flex-direction:column;gap:8px;margin:0 0 16px}
+.dform .fld__lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dform input[type=text],.dform input[type=email],.dform input[type=tel]{
+  height:50px;padding:0 14px;border:1px solid var(--s-line-strong);border-radius:2px;
+  background:var(--s-field-bg);font:inherit;font-size:15px;color:var(--s-fg);transition:border-color .2s;
+}
+.dform input:focus{outline:none;border-color:var(--s-accent)}
+.dform .fld__err{font-size:12px;color:#B5483A}
+.dform .check{margin:4px 0 16px;font-size:12px;line-height:1.5}
+.dform .check a{color:var(--s-accent-ink);border-bottom:1px solid var(--s-line-strong)}
+.dcaptcha{
+  display:flex;align-items:center;justify-content:center;height:64px;margin:0 0 16px;
+  border:1px dashed var(--s-line-strong);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft);
+}
+.dform .dbtn{margin-bottom:12px}
+
+@media (max-width:1000px){
+  .devfacts{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .devfacts{grid-template-columns:1fr;gap:14px}
+  .dspeakers{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .dspeaker__ph{font-size:30px}
+  .dagenda li{grid-template-columns:36px minmax(0,1fr);font-size:15px}
+}
+
+/* ============ 15. ФИЛЬТРЫ СПИСКОВ: ВЫПАДАЮЩИЕ СПИСКИ + ПОИСК ============ */
+/* Строка как у интернет-магазинов: слева списки «Категория ▾», «Срок ▾»,
+   справа в той же линии поиск, под строкой — счётчик найденного.
+   Чипы прототипа скрыты: по ним по-прежнему работает фильтрация */
+.dfilters.is-selects{display:flex;flex-wrap:wrap;align-items:center;gap:16px 12px;padding-bottom:0;border-bottom:0;margin-bottom:32px}
+.dfilters.is-selects .dfilters__row{display:none}
+.dfilters__selects{display:flex;flex-wrap:wrap;gap:12px}
+.dselect{
+  position:relative;display:flex;align-items:center;gap:10px;height:52px;padding:0 44px 0 16px;
+  border:1px solid var(--s-line-strong);border-radius:2px;background:var(--s-field-bg);cursor:pointer;
+  transition:border-color .2s;
+}
+.dselect:hover,.dselect:focus-within{border-color:var(--s-accent)}
+.dselect::after{
+  content:"";position:absolute;right:16px;top:50%;width:10px;height:6px;margin-top:-3px;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23C49A6C' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.dselect__lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);white-space:nowrap}
+.dselect select{
+  -webkit-appearance:none;appearance:none;border:0;background:none;padding:0;margin:0;
+  font:inherit;font-size:14px;color:var(--s-fg);cursor:pointer;
+}
+.dselect select:focus{outline:none}
+.dselect select option{background:var(--s-bg);color:var(--s-fg)}
+/* вся рамка — зона нажатия: список растянут поверх неё прозрачным слоем */
+.dselect select{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.dselect__val{font-size:14px;color:var(--s-fg);white-space:nowrap}
+
+.dfilters__search{margin-left:auto;width:360px}
+.dfilters.is-selects .dfilters__count{flex-basis:100%;order:3;margin:4px 0 0;padding-top:20px;border-top:1px solid var(--s-line)}
+/* без поиска (афиша) счётчик встаёт в ту же строку справа */
+.dfilters.is-selects:not(:has(.dfilters__search)) .dfilters__count{flex-basis:auto;order:0;margin-left:auto;padding-top:0;border-top:0}
+
+@media (max-width:1000px){
+  .dfilters__search{width:100%;margin-left:0;order:2}
+}
+@media (max-width:760px){
+  .dfilters.is-selects{margin:0 0 28px;padding:0}
+  .dfilters__selects{width:100%;display:grid;grid-template-columns:1fr;gap:8px}
+  .dselect{width:100%}
+}
+
+/* ============ 16. ШАПКА АКЦИИ И СОБЫТИЯ: КАДР СО СРЕЗОМ ============ */
+/* Как первый экран главной: кадр уходит в правый край экрана, со стороны
+   текста срезан диагональю. Это полноширинный баннер с текстовой половиной —
+   ровно тот случай, где срез разрешён правилом дизайн-системы.
+   Слева две группы: описание — по верхней кромке кадра, срок (у события —
+   дата, место, участие) — по нижней */
+.dpromo{overflow:hidden}
+.dpromo__in{
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:0 56px;align-items:stretch;
+  min-height:clamp(400px,36vw,540px);padding-bottom:48px;
+}
+.dpromo__main{display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding:0}
+.dpromo .dtags{margin:0 0 22px}
+.dpromo__media{
+  aspect-ratio:auto;min-height:100%;
+  margin-right:calc((max(0px,(100vw - var(--d-wrap)) / 2) + var(--pad)) * -1);
+  clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);
+  background:var(--b-navy);
+}
+.dpromo__bottom{padding-top:24px;border-top:1px solid var(--s-line-strong)}
+.dpromo__bottom .devfacts{margin:0;padding:0;border:0}
+
+/* срок: сколько осталось — медной плашкой, до какого числа — отдельной
+   строкой рядом, чтобы два значения не сливались в одну фразу */
+.dpromo__term{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px 32px}
+.dpromo__term[hidden]{display:none}
+.dpromo__left{
+  display:inline-flex;align-items:baseline;gap:8px;margin:0;padding:12px 20px;
+  background:var(--s-accent);color:var(--s-btn-fill-fg);
+  font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+}
+.dpromo__left b{font-family:var(--d-serif);font-size:22px;letter-spacing:0;text-transform:none}
+.dpromo__until{display:flex;flex-direction:column;justify-content:center;gap:4px;margin:0}
+.dpromo__until span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dpromo__until b{font-family:var(--d-serif);font-size:20px;font-weight:600;color:var(--s-fg)}
+.dpromo__state{margin:0}
+
+@media (max-width:1000px){
+  .dpromo__in{grid-template-columns:1fr;min-height:0;gap:28px;padding-bottom:32px}
+  /* на узком экране — кадр полосой во всю ширину над текстом, без среза:
+     текстовой половины рядом с ним больше нет */
+  .dpromo__media{order:-1;aspect-ratio:16/10;min-height:0;margin:0 calc(var(--pad) * -1);clip-path:none}
+  .dpromo__main{gap:24px}
+}
+.nw{white-space:nowrap}

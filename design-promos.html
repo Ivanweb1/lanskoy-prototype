@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
 <link rel="stylesheet" href="design.css?v=136">
-<link rel="stylesheet" href="design-pages.css?v=22">
+<link rel="stylesheet" href="design-pages.css?v=25">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -37,12 +37,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <h1 class="dpage__h1">Акции</h1>
         <p class="dpage__lead">Скидки, распродажи и специальные условия магазинов — с адресом секции и сроком действия.</p>
       </div>
-      <div class="dpage__act">
-        <div class="field field--sm dbsearch">
-          <input type="search" id="promoSearch" placeholder="Магазин или предложение" autocomplete="off" aria-label="Поиск по акциям">
-          <button type="button" class="field__go" aria-label="Найти"></button>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -64,7 +58,11 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <button type="button" class="chip dchip is-active" data-term="all">Все</button>
         <button type="button" class="chip dchip" data-term="soon">Заканчиваются</button>
       </div>
-      <p class="evfilters__count dfilters__count"><b id="promoCount">4</b> <span id="promoCountWord">акции</span></p>
+      <div class="field field--sm dbsearch dfilters__search">
+        <input type="search" id="promoSearch" placeholder="Магазин или предложение" autocomplete="off" aria-label="Поиск по акциям">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+      </div>
+      <p class="evfilters__count dfilters__count"><b id="promoCount">12</b> <span id="promoCountWord">акций</span></p>
     </div>
     <div class="pgrid dpgrid" id="promoGrid">
       <article class="pcard promocard" data-cat="doors" data-term="soon">
@@ -111,14 +109,103 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <p class="dpcard__left">Осталось 6 дней</p>
         </div>
       </article>
+      <article class="pcard promocard" data-cat="decor" data-term="all">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/cat-dekor.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 31 августа</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Лепнина Европласт: вторая позиция −30%</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">ПРЕМЬЕР ДЕКОР</span><span class="pcard__sec">А12</span></p>
+          <p class="dpcard__left">До конца августа</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="decor" data-term="soon">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/pr-2.webp" alt="" loading="lazy">
+          <span class="pcard__term pcard__term--soon">до 28 июня</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Керамогранит под камень −20%</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">COMPANION DECOR</span><span class="pcard__sec">А13B</span></p>
+          <p class="dpcard__left">Осталось 4 дня</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="doors" data-term="all">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/cat-dveri.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 30 сентября</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Межкомнатные двери — фурнитура в подарок</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">Хорошие двери</span><span class="pcard__sec">B2</span></p>
+          <p class="dpcard__left">До конца сентября</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="decor" data-term="all">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/cat-steklo.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 20 сентября</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Зеркала по размерам заказчика −15%</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">VETRO</span><span class="pcard__sec">А5</span></p>
+          <p class="dpcard__left">До 20 сентября</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="hvac" data-term="all">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/cat-otoplenie.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 15 сентября</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Радиаторы в цвет интерьера −10%</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">Климат-салон</span><span class="pcard__sec">B9</span></p>
+          <p class="dpcard__left">До середины сентября</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="kitchen" data-term="all">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/shops/antiktime.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 1 октября</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Реставрация мебели: диагностика бесплатно</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">Салон «Антиктайм»</span><span class="pcard__sec">B7</span></p>
+          <p class="dpcard__left">До 1 октября</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="doors" data-term="soon">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/jr-3.webp" alt="" loading="lazy">
+          <span class="pcard__term pcard__term--soon">до 27 июня</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Скрытые двери под покраску −12%</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">Салон «Корал»</span><span class="pcard__sec">А14</span></p>
+          <p class="dpcard__left">Осталось 3 дня</p>
+        </div>
+      </article>
+      <article class="pcard promocard" data-cat="decor" data-term="all">
+        <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
+          <img class="pcard__img" src="img/promos/vladart-zamer.webp" alt="" loading="lazy">
+          <span class="pcard__term">до 31 октября</span>
+        </a>
+        <div class="pcard__body">
+          <h3 class="pcard__title"><a href="promo.html">Бесплатный выезд замерщика</a></h3>
+          <p class="pcard__meta"><span class="pcard__shop">VLADART STUDIO</span><span class="pcard__sec">А10</span></p>
+          <p class="dpcard__left">По Санкт-Петербургу</p>
+        </div>
+      </article>
     </div>
     <div class="empty" id="promoEmpty" hidden>
       <p class="empty__title">Акций не найдено</p>
       <p class="empty__text">Попробуйте снять фильтры или изменить запрос.</p>
       <button type="button" class="dbtn dbtn--ghost" data-promoreset>Показать все</button>
     </div>
-    <div class="results__more">
-      <button type="button" class="dbtn dbtn--ghost">Показать ещё</button>
+    <div class="results__more" id="promoMore">
+      <button type="button" class="dbtn dbtn--ghost">Показать ещё 12 акций</button>
+      <p class="results__hint">Показано 12 из 36</p>
     </div>
   </div>
 </section>
@@ -132,6 +219,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=73"></script>
 <script src="content.js?v=73"></script>
-<script src="design.js?v=60"></script>
+<script src="design.js?v=61"></script>
 </body>
 </html>

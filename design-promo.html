@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
 <link rel="stylesheet" href="design.css?v=136">
-<link rel="stylesheet" href="design-pages.css?v=22">
+<link rel="stylesheet" href="design-pages.css?v=25">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -35,13 +35,20 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     </nav>
     <div class="dpromo__in">
       <div class="dpromo__main">
+        <div class="dpromo__top">
         <ul class="dtags">
           <li><a href="category.html" class="dchip">Двери, перегородки, фурнитура</a></li>
         </ul>
-        <h1 class="dpage__h1 dpromo__h1">Распродажа дверных ручек 30—50%</h1>
+        <h1 class="dpage__h1 dpromo__h1">Распродажа дверных ручек <span class="nw">30—50%</span></h1>
         <p class="dpromo__shop">Салон «Корал» · <b>А14</b> · 1 этаж</p>
-        <p class="promostate st-open dpromo__state"><b>Осталось 6 дней</b> · до 30 июня</p>
-        <p class="promostate promostate--off st-past dpromo__state dpromo__state--off" hidden>Акция завершилась 30 июня</p>
+        </div>
+        <div class="dpromo__bottom">
+          <div class="dpromo__term st-open">
+            <p class="dpromo__left">Осталось <b>6 дней</b></p>
+            <p class="dpromo__until"><span>Действует до</span><b>30 июня 2026</b></p>
+          </div>
+          <p class="promostate promostate--off st-past dpromo__state dpromo__state--off" hidden>Акция завершилась 30 июня</p>
+        </div>
       </div>
       <div class="dpromo__media"><img class="jimg" src="img/pr-1.webp" alt="" loading="lazy"></div>
     </div>
@@ -84,7 +91,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <li><span class="dcontacts__k">Начало</span><span class="dcontacts__v">1 июня 2026</span></li>
           <li><span class="dcontacts__k">Окончание</span><span class="dcontacts__v">30 июня 2026</span></li>
         </ul>
-        <p class="dpanel__hint">После этой даты акция автоматически снимется с публикации.</p>
       </div>
     </aside>
   </div>
@@ -99,6 +105,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=73"></script>
 <script src="events.js?v=73"></script>
-<script src="design.js?v=60"></script>
+<script src="design.js?v=61"></script>
 </body>
 </html>

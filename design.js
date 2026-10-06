@@ -690,7 +690,9 @@
     'brand.html': 'design-brand.html',
     'floors.html': 'design-floors.html',
     'promos.html': 'design-promos.html',
-    'promo.html': 'design-promo.html'
+    'promo.html': 'design-promo.html',
+    'events.html': 'design-events.html',
+    'event.html': 'design-event.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
@@ -748,4 +750,49 @@
   }
   var lb = document.querySelector('.lightbox');
   if (lb) new MutationObserver(sync).observe(lb, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
+})();
+
+/* ---------- фильтры списков выпадающими списками ----------
+   Логика фильтрации прототипа (content.js, events.js) работает по чипам.
+   Чипы остаются в разметке скрытыми, а из каждой строки собирается список
+   «Категория: Любая ▾»: выбор пункта нажимает соответствующий чип, сброс
+   фильтров (тоже через чипы) возвращает значение списка. */
+(function () {
+  [].forEach.call(document.querySelectorAll('.dfilters'), function (box) {
+    var bar = document.createElement('div');
+    bar.className = 'dfilters__selects';
+    [].forEach.call(box.querySelectorAll('.dfilters__row'), function (row) {
+      var lab = row.querySelector('.dfilters__label');
+      var chips = [].slice.call(row.querySelectorAll('.chip'));
+      if (!chips.length) return;
+      var wrap = document.createElement('label');
+      wrap.className = 'dselect';
+      var cap = document.createElement('span');
+      cap.className = 'dselect__lab';
+      cap.textContent = lab ? lab.textContent : '';
+      var sel = document.createElement('select');
+      chips.forEach(function (c, i) {
+        var o = document.createElement('option');
+        o.value = i;
+        o.textContent = c.childNodes[0].textContent.trim();
+        if (c.classList.contains('is-active')) o.selected = true;
+        sel.appendChild(o);
+      });
+      var val = document.createElement('span');
+      val.className = 'dselect__val';
+      function show() { val.textContent = sel.options[sel.selectedIndex].textContent; }
+      sel.addEventListener('change', function () { chips[sel.value].click(); show(); });
+      new MutationObserver(function () {
+        chips.forEach(function (c, i) { if (c.classList.contains('is-active')) sel.value = i; });
+        show();
+      }).observe(row, { subtree: true, attributes: true, attributeFilter: ['class'] });
+      show();
+      wrap.appendChild(cap);
+      wrap.appendChild(val);
+      wrap.appendChild(sel);
+      bar.appendChild(wrap);
+    });
+    box.insertBefore(bar, box.firstChild);
+    box.classList.add('is-selects');
+  });
 })();
