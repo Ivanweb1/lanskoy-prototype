@@ -34,7 +34,7 @@
   var REAL = typeof REAL_FLOORS !== 'undefined' ? REAL_FLOORS : {};
   Object.keys(REAL).forEach(function (f) {
     TENANTS[f] = {};
-    REAL[f].rooms.forEach(function (r) { TENANTS[f][r[0]] = { name: r[1], cat: '' }; });
+    REAL[f].rooms.forEach(function (r) { if (r[1]) TENANTS[f][r[0]] = { name: r[1], cat: '' }; });
   });
 
   var floor = 1;
@@ -61,10 +61,10 @@
     var s = '<svg class="pl-real" viewBox="' + vb.join(' ') + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема ' + floor + ' этажа">';
     d.rooms.forEach(function (r) {
       var code = r[0], isSel = code === selected, x = r[3], y = r[4], w = r[5], h = r[6];
-      s += '<path class="pl-room pl-room--hit pl-room--busy pl-room--tenant' + (isSel ? ' pl-room--here' : '') +
-        '" data-room="' + code + '" d="' + r[2] + '"><title>' + esc(code + ' — ' + r[1]) + '</title></path>';
+      s += '<path class="pl-room pl-room--hit pl-room--busy' + (r[1] ? ' pl-room--tenant' : '') + (isSel ? ' pl-room--here' : '') +
+        '" data-room="' + code + '" d="' + r[2] + '"><title>' + esc(code + ' — ' + (r[1] || 'арендатор не указан')) + '</title></path>';
       var here = isSel ? ' pl-txt--here' : '';
-      var lines = fitName(r[1], w - 10, h - 16, 10.5);
+      var lines = r[1] ? fitName(r[1], w - 10, h - 16, 10.5) : null;
       if (lines) {
         s += '<text class="pl-code pl-code--real' + here + '" x="' + (x + 5) + '" y="' + (y + 11) + '" pointer-events="none">' + code + '</text>';
         var y0 = y + h / 2 + 7 - (lines.length - 1) * 6;
@@ -99,6 +99,7 @@
 
   function render() {
     planBox.classList.toggle('is-real', !!REAL[floor]);
+    if (REAL[floor]) planBox.style.setProperty('--plan-ar', REAL[floor].viewBox[2] + ' / ' + REAL[floor].viewBox[3]);
     /* у реального этажа в выгрузке только занятые секции — легенда схемы не к месту */
     document.querySelectorAll('[data-schem]').forEach(function (li) { li.hidden = !!REAL[floor]; });
     if (REAL[floor]) {
@@ -226,7 +227,7 @@
             '<span class="floorlist__n">' + esc(n) + '</span>' +
             '<span class="floorlist__s">' + byName[n].join(', ') + '</span></button></li>';
         }).join('')
-      : '<li class="floorlist__empty ph-mark">Привязок к секциям на этом этаже нет</li>';
+      : '<li class="floorlist__empty ph-mark">' + (REAL[floor] ? 'Список арендаторов этажа уточняется' : 'Привязок к секциям на этом этаже нет') + '</li>';
 
     linkedCount.textContent = order.length;
     if (REAL[floor]) {

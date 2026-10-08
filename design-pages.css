@@ -627,7 +627,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 
 .dbigplan{aspect-ratio:474/276;padding:18px}
 /* реальный этаж (floors-real.js): свои пропорции и размеры подписей */
-.dbigplan.is-real{aspect-ratio:913/697}
+.dbigplan.is-real{aspect-ratio:var(--plan-ar,913/697)}
 .dplan .pl-name--real{font-size:10.5px}
 .dplan .pl-code--real{font-size:8px}
 .dplan .pl-txt--real{font-size:9.5px;font-weight:500;fill:var(--s-fg)}
