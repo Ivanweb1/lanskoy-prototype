@@ -630,7 +630,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dbigplan.is-real{aspect-ratio:var(--plan-ar,913/697)}
 .dplan .pl-name--real{font-size:10.5px}
 .dplan .pl-code--real{font-size:8px}
-.dplan .pl-txt--real{font-size:9.5px;font-weight:500;fill:var(--s-fg)}
+.dplan .pl-txt--real{font-size:11px;font-weight:500;fill:var(--s-fg)}
 .dplan .pl-name--real{font-size:10px}
 .dplan .pl-outline{fill:var(--s-bg);stroke:var(--s-line-strong);stroke-width:1.5}
 .dplan .pl-room--blank{fill:var(--s-plate);stroke:var(--s-line);stroke-width:1}
@@ -690,7 +690,13 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dpanel__text{font-size:14px;line-height:1.6;color:var(--s-fg);margin:0 0 18px}
 .dpanel__text b{font-family:var(--d-serif);font-size:18px;color:var(--s-accent-ink)}
 
-.dfloorlist{max-height:280px;overflow-y:auto}
+.dfloorlist{max-height:280px;overflow-y:auto;padding-right:10px;margin-right:-10px;
+  scrollbar-width:thin;scrollbar-color:var(--s-accent) transparent}
+/* полоса прокрутки списка — тонкая медная, без стрелок и серой дорожки */
+.dfloorlist::-webkit-scrollbar{width:3px}
+.dfloorlist::-webkit-scrollbar-track{background:var(--s-line)}
+.dfloorlist::-webkit-scrollbar-thumb{background:var(--s-accent)}
+.dfloorlist::-webkit-scrollbar-button{display:none;height:0}
 .dfloorlist .floorlist__i{
   display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;
   padding:13px 0;border:0;border-bottom:1px solid var(--s-line);background:none;text-align:left;cursor:pointer;

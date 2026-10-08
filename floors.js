@@ -87,19 +87,10 @@
       var isSel = code === selected;
       s += '<path class="pl-room pl-room--hit pl-room--busy' + (r[1] ? ' pl-room--tenant' : '') + (isSel ? ' pl-room--here' : '') +
         '" data-room="' + code + '" d="' + r[2] + '"><title>' + esc(code + ' — ' + (r[1] || 'арендатор не указан')) + '</title></path>';
-      var here = isSel ? ' pl-txt--here' : '';
-      var lines = r[1] ? fitName(r[1], w - 8, h - 14, 10) : null;
-      if (lines) {
-        s += '<text class="pl-code pl-code--real' + here + '" x="' + (x + 4) + '" y="' + (y + 10) + '" pointer-events="none">' + code + '</text>';
-        var y0 = y + h / 2 + 6 - (lines.length - 1) * 5.5;
-        lines.forEach(function (ln, i) {
-          s += '<text class="pl-name pl-name--real' + here + '" x="' + (x + w / 2) + '" y="' + (y0 + i * 11.5) +
-            '" text-anchor="middle" pointer-events="none">' + esc(ln) + '</text>';
-        });
-      } else {
-        s += '<text class="pl-txt pl-txt--real' + here + '" x="' + (x + w / 2) + '" y="' + (y + h / 2 + 3.5) +
-          '" text-anchor="middle" pointer-events="none">' + code + '</text>';
-      }
+      /* на плане — только номер: названия в мелких секциях не читаются,
+         магазин видно по клику, в подсказке и в списке справа */
+      s += '<text class="pl-txt pl-txt--real' + (isSel ? ' pl-txt--here' : '') + '" x="' + (x + w / 2) + '" y="' + (y + h / 2 + 4) +
+        '" text-anchor="middle" pointer-events="none">' + code + '</text>';
     });
     (d.marks || []).forEach(function (m) {
       s += '<g class="pl-mark" transform="translate(' + m[0] + ' ' + m[1] + ')"><title>' + MARK_LABEL[m[2]] + '</title>' + markSvg(m[2], 18) + '</g>';
