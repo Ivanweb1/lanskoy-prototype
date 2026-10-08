@@ -1779,3 +1779,10 @@ body.notes-on .lkmain .note{margin-left:0;margin-right:0;max-width:none}
 .pl-name--real{font-size:10.5px}
 .pl-code--real{font-size:8px}
 .pl-txt--real{font-size:9.5px}
+.pl-outline{fill:#fff;stroke:#c4bfb9;stroke-width:1.5}
+.pl-room--blank{fill:#ecebe8;stroke:#d6d2cd}
+.legend__mark{width:18px;height:18px}
+.legend__mark circle:first-child{fill:#6b6660}
+.legend__mark .pl-mark__g{fill:#fff}
+.legend__mark .pl-mark__s{fill:none;stroke:#fff;stroke-width:1.5}
+.legend__mark .pl-mark__t{font-size:7px;font-weight:700;fill:#fff}

@@ -631,6 +631,18 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dplan .pl-name--real{font-size:10.5px}
 .dplan .pl-code--real{font-size:8px}
 .dplan .pl-txt--real{font-size:9.5px;font-weight:500;fill:var(--s-fg)}
+.dplan .pl-name--real{font-size:10px}
+.dplan .pl-outline{fill:var(--s-bg);stroke:var(--s-line-strong);stroke-width:1.5}
+.dplan .pl-room--blank{fill:var(--s-plate);stroke:var(--s-line);stroke-width:1}
+.dplan svg.pl-real .pl-room{stroke-width:1}
+.dplan svg.pl-real .pl-mark__s{stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.dplan svg.pl-real .pl-mark__t{font-size:7.5px}
+.dlegend .legend__sw.legend__sw--blank{background:var(--s-plate);border-color:var(--s-line)}
+.legend__mark{width:18px;height:18px;flex:none}
+.legend__mark circle:first-child{fill:var(--s-accent)}
+.legend__mark .pl-mark__g{fill:var(--b-navy)}
+.legend__mark .pl-mark__s{fill:none;stroke:var(--b-navy);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.legend__mark .pl-mark__t{font-family:var(--d-sans);font-size:7px;font-weight:700;fill:var(--b-navy)}
 .dplan .pl-room--free{fill:transparent;stroke-dasharray:3 3}
 .dplan .pl-room--hit{cursor:pointer;transition:fill .18s}
 .dplan .pl-room--hit:hover{fill:var(--s-plate);stroke:var(--s-accent)}
@@ -645,6 +657,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dplan .pl-code.pl-txt--here,.dplan .pl-name.pl-txt--here{fill:var(--b-navy)}
 /* ориентиры: медный кружок со значком */
 .dplan .pl-mark circle{fill:var(--s-accent)}
+.dplan .pl-mark circle.pl-mark__g{fill:var(--b-navy)}
 .dplan .pl-mark__g{fill:var(--b-navy)}
 .dplan .pl-mark__s{fill:none;stroke:var(--b-navy);stroke-width:1.2}
 .dplan .pl-mark__t{font-family:var(--d-sans);font-size:5.2px;font-weight:700}

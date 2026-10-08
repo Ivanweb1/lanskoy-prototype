@@ -52,32 +52,75 @@
 
   /* секции в общем виде [x, y, w, h, номер, занято] — и для схематичных, и для реальных */
   function rooms(n) {
-    if (REAL[n]) return REAL[n].rooms.map(function (r) { return [r[3], r[4], r[5], r[6], r[0], 1]; });
+    if (REAL[n]) return REAL[n].rooms.filter(function (r) { return r[0]; }).map(function (r) { return [r[3], r[4], r[5], r[6], r[0], 1]; });
     return FLOORS[n].rooms;
+  }
+
+  /* значки на реальной схеме: глифы в квадрате 20×20 с центром в 0 */
+  var MARK_GLYPH = {
+    wc: '<text class="pl-mark__t" y="3.2" text-anchor="middle">WC</text>',
+    stairs: '<path class="pl-mark__s" d="M-6 5h3.5V1.5H1V-2h3.5v-3.5H7"/>',
+    esc: '<path class="pl-mark__s" d="M-7 5h4l7-9h3"/><circle class="pl-mark__g" cx="-1" cy="-4" r="1.6"/>',
+    lift: '<path class="pl-mark__g" d="M-4-1.5 0-6l4 4.5zM-4 1.5 0 6l4-4.5z"/>',
+    info: '<circle class="pl-mark__g" cy="-4.6" r="1.4"/><path class="pl-mark__s" d="M0-1.5v7"/>',
+    mother: '<path class="pl-mark__s" d="M-6-1h11a5.5 5.5 0 0 1-11 0zM-6-1a5.5 5.5 0 0 1 5.5-5.5V-1"/><circle class="pl-mark__g" cx="-3.5" cy="6" r="1.3"/><circle class="pl-mark__g" cx="3" cy="6" r="1.3"/>',
+    'in-down': '<path class="pl-mark__s" d="M0-6v11M-4.5 1 0 5.5 4.5 1"/>',
+    'in-left': '<path class="pl-mark__s" d="M6 0H-5M-1-4.5-5.5 0-1 4.5"/>'
+  };
+  var MARK_LABEL = { wc: 'Туалет', stairs: 'Лестница', esc: 'Эскалатор', lift: 'Лифт',
+    info: 'Информация', mother: 'Комната матери и ребёнка', 'in-down': 'Вход', 'in-left': 'Вход' };
+
+  function markSvg(type, r) {
+    return '<circle r="' + r + '"/>' + MARK_GLYPH[type];
   }
 
   function renderReal(d) {
     var vb = d.viewBox;
     var s = '<svg class="pl-real" viewBox="' + vb.join(' ') + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема ' + floor + ' этажа">';
+    if (d.outline) s += '<path class="pl-outline" d="' + d.outline + '"/>';
     d.rooms.forEach(function (r) {
-      var code = r[0], isSel = code === selected, x = r[3], y = r[4], w = r[5], h = r[6];
+      var code = r[0], x = r[3], y = r[4], w = r[5], h = r[6];
+      /* секция без номера — просто контур, не кликается */
+      if (!code) { s += '<path class="pl-room pl-room--blank" d="' + r[2] + '"/>'; return; }
+      var isSel = code === selected;
       s += '<path class="pl-room pl-room--hit pl-room--busy' + (r[1] ? ' pl-room--tenant' : '') + (isSel ? ' pl-room--here' : '') +
         '" data-room="' + code + '" d="' + r[2] + '"><title>' + esc(code + ' — ' + (r[1] || 'арендатор не указан')) + '</title></path>';
       var here = isSel ? ' pl-txt--here' : '';
-      var lines = r[1] ? fitName(r[1], w - 10, h - 16, 10.5) : null;
+      var lines = r[1] ? fitName(r[1], w - 8, h - 14, 10) : null;
       if (lines) {
-        s += '<text class="pl-code pl-code--real' + here + '" x="' + (x + 5) + '" y="' + (y + 11) + '" pointer-events="none">' + code + '</text>';
-        var y0 = y + h / 2 + 7 - (lines.length - 1) * 6;
+        s += '<text class="pl-code pl-code--real' + here + '" x="' + (x + 4) + '" y="' + (y + 10) + '" pointer-events="none">' + code + '</text>';
+        var y0 = y + h / 2 + 6 - (lines.length - 1) * 5.5;
         lines.forEach(function (ln, i) {
-          s += '<text class="pl-name pl-name--real' + here + '" x="' + (x + w / 2) + '" y="' + (y0 + i * 12) +
+          s += '<text class="pl-name pl-name--real' + here + '" x="' + (x + w / 2) + '" y="' + (y0 + i * 11.5) +
             '" text-anchor="middle" pointer-events="none">' + esc(ln) + '</text>';
         });
       } else {
-        s += '<text class="pl-txt pl-txt--real' + here + '" x="' + (x + w / 2) + '" y="' + (y + h / 2 + 4) +
+        s += '<text class="pl-txt pl-txt--real' + here + '" x="' + (x + w / 2) + '" y="' + (y + h / 2 + 3.5) +
           '" text-anchor="middle" pointer-events="none">' + code + '</text>';
       }
     });
+    (d.marks || []).forEach(function (m) {
+      s += '<g class="pl-mark" transform="translate(' + m[0] + ' ' + m[1] + ')"><title>' + MARK_LABEL[m[2]] + '</title>' + markSvg(m[2], 13) + '</g>';
+    });
     return s + '</svg>';
+  }
+
+  /* легенда значков — по тем, что есть на этаже */
+  function legendMarks(d) {
+    var ul = document.querySelector('.legend');
+    if (!ul) return;
+    [].slice.call(ul.querySelectorAll('[data-mark]')).forEach(function (li) { li.remove(); });
+    if (!d) return;
+    var seen = {};
+    (d.marks || []).forEach(function (m) {
+      var label = MARK_LABEL[m[2]];
+      if (seen[label]) return;
+      seen[label] = 1;
+      var li = document.createElement('li');
+      li.setAttribute('data-mark', '');
+      li.innerHTML = '<svg class="legend__mark" viewBox="-12 -12 24 24" aria-hidden="true"><g class="pl-mark">' + markSvg(m[2], 11) + '</g></svg>' + label;
+      ul.appendChild(li);
+    });
   }
 
   /* название целиком по словам в прямоугольник секции; не влезает — null,
@@ -102,6 +145,7 @@
     if (REAL[floor]) planBox.style.setProperty('--plan-ar', REAL[floor].viewBox[2] + ' / ' + REAL[floor].viewBox[3]);
     /* у реального этажа в выгрузке только занятые секции — легенда схемы не к месту */
     document.querySelectorAll('[data-schem]').forEach(function (li) { li.hidden = !!REAL[floor]; });
+    legendMarks(REAL[floor]);
     if (REAL[floor]) {
       planBox.innerHTML = renderReal(REAL[floor]);
       var h = document.querySelector('.legend__sw--here');
