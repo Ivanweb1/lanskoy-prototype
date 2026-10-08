@@ -935,3 +935,45 @@
   new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   sync();
 })();
+
+/* ---------- подкатегории на странице категорий — одной строкой ----------
+   Сколько влезает в ширину карточки, остальное сворачиваем в «ещё N».
+   N = скрытые здесь + те, что изначально не выведены (число из «ещё 7»). */
+(function () {
+  var lists = [].slice.call(document.querySelectorAll('.dcats__subs'));
+  if (!lists.length) return;
+
+  lists.forEach(function (ul) {
+    var more = ul.querySelector('.dcats__more');
+    ul._extra = more ? parseInt(more.textContent.replace(/\D/g, ''), 10) || 0 : 0;
+    if (!more) {
+      more = document.createElement('li');
+      more.className = 'dcats__more';
+      ul.appendChild(more);
+    }
+    ul._more = more;
+    ul._items = [].slice.call(ul.children).filter(function (li) { return li !== more; });
+  });
+
+  function fit(ul) {
+    var items = ul._items, more = ul._more, hidden = 0;
+    items.forEach(function (li) { li.hidden = false; });
+    ul.appendChild(more);
+    var top = items[0].offsetTop;
+    function update() { more.textContent = 'ещё ' + (hidden + ul._extra); }
+    update();
+    for (var i = items.length - 1; i > 0 && more.offsetTop > top; i--) {
+      items[i].hidden = true;
+      hidden++;
+      update();
+    }
+    /* убираем из DOM, а не прячем: иначе у последнего пункта осталась бы точка */
+    if (!hidden && !ul._extra) ul.removeChild(more);
+  }
+
+  function fitAll() { lists.forEach(fit); }
+  fitAll();
+  var t;
+  window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fitAll, 100); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+})();

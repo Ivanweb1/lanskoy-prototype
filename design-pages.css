@@ -314,7 +314,8 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
   border-top:1px solid var(--s-line);
   font-size:13px;line-height:1.5;color:var(--s-fg-soft);
 }
-.dcats__subs li{display:inline-flex;align-items:center}
+.dcats__subs li{display:inline-flex;align-items:center;white-space:nowrap}
+.dcats__subs li[hidden]{display:none}
 /* разделитель — круглая точка, как в строке «Мебель • Свет • Декор» на
    макете сайта (брендбук стр. 42). Стоит после пункта, а не перед ним:
    при переносе точка остаётся в конце строки, а не открывает следующую */
