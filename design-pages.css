@@ -297,7 +297,7 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 .dcats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 24px}
 .dcats__item{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;color:var(--s-fg)}
 .dcats__body{display:contents}
-.dcats__media{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--s-bg-2)}
+.dcats__media{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:var(--s-bg-2)}
 .dcats__img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--d-ease)}
 .dcats__item:hover .dcats__img{transform:scale(1.05)}
 .dcats__n{
