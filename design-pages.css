@@ -131,6 +131,9 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 
 /* ============ 3. КАТАЛОГ: РЕЗУЛЬТАТЫ ============ */
 .results__bar{border-bottom:1px solid var(--s-line);padding-bottom:18px;margin-bottom:28px}
+/* шапка фильтров и полоса результатов — одной высоты, чтобы линии под ними
+   легли на один уровень */
+.filters__head,.results__bar{box-sizing:border-box;min-height:62px;padding-bottom:18px;align-items:center}
 .results__count{font-size:13px;letter-spacing:.04em;color:var(--s-fg-soft)}
 .results__count b{font-family:var(--d-serif);font-size:18px;font-weight:600;color:var(--s-fg)}
 .sortbox{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft)}

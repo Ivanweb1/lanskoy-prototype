@@ -101,8 +101,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div class="results__bar">
         <p class="results__count">Показано <b id="shownCount">8</b> из 150+</p>
         <label class="sortbox">
-          <span>Сортировка</span>
-          <select id="sortSelect">
+          <select id="sortSelect" aria-label="Сортировка">
             <option value="alpha">По алфавиту</option>
             <option value="floor">По этажу</option>
             <option value="promo">Сначала с акциями</option>
