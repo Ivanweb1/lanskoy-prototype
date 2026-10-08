@@ -47,11 +47,13 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
 .dpage__in>div{padding-bottom:40px}
 
 /* переключатель вида каталога (магазины / категории / схема) — сегменты
-   одной плашкой под лидом, а не мелкие вкладки справа: это главный выбор
-   на странице, его должно быть видно по пути глаза H1 → лид → каталог.
-   Активный сегмент — медная заливка, как .dbtn--fill */
+   одной плашкой справа в шапке, низом на линии лида: крупнее прежних вкладок,
+   но не громоздится под заголовком слева и стоит в одной точке на всех трёх
+   страницах. Активный сегмент — медная заливка, как .dbtn--fill */
+.dpage__in>div:first-child{flex:1 1 auto;min-width:0}
+.dpage__views{flex:none;padding-bottom:40px}
 .dviews{
-  display:inline-flex;margin:32px 0 0;padding:0;list-style:none;
+  display:inline-flex;margin:0;padding:0;list-style:none;
   border:1px solid var(--s-line-strong);border-radius:2px;background:var(--s-field-bg);
 }
 .dviews li+li{border-left:1px solid var(--s-line-strong)}
@@ -209,11 +211,15 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 /* ============ 4. АДАПТИВ ============ */
 @media (max-width:1200px){
   .catalog{grid-template-columns:240px minmax(0,1fr);gap:40px}
+  .dviews__item{padding:0 18px}
+  .dviews__full{display:none}
+  .dviews__short{display:inline}
   .grid--shops{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:1000px){
   .dpage__in{flex-direction:column;align-items:flex-start;gap:0}
   .dpage__in>div{padding-bottom:28px}
+  .dpage__views{padding-bottom:28px;margin-top:-4px}
   .dcat{padding:32px 0 64px}
   .catalog{grid-template-columns:1fr;gap:0}
 
@@ -247,7 +253,8 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
   .dtabs::-webkit-scrollbar{display:none}
   .dtabs__item{white-space:nowrap;font-size:10.5px;letter-spacing:.07em;padding-bottom:14px}
   /* сегменты — на всю ширину, подписи короче, чтобы три влезли в 327px */
-  .dviews{display:flex;width:100%;margin-top:24px}
+  .dpage__views{width:100%}
+  .dviews{display:flex;width:100%}
   .dviews li{flex:1 1 0;min-width:0}
   .dviews__item{height:46px;padding:0 8px;gap:8px;font-size:10.5px;letter-spacing:.08em}
   .dviews__full{display:none}
