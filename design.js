@@ -977,3 +977,43 @@
   window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fitAll, 100); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
 })();
+
+/* ---------- схема этажей на телефоне: стрелки прокрутки ----------
+   План шире экрана (иначе секции слишком мелкие для пальца) и листается
+   вбок. Стрелки показывают, что там есть продолжение, и листают по клику.
+   Обёртка снаружи #bigPlan: его содержимое перерисовывает floors.js. */
+(function () {
+  var plan = document.getElementById('bigPlan');
+  if (!plan || !plan.classList.contains('dbigplan')) return;
+
+  var wrap = document.createElement('div');
+  wrap.className = 'dplanwrap';
+  plan.parentNode.insertBefore(wrap, plan);
+  wrap.appendChild(plan);
+
+  function arrow(dir, label) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'dplanwrap__arrow dplanwrap__arrow--' + dir;
+    b.setAttribute('aria-label', label);
+    b.addEventListener('click', function () {
+      plan.scrollBy({ left: (dir === 'next' ? 1 : -1) * plan.clientWidth * 0.6, behavior: 'smooth' });
+    });
+    wrap.appendChild(b);
+    return b;
+  }
+  var prev = arrow('prev', 'Прокрутить план влево');
+  var next = arrow('next', 'Прокрутить план вправо');
+
+  function update() {
+    var max = plan.scrollWidth - plan.clientWidth;
+    prev.hidden = plan.scrollLeft <= 4;
+    next.hidden = max <= 4 || plan.scrollLeft >= max - 4;
+  }
+  plan.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  window.addEventListener('load', update);
+  /* план перерисовывается при смене этажа — пересчитываем */
+  new MutationObserver(function () { requestAnimationFrame(update); }).observe(plan, { childList: true });
+  requestAnimationFrame(update);
+})();
