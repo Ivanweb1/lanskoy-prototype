@@ -602,7 +602,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dfloor__bar{margin-bottom:20px}
 /* этажи — лёгкие вкладки с медной чертой, а не сегменты: сегментами уже
    сделан переключатель вида в шапке, две одинаковые плашки подряд путались */
-.dfloor__tabs{display:flex;gap:28px;width:auto;border-bottom:1px solid var(--s-line)}
+/* ширина по содержимому: в style.css у вкладок фиксированные 320px, и линия тянулась дальше «3 этажа» */
+.dfloor__tabs,.floorplan__bar .dfloor__tabs{display:flex;gap:28px;width:auto;border-bottom:1px solid var(--s-line)}
 .dfloor__tabs .floors__tab{
   flex:none;height:auto;padding:0 2px 10px;margin-bottom:-1px;border:0;border-bottom:2px solid transparent;border-radius:0;background:none;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft);
@@ -706,7 +707,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dfloor .dside>.dpanel:first-child{order:-1}
 }
 @media (max-width:760px){
-  .dfloor__tabs{width:100%;gap:0}
+  .dfloor__tabs,.floorplan__bar .dfloor__tabs{width:100%;gap:0}
   .dfloor__tabs .floors__tab{flex:1}
   .dfloor__hint{font-size:10px;letter-spacing:.1em}
   /* план шире экрана и листается вбок: в ширину 327px секции выходили
