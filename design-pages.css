@@ -75,7 +75,11 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 .dcat{padding:56px 0 88px}
 .catalog{grid-template-columns:272px minmax(0,1fr);gap:56px}
 
-.filters{position:sticky;top:calc(var(--hdr-sticky,64px) + 24px)}
+/* липкая колонка: в гриде она растягивалась на высоту ряда и не липла.
+   Выше экрана — прокручивается сама, чтобы нижние группы оставались доступны */
+.filters{position:sticky;top:calc(var(--hdr-sticky,64px) + 24px);align-self:start;
+  max-height:calc(100vh - var(--hdr-sticky,64px) - 48px);overflow-y:auto;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:var(--s-line-strong) transparent;padding-right:4px;margin-right:-4px}
 .filters__head{border-bottom:1px solid var(--s-line-strong);padding-bottom:16px}
 .filters__title{
   font-family:var(--d-serif);font-weight:600;font-size:20px;letter-spacing:.01em;
@@ -112,19 +116,13 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 .checklist li{margin-bottom:12px}
 .checklist .check{gap:12px;font-size:14px;line-height:1.4;color:var(--s-fg);transition:color .18s}
 .checklist .check:hover{color:var(--s-accent-ink)}
-.checklist__n{font-size:12px;color:var(--s-fg-soft);margin-left:6px}
+/* счётчик — колонкой справа, не переносится одиночкой под длинное название */
+.checklist .check>span{flex:1 1 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.checklist__n{flex:none;font-style:normal;font-size:12px;color:var(--s-fg-soft)}
+.checklist--row{display:flex;flex-wrap:wrap;gap:12px 20px}
+.checklist--row li{margin-bottom:0}
+.checklist--row .check{gap:10px}
 
-/* этажи — сегменты с прямыми углами, выбранный — медная заливка */
-.segm{gap:0}
-.segm__item+.segm__item span{border-left:0}
-.segm__item span{
-  height:46px;border:1px solid var(--s-line-strong);
-  font-family:var(--d-serif);font-size:18px;color:var(--s-fg);
-  transition:background-color .18s,color .18s,border-color .18s;
-}
-.segm__item span:hover{background:var(--s-plate)}
-.segm__item input:checked+span{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-btn-fill-fg)}
-.segm__item input:focus-visible+span{outline:1px solid var(--s-accent);outline-offset:2px}
 
 /* кнопка фильтров — только на узких экранах */
 .dfilt-toggle{display:none}
@@ -209,11 +207,11 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 
 .results__more{margin-top:40px}
 .results__more .dbtn{width:100%;justify-content:center}
-.results__hint{font-size:12px;letter-spacing:.04em;color:var(--s-fg-soft);margin-top:14px}
 
 /* ============ 4. АДАПТИВ ============ */
 @media (max-width:1200px){
   .catalog{grid-template-columns:240px minmax(0,1fr);gap:40px}
+  .checklist--row{column-gap:12px}
   .dviews__item{padding:0 18px}
   .dviews__full{display:none}
   .dviews__short{display:inline}
@@ -240,7 +238,7 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
     background:var(--s-accent);color:var(--s-btn-fill-fg);font-size:11px;letter-spacing:0;
   }
   .dfilt-toggle__n[hidden]{display:none}
-  .filters{display:none;position:static;border:1px solid var(--s-line);padding:4px 20px 8px;margin:-8px 0 28px}
+  .filters{display:none;position:static;max-height:none;overflow:visible;border:1px solid var(--s-line);padding:4px 20px 8px;margin:-8px 0 28px}
   .filters.is-open{display:block}
   .filters__head{padding-top:16px}
   .filters__group:last-child{border-bottom:0}
@@ -263,7 +261,10 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
   .dviews__full{display:none}
   .dviews__short{display:inline}
   .checklist{columns:1}
-  .results__bar{gap:14px}
+  /* счётчик и сортировка — одной строкой */
+  .results__bar{gap:12px;flex-wrap:nowrap}
+  .results__count{white-space:nowrap}
+  .sortbox select{width:auto;max-width:100%}
 }
 /* на телефоне карточка — строкой: плашка слева, данные справа.
    Две колонки по 160px ломали длинные названия на три строки */

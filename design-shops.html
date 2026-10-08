@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=74">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=44">
+<link rel="stylesheet" href="design-pages.css?v=45">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -69,6 +69,14 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
       </div>
       <div class="filters__group">
+        <p class="filters__label">Этаж</p>
+        <ul class="checklist checklist--row" id="floorFilter">
+          <li><label class="check"><input type="checkbox" data-filter="floor" value="1"><span>1 этаж</span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="floor" value="2"><span>2 этаж</span></label></li>
+          <li><label class="check"><input type="checkbox" data-filter="floor" value="3"><span>3 этаж</span></label></li>
+        </ul>
+      </div>
+      <div class="filters__group">
         <p class="filters__label">Категория</p>
         <ul class="checklist" id="catList">
           <li><label class="check"><input type="checkbox" data-filter="cat" value="decor"><span>Декоративно-отделочные материалы <i class="checklist__n">28</i></span></label></li>
@@ -87,19 +95,11 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <li><label class="check"><input type="checkbox" data-filter="cat" value="hvac"><span>Отопление и кондиционирование <i class="checklist__n">4</i></span></label></li>
         </ul>
       </div>
-      <div class="filters__group">
-        <p class="filters__label">Этаж</p>
-        <div class="segm" id="floorFilter">
-          <label class="segm__item"><input type="checkbox" data-filter="floor" value="1"><span>1</span></label>
-          <label class="segm__item"><input type="checkbox" data-filter="floor" value="2"><span>2</span></label>
-          <label class="segm__item"><input type="checkbox" data-filter="floor" value="3"><span>3</span></label>
-        </div>
-      </div>
     </aside>
 
     <div class="results">
       <div class="results__bar">
-        <p class="results__count">Показано <b id="shownCount">8</b> из 150+</p>
+        <p class="results__count">Показано <b id="shownCount">12</b> из 150+</p>
         <label class="sortbox">
           <select id="sortSelect" aria-label="Сортировка">
             <option value="alpha">По алфавиту</option>
@@ -174,6 +174,42 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
             <span class="shopcard__place"><b>B2</b> · 2 этаж</span>
           </span>
         </a>
+        <!-- демо-карточка: арендатор вымышлен, заполняет сетку до 12 -->
+        <a href="shop.html" class="shopcard" data-cat="light" data-floor="1" data-name="Студия «Люмен»" data-promo="0">
+          <span class="shopcard__logo"><img class="shopcard__img" src="img/cat-svet.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Студия «Люмен»</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Студия «Люмен»</span>
+            <span class="shopcard__cat">Свет</span>
+            <span class="shopcard__place"><b>А7</b> · 1 этаж</span>
+          </span>
+        </a>
+        <!-- демо-карточка: арендатор вымышлен, заполняет сетку до 12 -->
+        <a href="shop.html" class="shopcard" data-cat="tile" data-floor="1" data-name="Керамика Плюс" data-promo="1">
+          <span class="shopcard__logo"><img class="shopcard__img" src="img/cat-plitka.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Керамика Плюс</span><span class="shopcard__badge">Акция</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Керамика Плюс</span>
+            <span class="shopcard__cat">Плитка</span>
+            <span class="shopcard__place"><b>А3</b> · 1 этаж</span>
+          </span>
+        </a>
+        <!-- демо-карточка: арендатор вымышлен, заполняет сетку до 12 -->
+        <a href="shop.html" class="shopcard" data-cat="wallpaper" data-floor="2" data-name="Обойный салон «Стена»" data-promo="0">
+          <span class="shopcard__logo"><img class="shopcard__img" src="img/cat-oboi.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Обойный салон «Стена»</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Обойный салон «Стена»</span>
+            <span class="shopcard__cat">Обои</span>
+            <span class="shopcard__place"><b>B4</b> · 2 этаж</span>
+          </span>
+        </a>
+        <!-- демо-карточка: арендатор вымышлен, заполняет сетку до 12 -->
+        <a href="shop.html" class="shopcard" data-cat="textile" data-floor="2" data-name="Текстиль Хаус" data-promo="0">
+          <span class="shopcard__logo"><img class="shopcard__img" src="img/cat-tekstil.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Текстиль Хаус</span></span>
+          <span class="shopcard__body">
+            <span class="shopcard__name">Текстиль Хаус</span>
+            <span class="shopcard__cat">Шторы, карнизы, ткани</span>
+            <span class="shopcard__place"><b>B9</b> · 2 этаж</span>
+          </span>
+        </a>
       </div>
       <div class="empty" id="emptyState" hidden>
         <p class="empty__title">Ничего не найдено</p>
@@ -181,8 +217,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <button type="button" class="dbtn dbtn--ghost" data-reset>Сбросить фильтры</button>
       </div>
       <div class="results__more" id="moreBox">
-        <button type="button" class="dbtn dbtn--ghost">Показать ещё 24 магазина</button>
-        <p class="results__hint">Загружено 8 из 150+</p>
+        <button type="button" class="dbtn dbtn--ghost">Показать ещё 12 магазинов</button>
       </div>
     </div>
   </div>
