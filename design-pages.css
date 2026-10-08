@@ -75,11 +75,13 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 .dcat{padding:56px 0 88px}
 .catalog{grid-template-columns:272px minmax(0,1fr);gap:56px}
 
-/* липкая колонка: в гриде она растягивалась на высоту ряда и не липла.
-   Выше экрана — прокручивается сама, чтобы нижние группы оставались доступны */
-.filters{position:sticky;top:calc(var(--hdr-sticky,64px) + 24px);align-self:start;
-  max-height:calc(100vh - var(--hdr-sticky,64px) - 48px);overflow-y:auto;overscroll-behavior:contain;
-  scrollbar-width:thin;scrollbar-color:var(--s-line-strong) transparent;padding-right:4px;margin-right:-4px}
+/* колонка фильтров липнет, только когда целиком влезает в экран (~900px):
+   иначе пришлось бы давать ей свой скролл, а он выглядит чужеродно.
+   align-self — в гриде она растягивалась на высоту ряда и не липла */
+.filters{position:static;align-self:start}
+@media (min-height:1000px){
+  .filters{position:sticky;top:calc(var(--hdr-sticky,64px) + 24px)}
+}
 .filters__head{border-bottom:1px solid var(--s-line-strong);padding-bottom:16px}
 .filters__title{
   font-family:var(--d-serif);font-weight:600;font-size:20px;letter-spacing:.01em;
@@ -238,7 +240,7 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
     background:var(--s-accent);color:var(--s-btn-fill-fg);font-size:11px;letter-spacing:0;
   }
   .dfilt-toggle__n[hidden]{display:none}
-  .filters{display:none;position:static;max-height:none;overflow:visible;border:1px solid var(--s-line);padding:4px 20px 8px;margin:-8px 0 28px}
+  .filters{display:none;position:static;border:1px solid var(--s-line);padding:4px 20px 8px;margin:-8px 0 28px}
   .filters.is-open{display:block}
   .filters__head{padding-top:16px}
   .filters__group:last-child{border-bottom:0}
