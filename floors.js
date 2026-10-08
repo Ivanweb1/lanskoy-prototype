@@ -70,8 +70,10 @@
   var MARK_LABEL = { wc: 'Туалет', stairs: 'Лестница', esc: 'Эскалатор', lift: 'Лифт',
     info: 'Информация', mother: 'Комната матери и ребёнка', 'in-down': 'Вход', 'in-left': 'Вход' };
 
-  function markSvg(type, r) {
-    return '<circle r="' + r + '"/>' + MARK_GLYPH[type];
+  /* значок — квадрат, как на исходной схеме; глиф масштабируется под размер */
+  function markSvg(type, half) {
+    return '<rect class="pl-mark__box" x="' + (-half) + '" y="' + (-half) + '" width="' + half * 2 + '" height="' + half * 2 + '" rx="2"/>' +
+      '<g transform="scale(' + (half / 11).toFixed(2) + ')">' + MARK_GLYPH[type] + '</g>';
   }
 
   function renderReal(d) {
@@ -100,7 +102,7 @@
       }
     });
     (d.marks || []).forEach(function (m) {
-      s += '<g class="pl-mark" transform="translate(' + m[0] + ' ' + m[1] + ')"><title>' + MARK_LABEL[m[2]] + '</title>' + markSvg(m[2], 13) + '</g>';
+      s += '<g class="pl-mark" transform="translate(' + m[0] + ' ' + m[1] + ')"><title>' + MARK_LABEL[m[2]] + '</title>' + markSvg(m[2], 18) + '</g>';
     });
     return s + '</svg>';
   }
