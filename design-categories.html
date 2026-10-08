@@ -38,12 +38,14 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <p class="dpage__eyebrow">14 направлений · 150+ магазинов</p>
         <h1 class="dpage__h1">Категории</h1>
         <p class="dpage__lead">Всё для ремонта и интерьера — по направлениям</p>
+        <nav aria-label="Вид каталога">
+          <ul class="dviews">
+            <li><a href="shops.html" class="dviews__item"><span class="dviews__ic dviews__ic--list" aria-hidden="true"></span><span class="dviews__full">Списком</span><span class="dviews__short">Список</span></a></li>
+            <li><span class="dviews__item is-active" aria-current="page"><span class="dviews__ic dviews__ic--cats" aria-hidden="true"></span><span class="dviews__full">По категориям</span><span class="dviews__short">Категории</span></span></li>
+            <li><a href="floors.html" class="dviews__item"><span class="dviews__ic dviews__ic--plan" aria-hidden="true"></span><span class="dviews__full">На схеме этажей</span><span class="dviews__short">Схема</span></a></li>
+          </ul>
+        </nav>
       </div>
-      <ul class="dtabs">
-        <li><a href="shops.html" class="dtabs__item">Списком</a></li>
-        <li><span class="dtabs__item is-active">По категориям</span></li>
-        <li><a href="floors.html" class="dtabs__item">На схеме этажей</a></li>
-      </ul>
     </div>
   </div>
 </section>
