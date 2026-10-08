@@ -20,6 +20,15 @@
     3: {}
   };
 
+  /* ориентиры: лифт, эскалатор, туалет. ЗАГЛУШКИ — точное расположение
+     уточнить у заказчика; координаты в системе плана (viewBox 474×276) */
+  var MARKS = {
+    1: [[34, 133, 'lift'], [190, 133, 'esc'], [440, 133, 'wc']],
+    2: [[34, 139, 'lift'], [190, 139, 'esc'], [440, 139, 'wc']],
+    3: [[76, 100, 'lift'], [96, 100, 'esc'], [398, 100, 'wc']]
+  };
+  var MARK_NAMES = { lift: 'Лифт', esc: 'Эскалатор', wc: 'Туалет' };
+
   var floor = 1;
   var selected = null;
 
@@ -46,16 +55,61 @@
 
     d.rooms.forEach(function (r) {
       var code = r[4], busy = r[5], isSel = code === selected;
-      var cls = 'pl-room pl-room--hit' + (busy ? ' pl-room--busy' : ' pl-room--free') + (isSel ? ' pl-room--here' : '');
+      var t = TENANTS[floor][code];
+      var cls = 'pl-room pl-room--hit' + (busy ? ' pl-room--busy' : ' pl-room--free') +
+        (t ? ' pl-room--tenant' : '') + (isSel ? ' pl-room--here' : '');
       s += '<rect class="' + cls + '" data-room="' + code + '" x="' + r[0] + '" y="' + r[1] +
         '" width="' + r[2] + '" height="' + r[3] + '"><title>' + label(code, busy) + '</title></rect>';
-      s += '<text class="pl-txt' + (isSel ? ' pl-txt--here' : '') + '" x="' + (r[0] + r[2] / 2) +
-        '" y="' + (r[1] + r[3] / 2 + 3) + '" text-anchor="middle" pointer-events="none">' + code + '</text>';
+      if (t) {
+        /* известный арендатор: номер мелко в углу, название по центру */
+        s += '<text class="pl-code' + (isSel ? ' pl-txt--here' : '') + '" x="' + (r[0] + 5) + '" y="' + (r[1] + 9) +
+          '" pointer-events="none">' + code + '</text>';
+        var lines = wrap(t.name, r[2] - 8, 7.5);
+        var y0 = r[1] + r[3] / 2 + 5 - (lines.length - 1) * 4.5;
+        lines.forEach(function (ln, i) {
+          s += '<text class="pl-name' + (isSel ? ' pl-txt--here' : '') + '" x="' + (r[0] + r[2] / 2) + '" y="' + (y0 + i * 9) +
+            '" text-anchor="middle" pointer-events="none">' + esc(ln) + '</text>';
+        });
+      } else {
+        s += '<text class="pl-txt' + (isSel ? ' pl-txt--here' : '') + '" x="' + (r[0] + r[2] / 2) +
+          '" y="' + (r[1] + r[3] / 2 + 3) + '" text-anchor="middle" pointer-events="none">' + code + '</text>';
+      }
+    });
+
+    (MARKS[floor] || []).forEach(function (m) {
+      s += '<g class="pl-mark" transform="translate(' + m[0] + ' ' + m[1] + ')"><title>' + MARK_NAMES[m[2]] + '</title>' +
+        '<circle r="7"/>' + markGlyph(m[2]) + '</g>';
     });
 
     s += '</svg>';
     planBox.innerHTML = s;
+
+    /* «Выбрано» в легенде — только когда что-то выбрано */
+    var here = document.querySelector('.legend__sw--here');
+    if (here) here.parentNode.hidden = !selected;
   }
+
+  function markGlyph(type) {
+    if (type === 'lift') return '<path class="pl-mark__g" d="M-3-1 0-4.5 3-1zM-3 1 0 4.5 3 1z"/>';
+    if (type === 'esc') return '<path class="pl-mark__s" d="M-4.5 3.5h2.5l4.5-6h2"/>';
+    return '<text class="pl-mark__g pl-mark__t" y="2" text-anchor="middle">WC</text>';
+  }
+
+  /* перенос названия по словам в ширину секции: не больше двух строк */
+  function wrap(name, width, fs) {
+    var max = Math.max(4, Math.floor(width / (fs * 0.62)));
+    var words = name.split(/\s+/), lines = [], cur = '';
+    words.forEach(function (w) {
+      var next = cur ? cur + ' ' + w : w;
+      if (next.length <= max || !cur) cur = next;
+      else { lines.push(cur); cur = w; }
+    });
+    if (cur) lines.push(cur);
+    if (lines.length > 2) lines = [lines[0], lines.slice(1).join(' ')];
+    return lines.map(function (l) { return l.length > max ? l.slice(0, max - 1) + '…' : l; });
+  }
+
+  function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
   function label(code, busy) {
     var t = TENANTS[floor][code];

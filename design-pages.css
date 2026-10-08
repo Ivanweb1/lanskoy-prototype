@@ -486,7 +486,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dpanel__sub{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);margin:18px 0 12px}
 .dmsgs{display:flex;flex-wrap:wrap;gap:8px}
 .dpanel__place{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--s-fg-soft);margin:0 0 16px}
-.dpanel__place b{font-family:var(--d-serif);font-size:22px;letter-spacing:.02em;color:var(--s-accent-ink);margin-right:4px}
+.dpanel__place b{font-family:var(--d-sans);font-size:18px;font-weight:600;letter-spacing:.04em;font-variant-numeric:lining-nums;color:var(--s-accent-ink);margin-right:4px}
 .dbtn--full{width:100%;justify-content:center}
 
 /* схема этажа — ровный фон без миллиметровки, секции тонкой линией,
@@ -600,17 +600,17 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dfloor{grid-template-columns:minmax(0,1fr) 360px;gap:56px}
 .dfloor>*,.dfloor .dpanel{min-width:0}
 .dfloor__bar{margin-bottom:20px}
-/* этажи — те же сегменты, что в фильтре каталога: цифра антиквой */
-.dfloor__tabs{display:flex;gap:0;width:auto}
+/* этажи — лёгкие вкладки с медной чертой, а не сегменты: сегментами уже
+   сделан переключатель вида в шапке, две одинаковые плашки подряд путались */
+.dfloor__tabs{display:flex;gap:28px;width:auto;border-bottom:1px solid var(--s-line)}
 .dfloor__tabs .floors__tab{
-  flex:none;height:48px;padding:0 22px;border:1px solid var(--s-line-strong);border-radius:0;background:none;
-  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg);
-  transition:background-color .18s,color .18s,border-color .18s;
+  flex:none;height:auto;padding:0 2px 10px;margin-bottom:-1px;border:0;border-bottom:2px solid transparent;border-radius:0;background:none;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft);
+  transition:color .18s,border-color .18s;cursor:pointer;
 }
-.dfloor__tabs .floors__tab+.floors__tab{border-left:0}
-.dfloor__tabs .floors__tab b{font-family:var(--d-serif);font-size:18px;letter-spacing:0;margin-right:4px}
-.dfloor__tabs .floors__tab:hover{background:var(--s-plate)}
-.dfloor__tabs .floors__tab.is-active{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-btn-fill-fg)}
+.dfloor__tabs .floors__tab b{font-family:var(--d-sans);font-size:20px;font-weight:600;letter-spacing:0;margin-right:5px;font-variant-numeric:lining-nums}
+.dfloor__tabs .floors__tab:hover{color:var(--s-accent-ink)}
+.dfloor__tabs .floors__tab.is-active{color:var(--s-fg);border-bottom-color:var(--s-accent)}
 /* подсказка — служебная подпись капсом, как подписи фильтров, с линейной
    медной иконкой нажатия; стоит по центру высоты кнопок этажей */
 .dfloor__bar{align-items:center}
@@ -629,10 +629,35 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dplan .pl-room--hit{cursor:pointer;transition:fill .18s}
 .dplan .pl-room--hit:hover{fill:var(--s-plate);stroke:var(--s-accent)}
 .dplan .pl-room--here,.dplan .pl-room--here:hover{fill:var(--b-copper);stroke:var(--b-copper)}
+/* секция с известным магазином — медная рамка и название внутри; занятая
+   без данных — нейтральная, чтобы «магазинов 3» не спорило с планом */
+.dplan .pl-room--busy{fill:var(--s-plate)}
+.dplan .pl-room--tenant{fill:var(--s-bg);stroke:var(--s-accent);stroke-width:1.2}
+.dplan .pl-room--tenant.pl-room--here{fill:var(--b-copper)}
+.dplan .pl-code{font-family:var(--d-sans);font-size:6.5px;letter-spacing:.04em;fill:var(--s-fg-soft)}
+.dplan .pl-name{font-family:var(--d-sans);font-size:7.5px;font-weight:600;fill:var(--s-fg)}
+.dplan .pl-code.pl-txt--here,.dplan .pl-name.pl-txt--here{fill:var(--b-navy)}
+/* ориентиры: медный кружок со значком */
+.dplan .pl-mark circle{fill:var(--s-accent)}
+.dplan .pl-mark__g{fill:var(--b-navy)}
+.dplan .pl-mark__s{fill:none;stroke:var(--b-navy);stroke-width:1.2}
+.dplan .pl-mark__t{font-family:var(--d-sans);font-size:5.2px;font-weight:700}
+.dmark{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;
+  background:var(--s-accent) no-repeat center/10px 10px;color:var(--b-navy);font-size:7px;font-weight:700;letter-spacing:0}
+.dmark--lift{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 10 10'%3E%3Cpath d='M-3-1 0-4.5 3-1zM-3 1 0 4.5 3 1z' fill='%23011427'/%3E%3C/svg%3E")}
+.dmark--esc{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 10 10'%3E%3Cpath d='M-4.5 3.5h2.5l4.5-6h2' fill='none' stroke='%23011427' stroke-width='1.2'/%3E%3C/svg%3E")}
+.dlegend li[hidden]{display:none}
+.dlegend li{display:inline-flex;align-items:center;gap:8px}
+.dlegend .legend__sw.legend__sw--tenant{background:var(--s-bg);border-color:var(--s-accent)}
+/* свободные секции — строкой под списком, а не отдельной панелью: страницу
+   смотрят посетители, арендаторам хватает ссылки */
+.dfloorfree{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin:0;padding:0 2px;
+  font-size:13px;color:var(--s-fg-soft)}
+.dfloorfree b{font-weight:600;color:var(--s-fg);margin-left:4px}
 
 .dlegend{display:flex;flex-wrap:wrap;gap:24px;margin-top:18px;font-size:12px;letter-spacing:.04em;color:var(--s-fg-soft)}
 .dlegend .legend__sw{width:16px;height:16px;border:1px solid var(--s-line-strong);border-radius:0}
-.dlegend .legend__sw--busy{background:var(--s-bg)}
+.dlegend .legend__sw--busy{background:var(--s-plate)}
 .dlegend .legend__sw--free{background:transparent;border-style:dashed}
 .dlegend .legend__sw--here{background:var(--b-copper);border-color:var(--b-copper)}
 .dlegend .legend__sw--serv{background:var(--s-plate);border-color:var(--s-line)}
@@ -654,7 +679,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dfloorlist li:last-child .floorlist__i{border-bottom:0}
 .dfloorlist .floorlist__n{font-size:14px;color:var(--s-fg);border:0;transition:color .2s}
 .dfloorlist .floorlist__i:hover .floorlist__n{color:var(--s-accent-ink)}
-.dfloorlist .floorlist__s{font-family:var(--d-serif);font-size:16px;font-weight:600;color:var(--s-accent-ink)}
+.dfloorlist .floorlist__s{font-family:var(--d-sans);font-size:14px;font-weight:600;letter-spacing:.04em;font-variant-numeric:lining-nums;color:var(--s-accent-ink)}
 
 /* выбранная секция — содержимое рисует floors.js классами прототипа */
 .droom{border-color:var(--s-accent)}
@@ -681,8 +706,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dfloor .dside>.dpanel:first-child{order:-1}
 }
 @media (max-width:760px){
-  .dfloor__tabs{width:100%}
-  .dfloor__tabs .floors__tab{flex:1;padding:0 8px}
+  .dfloor__tabs{width:100%;gap:0}
+  .dfloor__tabs .floors__tab{flex:1}
   .dfloor__hint{font-size:10px;letter-spacing:.1em}
   /* план шире экрана и листается вбок: в ширину 327px секции выходили
      по 40px, в них не попасть пальцем */
@@ -690,24 +715,20 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dbigplan svg{width:640px;height:auto}
   .dlegend{gap:14px 18px}
 }
-/* стрелки прокрутки плана — только на телефоне, где план шире экрана */
-.dplanwrap{position:relative}
-.dplanwrap__arrow{
-  display:none;position:absolute;top:50%;z-index:2;width:40px;height:40px;margin-top:-20px;padding:0;
-  align-items:center;justify-content:center;cursor:pointer;
-  border:1px solid var(--s-accent);border-radius:50%;background:var(--s-bg);
-  box-shadow:0 2px 10px rgba(1,20,39,.12);transition:opacity .2s;
+/* подсказка над планом на телефоне: план шире экрана и листается вбок.
+   Не стрелки по бокам — это не слайдер, план просто двигают пальцем */
+.dplanhint{display:none}
+@media (max-width:760px){
+  .dplanhint{
+    display:flex;align-items:center;gap:10px;margin:0 0 10px;
+    font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--s-fg-soft);
+  }
+  .dplanhint::before{
+    content:"";flex:none;width:26px;height:10px;background:var(--s-accent);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 10' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M1 5h24M5 1 1 5l4 4M21 1l4 4-4 4'/%3E%3C/svg%3E") no-repeat center/contain;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 10' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M1 5h24M5 1 1 5l4 4M21 1l4 4-4 4'/%3E%3C/svg%3E") no-repeat center/contain;
+  }
 }
-.dplanwrap__arrow[hidden]{display:none!important}
-.dplanwrap__arrow::before{
-  content:"";width:16px;height:10px;background:var(--s-accent-ink);
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M0 5h15M11 1l4 4-4 4'/%3E%3C/svg%3E") no-repeat center/contain;
-          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M0 5h15M11 1l4 4-4 4'/%3E%3C/svg%3E") no-repeat center/contain;
-}
-.dplanwrap__arrow--next{right:calc(var(--pad) * -1 + 10px)}
-.dplanwrap__arrow--prev{left:calc(var(--pad) * -1 + 10px)}
-.dplanwrap__arrow--prev::before{transform:scaleX(-1)}
-@media (max-width:760px){.dplanwrap__arrow{display:flex}}
 
 /* ============ 11. АКЦИИ ============ */
 /* фильтры — подпись капсом и чипы главной, выбранный — медная заливка */
