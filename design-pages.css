@@ -18,7 +18,8 @@
 .dcrumbs a{color:inherit;transition:color .2s}
 .dcrumbs a:hover{color:var(--s-accent-ink)}
 .dcrumbs [aria-current]{color:var(--s-fg)}
-.dcrumbs__sep{width:14px;height:1px;background:var(--s-accent)}
+/* разделитель — косая черта медным */
+.dcrumbs__sep::before{content:"/";color:var(--s-accent)}
 
 .dpage__in{display:flex;align-items:flex-end;justify-content:space-between;gap:48px}
 .dpage__eyebrow{
