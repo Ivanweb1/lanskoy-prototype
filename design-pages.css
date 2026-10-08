@@ -201,7 +201,7 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
   border-top:1px solid var(--s-line);
   font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--s-fg-soft);
 }
-.shopcard__place b{font-family:var(--d-serif);font-size:17px;font-weight:600;letter-spacing:.02em;color:var(--s-accent-ink)}
+.shopcard__place b{font-family:var(--d-sans);font-size:14px;font-weight:600;letter-spacing:.06em;font-variant-numeric:lining-nums tabular-nums;color:var(--s-accent-ink)}
 
 .empty{border:1px solid var(--s-line);background:var(--s-plate);padding:72px 24px}
 .empty__title{font-family:var(--d-serif);font-weight:600;font-size:26px;text-transform:uppercase;color:var(--s-fg)}
@@ -280,7 +280,7 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
   .shopcard__name{font-size:17px}
   .shopcard__cat{font-size:12px;margin:4px 0 10px}
   .shopcard__place{padding-top:10px}
-  .shopcard__place b{font-size:15px}
+  .shopcard__place b{font-size:13px}
   .sortbox>span{display:none}
 }
 
