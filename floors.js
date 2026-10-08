@@ -29,6 +29,14 @@
   };
   var MARK_NAMES = { lift: 'Лифт', esc: 'Эскалатор', wc: 'Туалет' };
 
+  /* реальные этажи (floors-real.js) заменяют схематичные: свои контуры
+     и арендаторы с действующего сайта */
+  var REAL = typeof REAL_FLOORS !== 'undefined' ? REAL_FLOORS : {};
+  Object.keys(REAL).forEach(function (f) {
+    TENANTS[f] = {};
+    REAL[f].rooms.forEach(function (r) { TENANTS[f][r[0]] = { name: r[1], cat: '' }; });
+  });
+
   var floor = 1;
   var selected = null;
 
@@ -42,9 +50,63 @@
   var linkedCount = document.getElementById('linkedCount');
   var freeCount = document.getElementById('freeCount');
 
-  function rooms(n) { return FLOORS[n].rooms; }
+  /* секции в общем виде [x, y, w, h, номер, занято] — и для схематичных, и для реальных */
+  function rooms(n) {
+    if (REAL[n]) return REAL[n].rooms.map(function (r) { return [r[3], r[4], r[5], r[6], r[0], 1]; });
+    return FLOORS[n].rooms;
+  }
+
+  function renderReal(d) {
+    var vb = d.viewBox;
+    var s = '<svg class="pl-real" viewBox="' + vb.join(' ') + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема ' + floor + ' этажа">';
+    d.rooms.forEach(function (r) {
+      var code = r[0], isSel = code === selected, x = r[3], y = r[4], w = r[5], h = r[6];
+      s += '<path class="pl-room pl-room--hit pl-room--busy pl-room--tenant' + (isSel ? ' pl-room--here' : '') +
+        '" data-room="' + code + '" d="' + r[2] + '"><title>' + esc(code + ' — ' + r[1]) + '</title></path>';
+      var here = isSel ? ' pl-txt--here' : '';
+      var lines = fitName(r[1], w - 10, h - 16, 10.5);
+      if (lines) {
+        s += '<text class="pl-code pl-code--real' + here + '" x="' + (x + 5) + '" y="' + (y + 11) + '" pointer-events="none">' + code + '</text>';
+        var y0 = y + h / 2 + 7 - (lines.length - 1) * 6;
+        lines.forEach(function (ln, i) {
+          s += '<text class="pl-name pl-name--real' + here + '" x="' + (x + w / 2) + '" y="' + (y0 + i * 12) +
+            '" text-anchor="middle" pointer-events="none">' + esc(ln) + '</text>';
+        });
+      } else {
+        s += '<text class="pl-txt pl-txt--real' + here + '" x="' + (x + w / 2) + '" y="' + (y + h / 2 + 4) +
+          '" text-anchor="middle" pointer-events="none">' + code + '</text>';
+      }
+    });
+    return s + '</svg>';
+  }
+
+  /* название целиком по словам в прямоугольник секции; не влезает — null,
+     тогда в секции только номер, а название — по клику и в подсказке */
+  function fitName(name, width, height, fs) {
+    var max = Math.floor(width / (fs * 0.62));
+    var rows = Math.min(3, Math.floor(height / (fs * 1.15)));
+    if (max < 3 || rows < 1) return null;
+    var words = name.split(/\s+/), lines = [], cur = '';
+    for (var i = 0; i < words.length; i++) {
+      if (words[i].length > max) return null;
+      var next = cur ? cur + ' ' + words[i] : words[i];
+      if (next.length <= max) cur = next;
+      else { lines.push(cur); cur = words[i]; }
+    }
+    if (cur) lines.push(cur);
+    return lines.length <= rows ? lines : null;
+  }
 
   function render() {
+    planBox.classList.toggle('is-real', !!REAL[floor]);
+    /* у реального этажа в выгрузке только занятые секции — легенда схемы не к месту */
+    document.querySelectorAll('[data-schem]').forEach(function (li) { li.hidden = !!REAL[floor]; });
+    if (REAL[floor]) {
+      planBox.innerHTML = renderReal(REAL[floor]);
+      var h = document.querySelector('.legend__sw--here');
+      if (h) h.parentNode.hidden = !selected;
+      return;
+    }
     var d = FLOORS[floor];
     var s = '<svg viewBox="0 0 474 276" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Схема ' + floor + ' этажа">';
 
@@ -131,7 +193,7 @@
     if (t) {
       roomBody.innerHTML =
         '<p class="room__name">' + t.name + '</p>' +
-        '<p class="room__cat">' + t.cat + '</p>' +
+        (t.cat ? '<p class="room__cat">' + t.cat + '</p>' : '') +
         '<p class="room__place">' + floor + ' этаж</p>' +
         '<a href="shop.html" class="btn btn--ghost btn--full">Карточка магазина</a>';
     } else if (r[5]) {
@@ -149,18 +211,30 @@
 
   function buildList() {
     var t = TENANTS[floor];
-    var names = Object.keys(t);
-    listBox.innerHTML = names.length
-      ? names.map(function (code) {
-          return '<li><button type="button" class="floorlist__i" data-go="' + code + '">' +
-            '<span class="floorlist__n">' + t[code].name + '</span>' +
-            '<span class="floorlist__s">' + code + '</span></button></li>';
+    /* один магазин в нескольких секциях — одной строкой: «Manders — А3, А4, А6а» */
+    var byName = {}, order = [];
+    Object.keys(t).forEach(function (code) {
+      var n = t[code].name;
+      if (!byName[n]) { byName[n] = []; order.push(n); }
+      byName[n].push(code);
+    });
+    function key(n) { return n.replace(/^[«"'\s]+/, ''); }
+    order.sort(function (a, b) { return key(a).localeCompare(key(b), 'ru'); });
+    listBox.innerHTML = order.length
+      ? order.map(function (n) {
+          return '<li><button type="button" class="floorlist__i" data-go="' + byName[n][0] + '">' +
+            '<span class="floorlist__n">' + esc(n) + '</span>' +
+            '<span class="floorlist__s">' + byName[n].join(', ') + '</span></button></li>';
         }).join('')
       : '<li class="floorlist__empty ph-mark">Привязок к секциям на этом этаже нет</li>';
 
-    var busy = rooms(floor).filter(function (r) { return r[5]; }).length;
-    linkedCount.textContent = names.length;
-    freeCount.textContent = rooms(floor).length - busy;
+    linkedCount.textContent = order.length;
+    if (REAL[floor]) {
+      freeCount.textContent = 'уточняется';
+    } else {
+      var busy = rooms(floor).filter(function (r) { return r[5]; }).length;
+      freeCount.textContent = rooms(floor).length - busy;
+    }
   }
 
   function setFloor(n, keepSelection) {
@@ -198,7 +272,7 @@
     ['1', '2', '3'].forEach(function (f) {
       if (found) return;
       /* по номеру секции */
-      var byCode = FLOORS[f].rooms.filter(function (r) {
+      var byCode = rooms(f).filter(function (r) {
         var code = normCode(r[4]);
         return code === q || code.indexOf(q) === 0;
       })[0];

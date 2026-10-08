@@ -626,6 +626,11 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 }
 
 .dbigplan{aspect-ratio:474/276;padding:18px}
+/* реальный этаж (floors-real.js): свои пропорции и размеры подписей */
+.dbigplan.is-real{aspect-ratio:913/697}
+.dplan .pl-name--real{font-size:10.5px}
+.dplan .pl-code--real{font-size:8px}
+.dplan .pl-txt--real{font-size:9.5px;font-weight:500;fill:var(--s-fg)}
 .dplan .pl-room--free{fill:transparent;stroke-dasharray:3 3}
 .dplan .pl-room--hit{cursor:pointer;transition:fill .18s}
 .dplan .pl-room--hit:hover{fill:var(--s-plate);stroke:var(--s-accent)}
@@ -714,6 +719,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
      по 40px, в них не попасть пальцем */
   .dbigplan{aspect-ratio:auto;padding:10px;overflow-x:auto;margin:0 calc(var(--pad) * -1);border-left:0;border-right:0}
   .dbigplan svg{width:640px;height:auto}
+  .dbigplan.is-real{aspect-ratio:auto}
+  .dbigplan svg.pl-real{width:960px}
   .dlegend{gap:14px 18px}
 }
 /* подсказка над планом на телефоне: план шире экрана и листается вбок.

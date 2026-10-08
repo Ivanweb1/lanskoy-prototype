@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
-<link rel="stylesheet" href="style.css?v=75">
+<link rel="stylesheet" href="style.css?v=76">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=56">
+<link rel="stylesheet" href="design-pages.css?v=58">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -63,13 +63,13 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div class="bigplan dplan dbigplan" id="bigPlan"></div>
       <ul class="legend dlegend">
         <li><span class="legend__sw legend__sw--tenant"></span>Магазин</li>
-        <li><span class="legend__sw legend__sw--busy"></span>Занято</li>
-        <li><span class="legend__sw legend__sw--free"></span>Свободно</li>
+        <li data-schem><span class="legend__sw legend__sw--busy"></span>Занято</li>
+        <li data-schem><span class="legend__sw legend__sw--free"></span>Свободно</li>
         <li hidden><span class="legend__sw legend__sw--here"></span>Выбрано</li>
-        <li><span class="legend__sw legend__sw--serv"></span>Служебные зоны</li>
-        <li><span class="dmark dmark--lift"></span>Лифт</li>
-        <li><span class="dmark dmark--esc"></span>Эскалатор</li>
-        <li><span class="dmark dmark--wc">WC</span>Туалет</li>
+        <li data-schem><span class="legend__sw legend__sw--serv"></span>Служебные зоны</li>
+        <li data-schem><span class="dmark dmark--lift"></span>Лифт</li>
+        <li data-schem><span class="dmark dmark--esc"></span>Эскалатор</li>
+        <li data-schem><span class="dmark dmark--wc">WC</span>Туалет</li>
       </ul>
     </div>
 
@@ -106,7 +106,8 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=73"></script>
-<script src="floors.js?v=74"></script>
+<script src="floors-real.js?v=1"></script>
+<script src="floors.js?v=76"></script>
 <script src="design.js?v=73"></script>
 </body>
 </html>
