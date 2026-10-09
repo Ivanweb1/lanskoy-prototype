@@ -1533,7 +1533,9 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dci__v a:hover{color:var(--s-accent-ink)}
 .dci__v--2{margin-top:12px}
 .dci__s{margin:2px 0 0;font-size:13px;color:var(--s-fg-soft)}
-.dci__i .dlink{margin-top:auto;padding-top:18px}
+/* кнопка — внизу колонки, не ближе 20px к тексту */
+.dci__btn{height:44px;margin-top:auto;padding:0 22px}
+.dci__i:has(.dci__btn) .dci__s{margin-bottom:20px}
 .dci__map{margin-top:24px}
 .dci__map .dmap__frame{height:480px}
 .dci__foot{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 64px;align-items:start;margin-top:24px;padding:28px 0 0;border-top:1px solid var(--s-line)}
@@ -1558,19 +1560,24 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
    слева имя, e-mail, тема; справа сообщение; внизу согласие, капча, кнопка */
 .dfb__head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:32px}
 .dfb__head .dpage__lead{margin:12px 0 0}
+.dfb__rent{height:44px;margin-top:18px;padding:0 22px}
 .dfb__note{margin:0;padding-left:24px;border-left:1px solid var(--s-accent);font-size:14px;line-height:1.6;color:var(--s-fg-soft)}
 .dfb__note a{color:var(--s-fg);white-space:nowrap}
 .dfb{padding:36px 40px}
 .dfb__form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 32px}
+.dfb__col{display:flex;flex-direction:column}
+.dfb__col .fld:last-child,.dfb__form .dfb__msg{margin-bottom:0}
 .dfb__msg{display:flex;flex-direction:column}
-.dfb__msg textarea{flex:1;min-height:180px}
+.dfb__msg textarea{flex:1;min-height:180px;resize:none}
 .dfb__form .hp{position:absolute}
-.dfb__foot{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) 260px auto;gap:16px 24px;align-items:center;margin-top:8px;padding-top:24px;border-top:1px solid var(--s-line)}
+.dfb__foot{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) 260px auto;gap:16px 16px;align-items:center;margin-top:28px;padding-top:24px;border-top:1px solid var(--s-line)}
 .dfb__foot .check,.dfb__foot .dcaptcha{margin:0}
+.dfb__foot .dcaptcha{display:flex;align-items:center;justify-content:center;height:56px;padding:0}
 .dfb__foot .dbtn{padding:0 44px}
 @media (max-width:1000px){
   .dfb__head{grid-template-columns:1fr}
   .dfb__form{grid-template-columns:1fr}
+  .dfb__col .fld:last-child{margin-bottom:16px}
   .dfb__foot{grid-template-columns:1fr}
   .dfb__foot .dbtn{justify-content:center;width:100%}
 }
@@ -1582,7 +1589,16 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   -webkit-mask:var(--logo) no-repeat center/contain;mask:var(--logo) no-repeat center/contain;mask-mode:luminance}
 .dsocial__mark--vk{--logo:url("logo-vk-mono.svg?v=2");width:115px}
 .dsocial__mark--yt{--logo:url("logo-youtube-mono.svg?v=2");width:93px}
-.dsocial:hover .dsocial__mark{background:var(--s-accent)}
+/* как в подвале: по умолчанию одноцветный знак, при наведении — фирменный
+   цветной. Для светлого фона — версии с тёмной надписью (logo-*-light.svg) */
+.dsocial{position:relative}
+.dsocial__mark{transition:opacity .22s var(--d-ease)}
+.dsocial__color{position:absolute;top:50%;left:18px;height:20px;width:auto;transform:translateY(-50%);opacity:0;transition:opacity .22s var(--d-ease)}
+.dsocial__color--dark{display:none}
+[data-theme="dark"] .dsocial__color--dark{display:block}
+[data-theme="dark"] .dsocial__color--light{display:none}
+.dsocial:hover .dsocial__color,.dsocial:focus-visible .dsocial__color{opacity:1}
+.dsocial:hover .dsocial__mark,.dsocial:focus-visible .dsocial__mark{opacity:0}
 @media (max-width:1000px){.dmap__frame{min-height:360px}}
 
 /* ============ 24. КАК ДОБРАТЬСЯ ============ */

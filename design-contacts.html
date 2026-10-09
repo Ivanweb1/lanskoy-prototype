@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=97">
+<link rel="stylesheet" href="design-pages.css?v=101">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -34,7 +34,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <div class="dpage__in">
       <div>
         <h1 class="dpage__h1">Контакты</h1>
-        <p class="dpage__lead">197343, Санкт-Петербург, ул. Студенческая, 10</p>
       </div>
       <div class="dpage__act"><a href="floors.html" class="dbtn dbtn--ghost">Схема этажей</a></div>
     </div>
@@ -50,7 +49,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <p class="dci__k">Адрес</p>
         <p class="dci__v">ул. Студенческая, 10</p>
         <p class="dci__s">197343, Санкт-Петербург</p>
-        <a href="https://yandex.ru/maps/?rtext=~%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%A1%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%2C%2010&amp;rtt=auto" class="dlink" target="_blank" rel="noopener">Построить маршрут</a>
+        <a href="https://yandex.ru/maps/?rtext=~%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%A1%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%2C%2010&amp;rtt=auto" class="dbtn dbtn--ghost dci__btn" target="_blank" rel="noopener">Построить маршрут</a>
       </div>
       <div class="dci__i">
         <span class="dci__ic dci__ic--clock" aria-hidden="true"></span>
@@ -71,7 +70,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <p class="dci__k">Отдел аренды</p>
         <p class="dci__v"><a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a></p>
         <p class="dci__s">вопросы аренды площадей</p>
-        <a href="rent.html#form" class="dlink">Оставить заявку</a>
+        <a href="rent.html#form" class="dbtn dbtn--ghost dci__btn">Оставить заявку</a>
       </div>
     </div>
 
@@ -84,8 +83,8 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div class="dci__soc">
         <p class="dci__k">Мы в соцсетях</p>
         <ul class="dsocials">
-          <li><a href="#" class="dsocial" aria-label="ВКонтакте"><span class="dsocial__mark dsocial__mark--vk"></span></a></li>
-          <li><a href="#" class="dsocial" aria-label="YouTube"><span class="dsocial__mark dsocial__mark--yt"></span></a></li>
+          <li><a href="#" class="dsocial" aria-label="ВКонтакте"><span class="dsocial__mark dsocial__mark--vk"></span><img class="dsocial__color dsocial__color--light" src="logo-vk-light.svg" alt="" width="138" height="24"><img class="dsocial__color dsocial__color--dark" src="logo-vk.svg" alt="" width="138" height="24"></a></li>
+          <li><a href="#" class="dsocial" aria-label="YouTube"><span class="dsocial__mark dsocial__mark--yt"></span><img class="dsocial__color dsocial__color--light" src="logo-youtube-light.svg" alt="" width="111" height="24"><img class="dsocial__color dsocial__color--dark" src="logo-youtube.svg" alt="" width="111" height="24"></a></li>
         </ul>
       </div>
       <div class="dci__req">
@@ -161,7 +160,8 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <div class="dfb__head">
       <div>
         <h2 class="dhead__h2">Обратная связь</h2>
-        <p class="dpage__lead">Вопрос по работе комплекса, предложение или жалоба. По аренде — <a href="rent.html#form" class="dlink dlink--in">отдельная форма</a>.</p>
+        <p class="dpage__lead">Вопрос по работе комплекса, предложение или жалоба.</p>
+        <a href="rent.html#form" class="dbtn dbtn--ghost dfb__rent">Задать вопрос по аренде</a>
       </div>
       <p class="dfb__note">Ответим на e-mail в течение двух рабочих дней. Срочно — звоните на рецепцию: <a href="tel:+78123630007">+7 (812) 363-00-07</a></p>
     </div>
@@ -169,7 +169,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div class="st-open">
         <form class="jsform dform dfb__form" novalidate>
           <div class="dfb__col">
-          <div class="dform__two">
             <label class="fld">
               <span class="fld__lab">Имя</span>
               <input type="text" name="name" required>
@@ -180,7 +179,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
               <input type="email" name="email" required>
               <span class="fld__err">Проверьте адрес — на него придёт ответ</span>
             </label>
-          </div>
           <label class="fld">
             <span class="fld__lab">Тема</span>
             <span class="dform__sel">
