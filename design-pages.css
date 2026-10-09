@@ -1587,7 +1587,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 /* логотипы соцсетей одним цветом текста: цветные версии нарисованы для
    тёмного подвала (белые надписи) и на светлой плашке пропадали.
    Маска по яркости: знак внутри (буква, треугольник) остаётся вырезанным */
-.dsocial__mark{display:block;height:20px;background:var(--s-fg);transition:background .2s;
+.dsocial__mark{display:block;height:20px;background:var(--s-fg-soft);transition:background .2s;
   -webkit-mask:var(--logo) no-repeat center/contain;mask:var(--logo) no-repeat center/contain;mask-mode:luminance}
 .dsocial__mark--vk{--logo:url("logo-vk-mono.svg?v=2");width:115px}
 .dsocial__mark--yt{--logo:url("logo-youtube-mono.svg?v=2");width:93px}
