@@ -837,7 +837,7 @@
    кадры и подписи идут по кругу. Под кадром — строка «подпись · альбом»
    и счётчик, ниже лента миниатюр: текущая подсвечена, клик — переход */
 (function () {
-  var list = null, caps = null, album = '', meta = '', built = -1;
+  var list = null, caps = null, album = '', meta = '', built = -1, vids = null;
   var lb = document.querySelector('.lightbox');
   if (!lb) return;
   var stage = lb.querySelector('.lightbox__stage');
@@ -859,12 +859,31 @@
       album = h ? h.textContent : '';
       meta = m ? m.textContent.split(' · ')[0] : '';
       built = -1;
-    } else if (e.target.closest('.gallery__item, .vid')) list = null;
+    } else if (e.target.closest('.gallery__item')) list = null;
+    else if (e.target.closest('.vid')) {
+      list = null;
+      vids = [].filter.call(document.querySelectorAll('#vidGrid .vid'), function (v) { return !v.hidden; });
+    }
   }, true);
 
   function sync() {
     var on = !lb.hidden && !!list;
     lb.classList.toggle('lightbox--album', on);
+    /* видео: обложка ролика под кнопкой воспроизведения, подпись —
+       название и «Видео · длительность · дата» */
+    var isVid = !lb.hidden && !list && vids && lb.classList.contains('lightbox--video');
+    lb.classList.toggle('lightbox--vposter', !!isVid);
+    if (isVid) {
+      var k = (parseInt(counter.textContent, 10) || 1) - 1, v = vids[k];
+      if (v) {
+        var img = v.querySelector('img');
+        lb.querySelector('.lightbox__ph').style.backgroundImage = img ? 'url("' + img.getAttribute('src') + '")' : '';
+        var m = v.querySelector('.vid__m');
+        var note = lb.querySelector('.lightbox__note');
+        note.hidden = !m; if (m) note.textContent = m.textContent.replace(/\s+/g, ' ').trim();
+      }
+      return;
+    }
     if (!on) return;
     var parts = counter.textContent.split('/');
     var n = parseInt(parts[0], 10) - 1, total = parseInt(parts[1], 10) || list.length;

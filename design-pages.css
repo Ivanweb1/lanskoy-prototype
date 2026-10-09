@@ -507,6 +507,22 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .lightbox__close,.lightbox__nav{border-radius:0;border-color:rgba(196,154,108,.5);color:var(--b-cream)}
 .lightbox__close:hover,.lightbox__nav:hover{border-color:var(--b-copper);color:var(--b-copper)}
 .lightbox__counter{font-size:12px;letter-spacing:.14em;color:rgba(246,244,237,.7)}
+/* видео в лайтбоксе: обложка ролика, поверх — кнопка воспроизведения
+   (это плеер, а не карточка: кнопка здесь — элемент управления) */
+.lightbox--vposter .lightbox__ph{position:relative;background-size:cover;background-position:center;background-color:var(--b-navy)}
+.lightbox--vposter .lightbox__ph::before{content:"";position:absolute;inset:0;background:rgba(1,20,39,.25)}
+.lightbox--vposter .lightbox__play{position:relative;z-index:1;width:84px;height:84px;border:0;border-radius:50%;background:var(--b-copper)}
+.lightbox--vposter .lightbox__play::before{border-color:transparent transparent transparent var(--b-navy);border-width:12px 0 12px 20px;margin-left:6px}
+.lightbox--vposter .lightbox__caption{font-family:var(--d-serif);font-size:20px;font-weight:600;color:var(--b-cream)}
+.lightbox--vposter .lightbox__note{color:var(--b-copper);font-size:13px;letter-spacing:.04em}
+@media (max-width:760px){
+  /* стрелки — внизу, чтобы не перекрывать кадр */
+  .lightbox--vposter{padding:56px 16px 100px}
+  .lightbox--vposter .lightbox__play{width:64px;height:64px}
+  .lightbox--vposter .lightbox__nav,.lightbox--album .lightbox__nav{top:auto;bottom:24px;transform:none}
+  .lightbox--vposter .lightbox__nav--prev,.lightbox--album .lightbox__nav--prev{left:calc(50% - 60px)}
+  .lightbox--vposter .lightbox__nav--next,.lightbox--album .lightbox__nav--next{right:calc(50% - 60px)}
+}
 /* лайтбокс альбома: под кадром подпись и счётчик «3 / 24», ниже лента
    миниатюр. Для видео и галерей без data-photos — прежний вид */
 .lightbox__bar{display:none}
@@ -526,7 +542,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .lightbox__thumb:hover{opacity:.8}
 .lightbox__thumb.is-active{opacity:1;border-color:var(--b-copper)}
 @media (max-width:760px){
-  .lightbox--album{padding:56px 16px 16px}
+  .lightbox--album{padding:56px 16px 96px}
   .lightbox--album .lightbox__bar{flex-direction:column;gap:6px}
   .lightbox__thumb{flex-basis:64px;height:44px}
 }
@@ -1318,6 +1334,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dalbum:hover .jimg,.dvid:hover .jimg{transform:scale(1.05)}
 .dalbum__h{font-family:var(--d-sans);font-weight:600;font-size:17px;line-height:1.35;color:var(--s-fg);transition:color .2s}
 .dalbum:hover .dalbum__h,.dvid:hover .dalbum__h{color:var(--s-accent-ink)}
+/* без подчёркивания из ч/б прототипа: наведение — только цветом заголовка */
+.dvid .vid__h,.dvid:hover .vid__h{display:block;padding-bottom:0;border-bottom:0}
 .dalbum__m{font-size:12px;letter-spacing:.06em;color:var(--s-fg-soft)}
 .dcat[hidden]{display:none}
 
