@@ -1222,8 +1222,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dnum__text .dbtn{margin-top:auto}
 @media (max-width:1000px){.dnum .dnum__in{grid-template-columns:1fr}.dnum__text .dbtn{margin-top:0}}
 /* «Как найти секцию»: номер разобран по частям — буква и число крупно,
-   под каждой подпись, что она значит; зоны — плашками */
-.dcode{padding:40px;border:1px solid rgba(196,154,108,.35);background:rgba(246,244,237,.03)}
+   под каждой подпись, что она значит */
+.dcode{display:flex;flex-direction:column;justify-content:center;padding:40px;border:1px solid rgba(196,154,108,.35);background:rgba(246,244,237,.03)}
 .dcode__k{margin:0 0 24px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--b-copper)}
 .dcode__parts{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
 .dcode__part{display:flex;flex-direction:column;gap:10px;padding:0 24px 0 0}
@@ -1235,9 +1235,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dcode__floors>span{display:flex;align-items:center;gap:10px}
 .dcode__floors b{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid rgba(196,154,108,.5);font-family:var(--d-serif);font-size:13px;color:var(--b-cream)}
 .dcode__floors>span:first-child b{background:var(--b-copper);border-color:var(--b-copper);color:var(--b-navy)}
-.dcode__zones{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(196,154,108,.2)}
-.dcode__zk{margin-right:8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,244,237,.6)}
-.dcode__z{padding:6px 12px;border:1px solid rgba(196,154,108,.4);font-size:13px;color:var(--b-cream)}
 @media (max-width:640px){
   .dcode{padding:28px 22px}
   .dcode__part{padding-right:16px}
