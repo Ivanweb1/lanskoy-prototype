@@ -1284,17 +1284,17 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 
 /* ============ 21. ГАЛЕРЕЯ ============ */
 .dalbums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px}
-/* «Галерея и видео»: переключатель «Фото 4 · Видео 6» — в начале строки
-   фильтров, справа фильтр раздела. Числа — с учётом фильтра */
+/* «Галерея и видео»: переключатель «Фото · Видео» — в начале строки
+   фильтров, справа фильтр раздела */
 .dmedia{order:-1;display:inline-flex;flex:none;border:1px solid var(--s-line-strong)}
 .dmedia__item{display:inline-flex;align-items:baseline;gap:10px;height:50px;padding:0 26px;border:0;background:none;cursor:pointer;
   font-family:var(--d-sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft);
   line-height:50px;transition:background .2s,color .2s}
 .dmedia__item+.dmedia__item{border-left:1px solid var(--s-line-strong)}
-.dmedia__item b{font-family:var(--d-serif);font-size:18px;font-weight:600;letter-spacing:0;color:var(--s-accent-ink)}
+/* числа скрыты — элементы остаются для счётчика фильтра (content.js) */
+.dmedia__item b{display:none}
 .dmedia__item:hover{color:var(--s-fg)}
 .dmedia__item.is-active{background:var(--s-fg);color:var(--s-bg)}
-.dmedia__item.is-active b{color:var(--b-copper)}
 .dfilters:has(.dmedia) .dfilters__selects{margin-left:auto}
 @media (max-width:760px){
   .dmedia{display:flex;width:100%}
