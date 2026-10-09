@@ -1353,6 +1353,11 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dlevel:hover .dlevel__h{color:var(--s-accent-ink)}
 
 /* полоса удобств — та же, что услуги под первым экраном главной */
+/* данные, которых ещё нет у заказчика (стоимость парковки, число мест):
+   пунктир, как у плейсхолдеров ч/б прототипа — видно, что это не факт */
+.dph{border-bottom:1px dashed currentColor;opacity:.55}
+/* карточки «дальше» продолжают секцию фото — без второго верхнего поля */
+.dabout-next{padding-top:0}
 /* полоса упирается в следующую секцию — без нижнего поля пустой подложки */
 .dabout-serv{padding-bottom:0}
 .dserv--about{border-top:1px solid var(--s-line);border-bottom:1px solid var(--s-line);background:var(--s-bg)}
