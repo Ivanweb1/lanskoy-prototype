@@ -507,6 +507,29 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .lightbox__close,.lightbox__nav{border-radius:0;border-color:rgba(196,154,108,.5);color:var(--b-cream)}
 .lightbox__close:hover,.lightbox__nav:hover{border-color:var(--b-copper);color:var(--b-copper)}
 .lightbox__counter{font-size:12px;letter-spacing:.14em;color:rgba(246,244,237,.7)}
+/* лайтбокс альбома: под кадром подпись и счётчик «3 / 24», ниже лента
+   миниатюр. Для видео и галерей без data-photos — прежний вид */
+.lightbox__bar{display:none}
+.lightbox__thumbs{display:none}
+.lightbox--album{padding:40px 88px 24px}
+.lightbox--album .lightbox__stage{max-width:1040px}
+.lightbox--album .lightbox__ph{aspect-ratio:3/2;max-height:calc(100vh - 230px);margin:0 auto}
+.lightbox--album .lightbox__caption{display:none}
+.lightbox--album .lightbox__bar{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-top:16px;text-align:left}
+.lightbox__cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:0}
+.lightbox__cap b{font-family:var(--d-serif);font-weight:600;font-size:18px;color:var(--b-cream)}
+.lightbox__cap span{font-size:13px;color:rgba(246,244,237,.6)}
+.lightbox--album .lightbox__counter{flex:none;margin:0;font-family:var(--d-serif);font-size:18px;letter-spacing:.04em;color:var(--b-copper)}
+.lightbox--album .lightbox__thumbs{position:relative;z-index:1;display:flex;gap:8px;width:100%;max-width:1040px;margin-top:20px;overflow-x:auto;scrollbar-width:none}
+.lightbox__thumbs::-webkit-scrollbar{display:none}
+.lightbox__thumb{flex:0 0 88px;height:58px;padding:0;border:1px solid transparent;background:center/cover no-repeat var(--b-navy);opacity:.45;cursor:pointer;transition:opacity .2s,border-color .2s}
+.lightbox__thumb:hover{opacity:.8}
+.lightbox__thumb.is-active{opacity:1;border-color:var(--b-copper)}
+@media (max-width:760px){
+  .lightbox--album{padding:56px 16px 16px}
+  .lightbox--album .lightbox__bar{flex-direction:column;gap:6px}
+  .lightbox__thumb{flex-basis:64px;height:44px}
+}
 
 @media (max-width:1100px){
   .dshop{grid-template-columns:minmax(0,1fr) 300px;gap:40px}
@@ -1261,21 +1284,24 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 
 /* ============ 21. ГАЛЕРЕЯ ============ */
 .dalbums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px}
+/* альбомы — 2×2: четыре альбома в три колонки оставляли последний один.
+   При нечётном числе (после фильтра) последний — во всю ширину, см. content.js */
+.dalbums--2{grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 32px}
+.dalbums--2 .dalbum__media{aspect-ratio:3/2}
+.dalbums--2 .dalbum.is-wide{grid-column:1/-1}
+.dalbums--2 .dalbum.is-wide .dalbum__media{aspect-ratio:21/8}
+/* на фото — ничего: число кадров и длительность в подписи, видео отмечено значком */
+.dalbum .album__n{position:static;display:inline;padding:0;background:none;color:inherit;font:inherit;letter-spacing:inherit;text-transform:none}
+.dvid__meta{display:inline-flex;align-items:center;gap:6px;color:var(--s-accent-ink)}
+.dvid__ic{width:0;height:0;border-left:7px solid currentColor;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
 .dalbum,.dvid{display:flex;flex-direction:column;gap:6px;cursor:pointer}
 .dalbum[hidden],.dvid[hidden]{display:none}
 .dalbum__media,.dvid__media{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--s-bg-2);margin-bottom:12px}
 .dvid__media{aspect-ratio:16/9}
 .dalbum:hover .jimg,.dvid:hover .jimg{transform:scale(1.05)}
-.dalbum__n{
-  position:absolute;z-index:2;right:0;bottom:0;padding:8px 14px;background:var(--b-navy);color:var(--b-cream);
-  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-}
 .dalbum__h{font-family:var(--d-sans);font-weight:600;font-size:17px;line-height:1.35;color:var(--s-fg);transition:color .2s}
 .dalbum:hover .dalbum__h,.dvid:hover .dalbum__h{color:var(--s-accent-ink)}
 .dalbum__m{font-size:12px;letter-spacing:.06em;color:var(--s-fg-soft)}
-.dvid__play{width:56px;height:56px;margin:-28px 0 0 -28px}
-.dvid__play::after{left:22px;top:18px;border-left-width:14px;border-top-width:10px;border-bottom-width:10px}
-.dvid__time{position:absolute;z-index:2;right:0;bottom:0;padding:6px 10px;background:rgba(1,20,39,.8);color:var(--b-cream);font-size:12px;letter-spacing:.06em}
 .dcat[hidden]{display:none}
 
 /* ============ 22. КОНТАКТЫ ============ */
@@ -1317,6 +1343,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dabout__shot{flex-basis:84%}
   .dabout__nav{display:none}
   .dalbums{grid-template-columns:1fr;gap:32px}
+  .dalbums--2 .dalbum.is-wide .dalbum__media{aspect-ratio:3/2}
   .dmap__addr{font-size:22px}
 }
 /* у альбомов и видео прототипа рамка, белый фон и поля — снимаем */

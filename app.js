@@ -230,7 +230,7 @@ document.querySelectorAll('[data-cookie]').forEach(function (b) {
     els.caption.textContent = item.caption || '';
     els.note.hidden = !item.note;
     els.note.textContent = item.note || '';
-    els.counter.textContent = (state.index + 1) + ' из ' + state.items.length;
+    els.counter.textContent = (state.index + 1) + ' / ' + state.items.length;
     els.prev.disabled = els.next.disabled = state.items.length < 2;
   }
 
@@ -257,6 +257,13 @@ document.querySelectorAll('[data-cookie]').forEach(function (b) {
     lb.classList.toggle('lightbox--video', !!state.items[state.index].isVideo);
     render();
   }
+
+  /* переход к кадру по номеру — для ленты миниатюр (design.js) */
+  window.lnsLightboxGo = function (i) {
+    if (i < 0 || i >= state.items.length) return;
+    state.index = i;
+    render();
+  };
 
   els.close.addEventListener('click', close);
   lb.querySelector('.lightbox__backdrop').addEventListener('click', close);

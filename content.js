@@ -122,6 +122,21 @@ chipFilter({
   words: ['альбом', 'альбома', 'альбомов']
 });
 
+/* альбомы в две колонки: при нечётном числе видимых последний — во всю
+   ширину, чтобы не висел один (фильтр меняет hidden у карточек) */
+(function () {
+  var grid = document.getElementById('galGrid');
+  if (!grid || !window.MutationObserver) return;
+  function mark() {
+    var vis = [].filter.call(grid.querySelectorAll('.album'), function (a) {
+      a.classList.remove('is-wide'); return !a.hidden;
+    });
+    if (vis.length % 2) vis[vis.length - 1].classList.add('is-wide');
+  }
+  new MutationObserver(mark).observe(grid, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
+  mark();
+})();
+
 /* ---------- галерея и видео: переключатель «Фото / Видео» ----------
    п. 5.1 №9 — один пункт карты сайта, а не два отдельных URL, поэтому
    вкладки переключают видимость секции на этой же странице */

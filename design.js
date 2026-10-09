@@ -830,25 +830,80 @@
   });
 })();
 
-/* ---------- лайтбокс альбомов показывает снимки ----------
-   У альбома в разметке одна обложка, список кадров — в data-photos.
-   Номер кадра берём из счётчика лайтбокса «N из M» и показываем
-   кадры по кругу, пока в альбоме нет полного набора */
+/* ---------- лайтбокс альбомов: снимки, подписи, лента миниатюр ----------
+   У альбома в разметке одна обложка, список кадров — в data-photos,
+   подписи кадров — в data-caps (через «|»). Номер кадра берём из
+   счётчика лайтбокса «N / M»; пока в альбоме нет полного набора,
+   кадры и подписи идут по кругу. Под кадром — строка «подпись · альбом»
+   и счётчик, ниже лента миниатюр: текущая подсвечена, клик — переход */
 (function () {
-  var list = null;
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('[data-photos]');
-    if (a) list = a.getAttribute('data-photos').split(',');
-    else if (e.target.closest('.gallery__item')) list = null;
-  }, true);
+  var list = null, caps = null, album = '', meta = '', built = -1;
   var lb = document.querySelector('.lightbox');
   if (!lb) return;
-  new MutationObserver(function () {
-    if (lb.hidden || !list) return;
-    var n = parseInt(lb.querySelector('.lightbox__counter').textContent || '1', 10) - 1;
+  var stage = lb.querySelector('.lightbox__stage');
+  var counter = lb.querySelector('.lightbox__counter');
+  var bar = document.createElement('div');
+  bar.className = 'lightbox__bar';
+  bar.innerHTML = '<p class="lightbox__cap"><b></b><span></span></p>';
+  stage.appendChild(bar);
+  var thumbs = document.createElement('div');
+  thumbs.className = 'lightbox__thumbs';
+  lb.appendChild(thumbs);
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-photos]');
+    if (a) {
+      list = a.getAttribute('data-photos').split(',');
+      caps = (a.getAttribute('data-caps') || '').split('|').filter(Boolean);
+      var h = a.querySelector('.album__h'), m = a.querySelector('.album__m');
+      album = h ? h.textContent : '';
+      meta = m ? m.textContent.split(' · ')[0] : '';
+      built = -1;
+    } else if (e.target.closest('.gallery__item, .vid')) list = null;
+  }, true);
+
+  function sync() {
+    var on = !lb.hidden && !!list;
+    lb.classList.toggle('lightbox--album', on);
+    if (!on) return;
+    var parts = counter.textContent.split('/');
+    var n = parseInt(parts[0], 10) - 1, total = parseInt(parts[1], 10) || list.length;
     lb.querySelector('.lightbox__ph').style.backgroundImage = 'url("' + list[n % list.length] + '")';
     lb.querySelector('.lightbox__label').style.display = 'none';
-  }).observe(lb, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
+    bar.querySelector('b').textContent = caps.length ? caps[n % caps.length] : album;
+    bar.querySelector('span').textContent = album + (meta ? ' · ' + meta : '');
+    bar.appendChild(counter);
+    if (built !== total) {
+      thumbs.innerHTML = '';
+      for (var i = 0; i < total; i++) {
+        var t = document.createElement('button');
+        t.type = 'button';
+        t.className = 'lightbox__thumb';
+        t.style.backgroundImage = 'url("' + list[i % list.length] + '")';
+        t.setAttribute('aria-label', 'Фото ' + (i + 1));
+        t.dataset.i = i;
+        thumbs.appendChild(t);
+      }
+      built = total;
+    }
+    [].forEach.call(thumbs.children, function (t, i) {
+      var cur = i === n;
+      t.classList.toggle('is-active', cur);
+      if (cur) {
+        t.setAttribute('aria-current', 'true');
+        var l = t.offsetLeft - (thumbs.clientWidth - t.offsetWidth) / 2;
+        thumbs.scrollTo({ left: l, behavior: 'smooth' });
+      } else t.removeAttribute('aria-current');
+    });
+  }
+  thumbs.addEventListener('click', function (e) {
+    var t = e.target.closest('.lightbox__thumb');
+    if (t && window.lnsLightboxGo) window.lnsLightboxGo(+t.dataset.i);
+  });
+  /* sync сам меняет DOM лайтбокса — на время отключаем наблюдение */
+  var opts = { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] };
+  var mo = new MutationObserver(function () { mo.disconnect(); sync(); mo.takeRecords(); mo.observe(lb, opts); });
+  mo.observe(lb, opts);
 })();
 
 /* ---------- экраны подписки ----------
