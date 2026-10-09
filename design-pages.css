@@ -1560,7 +1560,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
    слева имя, e-mail, тема; справа сообщение; внизу согласие, капча, кнопка */
 .dfb__head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:32px}
 .dfb__head .dpage__lead{margin:12px 0 0}
-.dfb__rent{height:44px;margin-top:18px;padding:0 22px}
 .dfb__note{margin:0;padding-left:24px;border-left:1px solid var(--s-accent);font-size:14px;line-height:1.6;color:var(--s-fg-soft)}
 .dfb__note a{color:var(--s-fg);white-space:nowrap}
 .dfb{padding:36px 40px}
