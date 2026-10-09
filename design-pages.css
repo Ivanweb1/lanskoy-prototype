@@ -1300,6 +1300,12 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
    кадр со срезом уходит в правый край. Крошки — над надзаголовком */
 .dabout-hero .dhero__in{min-height:clamp(520px,62vh,700px)}
 .dabout-hero .dcrumbs{margin-bottom:36px}
+/* полоса цифр под первым экраном — как полоса услуг на главной (.dserv):
+   подложка на полшага темнее страницы, в тёмной теме — сплошной синий,
+   разделители светлее общей линейки */
+.dabout-hero + .dstats{background:var(--s-bg-soft);border-bottom:0}
+[data-theme="dark"] .dabout-hero + .dstats{background:var(--b-navy)}
+.dabout-hero + .dstats .dstats__in li{border-color:var(--s-line-faint)}
 
 /* цифры комплекса — строка под первым экраном, как линейка «Аренды» */
 .dstats{background:var(--s-bg);border-bottom:1px solid var(--s-line)}
