@@ -1443,9 +1443,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dwhy__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(36px,3.2vw,48px);line-height:.95;color:var(--s-accent-ink);margin:0}
 .dwhy__c--navy .dwhy__big{color:var(--b-copper)}
 .dwhy__big span{font-size:.6em;vertical-align:.3em;margin-left:3px}
-.dwhy__big--solo{font-size:clamp(64px,5.6vw,88px);margin-bottom:auto}
 .dwhy__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);margin:8px 0 0}
-.dwhy__c--navy .dwhy__k{color:rgba(246,244,237,.7);margin:6px 0 20px}
+.dwhy__c--navy .dwhy__k{color:rgba(246,244,237,.7)}
 [data-theme="dark"] .dwhy__c--navy .dwhy__k{color:var(--s-fg-soft)}
 .dwhy__h{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em;margin:0 0 8px;color:inherit}
 .dwhy__t{font-size:14px;line-height:1.55;margin:0;color:var(--s-fg-soft)}
@@ -1470,7 +1469,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dwhy{grid-template-columns:1fr;grid-auto-rows:auto;gap:12px}
   .dwhy__photo{grid-column:auto;min-height:260px}
   .dwhy__c{padding:24px 22px}
-  .dwhy__nums,.dwhy__big--solo,.dwhy__c--navy>.dwhy__ic{margin-bottom:16px}
+  .dwhy__nums,.dwhy__c--navy>.dwhy__ic{margin-bottom:16px}
   /* в одну колонку — чередование светлая / синяя сохраняется */
   .dwhy__c--pro{order:1}
 }
