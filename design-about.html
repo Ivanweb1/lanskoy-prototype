@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=72">
+<link rel="stylesheet" href="design-pages.css?v=79">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -33,7 +33,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <span aria-current="page">О комплексе</span>
       </nav>
       <p class="dhero__eyebrow">Торговый центр интерьерных решений · ул. Студенческая, 10</p>
-      <h1 class="dhero__h1">Всё для интерьера<em>в одном здании</em></h1>
+      <h1 class="dhero__h1">Интерьер<em>под одной крышей</em></h1>
       <p class="dhero__sub">Магазины материалов и решений для ремонта, строительства и дизайна интерьера — на границе Приморского и Выборгского районов.</p>
       <div class="dhero__cta">
         <a href="shops.html" class="dbtn dbtn--fill">Каталог магазинов</a>
@@ -77,7 +77,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <span class="dfor__body">
           <span class="dfor__h">Покупателям в ремонте</span>
           <span class="dfor__t">Все материалы для квартиры или дома в одном здании: сравнить, потрогать и заказать за один выезд.</span>
-          <span class="dlink">Каталог магазинов</span>
+          <span class="dbtn dbtn--ghost">Каталог магазинов</span>
         </span>
       </a>
       <a href="designers.html" class="dfor__c">
@@ -85,7 +85,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <span class="dfor__body">
           <span class="dfor__h">Дизайнерам и архитекторам</span>
           <span class="dfor__t">Образцы под проект, семинары фабрик и каталог специалистов, где вас находят заказчики.</span>
-          <span class="dlink">Раздел для дизайнеров</span>
+          <span class="dbtn dbtn--ghost">Раздел для дизайнеров</span>
         </span>
       </a>
       <a href="categories.html" class="dfor__c">
@@ -93,7 +93,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <span class="dfor__body">
           <span class="dfor__h">Подрядчикам и бригадам</span>
           <span class="dfor__t">Отделка, инженерия и комплектующие для объекта — без разъездов по городу.</span>
-          <span class="dlink">Все направления</span>
+          <span class="dbtn dbtn--ghost">Все направления</span>
         </span>
       </a>
     </div>
@@ -104,29 +104,25 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <section class="sect dsect--alt">
   <div class="wrap">
     <div class="dhead"><h2 class="dhead__h2">Почему «Ланской»</h2></div>
+    <!-- цифры 150+, 24 000 м² и 20 лет — из прототипа (вступление, «Аренда»),
+         в ТЗ их нет: подтвердить у заказчика -->
     <div class="dwhy">
       <article class="dwhy__c dwhy__c--photo dwhy__c--lg">
         <img class="jimg" src="img/hero-light.webp" alt="" loading="lazy">
         <div class="dwhy__body">
-          <p class="dwhy__big">150<span>+</span></p>
-          <p class="dwhy__k">магазинов и шоурумов</p>
+          <div class="dwhy__nums">
+            <p><span class="dwhy__big">150<span>+</span></span><span class="dwhy__k">магазинов и шоурумов</span></p>
+            <p><span class="dwhy__big">24 000</span><span class="dwhy__k">м² торговых площадей</span></p>
+          </div>
           <h3 class="dwhy__h">Всё в одном здании</h3>
-          <p class="dwhy__t">Плитка, двери, свет и мебель под одной крышей: сравнить и заказать за один выезд, а не за пять.</p>
-        </div>
-      </article>
-      <article class="dwhy__c dwhy__c--photo">
-        <img class="jimg" src="img/designers/hero.webp" alt="" loading="lazy">
-        <div class="dwhy__body">
-          <h3 class="dwhy__h">Образцы вживую</h3>
-          <p class="dwhy__t">Фактуру можно потрогать, а образец — взять на объект.</p>
+          <p class="dwhy__t">Отделка, плитка, двери, свет и мебель под одной крышей: сравнить и заказать за один выезд, а не за пять.</p>
         </div>
       </article>
       <article class="dwhy__c dwhy__c--navy">
-        <div class="dwhy__floors" aria-hidden="true">
-          <span class="is-on">А · 1 этаж<b>А10</b></span><span>Б · 2 этаж</span><span>В · 3 этаж</span>
-        </div>
-        <h3 class="dwhy__h">Легко найти магазин</h3>
-        <p class="dwhy__t">Один номер секции — на указателях, в поиске и на схеме.</p>
+        <p class="dwhy__big dwhy__big--solo">20</p>
+        <p class="dwhy__k">лет на рынке</p>
+        <h3 class="dwhy__h">Проверенное место</h3>
+        <p class="dwhy__t">Комплекс работает два десятилетия — многие магазины здесь с первых лет.</p>
       </article>
       <article class="dwhy__c dwhy__c--photo">
         <img class="jimg" src="img/ev-2.webp" alt="" loading="lazy">
@@ -135,15 +131,18 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <p class="dwhy__t">Семинары фабрик, лекции, мастер-классы и каталог дизайнеров.</p>
         </div>
       </article>
-      <!-- станции и время в пути — с действующего сайта, страница «Контакты» -->
-      <article class="dwhy__c dwhy__c--plain">
-        <ul class="dwhy__metro">
-          <li><i style="--line:#D6083B"></i>Выборгская<span>2 мин</span></li>
-          <li><i style="--line:#D6083B"></i>Лесная<span>2 мин</span></li>
-          <li><i style="--line:#0078C9"></i>Чёрная речка<span>8 мин</span></li>
+      <!-- состав услуг — как полоса услуг на главной (брендбук, стр. 36) -->
+      <article class="dwhy__c dwhy__c--plain dwhy__c--wide">
+        <div class="dwhy__wide-head">
+          <h3 class="dwhy__h">Сервис под ключ</h3>
+          <p class="dwhy__t">Не только купить, но и спроектировать, привезти и смонтировать.</p>
+        </div>
+        <ul class="dwhy__serv">
+          <li><span class="dwhy__ic dwhy__ic--design" aria-hidden="true"></span>Дизайн-проект бесплатно</li>
+          <li><span class="dwhy__ic dwhy__ic--swatch" aria-hidden="true"></span>Подбор материалов</li>
+          <li><span class="dwhy__ic dwhy__ic--truck" aria-hidden="true"></span>Доставка и монтаж</li>
+          <li><span class="dwhy__ic dwhy__ic--box" aria-hidden="true"></span>Хранение покупок</li>
         </ul>
-        <h3 class="dwhy__h">Три станции метро</h3>
-        <p class="dwhy__t">Дальше — автобусом или трамваем до остановки у комплекса.</p>
       </article>
     </div>
   </div>
@@ -154,7 +153,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   <div class="wrap">
     <div class="dhead">
       <h2 class="dhead__h2">Что на каком этаже</h2>
-      <a href="floors.html" class="dlink">Схема этажей</a>
     </div>
     <div class="dlevels">
       <a href="floors.html" class="dlevel">
@@ -188,6 +186,9 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <span class="dlevel__go" aria-hidden="true"></span>
       </a>
     </div>
+    <div class="cmore">
+      <a href="floors.html" class="dbtn dbtn--ghost">Схема этажей</a>
+    </div>
   </div>
 </section>
 
@@ -197,17 +198,27 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <div>
       <p class="rblock__kicker">Навигация</p>
       <h2 class="rblock__h2">Как найти секцию</h2>
-      <p class="rblock__lead">Секции пронумерованы по единой системе — она работает и на указателях внутри здания, и в поиске на сайте.</p>
-      <ul class="dnum__list">
-        <li><b>Буква</b> — группа секций, она же этаж: А — первый, Б — второй, В — третий</li>
-        <li><b>Число</b> — номер помещения внутри этажа: А10, А12, Б7</li>
-        <li><b>Зоны</b> — атриум, галерея, зона лекций, входные группы</li>
-      </ul>
+      <p class="rblock__lead">У каждой секции короткий номер. Он один и тот же на указателях в здании, в поиске на сайте и на схеме этажей.</p>
+      <a href="floors.html" class="dbtn dbtn--fill">Найти секцию на схеме</a>
     </div>
-    <div class="dnum__box">
-      <p class="dnum__sample">А10</p>
-      <p class="dnum__cap">Секция 10 на первом этаже</p>
-      <a href="floors.html" class="dbtn dbtn--fill dbtn--full">Найти секцию на схеме</a>
+    <div class="dcode" role="img" aria-label="Как читать номер секции: А10 — первый этаж, помещение 10">
+      <p class="dcode__k">Как читать номер</p>
+      <div class="dcode__parts">
+        <div class="dcode__part">
+          <span class="dcode__g">А</span>
+          <span class="dcode__cap">Буква — этаж</span>
+          <span class="dcode__floors"><span><b>А</b>первый</span><span><b>Б</b>второй</span><span><b>В</b>третий</span></span>
+        </div>
+        <div class="dcode__part">
+          <span class="dcode__g">10</span>
+          <span class="dcode__cap">Число — помещение</span>
+          <span class="dcode__val">Номер внутри этажа: А12, Б7</span>
+        </div>
+      </div>
+      <div class="dcode__zones">
+        <span class="dcode__zk">Зоны</span>
+        <span class="dcode__z">Атриум</span><span class="dcode__z">Галерея</span><span class="dcode__z">Зона лекций</span><span class="dcode__z">Входные группы</span>
+      </div>
     </div>
   </div>
 </section>
@@ -234,13 +245,12 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   <div class="wrap">
     <div class="dhead">
       <h2 class="dhead__h2">Как добраться и парковка</h2>
-      <a href="contacts.html" class="dlink">Карта и контакты</a>
     </div>
     <div class="droutes">
       <div class="droute droute--navy">
         <span class="droute__ic droute__ic--metro" aria-hidden="true"></span>
         <p class="droute__k">На метро</p>
-        <p class="droute__big">≈15 <small>мин пешком</small></p>
+        <p class="droute__t">Около 15 минут пешком от станций</p>
         <ul class="droute__st">
           <li><i class="droute__line" style="--line:#0078C9"></i>«Чёрная речка»</li>
           <li><i class="droute__line" style="--line:#D6083B"></i>«Лесная»</li>
@@ -255,37 +265,14 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </div>
       <!-- стоимость и число мест — плейсхолдеры, уточнить у заказчика -->
       <div class="droute">
-        <span class="droute__p" aria-hidden="true">P</span>
+        <span class="droute__ic droute__ic--park" aria-hidden="true"></span>
         <p class="droute__k">Парковка · платная</p>
         <p class="droute__big"><span class="dph">000 ₽</span> <small>в час</small></p>
-        <p class="droute__t"><span class="dph">000</span> мест у здания. Ближе всего ко входу 2 — оттуда сразу на эскалатор.</p>
+        <p class="droute__t"><span class="dph">000</span> мест у здания. Вход со стороны парковки — ближе всего к эскалаторам и лифтам.</p>
       </div>
     </div>
-
-    <div class="dentr">
-      <div class="dentr__map">
-        <svg viewBox="0 0 560 340" role="img" aria-label="Схема подъезда и входов в комплекс">
-          <rect class="ent-park" x="380" y="40" width="150" height="190"/>
-          <text class="ent-plab" x="455" y="145" text-anchor="middle">P</text>
-          <text class="ent-sm" x="455" y="172" text-anchor="middle">парковка</text>
-          <rect class="ent-bld" x="40" y="40" width="310" height="190"/>
-          <text class="ent-name" x="195" y="128" text-anchor="middle">ТК «ЛАНСКОЙ»</text>
-          <text class="ent-sm" x="195" y="152" text-anchor="middle">атриум · 3 этажа</text>
-          <path class="ent-street" d="M0 290h560"/>
-          <text class="ent-sm ent-st" x="280" y="320" text-anchor="middle">ул. Студенческая</text>
-          <circle class="ent-door" cx="195" cy="230" r="16"/><text class="ent-n" x="195" y="235" text-anchor="middle">1</text>
-          <circle class="ent-door" cx="350" cy="135" r="16"/><text class="ent-n" x="350" y="140" text-anchor="middle">2</text>
-          <circle class="ent-door ent-door--alt" cx="40" cy="135" r="16"/><text class="ent-n" x="40" y="140" text-anchor="middle">3</text>
-        </svg>
-      </div>
-      <div>
-        <h3 class="dblock__h2">Входы в комплекс</h3>
-        <ol class="dentr__list">
-          <li><b>1</b><span><strong>Главный вход</strong> со стороны ул. Студенческой — сразу в атриум первого этажа</span></li>
-          <li><b>2</b><span><strong>Со стороны парковки</strong> — ближе всего к эскалаторам и лифтам</span></li>
-          <li><b>3</b><span><strong>Служебный</strong> — для арендаторов и разгрузки товара</span></li>
-        </ol>
-      </div>
+    <div class="cmore">
+      <a href="contacts.html" class="dbtn dbtn--ghost">Карта и контакты</a>
     </div>
   </div>
 </section>
@@ -295,7 +282,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   <div class="wrap">
     <div class="dhead">
       <h2 class="dhead__h2">Фото комплекса</h2>
-      <a href="gallery.html" class="dlink">Галерея и видео</a>
     </div>
     <div class="dmosaic">
       <div class="dmosaic__i dmosaic__i--a"><img class="jimg" src="img/hero-dark.webp" alt="Галерея шоурумов на втором этаже" loading="lazy"></div>
@@ -303,24 +289,33 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div class="dmosaic__i"><img class="jimg" src="img/rent/visitors.webp" alt="Покупатели выбирают отделку в шоуруме" loading="lazy"></div>
       <div class="dmosaic__i"><img class="jimg" src="img/shops/vladart/1.webp" alt="Шоурум VLADART STUDIO" loading="lazy"></div>
     </div>
+    <div class="cmore">
+      <a href="gallery.html" class="dbtn dbtn--ghost">Галерея и видео</a>
+    </div>
   </div>
 </section>
 
 <!-- ================= ДАЛЬШЕ ================= -->
 <section class="sect dabout-next">
   <div class="wrap dnext">
-    <a href="rent.html" class="dnext__card dnext__card--navy">
-      <span class="rblock__kicker">Бизнесу</span>
-      <span class="dnext__h">Аренда площадей</span>
-      <span class="dnext__t">Аудитория в ремонте и на этапе проекта — покупатель приходит с готовым намерением.</span>
-      <span class="dlink dlink--inv">Условия аренды</span>
-    </a>
-    <a href="contacts.html" class="dnext__card">
-      <span class="dpage__eyebrow">+7 (812) 363-00-07</span>
+    <div class="dnext__card dnext__card--navy dnext__card--photo">
+      <img class="jimg" src="img/rent.webp" alt="" loading="lazy">
+      <div class="dnext__in">
+        <span class="rblock__kicker">Бизнесу</span>
+        <span class="dnext__h">Аренда площадей</span>
+        <span class="dnext__t">Аудитория в ремонте и на этапе проекта — покупатель приходит с готовым намерением.</span>
+        <a href="rent.html" class="dbtn dbtn--ghost dbtn--inv">Условия аренды</a>
+      </div>
+    </div>
+    <div class="dnext__card">
       <span class="dnext__h">Контакты</span>
-      <span class="dnext__t">Телефоны рецепции и администрации, реквизиты и форма обратной связи.</span>
-      <span class="dlink">Все контакты</span>
-    </a>
+      <ul class="dnext__contacts">
+        <li><span class="dnext__ic dnext__ic--phone" aria-hidden="true"></span><a href="tel:+78123630007">+7 (812) 363-00-07</a><small>рецепция</small></li>
+        <li><span class="dnext__ic dnext__ic--mail" aria-hidden="true"></span><a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a><small>отдел аренды</small></li>
+        <li><span class="dnext__ic dnext__ic--pin" aria-hidden="true"></span><span>ул. Студенческая, 10</span><small>10:00 — 20:00</small></li>
+      </ul>
+      <a href="contacts.html" class="dbtn dbtn--ghost">Все контакты</a>
+    </div>
   </div>
 </section>
 

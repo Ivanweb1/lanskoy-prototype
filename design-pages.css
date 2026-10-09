@@ -1209,6 +1209,28 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dnum__box{border:1px solid rgba(196,154,108,.4);padding:40px 36px;text-align:center}
 .dnum__sample{font-family:var(--d-serif);font-weight:600;font-size:clamp(72px,8vw,120px);line-height:1;color:var(--b-copper);margin:0}
 .dnum__cap{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,244,237,.7);margin:14px 0 28px}
+/* «Как найти секцию»: номер разобран по частям — буква и число крупно,
+   под каждой подпись, что она значит; зоны — плашками */
+.dcode{padding:40px;border:1px solid rgba(196,154,108,.35);background:rgba(246,244,237,.03)}
+.dcode__k{margin:0 0 24px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--b-copper)}
+.dcode__parts{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.dcode__part{display:flex;flex-direction:column;gap:10px;padding:0 24px 0 0}
+.dcode__part+.dcode__part{padding:0 0 0 28px;border-left:1px solid rgba(196,154,108,.3)}
+.dcode__g{font-family:var(--d-serif);font-weight:600;font-size:clamp(88px,9vw,132px);line-height:.85;color:var(--b-copper);padding-bottom:18px;border-bottom:2px solid var(--b-copper)}
+.dcode__cap{margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--b-cream)}
+.dcode__val{font-size:14px;line-height:1.5;color:rgba(246,244,237,.7)}
+.dcode__floors{display:flex;flex-direction:column;gap:6px;font-size:14px;color:rgba(246,244,237,.7)}
+.dcode__floors>span{display:flex;align-items:center;gap:10px}
+.dcode__floors b{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid rgba(196,154,108,.5);font-family:var(--d-serif);font-size:13px;color:var(--b-cream)}
+.dcode__floors>span:first-child b{background:var(--b-copper);border-color:var(--b-copper);color:var(--b-navy)}
+.dcode__zones{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(196,154,108,.2)}
+.dcode__zk{margin-right:8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,244,237,.6)}
+.dcode__z{padding:6px 12px;border:1px solid rgba(196,154,108,.4);font-size:13px;color:var(--b-cream)}
+@media (max-width:640px){
+  .dcode{padding:28px 22px}
+  .dcode__part{padding-right:16px}
+  .dcode__part+.dcode__part{padding-left:18px}
+}
 
 .dadv--plain{grid-template-columns:1fr}
 
@@ -1381,6 +1403,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 [data-theme="dark"] .dfor__c{background:var(--s-plate)}
 .dfor__c:hover{transform:translateY(-4px);border-color:var(--s-accent)}
 .dfor__c:hover .jimg{transform:scale(1.05)}
+.dfor__c .dbtn{height:48px;padding:0 24px;margin-top:6px}
+.dfor__c:hover .dbtn--ghost{background:var(--s-accent);color:var(--s-btn-fill-fg)}
 .dfor__media{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--b-navy)}
 .dfor__n{position:absolute;left:0;bottom:0;z-index:2;padding:12px 18px 10px;background:var(--b-navy);font-family:var(--d-serif);font-weight:600;font-size:28px;line-height:1;color:var(--b-copper)}
 .dfor__body{display:flex;flex-direction:column;align-items:flex-start;gap:12px;flex:1;padding:28px 28px 30px}
@@ -1399,12 +1423,13 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dfor__body{padding:22px 20px 24px}
 }
 
-/* «Почему Ланской» — бенто: крупный кадр с цифрой и четыре карточки
-   в шахматку (фото · синяя · фото · светлая). Каждая карточка несёт
-   свою картинку или схему, а не только текст. */
+/* «Почему Ланской» — бенто: в каждой карточке отличие и доказательство.
+   Крупный кадр с цифрами комплекса, синяя карточка «20 лет», кадр
+   «Профессионалам» и широкая полоса услуг под ключ */
 .dwhy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(250px,21vw,300px);gap:16px}
 .dwhy__c{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;margin:0;padding:28px}
 .dwhy__c--lg{grid-column:span 2;grid-row:span 2;padding:40px}
+.dwhy__c--wide{grid-column:span 2;justify-content:space-between;gap:24px}
 .dwhy__c--photo{color:var(--b-cream);background:var(--b-navy)}
 .dwhy__c--photo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(1,20,39,0) 25%,rgba(1,20,39,.9) 100%)}
 .dwhy__c--lg::after{background:linear-gradient(180deg,rgba(1,20,39,0) 15%,rgba(1,20,39,.55) 45%,rgba(1,20,39,.94) 100%)}
@@ -1414,32 +1439,37 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dwhy__c--navy{background:var(--g-navy);color:var(--b-cream)}
 .dwhy__c--plain{background:var(--s-bg);border:1px solid var(--s-line);color:var(--s-fg)}
 [data-theme="dark"] .dwhy__c--navy,[data-theme="dark"] .dwhy__c--plain{background:var(--s-plate);border:1px solid var(--s-line)}
-.dwhy__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(64px,7vw,104px);line-height:.9;color:var(--b-copper);margin:0}
+.dwhy__nums{display:flex;flex-wrap:wrap;gap:16px 48px;margin:0 0 28px}
+.dwhy__nums p{display:flex;flex-direction:column;margin:0}
+.dwhy__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(52px,5.4vw,84px);line-height:.95;color:var(--b-copper);margin:0}
 .dwhy__big span{font-size:.6em;vertical-align:.3em;margin-left:4px}
-.dwhy__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,244,237,.75);margin:10px 0 24px}
+.dwhy__big--solo{font-size:clamp(72px,6.4vw,96px);margin-bottom:auto}
+.dwhy__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,244,237,.75);margin:10px 0 0}
+.dwhy__c--navy .dwhy__k{margin:6px 0 20px}
 .dwhy__h{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em;margin:0 0 8px;color:inherit}
 .dwhy__c--lg .dwhy__h{font-size:clamp(24px,2.2vw,32px)}
 .dwhy__t{font-size:14px;line-height:1.55;margin:0;max-width:44ch;color:rgba(246,244,237,.78)}
 .dwhy__c--plain .dwhy__t{color:var(--s-fg-soft)}
-/* схема: три этажа полосами, первый подсвечен номером секции */
-.dwhy__floors{display:flex;flex-direction:column;gap:6px;margin:0 0 auto;padding-bottom:24px}
-.dwhy__floors span{display:flex;align-items:center;justify-content:space-between;height:28px;padding:0 12px;border:1px solid rgba(196,154,108,.35);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,244,237,.6)}
-.dwhy__floors .is-on{height:44px;background:var(--b-copper);border-color:var(--b-copper);color:var(--b-navy)}
-.dwhy__floors b{font-family:var(--d-serif);font-weight:600;font-size:24px;letter-spacing:0;text-transform:none;line-height:1}
-/* станции: цвет линии, название, время до комплекса */
-.dwhy__metro{display:flex;flex-direction:column;margin:0 0 auto;padding:0 0 24px;list-style:none}
-.dwhy__metro li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--s-line);font-size:14px;color:var(--s-fg)}
-.dwhy__metro li:first-child{padding-top:0}
-.dwhy__metro i{flex:0 0 10px;height:10px;border-radius:50%;background:var(--line)}
-.dwhy__metro span{margin-left:auto;font-family:var(--d-serif);font-weight:600;font-size:16px;color:var(--s-accent-ink)}
+/* услуги: иконки полосы услуг главной, четыре в ряд */
+.dwhy__serv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:20px 0 0;border-top:1px solid var(--s-line);list-style:none}
+.dwhy__serv li{display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.4;color:var(--s-fg)}
+/* иконки услуг — Lucide (ISC): pencil-ruler, swatch-book, truck, package */
+.dwhy__ic{display:block;width:36px;height:36px;background:var(--s-accent);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.dwhy__ic--design{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13'/%3E%3Cpath d='m8 6 2-2'/%3E%3Cpath d='m18 16 2-2'/%3E%3Cpath d='m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17'/%3E%3Cpath d='M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z'/%3E%3Cpath d='m15 5 4 4'/%3E%3C/svg%3E")}
+.dwhy__ic--swatch{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z'/%3E%3Cpath d='M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7'/%3E%3Cpath d='M7 17h.01'/%3E%3Cpath d='m11 8 2.3-2.3a2.4 2.4 0 0 1 3.404.004L18.6 7.6a2.4 2.4 0 0 1 .026 3.434L9.9 19.8'/%3E%3C/svg%3E")}
+.dwhy__ic--truck{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2'/%3E%3Cpath d='M15 18H9'/%3E%3Cpath d='M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14'/%3E%3Ccircle cx='17' cy='18' r='2'/%3E%3Ccircle cx='7' cy='18' r='2'/%3E%3C/svg%3E")}
+.dwhy__ic--box{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z'/%3E%3Cpath d='M12 22V12'/%3E%3Cpath d='m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7'/%3E%3Cpath d='m7.5 4.27 9 5.15'/%3E%3C/svg%3E")}
 @media (max-width:1000px){
   .dwhy{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(250px,auto)}
-  .dwhy__c--lg{grid-row:span 1;min-height:380px}
+  .dwhy__c--lg{grid-row:span 1;min-height:400px}
 }
 @media (max-width:640px){
   .dwhy{grid-template-columns:1fr;gap:12px}
-  .dwhy__c--lg{grid-column:auto;min-height:420px;padding:28px}
+  .dwhy__c--lg,.dwhy__c--wide{grid-column:auto}
+  .dwhy__c--lg{min-height:460px;padding:28px}
   .dwhy__c--photo{min-height:260px}
+  .dwhy__nums{gap:16px 32px}
+  .dwhy__serv{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
 }
 
 /* полоса упирается в следующую секцию — без нижнего поля пустой подложки */
@@ -1469,13 +1499,38 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 /* две финальные карточки: синяя «Аренда» и светлая «Как добраться» */
 .dnext{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .dnext__card{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:44px 40px;border:1px solid var(--s-line);background:var(--s-bg-2);color:var(--s-fg);transition:transform .25s var(--d-ease)}
-.dnext__card:hover{transform:translateY(-3px)}
 .dnext__card--navy{background:var(--g-navy);border-color:transparent;color:var(--b-cream)}
 .dnext__card .rblock__kicker,.dnext__card .dpage__eyebrow{margin:0}
 .dnext__h{font-family:var(--d-serif);font-weight:600;font-size:clamp(26px,2.4vw,36px);line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
 .dnext__t{font-size:15px;line-height:1.6;color:var(--s-fg-soft);max-width:440px;flex:1}
 .dnext__card--navy .dnext__t{color:rgba(246,244,237,.72)}
 [data-theme="dark"] .dnext__card{background:var(--s-plate)}
+/* «Дальше» на «О комплексе»: кнопки с обводкой вместо ссылок-стрелок,
+   у «Аренды» — кадр помещения под синим градиентом, у «Контактов» —
+   телефон, почта и адрес с иконками (иконки — Lucide, ISC) */
+.dnext__card--photo{position:relative;overflow:hidden;padding:0;min-height:320px;justify-content:flex-end}
+.dnext__card--photo .jimg{z-index:0}
+.dnext__card--photo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(1,20,39,.96) 0%,rgba(1,20,39,.86) 45%,rgba(1,20,39,.35) 100%)}
+.dnext__card--photo:hover .jimg{transform:scale(1.04)}
+.dnext__in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:44px 40px}
+.dbtn--inv{border-color:var(--b-copper);color:var(--b-cream)}
+.dbtn--inv:hover{background:var(--b-copper);color:var(--b-navy)}
+.dnext .dbtn{margin-top:10px}
+.dnext__contacts{display:flex;flex-direction:column;align-self:stretch;margin:4px 0 0;padding:0;list-style:none}
+.dnext__contacts li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--s-line);font-size:16px;color:var(--s-fg)}
+.dnext__contacts li:first-child{border-top:1px solid var(--s-line)}
+.dnext__contacts a{color:inherit;transition:color .2s}
+.dnext__contacts a:hover{color:var(--s-accent-ink)}
+.dnext__contacts small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dnext__ic{width:22px;height:22px;background:var(--s-accent);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.dnext__ic--phone{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384'/%3E%3C/svg%3E")}
+.dnext__ic--mail{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='4' width='20' height='16' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E")}
+.dnext__ic--pin{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E")}
+@media (max-width:640px){
+  .dnext__in{padding:32px 24px}
+  .dnext__contacts li{grid-template-columns:24px minmax(0,1fr);row-gap:2px}
+  .dnext__contacts small{grid-column:2}
+}
 
 @media (max-width:1100px){
   .dlevel{grid-template-columns:90px minmax(0,1fr) 200px;gap:24px}
@@ -1527,11 +1582,14 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 [data-theme="dark"] .droute{background:var(--s-plate)}
 .droute--navy{background:var(--g-navy);border-color:transparent;color:var(--b-cream)}
 .droute__ic{width:40px;height:40px;margin-bottom:10px;background:var(--b-copper);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
-.droute__ic--metro{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M6 16.5l3-9 3 5.5 3-5.5 3 9'/%3E%3C/svg%3E")}
-.droute__ic--car{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Cpath d='M3 15v-3l2.2-5h13.6L21 12v3H3zM3 15v3h3v-3M18 15v3h3v-3M3 12h18'/%3E%3Ccircle cx='7' cy='13.5' r='.8'/%3E%3Ccircle cx='17' cy='13.5' r='.8'/%3E%3C/svg%3E")}
-.droute__p{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin-bottom:10px;border:1px solid var(--b-copper);font-family:var(--d-serif);font-weight:600;font-size:24px;color:var(--b-copper)}
+/* иконки маршрутов — один контур 1.25, как иконки услуг; машина и
+   парковка — Lucide (ISC): car, square-parking */
+.droute__ic--metro{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M7 16.5 9.5 7.5 12 13l2.5-5.5 2.5 9'/%3E%3C/svg%3E")}
+.droute__ic--car{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2'/%3E%3Ccircle cx='7' cy='17' r='2'/%3E%3Cpath d='M9 17h6'/%3E%3Ccircle cx='17' cy='17' r='2'/%3E%3C/svg%3E")}
+.droute__ic--park{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Cpath d='M9 17V7h4a3 3 0 0 1 0 6H9'/%3E%3C/svg%3E")}
 .droute__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);margin:0}
 .droute--navy .droute__k{color:rgba(246,244,237,.65)}
+.droute--navy .droute__t{flex:none;margin:6px 0 4px;font-size:15px;color:rgba(246,244,237,.8)}
 .droute__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(34px,3.2vw,48px);line-height:1;margin:4px 0 8px;color:inherit}
 .droute__big small{font-family:var(--d-sans);font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--b-copper);margin-left:6px}
 .droute__big--addr{font-size:clamp(22px,1.9vw,28px);line-height:1.2}
