@@ -1515,7 +1515,74 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dsocials{display:flex;flex-wrap:wrap;gap:8px}
 .dsocial{display:flex;align-items:center;height:48px;padding:0 18px;border:1px solid var(--s-line);transition:border-color .2s}
 .dsocial:hover{border-color:var(--s-accent)}
-.dsocial img{display:block;height:20px;width:auto}
+/* «Контакты»: главное — панелью из четырёх колонок (как маршруты), карта
+   во всю ширину, соцсети и реквизиты — строкой под картой.
+   Иконки — Lucide (ISC) */
+.dci{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--s-bg);border:1px solid var(--s-line)}
+[data-theme="dark"] .dci{background:var(--s-plate)}
+.dci__i{display:flex;flex-direction:column;align-items:flex-start;padding:32px 28px}
+.dci__i+.dci__i{border-left:1px solid var(--s-line)}
+.dci__ic{width:28px;height:28px;margin-bottom:16px;background:var(--s-accent);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.dci__ic--pin{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E")}
+.dci__ic--clock{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E")}
+.dci__ic--phone{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384'/%3E%3C/svg%3E")}
+.dci__ic--mail{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='4' width='20' height='16' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E")}
+.dci__k{margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dci__v{margin:0;font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1.3;color:var(--s-fg)}
+.dci__v a{color:inherit;transition:color .2s}
+.dci__v a:hover{color:var(--s-accent-ink)}
+.dci__v--2{margin-top:12px}
+.dci__s{margin:2px 0 0;font-size:13px;color:var(--s-fg-soft)}
+.dci__i .dlink{margin-top:auto;padding-top:18px}
+.dci__map{margin-top:24px}
+.dci__map .dmap__frame{height:480px}
+.dci__foot{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 64px;align-items:start;margin-top:24px;padding:28px 0 0;border-top:1px solid var(--s-line)}
+.dci__foot .dci__k{margin-bottom:14px}
+.dci__req dl{display:flex;flex-wrap:wrap;gap:12px 48px;margin:0}
+.dci__req dt{font-size:12px;color:var(--s-fg-soft)}
+.dci__req dd{margin:2px 0 0;font-size:15px;color:var(--s-fg)}
+@media (max-width:1100px){
+  .dci{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dci__i:nth-child(3){border-left:0}
+  .dci__i:nth-child(n+3){border-top:1px solid var(--s-line)}
+}
+@media (max-width:640px){
+  .dci{grid-template-columns:1fr}
+  .dci__i{padding:24px 22px}
+  .dci__i+.dci__i{border-left:0;border-top:1px solid var(--s-line)}
+  .dci__map .dmap__frame{height:360px}
+  .dci__foot{grid-template-columns:1fr}
+}
+.dentr[hidden]{display:none}
+/* «Обратная связь»: заголовок и пояснение строкой, форма — во всю ширину:
+   слева имя, e-mail, тема; справа сообщение; внизу согласие, капча, кнопка */
+.dfb__head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:32px}
+.dfb__head .dpage__lead{margin:12px 0 0}
+.dfb__note{margin:0;padding-left:24px;border-left:1px solid var(--s-accent);font-size:14px;line-height:1.6;color:var(--s-fg-soft)}
+.dfb__note a{color:var(--s-fg);white-space:nowrap}
+.dfb{padding:36px 40px}
+.dfb__form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 32px}
+.dfb__msg{display:flex;flex-direction:column}
+.dfb__msg textarea{flex:1;min-height:180px}
+.dfb__form .hp{position:absolute}
+.dfb__foot{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) 260px auto;gap:16px 24px;align-items:center;margin-top:8px;padding-top:24px;border-top:1px solid var(--s-line)}
+.dfb__foot .check,.dfb__foot .dcaptcha{margin:0}
+.dfb__foot .dbtn{padding:0 44px}
+@media (max-width:1000px){
+  .dfb__head{grid-template-columns:1fr}
+  .dfb__form{grid-template-columns:1fr}
+  .dfb__foot{grid-template-columns:1fr}
+  .dfb__foot .dbtn{justify-content:center;width:100%}
+}
+@media (max-width:640px){.dfb{padding:24px 20px}}
+/* логотипы соцсетей одним цветом текста: цветные версии нарисованы для
+   тёмного подвала (белые надписи) и на светлой плашке пропадали.
+   Маска по яркости: знак внутри (буква, треугольник) остаётся вырезанным */
+.dsocial__mark{display:block;height:20px;background:var(--s-fg);transition:background .2s;
+  -webkit-mask:var(--logo) no-repeat center/contain;mask:var(--logo) no-repeat center/contain;mask-mode:luminance}
+.dsocial__mark--vk{--logo:url("logo-vk-mono.svg?v=2");width:115px}
+.dsocial__mark--yt{--logo:url("logo-youtube-mono.svg?v=2");width:93px}
+.dsocial:hover .dsocial__mark{background:var(--s-accent)}
 @media (max-width:1000px){.dmap__frame{min-height:360px}}
 
 /* ============ 24. КАК ДОБРАТЬСЯ ============ */
