@@ -1396,8 +1396,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 /* данные, которых ещё нет у заказчика (стоимость парковки, число мест):
    пунктир, как у плейсхолдеров ч/б прототипа — видно, что это не факт */
 .dph{border-bottom:1px dashed currentColor;opacity:.55}
-/* карточки «дальше» продолжают секцию фото — без второго верхнего поля */
-.dabout-next{padding-top:0}
 /* вступление: манифест крупной антиквой, справа — текст за медной вертикалью */
 .dintro2__top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:72px;align-items:end;margin-bottom:80px}
 .dintro2__big{position:relative;margin:0;font-family:var(--d-serif);font-weight:500;font-size:clamp(30px,3.1vw,46px);line-height:1.18;color:var(--s-fg)}
@@ -1486,43 +1484,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dmosaic__i:hover .jimg{transform:scale(1.04)}
 
 /* две финальные карточки: синяя «Аренда» и светлая «Как добраться» */
-.dnext{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.dnext__card{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:44px 40px;border:1px solid var(--s-line);background:var(--s-bg-2);color:var(--s-fg);transition:transform .25s var(--d-ease)}
-.dnext__card--navy{background:var(--g-navy);border-color:transparent;color:var(--b-cream)}
-.dnext__card .rblock__kicker,.dnext__card .dpage__eyebrow{margin:0}
-.dnext__h{font-family:var(--d-serif);font-weight:600;font-size:clamp(26px,2.4vw,36px);line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
-.dnext__t{font-size:15px;line-height:1.6;color:var(--s-fg-soft);max-width:440px;flex:1}
-.dnext__card--navy .dnext__t{color:rgba(246,244,237,.72)}
-[data-theme="dark"] .dnext__card{background:var(--s-plate)}
-/* «Дальше» на «О комплексе»: кнопки с обводкой вместо ссылок-стрелок,
-   у «Аренды» — кадр помещения под синим градиентом, у «Контактов» —
-   телефон, почта и адрес с иконками (иконки — Lucide, ISC) */
-/* «Аренда»: текст на сплошном синем, кадр отдельно справа со срезом
-   13% (приём первого экрана). Фото не затемняем под текст */
-.dnext__card--split{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:stretch;padding:0;min-height:320px;overflow:hidden}
-.dnext__media{position:relative;overflow:hidden;clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);background:var(--b-navy)}
-.dnext__card--split:hover .jimg{transform:scale(1.04)}
-.dnext__in{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:44px 40px}
-.dbtn--inv{border-color:var(--b-copper);color:var(--b-cream)}
-.dbtn--inv:hover{background:var(--b-copper);color:var(--b-navy)}
-.dnext .dbtn{margin-top:10px}
-.dnext__contacts{display:flex;flex-direction:column;align-self:stretch;margin:4px 0 0;padding:0;list-style:none}
-.dnext__contacts li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--s-line);font-size:16px;color:var(--s-fg)}
-.dnext__contacts li:first-child{border-top:1px solid var(--s-line)}
-.dnext__contacts a{color:inherit;transition:color .2s}
-.dnext__contacts a:hover{color:var(--s-accent-ink)}
-.dnext__contacts small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--s-fg-soft)}
-.dnext__ic{width:22px;height:22px;background:var(--s-accent);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
-.dnext__ic--phone{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384'/%3E%3C/svg%3E")}
-.dnext__ic--mail{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='4' width='20' height='16' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E")}
-.dnext__ic--pin{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E")}
-@media (max-width:640px){
-  .dnext__in{padding:32px 24px}
-  .dnext__card--split{grid-template-columns:1fr}
-  .dnext__media{order:-1;height:200px;clip-path:none}
-  .dnext__contacts li{grid-template-columns:24px minmax(0,1fr);row-gap:2px}
-  .dnext__contacts small{grid-column:2}
-}
 
 @media (max-width:1100px){
   .dlevel{grid-template-columns:90px minmax(0,1fr) 200px;gap:24px}
@@ -1536,7 +1497,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dstate{grid-template-columns:1fr;gap:28px;margin-bottom:48px}
   .daudience{grid-template-columns:1fr}
   .daud,.daud+.daud{padding:28px 0;border-left:0;border-bottom:1px solid var(--s-line)}
-  .dnext{grid-template-columns:1fr}
 }
 @media (max-width:760px){
   .dstats__in li{padding:22px 16px}
@@ -1547,7 +1507,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dmosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:140px}
   .dmosaic__i--a{grid-column:span 2;grid-row:span 2}
   .dmosaic__i--b{grid-column:span 2}
-  .dnext__card{padding:32px 24px}
 }
 /* настоящая Яндекс Карта: виджет во всю колонку */
 .dmap--live{padding:0;display:block;min-height:0;overflow:hidden}
