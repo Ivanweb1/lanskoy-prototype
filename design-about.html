@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=67">
+<link rel="stylesheet" href="design-pages.css?v=70">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -24,25 +24,24 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <main id="main" tabindex="-1">
 
 <!-- ================= ПЕРВЫЙ ЭКРАН ================= -->
-<section class="dpage dpromo dabout-hero">
-  <div class="wrap">
-    <nav class="dcrumbs" aria-label="Хлебные крошки">
-      <a href="design.html">Главная</a>
-      <span class="dcrumbs__sep" aria-hidden="true"></span>
-      <span aria-current="page">О комплексе</span>
-    </nav>
-    <div class="dpromo__in">
-      <div class="dpromo__main">
-        <div class="dpromo__top">
-          <h1 class="dhero__h1 dabout-hero__h1">Всё для интерьера<em>в одном здании</em></h1>
-          <p class="dhero__sub">Магазины материалов и решений для ремонта, строительства и дизайна интерьера — на границе Приморского и Выборгского районов.</p>
-        </div>
-        <div class="dpromo__bottom dpromo__acts">
-          <a href="shops.html" class="dbtn dbtn--fill">Каталог магазинов</a>
-          <a href="#route" class="dbtn dbtn--ghost">Как добраться</a>
-        </div>
+<section class="dhero dabout-hero">
+  <div class="wrap dhero__in">
+    <div class="dhero__text">
+      <nav class="dcrumbs" aria-label="Хлебные крошки">
+        <a href="design.html">Главная</a>
+        <span class="dcrumbs__sep" aria-hidden="true"></span>
+        <span aria-current="page">О комплексе</span>
+      </nav>
+      <p class="dhero__eyebrow">Торговый центр интерьерных решений · ул. Студенческая, 10</p>
+      <h1 class="dhero__h1">Всё для интерьера<em>в одном здании</em></h1>
+      <p class="dhero__sub">Магазины материалов и решений для ремонта, строительства и дизайна интерьера — на границе Приморского и Выборгского районов.</p>
+      <div class="dhero__cta">
+        <a href="shops.html" class="dbtn dbtn--fill">Каталог магазинов</a>
+        <a href="#route" class="dbtn dbtn--ghost">Как добраться</a>
       </div>
-      <div class="dpromo__media"><img class="jimg" src="img/find.webp" alt="Атриум торгового комплекса «Ланской»: эскалаторы и галереи трёх этажей"></div>
+    </div>
+    <div class="dhero__media">
+      <img class="jimg" src="img/find.webp" alt="Атриум торгового комплекса «Ланской»: эскалаторы и галереи трёх этажей">
     </div>
   </div>
 </section>
@@ -60,33 +59,46 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 </section>
 
 <!-- ================= О КОМПЛЕКСЕ ================= -->
-<section class="sect">
-  <div class="wrap dstate">
-    <p class="dstate__big">Сюда приезжают не гулять между витрин, а <em>выбирать</em>: плитку, двери, свет и всё, из чего складывается интерьер.</p>
-    <div class="dstate__side">
-      <p>ТК «Ланской» собрал магазины материалов и решений для ремонта, строительства и дизайна интерьера. Более 150 магазинов и шоурумов на трёх этажах: отделочные материалы, плитка, обои, напольные покрытия, двери, сантехника, свет, мебель и декор.</p>
-      <p>Комплекс проводит мастер-классы, лекции и профессиональные семинары для дизайнерского сообщества.</p>
+<section class="sect dintro2">
+  <div class="wrap">
+    <div class="dintro2__top">
+      <div class="dintro2__lead">
+        <p class="dintro2__kick">О комплексе</p>
+        <p class="dintro2__big">Сюда приезжают не гулять между витрин, а <em>выбирать</em>: плитку, двери, свет и всё, из чего складывается интерьер.</p>
+      </div>
+      <div class="dintro2__side">
+        <p>ТК «Ланской» собрал магазины материалов и решений для ремонта, строительства и дизайна интерьера. Более 150 магазинов и шоурумов на трёх этажах: отделочные материалы, плитка, обои, напольные покрытия, двери, сантехника, свет, мебель и декор.</p>
+        <p>Комплекс проводит мастер-классы, лекции и профессиональные семинары для дизайнерского сообщества.</p>
+      </div>
     </div>
-  </div>
-  <div class="wrap daudience">
-      <div class="daud">
-        <span class="daud__n">01</span>
-        <h3 class="daud__h">Покупателям в ремонте</h3>
-        <p class="daud__t">Все материалы для квартиры или дома в одном здании: сравнить, потрогать и заказать за один выезд.</p>
-        <a href="shops.html" class="dlink">Каталог магазинов</a>
-      </div>
-      <div class="daud">
-        <span class="daud__n">02</span>
-        <h3 class="daud__h">Дизайнерам и архитекторам</h3>
-        <p class="daud__t">Образцы под проект, семинары фабрик и каталог специалистов, где вас находят заказчики.</p>
-        <a href="designers.html" class="dlink">Раздел для дизайнеров</a>
-      </div>
-      <div class="daud">
-        <span class="daud__n">03</span>
-        <h3 class="daud__h">Подрядчикам и бригадам</h3>
-        <p class="daud__t">Отделка, инженерия и комплектующие для объекта — без разъездов по городу.</p>
-        <a href="categories.html" class="dlink">Все направления</a>
-      </div>
+
+    <p class="dintro2__for">Для кого</p>
+    <div class="dfor">
+      <a href="shops.html" class="dfor__c">
+        <span class="dfor__media"><img class="jimg" src="img/jr-2.webp" alt="" loading="lazy"><span class="dfor__n">01</span></span>
+        <span class="dfor__body">
+          <span class="dfor__h">Покупателям в ремонте</span>
+          <span class="dfor__t">Все материалы для квартиры или дома в одном здании: сравнить, потрогать и заказать за один выезд.</span>
+          <span class="dlink">Каталог магазинов</span>
+        </span>
+      </a>
+      <a href="designers.html" class="dfor__c">
+        <span class="dfor__media"><img class="jimg" src="img/shops/vladart/6.webp" alt="" loading="lazy"><span class="dfor__n">02</span></span>
+        <span class="dfor__body">
+          <span class="dfor__h">Дизайнерам и архитекторам</span>
+          <span class="dfor__t">Образцы под проект, семинары фабрик и каталог специалистов, где вас находят заказчики.</span>
+          <span class="dlink">Раздел для дизайнеров</span>
+        </span>
+      </a>
+      <a href="categories.html" class="dfor__c">
+        <span class="dfor__media"><img class="jimg" src="img/pr-3.webp" alt="" loading="lazy"><span class="dfor__n">03</span></span>
+        <span class="dfor__body">
+          <span class="dfor__h">Подрядчикам и бригадам</span>
+          <span class="dfor__t">Отделка, инженерия и комплектующие для объекта — без разъездов по городу.</span>
+          <span class="dlink">Все направления</span>
+        </span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -113,7 +125,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </article>
       <article class="dwhy__c dwhy__c--navy">
         <div class="dwhy__floors" aria-hidden="true">
-          <span>В · 3 этаж</span><span>Б · 2 этаж</span><span class="is-on">А · 1 этаж<b>А10</b></span>
+          <span class="is-on">А · 1 этаж<b>А10</b></span><span>Б · 2 этаж</span><span>В · 3 этаж</span>
         </div>
         <h3 class="dwhy__h">Легко найти магазин</h3>
         <p class="dwhy__t">Один номер секции — на указателях, в поиске и на схеме.</p>
