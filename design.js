@@ -881,6 +881,19 @@
       btn.focus();
     }
     build();
+    /* поле — по ширине раскрытого списка (самого длинного варианта),
+       чтобы список не выступал из-под него */
+    function fit() {
+      if (!host.classList.contains('dselect')) return;
+      list.style.visibility = 'hidden';
+      list.hidden = false;
+      var w = list.offsetWidth;
+      list.hidden = true;
+      list.style.visibility = '';
+      if (w > host.offsetWidth) host.style.minWidth = w + 'px';
+    }
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       list.hidden ? open() : close();
