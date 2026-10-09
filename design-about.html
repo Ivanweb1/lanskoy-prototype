@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=66">
+<link rel="stylesheet" href="design-pages.css?v=67">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -94,31 +94,47 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <section class="sect dsect--alt">
   <div class="wrap">
     <div class="dhead"><h2 class="dhead__h2">Почему «Ланской»</h2></div>
-    <div class="dadvs">
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Всё в одном здании</h3>
-        <p class="dadv__t">Плитка, двери, свет и мебель под одной крышей: сравнить и заказать за один выезд, а не за пять.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Образцы вживую</h3>
-        <p class="dadv__t">В шоурумах — выкладка и образцы: фактуру можно потрогать, а образец взять на объект.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Легко найти магазин</h3>
-        <p class="dadv__t">Единая нумерация секций на указателях и на сайте: вводите «А10» — и видите секцию на схеме.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Среда для профессионалов</h3>
-        <p class="dadv__t">Семинары фабрик, лекции и мастер-классы, каталог дизайнеров, где специалистов находят заказчики.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Рядом с метро</h3>
-        <p class="dadv__t">«Чёрная речка» и «Лесная» — около 15 минут пешком. Для тех, кто на машине, — парковка у здания.</p>
-      </div>
-      <div class="dadv dadv--plain">
-        <h3 class="dadv__h">Без выходных</h3>
-        <p class="dadv__t">Ежедневно с 10:00 до 20:00 — удобно заехать после работы или в выходной.</p>
-      </div>
+    <div class="dwhy">
+      <article class="dwhy__c dwhy__c--photo dwhy__c--lg">
+        <img class="jimg" src="img/hero-light.webp" alt="" loading="lazy">
+        <div class="dwhy__body">
+          <p class="dwhy__big">150<span>+</span></p>
+          <p class="dwhy__k">магазинов и шоурумов</p>
+          <h3 class="dwhy__h">Всё в одном здании</h3>
+          <p class="dwhy__t">Плитка, двери, свет и мебель под одной крышей: сравнить и заказать за один выезд, а не за пять.</p>
+        </div>
+      </article>
+      <article class="dwhy__c dwhy__c--photo">
+        <img class="jimg" src="img/designers/hero.webp" alt="" loading="lazy">
+        <div class="dwhy__body">
+          <h3 class="dwhy__h">Образцы вживую</h3>
+          <p class="dwhy__t">Фактуру можно потрогать, а образец — взять на объект.</p>
+        </div>
+      </article>
+      <article class="dwhy__c dwhy__c--navy">
+        <div class="dwhy__floors" aria-hidden="true">
+          <span>В · 3 этаж</span><span>Б · 2 этаж</span><span class="is-on">А · 1 этаж<b>А10</b></span>
+        </div>
+        <h3 class="dwhy__h">Легко найти магазин</h3>
+        <p class="dwhy__t">Один номер секции — на указателях, в поиске и на схеме.</p>
+      </article>
+      <article class="dwhy__c dwhy__c--photo">
+        <img class="jimg" src="img/ev-2.webp" alt="" loading="lazy">
+        <div class="dwhy__body">
+          <h3 class="dwhy__h">Среда для профессионалов</h3>
+          <p class="dwhy__t">Семинары фабрик, лекции, мастер-классы и каталог дизайнеров.</p>
+        </div>
+      </article>
+      <!-- станции и время в пути — с действующего сайта, страница «Контакты» -->
+      <article class="dwhy__c dwhy__c--plain">
+        <ul class="dwhy__metro">
+          <li><i style="--line:#D6083B"></i>Выборгская<span>2 мин</span></li>
+          <li><i style="--line:#D6083B"></i>Лесная<span>2 мин</span></li>
+          <li><i style="--line:#0078C9"></i>Чёрная речка<span>8 мин</span></li>
+        </ul>
+        <h3 class="dwhy__h">Три станции метро</h3>
+        <p class="dwhy__t">Дальше — автобусом или трамваем до остановки у комплекса.</p>
+      </article>
     </div>
   </div>
 </section>

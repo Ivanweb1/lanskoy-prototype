@@ -1358,6 +1358,49 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dph{border-bottom:1px dashed currentColor;opacity:.55}
 /* карточки «дальше» продолжают секцию фото — без второго верхнего поля */
 .dabout-next{padding-top:0}
+/* «Почему Ланской» — бенто: крупный кадр с цифрой и четыре карточки
+   в шахматку (фото · синяя · фото · светлая). Каждая карточка несёт
+   свою картинку или схему, а не только текст. */
+.dwhy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(250px,21vw,300px);gap:16px}
+.dwhy__c{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;margin:0;padding:28px}
+.dwhy__c--lg{grid-column:span 2;grid-row:span 2;padding:40px}
+.dwhy__c--photo{color:var(--b-cream);background:var(--b-navy)}
+.dwhy__c--photo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(1,20,39,0) 25%,rgba(1,20,39,.9) 100%)}
+.dwhy__c--lg::after{background:linear-gradient(180deg,rgba(1,20,39,0) 15%,rgba(1,20,39,.55) 45%,rgba(1,20,39,.94) 100%)}
+.dwhy__c--photo .jimg{z-index:0}
+.dwhy__c--photo:hover .jimg{transform:scale(1.05)}
+.dwhy__body{position:relative;z-index:2}
+.dwhy__c--navy{background:var(--g-navy);color:var(--b-cream)}
+.dwhy__c--plain{background:var(--s-bg);border:1px solid var(--s-line);color:var(--s-fg)}
+[data-theme="dark"] .dwhy__c--navy,[data-theme="dark"] .dwhy__c--plain{background:var(--s-plate);border:1px solid var(--s-line)}
+.dwhy__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(64px,7vw,104px);line-height:.9;color:var(--b-copper);margin:0}
+.dwhy__big span{font-size:.6em;vertical-align:.3em;margin-left:4px}
+.dwhy__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,244,237,.75);margin:10px 0 24px}
+.dwhy__h{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em;margin:0 0 8px;color:inherit}
+.dwhy__c--lg .dwhy__h{font-size:clamp(24px,2.2vw,32px)}
+.dwhy__t{font-size:14px;line-height:1.55;margin:0;max-width:44ch;color:rgba(246,244,237,.78)}
+.dwhy__c--plain .dwhy__t{color:var(--s-fg-soft)}
+/* схема: три этажа полосами, первый подсвечен номером секции */
+.dwhy__floors{display:flex;flex-direction:column;gap:6px;margin:0 0 auto;padding-bottom:24px}
+.dwhy__floors span{display:flex;align-items:center;justify-content:space-between;height:28px;padding:0 12px;border:1px solid rgba(196,154,108,.35);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,244,237,.6)}
+.dwhy__floors .is-on{height:44px;background:var(--b-copper);border-color:var(--b-copper);color:var(--b-navy)}
+.dwhy__floors b{font-family:var(--d-serif);font-weight:600;font-size:24px;letter-spacing:0;text-transform:none;line-height:1}
+/* станции: цвет линии, название, время до комплекса */
+.dwhy__metro{display:flex;flex-direction:column;margin:0 0 auto;padding:0 0 24px;list-style:none}
+.dwhy__metro li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--s-line);font-size:14px;color:var(--s-fg)}
+.dwhy__metro li:first-child{padding-top:0}
+.dwhy__metro i{flex:0 0 10px;height:10px;border-radius:50%;background:var(--line)}
+.dwhy__metro span{margin-left:auto;font-family:var(--d-serif);font-weight:600;font-size:16px;color:var(--s-accent-ink)}
+@media (max-width:1000px){
+  .dwhy{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(250px,auto)}
+  .dwhy__c--lg{grid-row:span 1;min-height:380px}
+}
+@media (max-width:640px){
+  .dwhy{grid-template-columns:1fr;gap:12px}
+  .dwhy__c--lg{grid-column:auto;min-height:420px;padding:28px}
+  .dwhy__c--photo{min-height:260px}
+}
+
 /* полоса упирается в следующую секцию — без нижнего поля пустой подложки */
 .dabout-serv{padding-bottom:0}
 .dserv--about{border-top:1px solid var(--s-line);border-bottom:1px solid var(--s-line);background:var(--s-bg)}
