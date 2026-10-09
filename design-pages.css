@@ -1296,16 +1296,23 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 /* ============ 23. О КОМПЛЕКСЕ — В МАНЕРЕ ГЛАВНОЙ ============ */
 /* первый экран — как на главной: крупная антиква капсом, вторая строка медью,
    кадр со срезом уходит в правый край */
-/* тот же первый экран, что на главной (.dhero): текст по сетке сайта,
-   кадр со срезом уходит в правый край. Крошки — над надзаголовком */
-.dabout-hero .dhero__in{min-height:clamp(520px,62vh,700px)}
-.dabout-hero .dcrumbs{margin-bottom:36px}
+.dabout-hero .dpromo__in{min-height:clamp(460px,44vw,620px)}
+.dabout-hero__h1{margin:0 0 22px}
+
+/* «О комплексе» — тот же первый экран, что на главной (.dhero): текст по
+   сетке сайта, кадр со срезом уходит в правый край. Свой класс, а не
+   .dabout-hero: тот остаётся у «Аренды» на .dpromo.
+   Крошки — на том же расстоянии от шапки, что на всех внутренних
+   страницах (.dpage .wrap: 32px, на телефоне 22px) */
+.dabout-top .dhero__in{min-height:0;align-items:start}
+.dabout-top .dhero__text{padding-top:32px}
+@media (max-width:760px){.dabout-top .dhero__text{padding-top:22px}}
 /* полоса цифр под первым экраном — как полоса услуг на главной (.dserv):
    подложка на полшага темнее страницы, в тёмной теме — сплошной синий,
    разделители светлее общей линейки */
-.dabout-hero + .dstats{background:var(--s-bg-soft);border-bottom:0}
-[data-theme="dark"] .dabout-hero + .dstats{background:var(--b-navy)}
-.dabout-hero + .dstats .dstats__in li{border-color:var(--s-line-faint)}
+.dabout-top + .dstats{background:var(--s-bg-soft);border-bottom:0}
+[data-theme="dark"] .dabout-top + .dstats{background:var(--b-navy)}
+.dabout-top + .dstats .dstats__in li{border-color:var(--s-line-faint)}
 
 /* цифры комплекса — строка под первым экраном, как линейка «Аренды» */
 .dstats{background:var(--s-bg);border-bottom:1px solid var(--s-line)}
@@ -1361,11 +1368,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dph{border-bottom:1px dashed currentColor;opacity:.55}
 /* карточки «дальше» продолжают секцию фото — без второго верхнего поля */
 .dabout-next{padding-top:0}
-/* вступление: надзаголовок с медной чертой, манифест крупной антиквой,
-   справа — текст за вертикальной линией */
+/* вступление: манифест крупной антиквой, справа — текст за медной вертикалью */
 .dintro2__top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:72px;align-items:end;margin-bottom:80px}
-.dintro2__kick,.dintro2__for{display:flex;align-items:center;gap:14px;margin:0 0 24px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--s-accent-ink)}
-.dintro2__kick::before,.dintro2__for::before{content:"";width:40px;height:1px;background:var(--s-accent)}
 .dintro2__big{position:relative;margin:0;font-family:var(--d-serif);font-weight:500;font-size:clamp(30px,3.1vw,46px);line-height:1.18;color:var(--s-fg)}
 .dintro2__big em{font-style:italic;color:var(--s-accent-ink)}
 .dintro2__side{padding-left:32px;border-left:1px solid var(--s-accent)}
