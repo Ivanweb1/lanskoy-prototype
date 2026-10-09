@@ -1569,8 +1569,10 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dfb__msg{display:flex;flex-direction:column}
 .dfb__msg textarea{flex:1;min-height:180px;resize:none}
 .dfb__form .hp{position:absolute}
-.dfb__foot{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) 260px auto;gap:16px 16px;align-items:center;margin-top:28px;padding-top:24px;border-top:1px solid var(--s-line)}
+.dfb__foot{grid-column:1/-1;display:grid;grid-template-columns:260px auto minmax(0,1fr);gap:16px 16px;align-items:center;margin-top:28px;padding-top:24px;border-top:1px solid var(--s-line)}
 .dfb__foot .check,.dfb__foot .dcaptcha{margin:0}
+/* капча и кнопка слева, согласие справа */
+.dfb__foot .check{order:3;justify-self:end;margin-left:24px}
 .dfb__foot .dcaptcha{display:flex;align-items:center;justify-content:center;height:56px;padding:0}
 .dfb__foot .dbtn{padding:0 44px}
 @media (max-width:1000px){
@@ -1578,6 +1580,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dfb__form{grid-template-columns:1fr}
   .dfb__col .fld:last-child{margin-bottom:16px}
   .dfb__foot{grid-template-columns:1fr}
+  .dfb__foot .check{order:-1;justify-self:start;max-width:none;margin-left:0}
   .dfb__foot .dbtn{justify-content:center;width:100%}
 }
 @media (max-width:640px){.dfb{padding:24px 20px}}
