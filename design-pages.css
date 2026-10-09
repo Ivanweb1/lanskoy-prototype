@@ -1209,22 +1209,21 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dnum__box{border:1px solid rgba(196,154,108,.4);padding:40px 36px;text-align:center}
 .dnum__sample{font-family:var(--d-serif);font-weight:600;font-size:clamp(72px,8vw,120px);line-height:1;color:var(--b-copper);margin:0}
 .dnum__cap{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,244,237,.7);margin:14px 0 28px}
-/* левая колонка — та же высота, что у разбора номера справа:
-   шаги заполняют середину, кнопка внизу на уровне нижней кромки рамки */
-.dnum .dnum__in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
+/* левая колонка — текст и шаги; кнопка — внутри рамки под разбором номера */
+.dnum .dnum__in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
 .dnum__text{display:flex;flex-direction:column;align-items:flex-start}
 .dnum__text .rblock__lead{margin-bottom:28px}
-.dsteps{align-self:stretch;margin:0 0 32px;padding:0;list-style:none;counter-reset:none}
+.dsteps{align-self:stretch;margin:0;padding:0;list-style:none;counter-reset:none}
 .dsteps li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:baseline;padding:14px 0;border-top:1px solid rgba(196,154,108,.22);font-size:15px;line-height:1.55;color:rgba(246,244,237,.72)}
 .dsteps li:last-child{border-bottom:1px solid rgba(196,154,108,.22)}
 .dsteps b{font-family:var(--d-serif);font-weight:600;font-size:20px;color:var(--b-copper)}
 .dsteps strong{font-weight:600;color:var(--b-cream)}
-.dnum__text .dbtn{margin-top:auto}
-@media (max-width:1000px){.dnum .dnum__in{grid-template-columns:1fr}.dnum__text .dbtn{margin-top:0}}
+@media (max-width:1000px){.dnum .dnum__in{grid-template-columns:1fr}}
 /* «Как найти секцию»: номер разобран по частям — буква и число крупно,
    под каждой подпись, что она значит */
 .dcode{align-self:center;padding:36px 40px 40px;border:1px solid rgba(196,154,108,.35);background:rgba(246,244,237,.03)}
 .dcode__k{margin:0 0 20px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--b-copper)}
+.dcode__btn{display:flex;justify-content:center;width:100%;margin-top:32px}
 .dcode__parts{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
 .dcode__part{display:flex;flex-direction:column;gap:10px;padding:0 24px 0 0}
 .dcode__part+.dcode__part{padding:0 0 0 28px;border-left:1px solid rgba(196,154,108,.3)}
@@ -1443,6 +1442,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dwhy__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(36px,3.2vw,48px);line-height:.95;color:var(--s-accent-ink);margin:0}
 .dwhy__c--navy .dwhy__big{color:var(--b-copper)}
 .dwhy__big span{font-size:.6em;vertical-align:.3em;margin-left:3px}
+/* «20 лет» — одно число в карточке, вдвое крупнее пары «150+ / 24 000» */
+.dwhy__big--x2{font-size:clamp(72px,6.4vw,96px);margin-top:-.2em}
 .dwhy__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);margin:8px 0 0}
 .dwhy__c--navy .dwhy__k{color:rgba(246,244,237,.7)}
 [data-theme="dark"] .dwhy__c--navy .dwhy__k{color:var(--s-fg-soft)}
