@@ -1405,7 +1405,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dintro2__side{padding-left:32px;border-left:1px solid var(--s-accent)}
 .dintro2__side p{font-size:15px;line-height:1.7;color:var(--s-fg-soft);margin:0 0 14px}
 .dintro2__side p:last-child{margin:0}
-/* «Для кого» — три карточки с кадром, номер медью на кадре */
+/* «Для кого» — три карточки: кадр сверху без надписей, номер — в тексте */
 .dfor{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .dfor__c{display:flex;flex-direction:column;background:var(--s-bg-2);border:1px solid var(--s-line);color:var(--s-fg);transition:transform .3s var(--d-ease),border-color .3s}
 [data-theme="dark"] .dfor__c{background:var(--s-plate)}
@@ -1414,7 +1414,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dfor__c .dbtn{height:48px;padding:0 24px;margin-top:6px}
 .dfor__c:hover .dbtn--ghost{background:var(--s-accent);color:var(--s-btn-fill-fg)}
 .dfor__media{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--b-navy)}
-.dfor__n{position:absolute;left:0;bottom:0;z-index:2;padding:12px 18px 10px;background:var(--b-navy);font-family:var(--d-serif);font-weight:600;font-size:28px;line-height:1;color:var(--b-copper)}
+.dfor__n{font-family:var(--d-serif);font-weight:600;font-size:28px;line-height:1;color:var(--s-accent-ink)}
 .dfor__body{display:flex;flex-direction:column;align-items:flex-start;gap:12px;flex:1;padding:28px 28px 30px}
 .dfor__h{font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em}
 .dfor__t{flex:1;font-size:14px;line-height:1.6;color:var(--s-fg-soft);margin-bottom:6px}
@@ -1431,54 +1431,50 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dfor__body{padding:22px 20px 24px}
 }
 
-/* «Почему Ланской» — бенто: в каждой карточке отличие и доказательство.
-   Крупный кадр с цифрами комплекса, синяя карточка «20 лет», кадр
-   «Профессионалам» и широкая полоса услуг под ключ */
-.dwhy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(250px,21vw,300px);gap:16px}
-.dwhy__c{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;margin:0;padding:28px}
-.dwhy__c--lg{grid-column:span 2;grid-row:span 2;padding:40px}
-.dwhy__c--wide{grid-column:span 2;justify-content:space-between;gap:24px}
-/* широкая карточка — сплошной синий, без фото: текст на кадре не затемняем */
-.dwhy__c--photo{color:var(--b-cream);background:var(--b-navy)}
-.dwhy__c--photo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(1,20,39,0) 25%,rgba(1,20,39,.9) 100%)}
-.dwhy__c--lg::after{background:linear-gradient(180deg,rgba(1,20,39,0) 15%,rgba(1,20,39,.55) 45%,rgba(1,20,39,.94) 100%)}
-.dwhy__c--photo .jimg{z-index:0}
-.dwhy__c--photo:hover .jimg{transform:scale(1.05)}
-.dwhy__body{position:relative;z-index:2}
+/* «Почему Ланской»: кадр отдельно, без надписей и затемнения; справа
+   четыре текстовые карточки шахматкой — светлая / синяя */
+.dwhy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(280px,auto);gap:16px}
+.dwhy__photo{position:relative;grid-column:span 2;grid-row:span 2;margin:0;overflow:hidden;background:var(--b-navy)}
+.dwhy__photo:hover .jimg{transform:scale(1.03)}
+.dwhy__c{display:flex;flex-direction:column;justify-content:flex-end;margin:0;padding:28px}
 .dwhy__c--navy{background:var(--g-navy);color:var(--b-cream)}
 .dwhy__c--plain{background:var(--s-bg);border:1px solid var(--s-line);color:var(--s-fg)}
-[data-theme="dark"] .dwhy__c--navy,[data-theme="dark"] .dwhy__c--plain{background:var(--s-plate);border:1px solid var(--s-line)}
-.dwhy__nums{display:flex;flex-wrap:wrap;gap:16px 48px;margin:0 0 28px}
+[data-theme="dark"] .dwhy__c--navy,[data-theme="dark"] .dwhy__c--plain{background:var(--s-plate);border:1px solid var(--s-line);color:var(--s-fg)}
+.dwhy__nums{display:flex;flex-wrap:wrap;gap:12px 28px;margin:0 0 auto;padding-bottom:20px}
 .dwhy__nums p{display:flex;flex-direction:column;margin:0}
-.dwhy__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(52px,5.4vw,84px);line-height:.95;color:var(--b-copper);margin:0}
-.dwhy__big span{font-size:.6em;vertical-align:.3em;margin-left:4px}
-.dwhy__big--solo{font-size:clamp(72px,6.4vw,96px);margin-bottom:auto}
-.dwhy__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,244,237,.75);margin:10px 0 0}
-.dwhy__c--navy .dwhy__k{margin:6px 0 20px}
+.dwhy__big{font-family:var(--d-serif);font-weight:600;font-size:clamp(36px,3.2vw,48px);line-height:.95;color:var(--s-accent-ink);margin:0}
+.dwhy__c--navy .dwhy__big{color:var(--b-copper)}
+.dwhy__big span{font-size:.6em;vertical-align:.3em;margin-left:3px}
+.dwhy__big--solo{font-size:clamp(64px,5.6vw,88px);margin-bottom:auto}
+.dwhy__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);margin:8px 0 0}
+.dwhy__c--navy .dwhy__k{color:rgba(246,244,237,.7);margin:6px 0 20px}
+[data-theme="dark"] .dwhy__c--navy .dwhy__k{color:var(--s-fg-soft)}
 .dwhy__h{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em;margin:0 0 8px;color:inherit}
-.dwhy__c--lg .dwhy__h{font-size:clamp(24px,2.2vw,32px)}
-.dwhy__t{font-size:14px;line-height:1.55;margin:0;max-width:44ch;color:rgba(246,244,237,.78)}
-.dwhy__c--plain .dwhy__t{color:var(--s-fg-soft)}
+.dwhy__t{font-size:14px;line-height:1.55;margin:0;color:var(--s-fg-soft)}
+.dwhy__c--navy .dwhy__t{color:rgba(246,244,237,.75)}
+[data-theme="dark"] .dwhy__c--navy .dwhy__t{color:var(--s-fg-soft)}
+.dwhy__c--navy>.dwhy__ic{margin-bottom:auto}
 /* услуги: иконки полосы услуг главной, четыре в ряд */
-.dwhy__serv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:20px 0 0;border-top:1px solid rgba(196,154,108,.3);list-style:none}
-.dwhy__serv li{display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.4;color:var(--b-cream)}
+.dwhy__serv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--s-line);list-style:none}
+.dwhy__serv li{display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.35;color:var(--s-fg)}
 /* иконки услуг — Lucide (ISC): pencil-ruler, swatch-book, truck, package */
-.dwhy__ic{display:block;width:36px;height:36px;background:var(--b-copper);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.dwhy__ic{display:block;width:32px;height:32px;background:var(--s-accent);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
 .dwhy__ic--design{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13'/%3E%3Cpath d='m8 6 2-2'/%3E%3Cpath d='m18 16 2-2'/%3E%3Cpath d='m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17'/%3E%3Cpath d='M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z'/%3E%3Cpath d='m15 5 4 4'/%3E%3C/svg%3E")}
 .dwhy__ic--swatch{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z'/%3E%3Cpath d='M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7'/%3E%3Cpath d='M7 17h.01'/%3E%3Cpath d='m11 8 2.3-2.3a2.4 2.4 0 0 1 3.404.004L18.6 7.6a2.4 2.4 0 0 1 .026 3.434L9.9 19.8'/%3E%3C/svg%3E")}
 .dwhy__ic--truck{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2'/%3E%3Cpath d='M15 18H9'/%3E%3Cpath d='M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14'/%3E%3Ccircle cx='17' cy='18' r='2'/%3E%3Ccircle cx='7' cy='18' r='2'/%3E%3C/svg%3E")}
+.dwhy__ic--pro{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 3h20'/%3E%3Cpath d='M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3'/%3E%3Cpath d='m7 21 5-5 5 5'/%3E%3C/svg%3E")}
 .dwhy__ic--box{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z'/%3E%3Cpath d='M12 22V12'/%3E%3Cpath d='m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7'/%3E%3Cpath d='m7.5 4.27 9 5.15'/%3E%3C/svg%3E")}
 @media (max-width:1000px){
-  .dwhy{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(250px,auto)}
-  .dwhy__c--lg{grid-row:span 1;min-height:400px}
+  .dwhy{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(260px,auto)}
+  .dwhy__photo{grid-row:span 1;min-height:340px}
 }
 @media (max-width:640px){
-  .dwhy{grid-template-columns:1fr;gap:12px}
-  .dwhy__c--lg,.dwhy__c--wide{grid-column:auto}
-  .dwhy__c--lg{min-height:460px;padding:28px}
-  .dwhy__c--photo{min-height:260px}
-  .dwhy__nums{gap:16px 32px}
-  .dwhy__serv{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+  .dwhy{grid-template-columns:1fr;grid-auto-rows:auto;gap:12px}
+  .dwhy__photo{grid-column:auto;min-height:260px}
+  .dwhy__c{padding:24px 22px}
+  .dwhy__nums,.dwhy__big--solo,.dwhy__c--navy>.dwhy__ic{margin-bottom:16px}
+  /* в одну колонку — чередование светлая / синяя сохраняется */
+  .dwhy__c--pro{order:1}
 }
 
 

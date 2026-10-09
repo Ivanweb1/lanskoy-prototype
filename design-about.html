@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=85">
+<link rel="stylesheet" href="design-pages.css?v=87">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -73,24 +73,27 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
     <div class="dfor">
       <a href="shops.html" class="dfor__c">
-        <span class="dfor__media"><img class="jimg" src="img/jr-2.webp" alt="" loading="lazy"><span class="dfor__n">01</span></span>
+        <span class="dfor__media"><img class="jimg" src="img/jr-2.webp" alt="" loading="lazy"></span>
         <span class="dfor__body">
+          <span class="dfor__n">01</span>
           <span class="dfor__h">Покупателям в ремонте</span>
           <span class="dfor__t">Все материалы для квартиры или дома в одном здании: сравнить, потрогать и заказать за один выезд.</span>
           <span class="dbtn dbtn--ghost">Каталог магазинов</span>
         </span>
       </a>
       <a href="designers.html" class="dfor__c">
-        <span class="dfor__media"><img class="jimg" src="img/shops/vladart/6.webp" alt="" loading="lazy"><span class="dfor__n">02</span></span>
+        <span class="dfor__media"><img class="jimg" src="img/shops/vladart/6.webp" alt="" loading="lazy"></span>
         <span class="dfor__body">
+          <span class="dfor__n">02</span>
           <span class="dfor__h">Дизайнерам и архитекторам</span>
           <span class="dfor__t">Образцы под проект, семинары фабрик и каталог специалистов, где вас находят заказчики.</span>
           <span class="dbtn dbtn--ghost">Раздел для дизайнеров</span>
         </span>
       </a>
       <a href="categories.html" class="dfor__c">
-        <span class="dfor__media"><img class="jimg" src="img/pr-3.webp" alt="" loading="lazy"><span class="dfor__n">03</span></span>
+        <span class="dfor__media"><img class="jimg" src="img/pr-3.webp" alt="" loading="lazy"></span>
         <span class="dfor__body">
+          <span class="dfor__n">03</span>
           <span class="dfor__h">Подрядчикам и бригадам</span>
           <span class="dfor__t">Отделка, инженерия и комплектующие для объекта — без разъездов по городу.</span>
           <span class="dbtn dbtn--ghost">Все направления</span>
@@ -107,16 +110,14 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <!-- цифры 150+, 24 000 м² и 20 лет — из прототипа (вступление, «Аренда»),
          в ТЗ их нет: подтвердить у заказчика -->
     <div class="dwhy">
-      <article class="dwhy__c dwhy__c--photo dwhy__c--lg">
-        <img class="jimg" src="img/hero-light.webp" alt="" loading="lazy">
-        <div class="dwhy__body">
-          <div class="dwhy__nums">
-            <p><span class="dwhy__big">150<span>+</span></span><span class="dwhy__k">магазинов и шоурумов</span></p>
-            <p><span class="dwhy__big">24 000</span><span class="dwhy__k">м² торговых площадей</span></p>
-          </div>
-          <h3 class="dwhy__h">Всё в одном здании</h3>
-          <p class="dwhy__t">Отделка, плитка, двери, свет и мебель под одной крышей: сравнить и заказать за один выезд, а не за пять.</p>
+      <figure class="dwhy__photo"><img class="jimg" src="img/hero-light.webp" alt="Галерея шоурумов ТК «Ланской»" loading="lazy"></figure>
+      <article class="dwhy__c dwhy__c--plain">
+        <div class="dwhy__nums">
+          <p><span class="dwhy__big">150<span>+</span></span><span class="dwhy__k">магазинов</span></p>
+          <p><span class="dwhy__big">24 000</span><span class="dwhy__k">м² площадей</span></p>
         </div>
+        <h3 class="dwhy__h">Всё в одном здании</h3>
+        <p class="dwhy__t">Отделка, плитка, двери, свет и мебель: сравнить и заказать за один выезд.</p>
       </article>
       <article class="dwhy__c dwhy__c--navy">
         <p class="dwhy__big dwhy__big--solo">20</p>
@@ -124,20 +125,15 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <h3 class="dwhy__h">Проверенное место</h3>
         <p class="dwhy__t">Комплекс работает два десятилетия — многие магазины здесь с первых лет.</p>
       </article>
-      <article class="dwhy__c dwhy__c--photo">
-        <img class="jimg" src="img/ev-2.webp" alt="" loading="lazy">
-        <div class="dwhy__body">
-          <h3 class="dwhy__h">Среда для профессионалов</h3>
-          <p class="dwhy__t">Семинары фабрик, лекции, мастер-классы и каталог дизайнеров.</p>
-        </div>
+      <article class="dwhy__c dwhy__c--navy dwhy__c--pro">
+        <span class="dwhy__ic dwhy__ic--pro" aria-hidden="true"></span>
+        <h3 class="dwhy__h">Среда для профессионалов</h3>
+        <p class="dwhy__t">Семинары фабрик, лекции, мастер-классы и каталог дизайнеров.</p>
       </article>
       <!-- состав услуг — как полоса услуг на главной (брендбук, стр. 36) -->
-      <article class="dwhy__c dwhy__c--navy dwhy__c--wide">
-        <div class="dwhy__body">
-          <h3 class="dwhy__h">Сервис под ключ</h3>
-          <p class="dwhy__t">Не только купить, но и спроектировать, привезти и смонтировать.</p>
-        </div>
-        <ul class="dwhy__serv dwhy__body">
+      <article class="dwhy__c dwhy__c--plain">
+        <h3 class="dwhy__h">Сервис под ключ</h3>
+        <ul class="dwhy__serv">
           <li><span class="dwhy__ic dwhy__ic--design" aria-hidden="true"></span>Дизайн-проект бесплатно</li>
           <li><span class="dwhy__ic dwhy__ic--swatch" aria-hidden="true"></span>Подбор материалов</li>
           <li><span class="dwhy__ic dwhy__ic--truck" aria-hidden="true"></span>Доставка и монтаж</li>
