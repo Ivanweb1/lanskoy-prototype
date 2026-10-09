@@ -1298,6 +1298,11 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
    кадр со срезом уходит в правый край */
 .dabout-hero .dpromo__in{min-height:clamp(460px,44vw,620px)}
 .dabout-hero__h1{margin:0 0 22px}
+/* текст и кнопки — одной группой по центру кадра: при разносе по краям
+   между ними оставалась пустота с линией посередине */
+.dabout-hero .dpromo__main{justify-content:center;gap:40px}
+.dabout-hero .dpromo__bottom{padding-top:0;border-top:0}
+@media (max-width:1000px){.dabout-hero .dpromo__main{gap:28px}}
 
 /* цифры комплекса — строка под первым экраном, как линейка «Аренды» */
 .dstats{background:var(--s-bg);border-bottom:1px solid var(--s-line)}
@@ -1348,6 +1353,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dlevel:hover .dlevel__h{color:var(--s-accent-ink)}
 
 /* полоса удобств — та же, что услуги под первым экраном главной */
+/* полоса упирается в следующую секцию — без нижнего поля пустой подложки */
+.dabout-serv{padding-bottom:0}
 .dserv--about{border-top:1px solid var(--s-line);border-bottom:1px solid var(--s-line);background:var(--s-bg)}
 .dserv--about .dserv__in{grid-template-columns:repeat(6,minmax(0,1fr))}
 .dserv__ic--clock{-webkit-mask-image:var(--i-clock);mask-image:var(--i-clock)}
@@ -1363,7 +1370,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   --i-access:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.1'%3E%3Ccircle cx='11' cy='4' r='1.6'/%3E%3Cpath d='M11 7v6h5l2 6M11 10h5'/%3E%3Cpath d='M8 12a5 5 0 1 0 6 7'/%3E%3C/svg%3E");
 }
 
-/* мозаика фото: два крупных кадра и три малых */
+/* мозаика фото: два крупных кадра и два малых — ровно заполняют сетку 4×2 */
 .dmosaic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(160px,15vw,240px);gap:8px}
 .dmosaic__i{position:relative;overflow:hidden;background:var(--s-bg)}
 .dmosaic__i--a{grid-column:span 2;grid-row:span 2}
