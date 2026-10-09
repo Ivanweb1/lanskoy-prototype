@@ -980,6 +980,28 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dselect select{position:absolute;inset:0;width:100%;height:100%;opacity:0}
 .dselect__val{font-size:14px;color:var(--s-fg);white-space:nowrap}
 
+/* ---------- выпадающий список в стиле сайта (design.js, .dd) ----------
+   Кнопка поверх поля, список — карточкой под ним: рамка и фон страницы,
+   выбранный пункт отмечен медной чертой слева, наведение — подложкой */
+.dd{position:relative}
+.dd select{pointer-events:none}
+.dd__btn{position:absolute;inset:0;z-index:1;width:100%;height:100%;margin:0;padding:0;border:0;background:none;cursor:pointer}
+.dd__btn:focus-visible{outline:2px solid var(--s-accent);outline-offset:2px}
+.dd.is-open{border-color:var(--s-accent)}
+.dd.is-open::after{transform:rotate(180deg)}
+.dd__list{position:absolute;z-index:30;left:-1px;top:calc(100% + 6px);min-width:calc(100% + 2px);max-height:320px;overflow-y:auto;
+  margin:0;padding:6px 0;list-style:none;background:var(--s-bg);border:1px solid var(--s-line-strong);
+  box-shadow:0 18px 40px -18px rgba(1,20,39,.35)}
+[data-theme="dark"] .dd__list{background:var(--b-navy);box-shadow:0 18px 40px -18px rgba(0,0,0,.7)}
+.dd__opt{position:relative;padding:11px 20px 11px 22px;font-family:var(--d-sans);font-size:14px;line-height:1.35;color:var(--s-fg);white-space:nowrap;cursor:pointer}
+.dd__opt.is-cur{background:var(--s-plate)}
+.dd__opt.is-sel{color:var(--s-accent-ink);font-weight:600}
+.dd__opt.is-sel::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:2px;background:var(--s-accent)}
+.dform__sel.dd::after{transition:transform .2s}
+.dform__sel.is-open select{border-color:var(--s-accent)}
+.dform__sel.is-open::after{transform:rotate(180deg)}
+.dselect::after{transition:transform .2s}
+
 .dfilters__search{margin-left:auto;width:360px}
 .dfilters.is-selects .dfilters__count{flex-basis:100%;order:3;margin:4px 0 0;padding-top:20px;border-top:1px solid var(--s-line)}
 /* без поиска (афиша) счётчик встаёт в ту же строку справа */
@@ -1310,8 +1332,9 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 /* числа скрыты — элементы остаются для счётчика фильтра (content.js) */
 .dmedia__item b{display:none}
 .dmedia__item:hover{color:var(--s-fg)}
-.dmedia__item.is-active{background:var(--s-fg);color:var(--s-bg)}
+.dmedia__item.is-active,.dmedia__item.is-active:hover{background:var(--s-fg);color:var(--s-bg);cursor:default}
 .dfilters:has(.dmedia) .dfilters__selects{margin-left:auto}
+.dfilters:has(.dmedia) .dd__list{left:auto;right:-1px}
 @media (max-width:760px){
   .dmedia{display:flex;width:100%}
   .dmedia__item{flex:1;justify-content:center;padding:0 12px}

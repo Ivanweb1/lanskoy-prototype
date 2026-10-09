@@ -812,6 +812,116 @@
   });
 })();
 
+/* ---------- выпадающие списки в стиле сайта ----------
+   Раскрытый список у <select> рисует браузер/ОС (системный шрифт, синяя
+   подсветка) — стилями его не изменить. Поэтому поверх каждого списка
+   строим свой: кнопка + список вариантов. Настоящий <select> остаётся
+   скрытым и синхронным: фильтры и формы работают с ним как раньше.
+   Клавиатура: Enter/Пробел/↓ — открыть, ↑↓ — выбор, Enter — подтвердить,
+   Esc — закрыть; клик вне списка закрывает */
+(function () {
+  function enhance(sel, host) {
+    if (sel.dataset.dd) return;
+    sel.dataset.dd = '1';
+    sel.tabIndex = -1;
+    sel.setAttribute('aria-hidden', 'true');
+    host.classList.add('dd');
+    var list = document.createElement('ul');
+    list.className = 'dd__list';
+    list.setAttribute('role', 'listbox');
+    list.hidden = true;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'dd__btn';
+    btn.setAttribute('aria-haspopup', 'listbox');
+    btn.setAttribute('aria-expanded', 'false');
+    var lab = host.querySelector('.dselect__lab, .fld__lab');
+    btn.setAttribute('aria-label', (lab ? lab.textContent + ': ' : '') + 'выбрать');
+    host.appendChild(btn);
+    host.appendChild(list);
+    var cur = 0;
+
+    function build() {
+      list.innerHTML = '';
+      [].forEach.call(sel.options, function (o, i) {
+        var li = document.createElement('li');
+        li.className = 'dd__opt';
+        li.setAttribute('role', 'option');
+        li.textContent = o.textContent;
+        li.dataset.i = i;
+        list.appendChild(li);
+      });
+    }
+    function mark() {
+      [].forEach.call(list.children, function (li, i) {
+        li.classList.toggle('is-sel', i === sel.selectedIndex);
+        li.classList.toggle('is-cur', i === cur);
+        li.setAttribute('aria-selected', i === sel.selectedIndex ? 'true' : 'false');
+      });
+    }
+    function open() {
+      document.dispatchEvent(new CustomEvent('dd:close'));
+      cur = sel.selectedIndex;
+      mark();
+      list.hidden = false;
+      host.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    function close() {
+      list.hidden = true;
+      host.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    function pick(i) {
+      if (i !== sel.selectedIndex) {
+        sel.selectedIndex = i;
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      close();
+      btn.focus();
+    }
+    build();
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      list.hidden ? open() : close();
+    });
+    list.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    list.addEventListener('click', function (e) {
+      var li = e.target.closest('.dd__opt');
+      if (li) pick(+li.dataset.i);
+    });
+    list.addEventListener('mousemove', function (e) {
+      var li = e.target.closest('.dd__opt');
+      if (li && +li.dataset.i !== cur) { cur = +li.dataset.i; mark(); }
+    });
+    btn.addEventListener('keydown', function (e) {
+      var n = sel.options.length;
+      if (list.hidden) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); open(); }
+        return;
+      }
+      if (e.key === 'ArrowDown') { e.preventDefault(); cur = (cur + 1) % n; mark(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); cur = (cur - 1 + n) % n; mark(); }
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(cur); }
+      else if (e.key === 'Escape' || e.key === 'Tab') close();
+    });
+    document.addEventListener('click', function (e) { if (!host.contains(e.target)) close(); });
+    document.addEventListener('dd:close', close);
+    /* «label» вокруг списка фильтра: клик по подписи открывает список */
+    host.addEventListener('click', function (e) {
+      if (e.target === btn || btn.contains(e.target) || list.contains(e.target)) return;
+      e.preventDefault();
+      list.hidden ? open() : close();
+    });
+  }
+  [].forEach.call(document.querySelectorAll('.dselect'), function (w) {
+    var s = w.querySelector('select'); if (s) enhance(s, w);
+  });
+  [].forEach.call(document.querySelectorAll('.dform__sel'), function (w) {
+    var s = w.querySelector('select'); if (s) enhance(s, w);
+  });
+})();
+
 /* ---------- экран «отправлено» у форм ----------
    В прототипе состояния переключала служебная панель, в дизайне её нет:
    если проверка (events.js) прошла без ошибок, прячем форму и показываем
