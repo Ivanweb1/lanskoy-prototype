@@ -139,7 +139,10 @@ chipFilter({
 
 /* ---------- галерея и видео: переключатель «Фото / Видео» ----------
    п. 5.1 №9 — один пункт карты сайта, а не два отдельных URL, поэтому
-   вкладки переключают видимость секции на этой же странице */
+   переключатель меняет видимость секции на этой же странице. Сам
+   переключатель стоит в начале строки фильтров видимой секции; вкладка
+   пишется в адрес (#video), чтобы ссылкой можно было поделиться и
+   работала кнопка «Назад» */
 (function () {
   var tabs = document.getElementById('mediaTabs');
   if (!tabs) return;
@@ -147,18 +150,31 @@ chipFilter({
 
   function show(media) {
     Object.keys(views).forEach(function (k) { views[k].hidden = k !== media; });
-    tabs.querySelectorAll('.viewtabs__item').forEach(function (b) {
-      b.classList.toggle('is-active', b.dataset.media === media);
+    tabs.querySelectorAll('[data-media]').forEach(function (b) {
+      var on = b.dataset.media === media;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
     });
+    var bar = views[media].querySelector('.dfilters');
+    if (bar && tabs.parentNode !== bar) bar.insertBefore(tabs, bar.firstChild);
   }
 
   tabs.addEventListener('click', function (e) {
     var b = e.target.closest('[data-media]');
-    if (b) show(b.dataset.media);
+    if (!b) return;
+    var media = b.dataset.media;
+    if ((location.hash === '#video') !== (media === 'video')) {
+      history.pushState(null, '', media === 'video' ? '#video' : location.pathname + location.search);
+    }
+    show(media);
   });
 
-  var want = new URLSearchParams(location.search).get('view');
-  if (want === 'video') show('video');
+  function fromUrl() {
+    var v = location.hash === '#video' || new URLSearchParams(location.search).get('view') === 'video';
+    show(v ? 'video' : 'photo');
+  }
+  window.addEventListener('popstate', fromUrl);
+  fromUrl();
 })();
 
 /* ---------- оглавление статьи ---------- */
