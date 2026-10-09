@@ -1209,6 +1209,18 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dnum__box{border:1px solid rgba(196,154,108,.4);padding:40px 36px;text-align:center}
 .dnum__sample{font-family:var(--d-serif);font-weight:600;font-size:clamp(72px,8vw,120px);line-height:1;color:var(--b-copper);margin:0}
 .dnum__cap{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,244,237,.7);margin:14px 0 28px}
+/* левая колонка — та же высота, что у разбора номера справа:
+   шаги заполняют середину, кнопка внизу на уровне нижней кромки рамки */
+.dnum .dnum__in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
+.dnum__text{display:flex;flex-direction:column;align-items:flex-start}
+.dnum__text .rblock__lead{margin-bottom:28px}
+.dsteps{align-self:stretch;margin:0 0 32px;padding:0;list-style:none;counter-reset:none}
+.dsteps li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:baseline;padding:14px 0;border-top:1px solid rgba(196,154,108,.22);font-size:15px;line-height:1.55;color:rgba(246,244,237,.72)}
+.dsteps li:last-child{border-bottom:1px solid rgba(196,154,108,.22)}
+.dsteps b{font-family:var(--d-serif);font-weight:600;font-size:20px;color:var(--b-copper)}
+.dsteps strong{font-weight:600;color:var(--b-cream)}
+.dnum__text .dbtn{margin-top:auto}
+@media (max-width:1000px){.dnum .dnum__in{grid-template-columns:1fr}.dnum__text .dbtn{margin-top:0}}
 /* «Как найти секцию»: номер разобран по частям — буква и число крупно,
    под каждой подпись, что она значит; зоны — плашками */
 .dcode{padding:40px;border:1px solid rgba(196,154,108,.35);background:rgba(246,244,237,.03)}
@@ -1430,6 +1442,9 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dwhy__c{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;margin:0;padding:28px}
 .dwhy__c--lg{grid-column:span 2;grid-row:span 2;padding:40px}
 .dwhy__c--wide{grid-column:span 2;justify-content:space-between;gap:24px}
+/* широкая карточка — тем же языком, что соседние: кадр под синим, затемнение
+   слева направо, чтобы текст и иконки читались по всей ширине */
+.dwhy__c--wide.dwhy__c--photo::after{background:linear-gradient(90deg,rgba(1,20,39,.94) 0%,rgba(1,20,39,.82) 55%,rgba(1,20,39,.6) 100%)}
 .dwhy__c--photo{color:var(--b-cream);background:var(--b-navy)}
 .dwhy__c--photo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(1,20,39,0) 25%,rgba(1,20,39,.9) 100%)}
 .dwhy__c--lg::after{background:linear-gradient(180deg,rgba(1,20,39,0) 15%,rgba(1,20,39,.55) 45%,rgba(1,20,39,.94) 100%)}
@@ -1451,10 +1466,10 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dwhy__t{font-size:14px;line-height:1.55;margin:0;max-width:44ch;color:rgba(246,244,237,.78)}
 .dwhy__c--plain .dwhy__t{color:var(--s-fg-soft)}
 /* услуги: иконки полосы услуг главной, четыре в ряд */
-.dwhy__serv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:20px 0 0;border-top:1px solid var(--s-line);list-style:none}
-.dwhy__serv li{display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.4;color:var(--s-fg)}
+.dwhy__serv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:20px 0 0;border-top:1px solid rgba(196,154,108,.3);list-style:none}
+.dwhy__serv li{display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.4;color:var(--b-cream)}
 /* иконки услуг — Lucide (ISC): pencil-ruler, swatch-book, truck, package */
-.dwhy__ic{display:block;width:36px;height:36px;background:var(--s-accent);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.dwhy__ic{display:block;width:36px;height:36px;background:var(--b-copper);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
 .dwhy__ic--design{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13'/%3E%3Cpath d='m8 6 2-2'/%3E%3Cpath d='m18 16 2-2'/%3E%3Cpath d='m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17'/%3E%3Cpath d='M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z'/%3E%3Cpath d='m15 5 4 4'/%3E%3C/svg%3E")}
 .dwhy__ic--swatch{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z'/%3E%3Cpath d='M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7'/%3E%3Cpath d='M7 17h.01'/%3E%3Cpath d='m11 8 2.3-2.3a2.4 2.4 0 0 1 3.404.004L18.6 7.6a2.4 2.4 0 0 1 .026 3.434L9.9 19.8'/%3E%3C/svg%3E")}
 .dwhy__ic--truck{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2'/%3E%3Cpath d='M15 18H9'/%3E%3Cpath d='M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14'/%3E%3Ccircle cx='17' cy='18' r='2'/%3E%3Ccircle cx='7' cy='18' r='2'/%3E%3C/svg%3E")}

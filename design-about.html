@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=79">
+<link rel="stylesheet" href="design-pages.css?v=81">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -132,12 +132,13 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
       </article>
       <!-- состав услуг — как полоса услуг на главной (брендбук, стр. 36) -->
-      <article class="dwhy__c dwhy__c--plain dwhy__c--wide">
-        <div class="dwhy__wide-head">
+      <article class="dwhy__c dwhy__c--photo dwhy__c--wide">
+        <img class="jimg" src="img/shops/vladart/2.webp" alt="" loading="lazy">
+        <div class="dwhy__body">
           <h3 class="dwhy__h">Сервис под ключ</h3>
           <p class="dwhy__t">Не только купить, но и спроектировать, привезти и смонтировать.</p>
         </div>
-        <ul class="dwhy__serv">
+        <ul class="dwhy__serv dwhy__body">
           <li><span class="dwhy__ic dwhy__ic--design" aria-hidden="true"></span>Дизайн-проект бесплатно</li>
           <li><span class="dwhy__ic dwhy__ic--swatch" aria-hidden="true"></span>Подбор материалов</li>
           <li><span class="dwhy__ic dwhy__ic--truck" aria-hidden="true"></span>Доставка и монтаж</li>
@@ -195,10 +196,15 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <!-- ================= НУМЕРАЦИЯ ================= -->
 <section class="dnum">
   <div class="wrap dnum__in">
-    <div>
+    <div class="dnum__text">
       <p class="rblock__kicker">Навигация</p>
       <h2 class="rblock__h2">Как найти секцию</h2>
       <p class="rblock__lead">У каждой секции короткий номер. Он один и тот же на указателях в здании, в поиске на сайте и на схеме этажей.</p>
+      <ol class="dsteps">
+        <li><b>01</b><span><strong>Узнайте номер</strong> — в карточке магазина или через поиск на сайте</span></li>
+        <li><b>02</b><span><strong>Поднимитесь на этаж</strong> — его подскажет буква в номере</span></li>
+        <li><b>03</b><span><strong>Идите по указателям</strong> — те же номера на стойках внутри здания</span></li>
+      </ol>
       <a href="floors.html" class="dbtn dbtn--fill">Найти секцию на схеме</a>
     </div>
     <div class="dcode" role="img" aria-label="Как читать номер секции: А10 — первый этаж, помещение 10">
