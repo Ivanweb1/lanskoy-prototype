@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=121">
+<link rel="stylesheet" href="design-pages.css?v=122">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -36,10 +36,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <h1 class="dpage__h1">Афиша</h1>
         <p class="dpage__lead">Мастер-классы, лекции и семинары в комплексе</p>
       </div>
-      <ul class="viewtabs dtabs" id="eventTabs">
-        <li><button type="button" class="viewtabs__item dtabs__item is-active" data-view="upcoming">Ближайшие</button></li>
-        <li><button type="button" class="viewtabs__item dtabs__item" data-view="archive">Архив и отчёты</button></li>
-      </ul>
     </div>
   </div>
 </section>
@@ -48,6 +44,11 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <section class="dcat">
   <div class="wrap">
     <div class="evfilters dfilters" id="evFilters">
+      <!-- переключатель «Ближайшие / Архив» — слева в строке фильтров, как в галерее -->
+      <div class="dmedia" id="eventTabs" role="tablist" aria-label="События">
+        <button type="button" class="dmedia__item viewtabs__item is-active" data-view="upcoming" role="tab" aria-selected="true">Ближайшие</button>
+        <button type="button" class="dmedia__item viewtabs__item" data-view="archive" role="tab" aria-selected="false">Архив и отчёты</button>
+      </div>
       <div class="evfilters__row dfilters__row">
         <span class="evfilters__label dfilters__label">Кому</span>
         <button type="button" class="chip dchip is-active" data-aud="all">Всем</button>
@@ -62,7 +63,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <button type="button" class="chip dchip" data-type="workshop">Мастер-класс</button>
         <button type="button" class="chip dchip" data-type="fest">Праздник</button>
       </div>
-      <p class="evfilters__count dfilters__count"><b id="evCount">4</b> <span id="evCountWord">события</span></p>
     </div>
 
     <div class="evlist delist" id="viewUpcoming">
@@ -157,7 +157,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="events.js?v=73"></script>
+<script src="events.js?v=74"></script>
 <script src="design.js?v=77"></script>
 </body>
 </html>

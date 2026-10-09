@@ -51,13 +51,29 @@
     document.getElementById('evCountWord').textContent = word;
   }
 
+  function setView(v) {
+    view = v;
+    tabs.querySelectorAll('.viewtabs__item').forEach(function (i) {
+      var on = i.dataset.view === v;
+      i.classList.toggle('is-active', on);
+      if (i.hasAttribute('aria-selected')) i.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    apply();
+  }
+
+  /* вкладка пишется в адрес (#archive): ссылкой можно поделиться,
+     работает кнопка «Назад» */
   tabs.addEventListener('click', function (e) {
     var b = e.target.closest('.viewtabs__item');
     if (!b) return;
-    tabs.querySelectorAll('.viewtabs__item').forEach(function (i) { i.classList.remove('is-active'); });
-    b.classList.add('is-active');
-    view = b.dataset.view;
-    apply();
+    var v = b.dataset.view;
+    if ((location.hash === '#archive') !== (v === 'archive')) {
+      history.pushState(null, '', v === 'archive' ? '#archive' : location.pathname + location.search);
+    }
+    setView(v);
+  });
+  window.addEventListener('popstate', function () {
+    setView(location.hash === '#archive' ? 'archive' : 'upcoming');
   });
 
   filters.addEventListener('click', function (e) {
@@ -87,7 +103,8 @@
     });
   });
 
-  apply();
+  if (location.hash === '#archive') setView('archive');
+  else apply();
 })();
 
 /* ---------- состояния страницы события ---------- */
