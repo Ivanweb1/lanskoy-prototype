@@ -1223,8 +1223,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 @media (max-width:1000px){.dnum .dnum__in{grid-template-columns:1fr}.dnum__text .dbtn{margin-top:0}}
 /* «Как найти секцию»: номер разобран по частям — буква и число крупно,
    под каждой подпись, что она значит */
-.dcode{display:flex;flex-direction:column;justify-content:center;padding:40px;border:1px solid rgba(196,154,108,.35);background:rgba(246,244,237,.03)}
-.dcode__k{margin:0 0 24px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--b-copper)}
+.dcode{align-self:center;padding:36px 40px 40px;border:1px solid rgba(196,154,108,.35);background:rgba(246,244,237,.03)}
+.dcode__k{margin:0 0 20px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--b-copper)}
 .dcode__parts{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
 .dcode__part{display:flex;flex-direction:column;gap:10px;padding:0 24px 0 0}
 .dcode__part+.dcode__part{padding:0 0 0 28px;border-left:1px solid rgba(196,154,108,.3)}
