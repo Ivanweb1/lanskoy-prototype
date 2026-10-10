@@ -3,9 +3,9 @@
 «Готово» — Иван принял страницу по дизайну, правки только по запросу.
 «В работе» — дизайн-версия собрана, но ещё не принята.
 
-Обновлено: 10.10.2026.
+Обновлено: 11.10.2026.
 
-## Готово (14)
+## Готово (16)
 
 | Страница | Файл |
 |---|---|
@@ -23,8 +23,10 @@
 | Поиск | design-search.html |
 | Афиша | design-events.html |
 | Событие | design-event.html |
+| Журнал | design-journal.html |
+| Статья | design-article.html |
 
-## В работе (13)
+## В работе (11)
 
 | Раздел | Страница | Файл |
 |---|---|---|
@@ -35,8 +37,6 @@
 | | Бренды | design-brands.html |
 | | Бренд | design-brand.html |
 | | Схема этажей | design-floors.html |
-| Журнал | Журнал | design-journal.html |
-| | Статья | design-article.html |
 | Дизайнерам | Дизайнерам | design-designers.html |
 | | Дизайнер | design-designer.html |
 | | Анкета дизайнера | design-designer-form.html |

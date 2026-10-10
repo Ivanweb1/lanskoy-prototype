@@ -1122,7 +1122,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dart__row+.dart__row{margin-top:0;border-top:0;padding-top:12px}
 .dart__row .dfilters__label{margin-right:8px}
 .dart__row button.dchip{cursor:pointer;background:none}
-.dart__tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0}
 
 /* фото в теле статьи: подпись мелким капсом под кадром */
 .dfig{margin:40px 0 44px}
