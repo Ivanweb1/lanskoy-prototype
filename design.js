@@ -1400,6 +1400,7 @@
     if (!box) return;
     var rows = [].slice.call(box.querySelectorAll(':scope > .evrow[data-date]'));
     rows.sort(function (a, b) { return a.getAttribute('data-date') < b.getAttribute('data-date') ? -v[1] : v[1]; });
-    rows.forEach(function (r) { box.appendChild(r); });
+    var tail = box.querySelector(':scope > .results__more');
+    rows.forEach(function (r) { box.insertBefore(r, tail); });
   });
 })();
