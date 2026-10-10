@@ -2563,3 +2563,24 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .erow__body .derow__act .erow__cta.erow__cta--more{align-self:center;margin:0;justify-content:flex-start;width:auto}
   .erow__body .derow__act{align-items:center}
 }
+
+/* строка события на телефоне — карточкой во всю ширину: фото сверху,
+   дата строкой («28 августа · 15:00»), метки, название, описание в две
+   строки, место и места одной строкой, кнопки рядом. Колонка даты слева
+   отнимала треть ширины — из-за неё всё и переносилось */
+@media (max-width:760px){
+  .derow,.derow:nth-child(odd),.derow:nth-child(even),.derow:last-child:nth-child(odd){grid-template-columns:minmax(0,1fr);gap:14px;padding:28px 0}
+  .derow .erow__media{order:0;grid-column:1;margin:0}
+  .derow .erow__date{order:1;flex-direction:row;align-items:baseline;gap:8px;padding-left:12px;align-self:start}
+  .derow .erow__date b{font-size:22px;font-variant-numeric:lining-nums}
+  .derow .derow__time{margin:0;padding:0;border:0;width:auto}
+  .derow .derow__time::before{content:"·";margin-right:8px;color:var(--s-fg-soft)}
+  .derow .erow__body{order:2;grid-column:1}
+  .derow .derow__desc{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow:hidden}
+  .derow .erow__meta{flex-direction:row;flex-wrap:wrap;align-items:center;gap:2px 0}
+  .derow .erow__meta .erow__dot{display:inline-block}
+  .erow__body .derow__act{flex-wrap:nowrap;gap:24px}
+}
+@media (max-width:760px){
+  .derow .erow__meta>span.erow__dot{margin:0 10px}
+}
