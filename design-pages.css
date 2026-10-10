@@ -2154,3 +2154,11 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
    даже если заголовок соседней карточки в две строки */
 .dpgrid .pcard__body{flex:1}
 .dpgrid .pcard__meta{margin-top:auto}
+
+/* описание акции: подзаголовки и списки внутри текста */
+.dprose--promo h3{font-family:var(--d-serif);font-size:21px;font-weight:600;line-height:1.3;color:var(--s-fg);margin:36px 0 14px}
+.dprose--promo ul,.dprose--promo ol{max-width:720px;margin:0 0 16px;padding:0;list-style:none;counter-reset:dp}
+.dprose--promo li{position:relative;padding-left:28px;margin-bottom:10px;font-size:16px;line-height:1.65;color:var(--s-fg)}
+.dprose--promo ul li::before{content:"";position:absolute;left:6px;top:.75em;width:6px;height:6px;border-radius:50%;background:var(--s-accent)}
+.dprose--promo ol li{counter-increment:dp}
+.dprose--promo ol li::before{content:counter(dp);position:absolute;left:2px;top:0;font-size:16px;font-weight:600;line-height:1.65;color:var(--s-accent-ink)}
