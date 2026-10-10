@@ -1404,3 +1404,21 @@
     rows.forEach(function (r) { box.insertBefore(r, tail); });
   });
 })();
+
+/* ---------- страница события: состояние из адреса ----------
+   Панель справа: open (регистрация), full (мест нет), free (вход
+   свободный), past. Афиша ведёт сюда с ?state=…, чтобы «Подробнее»
+   у события без регистрации не открывало форму регистрации */
+(function () {
+  if (!document.getElementById('regForm')) return;
+  var box = document.querySelector('aside[data-states]');
+  var st = (location.search.match(/[?&]state=(\w+)/) || [])[1];
+  if (!box || !st || !box.querySelector('.st-' + st)) return;
+  [].forEach.call(box.querySelectorAll('[class*="st-"]'), function (el) {
+    var m = el.className.match(/\bst-(\w+)/);
+    if (m) el.hidden = m[1] !== st;
+  });
+  var part = document.querySelector('[data-part]');
+  if (part && st === 'free') part.textContent = 'Свободный вход, без регистрации';
+  if (part && st === 'full') part.textContent = 'По регистрации — мест нет';
+})();
