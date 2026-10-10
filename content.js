@@ -104,7 +104,7 @@ chipFilter({
 chipFilter({
   grid: 'desGrid', item: '.descard', filters: 'desFilters',
   empty: 'desEmpty', reset: 'data-desreset',
-  count: 'desCount', countWord: 'desCountWord',
+  search: 'desSearch', count: 'desCount', countWord: 'desCountWord',
   words: ['специалист', 'специалиста', 'специалистов']
 });
 

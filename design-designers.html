@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=217">
+<link rel="stylesheet" href="design-pages.css?v=221">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -73,7 +73,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <p class="ddo__t">Семинары фабрик, разборы кейсов, техническая документация. Не маркетинг, а рабочие детали — вроде работы в сегменте HoReCa.</p>
         <span class="dlink ddo__go">Ближайшие события</span>
       </a>
-      <a class="ddo__card" href="#catalog">
+      <a class="ddo__card" href="design-designers-catalog.html">
         <span class="ddo__ph"><img class="jimg" src="img/designers/litvyakova/2.webp" alt="" loading="lazy"></span>
         <span class="ddo__n">03</span>
         <h3 class="ddo__h">Каталог дизайнеров</h3>
@@ -100,79 +100,92 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 </section>
 
 <!-- ================= КАТАЛОГ ДИЗАЙНЕРОВ ================= -->
+<!-- на лендинге — коротко: четыре карточки и переход в полный каталог (отдельная страница для покупателей) -->
 <section class="sect dsect--alt" id="catalog">
   <div class="wrap">
     <div class="dhead">
       <h2 class="dhead__h2">Каталог дизайнеров</h2>
       <a href="designer-form.html" class="dlink">Заполнить анкету</a>
     </div>
-    <div class="evfilters dfilters" id="desFilters">
-      <div class="evfilters__row dfilters__row">
-        <span class="evfilters__label dfilters__label">Направление</span>
-        <button type="button" class="chip dchip is-active" data-spec="all">Все</button>
-        <button type="button" class="chip dchip" data-spec="interior">Дизайн интерьеров</button>
-        <button type="button" class="chip dchip" data-spec="arch">Архитектура</button>
-        <button type="button" class="chip dchip" data-spec="light">Свет</button>
-      </div>
-      <p class="evfilters__count dfilters__count"><b id="desCount">8</b> <span id="desCountWord">специалистов</span></p>
+    <div class="ddess ddess--row">
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">CD</span><img class="jimg" src="img/designers/cards/cartelle.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">CARTELLE DESIGN</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 2 года</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000001">+7 (900) 000-00-01</a></li>
+            <li><a href="mailto:cartelle@example.com">cartelle@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="CARTELLE DESIGN в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="CARTELLE DESIGN в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">ЕЛ</span><img class="jimg" src="img/designers/litvyakova/1.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Елена Литвякова</a></h3>
+          <p class="ddes__s">Дизайнер интерьеров</p>
+          <p class="ddes__e">Опыт 10 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000002">+7 (900) 000-00-02</a></li>
+            <li><a href="mailto:litvyakova@example.com">litvyakova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Елена Литвякова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Елена Литвякова в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="arch">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">АС</span><img class="jimg" src="img/designers/cards/sokolova.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Анна Соколова</a></h3>
+          <p class="ddes__s">Архитектура и планировочные решения</p>
+          <p class="ddes__e">Опыт 7 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000003">+7 (900) 000-00-03</a></li>
+            <li><a href="mailto:sokolova@example.com">sokolova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Анна Соколова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Анна Соколова в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="light">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">МВ</span><img class="jimg" src="img/designers/cards/volkov.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Максим Волков</a></h3>
+          <p class="ddes__s">Светодизайн</p>
+          <p class="ddes__e">Опыт 5 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000004">+7 (900) 000-00-04</a></li>
+            <li><a href="mailto:volkov@example.com">volkov@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Максим Волков в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Максим Волков в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
     </div>
-    <!-- карточка: фото работы из портфолио (ТЗ 6.5), пока файла нет — инициалы на подложке.
-         Карточки 3–8 демонстрационные: в бою каталог наполняет администрация по анкетам -->
-    <div class="ddess" id="desGrid">
-      <a href="designer.html" class="descard ddes" data-spec="interior">
-        <span class="ddes__ph"><span class="ddes__ini" aria-hidden="true">CD</span><img class="jimg" src="img/designers/cards/cartelle.webp" alt="" loading="lazy"></span>
-        <span class="ddes__n">CARTELLE DESIGN</span>
-        <span class="ddes__s">Дизайн интерьеров</span>
-        <span class="ddes__e">Опыт 2 года</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="interior">
-        <span class="ddes__ph"><span class="ddes__ini" aria-hidden="true">ЕЛ</span><img class="jimg" src="img/designers/litvyakova/1.webp" alt="" loading="lazy"></span>
-        <span class="ddes__n">Елена Литвякова</span>
-        <span class="ddes__s">Дизайнер интерьеров</span>
-        <span class="ddes__e">Опыт 10 лет</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="arch">
-        <span class="ddes__ph"><span class="ddes__ini" aria-hidden="true">АС</span><img class="jimg" src="img/designers/cards/sokolova.webp" alt="" loading="lazy"></span>
-        <span class="ddes__n">Анна Соколова</span>
-        <span class="ddes__s">Архитектура и планировочные решения</span>
-        <span class="ddes__e">Опыт 7 лет</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="light">
-        <span class="ddes__ph"><span class="ddes__ini" aria-hidden="true">МВ</span><img class="jimg" src="img/designers/cards/volkov.webp" alt="" loading="lazy"></span>
-        <span class="ddes__n">Максим Волков</span>
-        <span class="ddes__s">Светодизайн</span>
-        <span class="ddes__e">Опыт 5 лет</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="interior">
-        <span class="ddes__ph"><span class="ddes__ini" aria-hidden="true">ИБ</span><img class="jimg" src="img/designers/cards/belova.webp" alt="" loading="lazy"></span>
-        <span class="ddes__n">Ирина Белова</span>
-        <span class="ddes__s">Дизайн интерьеров</span>
-        <span class="ddes__e">Опыт 8 лет</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="arch">
-        <span class="ddes__ph"><span class="ddes__ini" aria-hidden="true">ДО</span><img class="jimg" src="img/designers/cards/orlov.webp" alt="" loading="lazy"></span>
-        <span class="ddes__n">Дмитрий Орлов</span>
-        <span class="ddes__s">Архитектура и планировочные решения</span>
-        <span class="ddes__e">Опыт 12 лет</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="interior">
-        <span class="ddes__ph"><span class="ddes__ini" aria-hidden="true">ОМ</span><img class="jimg" src="img/designers/cards/mironova.webp" alt="" loading="lazy"></span>
-        <span class="ddes__n">Ольга Миронова</span>
-        <span class="ddes__s">Дизайн интерьеров</span>
-        <span class="ddes__e">Опыт 4 года</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="light">
-        <span class="ddes__ph"><span class="ddes__ini" aria-hidden="true">СЛ</span><img class="jimg" src="img/designers/cards/lebedev.webp" alt="" loading="lazy"></span>
-        <span class="ddes__n">Сергей Лебедев</span>
-        <span class="ddes__s">Светодизайн</span>
-        <span class="ddes__e">Опыт 6 лет</span>
-      </a>
-    </div>
-    <div class="empty" id="desEmpty" hidden>
-      <p class="empty__title">По этому направлению пока никого нет</p>
-      <p class="empty__text">Посмотрите всех специалистов или заполните анкету.</p>
-      <button type="button" class="dbtn dbtn--ghost" data-desreset>Показать всех</button>
-    </div>
+    <div class="dposts__more"><a href="design-designers-catalog.html" class="dbtn dbtn--ghost">Весь каталог</a></div>
   </div>
 </section>
 
@@ -238,7 +251,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="content.js?v=75"></script>
+<script src="content.js?v=76"></script>
 <script src="design.js?v=97"></script>
 </body>
 </html>

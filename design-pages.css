@@ -2732,12 +2732,50 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 }
 
 /* ============ ДИЗАЙНЕРАМ: КАРТОЧКИ КАТАЛОГА ============ */
-/* фото работы из портфолио 4:3 (ТЗ 6.5); пока файла нет — инициалы на подложке.
-   Квадраты 4:5 с одними буквами были тяжёлыми и не показывали работу */
-#desGrid .ddes__ph{position:relative;overflow:hidden;aspect-ratio:4/3;margin-bottom:14px}
-#desGrid .ddes__ini{position:relative;z-index:0}
-#desGrid .ddes__ph .jimg{z-index:1}
-#desGrid .ddes:hover .jimg{transform:scale(1.05)}
+/* горизонтальные, по две в ряд: слева фото работы из портфолио (ТЗ 6.5), справа имя,
+   специализация, опыт и контакты — как на действующем сайте (телефон, почта) + мессенджеры.
+   Пока фото нет — инициалы на подложке */
+.ddess--row{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.ddess--row .ddes{display:grid;grid-template-columns:minmax(0,44%) minmax(0,1fr);gap:0;background:var(--s-bg);color:var(--s-fg);border:1px solid var(--s-line)}
+[data-theme="dark"] .ddess--row .ddes{background:var(--s-plate)}
+.ddess--row .ddes[hidden]{display:none}
+.ddess--row .ddes__ph{position:relative;overflow:hidden;aspect-ratio:auto;min-height:100%;margin:0;background:var(--s-bg-2);font-size:40px}
+.ddess--row .ddes__ini{position:relative;z-index:0}
+.ddess--row .ddes__ph .jimg{z-index:1}
+.ddess--row .ddes:hover .jimg{transform:scale(1.05)}
+.ddess--row .ddes__b{display:flex;flex-direction:column;padding:26px 28px 24px}
+.ddess--row .ddes__n{margin:0 0 6px;font-size:21px}
+.ddess--row .ddes__n a{color:inherit;transition:color .2s}
+.ddess--row .ddes__n a:hover{color:var(--s-accent-ink)}
+.ddess--row .ddes:hover .ddes__n{color:inherit}
+.ddess--row .ddes__s{margin:0 0 6px}
+.ddess--row .ddes__e{margin:0}
+.ddess--row .ddes__ct{list-style:none;margin:18px 0 0;padding:14px 0 0;border-top:1px solid var(--s-line);display:grid;gap:6px}
+.ddess--row .ddes__ct a{font-size:14px;color:var(--s-fg);font-variant-numeric:lining-nums;overflow-wrap:anywhere;transition:color .2s}
+.ddess--row .ddes__ct li:first-child a{font-size:16px;font-weight:500}
+.ddess--row .ddes__ct a:hover{color:var(--s-accent-ink)}
+.ddess--row .ddes__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:18px}
+.ddess--row .ddes__msg{display:flex;gap:8px}
+.ddess--row .ddes__msg .dshare{width:36px;height:36px}
+@media (max-width:1100px){
+  .ddess--row{grid-template-columns:1fr}
+}
+/* телефон: тоже горизонтально, фото узкой полосой — столбиком 8 карточек занимали 3800px */
+@media (max-width:600px){
+  .ddess--row{gap:16px}
+  .ddess--row .ddes{grid-template-columns:34% minmax(0,1fr)}
+  .ddess--row .ddes__ph{font-size:26px}
+  .ddess--row .ddes__b{padding:16px 14px 14px}
+  .ddess--row .ddes__n{font-size:17px}
+  .ddess--row .ddes__s{font-size:12px}
+  .ddess--row .ddes__e{font-size:10px}
+  .ddess--row .ddes__ct{margin-top:12px;padding-top:10px;gap:4px}
+  .ddess--row .ddes__ct a{font-size:13px}
+  .ddess--row .ddes__ct li:first-child a{font-size:14px}
+  .ddess--row .ddes__foot{padding-top:12px}
+  .ddess--row .ddes__msg .dshare{width:32px;height:32px}
+  .ddess--row .ddes__foot .dlink{font-size:11px;letter-spacing:.1em}
+}
 
 /* «Попасть в каталог» — блок «Аренда» с главной: справа висели две цифры посреди пустого поля.
    Цифры Playfair — только прописные (решение 10.10), иначе «40+» читается как «4o+» */
@@ -2747,3 +2785,17 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* страница дизайнера: контакты в панели «Связаться» (ТЗ 6.5); номер прописными цифрами */
 #contact .dcontacts{margin:0}
 #contact .dcontacts__v--big{font-variant-numeric:lining-nums}
+
+/* каталог дизайнеров: полоса для самих дизайнеров под списком */
+.dnote-des{padding:0 0 88px}
+.dnote-des__in{display:flex;align-items:center;justify-content:space-between;gap:24px 40px;flex-wrap:wrap;
+  padding:28px 32px;border:1px solid var(--s-line-strong)}
+.dnote-des__t{margin:0;font-size:15px;line-height:1.6;color:var(--s-fg-soft);max-width:640px}
+.dnote-des__t b{color:var(--s-fg);font-weight:600}
+@media (max-width:760px){
+  .dnote-des{padding-bottom:56px}
+  .dnote-des__in{padding:22px 20px}
+  .dnote-des__in .dbtn{width:100%;justify-content:center}
+}
+/* на странице каталога фон светлый — карточки на подложке второго фона, чтобы не сливались */
+.dcat .ddess--row .ddes{background:var(--s-plate)}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог дизайнеров — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=139">
+<link rel="stylesheet" href="design-pages.css?v=221">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+/* без JS сайт остаётся видимым: класс включает прятание перед появлением */
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body>
+
+<div id="siteHeader" data-active="designers"></div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= ШАПКА СТРАНИЦЫ ================= -->
+<!-- каталог — отдельная страница раздела «Дизайнерам» (ТЗ 6.5) для покупателей:
+     найти дизайнера, посмотреть работы, связаться. Лендинг раздела — для самих дизайнеров -->
+<section class="dpage">
+  <div class="wrap">
+    <nav class="dcrumbs" aria-label="Хлебные крошки">
+      <a href="design.html">Главная</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <a href="designers.html">Дизайнерам</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <span aria-current="page">Каталог дизайнеров</span>
+    </nav>
+    <div class="dpage__in">
+      <div>
+        <h1 class="dpage__h1">Каталог дизайнеров</h1>
+        <p class="dpage__lead">Дизайнеры интерьеров, архитекторы и светодизайнеры с портфолио и контактами.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= СПИСОК ================= -->
+<section class="dcat">
+  <div class="wrap">
+    <!-- фильтры как в журнале: список слева, поиск справа, «Найдено N · Сбросить» в строке -->
+    <div class="evfilters dfilters" id="desFilters">
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Направление</span>
+        <button type="button" class="chip dchip is-active" data-spec="all">Все</button>
+        <button type="button" class="chip dchip" data-spec="interior">Дизайн интерьеров</button>
+        <button type="button" class="chip dchip" data-spec="arch">Архитектура</button>
+        <button type="button" class="chip dchip" data-spec="light">Свет</button>
+      </div>
+      <div class="field field--sm dbsearch dfilters__search">
+        <input type="search" id="desSearch" placeholder="Поиск по имени" autocomplete="off" aria-label="Поиск по имени">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+      </div>
+      <p class="evfilters__count dfilters__count"><b id="desCount">12</b> <span id="desCountWord">специалистов</span></p>
+    </div>
+    <!-- карточки демонстрационные, кроме CARTELLE DESIGN и Литвяковой (с действующего сайта).
+         Контакты — демо-значения; в бою публикуются только с согласия из анкеты -->
+    <div class="ddess ddess--row" id="desGrid">
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">CD</span><img class="jimg" src="img/designers/cards/cartelle.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">CARTELLE DESIGN</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 2 года</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000001">+7 (900) 000-00-01</a></li>
+            <li><a href="mailto:cartelle@example.com">cartelle@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="CARTELLE DESIGN в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="CARTELLE DESIGN в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">ЕЛ</span><img class="jimg" src="img/designers/litvyakova/1.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Елена Литвякова</a></h3>
+          <p class="ddes__s">Дизайнер интерьеров</p>
+          <p class="ddes__e">Опыт 10 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000002">+7 (900) 000-00-02</a></li>
+            <li><a href="mailto:litvyakova@example.com">litvyakova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Елена Литвякова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Елена Литвякова в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="arch">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">АС</span><img class="jimg" src="img/designers/cards/sokolova.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Анна Соколова</a></h3>
+          <p class="ddes__s">Архитектура и планировочные решения</p>
+          <p class="ddes__e">Опыт 7 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000003">+7 (900) 000-00-03</a></li>
+            <li><a href="mailto:sokolova@example.com">sokolova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Анна Соколова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Анна Соколова в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="light">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">МВ</span><img class="jimg" src="img/designers/cards/volkov.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Максим Волков</a></h3>
+          <p class="ddes__s">Светодизайн</p>
+          <p class="ddes__e">Опыт 5 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000004">+7 (900) 000-00-04</a></li>
+            <li><a href="mailto:volkov@example.com">volkov@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Максим Волков в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Максим Волков в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">ИБ</span><img class="jimg" src="img/designers/cards/belova.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Ирина Белова</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 8 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000005">+7 (900) 000-00-05</a></li>
+            <li><a href="mailto:belova@example.com">belova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Ирина Белова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Ирина Белова в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="arch">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">ДО</span><img class="jimg" src="img/designers/cards/orlov.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Дмитрий Орлов</a></h3>
+          <p class="ddes__s">Архитектура и планировочные решения</p>
+          <p class="ddes__e">Опыт 12 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000006">+7 (900) 000-00-06</a></li>
+            <li><a href="mailto:orlov@example.com">orlov@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Дмитрий Орлов в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Дмитрий Орлов в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">ОМ</span><img class="jimg" src="img/designers/cards/mironova.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Ольга Миронова</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 4 года</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000007">+7 (900) 000-00-07</a></li>
+            <li><a href="mailto:mironova@example.com">mironova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Ольга Миронова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Ольга Миронова в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="light">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">СЛ</span><img class="jimg" src="img/designers/cards/lebedev.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Сергей Лебедев</a></h3>
+          <p class="ddes__s">Светодизайн</p>
+          <p class="ddes__e">Опыт 6 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000008">+7 (900) 000-00-08</a></li>
+            <li><a href="mailto:lebedev@example.com">lebedev@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Сергей Лебедев в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Сергей Лебедев в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">НК</span><img class="jimg" src="img/designers/litvyakova/4.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Наталья Кузнецова</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 9 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000009">+7 (900) 000-00-09</a></li>
+            <li><a href="mailto:kuznetsova@example.com">kuznetsova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Наталья Кузнецова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Наталья Кузнецова в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">ТЗ</span><img class="jimg" src="img/designers/litvyakova/5.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Татьяна Зайцева</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 3 года</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000010">+7 (900) 000-00-10</a></li>
+            <li><a href="mailto:zaytseva@example.com">zaytseva@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Татьяна Зайцева в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Татьяна Зайцева в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="arch">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">АП</span><img class="jimg" src="img/designers/litvyakova/6.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Алексей Попов</a></h3>
+          <p class="ddes__s">Архитектура и планировочные решения</p>
+          <p class="ddes__e">Опыт 15 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000011">+7 (900) 000-00-11</a></li>
+            <li><a href="mailto:popov@example.com">popov@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Алексей Попов в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Алексей Попов в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">МФ</span><img class="jimg" src="img/designers/litvyakova/2.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Мария Фёдорова</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 6 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000012">+7 (900) 000-00-12</a></li>
+            <li><a href="mailto:fedorova@example.com">fedorova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Мария Фёдорова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Мария Фёдорова в MAX" title="MAX"></a>
+            </span>
+            <a class="dlink" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="empty" id="desEmpty" hidden>
+      <p class="empty__title">Никого не нашли</p>
+      <p class="empty__text">Попробуйте другое имя или выберите все направления.</p>
+      <button type="button" class="dbtn dbtn--ghost" data-desreset>Показать всех</button>
+    </div>
+    <div class="results__more">
+      <button type="button" class="dbtn dbtn--ghost">Показать ещё 12 специалистов</button>
+      <nav class="dpager" data-pages="4" aria-label="Страницы списка"></nav>
+      <p class="results__hint">Показано 12 из 40</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ДЛЯ ДИЗАЙНЕРОВ ================= -->
+<section class="dnote-des">
+  <div class="wrap dnote-des__in">
+    <p class="dnote-des__t"><b>Вы дизайнер или архитектор?</b> Заполните анкету — администрация опубликует вашу карточку в каталоге.</p>
+    <a href="designer-form.html" class="dbtn dbtn--ghost">Заполнить анкету</a>
+  </div>
+</section>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=74"></script>
+<script src="content.js?v=76"></script>
+<script src="design.js?v=97"></script>
+</body>
+</html>

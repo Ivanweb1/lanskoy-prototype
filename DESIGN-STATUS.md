@@ -26,7 +26,7 @@
 | Журнал | design-journal.html |
 | Статья | design-article.html |
 
-## В работе (11)
+## В работе (12)
 
 | Раздел | Страница | Файл |
 |---|---|---|
@@ -37,7 +37,8 @@
 | | Бренды | design-brands.html |
 | | Бренд | design-brand.html |
 | | Схема этажей | design-floors.html |
-| Дизайнерам | Дизайнерам | design-designers.html |
+| Дизайнерам | Дизайнерам (лендинг для профи) | design-designers.html |
+| | Каталог дизайнеров (для покупателей, новая — без Ч/Б-прототипа) | design-designers-catalog.html |
 | | Дизайнер | design-designer.html |
 | | Анкета дизайнера | design-designer-form.html |
 | О комплексе | Аренда площадей | design-rent.html |
