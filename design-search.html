@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=162">
+<link rel="stylesheet" href="design-pages.css?v=164">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -33,10 +33,13 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     </nav>
     <div class="dsearchpage">
       <h1 class="dpage__h1">Поиск по сайту</h1>
-      <div class="dsearch dsearch--page">
-        <input class="dsearch__inp" type="search" id="bigSearch" value="плитка" autocomplete="off" aria-label="Поиск по сайту">
-        <button type="button" class="dsearch__go">Найти</button>
-      </div>
+      <form class="dsearch dsearch--page" id="bigSearchForm" role="search" autocomplete="off">
+        <input class="dsearch__inp" type="search" id="bigSearch" value="плитка" aria-label="Поиск по сайту" aria-controls="bigSug" placeholder="Магазин, бренд, товар или секция">
+        <button type="button" class="dsearch__clear" id="bigClear" aria-label="Очистить запрос"></button>
+        <button type="submit" class="dsearch__go">Найти</button>
+        <!-- подсказки при вводе: магазины, категории, бренды, секции -->
+        <div class="dsrchsug" id="bigSug" hidden></div>
+      </form>
       <p class="dpanel__hint">Ищем по магазинам, брендам, статьям, событиям и акциям. Можно вводить номер секции — «А10».</p>
     </div>
   </div>
@@ -44,76 +47,129 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <section class="dcat">
   <div class="wrap">
-    <div class="evfilters dfilters" id="srchFilters">
-      <div class="evfilters__row dfilters__row">
-        <span class="evfilters__label dfilters__label">Раздел</span>
-        <button type="button" class="chip dchip is-active" data-kind="all">Везде</button>
-        <button type="button" class="chip dchip" data-kind="shop">Магазины</button>
-        <button type="button" class="chip dchip" data-kind="brand">Бренды</button>
-        <button type="button" class="chip dchip" data-kind="post">Статьи</button>
-        <button type="button" class="chip dchip" data-kind="event">События</button>
-        <button type="button" class="chip dchip" data-kind="promo">Акции</button>
+    <!-- вкладки разделов с числом найденного: видно, что нашлось, до клика -->
+    <div class="dsrchtabs" id="srchFilters">
+      <div class="evfilters__row dsrchtabs__row" role="tablist" aria-label="Разделы результатов">
+        <button type="button" class="chip dsrchtabs__i is-active" data-kind="all">Все <sup>7</sup></button>
+        <button type="button" class="chip dsrchtabs__i" data-kind="shop">Магазины <sup>4</sup></button>
+        <button type="button" class="chip dsrchtabs__i" data-kind="brand">Бренды <sup>1</sup></button>
+        <button type="button" class="chip dsrchtabs__i" data-kind="post">Статьи <sup>1</sup></button>
+        <button type="button" class="chip dsrchtabs__i" data-kind="promo">Акции <sup>1</sup></button>
+        <button type="button" class="chip dsrchtabs__i" data-kind="event" disabled>События <sup>0</sup></button>
       </div>
-      <p class="evfilters__count dfilters__count"><b id="srchCount">7</b> <span id="srchCountWord">результатов</span> по запросу «плитка»</p>
+      <p class="evfilters__count dfilters__count dsrchtabs__count"><b id="srchCount">7</b> <span id="srchCountWord">результатов</span> по запросу «<span id="srchQ">плитка</span>»</p>
     </div>
+
+    <div id="srchResults">
+    <!-- во вкладке «Все» — группы по типам, в группе до 3 строк и «Ещё N» -->
     <div class="dsrchlist" id="srchGrid">
-      <a href="category.html" class="srch dsrch" data-kind="shop">
-        <span class="dsrch__kind">Категория</span>
-        <span class="dsrch__h">Плитка</span>
-        <span class="dsrch__t">17 магазинов на 1 и 2 этажах комплекса</span>
-        <span class="dsrch__go" aria-hidden="true"></span>
-      </a>
-      <a href="shop.html" class="srch dsrch" data-kind="shop">
-        <span class="dsrch__kind">Магазин</span>
-        <span class="dsrch__h">VLADART STUDIO</span>
-        <span class="dsrch__t">Декоративная штукатурка, фрески · секция А10, 1 этаж</span>
-        <span class="dsrch__go" aria-hidden="true"></span>
-      </a>
-      <a href="shop.html" class="srch dsrch" data-kind="shop">
-        <span class="dsrch__kind">Магазин</span>
-        <span class="dsrch__h">COMPANION DECOR</span>
-        <span class="dsrch__t">Каменный шпон, панели МДФ · секция А13B, 1 этаж</span>
-        <span class="dsrch__go" aria-hidden="true"></span>
-      </a>
-      <a href="brand.html" class="srch dsrch" data-kind="brand">
-        <span class="dsrch__kind">Бренд</span>
-        <span class="dsrch__h">Kerama Marazzi</span>
-        <span class="dsrch__t">Представлен в 4 магазинах комплекса</span>
-        <span class="dsrch__go" aria-hidden="true"></span>
-      </a>
-      <a href="article.html" class="srch dsrch" data-kind="post">
-        <span class="dsrch__kind">Статья</span>
-        <span class="dsrch__h">Комбинированный пол: плитка и ламинат</span>
-        <span class="dsrch__t">Керамическая плитка вместе с ламинатом позволяет с умом подойти к отделке и подчеркнуть зонирование · 23.06.2026</span>
-        <span class="dsrch__go" aria-hidden="true"></span>
-      </a>
-      <a href="promo.html" class="srch dsrch" data-kind="promo">
-        <span class="dsrch__kind">Акция</span>
-        <span class="dsrch__h">Скидка 15% на декоративную штукатурку</span>
-        <span class="dsrch__t">VLADART STUDIO, секция А10 · до 30 июня</span>
-        <span class="dsrch__go" aria-hidden="true"></span>
-      </a>
-      <a href="event.html" class="srch dsrch" data-kind="event">
-        <span class="dsrch__kind">Событие</span>
-        <span class="dsrch__h">«Волховец» — реализация проектных продаж</span>
-        <span class="dsrch__t">Семинар для дизайнеров · 28 августа, 15:00</span>
-        <span class="dsrch__go" aria-hidden="true"></span>
-      </a>
+      <div class="dsrchgroup" data-kind="shop">
+        <h2 class="dsrchgroup__h">Магазины и категории <span>4</span></h2>
+        <article class="srch dsrch" data-kind="shop">
+          <span class="dsrch__thumb"><img src="img/cat-plitka.webp" alt="" loading="lazy"></span>
+          <span class="dsrch__body">
+            <span class="dsrch__kind">Категория</span>
+            <a href="category.html" class="dsrch__h"><mark>Плитка</mark></a>
+            <span class="dsrch__t">17 магазинов на 1 и 2 этажах комплекса</span>
+          </span>
+          <span class="dsrch__go" aria-hidden="true"></span>
+        </article>
+        <article class="srch dsrch" data-kind="shop">
+          <span class="dsrch__thumb dsrch__thumb--name">Лен­плитка</span>
+          <span class="dsrch__body">
+            <span class="dsrch__kind">Магазин</span>
+            <a href="shop.html" class="dsrch__h">Лен<mark>плитка</mark></a>
+            <span class="dsrch__t">Керамическая <mark>плитка</mark> и керамогранит · 1 этаж</span>
+          </span>
+          <a href="floors.html?room=А1&amp;floor=1" class="dsrch__map">А1 · на схеме</a>
+          <span class="dsrch__go" aria-hidden="true"></span>
+        </article>
+        <article class="srch dsrch" data-kind="shop">
+          <span class="dsrch__thumb dsrch__thumb--name">Керамолл</span>
+          <span class="dsrch__body">
+            <span class="dsrch__kind">Магазин</span>
+            <a href="shop.html" class="dsrch__h">Керамолл</a>
+            <span class="dsrch__t">Керамогранит, <mark>плитка</mark> для ванной и кухни · 1 этаж</span>
+          </span>
+          <a href="floors.html?room=А45&amp;floor=1" class="dsrch__map">А45 · на схеме</a>
+          <span class="dsrch__go" aria-hidden="true"></span>
+        </article>
+        <article class="srch dsrch" data-kind="shop">
+          <span class="dsrch__thumb dsrch__thumb--name">Стиль Керамики</span>
+          <span class="dsrch__body">
+            <span class="dsrch__kind">Магазин</span>
+            <a href="shop.html" class="dsrch__h">Стиль Керамики</a>
+            <span class="dsrch__t">Итальянская и испанская <mark>плитка</mark>, мозаика · 1 этаж</span>
+          </span>
+          <a href="floors.html?room=А29&amp;floor=1" class="dsrch__map">А29 · на схеме</a>
+          <span class="dsrch__go" aria-hidden="true"></span>
+        </article>
+        <button type="button" class="dsrchgroup__more" data-tab="shop">Все магазины — 4</button>
+      </div>
+      <div class="dsrchgroup" data-kind="brand">
+        <h2 class="dsrchgroup__h">Бренды <span>1</span></h2>
+        <article class="srch dsrch" data-kind="brand">
+          <span class="dsrch__thumb dsrch__thumb--name">Kerama Marazzi</span>
+          <span class="dsrch__body">
+            <span class="dsrch__kind">Бренд</span>
+            <a href="brand.html" class="dsrch__h">Kerama Marazzi</a>
+            <span class="dsrch__t">Керамическая <mark>плитка</mark> и керамогранит · представлен в 4 магазинах</span>
+          </span>
+          <span class="dsrch__go" aria-hidden="true"></span>
+        </article>
+      </div>
+      <div class="dsrchgroup" data-kind="post">
+        <h2 class="dsrchgroup__h">Статьи <span>1</span></h2>
+        <article class="srch dsrch" data-kind="post">
+          <span class="dsrch__thumb"><img src="img/jr-1.webp" alt="" loading="lazy"></span>
+          <span class="dsrch__body">
+            <span class="dsrch__kind">Статья</span>
+            <a href="article.html" class="dsrch__h">Комбинированный пол: <mark>плитка</mark> и ламинат</a>
+            <span class="dsrch__t">Как совместить <mark>плитку</mark> с ламинатом и подчеркнуть зонирование · 23.06.2026</span>
+          </span>
+          <span class="dsrch__go" aria-hidden="true"></span>
+        </article>
+      </div>
+      <div class="dsrchgroup" data-kind="promo">
+        <h2 class="dsrchgroup__h">Акции <span>1</span></h2>
+        <article class="srch dsrch" data-kind="promo">
+          <span class="dsrch__thumb"><img src="img/pr-2.webp" alt="" loading="lazy"></span>
+          <span class="dsrch__body">
+            <span class="dsrch__kind">Акция</span>
+            <a href="promo.html" class="dsrch__h">Керамогранит под камень −20%</a>
+            <span class="dsrch__t">COMPANION DECOR, А13B · до 28 июня · в каталоге <mark>плитки</mark> и керамогранита</span>
+          </span>
+          <span class="dsrch__go" aria-hidden="true"></span>
+        </article>
+      </div>
     </div>
     <div class="empty" id="srchEmpty" hidden>
       <p class="empty__title">В этом разделе ничего не нашлось</p>
-      <p class="empty__text">Попробуйте искать везде или измените запрос.</p>
+      <p class="empty__text">Попробуйте искать во всех разделах.</p>
       <button type="button" class="dbtn dbtn--ghost" data-srchreset>Искать везде</button>
     </div>
-    <div class="empty" id="srchNone" hidden>
-      <p class="empty__title">По запросу ничего не найдено</p>
-      <p class="empty__text">Проверьте раскладку или попробуйте одно слово вместо фразы.</p>
-      <div class="dart__row">
-        <span class="dfilters__label">Часто ищут</span>
-        <a href="category.html" class="dchip">Плитка</a>
+    </div>
+
+    <!-- пустая выдача: демо — design-search.html?empty=1 или любой запрос не про плитку -->
+    <div class="dsrchnone" id="srchNone" hidden>
+      <p class="dsrchnone__k">Ничего не найдено</p>
+      <p class="dsrchnone__h">По запросу «<span id="srchNoneQ">ламинатт дуб</span>» ничего нет</p>
+      <ul class="dsrchnone__tips">
+        <li>Проверьте раскладку и опечатки.</li>
+        <li>Попробуйте одно слово вместо фразы: «плитка», а не «плитка для ванной недорого».</li>
+        <li>Номер секции вводите с буквой этажа: «А10», «В15».</li>
+      </ul>
+      <p class="dsrchnone__k">Часто ищут</p>
+      <div class="dsrchnone__pop">
+        <a href="design-search.html" class="dchip">Плитка</a>
         <a href="category.html" class="dchip">Двери</a>
         <a href="category.html" class="dchip">Сантехника</a>
-        <a href="floors.html?room=A10&amp;floor=1" class="dchip">А10</a>
+        <a href="category.html" class="dchip">Свет</a>
+        <a href="floors.html?room=А10&amp;floor=1" class="dchip">А10</a>
+      </div>
+      <div class="dpromo__acts dsrchnone__acts">
+        <a href="shops.html" class="dbtn dbtn--fill">Каталог магазинов</a>
+        <a href="floors.html" class="dbtn dbtn--ghost">Схема этажей</a>
       </div>
     </div>
   </div>
@@ -128,6 +184,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="content.js?v=75"></script>
-<script src="design.js?v=84"></script>
+<script src="design.js?v=85"></script>
 </body>
 </html>

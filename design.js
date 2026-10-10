@@ -1269,3 +1269,106 @@
     });
   });
 })();
+
+/* ---------- страница поиска ----------
+   Вкладки с числами (фильтрует content.js по data-kind), группы по типам
+   во вкладке «Все» (до 3 строк + «Все N»), подсказки при вводе, крестик,
+   пустая выдача. Демо: «Найти» с запросом не про плитку или ?empty=1 */
+(function () {
+  var form = document.getElementById('bigSearchForm');
+  if (!form) return;
+  var inp = document.getElementById('bigSearch');
+  var clear = document.getElementById('bigClear');
+  var sug = document.getElementById('bigSug');
+  var list = document.getElementById('srchGrid');
+  var tabs = document.getElementById('srchFilters');
+  var results = document.getElementById('srchResults');
+  var none = document.getElementById('srchNone');
+
+  /* группы */
+  function groups() {
+    var act = tabs.querySelector('.is-active');
+    var all = !act || act.getAttribute('data-kind') === 'all';
+    list.classList.toggle('is-all', all);
+    [].forEach.call(list.querySelectorAll('.dsrchgroup'), function (g) {
+      var items = [].filter.call(g.querySelectorAll('.dsrch'), function (el) { return !el.hidden; });
+      g.hidden = !items.length;
+      items.forEach(function (el, i) { el.classList.toggle('is-over', i >= 3); });
+      var more = g.querySelector('.dsrchgroup__more');
+      if (more) more.hidden = items.length <= 3;
+    });
+  }
+  tabs.addEventListener('click', function () { setTimeout(groups, 0); });
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-srchreset]')) setTimeout(groups, 0);
+    var more = e.target.closest('.dsrchgroup__more');
+    if (more) {
+      var t = tabs.querySelector('[data-kind="' + more.getAttribute('data-tab') + '"]');
+      if (t) t.click();
+      tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+  groups();
+
+  /* подсказки: магазины, категории, бренды, секции */
+  var DATA = [
+    ['Магазины', 'Ленплитка', 'А1 · 1 этаж', 'shop.html'],
+    ['Магазины', 'Керамолл', 'А45 · 1 этаж', 'shop.html'],
+    ['Магазины', 'Стиль Керамики', 'А29 · 1 этаж', 'shop.html'],
+    ['Магазины', 'VLADART STUDIO', 'А10 · 1 этаж', 'shop.html'],
+    ['Магазины', 'Премьер декор', 'А12 · 1 этаж', 'shop.html'],
+    ['Категории', 'Плитка', '17 магазинов', 'category.html'],
+    ['Категории', 'Двери, перегородки, фурнитура', '14 магазинов', 'category.html'],
+    ['Категории', 'Сантехника', '12 магазинов', 'category.html'],
+    ['Бренды', 'Kerama Marazzi', '4 магазина', 'brand.html'],
+    ['Секции', 'А10', 'VLADART STUDIO · на схеме', 'floors.html?room=А10&floor=1']
+  ];
+  var hl = -1;
+  function esc(t) { return t.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function mark(t, q) {
+    var i = t.toLowerCase().indexOf(q);
+    return i < 0 ? esc(t) : esc(t.slice(0, i)) + '<mark>' + esc(t.slice(i, i + q.length)) + '</mark>' + esc(t.slice(i + q.length));
+  }
+  function showSug() {
+    var q = inp.value.trim().toLowerCase();
+    clear.hidden = !inp.value;
+    hl = -1;
+    if (q.length < 2) { sug.hidden = true; return; }
+    var hits = DATA.filter(function (d) { return d[1].toLowerCase().indexOf(q) > -1 || d[2].toLowerCase().indexOf(q) > -1; }).slice(0, 7);
+    if (!hits.length) { sug.hidden = true; return; }
+    var h = '', g = '';
+    hits.forEach(function (d) {
+      if (d[0] !== g) { g = d[0]; h += '<p class="dsrchsug__g">' + g + '</p>'; }
+      h += '<a class="dsrchsug__i" href="' + d[3] + '"><span>' + mark(d[1], q) + '</span><span class="dsrchsug__m">' + esc(d[2]) + '</span></a>';
+    });
+    sug.innerHTML = h;
+    sug.hidden = false;
+  }
+  inp.addEventListener('input', showSug);
+  inp.addEventListener('focus', showSug);
+  inp.addEventListener('keydown', function (e) {
+    var items = sug.hidden ? [] : sug.querySelectorAll('.dsrchsug__i');
+    if (e.key === 'Escape') { sug.hidden = true; return; }
+    if (!items.length || (e.key !== 'ArrowDown' && e.key !== 'ArrowUp' && e.key !== 'Enter')) return;
+    if (e.key === 'Enter') { if (hl > -1) { e.preventDefault(); items[hl].click(); } return; }
+    e.preventDefault();
+    hl = (hl + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+    [].forEach.call(items, function (it, i) { it.classList.toggle('is-hl', i === hl); });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('#bigSearchForm')) sug.hidden = true; });
+  clear.addEventListener('click', function () { inp.value = ''; showSug(); inp.focus(); });
+  clear.hidden = !inp.value;
+
+  /* «Найти»: в демо результаты есть только по плитке и керамике */
+  function run(q) {
+    var ok = /плит|керам/i.test(q);
+    sug.hidden = true;
+    results.hidden = !ok;
+    tabs.hidden = !ok;
+    none.hidden = ok;
+    if (ok) document.getElementById('srchQ').textContent = q;
+    else document.getElementById('srchNoneQ').textContent = q || '…';
+  }
+  form.addEventListener('submit', function (e) { e.preventDefault(); run(inp.value.trim()); });
+  if (/[?&]empty=1/.test(location.search)) { inp.value = 'ламинатт дуб'; clear.hidden = false; run(inp.value); }
+})();
