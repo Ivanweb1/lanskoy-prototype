@@ -2477,3 +2477,18 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 
 /* описание события — одной строкой, длинное обрезается троеточием */
 .derow__desc{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;align-self:stretch}
+
+/* строка события: текст и фото одной высоты — кнопки прижаты к низу
+   кадра, плотнее отступы; если текста больше, кадр тянется по высоте
+   строки (cover), но не ниже своих 16:10 */
+.derow .erow__body{gap:6px}
+.derow .erow__body .derow__act{margin-top:auto;padding-top:10px}
+.derow .erow__cta{height:40px}
+.derow .erow__media{align-self:stretch;aspect-ratio:auto;min-height:175px}
+@media (max-width:1200px){
+  .derow .erow__media{min-height:138px}
+}
+@media (max-width:760px){
+  .derow .erow__media{align-self:auto;aspect-ratio:16/10;min-height:0}
+  .derow .erow__body .derow__act{margin-top:12px;padding-top:0}
+}
