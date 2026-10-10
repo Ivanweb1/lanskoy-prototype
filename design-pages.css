@@ -2505,3 +2505,19 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 
 /* метки в шапке события — как в превью афиши: строкой медным капсом */
 .dpromo__tags{margin:0 0 22px}
+
+/* шапка события как у акции и первого экрана главной: факты прижаты к низу кадра */
+.dpromo--full .dpromo__bottom{margin-top:auto;padding-top:24px}
+
+/* шапка события: без линии над фактами */
+.dpromo--full .dpromo__bottom{border-top:0}
+/* крошки на телефоне: «Главная» не режется никогда, разделы — только
+   в крайнем случае, троеточие достаётся прежде всего текущей странице */
+@media (max-width:700px){
+  .dcrumbs a:first-child{flex:none}
+  .dcrumbs a{flex-shrink:.001}
+}
+
+/* фото спикера ложится поверх инициалов; нет файла — остаются инициалы */
+.dspeaker__ph{position:relative;overflow:hidden}
+.dspeaker__ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}

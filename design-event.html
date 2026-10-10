@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=183">
+<link rel="stylesheet" href="design-pages.css?v=186">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -24,32 +24,30 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <main id="main" tabindex="-1">
 
 <!-- ================= ШАПКА СОБЫТИЯ ================= -->
-<section class="dpage dpromo">
-  <div class="wrap">
+<section class="dpage dpromo dpromo--full">
+  <div class="dpromo__in">
+    <div class="dpromo__main">
     <nav class="dcrumbs" aria-label="Хлебные крошки">
-      <a href="design.html">Главная</a>
-      <span class="dcrumbs__sep" aria-hidden="true"></span>
-      <a href="events.html">Афиша</a>
-      <span class="dcrumbs__sep" aria-hidden="true"></span>
-      <span aria-current="page">«Волховец» — реализация проектных продаж</span>
-    </nav>
-    <div class="dpromo__in">
-      <div class="dpromo__main">
-        <div class="dpromo__top">
-        <p class="derow__tags dpromo__tags"><span class="dtag">Семинар</span><span class="dtag">Для дизайнеров</span></p>
-        <h1 class="dpage__h1 dpromo__h1">«Волховец» — реализация проектных продаж</h1>
-        <p class="dpage__lead">Специальные двери для особых задач</p>
-        </div>
-        <div class="dpromo__bottom">
-        <ul class="devfacts">
-          <li><span class="devfacts__k">Дата</span><span class="devfacts__v"><b>28</b> августа, 15:00</span></li>
-          <li><span class="devfacts__k">Место</span><span class="devfacts__v">3 этаж, зона лекций</span></li>
-          <li><span class="devfacts__k">Участие</span><span class="devfacts__v" data-part>Бесплатно, по регистрации</span></li>
-        </ul>
-        </div>
+        <a href="design.html">Главная</a>
+        <span class="dcrumbs__sep" aria-hidden="true"></span>
+        <a href="events.html">Афиша</a>
+        <span class="dcrumbs__sep" aria-hidden="true"></span>
+        <span aria-current="page">«Волховец» — реализация проектных продаж</span>
+      </nav>
+      <div class="dpromo__top">
+      <p class="derow__tags dpromo__tags"><span class="dtag">Семинар</span><span class="dtag">Для дизайнеров</span></p>
+      <h1 class="dpage__h1 dpromo__h1">«Волховец» — реализация проектных продаж</h1>
+      <p class="dpage__lead">Специальные двери для особых задач</p>
       </div>
-      <div class="dpromo__media"><img class="jimg" src="img/ev-2.webp" alt="" loading="lazy"></div>
+      <div class="dpromo__bottom">
+      <ul class="devfacts">
+        <li><span class="devfacts__k">Дата</span><span class="devfacts__v"><b>28</b> августа, 15:00</span></li>
+        <li><span class="devfacts__k">Место</span><span class="devfacts__v">3 этаж, зона лекций</span></li>
+        <li><span class="devfacts__k">Участие</span><span class="devfacts__v" data-part>Бесплатно, по регистрации</span></li>
+      </ul>
+      </div>
     </div>
+    <div class="dpromo__media"><img class="jimg" src="img/ev-2.webp" alt="" loading="lazy"></div>
   </div>
 </section>
 
@@ -75,19 +73,21 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </div>
       <div class="dblock">
         <h2 class="dblock__h2">Спикеры</h2>
+        <!-- фото спикеров: img/events/volhovets/speakers/<фамилия>.webp, 1:1;
+             пока файла нет — инициалы -->
         <div class="dspeakers">
           <div class="dspeaker">
-            <span class="dspeaker__ph" aria-hidden="true">ЮС</span>
+            <span class="dspeaker__ph" aria-hidden="true">ЮС<img src="img/events/volhovets/speakers/semenova.webp" alt="" loading="lazy" onerror="this.remove()"></span>
             <span class="dspeaker__name">Юлия Семенова</span>
             <span class="dspeaker__role">Представитель фабрики «Волховец»</span>
           </div>
           <div class="dspeaker">
-            <span class="dspeaker__ph" aria-hidden="true">ИЗ</span>
+            <span class="dspeaker__ph" aria-hidden="true">ИЗ<img src="img/events/volhovets/speakers/zaykin.webp" alt="" loading="lazy" onerror="this.remove()"></span>
             <span class="dspeaker__name">Иван Зайкин</span>
             <span class="dspeaker__role">Эксперт компании SLOTEX</span>
           </div>
           <div class="dspeaker">
-            <span class="dspeaker__ph" aria-hidden="true">ЕМ</span>
+            <span class="dspeaker__ph" aria-hidden="true">ЕМ<img src="img/events/volhovets/speakers/morozova.webp" alt="" loading="lazy" onerror="this.remove()"></span>
             <span class="dspeaker__name">Екатерина Морозова</span>
             <span class="dspeaker__role">Эксперт компании WOODSTOCK</span>
           </div>
