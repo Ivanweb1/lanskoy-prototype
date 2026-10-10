@@ -2443,3 +2443,10 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* подписка внизу внутренних страниц — компактнее, чем на главной */
 .sblock--compact{padding:72px 0}
 @media (max-width:760px){.sblock--compact{padding:48px 0}}
+
+/* метки события — строкой медным капсом через точку, как тип результата
+   в поиске: в рамках они выглядели нажимаемыми фильтрами */
+.derow__tags{gap:0;margin:0 0 8px}
+.derow__tags .dtag{height:auto;padding:0;border:0;background:none;
+  font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--s-accent-ink)}
+.derow__tags .dtag+.dtag::before{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:currentColor;margin:0 10px;vertical-align:middle;position:relative;top:-1px}
