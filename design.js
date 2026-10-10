@@ -1294,6 +1294,27 @@
   });
 })();
 
+/* ---------- оглавление статьи на планшете и телефоне ----------
+   Пункты собирает content.js в боковой колонке (#tocNav), здесь они копируются
+   в свёрнутый блок над текстом. По нажатию на пункт блок закрывается */
+(function () {
+  var box = document.getElementById('tocM');
+  var src = document.getElementById('tocNav');
+  if (!box || !src) return;
+  var nav = box.querySelector('.dtocm__nav');
+  var links = src.querySelectorAll('a');
+  if (!links.length) { box.hidden = true; return; }
+  [].forEach.call(links, function (a) {
+    var c = document.createElement('a');
+    c.href = a.getAttribute('href');
+    c.textContent = a.textContent;
+    nav.appendChild(c);
+  });
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) box.open = false;
+  });
+})();
+
 /* ---------- страница поиска ----------
    Вкладки с числами (фильтрует content.js по data-kind), группы по типам
    во вкладке «Все» (до 3 строк + «Все N»), подсказки при вводе, крестик,

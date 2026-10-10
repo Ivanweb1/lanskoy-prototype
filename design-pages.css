@@ -391,6 +391,9 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 .dpost__title{font-family:var(--d-sans);font-weight:600;font-size:18px;line-height:1.35;margin:0 0 10px;color:var(--s-fg)}
 .dpost__title a{color:inherit;transition:color .2s}
 .dpost:hover .dpost__title a{color:var(--s-accent-ink)}
+/* даты в ряду карточек на одной линии, даже если заголовок в одну строку, а у соседа в две */
+.dposts > .dpost{display:flex;flex-direction:column}
+.dposts > .dpost .jmeta{margin-top:auto}
 
 @media (max-width:1100px){
   .dbrands{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -1099,8 +1102,15 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dart__meta span:not(:last-child)::after{content:"";display:inline-block;width:3px;height:3px;margin:0 14px 3px;border-radius:50%;background:currentColor;opacity:.55}
 
 .dart__body{padding-top:0}
-.dart__cover{position:relative;aspect-ratio:21/9;overflow:hidden;background:var(--s-bg-2);margin:0 0 56px}
+/* обложка ниже 21:9 и не выше половины экрана: на первом экране видно начало статьи */
+.dart__cover{position:relative;height:clamp(300px,44vh,460px);overflow:hidden;background:var(--s-bg-2);margin:0 0 48px}
 .dartlayout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:72px;align-items:start}
+
+/* статья: текст 720 + колонка 320 одним блоком по центру, шапка выровнена по нему же —
+   без пустоты между текстом и правой колонкой. Обложка остаётся на всю ширину */
+.dpage.dart--post > .wrap{max-width:calc(1136px + var(--pad) * 2)}
+.dart--post .dart__head{padding-bottom:40px}
+.dart--post .dartlayout{grid-template-columns:minmax(0,720px) 320px;gap:96px;justify-content:center}
 
 .dprose--article{max-width:720px}
 .dprose--article p{font-size:17px;line-height:1.75}
@@ -1112,6 +1122,16 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dart__row+.dart__row{margin-top:0;border-top:0;padding-top:12px}
 .dart__row .dfilters__label{margin-right:8px}
 .dart__row button.dchip{cursor:pointer;background:none}
+.dart__tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0}
+
+/* фото в теле статьи: подпись мелким капсом под кадром */
+.dfig{margin:40px 0 44px}
+.dfig__ph{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--s-bg-2)}
+.dfig figcaption{margin-top:12px;font-size:12px;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--s-fg-soft)}
+
+/* цитата-вывод между разделами: медная черта слева, Playfair */
+.dquote{margin:48px 0;padding:4px 0 4px 28px;border-left:2px solid var(--s-accent)}
+.dprose--article .dquote p{font-family:var(--d-serif);font-weight:500;font-size:clamp(22px,2.2vw,28px);line-height:1.35;color:var(--s-fg);margin:0}
 
 /* оглавление: пункты строками, текущий раздел — медная черта слева */
 .dtoc .toc__nav{display:flex;flex-direction:column}
@@ -1128,16 +1148,42 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dwhere b{font-family:var(--d-serif);font-size:20px;color:var(--s-accent-ink)}
 .dwhere:hover{color:var(--s-accent-ink)}
 
+/* оглавление на планшете и телефоне: свёрнуто под обложкой, раскрывается по нажатию.
+   Ссылки копирует design.js из боковой колонки */
+.dtocm{display:none}
+
+/* «Все статьи» под карточками «Читайте также» — кнопка с обводкой по центру */
+.dposts__more{display:flex;justify-content:center;margin-top:48px}
+@media (max-width:760px){
+  .dposts__more{margin-top:36px}
+  .dposts__more .dbtn{width:100%}
+}
+.dtocm summary{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;cursor:pointer;list-style:none;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg);
+}
+.dtocm summary::-webkit-details-marker{display:none}
+.dtocm summary::after{
+  content:"";width:8px;height:8px;margin:0 4px 4px 0;border-right:1.5px solid var(--s-accent);border-bottom:1.5px solid var(--s-accent);
+  transform:rotate(45deg);transition:transform .25s var(--d-ease);
+}
+.dtocm[open] summary::after{transform:rotate(-135deg);margin-bottom:-4px}
+.dtocm__nav{display:flex;flex-direction:column;padding:0 0 12px}
+.dtocm__nav a{display:block;padding:11px 0 11px 16px;border-left:2px solid var(--s-line);font-size:15px;line-height:1.4;color:var(--s-fg-soft)}
+.dtocm__nav a:hover,.dtocm__nav a:focus-visible{color:var(--s-fg);border-left-color:var(--s-accent)}
+
 @media (max-width:1100px){
-  .dartlayout{grid-template-columns:minmax(0,1fr) 260px;gap:40px}
+  .dartlayout,.dart--post .dartlayout{grid-template-columns:minmax(0,1fr) 260px;gap:40px}
 }
 @media (max-width:1000px){
-  .dartlayout{grid-template-columns:1fr}
+  .dartlayout,.dart--post .dartlayout{grid-template-columns:1fr}
   .dartlayout .dside{position:static;order:-1}
   .dartlayout .dtoc{display:none}
+  .dtocm{display:block;max-width:720px;margin:0 0 32px;border-top:1px solid var(--s-line-strong);border-bottom:1px solid var(--s-line-strong)}
+  .dtocm[hidden]{display:none}
 }
 @media (max-width:760px){
-  .dart__cover{aspect-ratio:16/10;margin:0 calc(var(--pad) * -1) 36px}
+  .dart__cover{height:auto;aspect-ratio:16/10;margin:0 calc(var(--pad) * -1) 32px}
   .dart__lead{font-size:16px}
   .dprose--article p{font-size:16px}
   .dartlayout .dside{order:2}
