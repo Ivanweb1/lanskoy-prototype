@@ -2539,7 +2539,27 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
    блоком (спикеры) — низы колонок совпадают; линия над «Другими
    событиями» не нужна, её роль играет эта */
 .devbody:has(#regForm:not([hidden])):has(.st-open:not([hidden])){align-items:stretch}
-.devbody:has(.st-open:not([hidden])) .shopside{position:static}
-.devbody .shopside>.dpanel.st-open:not([hidden]){flex:1}
+/* колонка-рельс тянется до линии под спикерами, а сама панель обычной
+   высоты едет за прокруткой внутри неё и упирается в эту линию */
+.devbody:has(.st-open:not([hidden])) .shopside{position:static;display:block}
+.devbody .shopside>.dpanel.st-open:not([hidden]){position:sticky;top:calc(var(--hdr-sticky,64px) + 24px)}
 .devbody .shopmain>.dblock:not([hidden]):nth-last-child(1 of :not([hidden])){margin-bottom:0}
 .devmore .dblock__head{border-top:0;padding-top:24px}
+
+/* строка события на телефоне — как превью событий на главной:
+   без описания, место и места — двумя строками без точки,
+   кнопка по ширине текста, «Подробнее» рядом слева */
+@media (max-width:760px){
+  .derow .derow__desc{display:none}
+  .derow .erow__meta{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+  .derow .erow__meta .erow__dot{display:none}
+  .erow__body .derow__act{flex-wrap:wrap;justify-content:flex-start;gap:12px 24px;margin-top:14px}
+  .erow__body .derow__act .erow__cta:not(.erow__cta--more),
+  .derow .erow__cta.erow__cta--off{width:auto;flex:none;min-width:0}
+  .erow__body .derow__act .erow__cta.erow__cta--more{align-self:center}
+}
+@media (max-width:760px){
+  .derow .erow__meta>span{margin:0;padding:0}
+  .erow__body .derow__act .erow__cta.erow__cta--more{align-self:center;margin:0;justify-content:flex-start;width:auto}
+  .erow__body .derow__act{align-items:center}
+}
