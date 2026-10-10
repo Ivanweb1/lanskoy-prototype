@@ -2247,3 +2247,35 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dway-wrap{margin-top:0;padding-top:40px}
   .dway__wire{top:0;height:40px}
 }
+
+/* ============ 404 / 500 В СВЕТЛОЙ ТЕМЕ ============ */
+/* Раньше синий фон был в обеих темах и выбивался из ряда внутренних
+   страниц. Теперь светлая тема — кремовый фон шапок страниц, тёмная —
+   прежний синий градиент. Мелкая медь на кремовом — затемнённая
+   --s-accent-ink (обычная медь проваливает контраст) */
+.d404{background:var(--s-bg-2);color:var(--s-fg)}
+.d404__h1{color:var(--s-fg)}
+.d404__h1 em{color:var(--s-accent-ink)}
+.d404__lead{color:var(--s-fg-soft)}
+.d404 .rblock__kicker{color:var(--s-accent-ink)}
+.d404__help{border-top-color:var(--s-line-strong)}
+.d404__help span{color:var(--s-fg-soft)}
+.d404__help span:first-child{color:var(--s-accent-ink)}
+.d404__help a{color:var(--s-fg)}
+.d404__help a:hover{color:var(--s-accent-ink)}
+.d500__home{border-color:var(--s-accent);color:var(--s-accent-ink)}
+.d404 .dway{border:1px solid var(--s-line);border-top:6px solid var(--b-copper);box-shadow:0 24px 48px -28px rgba(1,20,39,.35)}
+.d404 .dway__wire{background:var(--s-accent)}
+
+[data-theme="dark"] .d404{background:var(--g-navy);color:var(--b-cream)}
+[data-theme="dark"] .d404__h1{color:var(--b-cream)}
+[data-theme="dark"] .d404__h1 em,[data-theme="dark"] .d404 .rblock__kicker{color:var(--b-copper)}
+[data-theme="dark"] .d404__lead{color:rgba(246,244,237,.75)}
+[data-theme="dark"] .d404__help{border-top-color:rgba(196,154,108,.35)}
+[data-theme="dark"] .d404__help span{color:rgba(246,244,237,.6)}
+[data-theme="dark"] .d404__help span:first-child{color:var(--b-copper)}
+[data-theme="dark"] .d404__help a{color:var(--b-cream)}
+[data-theme="dark"] .d404__help a:hover{color:var(--b-copper)}
+[data-theme="dark"] .d500__home{border-color:rgba(196,154,108,.6);color:var(--b-copper)}
+[data-theme="dark"] .d404 .dway{border:0;border-top:6px solid var(--b-copper);box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+[data-theme="dark"] .d404 .dway__wire{background:rgba(196,154,108,.6)}
