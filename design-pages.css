@@ -2184,3 +2184,12 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dcrumbs a{flex:0 1 auto}
   .dcrumbs [aria-current]{flex:0 1000 auto}
 }
+
+/* соцсети при наведении — фирменным цветом знака (цвета из логотипов trace-logos) */
+.dshare::before{transition:background .2s}
+.dshare--vk:hover{border-color:#0077FF}
+.dshare--vk:hover::before{background:#0077FF}
+.dshare--tg:hover{border-color:#2AABEE}
+.dshare--tg:hover::before{background:#2AABEE}
+.dshare--max:hover{border-color:#5533EE}
+.dshare--max:hover::before{background:linear-gradient(75deg,#44CCFF 0%,#5533EE 66%,#9933DD 100%)}
