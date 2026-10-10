@@ -2498,3 +2498,10 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .devfacts{align-items:baseline}
 .devfacts__v{font-size:15px;line-height:1.4}
 .devfacts__v b{font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit}
+
+/* отчёт «Как прошло»: воздух между резюме и галереей, «+1» — цифрами одной высоты */
+.dblock .dprose+.dgallery{margin-top:28px}
+.dgal__more{font-variant-numeric:lining-nums;font-family:var(--d-sans);font-size:24px;font-weight:600;letter-spacing:.02em}
+
+/* метки в шапке события — как в превью афиши: строкой медным капсом */
+.dpromo__tags{margin:0 0 22px}
