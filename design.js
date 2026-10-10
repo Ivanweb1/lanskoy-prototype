@@ -1293,9 +1293,20 @@
     [].forEach.call(list.querySelectorAll('.dsrchgroup'), function (g) {
       var items = [].filter.call(g.querySelectorAll('.dsrch'), function (el) { return !el.hidden; });
       g.hidden = !items.length;
-      items.forEach(function (el, i) { el.classList.toggle('is-over', i >= 3); });
+      /* режем до 3 строк, только если прячется 3 и больше —
+         кнопка ради одной-двух строк не нужна, их проще показать */
+      var cut = items.length - 3 >= 3;
+      items.forEach(function (el, i) { el.classList.toggle('is-over', cut && i >= 3); });
       var more = g.querySelector('.dsrchgroup__more');
-      if (more) more.hidden = items.length <= 3;
+      if (more) {
+        more.hidden = !cut;
+        if (cut) {
+          var n = items.length - 3, w = (more.getAttribute('data-words') || 'результат,результата,результатов').split(',');
+          var d10 = n % 10, d100 = n % 100;
+          var word = d10 === 1 && d100 !== 11 ? w[0] : (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14) ? w[1] : w[2]);
+          more.textContent = 'Ещё ' + n + ' ' + word;
+        }
+      }
     });
   }
   tabs.addEventListener('click', function () { setTimeout(groups, 0); });
