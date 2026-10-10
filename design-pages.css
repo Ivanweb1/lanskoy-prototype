@@ -2070,7 +2070,10 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 
 /* другие акции — сразу под условиями, без пустой левой колонки */
 .dpromo-more{padding-top:0}
-.dpromo-more .dblock__head{padding-top:48px;border-top:1px solid var(--s-line)}
+.dpromo-more .dblock__head{padding-top:24px}
+/* акция: без линеек над «Поделиться», под условиями и над «Другими акциями» */
+.dshop .dart__row{border-top:0;padding-top:0}
+.dshop .shopmain>.dblock:last-child{border-bottom:0;margin-bottom:0}
 .dpromo-more__grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 
 @media (max-width:1200px){
