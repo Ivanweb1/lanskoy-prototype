@@ -2193,3 +2193,54 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dshare--tg:hover::before{background:#2AABEE}
 .dshare--max:hover{border-color:#5533EE}
 .dshare--max:hover::before{background:linear-gradient(75deg,#44CCFF 0%,#5533EE 66%,#9933DD 100%)}
+
+/* ============ 404 / 500: ТАБЛИЧКА И БАЛАНС КОЛОНОК ============ */
+/* заголовок — две строки вместо четырёх, чтобы левая колонка
+   по высоте совпадала с табличкой справа */
+.d404__h1{font-size:clamp(32px,3.3vw,50px);line-height:1.08}
+.d404__text{max-width:600px}
+.d404__lead{margin-bottom:0}
+.d404__text .dpromo__acts{margin-top:32px}
+
+/* табличка «Вы здесь»: метка и текст одним блоком по центру булавки,
+   номер — цифрами одной высоты, по той же оси */
+.dway__here{grid-template-columns:28px minmax(0,1fr) auto;gap:6px 18px;padding:22px 26px}
+.dway__pin{grid-row:1 / span 2;align-self:center;width:28px;height:28px}
+.dway__here-k{grid-column:2;grid-row:1;align-self:end;font-size:10px;letter-spacing:.24em;opacity:.8}
+.dway__here-t{grid-column:2;grid-row:2;align-self:start;font-size:17px;line-height:1.2}
+.dway__here-n{grid-column:3;grid-row:1 / span 2;align-self:center;
+  font-size:clamp(48px,4.4vw,64px);line-height:1;font-variant-numeric:lining-nums;letter-spacing:.02em}
+
+/* 500 */
+.d500 .dway__row{cursor:default}
+div.dway__row:hover{background:transparent}
+div.dway__row:hover .dway__arr{background:var(--b-navy)}
+div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
+.d500 .dway__name{font-size:20px;font-variant-numeric:lining-nums}
+.d500{padding:96px 0 120px}
+.d500__home{border-color:rgba(196,154,108,.6);color:var(--b-copper)}
+.dway__pin--tool{
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M14.5 6.5a4 4 0 0 0 5 5l-8.8 8.8a2 2 0 0 1-2.8-2.8l8.8-8.8a4 4 0 0 1-2.2-2.2z'/%3E%3Cpath d='M14.5 6.5L17 4l3 3-2.5 2.5'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M14.5 6.5a4 4 0 0 0 5 5l-8.8 8.8a2 2 0 0 1-2.8-2.8l8.8-8.8a4 4 0 0 1-2.2-2.2z'/%3E%3Cpath d='M14.5 6.5L17 4l3 3-2.5 2.5'/%3E%3C/svg%3E") no-repeat center/contain}
+.dway__arr--phone::after,.dway__arr--clock::after,.dway__arr--pin::after{-webkit-mask:var(--ic) no-repeat center/20px 20px;mask:var(--ic) no-repeat center/20px 20px}
+.dway__arr--phone{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z'/%3E%3C/svg%3E")}
+.dway__arr--clock{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E")}
+.dway__arr--pin{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8'%3E%3Cpath d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z'/%3E%3Ccircle cx='12' cy='9.5' r='2.5'/%3E%3C/svg%3E")}
+@media (max-width:760px){
+  .dway__here{grid-template-columns:24px minmax(0,1fr) auto;gap:4px 14px;padding:16px 18px}
+  .dway__pin{width:24px;height:24px}
+  .dway__here-n{font-size:44px}
+  .d500 .dway__name{font-size:17px}
+}
+/* 404: подсказка с телефоном рецепции — добавляет вес левой колонке */
+.d404__help{display:grid;gap:4px;margin:36px 0 0;padding-top:24px;border-top:1px solid rgba(196,154,108,.35);max-width:420px}
+.d404__help span{font-size:12px;letter-spacing:.06em;color:rgba(246,244,237,.6)}
+.d404__help span:first-child{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--b-copper)}
+.d404__help a{font-size:22px;font-weight:500;color:var(--b-cream);transition:color .2s}
+.d404__help a:hover{color:var(--b-copper)}
+/* в одну колонку табличка идёт под текстом — подвесы не должны
+   заходить на кнопки над ней */
+@media (max-width:1000px){
+  .dway-wrap{margin-top:0;padding-top:40px}
+  .dway__wire{height:40px}
+}

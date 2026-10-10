@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=148">
+<link rel="stylesheet" href="design-pages.css?v=154">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -23,23 +23,44 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <main id="main" tabindex="-1">
 
-<section class="derr">
-  <div class="wrap derr__in">
-    <p class="derr__code">500</p>
-    <div class="derr__body">
-      <h1 class="dpage__h1">Что-то сломалось на нашей стороне</h1>
-      <p class="dpage__lead">Это не ваша ошибка. Мы уже знаем о проблеме и чиним. Попробуйте обновить страницу через пару минут.</p>
+<!-- тот же язык, что у 404: слева сообщение, справа табличка-указатель,
+     только вместо маршрутов — как связаться, пока сайт чинят -->
+<section class="d404 d500">
+  <div class="wrap d404__in">
+    <div class="d404__text">
+      <p class="rblock__kicker">Ошибка 500</p>
+      <h1 class="d404__h1">Что-то сломалось<em>на нашей стороне</em></h1>
+      <p class="d404__lead">Это не ваша ошибка. Мы уже знаем о проблеме и чиним. Попробуйте обновить страницу через пару минут.</p>
       <div class="dpromo__acts">
         <button type="button" class="dbtn dbtn--fill" onclick="location.reload()">Обновить страницу</button>
-        <a href="design.html" class="dbtn dbtn--ghost">На главную</a>
+        <a href="design.html" class="dbtn dbtn--ghost d500__home">На главную</a>
       </div>
-      <div class="dpanel derr__panel">
-        <p class="dpanel__title">Если нужно срочно</p>
-        <ul class="dcontacts">
-          <li><span class="dcontacts__k">Рецепция</span><a class="dcontacts__v dcontacts__v--big" href="tel:+78123630007">+7 (812) 363-00-07</a></li>
-          <li><span class="dcontacts__k">Режим работы</span><span class="dcontacts__v">10:00 — 20:00, ежедневно</span></li>
-          <li><span class="dcontacts__k">Адрес</span><span class="dcontacts__v">ул. Студенческая, 10</span></li>
-        </ul>
+    </div>
+    <div class="dway-wrap">
+      <span class="dway__wire dway__wire--l" aria-hidden="true"></span>
+      <span class="dway__wire dway__wire--r" aria-hidden="true"></span>
+      <div class="dway">
+        <div class="dway__here">
+          <span class="dway__pin dway__pin--tool" aria-hidden="true"></span>
+          <span class="dway__here-k">Если нужно срочно</span>
+          <span class="dway__here-n">500</span>
+          <span class="dway__here-t">Комплекс работает</span>
+        </div>
+        <a href="tel:+78123630007" class="dway__row">
+          <span class="dway__arr dway__arr--phone" aria-hidden="true"></span>
+          <span class="dway__name">+7 (812) 363-00-07</span>
+          <span class="dway__hint">рецепция</span>
+        </a>
+        <div class="dway__row">
+          <span class="dway__arr dway__arr--clock" aria-hidden="true"></span>
+          <span class="dway__name">10:00 — 20:00</span>
+          <span class="dway__hint">ежедневно</span>
+        </div>
+        <div class="dway__row">
+          <span class="dway__arr dway__arr--pin" aria-hidden="true"></span>
+          <span class="dway__name">Студенческая, 10</span>
+          <span class="dway__hint">Санкт-Петербург</span>
+        </div>
       </div>
     </div>
   </div>
