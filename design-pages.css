@@ -2149,3 +2149,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 @media (max-width:600px){
   .dpfacts__r{grid-template-columns:120px minmax(0,1fr);gap:4px 16px}
 }
+
+/* карточки акций в ряду: магазин и секция — по нижней линии,
+   даже если заголовок соседней карточки в две строки */
+.dpgrid .pcard__body{flex:1}
+.dpgrid .pcard__meta{margin-top:auto}
