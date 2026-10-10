@@ -2286,7 +2286,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* на узком экране нити не доходят до шапки — вешаем табличку
    на рейку: горизонтальная планка с креплениями над нитями */
 @media (max-width:1000px){
-  .dway-wrap::before{content:"";position:absolute;top:0;left:10%;right:10%;height:3px;background:var(--s-accent)}
-  .dway__wire::before{content:"";position:absolute;top:-2px;left:-3px;width:7px;height:7px;border-radius:50%;background:var(--s-accent)}
+  .dway-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--s-accent)}
+  .dway__wire::before{content:"";position:absolute;top:-2px;left:-2px;width:5px;height:5px;border-radius:50%;background:var(--s-accent)}
   [data-theme="dark"] .dway-wrap::before,[data-theme="dark"] .dway__wire::before{background:var(--b-copper)}
 }
