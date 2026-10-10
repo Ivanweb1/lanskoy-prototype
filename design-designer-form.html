@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=213">
+<link rel="stylesheet" href="design-pages.css?v=217">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -92,6 +92,17 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
               <span class="fld__err">Проверьте адрес</span>
             </label>
           </div>
+          <!-- мессенджеры — те же, что в панели «Связаться» на странице дизайнера -->
+          <div class="dform__two">
+            <label class="fld">
+              <span class="fld__lab">Telegram</span>
+              <input type="text" name="tg" placeholder="@username">
+            </label>
+            <label class="fld">
+              <span class="fld__lab">MAX</span>
+              <input type="text" name="max" placeholder="Ссылка на профиль или номер">
+            </label>
+          </div>
           <label class="fld">
             <span class="fld__lab">Сайт или портфолио в соцсетях</span>
             <input type="text" name="site">
@@ -117,7 +128,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           </label>
           <label class="check">
             <input type="checkbox" name="pub">
-            <span>Разрешаю публиковать мой телефон и почту в карточке каталога</span>
+            <span>Разрешаю публиковать мои телефон, почту, Telegram и MAX в карточке каталога</span>
           </label>
           <div class="dcaptcha">Yandex SmartCaptcha</div>
           <button type="submit" class="dbtn dbtn--fill dbtn--full">Отправить анкету</button>

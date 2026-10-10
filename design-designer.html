@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=213">
+<link rel="stylesheet" href="design-pages.css?v=217">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -78,8 +78,13 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <aside class="shopside dside">
       <div class="dpanel" id="contact">
         <p class="dpanel__title">Связаться</p>
-        <p class="dpanel__text">Контакты специалиста публикуются только с его согласия. Напишите через комплекс — администрация передаст сообщение.</p>
-        <a href="contacts.html#feedback" class="dbtn dbtn--fill dbtn--full">Написать через комплекс</a>
+        <!-- контакты из карточки по ТЗ 6.5; номер и почта демонстрационные, ссылки мессенджеров — на профиль из анкеты -->
+        <ul class="dcontacts">
+          <li><span class="dcontacts__k">Телефон</span><a class="dcontacts__v dcontacts__v--big" href="tel:+79000000000">+7 (900) 000-00-00</a></li>
+          <li><span class="dcontacts__k">Telegram</span><a class="dcontacts__v" href="https://t.me/" target="_blank" rel="noopener">Написать в Telegram</a></li>
+          <li><span class="dcontacts__k">MAX</span><a class="dcontacts__v" href="https://max.ru/" target="_blank" rel="noopener">Написать в MAX</a></li>
+          <li><span class="dcontacts__k">Почта</span><a class="dcontacts__v" href="mailto:litvyakova@example.com">litvyakova@example.com</a></li>
+        </ul>
       </div>
     </aside>
   </div>
