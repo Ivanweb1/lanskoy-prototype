@@ -5,7 +5,7 @@
 
 Обновлено: 10.10.2026.
 
-## Готово (12)
+## Готово (14)
 
 | Страница | Файл |
 |---|---|
@@ -21,8 +21,10 @@
 | Пользовательское соглашение | design-terms.html |
 | Политика обработки персональных данных | design-privacy.html |
 | Поиск | design-search.html |
+| Афиша | design-events.html |
+| Событие | design-event.html |
 
-## В работе (15)
+## В работе (13)
 
 | Раздел | Страница | Файл |
 |---|---|---|
@@ -33,9 +35,7 @@
 | | Бренды | design-brands.html |
 | | Бренд | design-brand.html |
 | | Схема этажей | design-floors.html |
-| Афиша и журнал | Афиша | design-events.html |
-| | Событие | design-event.html |
-| | Журнал | design-journal.html |
+| Журнал | Журнал | design-journal.html |
 | | Статья | design-article.html |
 | Дизайнерам | Дизайнерам | design-designers.html |
 | | Дизайнер | design-designer.html |
