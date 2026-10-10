@@ -2143,8 +2143,8 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dpfacts dd{margin:0;font-size:16px;font-weight:500;color:var(--s-fg)}
 .dpfacts dd[hidden]{display:none}
 .dpfacts dd b{font-weight:600;color:var(--s-accent-ink)}
-.dpfacts__shop{color:var(--s-fg);border-bottom:1px solid var(--s-line-strong);transition:color .2s,border-color .2s}
-.dpfacts__shop:hover{color:var(--s-accent-ink);border-color:var(--s-accent)}
+.dpfacts__shop{color:var(--s-fg);transition:color .2s}
+.dpfacts__shop:hover{color:var(--s-accent-ink)}
 .dpromo--full .dwhere-promo__acts{margin-top:auto;padding-top:40px}
 @media (max-width:600px){
   .dpfacts__r{grid-template-columns:120px minmax(0,1fr);gap:4px 16px}
