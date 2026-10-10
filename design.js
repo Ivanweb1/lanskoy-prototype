@@ -1413,12 +1413,16 @@
   if (!document.getElementById('regForm')) return;
   var box = document.querySelector('aside[data-states]');
   var st = (location.search.match(/[?&]state=(\w+)/) || [])[1];
+  /* архив афиши ведёт с ?past=1 — это то же состояние past */
+  if (!st && /[?&]past=1/.test(location.search)) st = 'past';
   if (!box || !st || !box.querySelector('.st-' + st)) return;
-  [].forEach.call(box.querySelectorAll('[class*="st-"]'), function (el) {
+  /* состояние меняет и правую панель, и блоки в тексте (отчёт «Как прошло») */
+  [].forEach.call(document.querySelectorAll('main [class*="st-"]'), function (el) {
     var m = el.className.match(/\bst-(\w+)/);
     if (m) el.hidden = m[1] !== st;
   });
   var part = document.querySelector('[data-part]');
   if (part && st === 'free') part.textContent = 'Свободный вход, без регистрации';
   if (part && st === 'full') part.textContent = 'По регистрации — мест нет';
+  if (part && st === 'past') part.textContent = 'Событие прошло — ниже фотоотчёт';
 })();
