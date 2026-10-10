@@ -2460,3 +2460,17 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 
 /* переход «Регистрация» из афиши — форма не уходит под липкую шапку */
 #regForm{scroll-margin-top:140px}
+
+/* действия события — под текстом, как на главной: кнопка, рядом ссылка.
+   Правая колонка под кнопки больше не нужна — текст получает её ширину */
+.derow,.derow:nth-child(odd),.derow:nth-child(even),.derow:last-child:nth-child(odd){grid-template-columns:110px 280px minmax(0,1fr)}
+.erow__body .derow__act{flex-direction:row;align-items:center;justify-content:flex-start;gap:24px;min-width:0;margin-top:18px;align-self:auto}
+.erow__body .derow__act .erow__cta.erow__cta--more{align-self:center}
+@media (max-width:1200px){
+  .derow,.derow:nth-child(odd),.derow:nth-child(even),.derow:last-child:nth-child(odd){grid-template-columns:96px 220px minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .derow,.derow:nth-child(odd),.derow:nth-child(even),.derow:last-child:nth-child(odd){grid-template-columns:84px minmax(0,1fr)}
+  .erow__body .derow__act{flex-wrap:wrap;gap:12px 20px}
+  .erow__body .derow__act .erow__cta:not(.erow__cta--more){width:auto;flex:1 1 auto}
+}
