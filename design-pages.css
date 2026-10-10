@@ -2240,7 +2240,10 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .d404__help a:hover{color:var(--b-copper)}
 /* в одну колонку табличка идёт под текстом — подвесы не должны
    заходить на кнопки над ней */
+/* подвесы таблички идут от самой шапки: тянем нить вверх с запасом,
+   лишнее срезает overflow:hidden у секции */
+.dway__wire{top:-2000px;height:2064px}
 @media (max-width:1000px){
   .dway-wrap{margin-top:0;padding-top:40px}
-  .dway__wire{height:40px}
+  .dway__wire{top:0;height:40px}
 }
