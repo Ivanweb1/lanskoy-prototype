@@ -755,7 +755,8 @@
   }, true);
   function sync() {
     var lb = document.querySelector('.lightbox');
-    if (!lb || lb.hidden || !cur) return;
+    /* фотоотчёт события ведёт просмотр альбомов — кадр ставит он */
+    if (!lb || lb.hidden || !cur || cur.hasAttribute('data-album')) return;
     var n = parseInt(lb.querySelector('.lightbox__counter').textContent || '1', 10) - 1;
     var tile = cur.querySelectorAll('.gallery__item')[n];
     var img = tile && tile.querySelector('img');
@@ -981,6 +982,15 @@
       var h = a.querySelector('.album__h'), m = a.querySelector('.album__m');
       album = h ? h.textContent : '';
       meta = m ? m.textContent.split(' · ')[0] : '';
+      built = -1;
+    } else if (e.target.closest('.dgallery[data-album] .gallery__item')) {
+      /* фотоотчёт события — тот же просмотр, что у альбомов галереи:
+         кадры — все снимки плитки, подписи — data-caps, «альбом» — событие */
+      var box = e.target.closest('.dgallery');
+      list = [].map.call(box.querySelectorAll('.gallery__item img'), function (i) { return i.getAttribute('src'); });
+      caps = (box.getAttribute('data-caps') || '').split('|').filter(Boolean);
+      album = box.getAttribute('data-album') || '';
+      meta = box.getAttribute('data-meta') || '';
       built = -1;
     } else if (e.target.closest('.gallery__item')) list = null;
     else if (e.target.closest('.vid')) {
