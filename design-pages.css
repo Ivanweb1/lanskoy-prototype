@@ -2131,21 +2131,22 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dshare--link.is-done{color:var(--s-accent-ink);border-color:var(--s-accent);
   --ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
 
-/* акция: факты под заголовком, действия — к низу блока */
+/* акция: факты под заголовком — три колонки «подпись над значением»,
+   без линеек; действия — к низу блока */
 .dpromo--full .dpromo__main{display:flex;flex-direction:column;justify-content:flex-start;gap:0}
-.dpfacts{margin:36px 0 0;max-width:560px;border-top:1px solid var(--s-line-strong)}
-.dpfacts__r{display:grid;grid-template-columns:150px minmax(0,1fr);gap:4px 20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--s-line-strong)}
+.dpfacts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:20px 48px;margin:36px 0 0}
+.dpfacts__r{display:flex;flex-direction:column;gap:8px}
 .dpfacts dt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
-.dpfacts dd{margin:0;font-size:16px;color:var(--s-fg)}
+.dpfacts dd{margin:0;font-size:16px;font-weight:500;color:var(--s-fg)}
 .dpfacts dd[hidden]{display:none}
-.dpfacts dd b{font-family:var(--d-serif);font-size:19px;color:var(--s-accent-ink)}
-.dpfacts__shop{font-family:var(--d-serif);font-size:21px;color:var(--s-fg);transition:color .2s}
-.dpfacts__shop:hover{color:var(--s-accent-ink)}
-.dpterm__left{display:inline-block;margin-left:10px;font-size:13px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--s-fg-soft)}
+.dpfacts dd b{font-weight:600;color:var(--s-accent-ink)}
+.dpfacts__shop{color:var(--s-fg);border-bottom:1px solid var(--s-line-strong);transition:color .2s,border-color .2s}
+.dpfacts__shop:hover{color:var(--s-accent-ink);border-color:var(--s-accent)}
+.dpterm__left{display:block;margin-top:4px;font-size:13px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--s-fg-soft)}
 .dpterm.is-urgent .dpterm__left{color:var(--s-accent-ink);font-weight:600}
 .dpterm.is-long .dpterm__left{display:none}
 .dpromo--full .dwhere-promo__acts{margin-top:auto;padding-top:40px}
-@media (max-width:600px){
-  .dpfacts__r{grid-template-columns:1fr;padding:14px 0}
-  .dpterm__left{display:block;margin:4px 0 0}
+/* колонка узкая (до 1200px рядом с фото, на телефоне) — факты столбиком */
+@media (max-width:1200px){
+  .dpfacts{grid-template-columns:1fr;gap:18px}
 }
