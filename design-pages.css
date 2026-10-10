@@ -2414,11 +2414,3 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dsrch__map{padding:0;border:0;margin-top:6px;background:none}
   .dsrch__map:hover{background:none;border:0}
 }
-
-/* поиск на телефоне: превью сверху, весь текст под ним от левого края —
-   строкам текста достаётся вся ширина экрана */
-@media (max-width:760px){
-  .dsrch{grid-template-columns:minmax(0,1fr);gap:12px}
-  .dsrch__thumb{grid-row:auto;width:56px;height:56px;margin-top:0}
-  .dsrch__map{grid-column:1;margin-top:0}
-}
