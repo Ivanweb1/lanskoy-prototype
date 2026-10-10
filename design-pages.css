@@ -2521,3 +2521,16 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* фото спикера ложится поверх инициалов; нет файла — остаются инициалы */
 .dspeaker__ph{position:relative;overflow:hidden}
 .dspeaker__ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* страница события: «Другие события» после основного блока */
+.devmore{padding-top:0}
+.devmore .dblock__head{padding-top:48px;border-top:1px solid var(--s-line)}
+
+/* спикеры на телефоне — лента, листается пальцем, карточки
+   защёлкиваются по краю; соседняя выглядывает справа */
+@media (max-width:760px){
+  .dspeakers{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;margin:0 calc(var(--pad) * -1);padding:0 var(--pad);scroll-padding:0 var(--pad)}
+  .dspeakers::-webkit-scrollbar{display:none}
+  .dspeaker{flex:0 0 68%;scroll-snap-align:start}
+}

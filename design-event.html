@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=186">
+<link rel="stylesheet" href="design-pages.css?v=188">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -169,6 +169,86 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <a href="events.html" class="dbtn dbtn--ghost dbtn--full">Ближайшие события</a>
       </div>
     </aside>
+  </div>
+</section>
+
+<!-- ================= ДРУГИЕ СОБЫТИЯ ================= -->
+<section class="dcat devmore">
+  <div class="wrap">
+    <div class="dblock__head">
+      <h2 class="dblock__h2">Другие события</h2>
+    </div>
+    <div class="evlist delist">
+      <article class="evrow erow derow" data-aud="pro" data-type="seminar" data-date="2026-09-04">
+        <div class="erow__date"><b>4</b><i>сентября</i><i class="derow__time">16:00</i></div>
+        <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/events/osmo.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Семинар</span><span class="dtag">Для дизайнеров</span></p>
+          <h3 class="erow__title"><a href="event.html">Натуральные масла для дерева OSMO</a></h3>
+          <p class="derow__desc">Практика нанесения защитных покрытий, работа с фактурой дерева</p>
+          <p class="erow__meta">3 этаж, зона лекций<span class="erow__dot"></span>осталось 4 места</p>
+          <div class="derow__act"><a href="event.html#regForm" class="erow__cta">Регистрация</a><a href="event.html" class="erow__cta erow__cta--more">Подробнее</a></div>
+        </div>
+      </article>
+      <article class="evrow erow derow is-full erow--off" data-aud="public" data-type="workshop" data-date="2026-09-12">
+        <div class="erow__date"><b>12</b><i>сентября</i><i class="derow__time">14:00</i></div>
+        <a class="erow__media" href="event.html?state=full" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-3.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Мастер-класс</span><span class="dtag">Для покупателей</span></p>
+          <h3 class="erow__title"><a href="event.html?state=full">Мастер-класс по декору интерьера</a></h3>
+          <p class="derow__desc">Интерьерная картина своими руками, материалы предоставляются</p>
+          <p class="erow__meta">2 этаж, атриум<span class="erow__dot"></span>мест нет</p>
+          <div class="derow__act"><span class="erow__cta erow__cta--off">Мест нет</span><a href="event.html?state=full" class="erow__cta erow__cta--more">Подробнее</a></div>
+        </div>
+      </article>
+      <article class="evrow erow derow" data-aud="public" data-type="fest" data-date="2026-09-20">
+        <div class="erow__date"><b>20</b><i>сентября</i><i class="derow__time">12:00</i></div>
+        <a class="erow__media" href="event.html?state=free" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-1.webp" alt="" loading="lazy"></a>
+        <div class="erow__body">
+          <p class="derow__tags"><span class="dtag">Праздник</span><span class="dtag">Для покупателей</span></p>
+          <h3 class="erow__title"><a href="event.html?state=free">День рождения комплекса</a></h3>
+          <p class="derow__desc">Розыгрыши, интерактив для детей и взрослых, фотозона</p>
+          <p class="erow__meta">1 этаж, атриум<span class="erow__dot"></span>без регистрации</p>
+          <div class="derow__act"><a href="event.html?state=free" class="erow__cta erow__cta--ghost">Подробнее</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="results__more">
+      <a href="events.html" class="dbtn dbtn--ghost">Вся афиша</a>
+    </div>
+  </div>
+</section>
+
+<!-- подписка — тот же блок, что на главной, с текстом про события -->
+<section class="sblock sblock--compact" id="subscribe">
+  <div class="wrap sblock__in">
+    <div class="sblock__text">
+      <h2 class="sblock__h2">Не пропустите следующие события</h2>
+      <p class="sblock__lead">Анонсы мастер-классов, лекций и семинаров — письмом раз в две недели. Отписаться можно в один клик.</p>
+    </div>
+    <form class="sform" novalidate>
+      <div class="sform__row">
+        <input class="sform__inp" type="email" name="email" placeholder="Ваш e-mail" required aria-label="E-mail для подписки">
+        <button class="sform__go" type="submit">Подписаться</button>
+      </div>
+      <div class="sform__checks">
+        <label class="scheck">
+          <input type="checkbox" name="pd" required>
+          <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
+        </label>
+        <label class="scheck">
+          <input type="checkbox" name="ads" required>
+          <span>Согласен получать рекламные и информационные рассылки ТК «Ланской»</span>
+        </label>
+      </div>
+    </form>
+    <div class="sdone" hidden>
+      <span class="sdone__ic" aria-hidden="true"></span>
+      <div>
+        <p class="sdone__h">Проверьте почту</p>
+        <p class="sdone__t">Мы отправили письмо на <b data-email></b>. Перейдите по ссылке из письма, чтобы подписка заработала. Письма нет через 10 минут — загляните в «Спам» или <button type="button" class="dlink--btn" data-sub-again>укажите другой адрес</button>.</p>
+      </div>
+    </div>
   </div>
 </section>
 
