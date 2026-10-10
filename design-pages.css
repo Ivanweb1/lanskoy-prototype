@@ -2162,3 +2162,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dprose--promo ul li::before{content:"";position:absolute;left:6px;top:.75em;width:6px;height:6px;border-radius:50%;background:var(--s-accent)}
 .dprose--promo ol li{counter-increment:dp}
 .dprose--promo ol li::before{content:counter(dp);position:absolute;left:2px;top:0;font-size:16px;font-weight:600;line-height:1.65;color:var(--s-accent-ink)}
+/* без подписи «Поделиться»: иконки от левого края текста */
+.dshares{justify-content:flex-start}
+.dshare--max{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M12 3.5a8.5 8.5 0 1 1-4.3 15.8L3.5 20.5l1.2-4.2A8.5 8.5 0 0 1 12 3.5z'/%3E%3Cpath d='M8.5 14.5v-5l3.5 3.5 3.5-3.5v5' stroke-linecap='round'/%3E%3C/svg%3E")}
