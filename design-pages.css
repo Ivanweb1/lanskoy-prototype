@@ -2113,11 +2113,14 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 @media (max-width:1000px){
   .dpromo--full .dpromo__in{grid-template-columns:1fr;min-height:0;padding:0 var(--pad)}
   .dpromo--full .dpromo__main{padding:0 0 40px}
-  .dpromo--full .dpromo__media{order:-1;margin:0 calc(var(--pad) * -1);aspect-ratio:16/10;min-height:0;clip-path:none}
+  /* на узком экране сначала текст и действия, кадр — под ними */
+  .dpromo--full .dpromo__main{min-width:0}
+  .dpromo--full .dpromo__media{order:0;margin:0 calc(var(--pad) * -1);aspect-ratio:16/10;min-height:0;clip-path:none}
   .dpromo--full .dcrumbs{margin:22px 0 24px}
 }
 @media (max-width:600px){
   .dwhere-promo__acts{flex-direction:column;align-items:stretch}
+  .dwhere-promo__acts .dbtn{justify-content:center;text-align:center;padding:0 12px;letter-spacing:.06em}
   .dphone{justify-content:center;height:52px;border:1px solid var(--s-line-strong)}
 }
 
@@ -2147,8 +2150,11 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dpfacts__shop{color:var(--s-fg);transition:color .2s}
 .dpfacts__shop:hover{color:var(--s-accent-ink)}
 .dpromo--full .dwhere-promo__acts{margin-top:auto;padding-top:40px}
+/* узкая колонка — подпись над значением, чтобы ничего не переносилось */
+@media (max-width:1000px){
+  .dpfacts__r{grid-template-columns:1fr;gap:4px}
+}
 @media (max-width:600px){
-  .dpfacts__r{grid-template-columns:120px minmax(0,1fr);gap:4px 16px}
 }
 
 /* карточки акций в ряду: магазин и секция — по нижней линии,
@@ -2166,3 +2172,15 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 /* без подписи «Поделиться»: иконки от левого края текста */
 .dshares{justify-content:flex-start}
 .dshare--max{--ic:url("img/social/max.svg")}
+
+/* хлебные крошки на телефоне — одной строкой, текущая страница
+   обрезается троеточием */
+@media (max-width:700px){
+  .dcrumbs{flex-wrap:nowrap;white-space:nowrap;min-width:0}
+  .dcrumbs__sep{flex:none}
+  /* сначала сжимается текущая страница; если и этого мало
+     (длинный раздел в статье) — обрезаются и ссылки */
+  .dcrumbs a,.dcrumbs [aria-current]{min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .dcrumbs a{flex:0 1 auto}
+  .dcrumbs [aria-current]{flex:0 1000 auto}
+}
