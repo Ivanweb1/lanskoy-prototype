@@ -2290,3 +2290,9 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dway__wire::before{content:"";position:absolute;top:-2px;left:-2px;width:5px;height:5px;border-radius:50%;background:var(--s-accent)}
   [data-theme="dark"] .dway-wrap::before,[data-theme="dark"] .dway__wire::before{background:var(--b-copper)}
 }
+
+/* документы (cookie, персональные данные, соглашение): заголовок во всю
+   ширину контейнера — у статьи шапка ужата до 860px под колонку текста,
+   а короткое название документа ломалось на две строки */
+.dart__head--doc{max-width:none}
+.dart__head--doc .dart__lead{max-width:860px}
