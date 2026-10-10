@@ -51,22 +51,23 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <button type="button" class="chip dchip" data-rub="doors">Двери</button>
         <button type="button" class="chip dchip" data-rub="finish">Отделка и материалы</button>
       </div>
+      <!-- теги (ТЗ: лента с рубриками и тегами) — вторым выпадающим списком;
+           фильтр по точному слову из data-tags статьи -->
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Тег</span>
+        <button type="button" class="chip dchip is-active" data-tags="all">Любой</button>
+        <button type="button" class="chip dchip" data-tags="кухня">Кухня</button>
+        <button type="button" class="chip dchip" data-tags="плитка">Плитка</button>
+        <button type="button" class="chip dchip" data-tags="двери">Двери</button>
+        <button type="button" class="chip dchip" data-tags="тренды">Тренды</button>
+        <button type="button" class="chip dchip" data-tags="свет">Свет</button>
+        <button type="button" class="chip dchip" data-tags="стиль">Стиль</button>
+      </div>
       <div class="field field--sm dbsearch dfilters__search">
         <input type="search" id="postSearch" placeholder="Поиск по статьям" autocomplete="off" aria-label="Поиск по статьям">
         <button type="button" class="field__go" aria-label="Найти"></button>
       </div>
       <p class="evfilters__count dfilters__count"><b id="postCount">12</b> <span id="postCountWord">статей</span></p>
-    </div>
-    <!-- популярные теги (ТЗ: лента с рубриками и тегами); тег фильтрует ленту
-         через поиск по статьям — у статей теги лежат в data-tags -->
-    <div class="jtags jtags--bar" aria-label="Популярные теги">
-      <span class="jtags__k">Теги</span>
-      <button type="button" class="jtag" data-tag="кухня">#кухня</button>
-      <button type="button" class="jtag" data-tag="плитка">#плитка</button>
-      <button type="button" class="jtag" data-tag="двери">#двери</button>
-      <button type="button" class="jtag" data-tag="тренды">#тренды</button>
-      <button type="button" class="jtag" data-tag="свет">#свет</button>
-      <button type="button" class="jtag" data-tag="стиль">#стиль</button>
     </div>
     <div class="djgrid" id="postGrid">
       <article class="post dpost djpost" data-rub="finish" data-tags="ламинат плитка кухня отделка">
@@ -75,7 +76,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <h2 class="dpost__title"><a href="article.html">Комбинированный пол: плитка и ламинат</a></h2>
         <p class="jmeta">Дарья Филимонова · 23 июня 2026 · 5 мин</p>
       </article>
-      <article class="post dpost djpost" data-rub="interior" data-tags="обои кухня-гостиная тренды стиль">
+      <article class="post dpost djpost" data-rub="interior" data-tags="обои кухня кухня-гостиная тренды стиль">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-2.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Дизайн интерьера</p>
         <h2 class="dpost__title"><a href="article.html">Модные обои для кухни-гостиной в 2026 году</a></h2>
