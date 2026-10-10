@@ -2474,3 +2474,6 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .erow__body .derow__act{flex-wrap:wrap;gap:12px 20px}
   .erow__body .derow__act .erow__cta:not(.erow__cta--more){width:auto;flex:1 1 auto}
 }
+
+/* описание события — одной строкой, длинное обрезается троеточием */
+.derow__desc{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;align-self:stretch}
