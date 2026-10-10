@@ -2584,3 +2584,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 @media (max-width:760px){
   .derow .erow__meta>span.erow__dot{margin:0 10px}
 }
+
+/* «Подробнее» в строках афиши — с контуром, как на главной */
+.derow .erow__cta.erow__cta--more,.erow__body .derow__act .erow__cta.erow__cta--more{height:40px;padding:0 18px;border:1px solid var(--s-accent);color:var(--s-accent-ink);background:none;min-width:0}
+.derow .erow__cta.erow__cta--more:hover,.erow__body .derow__act .erow__cta.erow__cta--more:hover{background:var(--s-accent);color:var(--s-btn-fill-fg);border-color:var(--s-accent)}

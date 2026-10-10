@@ -1737,3 +1737,28 @@ html:not([data-theme="dark"]) .nav__in .themetog{background:rgba(196,154,108,.12
 .sform__row.is-invalid{border-color:#B5483A}
 .scheck.is-invalid input{border-color:#B5483A}
 @media (max-width:1000px){.sblock .sdone{grid-column:auto;grid-row:auto}}
+
+/* ============ СОБЫТИЯ: «ПОДРОБНЕЕ» С КОНТУРОМ, КАРТОЧКА НА ТЕЛЕФОНЕ ============ */
+/* «Подробнее» — второе действие, но кнопкой с медным контуром (10.10,
+   решение Ивана): ссылка без рамки терялась рядом с залитой «Регистрацией» */
+.erow__cta.erow__cta--more,.erow__cta.erow__cta--more:hover{height:40px;padding:0 18px;border:1px solid var(--s-accent);border-radius:2px}
+.erow__cta.erow__cta--more{background:none;color:var(--s-accent-ink)}
+.erow__cta.erow__cta--more:hover{background:var(--s-accent);color:var(--s-btn-fill-fg)}
+
+/* телефон: событие карточкой во всю ширину — фото, дата строкой,
+   название, место, кнопки рядом (как в афише) */
+@media (max-width:760px){
+  .erow,.erow:last-child:nth-child(odd){grid-template-columns:minmax(0,1fr);gap:14px;padding:24px 0}
+  .erow__media{order:0;grid-column:1}
+  .erow__date{order:1;flex-direction:row;align-items:baseline;gap:8px;padding-left:12px}
+  .erow__date b{font-size:22px;font-variant-numeric:lining-nums}
+  .erow__body{order:2;grid-column:1}
+  .erow__acts{flex-wrap:nowrap;gap:16px;margin-top:6px}
+}
+
+/* в две колонки афиши на главной узкая колонка текста — кнопки компактнее, чтобы пара встала в строку */
+@media (min-width:1341px){
+  .eposter .erow__acts{gap:10px;flex-wrap:nowrap}
+  .eposter .erow__cta{padding:0 12px;letter-spacing:.06em}
+  .eposter .erow__cta.erow__cta--more,.eposter .erow__cta.erow__cta--more:hover{padding:0 12px}
+}
