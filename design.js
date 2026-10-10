@@ -1252,20 +1252,8 @@
   });
 })();
 
-/* ---------- страница акции: срок и «Скопировать ссылку» ----------
-   ≤3 дней — «осталось» медью, больше 30 — только даты. В демо дни подставляются адресом: ?left=2 */
+/* ---------- «Скопировать ссылку» ---------- */
 (function () {
-  var t = document.querySelector('.dpterm[data-days]');
-  if (t) {
-    var m = location.search.match(/[?&]left=(\d+)/);
-    var n = m ? parseInt(m[1], 10) : parseInt(t.getAttribute('data-days'), 10);
-    var d10 = n % 10, d100 = n % 100, w = 'дней', v = 'Осталось';
-    if (d10 === 1 && d100 !== 11) { w = 'день'; v = 'Остался'; }
-    else if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) w = 'дня';
-    t.querySelector('.dpterm__left').textContent = n === 0 ? 'последний день' : v.toLowerCase() + ' ' + n + ' ' + w;
-    t.classList.toggle('is-urgent', n <= 3);
-    t.classList.toggle('is-long', n > 30);
-  }
   [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
     var label = b.textContent;
     b.addEventListener('click', function () {
