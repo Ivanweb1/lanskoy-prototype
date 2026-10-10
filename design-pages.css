@@ -2603,3 +2603,22 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dgallery .dgal:nth-child(5)::after{content:"+1";position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;
     background:rgba(1,20,39,.55);color:var(--b-cream);font-family:var(--d-sans);font-size:22px;font-weight:600;font-variant-numeric:lining-nums}
 }
+
+/* журнал: теги — строкой над лентой и под заголовком главной статьи */
+.jtags{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0}
+.jtags--bar{margin:-12px 0 32px}
+.jtags--post{margin-top:12px}
+.jtags__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft);margin-right:6px}
+.jtag{height:30px;padding:0 12px;border:1px solid var(--s-line);background:none;cursor:pointer;
+  font-family:var(--d-sans);font-size:13px;color:var(--s-fg-soft);transition:color .2s,border-color .2s,background-color .2s}
+.jtag:hover{color:var(--s-accent-ink);border-color:var(--s-accent)}
+.jtag.is-active{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-btn-fill-fg)}
+@media (max-width:760px){
+  .jtags--bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:-8px calc(var(--pad) * -1) 24px;padding:0 var(--pad)}
+  .jtags--bar::-webkit-scrollbar{display:none}
+  .jtags--bar .jtag,.jtags__k{flex:none}
+}
+
+/* журнал: все статьи ровной сеткой по 3, дата и автор по нижней линии ряда */
+.djgrid .djpost{display:flex;flex-direction:column}
+.djgrid .djpost .jmeta{margin-top:auto;padding-top:4px}

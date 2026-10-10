@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=200">
+<link rel="stylesheet" href="design-pages.css?v=202">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -57,79 +57,89 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </div>
       <p class="evfilters__count dfilters__count"><b id="postCount">12</b> <span id="postCountWord">статей</span></p>
     </div>
+    <!-- популярные теги (ТЗ: лента с рубриками и тегами); тег фильтрует ленту
+         через поиск по статьям — у статей теги лежат в data-tags -->
+    <div class="jtags jtags--bar" aria-label="Популярные теги">
+      <span class="jtags__k">Теги</span>
+      <button type="button" class="jtag" data-tag="кухня">#кухня</button>
+      <button type="button" class="jtag" data-tag="плитка">#плитка</button>
+      <button type="button" class="jtag" data-tag="двери">#двери</button>
+      <button type="button" class="jtag" data-tag="тренды">#тренды</button>
+      <button type="button" class="jtag" data-tag="свет">#свет</button>
+      <button type="button" class="jtag" data-tag="стиль">#стиль</button>
+    </div>
     <div class="djgrid" id="postGrid">
-      <article class="post dpost djpost djpost--lead" data-rub="finish" data-tags="ламинат плитка кухня отделка">
+      <article class="post dpost djpost" data-rub="finish" data-tags="ламинат плитка кухня отделка">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-1.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Отделка и материалы</p>
         <h2 class="dpost__title"><a href="article.html">Комбинированный пол: плитка и ламинат</a></h2>
-        <p class="djpost__lead">Керамическая плитка вместе с ламинатом позволяет с умом подойти к отделке, сэкономить и подчеркнуть зонирование помещения.</p>
-        <p class="jmeta">Дарья Филимонова · 23.06.2026</p>
+        <p class="jmeta">Дарья Филимонова · 23 июня 2026 · 5 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="interior" data-tags="обои кухня-гостиная тренды стиль">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-2.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Дизайн интерьера</p>
         <h2 class="dpost__title"><a href="article.html">Модные обои для кухни-гостиной в 2026 году</a></h2>
-        <p class="jmeta">Юлия Вишневская · 22.06.2026</p>
+        <p class="jmeta">Юлия Вишневская · 22 июня 2026 · 4 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="interior" data-tags="стиль тренды тихая роскошь">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-4.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Дизайн интерьера</p>
         <h2 class="dpost__title"><a href="article.html">Интерьер в стиле тихая роскошь</a></h2>
-        <p class="jmeta">Редакция · 11.06.2026</p>
+        <p class="jmeta">11 июня 2026 · 6 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="interior" data-tags="джапанди скандинавский стиль">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/journal/japandi.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Дизайн интерьера</p>
         <h2 class="dpost__title"><a href="article.html">Скандинавский дзен: интерьер в стиле джапанди</a></h2>
-        <p class="jmeta">Редакция · 28.05.2026</p>
+        <p class="jmeta">28 мая 2026 · 7 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="interior" data-tags="мебель тренды уют">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/journal/mebel.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Дизайн интерьера</p>
         <h2 class="dpost__title"><a href="article.html">Мебельные тренды: как создать уют и элегантность</a></h2>
-        <p class="jmeta">Редакция · 21.05.2026</p>
+        <p class="jmeta">21 мая 2026 · 5 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="doors" data-tags="двери межкомнатные раздвижные входные">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/jr-3.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Двери</p>
         <h2 class="dpost__title"><a href="article.html">Двери: новинки и тенденции</a></h2>
-        <p class="jmeta">Редакция · 14.05.2026</p>
+        <p class="jmeta">14 мая 2026 · 4 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="finish" data-tags="керамогранит плитка выбор">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/cat-plitka.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Отделка и материалы</p>
         <h2 class="dpost__title"><a href="article.html">Как выбрать керамогранит для пола и стен</a></h2>
-        <p class="jmeta">Редакция · 07.05.2026</p>
+        <p class="jmeta">7 мая 2026 · 8 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="interior" data-tags="свет освещение сценарии">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/cat-svet.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Дизайн интерьера</p>
         <h2 class="dpost__title"><a href="article.html">Свет в интерьере: три сценария для одной комнаты</a></h2>
-        <p class="jmeta">Редакция · 30.04.2026</p>
+        <p class="jmeta">30 апреля 2026 · 6 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="finish" data-tags="штукатурка декор стены">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/cat-dekor.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Отделка и материалы</p>
         <h2 class="dpost__title"><a href="article.html">Декоративная штукатурка: какую выбрать для гостиной</a></h2>
-        <p class="jmeta">Редакция · 23.04.2026</p>
+        <p class="jmeta">23 апреля 2026 · 5 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="interior" data-tags="шторы карнизы текстиль">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/cat-tekstil.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Дизайн интерьера</p>
         <h2 class="dpost__title"><a href="article.html">Шторы и карниз: как подобрать пару</a></h2>
-        <p class="jmeta">Редакция · 16.04.2026</p>
+        <p class="jmeta">16 апреля 2026 · 4 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="finish" data-tags="потолки натяжные реечные">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/cat-potolki.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Отделка и материалы</p>
         <h2 class="dpost__title"><a href="article.html">Натяжной или реечный: какой потолок выбрать</a></h2>
-        <p class="jmeta">Редакция · 09.04.2026</p>
+        <p class="jmeta">9 апреля 2026 · 6 мин</p>
       </article>
       <article class="post dpost djpost" data-rub="doors" data-tags="скрытые двери покраска">
         <a class="dpost__media" href="article.html" tabindex="-1" aria-hidden="true"><img class="jimg" src="img/cat-dveri.webp" alt="" loading="lazy"></a>
         <p class="jrubric">Двери</p>
         <h2 class="dpost__title"><a href="article.html">Скрытые двери под покраску: за и против</a></h2>
-        <p class="jmeta">Редакция · 02.04.2026</p>
+        <p class="jmeta">2 апреля 2026 · 5 мин</p>
       </article>
     </div>
     <div class="empty" id="postEmpty" hidden>
@@ -145,6 +155,39 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   </div>
 </section>
 
+<!-- подписка — тот же блок, что на главной, с текстом про события -->
+<section class="sblock sblock--compact" id="subscribe">
+  <div class="wrap sblock__in">
+    <div class="sblock__text">
+      <h2 class="sblock__h2">Новые статьи и подборки</h2>
+      <p class="sblock__lead">Разборы материалов и идеи для ремонта — письмом раз в две недели. Отписаться можно в один клик.</p>
+    </div>
+    <form class="sform" novalidate>
+      <div class="sform__row">
+        <input class="sform__inp" type="email" name="email" placeholder="Ваш e-mail" required aria-label="E-mail для подписки">
+        <button class="sform__go" type="submit">Подписаться</button>
+      </div>
+      <div class="sform__checks">
+        <label class="scheck">
+          <input type="checkbox" name="pd" required>
+          <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
+        </label>
+        <label class="scheck">
+          <input type="checkbox" name="ads" required>
+          <span>Согласен получать рекламные и информационные рассылки ТК «Ланской»</span>
+        </label>
+      </div>
+    </form>
+    <div class="sdone" hidden>
+      <span class="sdone__ic" aria-hidden="true"></span>
+      <div>
+        <p class="sdone__h">Проверьте почту</p>
+        <p class="sdone__t">Мы отправили письмо на <b data-email></b>. Перейдите по ссылке из письма, чтобы подписка заработала. Письма нет через 10 минут — загляните в «Спам» или <button type="button" class="dlink--btn" data-sub-again>укажите другой адрес</button>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <div id="siteFooter"></div>
@@ -154,6 +197,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="content.js?v=75"></script>
-<script src="design.js?v=94"></script>
+<script src="design.js?v=95"></script>
 </body>
 </html>

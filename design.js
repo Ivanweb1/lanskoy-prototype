@@ -1436,3 +1436,27 @@
   if (part && st === 'full') part.textContent = 'По регистрации — мест нет';
   if (part && st === 'past') part.textContent = 'Событие прошло';
 })();
+
+/* ---------- журнал: фильтр по тегу ----------
+   Тег подставляется в поиск по статьям — content.js ищет и по тексту,
+   и по data-tags. Повторное нажатие на активный тег снимает фильтр */
+(function () {
+  var q = document.getElementById('postSearch');
+  if (!q) return;
+  function mark() {
+    var v = q.value.trim().toLowerCase();
+    [].forEach.call(document.querySelectorAll('.jtag'), function (t) {
+      t.classList.toggle('is-active', !!v && t.getAttribute('data-tag') === v);
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('.jtag');
+    if (!t) return;
+    var tag = t.getAttribute('data-tag');
+    q.value = q.value.trim().toLowerCase() === tag ? '' : tag;
+    q.dispatchEvent(new Event('input', { bubbles: true }));
+    mark();
+    if (t.closest('.jtags--post')) document.getElementById('postFilters').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  q.addEventListener('input', mark);
+})();
