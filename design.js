@@ -1310,6 +1310,13 @@
   });
   groups();
 
+  /* мобильные вкладки: затухание справа убираем, когда долистали до конца */
+  var row = tabs.querySelector('.dsrchtabs__row');
+  function edge() { row.classList.toggle('is-end', row.scrollLeft + row.clientWidth >= row.scrollWidth - 2); }
+  row.addEventListener('scroll', edge, { passive: true });
+  window.addEventListener('resize', edge);
+  edge();
+
   /* подсказки: магазины, категории, бренды, секции */
   var DATA = [
     ['Магазины', 'Ленплитка', 'А1 · 1 этаж', 'shop.html'],
