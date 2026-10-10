@@ -1252,27 +1252,33 @@
   });
 })();
 
-/* ---------- страница акции: плашка срока и «Скопировать ссылку» ----------
-   ≤3 дней — медная заливка, больше 30 — плашки нет. В демо дни можно
-   подставить адресом: design-promo.html?left=2 */
+/* ---------- страница акции: срок и «Скопировать ссылку» ----------
+   Шкала — доля прошедшего срока. ≤3 дней — «Осталось» медью,
+   больше 30 — только даты. В демо дни подставляются адресом: ?left=2 */
 (function () {
-  var p = document.querySelector('.dpromo__left[data-days]');
-  if (p) {
+  var t = document.querySelector('.dpterm[data-days]');
+  if (t) {
     var m = location.search.match(/[?&]left=(\d+)/);
-    var n = m ? parseInt(m[1], 10) : parseInt(p.getAttribute('data-days'), 10);
-    if (m) {
-      var d10 = n % 10, d100 = n % 100, w = 'дней';
-      if (d10 === 1 && d100 !== 11) w = 'день';
-      else if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) w = 'дня';
-      p.querySelector('b').textContent = n + ' ' + w;
-    }
-    p.classList.toggle('is-urgent', n <= 3);
-    p.hidden = n > 30;
+    var n = m ? parseInt(m[1], 10) : parseInt(t.getAttribute('data-days'), 10);
+    var total = (new Date(t.getAttribute('data-end')) - new Date(t.getAttribute('data-start'))) / 864e5 + 1;
+    var d10 = n % 10, d100 = n % 100, w = 'дней', v = 'Осталось';
+    if (d10 === 1 && d100 !== 11) { w = 'день'; v = 'Остался'; }
+    else if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) w = 'дня';
+    t.querySelector('.dpterm__left').textContent = n === 0 ? 'Последний день' : v + ' ' + n + ' ' + w;
+    t.querySelector('.dpterm__bar i').style.width = Math.max(4, Math.min(100, (1 - n / total) * 100)) + '%';
+    t.classList.toggle('is-urgent', n <= 3);
+    t.classList.toggle('is-long', n > 30);
   }
   [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
     var label = b.textContent;
     b.addEventListener('click', function () {
       try { navigator.clipboard.writeText(location.href); } catch (e) {}
+      if (b.classList.contains('dshare')) {
+        b.classList.add('is-done');
+        b.setAttribute('title', 'Ссылка скопирована');
+        setTimeout(function () { b.classList.remove('is-done'); b.setAttribute('title', 'Скопировать ссылку'); }, 2000);
+        return;
+      }
       b.textContent = 'Ссылка скопирована';
       setTimeout(function () { b.textContent = label; }, 2000);
     });

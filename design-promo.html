@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=125">
+<link rel="stylesheet" href="design-pages.css?v=130">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -24,39 +24,42 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <main id="main" tabindex="-1">
 
 <!-- ================= ШАПКА АКЦИИ ================= -->
-<section class="dpage dpromo">
-  <div class="wrap">
-    <nav class="dcrumbs" aria-label="Хлебные крошки">
-      <a href="design.html">Главная</a>
-      <span class="dcrumbs__sep" aria-hidden="true"></span>
-      <a href="promos.html">Акции</a>
-      <span class="dcrumbs__sep" aria-hidden="true"></span>
-      <span aria-current="page">Распродажа дверных ручек</span>
-    </nav>
-    <div class="dpromo__in">
-      <div class="dpromo__main">
-        <div class="dpromo__top">
-        <ul class="dtags">
-          <li><a href="category.html" class="dchip">Двери, перегородки, фурнитура</a></li>
-        </ul>
-        <h1 class="dpage__h1 dpromo__h1">Распродажа дверных ручек <span class="nw">30—50%</span></h1>
-        <p class="dpromo__shop"><a href="shop.html">Салон «Корал»</a> · <a href="floors.html?room=А14&amp;floor=1" class="dpromo__sec"><b>А14</b> · 1 этаж</a></p>
-        <div class="dpromo__acts dpromo__cta">
-          <a href="floors.html?room=А14&amp;floor=1" class="dbtn dbtn--fill">Показать на схеме</a>
-          <a href="tel:+78120000000" class="dbtn dbtn--ghost">Позвонить</a>
-          <a href="contacts.html" class="dlink">Как добраться</a>
-        </div>
-        </div>
-        <div class="dpromo__bottom">
-          <div class="dpromo__term st-open">
-            <p class="dpromo__left" data-days="6">Осталось <b>6 дней</b></p>
-            <p class="dpromo__until"><span>Срок действия</span><b>1—30 июня 2026</b></p>
-          </div>
-          <p class="promostate promostate--off st-past dpromo__state dpromo__state--off" hidden>Акция завершилась 30 июня</p>
+<section class="dpage dpromo dpromo--full">
+  <div class="dpromo__in">
+    <div class="dpromo__main">
+      <nav class="dcrumbs" aria-label="Хлебные крошки">
+        <a href="design.html">Главная</a>
+        <span class="dcrumbs__sep" aria-hidden="true"></span>
+        <a href="promos.html">Акции</a>
+        <span class="dcrumbs__sep" aria-hidden="true"></span>
+        <span aria-current="page">Распродажа дверных ручек</span>
+      </nav>
+      <ul class="dtags">
+        <li><a href="category.html" class="dchip">Двери, перегородки, фурнитура</a></li>
+      </ul>
+      <h1 class="dpage__h1 dpromo__h1">Распродажа дверных ручек <span class="nw">30—50%</span></h1>
+
+      <!-- срок: текстом и шкалой прошедшего времени, а не плашкой —
+           медная плашка читалась как кнопка -->
+      <div class="dpterm st-open" data-start="2026-06-01" data-end="2026-06-30" data-days="6">
+        <p class="dpterm__row"><span class="dpterm__dates">1—30 июня 2026</span><span class="dpterm__left">Осталось 6 дней</span></p>
+        <span class="dpterm__bar" aria-hidden="true"><i style="width:80%"></i></span>
+      </div>
+      <p class="dpterm dpterm--off st-past" hidden>Акция завершилась 30 июня 2026</p>
+
+      <!-- где действует: магазин назван прямо над действиями,
+           поэтому «на схеме» и телефон однозначно относятся к нему -->
+      <div class="dwhere-promo">
+        <p class="dwhere-promo__k">Где действует</p>
+        <p class="dwhere-promo__shop"><a href="shop.html">Салон «Корал»</a></p>
+        <p class="dwhere-promo__loc">Секция <b>А14</b> · 1 этаж</p>
+        <div class="dwhere-promo__acts">
+          <a href="floors.html?room=А14&amp;floor=1" class="dbtn dbtn--fill">Найти салон на схеме</a>
+          <a href="tel:+78120000000" class="dphone">+7 (812) 000-00-00</a>
         </div>
       </div>
-      <div class="dpromo__media"><img class="jimg" src="img/pr-1.webp" alt="" loading="lazy"></div>
     </div>
+    <div class="dpromo__media"><img class="jimg" src="img/pr-1.webp" alt="" loading="lazy"></div>
   </div>
 </section>
 
@@ -77,19 +80,19 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <div class="dart__row">
           <span class="dfilters__label">Поделиться</span>
-          <button type="button" class="dchip">ВКонтакте</button>
-          <button type="button" class="dchip">Telegram</button>
-          <button type="button" class="dchip" data-copy>Скопировать ссылку</button>
+          <a href="https://vk.com/share.php" class="dshare dshare--vk" target="_blank" rel="noopener" aria-label="Поделиться во ВКонтакте" title="ВКонтакте"></a>
+          <a href="https://t.me/share/url" class="dshare dshare--tg" target="_blank" rel="noopener" aria-label="Поделиться в Telegram" title="Telegram"></a>
+          <button type="button" class="dshare dshare--link" data-copy aria-label="Скопировать ссылку" title="Скопировать ссылку"></button>
         </div>
       </div>
     </div>
     <aside class="shopside dside">
       <div class="dpanel">
-        <p class="dpanel__title">Магазин</p>
+        <p class="dpanel__title">О магазине</p>
         <p class="dpanel__shop">Салон «Корал»</p>
         <ul class="dcontacts">
           <li><span class="dcontacts__k">Категория</span><a class="dcontacts__v" href="category.html">Двери, перегородки, фурнитура</a></li>
-          <li><span class="dcontacts__k">Телефон</span><a class="dcontacts__v dcontacts__v--big" href="tel:+78120000000">+7 (812) 000-00-00</a></li>
+          <li><span class="dcontacts__k">Режим работы</span><span class="dcontacts__v">10:00 — 20:00, ежедневно</span></li>
         </ul>
         <a href="shop.html" class="dbtn dbtn--ghost dbtn--full">Карточка магазина</a>
       </div>
@@ -104,7 +107,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   <div class="wrap">
     <div class="dblock__head">
       <h2 class="dblock__h2">Другие акции</h2>
-      <a href="promos.html" class="dlink">Все акции</a>
     </div>
     <div class="pgrid dpgrid dpromo-more__grid">
         <article class="pcard promocard" data-cat="doors" data-term="all">
@@ -115,7 +117,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <div class="pcard__body">
             <h3 class="pcard__title"><a href="promo.html">Межкомнатные двери — фурнитура в подарок</a></h3>
             <p class="pcard__meta"><span class="pcard__shop">Хорошие двери</span><span class="pcard__sec">B2</span></p>
-            <p class="dpcard__left">До конца сентября</p>
           </div>
         </article>
         <article class="pcard promocard" data-cat="hvac" data-term="all">
@@ -126,7 +127,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <div class="pcard__body">
             <h3 class="pcard__title"><a href="promo.html">Мойки воздуха Venta и тёплые полы Caleo −10%</a></h3>
             <p class="pcard__meta"><span class="pcard__shop">Климат-салон</span><span class="pcard__sec">B9</span></p>
-            <p class="dpcard__left">До конца июля</p>
           </div>
         </article>
         <article class="pcard promocard" data-cat="decor" data-term="soon">
@@ -137,7 +137,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <div class="pcard__body">
             <h3 class="pcard__title"><a href="promo.html">Керамогранит под камень −20%</a></h3>
             <p class="pcard__meta"><span class="pcard__shop">COMPANION DECOR</span><span class="pcard__sec">А13B</span></p>
-            <p class="dpcard__left">Осталось 4 дня</p>
           </div>
         </article>
         <article class="pcard promocard" data-cat="kitchen" data-term="all">
@@ -148,9 +147,11 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <div class="pcard__body">
             <h3 class="pcard__title"><a href="promo.html">Специальные предложения на кухни</a></h3>
             <p class="pcard__meta"><span class="pcard__shop">Кухни «Спутник Стиль»</span><span class="pcard__sec">B12</span></p>
-            <p class="dpcard__left">До середины августа</p>
           </div>
         </article>
+    </div>
+    <div class="results__more">
+      <a href="promos.html" class="dbtn dbtn--ghost">Все акции</a>
     </div>
   </div>
 </section>
@@ -164,6 +165,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=79"></script>
+<script src="design.js?v=82"></script>
 </body>
 </html>
