@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=130">
+<link rel="stylesheet" href="design-pages.css?v=133">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -39,24 +39,26 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </ul>
       <h1 class="dpage__h1 dpromo__h1">Распродажа дверных ручек <span class="nw">30—50%</span></h1>
 
-      <!-- срок: текстом и шкалой прошедшего времени, а не плашкой —
-           медная плашка читалась как кнопка -->
-      <div class="dpterm st-open" data-start="2026-06-01" data-end="2026-06-30" data-days="6">
-        <p class="dpterm__row"><span class="dpterm__dates">1—30 июня 2026</span><span class="dpterm__left">Осталось 6 дней</span></p>
-        <span class="dpterm__bar" aria-hidden="true"><i style="width:80%"></i></span>
-      </div>
-      <p class="dpterm dpterm--off st-past" hidden>Акция завершилась 30 июня 2026</p>
-
-      <!-- где действует: магазин назван прямо над действиями,
-           поэтому «на схеме» и телефон однозначно относятся к нему -->
-      <div class="dwhere-promo">
-        <p class="dwhere-promo__k">Где действует</p>
-        <p class="dwhere-promo__shop"><a href="shop.html">Салон «Корал»</a></p>
-        <p class="dwhere-promo__loc">Секция <b>А14</b> · 1 этаж</p>
-        <div class="dwhere-promo__acts">
-          <a href="floors.html?room=А14&amp;floor=1" class="dbtn dbtn--fill">Найти салон на схеме</a>
-          <a href="tel:+78120000000" class="dphone">+7 (812) 000-00-00</a>
+      <!-- под заголовком — факты: срок, магазин, расположение;
+           действия прижаты к низу блока -->
+      <dl class="dpfacts">
+        <div class="dpfacts__r">
+          <dt>Срок действия</dt>
+          <dd class="dpterm st-open" data-start="2026-06-01" data-end="2026-06-30" data-days="6">с 1 по 30 июня 2026 <span class="dpterm__left">осталось 6 дней</span></dd>
+          <dd class="st-past" hidden>завершилась 30 июня 2026</dd>
         </div>
+        <div class="dpfacts__r">
+          <dt>Магазин</dt>
+          <dd><a href="shop.html" class="dpfacts__shop">Салон «Корал»</a></dd>
+        </div>
+        <div class="dpfacts__r">
+          <dt>Расположение</dt>
+          <dd>1 этаж · секция <b>А14</b></dd>
+        </div>
+      </dl>
+      <div class="dwhere-promo__acts">
+        <a href="floors.html?room=А14&amp;floor=1" class="dbtn dbtn--fill">Найти на схеме</a>
+        <a href="tel:+78120000000" class="dphone">+7 (812) 000-00-00</a>
       </div>
     </div>
     <div class="dpromo__media"><img class="jimg" src="img/pr-1.webp" alt="" loading="lazy"></div>
@@ -165,6 +167,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=82"></script>
+<script src="design.js?v=83"></script>
 </body>
 </html>
