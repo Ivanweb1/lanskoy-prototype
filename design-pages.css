@@ -2026,3 +2026,20 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
    кремовый текст на ней не читался. Снимаем, как у альбомов */
 .ddes{border:0;background:none;padding:0}
 .ddes:hover{border:0}
+
+/* ---------- счётчик «Найдено: N» и пагинация ---------- */
+.dfilters__count[hidden]{display:none}
+.dpager{display:flex;justify-content:center;align-items:center;gap:4px;margin-top:24px;flex-wrap:wrap}
+.dpager button{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 8px;
+  background:transparent;border:1px solid transparent;color:var(--s-fg);font-family:var(--d-serif);font-size:18px;
+  cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.dpager button:hover:not(:disabled){border-color:var(--s-accent);color:var(--s-accent-ink)}
+.dpager .dpager__n.is-current{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-btn-fill-fg)}
+.dpager .dpager__arr{border-color:var(--s-line)}
+.dpager .dpager__arr--next svg{transform:scaleX(-1)}
+.dpager button:disabled{opacity:.35;cursor:default}
+.dpager__gap{min-width:28px;text-align:center;color:var(--s-fg-soft)}
+.dpager+.results__hint{margin-top:16px}
+@media (max-width:600px){
+  .dpager button{min-width:40px;height:40px;font-size:16px}
+}

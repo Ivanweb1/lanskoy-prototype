@@ -1175,3 +1175,79 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
 })();
 
+
+/* ---------- счётчик списков только при фильтре ----------
+   Без фильтров «12 акций» дублирует сетку и путает с «Показать ещё 12»:
+   читается как «всего», а значит «на экране». Показываем «Найдено: N»
+   только когда выбран фильтр или введён запрос; при нуле его заменяет
+   блок «не найдено». На поиске число результатов нужно всегда. */
+(function () {
+  [].forEach.call(document.querySelectorAll('.dfilters__count'), function (p) {
+    if (p.querySelector('#srchCount')) return;
+    var box = p.closest('.dfilters');
+    var num = p.querySelector('b');
+    var pre = document.createElement('span');
+    pre.className = 'dfilters__found';
+    pre.textContent = 'Найдено: ';
+    p.insertBefore(pre, p.firstChild);
+    function upd() {
+      var on = [].some.call(box.querySelectorAll('.dfilters__row'), function (row) {
+        var chips = row.querySelectorAll('.chip');
+        return chips.length && !chips[0].classList.contains('is-active');
+      });
+      var q = box.querySelector('input[type=search]');
+      if (q && q.value.trim()) on = true;
+      p.hidden = !on || parseInt(num.textContent, 10) === 0;
+    }
+    ['click', 'input', 'change'].forEach(function (ev) {
+      document.addEventListener(ev, function () { setTimeout(upd, 0); });
+    });
+    upd();
+  });
+})();
+
+/* ---------- пагинация под «Показать ещё» ----------
+   <nav class="dpager" data-pages="N">. «Показать ещё» дописывает следующую
+   страницу к текущей (подсвечен диапазон), номер — переход на страницу.
+   Карточки в прототипе не подгружаются, меняется только состояние. */
+(function () {
+  [].forEach.call(document.querySelectorAll('.dpager[data-pages]'), function (nav) {
+    var total = parseInt(nav.getAttribute('data-pages'), 10);
+    var more = nav.closest('.results__more');
+    var btn = more && more.querySelector('.dbtn');
+    var hint = more && more.querySelector('.results__hint');
+    var hm = hint && hint.textContent.match(/^(\D*)(\d+)(.*)$/);
+    var from = 1, to = 1;
+    var arrow = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+
+    function render() {
+      var pages = [];
+      for (var i = 1; i <= total; i++) {
+        if (i === 1 || i === total || (i >= from - 1 && i <= to + 1)) pages.push(i);
+      }
+      var h = '<button type="button" class="dpager__arr" data-go="' + (from - 1) + '" aria-label="Предыдущая страница"' + (from === 1 ? ' disabled' : '') + '>' + arrow + '</button>';
+      pages.forEach(function (n, k) {
+        if (k && n - pages[k - 1] > 1) h += '<span class="dpager__gap">…</span>';
+        var cur = n >= from && n <= to;
+        h += '<button type="button" class="dpager__n' + (cur ? ' is-current' : '') + '" data-go="' + n + '"' + (n === from ? ' aria-current="page"' : '') + '>' + n + '</button>';
+      });
+      h += '<button type="button" class="dpager__arr dpager__arr--next" data-go="' + (to + 1) + '" aria-label="Следующая страница"' + (to === total ? ' disabled' : '') + '>' + arrow + '</button>';
+      nav.innerHTML = h;
+      if (btn) btn.hidden = to === total;
+      if (hm) hint.textContent = hm[1] + (to - from + 1) * hm[2] + hm[3];
+    }
+
+    nav.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-go]');
+      if (!b || b.disabled) return;
+      from = to = parseInt(b.getAttribute('data-go'), 10);
+      render();
+      var top = more.parentElement.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+    if (btn) btn.addEventListener('click', function () {
+      if (to < total) { to++; render(); }
+    });
+    render();
+  });
+})();
