@@ -2534,3 +2534,12 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dspeakers::-webkit-scrollbar{display:none}
   .dspeaker{flex:0 0 68%;scroll-snap-align:start}
 }
+
+/* страница события: панель справа тянется до линии под последним
+   блоком (спикеры) — низы колонок совпадают; линия над «Другими
+   событиями» не нужна, её роль играет эта */
+.devbody:has(#regForm:not([hidden])):has(.st-open:not([hidden])){align-items:stretch}
+.devbody:has(.st-open:not([hidden])) .shopside{position:static}
+.devbody .shopside>.dpanel.st-open:not([hidden]){flex:1}
+.devbody .shopmain>.dblock:not([hidden]):nth-last-child(1 of :not([hidden])){margin-bottom:0}
+.devmore .dblock__head{border-top:0;padding-top:24px}
