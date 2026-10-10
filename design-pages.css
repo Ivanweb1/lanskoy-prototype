@@ -2255,7 +2255,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
    --s-accent-ink (обычная медь проваливает контраст) */
 .d404{background:var(--s-bg-2);color:var(--s-fg)}
 .d404__h1{color:var(--s-fg)}
-.d404__h1 em{color:var(--s-accent-ink)}
+.d404__h1 em{color:var(--s-accent)}   /* как на главной: выделение в заголовке — обычная медь --s-accent */
 .d404__lead{color:var(--s-fg-soft)}
 .d404 .rblock__kicker{color:var(--s-accent-ink)}
 .d404__help{border-top-color:var(--s-line-strong)}
