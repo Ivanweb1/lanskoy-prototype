@@ -1251,3 +1251,30 @@
     render();
   });
 })();
+
+/* ---------- страница акции: плашка срока и «Скопировать ссылку» ----------
+   ≤3 дней — медная заливка, больше 30 — плашки нет. В демо дни можно
+   подставить адресом: design-promo.html?left=2 */
+(function () {
+  var p = document.querySelector('.dpromo__left[data-days]');
+  if (p) {
+    var m = location.search.match(/[?&]left=(\d+)/);
+    var n = m ? parseInt(m[1], 10) : parseInt(p.getAttribute('data-days'), 10);
+    if (m) {
+      var d10 = n % 10, d100 = n % 100, w = 'дней';
+      if (d10 === 1 && d100 !== 11) w = 'день';
+      else if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) w = 'дня';
+      p.querySelector('b').textContent = n + ' ' + w;
+    }
+    p.classList.toggle('is-urgent', n <= 3);
+    p.hidden = n > 30;
+  }
+  [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
+    var label = b.textContent;
+    b.addEventListener('click', function () {
+      try { navigator.clipboard.writeText(location.href); } catch (e) {}
+      b.textContent = 'Ссылка скопирована';
+      setTimeout(function () { b.textContent = label; }, 2000);
+    });
+  });
+})();

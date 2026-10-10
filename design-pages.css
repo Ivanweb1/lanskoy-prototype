@@ -2031,7 +2031,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dfilters__count[hidden]{display:none}
 .dpager{display:flex;justify-content:center;align-items:center;gap:4px;margin-top:24px;flex-wrap:wrap}
 .dpager button{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 8px;
-  background:transparent;border:1px solid transparent;color:var(--s-fg);font-family:var(--d-serif);font-size:18px;
+  background:transparent;border:1px solid transparent;color:var(--s-fg);font-family:var(--d-sans);font-size:15px;font-weight:500;line-height:1;font-variant-numeric:lining-nums tabular-nums;
   cursor:pointer;transition:color .2s,border-color .2s,background .2s}
 .dpager button:hover:not(:disabled){border-color:var(--s-accent);color:var(--s-accent-ink)}
 .dpager .dpager__n.is-current{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-btn-fill-fg)}
@@ -2041,5 +2041,45 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dpager__gap{min-width:28px;text-align:center;color:var(--s-fg-soft)}
 .dpager+.results__hint{margin-top:16px}
 @media (max-width:600px){
-  .dpager button{min-width:40px;height:40px;font-size:16px}
+  .dpager button{min-width:40px;height:40px;font-size:14px}
+}
+
+/* ============ СТРАНИЦА АКЦИИ: ДЕЙСТВИЯ, УСЛОВИЯ, ДРУГИЕ АКЦИИ ============ */
+/* магазин и секция — ссылки: на карточку и на схему с подсвеченной секцией */
+.dpromo__shop a{color:inherit;transition:color .2s}
+.dpromo__shop a:hover,.dpromo__shop a:hover b{color:var(--s-accent-ink)}
+.dpromo__cta{align-items:center;gap:16px 24px;margin-top:32px}
+/* срок: обычный — медной рамкой, последние 3 дня — заливкой;
+   больше месяца — плашки нет, остаётся только «Срок действия» */
+.dpromo__left{background:transparent;border:1px solid var(--s-accent);color:var(--s-accent-ink)}
+.dpromo__left.is-urgent{background:var(--s-accent);color:var(--s-btn-fill-fg)}
+.dpromo__left[hidden]{display:none}
+
+/* условия — три коротких факта с иконками над полным текстом */
+.dterms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 0 32px;padding:0;list-style:none;border-top:1px solid var(--s-line);border-bottom:1px solid var(--s-line)}
+.dterms__i{display:flex;flex-direction:column;gap:6px;padding:24px 24px 24px 0}
+.dterms__i+.dterms__i{padding-left:24px;border-left:1px solid var(--s-line)}
+.dterms__i::before{content:"";width:28px;height:28px;margin-bottom:10px;background:var(--s-accent);
+  -webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.dterms__i b{font-family:var(--d-serif);font-size:19px;font-weight:600;color:var(--s-fg)}
+.dterms__i span{font-size:14px;line-height:1.5;color:var(--s-fg-soft)}
+.dterms__i--pct{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4'%3E%3Cpath d='M21 7L7 21'/%3E%3Ccircle cx='8.5' cy='8.5' r='3'/%3E%3Ccircle cx='19.5' cy='19.5' r='3'/%3E%3C/svg%3E")}
+.dterms__i--shop{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M4 11l2-6h16l2 6M4 11v12h20V11M4 11h20M11 23v-7h6v7'/%3E%3C/svg%3E")}
+.dterms__i--no{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4'%3E%3Ccircle cx='14' cy='14' r='10'/%3E%3Cpath d='M7 7l14 14'/%3E%3C/svg%3E")}
+.dshop .dart__row{max-width:none}
+
+/* другие акции — сразу под условиями, без пустой левой колонки */
+.dpromo-more{padding-top:0}
+.dpromo-more .dblock__head{padding-top:48px;border-top:1px solid var(--s-line)}
+.dpromo-more__grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+@media (max-width:1200px){
+  .dpromo-more__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+  .dterms{grid-template-columns:1fr}
+  .dterms__i{padding:20px 0}
+  .dterms__i+.dterms__i{padding-left:0;border-left:0;border-top:1px solid var(--s-line)}
+  .dpromo__cta .dlink{width:100%;justify-content:center}
+  .dpromo-more__grid{grid-template-columns:1fr}
 }
