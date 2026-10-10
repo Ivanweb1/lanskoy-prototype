@@ -2492,3 +2492,9 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .derow .erow__media{align-self:auto;aspect-ratio:16/10;min-height:0}
   .derow .erow__body .derow__act{margin-top:12px;padding-top:0}
 }
+
+/* факты события: все значения одним шрифтом и размером, на одной
+   базовой линии — крупное медное число даты сбивало строку */
+.devfacts{align-items:baseline}
+.devfacts__v{font-size:15px;line-height:1.4}
+.devfacts__v b{font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit}

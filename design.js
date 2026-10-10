@@ -1424,5 +1424,5 @@
   var part = document.querySelector('[data-part]');
   if (part && st === 'free') part.textContent = 'Свободный вход, без регистрации';
   if (part && st === 'full') part.textContent = 'По регистрации — мест нет';
-  if (part && st === 'past') part.textContent = 'Событие прошло — ниже фотоотчёт';
+  if (part && st === 'past') part.textContent = 'Событие прошло';
 })();
