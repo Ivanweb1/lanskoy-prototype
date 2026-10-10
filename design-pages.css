@@ -2439,3 +2439,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 }
 /* все три кнопки одной ширины — правая колонка ровная */
 .derow .erow__cta{min-width:150px;justify-content:center}
+
+/* подписка внизу внутренних страниц — компактнее, чем на главной */
+.sblock--compact{padding:72px 0}
+@media (max-width:760px){.sblock--compact{padding:48px 0}}

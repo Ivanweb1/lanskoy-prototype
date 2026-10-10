@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=137">
-<link rel="stylesheet" href="design-pages.css?v=172">
+<link rel="stylesheet" href="design-pages.css?v=173">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -66,7 +66,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     </div>
 
     <div class="evlist delist" id="viewUpcoming">
-      <article class="evrow erow derow" data-aud="pro" data-type="seminar">
+      <article class="evrow erow derow" data-aud="pro" data-type="seminar" data-date="2026-08-28">
         <div class="erow__date"><b>28</b><i>августа</i><i class="derow__time">15:00</i></div>
         <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-2.webp" alt="" loading="lazy"></a>
         <div class="erow__body">
@@ -77,7 +77,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <div class="derow__act"><a href="event.html" class="erow__cta">Регистрация</a></div>
       </article>
-      <article class="evrow erow derow" data-aud="pro" data-type="seminar">
+      <article class="evrow erow derow" data-aud="pro" data-type="seminar" data-date="2026-09-04">
         <div class="erow__date"><b>4</b><i>сентября</i><i class="derow__time">16:00</i></div>
         <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/events/osmo.webp" alt="" loading="lazy"></a>
         <div class="erow__body">
@@ -88,8 +88,8 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <div class="derow__act"><a href="event.html" class="erow__cta">Регистрация</a></div>
       </article>
-      <article class="evrow erow derow is-full erow--off" data-aud="public" data-type="workshop">
-        <div class="erow__date"><b>26</b><i>мая</i><i class="derow__time">14:00</i></div>
+      <article class="evrow erow derow is-full erow--off" data-aud="public" data-type="workshop" data-date="2026-09-12">
+        <div class="erow__date"><b>12</b><i>сентября</i><i class="derow__time">14:00</i></div>
         <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-3.webp" alt="" loading="lazy"></a>
         <div class="erow__body">
           <p class="derow__tags"><span class="dtag">Мастер-класс</span><span class="dtag">Для покупателей</span></p>
@@ -99,7 +99,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <div class="derow__act"><span class="erow__cta erow__cta--off">Мест нет</span></div>
       </article>
-      <article class="evrow erow derow" data-aud="public" data-type="fest">
+      <article class="evrow erow derow" data-aud="public" data-type="fest" data-date="2026-09-20">
         <div class="erow__date"><b>20</b><i>сентября</i><i class="derow__time">12:00</i></div>
         <a class="erow__media" href="event.html" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/ev-1.webp" alt="" loading="lazy"></a>
         <div class="erow__body">
@@ -112,7 +112,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </article>
     </div>
     <div class="evlist delist" id="viewArchive" hidden>
-      <article class="evrow erow derow evrow--past" data-aud="public" data-type="fest">
+      <article class="evrow erow derow evrow--past" data-aud="public" data-type="fest" data-date="2020-02-12">
         <div class="erow__date"><b>12</b><i>февраля</i><i class="derow__time">2020</i></div>
         <a class="erow__media" href="event.html?past=1" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/events/color-day.webp" alt="" loading="lazy"></a>
         <div class="erow__body">
@@ -123,7 +123,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <div class="derow__act"><a href="event.html?past=1" class="erow__cta erow__cta--ghost">Смотреть отчёт</a></div>
       </article>
-      <article class="evrow erow derow evrow--past" data-aud="public" data-type="fest">
+      <article class="evrow erow derow evrow--past" data-aud="public" data-type="fest" data-date="2019-03-16">
         <div class="erow__date"><b>16</b><i>марта</i><i class="derow__time">2019</i></div>
         <a class="erow__media" href="event.html?past=1" tabindex="-1" aria-hidden="true"><img class="erow__img jimg" src="img/events/stroim-dom.webp" alt="" loading="lazy"></a>
         <div class="erow__body">
@@ -149,6 +149,39 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   </div>
 </section>
 
+<!-- подписка — тот же блок, что на главной, с текстом про события -->
+<section class="sblock sblock--compact" id="subscribe">
+  <div class="wrap sblock__in">
+    <div class="sblock__text">
+      <h2 class="sblock__h2">Не пропустите следующие события</h2>
+      <p class="sblock__lead">Анонсы мастер-классов, лекций и семинаров — письмом раз в две недели. Отписаться можно в один клик.</p>
+    </div>
+    <form class="sform" novalidate>
+      <div class="sform__row">
+        <input class="sform__inp" type="email" name="email" placeholder="Ваш e-mail" required aria-label="E-mail для подписки">
+        <button class="sform__go" type="submit">Подписаться</button>
+      </div>
+      <div class="sform__checks">
+        <label class="scheck">
+          <input type="checkbox" name="pd" required>
+          <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
+        </label>
+        <label class="scheck">
+          <input type="checkbox" name="ads" required>
+          <span>Согласен получать рекламные и информационные рассылки ТК «Ланской»</span>
+        </label>
+      </div>
+    </form>
+    <div class="sdone" hidden>
+      <span class="sdone__ic" aria-hidden="true"></span>
+      <div>
+        <p class="sdone__h">Проверьте почту</p>
+        <p class="sdone__t">Мы отправили письмо на <b data-email></b>. Перейдите по ссылке из письма, чтобы подписка заработала. Письма нет через 10 минут — загляните в «Спам» или <button type="button" class="dlink--btn" data-sub-again>укажите другой адрес</button>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <div id="siteFooter"></div>
@@ -158,6 +191,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=87"></script>
+<script src="design.js?v=88"></script>
 </body>
 </html>

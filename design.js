@@ -1390,3 +1390,16 @@
   form.addEventListener('submit', function (e) { e.preventDefault(); run(inp.value.trim()); });
   if (/[?&]empty=1/.test(location.search)) { inp.value = 'ламинатт дуб'; clear.hidden = false; run(inp.value); }
 })();
+
+/* ---------- афиша: сортировка по дате ----------
+   Ближайшие — от ранних к поздним, архив — от новых к старым.
+   Дата берётся из data-date (ГГГГ-ММ-ДД) у строки события */
+(function () {
+  [['viewUpcoming', 1], ['viewArchive', -1]].forEach(function (v) {
+    var box = document.getElementById(v[0]);
+    if (!box) return;
+    var rows = [].slice.call(box.querySelectorAll(':scope > .evrow[data-date]'));
+    rows.sort(function (a, b) { return a.getAttribute('data-date') < b.getAttribute('data-date') ? -v[1] : v[1]; });
+    rows.forEach(function (r) { box.appendChild(r); });
+  });
+})();
