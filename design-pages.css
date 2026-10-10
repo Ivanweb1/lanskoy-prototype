@@ -1004,9 +1004,16 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dselect::after{transition:transform .2s}
 
 .dfilters__search{margin-left:auto;width:360px}
-.dfilters.is-selects .dfilters__count{flex-basis:100%;order:3;margin:4px 0 0;padding-top:20px;border-top:1px solid var(--s-line)}
-/* без поиска (афиша) счётчик встаёт в ту же строку справа */
-.dfilters.is-selects:not(:has(.dfilters__search)) .dfilters__count{flex-basis:auto;order:0;margin-left:auto;padding-top:0;border-top:0}
+/* «Найдено N · Сбросить» — в строке фильтров сразу после списков,
+   обычным шрифтом; отдельный ряд с линией отрывал его от фильтров */
+.dfilters.is-selects .dfilters__selects{order:0}
+.dfilters.is-selects .dfilters__count{order:1;flex-basis:auto;margin:0 0 0 8px;padding:0;border:0;
+  font-size:13px;letter-spacing:0;text-transform:none;color:var(--s-fg-soft);white-space:nowrap}
+.dfilters.is-selects .dfilters__count b{font-family:var(--d-sans);font-size:13px;font-weight:600;margin:0;color:var(--s-fg)}
+.dfilters.is-selects .dfilters__search{order:2}
+.dfilters__reset{margin-left:14px;padding:0;background:none;border:0;border-bottom:1px solid currentColor;cursor:pointer;
+  font:inherit;font-size:13px;color:var(--s-accent-ink);transition:color .2s}
+.dfilters__reset:hover{color:var(--s-fg)}
 
 @media (max-width:1000px){
   .dfilters__search{width:100%;margin-left:0;order:2}

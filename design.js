@@ -1198,8 +1198,22 @@
     var num = p.querySelector('b');
     var pre = document.createElement('span');
     pre.className = 'dfilters__found';
-    pre.textContent = 'Найдено: ';
+    pre.textContent = 'Найдено ';
     p.insertBefore(pre, p.firstChild);
+    /* «Сбросить» — все списки на первый пункт, поиск пустой */
+    var rst = document.createElement('button');
+    rst.type = 'button';
+    rst.className = 'dfilters__reset';
+    rst.textContent = 'Сбросить';
+    rst.addEventListener('click', function () {
+      [].forEach.call(box.querySelectorAll('.dfilters__row'), function (row) {
+        var first = row.querySelector('.chip');
+        if (first && !first.classList.contains('is-active')) first.click();
+      });
+      var q = box.querySelector('input[type=search]');
+      if (q && q.value) { q.value = ''; q.dispatchEvent(new Event('input', { bubbles: true })); }
+    });
+    p.appendChild(rst);
     function upd() {
       var on = [].some.call(box.querySelectorAll('.dfilters__row'), function (row) {
         var chips = row.querySelectorAll('.chip');
