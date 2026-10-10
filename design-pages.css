@@ -2425,3 +2425,17 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dsrch__t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden;font-size:13px}
   .dsrch__map{position:absolute;top:18px;right:0;margin:0;font-size:10px;letter-spacing:.1em}
 }
+
+/* афиша: вес кнопки по действию — «Регистрация» заливкой, «Подробнее»
+   обводкой, «Мест нет» бледной плашкой того же размера. Общее правило
+   заливки в design.css сильнее по селектору — перебиваем его здесь */
+.derow .erow__cta.erow__cta--ghost:not(.erow__cta--off){background:none;border:1px solid var(--s-accent);color:var(--s-accent-ink)}
+.derow .erow__cta.erow__cta--ghost:not(.erow__cta--off):hover{background:var(--s-accent);color:var(--s-btn-fill-fg);filter:none}
+.derow .erow__cta.erow__cta--off,.derow .erow__cta.erow__cta--off:hover{
+  display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;
+  background:var(--s-plate);border:1px solid var(--s-line);color:var(--s-fg-soft);cursor:default}
+@media (max-width:760px){
+  .derow .erow__cta.erow__cta--off{width:100%}
+}
+/* все три кнопки одной ширины — правая колонка ровная */
+.derow .erow__cta{min-width:150px;justify-content:center}
