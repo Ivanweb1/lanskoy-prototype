@@ -2197,8 +2197,11 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 /* ============ 404 / 500: ТАБЛИЧКА И БАЛАНС КОЛОНОК ============ */
 /* заголовок — две строки вместо четырёх, чтобы левая колонка
    по высоте совпадала с табличкой справа */
-.d404__h1{font-size:clamp(32px,3.3vw,50px);line-height:1.08}
-.d404__text{max-width:600px}
+/* размер считается от ширины самой колонки (cqi), а не окна: самая
+   длинная строка («Что-то сломалось») занимает ≈11 кеглей, поэтому
+   8.8cqi гарантирует две строки при любой ширине и масштабе браузера */
+.d404__text{max-width:600px;container-type:inline-size}
+.d404__h1{font-size:min(clamp(32px,3.3vw,50px),8.8cqi);line-height:1.08}
 .d404__lead{margin-bottom:0}
 .d404__text .dpromo__acts{margin-top:32px}
 
@@ -2219,9 +2222,9 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .d500 .dway__name{font-size:20px;font-variant-numeric:lining-nums}
 .d500{padding:96px 0 120px}
 .d500__home{border-color:rgba(196,154,108,.6);color:var(--b-copper)}
-.dway__pin--tool{
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M14.5 6.5a4 4 0 0 0 5 5l-8.8 8.8a2 2 0 0 1-2.8-2.8l8.8-8.8a4 4 0 0 1-2.2-2.2z'/%3E%3Cpath d='M14.5 6.5L17 4l3 3-2.5 2.5'/%3E%3C/svg%3E") no-repeat center/contain;
-          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M14.5 6.5a4 4 0 0 0 5 5l-8.8 8.8a2 2 0 0 1-2.8-2.8l8.8-8.8a4 4 0 0 1-2.2-2.2z'/%3E%3Cpath d='M14.5 6.5L17 4l3 3-2.5 2.5'/%3E%3C/svg%3E") no-repeat center/contain}
+.dway__pin--info{
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M12 11v6'/%3E%3Ccircle cx='12' cy='7.6' r='.6' fill='%23000'/%3E%3C/svg%3E") no-repeat center/contain;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M12 11v6'/%3E%3Ccircle cx='12' cy='7.6' r='.6' fill='%23000'/%3E%3C/svg%3E") no-repeat center/contain}
 .dway__arr--phone::after,.dway__arr--clock::after,.dway__arr--pin::after{-webkit-mask:var(--ic) no-repeat center/20px 20px;mask:var(--ic) no-repeat center/20px 20px}
 .dway__arr--phone{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z'/%3E%3C/svg%3E")}
 .dway__arr--clock{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E")}
