@@ -1269,6 +1269,44 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dupload__t{font-size:14px;color:var(--s-fg)}
 .dupload__t u{color:var(--s-accent-ink);text-underline-offset:3px}
 .dupload__h{font-size:12px;color:var(--s-fg-soft)}
+/* анкета: группы полей, обязательные, счётчик, превью фото */
+.dform__req-note{margin:0 0 24px;font-size:12px;color:var(--s-fg-soft)}
+.fld__req{color:var(--s-accent-ink);letter-spacing:0}
+.dform__grp{min-width:0;margin:0 0 8px;padding:0;border:0}
+.dform__grp+.dform__grp{padding-top:24px;border-top:1px solid var(--s-line)}
+/* legend на флоате — иначе браузер врезает его в верхнюю линию группы */
+.dform__leg{float:left;width:100%;padding:0;margin:0 0 18px;font-family:var(--d-serif);font-weight:600;font-size:18px;letter-spacing:.02em;text-transform:uppercase;color:var(--s-fg)}
+.dform__leg+*{clear:both}
+.dform select:invalid{color:var(--s-fg-soft)}
+.dform .is-invalid select{border-color:#B5483A}
+.fld__count{align-self:flex-end;font-size:12px;color:var(--s-fg-soft)}
+.fld__count.is-near{color:var(--s-accent-ink)}
+.dform .dform__pub{gap:20px;margin:4px 0 16px;padding:16px 0 0;border-bottom:0}
+.dform__pub .dtoggle__h{font-family:var(--d-sans);font-size:14px}
+.dupload.has-files{min-height:64px}
+.dupload.has-files .dupload__ic,.dupload.has-files .dupload__h{display:none}
+.dthumbs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0 0;padding:0;list-style:none}
+.dthumbs[hidden],.dthumbs__msg[hidden]{display:none}
+.dthumbs li{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--s-plate)}
+.dthumbs img{display:block;width:100%;height:100%;object-fit:cover}
+.dthumbs__x{position:absolute;top:4px;right:4px;width:26px;height:26px;padding:0;border:0;background:rgba(1,20,39,.78);cursor:pointer;transition:background-color .2s}
+.dthumbs__x::before,.dthumbs__x::after{content:"";position:absolute;left:7px;right:7px;top:12px;height:1.3px;background:#fff;transform:rotate(45deg)}
+.dthumbs__x::after{transform:rotate(-45deg)}
+.dthumbs__x:hover{background:#B5483A}
+.dthumbs__msg{font-size:12px;color:#B5483A}
+/* левая колонка анкеты */
+.dformpage__gets{margin:8px 0 0;padding:24px 24px 16px;background:var(--s-bg-2)}
+[data-theme="dark"] .dformpage__gets{background:var(--s-plate)}
+.dformpage__sub{margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dformpage__list{margin:0;padding:0;list-style:none}
+.dformpage__list li{position:relative;margin:0 0 10px;padding-left:22px;font-size:14px;line-height:1.5;color:var(--s-fg)}
+.dformpage__list li::before{content:"";position:absolute;left:0;top:.75em;width:12px;height:1px;background:var(--s-accent)}
+.dformpage__ask{margin:24px 0 12px;font-size:14px;color:var(--s-fg-soft)}
+.dformpage__ask a{color:var(--s-fg);white-space:nowrap;border-bottom:1px solid var(--s-line-strong)}
+@media (max-width:760px){
+  .dthumbs{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .dformpage__gets{padding:20px 20px 12px}
+}
 [data-states] [hidden]{display:none}
 
 @media (max-width:1100px){

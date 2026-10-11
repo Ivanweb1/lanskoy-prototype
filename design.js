@@ -712,6 +712,8 @@
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
     var m = h.match(/^([a-z0-9-]+\.html)(.*)$/);
+    /* «Каталог дизайнеров» в меню и подвале вёл на блок лендинга — ведём на страницу каталога */
+    if (h === 'designers.html#catalog') { a.setAttribute('href', 'design-designers-catalog.html'); return; }
     if (m && DESIGN_PAGES[m[1]]) a.setAttribute('href', DESIGN_PAGES[m[1]] + m[2]);
   });
 })();
@@ -845,6 +847,7 @@
     function build() {
       list.innerHTML = '';
       [].forEach.call(sel.options, function (o, i) {
+        if (o.hidden) return;
         var li = document.createElement('li');
         li.className = 'dd__opt';
         li.setAttribute('role', 'option');
@@ -854,7 +857,8 @@
       });
     }
     function mark() {
-      [].forEach.call(list.children, function (li, i) {
+      [].forEach.call(list.children, function (li) {
+        var i = +li.dataset.i;
         li.classList.toggle('is-sel', i === sel.selectedIndex);
         li.classList.toggle('is-cur', i === cur);
         li.setAttribute('aria-selected', i === sel.selectedIndex ? 'true' : 'false');
@@ -908,14 +912,18 @@
       var li = e.target.closest('.dd__opt');
       if (li && +li.dataset.i !== cur) { cur = +li.dataset.i; mark(); }
     });
-    btn.addEventListener('keydown', function (e) {
+    function step(d) {
       var n = sel.options.length;
+      do { cur = (cur + d + n) % n; } while (sel.options[cur].hidden);
+      mark();
+    }
+    btn.addEventListener('keydown', function (e) {
       if (list.hidden) {
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); open(); }
         return;
       }
-      if (e.key === 'ArrowDown') { e.preventDefault(); cur = (cur + 1) % n; mark(); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); cur = (cur - 1 + n) % n; mark(); }
+      if (e.key === 'ArrowDown') { e.preventDefault(); step(1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); step(-1); }
       else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(cur); }
       else if (e.key === 'Escape' || e.key === 'Tab') close();
     });
@@ -950,6 +958,90 @@
         [].forEach.call(box.querySelectorAll('.st-done'), function (el) { el.hidden = false; });
         box.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 0);
+    });
+  });
+})();
+
+/* ---------- анкета: маска телефона, счётчик символов, превью фото ---------- */
+(function () {
+  [].forEach.call(document.querySelectorAll('input[data-mask="phone"]'), function (inp) {
+    function fmt(v) {
+      var d = v.replace(/\D/g, '');
+      /* первая 7 — из «+7 (»; вставленный «+7…»/«8…» номер даёт ещё одну лишнюю */
+      if (d.charAt(0) === '7') d = d.slice(1);
+      if (d.length > 10 && /^[78]/.test(d)) d = d.slice(1);
+      d = d.slice(0, 10);
+      var out = '+7 (' + d.slice(0, 3);
+      if (d.length >= 3) out += ') ' + d.slice(3, 6);
+      if (d.length >= 6) out += '-' + d.slice(6, 8);
+      if (d.length >= 8) out += '-' + d.slice(8, 10);
+      return out;
+    }
+    inp.addEventListener('input', function (e) {
+      if (e.inputType && e.inputType.indexOf('delete') === 0) return;
+      inp.value = fmt(inp.value);
+    });
+    inp.addEventListener('focus', function () { if (!inp.value) inp.value = '+7 ('; });
+    inp.addEventListener('blur', function () { if (inp.value.replace(/\D/g, '').length <= 1) inp.value = ''; });
+  });
+
+  [].forEach.call(document.querySelectorAll('textarea[data-count]'), function (ta) {
+    var box = ta.parentNode.querySelector('.fld__count');
+    if (!box) return;
+    var n = box.querySelector('span'), max = +ta.getAttribute('maxlength');
+    function upd() {
+      n.textContent = ta.value.length;
+      box.classList.toggle('is-near', ta.value.length > max * 0.9);
+    }
+    ta.addEventListener('input', upd); upd();
+  });
+
+  /* фото: копим выбранные файлы, показываем плитками с крестиком;
+     лишние сверх 10 и тяжелее 5 МБ не берём и пишем почему */
+  [].forEach.call(document.querySelectorAll('[data-upload]'), function (zone) {
+    var inp = zone.querySelector('input[type=file]');
+    var wrap = zone.parentNode, list = wrap.querySelector('.dthumbs'), msg = wrap.querySelector('.dthumbs__msg');
+    var t = zone.querySelector('.dupload__t'), t0 = t.innerHTML;
+    var MAX = 10, MB = 5, files = [];
+    function sync() {
+      if (window.DataTransfer) {
+        var dt = new DataTransfer();
+        files.forEach(function (f) { dt.items.add(f); });
+        inp.files = dt.files;
+      }
+      list.innerHTML = '';
+      files.forEach(function (f, i) {
+        var li = document.createElement('li');
+        var img = document.createElement('img');
+        img.src = URL.createObjectURL(f); img.alt = f.name;
+        var x = document.createElement('button');
+        x.type = 'button'; x.className = 'dthumbs__x'; x.dataset.i = i;
+        x.setAttribute('aria-label', 'Убрать ' + f.name);
+        li.appendChild(img); li.appendChild(x); list.appendChild(li);
+      });
+      list.hidden = !files.length;
+      zone.classList.toggle('has-files', files.length > 0);
+      zone.hidden = files.length >= MAX;
+      t.innerHTML = files.length ? 'Добавить ещё <u>фото</u> — ' + files.length + ' из ' + MAX : t0;
+    }
+    inp.addEventListener('change', function () {
+      var picked = [].slice.call(inp.files), skipped = [];
+      picked.forEach(function (f) {
+        if (!/^image\/(jpeg|png)$/.test(f.type)) skipped.push(f.name + ' — не JPG и не PNG');
+        else if (f.size > MB * 1024 * 1024) skipped.push(f.name + ' — больше ' + MB + ' МБ');
+        else if (files.length >= MAX) skipped.push(f.name + ' — уже ' + MAX + ' фото');
+        else files.push(f);
+      });
+      msg.textContent = skipped.length ? 'Не добавлены: ' + skipped.join('; ') : '';
+      msg.hidden = !skipped.length;
+      sync();
+    });
+    list.addEventListener('click', function (e) {
+      var x = e.target.closest('.dthumbs__x');
+      if (!x) return;
+      files.splice(+x.dataset.i, 1);
+      msg.hidden = true;
+      sync();
     });
   });
 })();

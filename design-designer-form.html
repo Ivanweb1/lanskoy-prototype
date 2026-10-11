@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=225">
+<link rel="stylesheet" href="design-pages.css?v=226">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -48,87 +48,125 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <h2 class="dblock__h2">Как это работает</h2>
       <ol class="dagenda">
         <li>Вы заполняете анкету — она уходит администрации комплекса</li>
-        <li>Администрация проверяет данные и связывается с вами</li>
-        <li><span>Карточка публикуется в <a href="designers.html" class="dlink dlink--in">каталоге</a></span></li>
+        <li>Администрация проверяет данные и связывается с вами — обычно до трёх рабочих дней</li>
+        <li><span>Карточка публикуется в <a href="design-designers-catalog.html" class="dlink dlink--in">каталоге</a></span></li>
       </ol>
+      <div class="dformpage__gets">
+        <p class="dformpage__sub">Что даёт карточка</p>
+        <ul class="dformpage__list">
+          <li>Портфолио и контакты в каталоге комплекса</li>
+          <li>Покупатели ищут дизайнера там же, где выбирают материалы</li>
+          <li>Рядом — 40+ специалистов, которые уже в каталоге</li>
+        </ul>
+      </div>
+      <p class="dformpage__ask">Вопросы по анкете — <a href="tel:+78123630007">+7 (812) 363-00-07</a></p>
       <p class="dpanel__hint">Анкета не публикуется автоматически. Заполненные анкеты видит только администрация комплекса.</p>
     </div>
     <div class="dpanel dformpage__panel" data-states>
       <div class="st-open">
         <form class="jsform dform" novalidate>
-          <label class="fld">
-            <span class="fld__lab">Имя и фамилия или название студии</span>
-            <input type="text" name="name" required>
-            <span class="fld__err">Укажите, как подписать карточку</span>
-          </label>
-          <div class="dform__two">
+          <p class="dform__req-note"><span class="fld__req" aria-hidden="true">*</span> — обязательные поля</p>
+
+          <fieldset class="dform__grp">
+            <legend class="dform__leg">О вас</legend>
             <label class="fld">
-              <span class="fld__lab">Направление</span>
-              <span class="dform__sel">
-                <select name="spec">
-                  <option>Дизайн интерьеров</option>
-                  <option>Архитектура и планировочные решения</option>
-                  <option>Светодизайн</option>
-                  <option>Декорирование и стайлинг</option>
-                  <option>Другое</option>
-                </select>
+              <span class="fld__lab">Имя и фамилия или название студии <span class="fld__req" aria-hidden="true">*</span></span>
+              <input type="text" name="name" required placeholder="Например, Анна Соколова">
+              <span class="fld__err">Укажите, как подписать карточку</span>
+            </label>
+            <div class="dform__two">
+              <label class="fld">
+                <span class="fld__lab">Направление</span>
+                <span class="dform__sel">
+                  <select name="spec">
+                    <option>Дизайн интерьеров</option>
+                    <option>Архитектура и планировочные решения</option>
+                    <option>Светодизайн</option>
+                    <option>Декорирование и стайлинг</option>
+                    <option>Другое</option>
+                  </select>
+                </span>
+              </label>
+              <label class="fld">
+                <span class="fld__lab">Опыт работы <span class="fld__req" aria-hidden="true">*</span></span>
+                <span class="dform__sel">
+                  <select name="exp" required>
+                    <option value="" selected hidden>Выберите</option>
+                    <option>До 2 лет</option>
+                    <option>2–5 лет</option>
+                    <option>5–10 лет</option>
+                    <option>Больше 10 лет</option>
+                  </select>
+                </span>
+                <span class="fld__err">Выберите опыт работы</span>
+              </label>
+            </div>
+            <label class="fld">
+              <span class="fld__lab">О себе и подходе к работе</span>
+              <textarea name="about" rows="4" maxlength="1000" data-count placeholder="Стиль, с какими объектами работаете (квартиры, дома, HoReCa), площади, сроки, что входит в проект"></textarea>
+              <span class="fld__count"><span>0</span> / 1000</span>
+            </label>
+          </fieldset>
+
+          <fieldset class="dform__grp">
+            <legend class="dform__leg">Контакты</legend>
+            <div class="dform__two">
+              <label class="fld">
+                <span class="fld__lab">Телефон <span class="fld__req" aria-hidden="true">*</span></span>
+                <input type="tel" name="phone" required data-mask="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}">
+                <span class="fld__err">Введите номер полностью</span>
+              </label>
+              <label class="fld">
+                <span class="fld__lab">E-mail <span class="fld__req" aria-hidden="true">*</span></span>
+                <input type="email" name="email" required autocomplete="email" placeholder="name@studio.ru">
+                <span class="fld__err">Проверьте адрес</span>
+              </label>
+            </div>
+            <!-- мессенджеры — те же, что в панели «Связаться» на странице дизайнера -->
+            <div class="dform__two">
+              <label class="fld">
+                <span class="fld__lab">Telegram</span>
+                <input type="text" name="tg" placeholder="@username">
+              </label>
+              <label class="fld">
+                <span class="fld__lab">MAX</span>
+                <input type="text" name="max" placeholder="Ссылка на профиль или номер">
+              </label>
+            </div>
+            <label class="fld">
+              <span class="fld__lab">Сайт или портфолио в соцсетях</span>
+              <input type="text" name="site" placeholder="Ссылка на сайт, Behance, Pinterest или VK">
+            </label>
+            <label class="dtoggle dform__pub">
+              <span class="dtoggle__b">
+                <span class="dtoggle__h">Показывать контакты в карточке</span>
+                <span class="dtoggle__t">Телефон, почта, Telegram и MAX будут видны посетителям каталога. Если выключить — карточка будет без контактов.</span>
               </span>
+              <input type="checkbox" name="pub" checked>
+              <span class="dtoggle__sw" aria-hidden="true"></span>
             </label>
-            <label class="fld">
-              <span class="fld__lab">Опыт работы, лет</span>
-              <input type="number" name="exp" min="0" max="60" required>
-              <span class="fld__err">Укажите число лет</span>
-            </label>
-          </div>
-          <div class="dform__two">
-            <label class="fld">
-              <span class="fld__lab">Телефон</span>
-              <input type="tel" name="phone" required>
-              <span class="fld__err">Телефон нужен администрации для связи</span>
-            </label>
-            <label class="fld">
-              <span class="fld__lab">E-mail</span>
-              <input type="email" name="email" required>
-              <span class="fld__err">Проверьте адрес</span>
-            </label>
-          </div>
-          <!-- мессенджеры — те же, что в панели «Связаться» на странице дизайнера -->
-          <div class="dform__two">
-            <label class="fld">
-              <span class="fld__lab">Telegram</span>
-              <input type="text" name="tg" placeholder="@username">
-            </label>
-            <label class="fld">
-              <span class="fld__lab">MAX</span>
-              <input type="text" name="max" placeholder="Ссылка на профиль или номер">
-            </label>
-          </div>
-          <label class="fld">
-            <span class="fld__lab">Сайт или портфолио в соцсетях</span>
-            <input type="text" name="site">
-          </label>
-          <label class="fld">
-            <span class="fld__lab">О себе и подходе к работе</span>
-            <textarea name="about" rows="4"></textarea>
-          </label>
-          <div class="fld">
-            <span class="fld__lab">Фотографии проектов</span>
-            <label class="dupload">
-              <input type="file" accept="image/jpeg,image/png" multiple>
-              <span class="dupload__ic" aria-hidden="true"></span>
-              <span class="dupload__t">Перетащите файлы или <u>выберите</u></span>
-              <span class="dupload__h">До 10 изображений, JPG или PNG, до 5 МБ каждое</span>
-            </label>
-          </div>
+          </fieldset>
+
+          <fieldset class="dform__grp">
+            <legend class="dform__leg">Портфолио</legend>
+            <div class="fld">
+              <span class="fld__lab">Фотографии проектов</span>
+              <label class="dupload" data-upload>
+                <input type="file" accept="image/jpeg,image/png" multiple>
+                <span class="dupload__ic" aria-hidden="true"></span>
+                <span class="dupload__t">Перетащите файлы или <u>выберите</u></span>
+                <span class="dupload__h">Необязательно. До 10 изображений, JPG или PNG, до 5 МБ каждое</span>
+              </label>
+              <ul class="dthumbs" hidden></ul>
+              <span class="dthumbs__msg" hidden></span>
+            </div>
+          </fieldset>
+
           <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
           <label class="check">
             <input type="checkbox" name="pd" required>
-            <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a></span>
+            <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html">политику</a> <span class="fld__req" aria-hidden="true">*</span></span>
             <span class="fld__err">Без согласия анкету отправить нельзя</span>
-          </label>
-          <label class="check">
-            <input type="checkbox" name="pub">
-            <span>Разрешаю публиковать мои телефон, почту, Telegram и MAX в карточке каталога</span>
           </label>
           <div class="dcaptcha">Yandex SmartCaptcha</div>
           <button type="submit" class="dbtn dbtn--fill dbtn--full">Отправить анкету</button>
@@ -153,6 +191,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=97"></script>
+<script src="design.js?v=98"></script>
 </body>
 </html>
