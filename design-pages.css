@@ -197,7 +197,9 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
    в ряду она стоит на одной линии, сколько бы строк ни занимало название */
 .shopcard__body{display:flex;flex-direction:column;flex:1;padding:20px 22px 22px}
 .shopcard__name{font-family:var(--d-serif);font-weight:600;font-size:19px;line-height:1.25;color:var(--s-fg)}
-.shopcard__cat{font-size:13px;line-height:1.45;color:var(--s-fg-soft);margin:8px 0 16px}
+.shopcard__cat{font-size:13px;line-height:1.45;color:var(--s-fg-soft);margin:8px 0 16px;
+  /* одна строка: длинные категории («Декоративно-отделочные материалы») не ломают высоту ряда */
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .shopcard__place{
   display:flex;align-items:baseline;gap:6px;margin-top:auto;padding-top:14px;
   border-top:1px solid var(--s-line);

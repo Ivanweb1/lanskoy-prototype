@@ -1993,3 +1993,11 @@ function lnsMiniPlan(n, o) {
   });
 })();
 
+
+/* ---------- категория на карточке магазина ----------
+   Подпись режется в одну строку с многоточием; полный текст — в подсказке */
+(function () {
+  [].forEach.call(document.querySelectorAll('.shopcard__cat'), function (c) {
+    if (!c.title) c.title = c.textContent.trim();
+  });
+})();
