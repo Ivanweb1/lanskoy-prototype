@@ -339,6 +339,6 @@
     setFloor(qs.get('floor') || 1, true);
     select(room);
   } else {
-    setFloor(1);
+    setFloor(qs.get('floor') || 1);
   }
 })();

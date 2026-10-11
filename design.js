@@ -1891,30 +1891,92 @@
   el.textContent = 'Временно закрыто';
 })();
 
-/* ---------- карточка магазина: схема этажа с секцией магазина ----------
+/* ---------- мини-схема этажа: карточка магазина и «Аренда» ----------
    Мини-схема из сетки-заглушки не читалась. Берём настоящий этаж
-   (floors-real.js) целиком, без увеличения: секция магазина — медью,
-   номер — рядом с ней (внутри при таком масштабе не помещается).
-   Ссылка — вся плашка. */
+   (floors-real.js) целиком, без увеличения. o.here — секция магазина
+   (медью, номер рядом: внутри при таком масштабе не помещается);
+   o.free — свободные секции (медью, каждая — ссылка на неё на схеме). */
+function lnsNormRoom(c) { return String(c).replace(/A/g, 'А').replace(/B/g, 'В').replace(/C/g, 'С'); }
+function lnsMiniPlan(n, o) {
+  var f = typeof REAL_FLOORS !== 'undefined' && REAL_FLOORS[n];
+  if (!f) return '';
+  var vb = f.viewBox, here = null, free = o.free || [];
+  var s = '<svg viewBox="' + vb.join(' ') + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+          '<path class="pl-outline" d="' + f.outline + '"/>', top = '';
+  f.rooms.forEach(function (r) {
+    if (o.here && r[0] === o.here) { here = r; return; }
+    var isFree = r[0] && free.indexOf(r[0]) > -1;
+    var path = '<path class="pl-room' + (r[0] ? '' : ' pl-room--blank') + (isFree ? ' pl-room--here' : '') + '" d="' + r[2] + '"/>';
+    if (isFree) top += '<a href="floors.html?room=' + encodeURIComponent(r[0]) + '&amp;floor=' + n + '"><title>' + r[0] + ' — свободно</title>' + path + '</a>';
+    else s += path;
+  });
+  s += top;
+  if (here) {
+    s += '<path class="pl-room pl-room--here" d="' + here[2] + '"/>';
+    var right = here[3] + here[5] + 120 < vb[0] + vb[2];
+    s += '<text class="pl-txt pl-txt--label" x="' + (right ? here[3] + here[5] + 12 : here[3] - 12) + '" y="' + (here[4] + here[6] / 2 + 12) +
+         '" text-anchor="' + (right ? 'start' : 'end') + '" style="font-size:36px">' + here[0] + '</text>';
+  }
+  return s + '</svg>';
+}
+
+/* карточка магазина: этаж с секцией магазина, ссылка — вся плашка */
 (function () {
   var el = document.getElementById('shopPlan');
-  if (!el || typeof REAL_FLOORS === 'undefined') return;
-  var f = REAL_FLOORS[el.getAttribute('data-floor')];
-  /* номера в данных кириллицей, в ссылках бывают латиницей */
-  var code = el.getAttribute('data-room').replace(/A/g, 'А').replace(/B/g, 'В').replace(/C/g, 'С');
-  var room = f && f.rooms.filter(function (r) { return r[0] === code; })[0];
-  if (!room) return;
-  var vb = f.viewBox;
-  var s = '<svg viewBox="' + vb.join(' ') + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-          '<path class="pl-outline" d="' + f.outline + '"/>';
-  f.rooms.forEach(function (r) {
-    if (r === room) return;
-    s += '<path class="pl-room' + (r[0] ? '' : ' pl-room--blank') + '" d="' + r[2] + '"/>';
+  if (!el) return;
+  el.innerHTML = lnsMiniPlan(el.getAttribute('data-floor'), { here: lnsNormRoom(el.getAttribute('data-room')) });
+})();
+
+/* «Аренда»: свободные секции по этажам — вкладки, схема, список.
+   Состав — ДЕМО: в выгрузке действующего сайта статуса секций нет, в бою
+   он приходит из CMS. Номера — с настоящих схем 2 и 3 этажей. */
+var FREE_ROOMS = { 1: [], 2: ['В11', 'В14a', 'В22', 'В40'], 3: ['С5', 'С9.2', 'С20'] };
+(function () {
+  var plan = document.getElementById('freePlan');
+  if (!plan) return;
+  var tabs = document.getElementById('freeTabs');
+  var list = document.getElementById('freeList');
+  var floors = Object.keys(FREE_ROOMS);
+  var total = floors.reduce(function (s, n) { return s + FREE_ROOMS[n].length; }, 0);
+  function plural(k) { var m = k % 10, h = k % 100; return m === 1 && h !== 11 ? 'свободная секция' : m >= 2 && m <= 4 && (h < 12 || h > 14) ? 'свободные секции' : 'свободных секций'; }
+  document.getElementById('freeTotal').textContent = total;
+  document.getElementById('freeTotalT').textContent = plural(total) + ' в комплексе';
+  tabs.innerHTML = floors.map(function (n) {
+    return '<button type="button" class="floors__tab" role="tab" data-floor="' + n + '"><b>' + n + '</b> этаж<span class="dfreeplan__n">' + FREE_ROOMS[n].length + '</span></button>';
+  }).join('');
+  function show(n) {
+    [].forEach.call(tabs.children, function (b) {
+      var on = b.getAttribute('data-floor') === n;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-selected', String(on));
+    });
+    plan.innerHTML = lnsMiniPlan(n, { free: FREE_ROOMS[n] });
+    plan.setAttribute('href', 'floors.html?floor=' + n);
+    list.innerHTML = FREE_ROOMS[n].length
+      ? FREE_ROOMS[n].map(function (c) {
+          return '<li><a href="floors.html?room=' + encodeURIComponent(c) + '&amp;floor=' + n + '"><b>' + c + '</b><span>' + n + ' этаж</span></a></li>';
+        }).join('')
+      : '<li class="dfreelist__empty">На этом этаже свободных секций сейчас нет</li>';
+  }
+  tabs.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-floor]');
+    if (b) show(b.getAttribute('data-floor'));
   });
-  /* своя секция — последней, поверх соседей; подпись справа, а у правого края — слева */
-  s += '<path class="pl-room pl-room--here" d="' + room[2] + '"/>';
-  var right = room[3] + room[5] + 120 < vb[0] + vb[2];
-  s += '<text class="pl-txt pl-txt--label" x="' + (right ? room[3] + room[5] + 12 : room[3] - 12) + '" y="' + (room[4] + room[6] / 2 + 12) +
-       '" text-anchor="' + (right ? 'start' : 'end') + '" style="font-size:36px">' + code + '</text>';
-  el.innerHTML = s + '</svg>';
+  /* открываем первый этаж, где есть свободные */
+  show(floors.filter(function (n) { return FREE_ROOMS[n].length; })[0] || floors[0]);
+})();
+/* «Аренда»: липкая «Оставить заявку» на телефоне — пока не видно
+   ни первого экрана (там свои кнопки), ни самой формы */
+(function () {
+  var bar = document.getElementById('rentSticky');
+  var hero = document.querySelector('.dabout-hero');
+  var form = document.getElementById('form');
+  if (!bar || !hero || !form) return;
+  function upd() {
+    var h = hero.getBoundingClientRect(), f = form.getBoundingClientRect();
+    bar.hidden = h.bottom > 0 || f.top < window.innerHeight;
+  }
+  window.addEventListener('scroll', upd, { passive: true });
+  window.addEventListener('resize', upd);
+  upd();
 })();

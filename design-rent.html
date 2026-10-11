@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=259">
+<link rel="stylesheet" href="design-pages.css?v=261">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -39,7 +39,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <div class="dpromo__bottom dpromo__acts">
           <a href="#form" class="dbtn dbtn--fill">Оставить заявку</a>
-          <a href="floors.html" class="dbtn dbtn--ghost">Свободные помещения</a>
+          <a href="#free" class="dbtn dbtn--ghost">Свободные помещения</a>
         </div>
       </div>
       <div class="dpromo__media"><img class="jimg" src="img/rent.webp" alt="" loading="lazy"></div>
@@ -64,7 +64,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <section class="sect">
   <div class="wrap">
     <div class="dhead"><h2 class="dhead__h2">Почему арендаторы выбирают «Ланской»</h2></div>
-    <div class="dadvs">
+    <div class="dadvs dadvs--2">
       <div class="dadv">
         <span class="dadv__n">01</span>
         <h3 class="dadv__h">Целевой покупатель</h3>
@@ -77,21 +77,11 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </div>
       <div class="dadv">
         <span class="dadv__n">03</span>
-        <h3 class="dadv__h">Продвижение включено</h3>
-        <p class="dadv__t">Карточка магазина на сайте, размещение акций, участие в мероприятиях комплекса и упоминания в журнале — без отдельной платы.</p>
-      </div>
-      <div class="dadv">
-        <span class="dadv__n">04</span>
-        <h3 class="dadv__h">Личный кабинет</h3>
-        <p class="dadv__t">Контакты, акции, фотографии и видео магазина обновляются самостоятельно, без заявок в администрацию и ожидания.</p>
-      </div>
-      <div class="dadv">
-        <span class="dadv__n">05</span>
         <h3 class="dadv__h">Профессиональная аудитория</h3>
         <p class="dadv__t">Дизайнеры и архитекторы приходят на семинары и подбирают материалы под проекты. Один такой контакт приносит не одну покупку.</p>
       </div>
       <div class="dadv">
-        <span class="dadv__n">06</span>
+        <span class="dadv__n">04</span>
         <h3 class="dadv__h">Расположение и парковка</h3>
         <p class="dadv__t">Между двумя станциями метро, рядом с городскими магистралями, парковка у входов.</p>
       </div>
@@ -116,25 +106,70 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   </div>
 </section>
 
-<!-- ================= УСЛОВИЯ ================= -->
-<section class="sect">
-  <div class="wrap dterms-wrap">
-    <div>
-      <div class="dhead"><h2 class="dhead__h2">Условия аренды</h2></div>
-      <div class="dterms">
-      <div class="dterm"><span class="dterm__k">Площади</span><span class="dterm__v">от 20 до 400 м²</span></div>
-      <div class="dterm"><span class="dterm__k">Ставка</span><span class="dterm__v">индивидуально, по формату и этажу</span></div>
-      <div class="dterm"><span class="dterm__k">Срок договора</span><span class="dterm__v">от 11 месяцев</span></div>
-      <div class="dterm"><span class="dterm__k">Что входит</span><span class="dterm__v">Карточка на сайте, размещение акций, участие в мероприятиях комплекса</span></div>
-      <div class="dterm"><span class="dterm__k">Свободные помещения</span><span class="dterm__v"><a href="floors.html" class="dlink dlink--in">Посмотреть на схеме этажей</a></span></div>
+<!-- ================= ВИТРИНА: ВАШ МАГАЗИН НА САЙТЕ ================= -->
+<!-- вместо текстовых преимуществ «Продвижение» и «Личный кабинет» — сама
+     карточка магазина: снимок первого экрана design-shop.html (img/rent/shop-card.webp) в рамке браузера;
+     после правок карточки снимок переснять -->
+<section class="sect dshowcase">
+  <div class="wrap dshowcase__in">
+    <a href="shop.html" class="dshowcase__frame" aria-label="Пример карточки магазина на сайте">
+      <span class="dshowcase__bar" aria-hidden="true"><i></i><i></i><i></i><span>tk-lanskoy.ru/shops/vladart-studio</span></span>
+      <span class="dshowcase__view"><img src="img/rent/shop-card.webp" alt="" loading="lazy" width="1440" height="774"></span>
+    </a>
+    <div class="dshowcase__text">
+      <p class="rblock__kicker">Продвижение включено</p>
+      <h2 class="dhead__h2">Ваш магазин на сайте комплекса</h2>
+      <p class="dpage__lead">У каждого арендатора — своя карточка: покупатель находит магазин через каталог, бренды и поиск и сразу видит, работает ли он сейчас и как дойти.</p>
+      <ul class="dnum__list">
+        <li><b>Контакты и режим работы</b> — телефон, сайт, мессенджеры, часы по дням недели</li>
+        <li><b>Акции</b> — на карточке и в общем разделе акций комплекса, без отдельной платы</li>
+        <li><b>Фото и видео</b> — галерея магазина и ролики с VK Видео или RuTube</li>
+        <li><b>Личный кабинет</b> — всё правится самостоятельно, изменения уходят на проверку одной отправкой</li>
+      </ul>
+      <div class="dshowcase__acts"><a href="shop.html" class="dbtn dbtn--ghost">Посмотреть пример карточки</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= СВОБОДНЫЕ ПОМЕЩЕНИЯ И УСЛОВИЯ ================= -->
+<!-- свободные секции на настоящей схеме (floors-real.js), по этажам.
+     Состав свободных — демо (FREE_ROOMS в design.js), в бою — статус секции из CMS -->
+<section class="sect dsect--alt" id="free">
+  <div class="wrap">
+    <div class="dhead"><h2 class="dhead__h2">Свободные помещения</h2></div>
+    <div class="dfreeplan">
+      <div class="dfreeplan__map">
+        <div class="floors__tabs dfloor__tabs" id="freeTabs" role="tablist" aria-label="Этаж"></div>
+        <a class="dplan dfreeplan__svg" id="freePlan" href="floors.html" aria-label="Открыть схему этажей"></a>
+        <p class="dfreeplan__legend"><span class="dfreeplan__sw dfreeplan__sw--free"></span>Свободно<span class="dfreeplan__sw"></span>Занято</p>
+      </div>
+      <div class="dfreeplan__side">
+        <p class="dfreeplan__count"><b id="freeTotal">7</b> <span id="freeTotalT">свободных секций в комплексе</span></p>
+        <ul class="dfreelist" id="freeList"></ul>
+        <div class="results__more"><a href="floors.html" class="dbtn dbtn--ghost">Открыть схему этажей</a></div>
       </div>
     </div>
-    <a href="floors.html" class="dfree">
-      <span class="dpage__eyebrow">Сейчас свободно</span>
-      <span class="dfree__n">7</span>
-      <span class="dfree__t">секций на первом этаже — от 30 до 120 м²</span>
-      <span class="dlink">Смотреть на схеме</span>
-    </a>
+
+    <ul class="drterms">
+      <li><span class="drterms__k">Площади</span><span class="drterms__v">от 20 до 400 м²</span></li>
+      <li><span class="drterms__k">Ставка</span><span class="drterms__v">индивидуально, по формату и этажу</span></li>
+      <li><span class="drterms__k">Срок договора</span><span class="drterms__v">от 11 месяцев</span></li>
+      <li><span class="drterms__k">Что входит</span><span class="drterms__v">карточка на сайте, размещение акций, участие в мероприятиях</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= КАК СТАТЬ АРЕНДАТОРОМ ================= -->
+<!-- шаг 4 — по решениям кабинета: доступ по заявке, пароль выдаёт менеджер -->
+<section class="sect">
+  <div class="wrap">
+    <div class="dhead"><h2 class="dhead__h2">Как стать арендатором</h2></div>
+    <ol class="drsteps">
+      <li><span class="drsteps__n">01</span><h3 class="drsteps__h">Заявка</h3><p class="drsteps__t">Оставьте заявку на сайте или позвоните в отдел аренды: расскажите о формате и нужной площади.</p></li>
+      <li><span class="drsteps__n">02</span><h3 class="drsteps__h">Подбор и просмотр</h3><p class="drsteps__t">Отдел аренды подберёт свободные помещения под ваш формат и покажет их на месте.</p></li>
+      <li><span class="drsteps__n">03</span><h3 class="drsteps__h">Договор</h3><p class="drsteps__t">Согласуем ставку, срок и дату заезда, подписываем договор аренды.</p></li>
+      <li><span class="drsteps__n">04</span><h3 class="drsteps__h">Карточка на сайте</h3><p class="drsteps__t">Менеджер выдаст доступ в личный кабинет — заполните карточку магазина, добавьте фото и акции.</p></li>
+    </ol>
   </div>
 </section>
 
@@ -171,7 +206,18 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
             </label>
           </div>
           <label class="fld">
-            <span class="fld__lab">Чем занимаетесь и какая площадь нужна</span>
+            <span class="fld__lab">Нужная площадь</span>
+            <span class="dform__sel">
+              <select name="area">
+                <option>Пока не знаю</option>
+                <option>до 50 м²</option>
+                <option>50—150 м²</option>
+                <option>больше 150 м²</option>
+              </select>
+            </span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Чем занимаетесь</span>
             <textarea name="msg" rows="4"></textarea>
           </label>
           <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
@@ -188,12 +234,15 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <p class="dpanel__title">Заявка отправлена</p>
         <p class="dpanel__text">Отдел аренды свяжется с вами в рабочее время — обычно в течение одного рабочего дня.</p>
         <p class="dpanel__text">Если вопрос срочный, позвоните напрямую: <a href="tel:+78123630007" class="dlink dlink--in">+7 (812) 363-00-07</a></p>
-        <a href="floors.html" class="dbtn dbtn--ghost dbtn--full">Пока посмотреть свободные помещения</a>
+        <a href="#free" class="dbtn dbtn--ghost dbtn--full">Пока посмотреть свободные помещения</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- на телефоне форма в самом низу длинной страницы — кнопка держится
+     у нижнего края, пока не видно ни первого экрана, ни формы (design.js) -->
+<div class="dsticky" id="rentSticky" hidden><a href="#form" class="dbtn dbtn--fill dbtn--full">Оставить заявку</a></div>
 </main>
 
 <div id="siteFooter"></div>
@@ -202,7 +251,8 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
+<script src="floors-real.js?v=8"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=112"></script>
+<script src="design.js?v=115"></script>
 </body>
 </html>
