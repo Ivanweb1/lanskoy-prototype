@@ -2157,13 +2157,32 @@ function lnsMiniPlan(n, o) {
     box.scrollTop += rr.top + rr.height / 2 - (br.top + br.height / 2);
   }
 
-  /* строка списка внизу колонки — план и карточка секции наверху: возвращаемся к ним */
+  /* поиск по списку «Магазины на этаже»: название или номер секции */
   var list = document.getElementById('floorList');
-  if (list) list.addEventListener('click', function (e) {
-    if (!e.target.closest('[data-go]') || matchMedia('(max-width:1000px)').matches) return;
-    var top = wrap.getBoundingClientRect().top - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hdr-sticky'), 10) || 64) - 90;
-    if (top < 0) window.scrollBy({ top: top, behavior: 'smooth' });
-  });
+  if (list) {
+    var q = document.createElement('div');
+    q.className = 'field field--sm dbsearch dbsearch--full dlistq';
+    q.innerHTML = '<input type="search" placeholder="Найти в списке" autocomplete="off" aria-label="Поиск в списке магазинов этажа"><button type="button" class="field__go" aria-label="Найти"></button>';
+    list.parentNode.insertBefore(q, list);
+    var qi = q.querySelector('input');
+    var none = document.createElement('p');
+    none.className = 'dfloorlist__none';
+    none.textContent = 'Ничего не найдено';
+    none.hidden = true;
+    list.parentNode.insertBefore(none, list.nextSibling);
+    var filterList = function () {
+      var v = qi.value.trim().toLowerCase(), n = 0;
+      [].forEach.call(list.querySelectorAll('li'), function (li) {
+        var ok = !v || li.textContent.toLowerCase().indexOf(v) > -1;
+        li.hidden = !ok;
+        if (ok) n++;
+      });
+      none.hidden = n > 0;
+    };
+    qi.addEventListener('input', filterList);
+    /* смена этажа перерисовывает список — фильтр сбрасываем */
+    new MutationObserver(function () { qi.value = ''; none.hidden = true; }).observe(list, { childList: true });
+  }
 
   new MutationObserver(afterRender).observe(box, { childList: true });
   if (legend) new MutationObserver(fixLegend).observe(legend, { childList: true });

@@ -3255,11 +3255,12 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 @keyframes droomIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .droom__x{display:none}
 
-/* список магазинов — во всю высоту без своей прокрутки. Колонка не липнет:
-   липкий блок наезжал на список; клик по строке списка возвращает к плану (design.js) */
-.dfloor .floorside{position:static}
+/* поиск и выбранная секция — одним блоком в колонке; список — как был, со своей прокруткой,
+   над ним поле поиска по списку (design.js) */
 .dfloor__stick{display:flex;flex-direction:column;gap:24px}
-.dfloor .dfloorlist{max-height:none;overflow:visible;padding-right:0;margin-right:0}
+.dlistq{margin:14px 0 6px}
+.dlistq input{height:42px;font-size:13px}
+.dfloorlist__none{padding:14px 0;font-size:13px;color:var(--s-fg-soft)}
 
 /* легенда: цвета подписями, значки — одной строкой без подписей (название в подсказке) */
 .dfloor .dlegend li[data-mark]{font-size:0;gap:0;cursor:help}
@@ -3304,3 +3305,4 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dfloor .dbigplan svg.pl-real{width:100%}
   .dzoom{right:calc(var(--pad) * -1 + 12px)}
 }
+.dlistq input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
