@@ -2911,10 +2911,10 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .dblist{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px}
 .dbitem{display:flex;flex-direction:column;gap:12px}
 .dbitem[hidden]{display:none}
-.dbitem__logo{display:flex;align-items:center;justify-content:center;height:108px;padding:16px;background:#fff;border:1px solid var(--s-line);transition:border-color .25s}
+.dbitem__logo{display:flex;align-items:center;justify-content:center;height:108px;padding:16px;background:transparent;border:1px solid var(--s-line-strong);transition:border-color .25s}
 /* файлы логотипов 136×60 — крупнее не растягиваем, чтобы не мылились */
 .dbitem__logo img{display:block;max-width:min(100%,136px);max-height:60px;object-fit:contain}
-.dbitem__word{font-family:var(--d-serif);font-weight:600;font-size:15px;line-height:1.25;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:#011427}
+.dbitem__word{font-family:var(--d-serif);font-weight:600;font-size:15px;line-height:1.25;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--s-fg)}
 .dbitem__b{min-width:0}
 .dbitem__n{display:block;font-size:15px;font-weight:600;line-height:1.3;color:var(--s-fg);transition:color .2s}
 .dbitem:hover .dbitem__n{color:var(--s-accent-ink)}
@@ -2956,8 +2956,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 
 /* ============ СТРАНИЦА БРЕНДА ============ */
 /* логотип в шапке — на белой плашке, как в списке брендов */
-.dshophead__logo--brand{padding:20px;background:#fff}
-[data-theme="dark"] .dshophead__logo--brand{background:#fff}
+.dshophead__logo--brand{padding:20px;background:transparent;border-color:var(--s-line-strong)}
 .dshophead__logo--brand img{display:block;max-width:100%;max-height:60px;object-fit:contain}
 .ddeshead__sub a{color:inherit;transition:color .2s}
 .ddeshead__sub a:hover{color:var(--s-accent-ink)}
@@ -2969,3 +2968,10 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   /* на телефоне квадрат 80px — логотип не читался; плашка шире и ниже */
   .dshophead__logo--brand{width:160px;aspect-ratio:auto;height:84px;padding:12px}
 }
+/* плашки брендов — цвета фона, только контур. Файлы логотипов — JPG с белым
+   фоном внутри: multiply растворяет белое в фоне страницы. В тёмной теме
+   multiply гасит логотип — там плашка остаётся белой */
+.dbitem__logo img,.dshophead__logo--brand img{mix-blend-mode:multiply}
+[data-theme="dark"] .dbitem__logo,[data-theme="dark"] .dshophead__logo--brand{background:#fff}
+[data-theme="dark"] .dbitem__logo img,[data-theme="dark"] .dshophead__logo--brand img{mix-blend-mode:normal}
+[data-theme="dark"] .dbitem__word{color:#011427}
