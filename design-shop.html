@@ -97,10 +97,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
            Состав демо: марки из списка брендов с категорией «Декоративно-отделочные
            материалы»; реальный — из кабинета арендатора / от заказчика -->
       <div class="dblock">
-        <div class="dblock__head">
-          <h2 class="dblock__h2">Бренды в&nbsp;магазине</h2>
-          <a href="brands.html" class="dlink">Все бренды</a>
-        </div>
+        <h2 class="dblock__h2">Бренды в&nbsp;магазине</h2>
         <div class="dblist dblist--shop">
           <a href="brand.html" class="dbitem">
             <span class="dbitem__logo"><img src="img/brands/camonica.jpg" alt="" loading="lazy"><span class="dbitem__hov" aria-hidden="true"><b>Камоника</b><span>О бренде</span></span></span>
@@ -118,6 +115,10 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
             <span class="dbitem__logo"><span class="dbitem__word" aria-hidden="true">Мастер Защиты</span><span class="dbitem__hov" aria-hidden="true"><b>Мастер Защиты</b><span>О бренде</span></span></span>
             <span class="dbitem__b"><span class="dbitem__n">Мастер Защиты</span></span>
           </a>
+        </div>
+        <!-- «Все …» — кнопкой контуром под списком, как на странице акции -->
+        <div class="results__more">
+          <a href="brands.html" class="dbtn dbtn--ghost">Все бренды</a>
         </div>
       </div>
       <div class="dblock">
@@ -145,10 +146,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </div>
 
       <div class="dblock">
-        <div class="dblock__head">
-          <h2 class="dblock__h2">Акции магазина</h2>
-          <a href="promos.html" class="dlink">Все акции ТК</a>
-        </div>
+        <h2 class="dblock__h2">Акции магазина</h2>
         <div class="dpromos">
           <article class="pcard">
             <a class="pcard__media" href="promo.html" tabindex="-1" aria-hidden="true">
@@ -170,6 +168,10 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
               <p class="pcard__meta"><span class="pcard__shop">По Санкт-Петербургу</span></p>
             </div>
           </article>
+        </div>
+        <!-- «Все …» — кнопкой контуром под списком, как на странице акции -->
+        <div class="results__more">
+          <a href="promos.html" class="dbtn dbtn--ghost">Все акции ТК</a>
         </div>
       </div>
     </div>
