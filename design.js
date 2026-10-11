@@ -342,7 +342,7 @@
         '      <p class="mega__title">Для работы</p>' +
         '      <ul class="mega__links">' +
         '        <li><a href="shops.html">Каталог магазинов</a></li>' +
-        '        <li><a href="events.html">Профессиональные события</a></li>' +
+        '        <li><a href="events.html?aud=pro">Профессиональные события</a></li>' +
         '        <li><a href="journal.html">Журнал</a></li>' +
         '      </ul>' +
         '    </div>' +
@@ -869,6 +869,16 @@
     box.insertBefore(bar, box.firstChild);
     box.classList.add('is-selects');
   });
+})();
+
+/* ---------- афиша по ссылке с фильтром «Кому» ----------
+   events.html?aud=pro — сразу события для дизайнеров (пункт «Профессиональные
+   события» в меню «Дизайнерам»). Жмём чип — список фильтра подхватит сам */
+(function () {
+  var aud = (location.search.match(/[?&]aud=(\w+)/) || [])[1];
+  if (!aud) return;
+  var chip = document.querySelector('.chip[data-aud="' + aud + '"]');
+  if (chip && !chip.classList.contains('is-active')) chip.click();
 })();
 
 /* ---------- выпадающие списки в стиле сайта ----------
