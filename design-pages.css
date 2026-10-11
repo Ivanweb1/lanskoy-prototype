@@ -3046,26 +3046,38 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .dadvs--2{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
 @media (max-width:760px){.dadvs--2{grid-template-columns:1fr}}
 
-/* витрина: живая карточка магазина в рамке браузера + что получает арендатор */
-.dshowcase__in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:center}
-.dshowcase__frame{display:block;border:1px solid var(--s-line-strong);background:var(--s-bg);box-shadow:0 24px 60px -32px rgba(1,20,39,.35);transition:border-color .25s,transform .35s var(--d-ease)}
-.dshowcase__frame:hover{border-color:var(--s-accent);transform:translateY(-4px)}
-.dshowcase__bar{display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-bottom:1px solid var(--s-line);background:var(--s-bg-2)}
-.dshowcase__bar i{width:8px;height:8px;border-radius:50%;background:var(--s-line-strong)}
-.dshowcase__bar span{margin-left:12px;font-size:11px;letter-spacing:.04em;color:var(--s-fg-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dshowcase__view{display:block;overflow:hidden}
-.dshowcase__view img{display:block;width:100%;height:auto}
-.dshowcase__text .rblock__kicker{color:var(--s-accent-ink)}
-.dshowcase__text .dhead__h2{margin:0 0 20px}
-.dshowcase__text .dpage__lead{margin:0 0 24px}
-.dshowcase .dnum__list{margin:0 0 32px}
-.dshowcase .dnum__list li{border-top-color:var(--s-line);color:var(--s-fg-soft)}
-.dshowcase .dnum__list li:last-child{border-bottom:1px solid var(--s-line)}
-.dshowcase .dnum__list li::before{background:var(--s-accent)}
-.dshowcase .dnum__list b{color:var(--s-fg)}
+/* витрина: рамка браузера со снимком интерфейса + тезисы вкладками */
+.dshow__head{max-width:760px;margin-bottom:40px}
+.dshow__head .rblock__kicker{color:var(--s-accent-ink)}
+.dshow__head .dhead__h2{margin:0 0 16px}
+.dshow__head .dpage__lead{margin:0}
+.dshow{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:56px;align-items:center}
+.dshow__list{display:flex;flex-direction:column;border-top:1px solid var(--s-line)}
+.dshow__tab{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 14px;align-items:baseline;width:100%;padding:20px 0;position:relative;
+  background:none;border:0;border-bottom:1px solid var(--s-line);text-align:left;cursor:pointer;color:var(--s-fg)}
+.dshow__tab::before{content:"";position:absolute;left:0;top:-1px;width:0;height:2px;background:var(--s-accent);transition:width .4s var(--d-ease)}
+.dshow__tab.is-active::before{width:100%}
+.dshow__n{font-size:13px;font-weight:600;letter-spacing:.12em;font-variant-numeric:lining-nums;color:var(--s-fg-soft)}
+.dshow__h{font-size:17px;font-weight:600;color:var(--s-fg-soft);transition:color .25s}
+.dshow__t{grid-column:2;display:grid;grid-template-rows:0fr;overflow:hidden;opacity:0;font-size:14px;line-height:1.6;color:var(--s-fg-soft);
+  transition:grid-template-rows .4s var(--d-ease),opacity .3s,margin .4s var(--d-ease)}
+.dshow__t>span{min-height:0}
+.dshow__tab.is-active .dshow__n{color:var(--s-accent-ink)}
+.dshow__tab.is-active .dshow__h,.dshow__tab:hover .dshow__h{color:var(--s-fg)}
+.dshow__tab.is-active .dshow__t{grid-template-rows:1fr;opacity:1;margin-top:8px}
+.dshow__tab:focus-visible{outline:2px solid var(--s-accent);outline-offset:4px}
+.dshow__acts{margin-top:28px}
+.dshowcase__frame{display:block;border:1px solid var(--s-line-strong);background:var(--s-bg);box-shadow:0 30px 70px -36px rgba(1,20,39,.4)}
+.dshowcase__bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-bottom:1px solid var(--s-line);background:var(--s-bg-2)}
+.dshowcase__bar i{width:9px;height:9px;border-radius:50%;background:var(--s-line-strong)}
+.dshowcase__bar span{margin-left:12px;padding:3px 12px;font-size:11px;letter-spacing:.03em;color:var(--s-fg-soft);background:var(--s-bg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dshowcase__view{display:block;overflow:hidden;aspect-ratio:16/10;background:var(--s-bg-2)}
+.dshowcase__view img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left;transition:opacity .18s,transform .45s var(--d-ease)}
+.dshowcase__view img.is-out{opacity:0;transform:scale(1.015)}
 @media (max-width:1000px){
-  .dshowcase__in{grid-template-columns:1fr;gap:40px}
-  .dshowcase__acts .dbtn{width:100%;justify-content:center}
+  .dshow{grid-template-columns:1fr;gap:28px}
+  .dshow__frame{order:-1}
+  .dshow__acts .dbtn{width:100%;justify-content:center}
 }
 
 /* свободные помещения: вкладки этажей, схема, список */
@@ -3119,15 +3131,55 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dfreeplan__map .dfloor__tabs{gap:18px}
 }
 
-/* как стать арендатором — четыре шага, номер медью, как у преимуществ */
+/* как стать арендатором — этапы линией: знак в круге, «кто делает»,
+   линия к следующему шагу заполняется по очереди при появлении блока */
 .drsteps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px;margin:0;padding:0;list-style:none;counter-reset:none}
-.drsteps li{position:relative;padding:28px 0 0;border-top:1px solid var(--s-line-strong)}
-.drsteps li::before{content:"";position:absolute;left:0;top:-1px;width:48px;height:1px;background:var(--s-accent)}
-.drsteps__n{display:block;font-family:var(--d-sans);font-size:14px;font-weight:600;letter-spacing:.12em;font-variant-numeric:lining-nums;color:var(--s-accent-ink);margin-bottom:14px}
+.drsteps__i{position:relative;display:flex;flex-direction:column;align-items:flex-start;padding:0 0 4px}
+.drsteps__node{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:22px;
+  border-radius:50%;border:1px solid var(--s-line-strong);background:var(--s-bg);transition:border-color .4s,background-color .4s}
+.drsteps__node::before{content:"";width:26px;height:26px;background:var(--s-fg-soft);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain;transition:background-color .4s}
+.drsteps__n{position:absolute;right:-6px;top:-6px;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;
+  background:var(--s-bg);border:1px solid var(--s-line-strong);font-size:10px;font-weight:600;font-variant-numeric:lining-nums;color:var(--s-fg-soft);transition:all .4s}
+/* линия от круга к следующему кругу: серая основа + медное заполнение */
+.drsteps__i:not(:last-child)::before,.drsteps__i:not(:last-child)::after{content:"";position:absolute;top:32px;left:64px;right:-32px;height:1px;background:var(--s-line-strong)}
+.drsteps__i:not(:last-child)::after{background:var(--s-accent);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--d-ease)}
+.drsteps__who{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--s-accent-ink);margin-bottom:10px}
 .drsteps__h{font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em;color:var(--s-fg);margin:0 0 10px}
 .drsteps__t{font-size:15px;line-height:1.6;color:var(--s-fg-soft);margin:0}
-@media (max-width:1000px){.drsteps{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 32px}}
-@media (max-width:560px){.drsteps{grid-template-columns:1fr;gap:28px}}
+.drsteps__go{margin:14px 0 0;font-size:14px}
+/* включённый шаг: круг медью; задержки — по порядку шагов */
+.drsteps.is-run .drsteps__node{border-color:var(--s-accent);background:var(--s-accent)}
+.drsteps.is-run .drsteps__node::before{background:var(--s-btn-fill-fg)}
+.drsteps.is-run .drsteps__n{border-color:var(--s-accent);color:var(--s-accent-ink)}
+.drsteps.is-run .drsteps__i::after{transform:scaleX(1)}
+.drsteps__i:nth-child(2) .drsteps__node,.drsteps__i:nth-child(2) .drsteps__node::before,.drsteps__i:nth-child(2) .drsteps__n{transition-delay:.6s}
+.drsteps__i:nth-child(3) .drsteps__node,.drsteps__i:nth-child(3) .drsteps__node::before,.drsteps__i:nth-child(3) .drsteps__n{transition-delay:1.2s}
+.drsteps__i:nth-child(4) .drsteps__node,.drsteps__i:nth-child(4) .drsteps__node::before,.drsteps__i:nth-child(4) .drsteps__n{transition-delay:1.8s}
+.drsteps__i:nth-child(1)::after{transition-delay:.15s}
+.drsteps__i:nth-child(2)::after{transition-delay:.75s}
+.drsteps__i:nth-child(3)::after{transition-delay:1.35s}
+.drsteps__i:hover .drsteps__node{transform:translateY(-3px)}
+.drsteps__node{transition:border-color .4s,background-color .4s,transform .3s var(--d-ease)}
+@media (prefers-reduced-motion:reduce){.drsteps *,.drsteps__i::after{transition:none!important}}
+.drsteps__i--req{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M5 6h18v16H5zM5 6l9 8 9-8'/%3E%3C/svg%3E")}
+.drsteps__i--eye{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M3 14s4-7 11-7 11 7 11 7-4 7-11 7S3 14 3 14z'/%3E%3Ccircle cx='14' cy='14' r='3.5'/%3E%3C/svg%3E")}
+.drsteps__i--doc{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M7 3h10l5 5v17H7zM17 3v5h5M10 14h9M10 18h9M10 22h5'/%3E%3C/svg%3E")}
+.drsteps__i--card{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M4 11l2-6h16l2 6M4 11v12h20V11M4 11h20M11 23v-7h6v7'/%3E%3C/svg%3E")}
+@media (max-width:1000px){
+  .drsteps{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 32px}
+  .drsteps__i:nth-child(2)::before,.drsteps__i:nth-child(2)::after{display:none}
+}
+@media (max-width:560px){
+  /* на телефоне линия вертикальная: круг слева, текст справа */
+  .drsteps{grid-template-columns:1fr;gap:0}
+  .drsteps__i{display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:18px;padding-bottom:32px}
+  .drsteps__i>*:not(.drsteps__node){grid-column:2}
+  .drsteps__node{grid-row:1/span 5;width:56px;height:56px;margin:0}
+  .drsteps__i:nth-child(2)::before,.drsteps__i:nth-child(2)::after{display:block}
+  .drsteps__i:not(:last-child)::before,.drsteps__i:not(:last-child)::after{top:56px;bottom:0;left:28px;right:auto;width:1px;height:auto}
+  .drsteps__i:not(:last-child)::after{transform:scaleY(0);transform-origin:top}
+  .drsteps.is-run .drsteps__i::after{transform:scaleY(1)}
+}
 
 /* телефон отдела аренды — Montserrat, как в карточке магазина */
 .dformpage .dcontacts__v--big{font-family:var(--d-sans);font-size:20px;font-weight:600;font-variant-numeric:lining-nums}

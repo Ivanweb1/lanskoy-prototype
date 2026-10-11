@@ -2020,3 +2020,50 @@ var FREE_ROOMS = { 1: [], 2: ['В11', 'В14a', 'В22', 'В40'], 3: ['С5', 'С9.
     });
   });
 })();
+
+/* «Аренда»: витрина — вкладка меняет снимок интерфейса и адрес в рамке */
+(function () {
+  var img = document.getElementById('showImg');
+  if (!img) return;
+  var url = document.getElementById('showUrl');
+  var tabs = [].slice.call(document.querySelectorAll('.dshow__tab'));
+  /* снимки подгружаем заранее — переключение без пустой рамки */
+  tabs.forEach(function (t) { new Image().src = t.getAttribute('data-img'); });
+  function show(tab) {
+    if (tab.classList.contains('is-active')) return;
+    tabs.forEach(function (t) { var on = t === tab; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', String(on)); });
+    img.classList.add('is-out');
+    setTimeout(function () {
+      img.src = tab.getAttribute('data-img');
+      img.alt = 'Карточка магазина на сайте: ' + tab.querySelector('.dshow__h').textContent.toLowerCase();
+      url.textContent = tab.getAttribute('data-url');
+      img.classList.remove('is-out');
+    }, 180);
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { show(t); });
+    t.addEventListener('mouseenter', function () { if (window.matchMedia('(hover:hover)').matches) show(t); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+      if (!k) return;
+      e.preventDefault();
+      var n = tabs[(i + k + tabs.length) % tabs.length];
+      n.focus(); show(n);
+    });
+  });
+})();
+
+
+/* «Аренда»: этапы включаются по очереди, когда блок попадает в экран */
+(function () {
+  var ol = document.getElementById('rentSteps');
+  if (!ol) return;
+  function check() {
+    if (ol.getBoundingClientRect().top < window.innerHeight * 0.75) {
+      ol.classList.add('is-run');
+      window.removeEventListener('scroll', check);
+    }
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+})();

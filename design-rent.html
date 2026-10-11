@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=265">
+<link rel="stylesheet" href="design-pages.css?v=267">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -178,26 +178,43 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 </section>
 
 <!-- ================= ВИТРИНА: ВАШ МАГАЗИН НА САЙТЕ ================= -->
-<!-- вместо текстовых преимуществ «Продвижение» и «Личный кабинет» — сама
-     карточка магазина: снимок первого экрана design-shop.html (img/rent/shop-card.webp) в рамке браузера;
-     после правок карточки снимок переснять -->
+<!-- каждый тезис — со снимком интерфейса: слева вкладки, справа рамка браузера,
+     в ней меняются кадр и адрес. Снимки — img/rent/sc-*.webp (как переснять — в README) -->
 <section class="sect dshowcase">
-  <div class="wrap dshowcase__in">
-    <a href="shop.html" class="dshowcase__frame" aria-label="Пример карточки магазина на сайте">
-      <span class="dshowcase__bar" aria-hidden="true"><i></i><i></i><i></i><span>tk-lanskoy.ru/shops/vladart-studio</span></span>
-      <span class="dshowcase__view"><img src="img/rent/shop-card.webp" alt="" loading="lazy" width="1440" height="774"></span>
-    </a>
-    <div class="dshowcase__text">
+  <div class="wrap">
+    <div class="dshow__head">
       <p class="rblock__kicker">Продвижение включено</p>
       <h2 class="dhead__h2">Ваш магазин на сайте комплекса</h2>
-      <p class="dpage__lead">У каждого арендатора — своя карточка: покупатель находит магазин через каталог, бренды и поиск и сразу видит, работает ли он сейчас и как дойти.</p>
-      <ul class="dnum__list">
-        <li><b>Контакты и режим работы</b> — телефон, сайт, мессенджеры, часы по дням недели</li>
-        <li><b>Акции</b> — на карточке и в общем разделе акций комплекса, без отдельной платы</li>
-        <li><b>Фото и видео</b> — галерея магазина и ролики с VK Видео или RuTube</li>
-        <li><b>Личный кабинет</b> — всё правится самостоятельно, изменения уходят на проверку одной отправкой</li>
-      </ul>
-      <div class="dshowcase__acts"><a href="shop.html" class="dbtn dbtn--ghost">Посмотреть пример карточки</a></div>
+      <p class="dpage__lead">У каждого арендатора — своя карточка: покупатель находит магазин через каталог, бренды и поиск.</p>
+    </div>
+    <div class="dshow">
+      <div class="dshow__list" role="tablist" aria-label="Что получает арендатор">
+        <button type="button" class="dshow__tab is-active" role="tab" aria-selected="true" data-img="img/rent/sc-card.webp" data-url="tk-lanskoy.ru/shops/vladart-studio">
+          <span class="dshow__n">01</span>
+          <span class="dshow__h">Контакты и режим работы</span>
+          <span class="dshow__t"><span>Телефон, сайт, мессенджеры и часы по дням недели — покупатель сразу видит, открыт ли магазин и где он на схеме.</span></span>
+        </button>
+        <button type="button" class="dshow__tab" role="tab" aria-selected="false" data-img="img/rent/sc-promo.webp" data-url="tk-lanskoy.ru/shops/vladart-studio#promos">
+          <span class="dshow__n">02</span>
+          <span class="dshow__h">Акции</span>
+          <span class="dshow__t"><span>На карточке магазина и в общем разделе акций комплекса, без отдельной платы. Снимаются с публикации сами в день окончания.</span></span>
+        </button>
+        <button type="button" class="dshow__tab" role="tab" aria-selected="false" data-img="img/rent/sc-photo.webp" data-url="tk-lanskoy.ru/shops/vladart-studio#photos">
+          <span class="dshow__n">03</span>
+          <span class="dshow__h">Фото и видео</span>
+          <span class="dshow__t"><span>Галерея магазина и ролики — файлом или ссылкой с VK Видео и RuTube.</span></span>
+        </button>
+        <button type="button" class="dshow__tab" role="tab" aria-selected="false" data-img="img/rent/sc-lk.webp" data-url="tk-lanskoy.ru/cabinet/promos">
+          <span class="dshow__n">04</span>
+          <span class="dshow__h">Личный кабинет</span>
+          <span class="dshow__t"><span>Всё правится самостоятельно: изменения уходят на проверку одной отправкой, решение приходит на почту.</span></span>
+        </button>
+        <div class="dshow__acts"><a href="shop.html" class="dbtn dbtn--ghost">Посмотреть пример карточки</a></div>
+      </div>
+      <div class="dshowcase__frame dshow__frame" aria-live="polite">
+        <span class="dshowcase__bar" aria-hidden="true"><i></i><i></i><i></i><span id="showUrl">tk-lanskoy.ru/shops/vladart-studio</span></span>
+        <span class="dshowcase__view"><img id="showImg" src="img/rent/sc-card.webp" alt="Карточка магазина на сайте: контакты и режим работы" width="1200" height="750"></span>
+      </div>
     </div>
   </div>
 </section>
@@ -235,11 +252,36 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <section class="sect">
   <div class="wrap">
     <div class="dhead"><h2 class="dhead__h2">Как стать арендатором</h2></div>
-    <ol class="drsteps">
-      <li><span class="drsteps__n">01</span><h3 class="drsteps__h">Заявка</h3><p class="drsteps__t">Оставьте заявку на сайте или позвоните в отдел аренды: расскажите о формате и нужной площади.</p></li>
-      <li><span class="drsteps__n">02</span><h3 class="drsteps__h">Подбор и просмотр</h3><p class="drsteps__t">Отдел аренды подберёт свободные помещения под ваш формат и покажет их на месте.</p></li>
-      <li><span class="drsteps__n">03</span><h3 class="drsteps__h">Договор</h3><p class="drsteps__t">Согласуем ставку, срок и дату заезда, подписываем договор аренды.</p></li>
-      <li><span class="drsteps__n">04</span><h3 class="drsteps__h">Карточка на сайте</h3><p class="drsteps__t">Менеджер выдаст доступ в личный кабинет — заполните карточку магазина, добавьте фото и акции.</p></li>
+    <!-- этапы линией: знак в круге, кто делает шаг; линия между шагами
+         заполняется по очереди, когда блок попадает в экран (design.js) -->
+    <ol class="drsteps" id="rentSteps">
+      <li class="drsteps__i drsteps__i--req">
+        <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">01</span></span>
+        <span class="drsteps__who">Вы</span>
+        <h3 class="drsteps__h">Заявка</h3>
+        <p class="drsteps__t">Оставьте заявку на сайте или позвоните в отдел аренды: расскажите о формате и нужной площади.</p>
+        <p class="drsteps__go"><a href="#form" class="dlink dlink--in">Оставить заявку</a></p>
+      </li>
+      <li class="drsteps__i drsteps__i--eye">
+        <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">02</span></span>
+        <span class="drsteps__who">Отдел аренды</span>
+        <h3 class="drsteps__h">Подбор и просмотр</h3>
+        <p class="drsteps__t">Отдел аренды подберёт свободные помещения под ваш формат и покажет их на месте.</p>
+        <p class="drsteps__go"><a href="#free" class="dlink dlink--in">Свободные помещения</a></p>
+      </li>
+      <li class="drsteps__i drsteps__i--doc">
+        <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">03</span></span>
+        <span class="drsteps__who">Вместе</span>
+        <h3 class="drsteps__h">Договор</h3>
+        <p class="drsteps__t">Согласуем ставку, срок и дату заезда, подписываем договор аренды.</p>
+      </li>
+      <li class="drsteps__i drsteps__i--card">
+        <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">04</span></span>
+        <span class="drsteps__who">Менеджер и вы</span>
+        <h3 class="drsteps__h">Карточка на сайте</h3>
+        <p class="drsteps__t">Менеджер выдаст доступ в личный кабинет — заполните карточку магазина, добавьте фото и акции.</p>
+        <p class="drsteps__go"><a href="shop.html" class="dlink dlink--in">Пример карточки</a></p>
+      </li>
     </ol>
   </div>
 </section>
@@ -324,6 +366,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="app.js?v=74"></script>
 <script src="floors-real.js?v=8"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=118"></script>
+<script src="design.js?v=120"></script>
 </body>
 </html>
