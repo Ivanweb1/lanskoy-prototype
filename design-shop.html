@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=247">
+<link rel="stylesheet" href="design-pages.css?v=250">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -24,33 +24,45 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <main id="main" tabindex="-1">
 
 <!-- ================= ШАПКА КАРТОЧКИ ================= -->
-<section class="dpage dshophead">
-  <div class="wrap">
-    <nav class="dcrumbs" aria-label="Хлебные крошки">
-      <a href="design.html">Главная</a>
-      <span class="dcrumbs__sep" aria-hidden="true"></span>
-      <a href="shops.html">Магазины</a>
-      <span class="dcrumbs__sep" aria-hidden="true"></span>
-      <span aria-current="page">VLADART STUDIO</span>
-    </nav>
-    <div class="dshophead__in">
-      <div class="dshophead__logo"><span>VLADART<br>STUDIO</span></div>
-      <div class="dshophead__main">
-        <h1 class="dpage__h1">VLADART STUDIO</h1>
-        <ul class="dtags">
-          <li><a href="category.html" class="dchip">Декоративно-отделочные материалы</a></li>
-          <li><a href="category.html" class="dchip">Декоративная штукатурка</a></li>
-          <li><a href="category.html" class="dchip">Фрески</a></li>
-        </ul>
-      </div>
-      <div class="dshophead__acts">
-        <a href="floors.html?room=A10&amp;floor=1" class="dbtn dbtn--fill">Показать на схеме</a>
-        <a href="tel:+78120000000" class="dbtn dbtn--ghost">Позвонить</a>
+<!-- первый экран как у акции: фото магазина на всю высоту, слева — то, за чем
+     приходят: где секция, работает ли магазин сейчас, как позвонить -->
+<section class="dpage dpromo dpromo--full dshophero">
+  <div class="dpromo__in">
+    <div class="dpromo__main">
+      <nav class="dcrumbs" aria-label="Хлебные крошки">
+        <a href="design.html">Главная</a>
+        <span class="dcrumbs__sep" aria-hidden="true"></span>
+        <a href="shops.html">Магазины</a>
+        <span class="dcrumbs__sep" aria-hidden="true"></span>
+        <span aria-current="page">VLADART STUDIO</span>
+      </nav>
+      <h1 class="dpage__h1 dpromo__h1">VLADART STUDIO</h1>
+      <ul class="dtags">
+        <li><a href="category.html" class="dchip">Декоративно-отделочные материалы</a></li>
+        <li><a href="category.html" class="dchip">Декоративная штукатурка</a></li>
+        <li><a href="category.html" class="dchip">Фрески</a></li>
+      </ul>
+
+      <dl class="dpfacts dshopfacts">
+        <div class="dpfacts__r">
+          <dt>Сейчас:</dt>
+          <!-- статус считает design.js по расписанию из боковой колонки (data-hours) -->
+          <dd><span class="dopen" data-open>Открыто до 20:00</span></dd>
+        </div>
+        <div class="dpfacts__r">
+          <dt>Расположение:</dt>
+          <dd>1 этаж · <b>А10</b></dd>
+        </div>
+      </dl>
+      <div class="dwhere-promo__acts">
+        <a href="floors.html?room=A10&amp;floor=1" class="dbtn dbtn--fill">Показать на схеме этажей</a>
+        <!-- на десктопе телефон — в липкой боковой колонке, здесь только для телефона -->
+        <a href="tel:+78120000000" class="dphone dshophero__tel">+7 (812) 000-00-00</a>
       </div>
     </div>
+    <div class="dpromo__media"><img class="jimg" src="img/shops/vladart/1.webp" alt="" loading="lazy"></div>
   </div>
 </section>
-
 <!-- ================= ТЕЛО КАРТОЧКИ ================= -->
 <section class="dcat">
   <div class="wrap shoplayout dshop">
@@ -64,6 +76,33 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
       </div>
 
+      <!-- бренды магазина — обратная связь со страницей бренда.
+           Состав демо: марки из списка брендов с категорией «Декоративно-отделочные
+           материалы»; реальный — из кабинета арендатора / от заказчика -->
+      <div class="dblock">
+        <div class="dblock__head">
+          <h2 class="dblock__h2">Бренды в магазине</h2>
+          <a href="brands.html" class="dlink">Все бренды</a>
+        </div>
+        <div class="dblist dblist--shop">
+          <a href="brand.html" class="dbitem">
+            <span class="dbitem__logo"><img src="img/brands/camonica.jpg" alt="" loading="lazy"><span class="dbitem__hov" aria-hidden="true"><b>Камоника</b><span>О бренде</span></span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Камоника</span></span>
+          </a>
+          <a href="brand.html" class="dbitem">
+            <span class="dbitem__logo"><img src="img/brands/kanyon.jpg" alt="" loading="lazy"><span class="dbitem__hov" aria-hidden="true"><b>Каньон</b><span>О бренде</span></span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Каньон</span></span>
+          </a>
+          <a href="brand.html" class="dbitem">
+            <span class="dbitem__logo"><span class="dbitem__word" aria-hidden="true">Доломит</span><span class="dbitem__hov" aria-hidden="true"><b>Доломит</b><span>О бренде</span></span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Доломит</span></span>
+          </a>
+          <a href="brand.html" class="dbitem">
+            <span class="dbitem__logo"><span class="dbitem__word" aria-hidden="true">Мастер Защиты</span><span class="dbitem__hov" aria-hidden="true"><b>Мастер Защиты</b><span>О бренде</span></span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Мастер Защиты</span></span>
+          </a>
+        </div>
+      </div>
       <div class="dblock">
         <div class="dblock__head">
           <h2 class="dblock__h2">Фотографии</h2>
@@ -75,7 +114,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
           <div class="gallery__item dgal"><img class="jimg" src="img/shops/vladart/3.webp" alt="" loading="lazy"></div>
           <div class="gallery__item dgal"><img class="jimg" src="img/shops/vladart/4.webp" alt="" loading="lazy"></div>
           <div class="gallery__item dgal"><img class="jimg" src="img/shops/vladart/5.webp" alt="" loading="lazy"></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/shops/vladart/6.webp" alt="" loading="lazy"><span class="dgal__more">+1</span></div>
+          <div class="gallery__item dgal"><img class="jimg" src="img/shops/vladart/6.webp" alt="" loading="lazy"></div>
         </div>
       </div>
 
@@ -124,20 +163,30 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <ul class="dcontacts">
           <li><span class="dcontacts__k">Телефон</span><a class="dcontacts__v dcontacts__v--big" href="tel:+78120000000">+7 (812) 000-00-00</a></li>
           <li><span class="dcontacts__k">Сайт</span><a class="dcontacts__v" href="#">vladart-studio.ru</a></li>
-          <li><span class="dcontacts__k">Режим работы</span><span class="dcontacts__v">10:00 — 20:00, ежедневно</span></li>
+          <!-- режим задаётся в кабинете по 7 дням (пн…вс); одинаковые дни подряд
+               design.js сворачивает в одну строку, сегодняшний день выделяет -->
+          <li>
+            <span class="dcontacts__k">Режим работы</span>
+            <span class="dhours" data-hours="10:00-20:00,10:00-20:00,10:00-20:00,10:00-20:00,10:00-20:00,10:00-20:00,10:00-20:00">
+              <span class="dcontacts__v">10:00 — 20:00, ежедневно</span>
+            </span>
+          </li>
         </ul>
         <p class="dpanel__sub">Мессенджеры и соцсети</p>
-        <ul class="dmsgs">
-          <li><a href="#" class="dchip">MAX</a></li>
-          <li><a href="#" class="dchip">Telegram</a></li>
-          <li><a href="#" class="dchip">ВКонтакте</a></li>
-        </ul>
+        <div class="dmsgs dshares">
+          <a href="#" class="dshare dshare--max" target="_blank" rel="noopener" aria-label="VLADART STUDIO в MAX" title="MAX"></a>
+          <a href="#" class="dshare dshare--tg" target="_blank" rel="noopener" aria-label="VLADART STUDIO в Telegram" title="Telegram"></a>
+          <a href="#" class="dshare dshare--vk" target="_blank" rel="noopener" aria-label="VLADART STUDIO во ВКонтакте" title="ВКонтакте"></a>
+        </div>
       </div>
       <div class="dpanel">
         <p class="dpanel__title">Расположение</p>
         <p class="dpanel__place"><b>А10</b> · 1 этаж</p>
-        <div class="floors__plan floors__plan--mini dplan" id="plan" data-floor="1" data-highlight="A10"></div>
-        <a href="floors.html?room=A10&amp;floor=1" class="dbtn dbtn--ghost dbtn--full">Открыть схему этажей</a>
+        <!-- фрагмент настоящей схемы вокруг секции (floors-real.js), вся плашка — ссылка на схему -->
+        <a href="floors.html?room=A10&amp;floor=1" class="dminiplan" aria-label="Открыть схему этажей: секция А10, 1 этаж">
+          <span class="dplan dminiplan__svg" id="shopPlan" data-floor="1" data-room="А10"></span>
+          <span class="dminiplan__go">Открыть схему этажей</span>
+        </a>
       </div>
     </aside>
   </div>
@@ -147,7 +196,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <section class="sect dsect--alt">
   <div class="wrap">
     <div class="dhead">
-      <h2 class="dhead__h2">Ещё в этой категории</h2>
+      <h2 class="dhead__h2">Похожие магазины</h2>
       <a href="shops.html" class="dlink">Все магазины</a>
     </div>
     <div class="grid grid--shops">
@@ -187,6 +236,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="design.js?v=107"></script>
+<script src="floors-real.js?v=8"></script>
+<script src="design.js?v=110"></script>
 </body>
 </html>

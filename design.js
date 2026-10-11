@@ -1830,3 +1830,89 @@
   });
   q.addEventListener('input', mark);
 })();
+
+/* ---------- карточка магазина: режим работы и «Открыто сейчас» ----------
+   Режим задаётся в кабинете по 7 дням: data-hours="пн,вт,…,вс", значение
+   «10:00-20:00» или пусто (выходной). Одинаковые дни подряд сворачиваются
+   в одну строку, сегодняшний выделен. Статус в первом экране считается от
+   текущего времени; для показа в прототипе — ?time=21:30 и ?day=1…7. */
+(function () {
+  var box = document.querySelector('[data-hours]');
+  if (!box) return;
+  var DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  var NEXT = ['в понедельник', 'во вторник', 'в среду', 'в четверг', 'в пятницу', 'в субботу', 'в воскресенье'];
+  var hours = box.getAttribute('data-hours').split(',').map(function (s) {
+    var m = s.trim().match(/^(\d\d):(\d\d)-(\d\d):(\d\d)$/);
+    return m ? { a: m[1] + ':' + m[2], b: m[3] + ':' + m[4], from: +m[1] * 60 + +m[2], to: +m[3] * 60 + +m[4] } : null;
+  });
+  var q = new URLSearchParams(location.search);
+  var now = new Date();
+  var day = q.get('day') ? (+q.get('day') - 1) % 7 : (now.getDay() + 6) % 7;
+  var t = q.get('time') ? q.get('time').split(':') : [now.getHours(), now.getMinutes()];
+  var min = +t[0] * 60 + +(t[1] || 0);
+  function label(h) { return h ? h.a + ' — ' + h.b : 'выходной'; }
+
+  /* расписание: группы одинаковых дней подряд */
+  var groups = [];
+  hours.forEach(function (h, i) {
+    var g = groups[groups.length - 1];
+    if (g && label(g.h) === label(h)) g.to = i;
+    else groups.push({ from: i, to: i, h: h });
+  });
+  if (groups.length > 1) {
+    box.innerHTML = groups.map(function (g) {
+      var d = DAYS[g.from] + (g.to > g.from ? '—' + DAYS[g.to] : '');
+      var today = day >= g.from && day <= g.to;
+      return '<span class="dhours__r' + (today ? ' is-today' : '') + '"><span>' + d + '</span><span>' + label(g.h) + '</span></span>';
+    }).join('');
+  }
+
+  /* статус */
+  var el = document.querySelector('[data-open]');
+  if (!el) return;
+  var h = hours[day];
+  if (h && min >= h.from && min < h.to) {
+    el.textContent = 'Открыто до ' + h.b;
+    el.classList.remove('is-closed');
+    return;
+  }
+  el.classList.add('is-closed');
+  if (h && min < h.from) { el.textContent = 'Закрыто · откроется в ' + h.a; return; }
+  for (var k = 1; k <= 7; k++) {
+    var n = (day + k) % 7;
+    if (hours[n]) {
+      el.textContent = 'Закрыто · откроется ' + (k === 1 ? 'завтра' : NEXT[n]) + ' в ' + hours[n].a;
+      return;
+    }
+  }
+  el.textContent = 'Временно закрыто';
+})();
+
+/* ---------- карточка магазина: фрагмент схемы вокруг секции ----------
+   Мини-схема из сетки-заглушки не читалась. Берём настоящий этаж
+   (floors-real.js) и показываем окно вокруг секции магазина: соседние
+   контур здания и соседние секции, сама секция — медью и с номером. Ссылка — вся плашка. */
+(function () {
+  var el = document.getElementById('shopPlan');
+  if (!el || typeof REAL_FLOORS === 'undefined') return;
+  var f = REAL_FLOORS[el.getAttribute('data-floor')];
+  /* номера в данных кириллицей, в ссылках бывают латиницей */
+  var code = el.getAttribute('data-room').replace(/A/g, 'А').replace(/B/g, 'В').replace(/C/g, 'С');
+  var room = f && f.rooms.filter(function (r) { return r[0] === code; })[0];
+  if (!room) return;
+  var W = 440, H = 300, vb = f.viewBox;
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  var x0 = clamp(room[3] + room[5] / 2 - W / 2, vb[0], vb[0] + vb[2] - W);
+  var y0 = clamp(room[4] + room[6] / 2 - H / 2, vb[1], vb[1] + vb[3] - H);
+  var s = '<svg viewBox="' + [x0, y0, W, H].join(' ') + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+          '<path class="pl-outline" d="' + f.outline + '"/>';
+  var txt = '';
+  f.rooms.forEach(function (r) {
+    var here = r[0] === code;
+    s += '<path class="pl-room' + (r[0] ? '' : ' pl-room--blank') + (here ? ' pl-room--here' : '') + '" d="' + r[2] + '"/>';
+    /* в окне ~440 единиц на ~250px номера соседей мельче 7px — подписываем только свою */
+    if (here) txt += '<text class="pl-txt pl-txt--here" x="' + (r[3] + r[5] / 2) + '" y="' + (r[4] + r[6] / 2 + 6) +
+                     '" text-anchor="middle" style="font-size:17px">' + r[0] + '</text>';
+  });
+  el.innerHTML = s + txt + '</svg>';
+})();

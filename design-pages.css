@@ -2975,3 +2975,40 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 [data-theme="dark"] .dbitem__logo,[data-theme="dark"] .dshophead__logo--brand{background:#fff}
 [data-theme="dark"] .dbitem__logo img,[data-theme="dark"] .dshophead__logo--brand img{mix-blend-mode:normal}
 [data-theme="dark"] .dbitem__word{color:#011427}
+
+/* ============ КАРТОЧКА МАГАЗИНА: ПЕРВЫЙ ЭКРАН КАК У АКЦИИ ============ */
+/* каркас — .dpromo--full; поверх — статус работы и телефон только на узком экране */
+.dshophero .dtags{margin:20px 0 0}
+.dshopfacts{margin-top:32px}
+@media (min-width:1001px){.dshophero__tel{display:none}}
+/* «Открыто до 20:00» — медная точка; закрыто — серая, текст приглушён */
+.dopen{display:inline-flex;align-items:center;gap:10px;font-weight:600}
+.dopen::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--s-accent)}
+.dopen.is-closed{color:var(--s-fg-soft);font-weight:500}
+.dopen.is-closed::before{background:var(--s-line-strong)}
+
+/* режим по дням: строки «Пн—Пт · 10:00 — 20:00», сегодняшняя — медью */
+.dhours{display:flex;flex-direction:column;gap:4px}
+.dhours__r{display:flex;justify-content:space-between;gap:16px;font-size:15px;color:var(--s-fg)}
+.dhours__r.is-today{font-weight:600;color:var(--s-accent-ink)}
+
+/* мессенджеры — те же знаки, что у «Поделиться» */
+.dmsgs.dshares{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+
+/* бренды в основной колонке — по 4 в ряд */
+.dblist--shop{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:560px){.dblist--shop{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* мини-схема: фрагмент настоящего этажа, вся плашка — ссылка */
+.dminiplan{display:block;color:inherit}
+.dminiplan__svg{display:block;transition:border-color .25s}
+.dminiplan__svg svg{display:block;width:100%;height:auto}
+.dminiplan:hover .dminiplan__svg{border-color:var(--s-accent)}
+.dminiplan .pl-room--here{stroke-width:2}
+.dminiplan__go{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink)}
+.dminiplan__go::after{content:"→";font-size:16px;letter-spacing:0;transition:transform .25s}
+.dminiplan:hover .dminiplan__go::after{transform:translateX(4px)}
+/* тёмная тема гасит заливку всех секций правилом посильнее — свою возвращаем */
+[data-theme="dark"] .dminiplan .pl-room--here{fill:var(--b-copper);stroke:var(--b-copper)}
+[data-theme="dark"] .dminiplan .pl-txt--here{fill:#011427}
