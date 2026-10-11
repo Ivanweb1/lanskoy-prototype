@@ -5,7 +5,7 @@
 
 Обновлено: 11.10.2026.
 
-## Готово (22)
+## Готово (23)
 
 | Страница | Файл |
 |---|---|
@@ -31,13 +31,13 @@
 | Дизайнер | design-designer.html |
 | Бренды | design-brands.html |
 | Бренд | design-brand.html |
+| Карточка магазина | design-shop.html |
 
-## В работе (6)
+## В работе (5)
 
 | Раздел | Страница | Файл |
 |---|---|---|
 | Магазины | Магазины | design-shops.html |
-| | Карточка магазина | design-shop.html |
 | | Категории | design-categories.html |
 | | Категория | design-category.html |
 | | Схема этажей | design-floors.html |
