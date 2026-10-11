@@ -2792,7 +2792,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .dnote-des{padding:0 0 88px}
 .dnote-des__in{display:flex;align-items:center;justify-content:space-between;gap:24px 40px;flex-wrap:wrap;
   padding:28px 32px;border:1px solid var(--s-line-strong)}
-.dnote-des__t{margin:0;font-size:15px;line-height:1.6;color:var(--s-fg-soft);max-width:640px}
+.dnote-des__t{margin:0;font-size:15px;line-height:1.6;color:var(--s-fg-soft);max-width:none}
 .dnote-des__t b{color:var(--s-fg);font-weight:600}
 @media (max-width:760px){
   .dnote-des{padding-bottom:56px}
