@@ -1954,9 +1954,9 @@ function lnsMiniPlan(n, o) {
 
 /* «Аренда»: доводы вкладками — клик, наведение или стрелки меняют панель справа */
 (function () {
-  var box = document.querySelector('.dwhy');
+  var box = document.querySelector('.drwhy');
   if (!box) return;
-  var tabs = [].slice.call(box.querySelectorAll('.dwhy__tab'));
+  var tabs = [].slice.call(box.querySelectorAll('.drwhy__tab'));
   var plan = document.getElementById('whyPlan');
   if (plan) plan.innerHTML = lnsMiniPlan(plan.getAttribute('data-floor'), { named: plan.getAttribute('data-rooms').split(',') });
   function show(tab) {
@@ -1965,8 +1965,8 @@ function lnsMiniPlan(n, o) {
       t.classList.toggle('is-active', on);
       t.setAttribute('aria-selected', String(on));
       var p = document.getElementById(t.getAttribute('aria-controls'));
-      p.hidden = !on;
       p.classList.toggle('is-active', on);
+      p.setAttribute('aria-hidden', String(!on));
     });
   }
   tabs.forEach(function (t, i) {
