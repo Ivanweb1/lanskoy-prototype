@@ -1051,6 +1051,11 @@
     inp.addEventListener('blur', function () { if (inp.value.replace(/\D/g, '').length <= 1) inp.value = ''; });
   });
 
+  /* поле «лет»: только цифры, без стрелок у type=number */
+  [].forEach.call(document.querySelectorAll('input[data-digits]'), function (inp) {
+    inp.addEventListener('input', function () { inp.value = inp.value.replace(/\D/g, ''); });
+  });
+
   [].forEach.call(document.querySelectorAll('textarea[data-count]'), function (ta) {
     var box = ta.parentNode.querySelector('.fld__count');
     if (!box) return;

@@ -87,17 +87,10 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
                 </span>
               </label>
               <label class="fld">
-                <span class="fld__lab">Опыт работы <span class="fld__req" aria-hidden="true">*</span></span>
-                <span class="dform__sel">
-                  <select name="exp" required>
-                    <option value="" selected hidden>Выберите</option>
-                    <option>До 2 лет</option>
-                    <option>2–5 лет</option>
-                    <option>5–10 лет</option>
-                    <option>Больше 10 лет</option>
-                  </select>
-                </span>
-                <span class="fld__err">Выберите опыт работы</span>
+                <span class="fld__lab">Опыт работы, лет <span class="fld__req" aria-hidden="true">*</span></span>
+                <!-- число лет — на странице дизайнера и в каталоге выводится «Опыт 7 лет» -->
+                <input type="text" name="exp" required inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-digits placeholder="Например, 7">
+                <span class="fld__err">Укажите число лет</span>
               </label>
             </div>
             <label class="fld">
@@ -183,6 +176,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=102"></script>
+<script src="design.js?v=103"></script>
 </body>
 </html>
