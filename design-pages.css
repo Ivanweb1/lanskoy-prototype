@@ -77,7 +77,7 @@ a.dviews__item:hover{color:var(--s-fg);background:rgba(196,154,108,.12)}
 
 /* ============ 2. КАТАЛОГ: ФИЛЬТРЫ ============ */
 .dcat{padding:56px 0 88px}
-.catalog{grid-template-columns:272px minmax(0,1fr);gap:56px}
+.catalog{grid-template-columns:300px minmax(0,1fr);gap:56px}
 
 /* колонка фильтров липнет, только когда целиком влезает в экран (~900px):
    иначе пришлось бы давать ей свой скролл, а он выглядит чужеродно.
