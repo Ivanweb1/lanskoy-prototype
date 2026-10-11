@@ -871,6 +871,21 @@
   });
 })();
 
+/* ---------- «Обсудить проект» на странице дизайнера ----------
+   Кнопка раскрывает каналы связи; клик мимо и Esc закрывают */
+(function () {
+  var btn = document.querySelector('.dask__btn');
+  if (!btn) return;
+  var menu = document.getElementById(btn.getAttribute('aria-controls'));
+  function set(open) {
+    menu.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+  }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); set(menu.hidden); });
+  document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { set(false); btn.focus(); } });
+})();
+
 /* ---------- афиша по ссылке с фильтром «Кому» ----------
    events.html?aud=pro — сразу события для дизайнеров (пункт «Профессиональные
    события» в меню «Дизайнерам»). Жмём чип — список фильтра подхватит сам */
@@ -1008,6 +1023,10 @@
   [].forEach.call(document.querySelectorAll('.dform__sel'), function (w) {
     var s = w.querySelector('select'); if (s) enhance(s, w);
   });
+  /* для полей, добавленных после загрузки (объекты в анкете дизайнера) */
+  window.lnsEnhanceSelect = function (w) {
+    var s = w.querySelector('select'); if (s) enhance(s, w);
+  };
 })();
 
 /* ---------- экран «отправлено» у форм ----------
@@ -1052,8 +1071,8 @@
   });
 
   /* поле «лет»: только цифры, без стрелок у type=number */
-  [].forEach.call(document.querySelectorAll('input[data-digits]'), function (inp) {
-    inp.addEventListener('input', function () { inp.value = inp.value.replace(/\D/g, ''); });
+  document.addEventListener('input', function (e) {
+    if (e.target.matches && e.target.matches('input[data-digits]')) e.target.value = e.target.value.replace(/\D/g, '');
   });
 
   [].forEach.call(document.querySelectorAll('textarea[data-count]'), function (ta) {
@@ -1069,11 +1088,11 @@
 
   /* фото: копим выбранные файлы, показываем плитками с крестиком;
      лишние сверх 10 и тяжелее 5 МБ не берём и пишем почему */
-  [].forEach.call(document.querySelectorAll('[data-upload]'), function (zone) {
+  function initUpload(zone) {
     var inp = zone.querySelector('input[type=file]');
     var wrap = zone.parentNode, list = wrap.querySelector('.dthumbs'), msg = wrap.querySelector('.dthumbs__msg');
     var t = zone.querySelector('.dupload__t'), t0 = t.innerHTML;
-    var MAX = 10, MB = 5, files = [], caps = [];
+    var MAX = +zone.getAttribute('data-max') || 10, MB = 5, files = [], caps = [];
     function sync() {
       if (window.DataTransfer) {
         var dt = new DataTransfer();
@@ -1124,7 +1143,43 @@
       msg.hidden = true;
       sync();
     });
-  });
+  }
+  [].forEach.call(document.querySelectorAll('[data-upload]'), initUpload);
+
+  /* портфолио анкеты: объекты добавляются из <template>, до 6;
+     у единственного объекта кнопки «Удалить» нет */
+  var objs = document.querySelector('[data-objs]');
+  var add = document.querySelector('[data-obj-add]');
+  var tpl = document.getElementById('objTpl');
+  if (objs && add && tpl) {
+    var MAXO = 6;
+    var renum = function () {
+      var list = objs.querySelectorAll('.dobj');
+      [].forEach.call(list, function (o, i) {
+        o.querySelector('.dobj__n').textContent = 'Объект ' + (i + 1);
+        o.querySelector('.dobj__del').hidden = list.length < 2;
+      });
+      add.hidden = list.length >= MAXO;
+    };
+    add.addEventListener('click', function () {
+      if (objs.querySelectorAll('.dobj').length >= MAXO) return;
+      objs.appendChild(tpl.content.cloneNode(true));
+      var o = objs.lastElementChild;
+      initUpload(o.querySelector('[data-upload]'));
+      [].forEach.call(o.querySelectorAll('.dform__sel'), function (w) {
+        if (window.lnsEnhanceSelect) window.lnsEnhanceSelect(w);
+      });
+      renum();
+      o.querySelector('input[type=text]').focus();
+    });
+    objs.addEventListener('click', function (e) {
+      var del = e.target.closest('.dobj__del');
+      if (!del) return;
+      del.closest('.dobj').remove();
+      renum();
+    });
+    renum();
+  }
 })();
 
 /* ---------- лайтбокс альбомов: снимки, подписи, лента миниатюр ----------

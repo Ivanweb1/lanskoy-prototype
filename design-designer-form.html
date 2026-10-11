@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=229">
+<link rel="stylesheet" href="design-pages.css?v=232">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -134,17 +134,105 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
           <fieldset class="dform__grp">
             <legend class="dform__leg">Портфолио</legend>
-            <div class="fld">
-              <span class="fld__lab">Фотографии проектов</span>
-              <label class="dupload" data-upload>
-                <input type="file" accept="image/jpeg,image/png" multiple>
-                <span class="dupload__ic" aria-hidden="true"></span>
-                <span class="dupload__t">Перетащите файлы или <u>выберите</u></span>
-                <span class="dupload__h">Необязательно. До 10 изображений, JPG или PNG, до 5 МБ каждое. К каждому фото — подпись</span>
-              </label>
-              <ul class="dthumbs" hidden></ul>
-              <span class="dthumbs__msg" hidden></span>
+            <p class="dform__note">Необязательно. Каждый объект — отдельная карточка на вашей странице в каталоге, по клику открываются его фотографии.</p>
+            <!-- объекты — повторяемые блоки (до 6), новый берётся из шаблона ниже -->
+            <div class="dobjs-form" data-objs>
+              <div class="dobj">
+                <div class="dobj__head">
+                  <span class="dobj__n">Объект 1</span>
+                  <button type="button" class="dobj__del" hidden>Удалить объект</button>
+                </div>
+                <label class="fld">
+                  <span class="fld__lab">Название объекта</span>
+                  <input type="text" name="obj_title" maxlength="60" placeholder="Квартира на Петроградской">
+                </label>
+                <div class="dform__three">
+                  <label class="fld">
+                    <span class="fld__lab">Тип</span>
+                    <span class="dform__sel">
+                      <select name="obj_type">
+                        <option value="" selected hidden>Выберите</option>
+                        <option>Квартира</option>
+                        <option>Апартаменты</option>
+                        <option>Загородный дом</option>
+                        <option>Офис</option>
+                        <option>Коммерческое помещение</option>
+                        <option>HoReCa</option>
+                        <option>Другое</option>
+                      </select>
+                    </span>
+                  </label>
+                  <label class="fld">
+                    <span class="fld__lab">Площадь, м²</span>
+                    <input type="text" name="obj_area" inputmode="numeric" maxlength="4" data-digits placeholder="86">
+                  </label>
+                  <label class="fld">
+                    <span class="fld__lab">Год</span>
+                    <input type="text" name="obj_year" inputmode="numeric" maxlength="4" data-digits placeholder="2025">
+                  </label>
+                </div>
+                <div class="fld">
+                  <span class="fld__lab">Фотографии объекта</span>
+                  <label class="dupload" data-upload data-max="12">
+                    <input type="file" accept="image/jpeg,image/png" multiple>
+                    <span class="dupload__ic" aria-hidden="true"></span>
+                    <span class="dupload__t">Перетащите файлы или <u>выберите</u></span>
+                    <span class="dupload__h">До 12 фото, JPG или PNG, до 5 МБ каждое. Первое — обложка карточки</span>
+                  </label>
+                  <ul class="dthumbs" hidden></ul>
+                  <span class="dthumbs__msg" hidden></span>
+                </div>
+              </div>
             </div>
+            <button type="button" class="dbtn dbtn--ghost dobj__add" data-obj-add>+ Добавить объект</button>
+            <template id="objTpl">
+              <div class="dobj">
+                <div class="dobj__head">
+                  <span class="dobj__n">Объект 1</span>
+                  <button type="button" class="dobj__del" hidden>Удалить объект</button>
+                </div>
+                <label class="fld">
+                  <span class="fld__lab">Название объекта</span>
+                  <input type="text" name="obj_title" maxlength="60" placeholder="Квартира на Петроградской">
+                </label>
+                <div class="dform__three">
+                  <label class="fld">
+                    <span class="fld__lab">Тип</span>
+                    <span class="dform__sel">
+                      <select name="obj_type">
+                        <option value="" selected hidden>Выберите</option>
+                        <option>Квартира</option>
+                        <option>Апартаменты</option>
+                        <option>Загородный дом</option>
+                        <option>Офис</option>
+                        <option>Коммерческое помещение</option>
+                        <option>HoReCa</option>
+                        <option>Другое</option>
+                      </select>
+                    </span>
+                  </label>
+                  <label class="fld">
+                    <span class="fld__lab">Площадь, м²</span>
+                    <input type="text" name="obj_area" inputmode="numeric" maxlength="4" data-digits placeholder="86">
+                  </label>
+                  <label class="fld">
+                    <span class="fld__lab">Год</span>
+                    <input type="text" name="obj_year" inputmode="numeric" maxlength="4" data-digits placeholder="2025">
+                  </label>
+                </div>
+                <div class="fld">
+                  <span class="fld__lab">Фотографии объекта</span>
+                  <label class="dupload" data-upload data-max="12">
+                    <input type="file" accept="image/jpeg,image/png" multiple>
+                    <span class="dupload__ic" aria-hidden="true"></span>
+                    <span class="dupload__t">Перетащите файлы или <u>выберите</u></span>
+                    <span class="dupload__h">До 12 фото, JPG или PNG, до 5 МБ каждое. Первое — обложка карточки</span>
+                  </label>
+                  <ul class="dthumbs" hidden></ul>
+                  <span class="dthumbs__msg" hidden></span>
+                </div>
+              </div>
+            </template>
           </fieldset>
 
           <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
@@ -176,6 +264,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=103"></script>
+<script src="design.js?v=105"></script>
 </body>
 </html>

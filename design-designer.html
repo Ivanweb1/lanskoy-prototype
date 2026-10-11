@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=229">
+<link rel="stylesheet" href="design-pages.css?v=232">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -40,17 +40,22 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div class="dshophead__logo dshophead__logo--photo"><img src="img/designers/litvyakova/1.webp" alt="Елена Литвякова"></div>
       <div class="dshophead__main">
         <h1 class="dpage__h1">Елена Литвякова</h1>
-        <!-- факты — как под заголовком акции: подпись и значение -->
-        <dl class="dpfacts">
-          <div class="dpfacts__r"><dt>Направление:</dt><dd>Дизайн интерьеров</dd></div>
-          <div class="dpfacts__r"><dt>Опыт работы:</dt><dd>10 лет</dd></div>
-        </dl>
+        <!-- направление и опыт — одной строкой, как в карточке каталога -->
+        <p class="ddeshead__sub"><span>Дизайн интерьеров</span><span class="ddeshead__exp">Опыт 10 лет</span></p>
       </div>
-      <!-- на десктопе блок «Связаться» и так рядом — одна кнопка «Позвонить»;
-           на телефоне блок уходит вниз — кнопка ведёт к нему -->
+      <!-- главное действие — написать: клиенту удобнее прислать планировку,
+           фото и описание задачи, чем объяснять по телефону. Каналы — те,
+           что дизайнер указал в анкете -->
       <div class="dshophead__acts">
-        <a href="tel:+79000000000" class="dbtn dbtn--fill dshophead__call">Позвонить</a>
-        <a href="#contact" class="dbtn dbtn--fill dshophead__to">Связаться</a>
+        <div class="dask">
+          <button type="button" class="dbtn dbtn--fill dask__btn" aria-expanded="false" aria-controls="askMenu">Обсудить проект</button>
+          <div class="dask__menu" id="askMenu" hidden>
+            <p class="dask__hint">Пришлите планировку, фото помещения и пару слов о задаче</p>
+            <a class="dmsg dmsg--tg" href="https://t.me/" target="_blank" rel="noopener"><span class="dmsg__ic" aria-hidden="true"></span>Telegram</a>
+            <a class="dmsg dmsg--max" href="https://max.ru/" target="_blank" rel="noopener"><span class="dmsg__ic" aria-hidden="true"></span>MAX</a>
+            <a class="dmsg dmsg--mail" href="mailto:litvyakova@example.com?subject=%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%E2%80%94%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%A2%D0%9A%20%C2%AB%D0%9B%D0%B0%D0%BD%D1%81%D0%BA%D0%BE%D0%B9%C2%BB"><span class="dmsg__ic" aria-hidden="true"></span>Почта</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -68,22 +73,41 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div class="dblock">
         <div class="dblock__head">
           <h2 class="dblock__h2">Портфолио</h2>
-          <span class="dblock__meta">10 работ</span>
+          <span class="dblock__meta">4 объекта</span>
         </div>
-        <!-- подписи — из анкеты (подпись к каждому фото), здесь демо-значения;
-             data-album/data-caps включают просмотр с подписью и лентой кадров -->
-        <div class="gallery dgallery" data-album="Елена Литвякова" data-meta="Портфолио" data-caps="Квартира, 86 м²|Кухня-гостиная, 34 м²|Гостиная, 42 м²|Спальня, 18 м²|Ванная комната, 9 м²|Кабинет, 14 м²|Детская, 16 м²|Прихожая, 8 м²|Дом в Репино, 210 м²|Терраса, 24 м²">
-          <div class="gallery__item dgal gallery__item--lead"><img class="jimg" src="img/designers/litvyakova/1.webp" alt="Квартира, 86 м²" loading="lazy"><span class="dgal__cap">Квартира, 86 м²</span></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/2.webp" alt="Кухня-гостиная, 34 м²" loading="lazy"><span class="dgal__cap">Кухня-гостиная, 34 м²</span></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/3.webp" alt="Гостиная, 42 м²" loading="lazy"><span class="dgal__cap">Гостиная, 42 м²</span></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/4.webp" alt="Спальня, 18 м²" loading="lazy"><span class="dgal__cap">Спальня, 18 м²</span></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/5.webp" alt="Ванная комната, 9 м²" loading="lazy"><span class="dgal__cap">Ванная комната, 9 м²</span></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/6.webp" alt="Кабинет, 14 м²" loading="lazy"><span class="dgal__more">+4</span></div>
-          <!-- работы 7—10: видны в просмотре, на странице — под плиткой «+4»; снимков пока 6, кадры повторяются -->
-          <div class="gallery__item dgal" hidden><img class="jimg" src="img/designers/litvyakova/1.webp" alt="Детская, 16 м²" loading="lazy"></div>
-          <div class="gallery__item dgal" hidden><img class="jimg" src="img/designers/litvyakova/2.webp" alt="Прихожая, 8 м²" loading="lazy"></div>
-          <div class="gallery__item dgal" hidden><img class="jimg" src="img/designers/litvyakova/3.webp" alt="Дом в Репино, 210 м²" loading="lazy"></div>
-          <div class="gallery__item dgal" hidden><img class="jimg" src="img/designers/litvyakova/4.webp" alt="Терраса, 24 м²" loading="lazy"></div>
+        <!-- объекты из анкеты: название, тип, площадь, год и фото с подписями.
+             Карточка — как альбом на «Галерее и видео», по клику — просмотр объекта
+             с лентой кадров (id galGrid — к нему app.js привязывает открытие альбомов;
+             content.js с фильтрами галереи здесь не подключён). Данные — демо -->
+        <div class="dalbums dalbums--2 dobjs" id="galGrid">
+          <div class="album dalbum" data-photos="img/designers/litvyakova/1.webp,img/designers/litvyakova/2.webp,img/designers/litvyakova/4.webp,img/designers/litvyakova/5.webp" data-caps="Гостиная|Кухня-столовая|Спальня|Ванная комната">
+            <span class="album__media dalbum__media"><img class="jimg" src="img/designers/litvyakova/1.webp" alt="" loading="lazy"></span>
+            <span class="album__b">
+              <span class="album__h dalbum__h">Квартира на Петроградской</span>
+              <span class="album__m dalbum__m">Квартира · 86 м² · 2025 · <span class="album__n">4 фото</span></span>
+            </span>
+          </div>
+          <div class="album dalbum" data-photos="img/designers/litvyakova/3.webp,img/designers/litvyakova/6.webp,img/designers/litvyakova/1.webp,img/designers/litvyakova/2.webp,img/designers/litvyakova/5.webp" data-caps="Спальня|Кабинет|Гостиная|Кухня|Ванная комната">
+            <span class="album__media dalbum__media"><img class="jimg" src="img/designers/litvyakova/3.webp" alt="" loading="lazy"></span>
+            <span class="album__b">
+              <span class="album__h dalbum__h">Дом в Репино</span>
+              <span class="album__m dalbum__m">Загородный дом · 210 м² · 2024 · <span class="album__n">5 фото</span></span>
+            </span>
+          </div>
+          <div class="album dalbum" data-photos="img/designers/litvyakova/2.webp,img/designers/litvyakova/1.webp,img/designers/litvyakova/4.webp" data-caps="Кухня-гостиная|Зона отдыха|Ванная комната">
+            <span class="album__media dalbum__media"><img class="jimg" src="img/designers/litvyakova/2.webp" alt="" loading="lazy"></span>
+            <span class="album__b">
+              <span class="album__h dalbum__h">Апартаменты на Крестовском</span>
+              <span class="album__m dalbum__m">Апартаменты · 64 м² · 2024 · <span class="album__n">3 фото</span></span>
+            </span>
+          </div>
+          <div class="album dalbum" data-photos="img/designers/litvyakova/6.webp,img/designers/litvyakova/3.webp" data-caps="Библиотека|Рабочее место">
+            <span class="album__media dalbum__media"><img class="jimg" src="img/designers/litvyakova/6.webp" alt="" loading="lazy"></span>
+            <span class="album__b">
+              <span class="album__h dalbum__h">Офис студии на Васильевском</span>
+              <span class="album__m dalbum__m">Офис · 48 м² · 2023 · <span class="album__n">2 фото</span></span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -92,16 +116,15 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <p class="dpanel__title">Связаться</p>
         <!-- контакты из анкеты: что дизайнер указал, то и опубликовано;
              не указал — строки нет. Номер, почта и сайт демонстрационные -->
+        <p class="dask__hint dask__hint--panel">Удобнее всего написать: пришлите планировку, фото помещения и пару слов о задаче</p>
+        <div class="dmsgs">
+          <a class="dmsg dmsg--tg" href="https://t.me/" target="_blank" rel="noopener"><span class="dmsg__ic" aria-hidden="true"></span>Telegram</a>
+          <a class="dmsg dmsg--max" href="https://max.ru/" target="_blank" rel="noopener"><span class="dmsg__ic" aria-hidden="true"></span>MAX</a>
+        </div>
         <ul class="dcontacts">
-          <li><span class="dcontacts__k">Телефон</span><a class="dcontacts__v dcontacts__v--big" href="tel:+79000000000">+7 (900) 000-00-00</a></li>
-          <li><span class="dcontacts__k">Почта</span><a class="dcontacts__v" href="mailto:litvyakova@example.com">litvyakova@example.com</a></li>
+          <li><span class="dcontacts__k">Почта</span><a class="dcontacts__v" href="mailto:litvyakova@example.com?subject=%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%E2%80%94%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%A2%D0%9A%20%C2%AB%D0%9B%D0%B0%D0%BD%D1%81%D0%BA%D0%BE%D0%B9%C2%BB">litvyakova@example.com</a></li>
+          <li><span class="dcontacts__k">Телефон</span><a class="dcontacts__v" href="tel:+79000000000">+7 (900) 000-00-00</a></li>
           <li><span class="dcontacts__k">Сайт</span><a class="dcontacts__v" href="https://example.com" target="_blank" rel="noopener">litvyakova.design</a></li>
-          <li><span class="dcontacts__k">Мессенджеры</span>
-            <span class="dcontacts__msg">
-              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Елена Литвякова в Telegram" title="Telegram"></a>
-              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Елена Литвякова в MAX" title="MAX"></a>
-            </span>
-          </li>
         </ul>
       </div>
     </aside>
@@ -203,6 +226,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="design.js?v=103"></script>
+<script src="design.js?v=105"></script>
 </body>
 </html>
