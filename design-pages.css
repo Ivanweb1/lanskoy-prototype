@@ -211,6 +211,10 @@ a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
 
 .results__more{margin-top:40px}
 .results__more .dbtn{width:100%;justify-content:center}
+/* «Все бренды», «Весь журнал» — переход в раздел, а не догрузка списка: компактная кнопка по центру */
+.results__more--link{display:flex;justify-content:center}
+.results__more--link .dbtn{width:auto;min-width:280px}
+@media (max-width:560px){.results__more--link .dbtn{width:100%;min-width:0}}
 
 /* ============ 4. АДАПТИВ ============ */
 @media (max-width:1200px){
