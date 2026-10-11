@@ -2902,7 +2902,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* алфавит прилипает под шапкой — прыгать по буквам из середины списка */
 .dalpha{position:sticky;top:var(--hdr-sticky,65px);z-index:6;display:block;margin:0 0 40px;padding:8px 0 10px;background:var(--s-bg);border-bottom:1px solid var(--s-line)}
 .dalpha__in{display:flex;flex-wrap:wrap;align-items:center;gap:0}
-.dalpha .dalpha__i{min-width:21px;height:36px;padding:0 3px;font-size:15px}
+.dalpha .dalpha__i{min-width:19px;height:36px;padding:0 2px;font-size:14px}
 /* подчёркивание «Все» — ровно по слову: отступ снаружи, а не внутри кнопки */
 .dalpha .dalpha__i:first-child{min-width:0;padding:0;margin-right:14px}
 .dalpha .dalpha__sep{margin:0 8px}
@@ -2919,6 +2919,14 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .dbitem__n{display:block;font-size:15px;font-weight:600;line-height:1.3;color:var(--s-fg);transition:color .2s}
 .dbitem:hover .dbitem__n{color:var(--s-accent-ink)}
 .dbitem:hover .dbitem__logo{border-color:var(--s-accent)}
+/* при наведении поверх плашки — «Узнайте, где купить»: карточка ведёт
+   на страницу бренда со списком магазинов. На касании не показываем */
+.dbitem__logo{position:relative}
+.dbitem__logo::after{content:"Узнайте, где купить";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 12px;
+  background:var(--s-bg);font-family:var(--d-sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:center;color:var(--s-fg);
+  opacity:0;transition:opacity .25s var(--d-ease)}
+.dbitem:hover .dbitem__logo::after,.dbitem:focus-visible .dbitem__logo::after{opacity:1}
+@media (hover:none){.dbitem__logo::after{display:none}}
 .dbgroup .dblist{align-self:start}
 .dbgroup .dbgroup__letter{margin-top:6px}
 /* последняя видимая группа — без линии снизу (после фильтра хвост оставался) */
