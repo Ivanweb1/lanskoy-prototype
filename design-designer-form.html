@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=227">
+<link rel="stylesheet" href="design-pages.css?v=228">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -109,6 +109,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
           <fieldset class="dform__grp">
             <legend class="dform__leg">Контакты</legend>
+            <p class="dform__note">Всё, что укажете, появится в карточке каталога. Мессенджеры и сайт — необязательно.</p>
             <div class="dform__two">
               <label class="fld">
                 <span class="fld__lab">Телефон <span class="fld__req" aria-hidden="true">*</span></span>
@@ -136,14 +137,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
               <span class="fld__lab">Сайт или портфолио в соцсетях</span>
               <input type="text" name="site" placeholder="Ссылка на сайт, Behance, Pinterest или VK">
             </label>
-            <label class="dtoggle dform__pub">
-              <span class="dtoggle__b">
-                <span class="dtoggle__h">Показывать контакты в карточке</span>
-                <span class="dtoggle__t">Телефон, почта, Telegram и MAX будут видны посетителям каталога. Если выключить — карточка будет без контактов.</span>
-              </span>
-              <input type="checkbox" name="pub" checked>
-              <span class="dtoggle__sw" aria-hidden="true"></span>
-            </label>
           </fieldset>
 
           <fieldset class="dform__grp">
@@ -154,7 +147,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
                 <input type="file" accept="image/jpeg,image/png" multiple>
                 <span class="dupload__ic" aria-hidden="true"></span>
                 <span class="dupload__t">Перетащите файлы или <u>выберите</u></span>
-                <span class="dupload__h">Необязательно. До 10 изображений, JPG или PNG, до 5 МБ каждое</span>
+                <span class="dupload__h">Необязательно. До 10 изображений, JPG или PNG, до 5 МБ каждое. К каждому фото — подпись</span>
               </label>
               <ul class="dthumbs" hidden></ul>
               <span class="dthumbs__msg" hidden></span>
@@ -190,6 +183,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=99"></script>
+<script src="design.js?v=101"></script>
 </body>
 </html>

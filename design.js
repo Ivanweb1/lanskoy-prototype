@@ -1058,7 +1058,7 @@
     var inp = zone.querySelector('input[type=file]');
     var wrap = zone.parentNode, list = wrap.querySelector('.dthumbs'), msg = wrap.querySelector('.dthumbs__msg');
     var t = zone.querySelector('.dupload__t'), t0 = t.innerHTML;
-    var MAX = 10, MB = 5, files = [];
+    var MAX = 10, MB = 5, files = [], caps = [];
     function sync() {
       if (window.DataTransfer) {
         var dt = new DataTransfer();
@@ -1069,11 +1069,17 @@
       files.forEach(function (f, i) {
         var li = document.createElement('li');
         var img = document.createElement('img');
-        img.src = URL.createObjectURL(f); img.alt = f.name;
+        img.src = URL.createObjectURL(f); img.alt = '';
+        /* подпись к работе — уйдёт на страницу дизайнера под фото */
+        var cap = document.createElement('input');
+        cap.type = 'text'; cap.name = 'cap' + i; cap.maxLength = 60; cap.value = caps[i] || '';
+        cap.placeholder = 'Квартира, 86 м²';
+        cap.setAttribute('aria-label', 'Подпись к фото ' + f.name);
+        cap.dataset.i = i;
         var x = document.createElement('button');
         x.type = 'button'; x.className = 'dthumbs__x'; x.dataset.i = i;
         x.setAttribute('aria-label', 'Убрать ' + f.name);
-        li.appendChild(img); li.appendChild(x); list.appendChild(li);
+        li.appendChild(img); li.appendChild(cap); li.appendChild(x); list.appendChild(li);
       });
       list.hidden = !files.length;
       zone.classList.toggle('has-files', files.length > 0);
@@ -1086,16 +1092,20 @@
         if (!/^image\/(jpeg|png)$/.test(f.type)) skipped.push(f.name + ' — не JPG и не PNG');
         else if (f.size > MB * 1024 * 1024) skipped.push(f.name + ' — больше ' + MB + ' МБ');
         else if (files.length >= MAX) skipped.push(f.name + ' — уже ' + MAX + ' фото');
-        else files.push(f);
+        else { files.push(f); caps.push(''); }
       });
       msg.textContent = skipped.length ? 'Не добавлены: ' + skipped.join('; ') : '';
       msg.hidden = !skipped.length;
       sync();
     });
+    list.addEventListener('input', function (e) {
+      if (e.target.dataset.i) caps[+e.target.dataset.i] = e.target.value;
+    });
     list.addEventListener('click', function (e) {
       var x = e.target.closest('.dthumbs__x');
       if (!x) return;
       files.splice(+x.dataset.i, 1);
+      caps.splice(+x.dataset.i, 1);
       msg.hidden = true;
       sync();
     });

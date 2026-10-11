@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=227">
+<link rel="stylesheet" href="design-pages.css?v=228">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -36,18 +36,20 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <span aria-current="page">Елена Литвякова</span>
     </nav>
     <div class="dshophead__in">
-      <div class="dshophead__logo dshophead__logo--mono"><span>ЕЛ</span></div>
+      <!-- то же фото, что на превью карточки в каталоге -->
+      <div class="dshophead__logo dshophead__logo--photo"><img src="img/designers/litvyakova/1.webp" alt="Елена Литвякова"></div>
       <div class="dshophead__main">
         <h1 class="dpage__h1">Елена Литвякова</h1>
         <ul class="dtags">
           <li><span class="dchip">Дизайн интерьеров</span></li>
-          <li><span class="dchip">Жилые пространства</span></li>
           <li><span class="dchip">Опыт 10 лет</span></li>
         </ul>
       </div>
+      <!-- на десктопе блок «Связаться» и так рядом — одна кнопка «Позвонить»;
+           на телефоне блок уходит вниз — кнопка ведёт к нему -->
       <div class="dshophead__acts">
-        <a href="#contact" class="dbtn dbtn--fill">Связаться</a>
-        <a href="design-designers-catalog.html" class="dbtn dbtn--ghost">Все дизайнеры</a>
+        <a href="tel:+79000000000" class="dbtn dbtn--fill dshophead__call">Позвонить</a>
+        <a href="#contact" class="dbtn dbtn--fill dshophead__to">Связаться</a>
       </div>
     </div>
   </div>
@@ -58,34 +60,53 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <div class="shopmain">
       <div class="dblock">
         <h2 class="dblock__h2">О специалисте</h2>
-        <div class="dprose">
+        <div class="dprose dprose--narrow">
           <p>Проектирует жилые интерьеры — от планировки до комплектации. Подбирает материалы вместе с заказчиком в магазинах комплекса и сопровождает объект до сдачи.</p>
         </div>
+        <!-- факты — поля анкеты: направление, опыт, сайт -->
+        <dl class="dfacts">
+          <div><dt>Направление</dt><dd>Дизайн интерьеров</dd></div>
+          <div><dt>Опыт работы</dt><dd>10 лет</dd></div>
+          <div><dt>Сайт</dt><dd><a href="https://example.com" target="_blank" rel="noopener">litvyakova.design</a></dd></div>
+        </dl>
       </div>
       <div class="dblock">
         <div class="dblock__head">
           <h2 class="dblock__h2">Портфолио</h2>
           <span class="dblock__meta">10 работ</span>
         </div>
-        <div class="gallery dgallery">
-          <div class="gallery__item dgal gallery__item--lead"><img class="jimg" src="img/designers/litvyakova/1.webp" alt="" loading="lazy"></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/2.webp" alt="" loading="lazy"></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/3.webp" alt="" loading="lazy"></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/4.webp" alt="" loading="lazy"></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/5.webp" alt="" loading="lazy"></div>
-          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/6.webp" alt="" loading="lazy"><span class=dgal__more>+4</span></div>
+        <!-- подписи — из анкеты (подпись к каждому фото), здесь демо-значения;
+             data-album/data-caps включают просмотр с подписью и лентой кадров -->
+        <div class="gallery dgallery" data-album="Елена Литвякова" data-meta="Портфолио" data-caps="Квартира, 86 м²|Кухня-гостиная, 34 м²|Гостиная, 42 м²|Спальня, 18 м²|Ванная комната, 9 м²|Кабинет, 14 м²|Детская, 16 м²|Прихожая, 8 м²|Дом в Репино, 210 м²|Терраса, 24 м²">
+          <div class="gallery__item dgal gallery__item--lead"><img class="jimg" src="img/designers/litvyakova/1.webp" alt="Квартира, 86 м²" loading="lazy"><span class="dgal__cap">Квартира, 86 м²</span></div>
+          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/2.webp" alt="Кухня-гостиная, 34 м²" loading="lazy"><span class="dgal__cap">Кухня-гостиная, 34 м²</span></div>
+          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/3.webp" alt="Гостиная, 42 м²" loading="lazy"><span class="dgal__cap">Гостиная, 42 м²</span></div>
+          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/4.webp" alt="Спальня, 18 м²" loading="lazy"><span class="dgal__cap">Спальня, 18 м²</span></div>
+          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/5.webp" alt="Ванная комната, 9 м²" loading="lazy"><span class="dgal__cap">Ванная комната, 9 м²</span></div>
+          <div class="gallery__item dgal"><img class="jimg" src="img/designers/litvyakova/6.webp" alt="Кабинет, 14 м²" loading="lazy"><span class="dgal__more">+4</span></div>
+          <!-- работы 7—10: видны в просмотре, на странице — под плиткой «+4»; снимков пока 6, кадры повторяются -->
+          <div class="gallery__item dgal" hidden><img class="jimg" src="img/designers/litvyakova/1.webp" alt="Детская, 16 м²" loading="lazy"></div>
+          <div class="gallery__item dgal" hidden><img class="jimg" src="img/designers/litvyakova/2.webp" alt="Прихожая, 8 м²" loading="lazy"></div>
+          <div class="gallery__item dgal" hidden><img class="jimg" src="img/designers/litvyakova/3.webp" alt="Дом в Репино, 210 м²" loading="lazy"></div>
+          <div class="gallery__item dgal" hidden><img class="jimg" src="img/designers/litvyakova/4.webp" alt="Терраса, 24 м²" loading="lazy"></div>
         </div>
       </div>
     </div>
     <aside class="shopside dside">
       <div class="dpanel" id="contact">
         <p class="dpanel__title">Связаться</p>
-        <!-- контакты из карточки по ТЗ 6.5; номер и почта демонстрационные, ссылки мессенджеров — на профиль из анкеты -->
+        <!-- контакты из анкеты: что дизайнер указал, то и опубликовано;
+             не указал — строки нет. Номер, почта и сайт демонстрационные -->
         <ul class="dcontacts">
           <li><span class="dcontacts__k">Телефон</span><a class="dcontacts__v dcontacts__v--big" href="tel:+79000000000">+7 (900) 000-00-00</a></li>
-          <li><span class="dcontacts__k">Telegram</span><a class="dcontacts__v" href="https://t.me/" target="_blank" rel="noopener">Написать в Telegram</a></li>
-          <li><span class="dcontacts__k">MAX</span><a class="dcontacts__v" href="https://max.ru/" target="_blank" rel="noopener">Написать в MAX</a></li>
           <li><span class="dcontacts__k">Почта</span><a class="dcontacts__v" href="mailto:litvyakova@example.com">litvyakova@example.com</a></li>
+          <li><span class="dcontacts__k">Сайт</span><a class="dcontacts__v" href="https://example.com" target="_blank" rel="noopener">litvyakova.design</a></li>
+          <li><span class="dcontacts__k">Мессенджеры</span>
+            <span class="dcontacts__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Елена Литвякова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Елена Литвякова в MAX" title="MAX"></a>
+            </span>
+          </li>
         </ul>
       </div>
     </aside>
@@ -98,31 +119,83 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <h2 class="dhead__h2">Другие специалисты</h2>
       <a href="design-designers-catalog.html" class="dlink">Весь каталог</a>
     </div>
-    <div class="ddess">
-      <a href="designer.html" class="descard ddes" data-spec="interior">
-        <span class="ddes__ph" aria-hidden="true">CD</span>
-        <span class="ddes__n">CARTELLE DESIGN</span>
-        <span class="ddes__s">Дизайн интерьеров</span>
-        <span class="ddes__e">Опыт 2 года</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="arch">
-        <span class="ddes__ph" aria-hidden="true">АС</span>
-        <span class="ddes__n">Анна Соколова</span>
-        <span class="ddes__s">Архитектура и планировочные решения</span>
-        <span class="ddes__e">Опыт 7 лет</span>
-      </a>
-      <a href="designer.html" class="descard ddes" data-spec="light">
-        <span class="ddes__ph" aria-hidden="true">МВ</span>
-        <span class="ddes__n">Максим Волков</span>
-        <span class="ddes__s">Светодизайн</span>
-        <span class="ddes__e">Опыт 5 лет</span>
-      </a>
-      <a href="designer-form.html" class="descard ddes ddes--cta" data-spec="">
-        <span class="ddes__ph" aria-hidden="true">+</span>
-        <span class="ddes__n">Попасть в каталог</span>
-        <span class="ddes__s">Заполнить анкету</span>
-        <span class="ddes__e"></span>
-      </a>
+    <div class="ddess ddess--row">
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">CD</span><img class="jimg" src="img/designers/cards/cartelle.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">CARTELLE DESIGN</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 2 года</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000001">+7 (900) 000-00-01</a></li>
+            <li><a href="mailto:cartelle@example.com">cartelle@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="CARTELLE DESIGN в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="CARTELLE DESIGN в MAX" title="MAX"></a>
+            </span>
+            <a class="dbtn dbtn--ghost ddes__more" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="arch">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">АС</span><img class="jimg" src="img/designers/cards/sokolova.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Анна Соколова</a></h3>
+          <p class="ddes__s">Архитектура и планировочные решения</p>
+          <p class="ddes__e">Опыт 7 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000003">+7 (900) 000-00-03</a></li>
+            <li><a href="mailto:sokolova@example.com">sokolova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Анна Соколова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Анна Соколова в MAX" title="MAX"></a>
+            </span>
+            <a class="dbtn dbtn--ghost ddes__more" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="light">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">МВ</span><img class="jimg" src="img/designers/cards/volkov.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Максим Волков</a></h3>
+          <p class="ddes__s">Светодизайн</p>
+          <p class="ddes__e">Опыт 5 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000004">+7 (900) 000-00-04</a></li>
+            <li><a href="mailto:volkov@example.com">volkov@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Максим Волков в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Максим Волков в MAX" title="MAX"></a>
+            </span>
+            <a class="dbtn dbtn--ghost ddes__more" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
+      <article class="descard ddes" data-spec="interior">
+        <a class="ddes__ph" href="designer.html" tabindex="-1" aria-hidden="true"><span class="ddes__ini" aria-hidden="true">ИБ</span><img class="jimg" src="img/designers/cards/belova.webp" alt="" loading="lazy"></a>
+        <div class="ddes__b">
+          <h3 class="ddes__n"><a href="designer.html">Ирина Белова</a></h3>
+          <p class="ddes__s">Дизайн интерьеров</p>
+          <p class="ddes__e">Опыт 8 лет</p>
+          <ul class="ddes__ct">
+            <li><a href="tel:+79000000005">+7 (900) 000-00-05</a></li>
+            <li><a href="mailto:belova@example.com">belova@example.com</a></li>
+          </ul>
+          <div class="ddes__foot">
+            <span class="ddes__msg">
+              <a class="dshare dshare--tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Ирина Белова в Telegram" title="Telegram"></a>
+              <a class="dshare dshare--max" href="https://max.ru/" target="_blank" rel="noopener" aria-label="Ирина Белова в MAX" title="MAX"></a>
+            </span>
+            <a class="dbtn dbtn--ghost ddes__more" href="designer.html">Подробнее</a>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -135,6 +208,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="design.js?v=99"></script>
+<script src="design.js?v=101"></script>
 </body>
 </html>
