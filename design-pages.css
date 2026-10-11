@@ -1270,7 +1270,6 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dupload__t u{color:var(--s-accent-ink);text-underline-offset:3px}
 .dupload__h{font-size:12px;color:var(--s-fg-soft)}
 /* анкета: группы полей, обязательные, счётчик, превью фото */
-.dform__req-note{margin:0 0 24px;font-size:12px;color:var(--s-fg-soft)}
 .fld__req{color:var(--s-accent-ink);letter-spacing:0}
 .dform__grp{min-width:0;margin:0 0 8px;padding:0;border:0}
 .dform__grp+.dform__grp{padding-top:24px;border-top:1px solid var(--s-line)}
