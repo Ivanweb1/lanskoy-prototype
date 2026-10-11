@@ -3036,3 +3036,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .dshopfacts .dshare{width:36px;height:36px}
 /* телефон в колонке — как в первом экране: Montserrat, цифры без старостильных хвостов */
 .dshop .dcontacts__v--big{font-family:var(--d-sans);font-size:18px;font-weight:600;font-variant-numeric:lining-nums}
+/* ссылка «Все …» в шапке блока — одной строкой, на узком экране не ломается
+   в столбик рядом с двухстрочным заголовком, а стоит по его нижней строке */
+.dblock__head{align-items:flex-end}
+.dblock__head .dlink{flex:none;white-space:nowrap}
