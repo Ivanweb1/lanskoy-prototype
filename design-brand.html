@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=243">
+<link rel="stylesheet" href="design-pages.css?v=245">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -29,20 +29,23 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <nav class="dcrumbs" aria-label="Хлебные крошки">
       <a href="design.html">Главная</a>
       <span class="dcrumbs__sep" aria-hidden="true"></span>
+      <a href="shops.html">Магазины</a>
+      <span class="dcrumbs__sep" aria-hidden="true"></span>
       <a href="brands.html">Бренды</a>
       <span class="dcrumbs__sep" aria-hidden="true"></span>
       <span aria-current="page">Албес</span>
     </nav>
     <div class="dshophead__in">
-      <div class="dshophead__logo"><span>Албес</span></div>
+      <!-- тот же логотип, что в списке брендов; без логотипа — название словесным знаком -->
+      <div class="dshophead__logo dshophead__logo--brand"><img src="img/brands/albes.png" alt="Албес"></div>
       <div class="dshophead__main">
         <h1 class="dpage__h1">Албес</h1>
-        <ul class="dtags">
-          <li><a href="category.html" class="dchip">Потолки</a></li>
-        </ul>
+        <!-- категория и сайт — одной строкой, как у дизайнера -->
+        <p class="ddeshead__sub"><a href="category.html">Потолки</a><span class="ddeshead__exp"><a href="https://albes.ru" target="_blank" rel="noopener">albes.ru</a></span></p>
       </div>
       <div class="dshophead__acts">
-        <a href="#shops" class="dbtn dbtn--fill">Где купить</a>
+        <!-- все магазины бренда на схеме этажей разом (rooms — список секций) -->
+        <a href="floors.html?rooms=А10,А12,А13B&amp;brand=Албес" class="dbtn dbtn--fill">Показать на схеме</a>
       </div>
     </div>
   </div>
@@ -56,7 +59,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <h2 class="dblock__h2">О бренде</h2>
         <div class="dprose">
           <p>Российский производитель подвесных потолков: реечные, кассетные и кубообразные системы, декоративные профили и комплектующие для монтажа.</p>
-          <p>В магазинах комплекса можно подобрать цвет и фактуру рейки, посмотреть образцы и заказать расчёт под план помещения.</p>
         </div>
       </div>
       <div class="dblock" id="shops">
@@ -106,6 +108,42 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   </div>
 </section>
 
+<!-- ================= ДРУГИЕ БРЕНДЫ ================= -->
+<!-- марки из тех же магазинов (COMPANION DECOR, ПРЕМЬЕР ДЕКОР, VLADART STUDIO) —
+     стена брендов, как в списке; набор демо -->
+<section class="sect dsect--alt">
+  <div class="wrap">
+    <div class="dhead"><h2 class="dhead__h2">Другие бренды в этих магазинах</h2></div>
+    <div class="dblist dblist--row">
+      <a href="brand.html" class="dbitem" data-name="Академия Строительства">
+        <span class="dbitem__logo"><img src="img/brands/akademiya.jpg" alt="" loading="lazy"><span class="dbitem__hov" aria-hidden="true"><b>Академия Строительства</b><span>Узнайте, где купить</span></span></span>
+        <span class="dbitem__b"><span class="dbitem__n">Академия Строительства</span></span>
+      </a>
+      <a href="brand.html" class="dbitem" data-name="Альта-Профиль">
+        <span class="dbitem__logo"><img src="img/brands/alta-profil.jpg" alt="" loading="lazy"><span class="dbitem__hov" aria-hidden="true"><b>Альта-Профиль</b><span>Узнайте, где купить</span></span></span>
+        <span class="dbitem__b"><span class="dbitem__n">Альта-Профиль</span></span>
+      </a>
+      <a href="brand.html" class="dbitem" data-name="Камоника">
+        <span class="dbitem__logo"><img src="img/brands/camonica.jpg" alt="" loading="lazy"><span class="dbitem__hov" aria-hidden="true"><b>Камоника</b><span>Узнайте, где купить</span></span></span>
+        <span class="dbitem__b"><span class="dbitem__n">Камоника</span></span>
+      </a>
+      <a href="brand.html" class="dbitem" data-name="Каньон">
+        <span class="dbitem__logo"><img src="img/brands/kanyon.jpg" alt="" loading="lazy"><span class="dbitem__hov" aria-hidden="true"><b>Каньон</b><span>Узнайте, где купить</span></span></span>
+        <span class="dbitem__b"><span class="dbitem__n">Каньон</span></span>
+      </a>
+      <a href="brand.html" class="dbitem" data-name="Металл Профиль">
+        <span class="dbitem__logo"><img src="img/brands/metall-profil.jpg" alt="" loading="lazy"><span class="dbitem__hov" aria-hidden="true"><b>Металл Профиль</b><span>Узнайте, где купить</span></span></span>
+        <span class="dbitem__b"><span class="dbitem__n">Металл Профиль</span></span>
+      </a>
+      <a href="brand.html" class="dbitem" data-name="Доломит">
+        <span class="dbitem__logo"><span class="dbitem__word" aria-hidden="true">Доломит</span><span class="dbitem__hov" aria-hidden="true"><b>Доломит</b><span>Узнайте, где купить</span></span></span>
+        <span class="dbitem__b"><span class="dbitem__n">Доломит</span></span>
+      </a>
+    </div>
+    <div class="dposts__more"><a href="brands.html" class="dbtn dbtn--ghost">Все бренды</a></div>
+  </div>
+</section>
+
 </main>
 
 <div id="siteFooter"></div>
@@ -114,6 +152,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="design.js?v=106"></script>
+<script src="design.js?v=107"></script>
 </body>
 </html>

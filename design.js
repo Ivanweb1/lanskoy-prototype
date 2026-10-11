@@ -971,6 +971,28 @@
   apply();
 })();
 
+/* ---------- схема этажей: несколько секций сразу ----------
+   floors.html?rooms=А10,А12&brand=Албес — со страницы бренда: подсвечиваем
+   все его магазины. floors.js (общий с Ч/Б) умеет только одну секцию,
+   поэтому отмечаем здесь и повторяем после каждой перерисовки плана */
+(function () {
+  var box = document.getElementById('bigPlan');
+  var m = location.search.match(/[?&]rooms=([^&]+)/);
+  if (!box || !m) return;
+  var codes = decodeURIComponent(m[1]).split(',');
+  var brand = (location.search.match(/[?&]brand=([^&]+)/) || [])[1];
+  function mark() {
+    codes.forEach(function (c) {
+      var el = box.querySelector('[data-room="' + c + '"]');
+      if (el && !el.classList.contains('pl-room--here')) el.classList.add('pl-room--here');
+    });
+  }
+  new MutationObserver(mark).observe(box, { childList: true });
+  mark();
+  var hint = document.getElementById('planHint');
+  if (hint) hint.textContent = (brand ? decodeURIComponent(brand) + ': ' : '') + 'секции ' + codes.join(', ');
+})();
+
 /* ---------- афиша по ссылке с фильтром «Кому» ----------
    events.html?aud=pro — сразу события для дизайнеров (пункт «Профессиональные
    события» в меню «Дизайнерам»). Жмём чип — список фильтра подхватит сам */
