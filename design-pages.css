@@ -57,9 +57,11 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
 /* 12.10: рамка и разделители медные, как у .dbtn--ghost, фон прозрачный —
    активная заливка сливается с рамкой, без серой обводки вокруг меди */
 .dviews{
-  display:inline-flex;margin:0;padding:0;list-style:none;
+  display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;margin:0;padding:0;list-style:none;
   border:1px solid var(--s-accent);border-radius:2px;background:transparent;
 }
+/* сегменты одной ширины — по самому длинному, подписи по центру */
+.dviews li{min-width:0}
 .dviews li+li{border-left:1px solid var(--s-accent)}
 .dviews__item{
   display:flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;
@@ -245,7 +247,7 @@ a.dviews__item:hover{color:var(--s-fg);background:rgba(196,154,108,.12)}
   .dpage__in>div{padding-bottom:28px}
   .dpage__views{padding-bottom:28px;margin-top:-4px}
   .dcat{padding:32px 0 64px}
-  .catalog{grid-template-columns:1fr;gap:0}
+  .catalog{grid-template-columns:minmax(0,1fr);gap:0}
 
   /* фильтры сворачиваются под кнопку */
   .dfilt-toggle{
@@ -278,9 +280,8 @@ a.dviews__item:hover{color:var(--s-fg);background:rgba(196,154,108,.12)}
   .dtabs__item{white-space:nowrap;font-size:10.5px;letter-spacing:.07em;padding-bottom:14px}
   /* сегменты — на всю ширину, подписи короче, чтобы три влезли в 327px */
   .dpage__views{width:100%}
-  .dviews{display:flex;width:100%}
-  .dviews li{flex:1 1 0;min-width:0}
-  .dviews__item{height:46px;padding:0 8px;gap:8px;font-size:10.5px;letter-spacing:.08em}
+  .dviews{display:grid;width:100%}
+  .dviews__item{height:46px;padding:0 6px;gap:7px;font-size:10.5px;letter-spacing:.06em}
   .dviews__full{display:none}
   .dviews__short{display:inline}
   .checklist{columns:1}
@@ -1027,6 +1028,16 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dselect::after{transition:transform .2s}
 /* сортировка: список прижат к правому краю поля, стрелка — фоном у select */
 .sortbox.dd{display:inline-block}
+/* 12.10: строка над сеткой каталога — счётчик только при фильтре, сортировка всегда справа */
+.results__count[hidden]{display:none}
+.results__bar .sortbox{margin-left:auto}
+.results__count b{font-family:var(--d-sans);font-size:13px;font-weight:600}
+@media (max-width:760px){
+  .results__bar{min-height:0;padding:0;border-bottom:0;margin-bottom:16px}
+  .sortbox select{height:40px}
+}
+/* узкий телефон: иконки переключателя вида убираем, подписи не влезают */
+@media (max-width:360px){.dviews__ic{display:none}}
 .sortbox.dd .dd__list{left:auto;right:0;min-width:100%;text-transform:none;letter-spacing:0}
 .sortbox.is-open select{border-color:var(--s-accent);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 5l4-4 4 4' fill='none' stroke='%23C49A6C' stroke-width='1.3'/%3E%3C/svg%3E")}
 

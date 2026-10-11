@@ -99,6 +99,12 @@
     });
 
     shownCount.textContent = shown;
+    /* «Найдено N» — только при фильтре или запросе (решение 10.10) */
+    var on = cats.length || floors.length || q;
+    shownCount.parentNode.hidden = !on || shown === 0;
+    var w = document.getElementById('shownWord');
+    if (w) { var a = shown % 10, b = shown % 100;
+      w.textContent = a === 1 && b !== 11 ? 'магазин' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'магазина' : 'магазинов'; }
     emptyState.hidden = shown > 0;
     grid.hidden = shown === 0;
     moreBox.hidden = shown === 0;

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=284">
+<link rel="stylesheet" href="design-pages.css?v=286">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -98,7 +98,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
     <div class="results">
       <div class="results__bar">
-        <p class="results__count">Показано <b id="shownCount">12</b> из 150+</p>
+        <p class="results__count" hidden>Найдено <b id="shownCount">12</b> <span id="shownWord">магазинов</span></p>
         <label class="sortbox">
           <select id="sortSelect" aria-label="Сортировка">
             <option value="alpha">По алфавиту</option>
@@ -231,7 +231,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="catalog.js?v=74"></script>
+<script src="catalog.js?v=75"></script>
 <script src="design.js?v=126"></script>
 </body>
 </html>
