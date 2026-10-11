@@ -3258,13 +3258,14 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* поиск и выбранная секция — одним блоком в колонке; список — как был, со своей прокруткой,
    над ним поле поиска по списку (design.js) */
 .dfloor__stick{display:flex;flex-direction:column;gap:24px}
-.dlistq{margin:14px 0 6px}
-.dlistq input{height:42px;font-size:13px}
+.dfloor__find .dbsearch{margin:16px 0 0}
+.dfloor__find #planHint{margin:10px 0 6px}
 .dfloorlist__none{padding:14px 0;font-size:13px;color:var(--s-fg-soft)}
 
 /* легенда: цвета подписями, значки — одной строкой без подписей (название в подсказке) */
 .dfloor .dlegend li[data-mark]{font-size:0;gap:0;cursor:help}
-.dfloor .dlegend li:not([data-mark])+li[data-mark]{margin-left:4px;padding-left:28px;border-left:1px solid var(--s-line)}
+.dfloor .dlegend .dlegend__br+li[data-mark]{margin-left:4px;padding-left:28px;border-left:1px solid var(--s-line)}
+.dlegend__br{display:none}
 .dfloor .dlegend{column-gap:20px}
 .dfloor .dlegend li[data-mark]+li[data-mark]{margin-left:-8px}
 
@@ -3305,4 +3306,20 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dfloor .dbigplan svg.pl-real{width:100%}
   .dzoom{right:calc(var(--pad) * -1 + 12px)}
 }
-.dlistq input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+#planSearch::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+
+/* 12.10: одна панель «Магазины на этаже» с поиском. На телефоне — над планом,
+   список виден только при запросе (иначе 280px списка отодвигают план) */
+@media (max-width:1000px){
+  .dfloor .dside>.dpanel:first-child{order:0}
+  .dfloor .dfloor__find{order:-1}
+  .dfloor__find:not(.has-q) .dfloorlist{display:none}
+}
+/* легенда на телефоне: цвета — строкой, значки — второй строкой ровным рядом */
+@media (max-width:760px){
+  .dfloor .dlegend{gap:12px 18px;font-size:12px}
+  .dlegend__br{display:block;flex-basis:100%;height:0;margin:0;padding:0}
+  .dfloor .dlegend .dlegend__br+li[data-mark]{margin-left:0;padding-left:0;border-left:0}
+  .dfloor .dlegend li[data-mark]+li[data-mark]{margin-left:-6px}
+  .dfloor .dlegend .legend__mark{width:24px;height:24px}
+}

@@ -2014,14 +2014,21 @@ function lnsMiniPlan(n, o) {
   var body = document.getElementById('roomBody');
   var legend = page.querySelector('.dlegend');
 
-  /* поиск и выбранная секция — в одном липком блоке */
+  /* одна панель вместо двух: поиск (floors.js: этаж + секция) встаёт в «Магазины на этаже»
+     и заодно фильтрует список; выбранная секция — над ней */
   var side = page.querySelector('.floorside');
-  if (side && panel) {
-    var stick = document.createElement('div');
-    stick.className = 'dfloor__stick';
-    side.insertBefore(stick, side.firstElementChild);
-    stick.appendChild(side.querySelector('.dpanel'));
-    stick.appendChild(panel);
+  var listEl = document.getElementById('floorList');
+  var findPanel = listEl && listEl.closest('.dpanel');
+  var searchInput = document.getElementById('planSearch');
+  if (side && findPanel && searchInput) {
+    var oldPanel = searchInput.closest('.dpanel');
+    var head = findPanel.querySelector('.dpanel__head');
+    var hintEl = document.getElementById('planHint');
+    head.parentNode.insertBefore(searchInput.closest('.field'), head.nextSibling);
+    if (hintEl) head.parentNode.insertBefore(hintEl, listEl);
+    if (oldPanel && oldPanel !== findPanel) oldPanel.remove();
+    findPanel.classList.add('dfloor__find');
+    if (panel) side.insertBefore(panel, findPanel);
   }
 
   /* крестик шторки на телефоне */
@@ -2086,6 +2093,15 @@ function lnsMiniPlan(n, o) {
   /* ---- легенда: значки без подписей, название — в подсказке ---- */
   function fixLegend() {
     if (!legend) return;
+    var first = legend.querySelector('li[data-mark]');
+    var br = legend.querySelector('.dlegend__br');
+    if (first && (!br || br.nextElementSibling !== first)) {
+      if (br) br.remove();
+      br = document.createElement('li');
+      br.className = 'dlegend__br';
+      br.setAttribute('aria-hidden', 'true');
+      legend.insertBefore(br, first);
+    }
     [].forEach.call(legend.querySelectorAll('li[data-mark]'), function (li) {
       if (li.hasAttribute('data-tip')) return;
       var name = li.textContent.trim();
@@ -2157,31 +2173,26 @@ function lnsMiniPlan(n, o) {
     box.scrollTop += rr.top + rr.height / 2 - (br.top + br.height / 2);
   }
 
-  /* поиск по списку «Магазины на этаже»: название или номер секции */
-  var list = document.getElementById('floorList');
-  if (list) {
-    var q = document.createElement('div');
-    q.className = 'field field--sm dbsearch dbsearch--full dlistq';
-    q.innerHTML = '<input type="search" placeholder="Найти в списке" autocomplete="off" aria-label="Поиск в списке магазинов этажа"><button type="button" class="field__go" aria-label="Найти"></button>';
-    list.parentNode.insertBefore(q, list);
-    var qi = q.querySelector('input');
+  /* то же поле фильтрует список этажа: название или номер секции.
+     Поиск может переключить этаж — список перерисуется, фильтр применяем заново */
+  if (listEl && searchInput) {
     var none = document.createElement('p');
     none.className = 'dfloorlist__none';
-    none.textContent = 'Ничего не найдено';
+    none.textContent = 'На этом этаже не найдено';
     none.hidden = true;
-    list.parentNode.insertBefore(none, list.nextSibling);
+    listEl.parentNode.insertBefore(none, listEl.nextSibling);
     var filterList = function () {
-      var v = qi.value.trim().toLowerCase(), n = 0;
-      [].forEach.call(list.querySelectorAll('li'), function (li) {
+      var v = searchInput.value.trim().toLowerCase(), n = 0;
+      [].forEach.call(listEl.querySelectorAll('li'), function (li) {
         var ok = !v || li.textContent.toLowerCase().indexOf(v) > -1;
         li.hidden = !ok;
         if (ok) n++;
       });
-      none.hidden = n > 0;
+      none.hidden = !v || n > 0;
+      findPanel.classList.toggle('has-q', !!v);
     };
-    qi.addEventListener('input', filterList);
-    /* смена этажа перерисовывает список — фильтр сбрасываем */
-    new MutationObserver(function () { qi.value = ''; none.hidden = true; }).observe(list, { childList: true });
+    searchInput.addEventListener('input', function () { setTimeout(filterList, 0); });
+    new MutationObserver(filterList).observe(listEl, { childList: true });
   }
 
   new MutationObserver(afterRender).observe(box, { childList: true });
