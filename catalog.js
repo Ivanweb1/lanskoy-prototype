@@ -2,8 +2,9 @@
    Всё на клиенте и только для показа: в бою это делает бэкенд,
    иначе 150 карточек придётся отдавать браузеру целиком. */
 
-/* Подкатегории на странице категории — уточняющий фильтр чипами.
-   Отдельно от каталога: там полный набор фильтров, здесь категория уже выбрана. */
+/* Подкатегории на странице категории — уточняющий фильтр и поиск.
+   Отдельно от каталога: там полный набор фильтров, здесь категория уже выбрана.
+   Чипы скрыты, design.js собирает из них выпадающий список «Подкатегория». */
 (function () {
   var chips = document.getElementById('subChips');
   var grid = document.getElementById('subGrid');
@@ -11,16 +12,30 @@
 
   var cards = [].slice.call(grid.querySelectorAll('.shopcard'));
   var shown = document.getElementById('subShown');
+  var word = document.getElementById('subWord');
   var empty = document.getElementById('subEmpty');
+  var q = document.getElementById('subSearch');
+  var sub = 'all';
 
-  function apply(sub) {
+  function plural(n) {
+    var a = n % 10, b = n % 100;
+    if (a === 1 && b !== 11) return 'магазин';
+    if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return 'магазина';
+    return 'магазинов';
+  }
+
+  /* поиск по названию и номеру помещения: «а10» находит А10 */
+  function apply() {
+    var s = q ? q.value.trim().toLowerCase() : '';
     var n = 0;
     cards.forEach(function (c) {
-      var visible = sub === 'all' || (c.dataset.sub || '').split(' ').indexOf(sub) > -1;
+      var visible = (sub === 'all' || (c.dataset.sub || '').split(' ').indexOf(sub) > -1) &&
+        (!s || (c.dataset.name + ' ' + c.dataset.room).toLowerCase().indexOf(s) > -1);
       c.hidden = !visible;
       if (visible) n++;
     });
     shown.textContent = n;
+    if (word) word.textContent = plural(n);
     empty.hidden = n > 0;
     grid.hidden = n === 0;
   }
@@ -30,11 +45,14 @@
     if (!b) return;
     chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('is-active'); });
     b.classList.add('is-active');
-    apply(b.dataset.sub);
+    sub = b.dataset.sub;
+    apply();
   });
+  if (q) q.addEventListener('input', apply);
 
   document.querySelectorAll('[data-subreset]').forEach(function (b) {
     b.addEventListener('click', function () {
+      if (q) q.value = '';
       chips.querySelector('[data-sub="all"]').click();
     });
   });
