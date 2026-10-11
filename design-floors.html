@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=286">
+<link rel="stylesheet" href="design-pages.css?v=288">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -59,12 +59,11 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <p class="floorplan__hint dfloor__hint">Нажмите на секцию, чтобы узнать, какой в ней магазин</p>
       </div>
-      <p class="dplanhint">Листайте план вбок</p>
+      <p class="dplanhint">Листайте план вбок или меняйте масштаб</p>
       <div class="bigplan dplan dbigplan" id="bigPlan"></div>
       <ul class="legend dlegend">
         <li><span class="legend__sw legend__sw--tenant"></span>Магазин</li>
-        <li><span class="legend__sw legend__sw--busy"></span>Занято</li>
-        <li><span class="legend__sw legend__sw--blank"></span>Без номера</li>
+        <li><span class="legend__sw legend__sw--busy"></span>Секция</li>
         <li data-schem><span class="legend__sw legend__sw--free"></span>Свободно</li>
         <li hidden><span class="legend__sw legend__sw--here"></span>Выбрано</li>
         <li data-schem><span class="legend__sw legend__sw--serv"></span>Служебные зоны</li>
@@ -75,7 +74,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div class="dpanel">
         <p class="dpanel__title">Найти магазин</p>
         <div class="field field--sm dbsearch dbsearch--full">
-          <input type="search" id="planSearch" placeholder="Название или номер секции" autocomplete="off" aria-label="Название или номер секции">
+          <input type="search" id="planSearch" placeholder="Магазин или № секции" autocomplete="off" aria-label="Название или номер секции">
           <button type="button" class="field__go" aria-label="Найти"></button>
         </div>
         <p class="dpanel__hint" id="planHint">Поиск переключит этаж и подсветит секцию</p>
@@ -91,7 +90,9 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <ul class="floorlist dfloorlist" id="floorList"></ul>
       </div>
-      <p class="dfloorfree"><span>Свободных секций на этаже: <b id="freeCount">0</b></span><a href="rent.html" class="dlink">Условия аренды</a></p>
+      <!-- статусов секций нет в ТЗ (6.10, 6.12) и CMS — строку «Свободных секций» убрали 12.10;
+           элемент оставлен скрытым: в него пишет общий с Ч/Б floors.js -->
+      <span id="freeCount" hidden></span>
     </aside>
   </div>
 </section>
@@ -106,6 +107,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="app.js?v=74"></script>
 <script src="floors-real.js?v=8"></script>
 <script src="floors.js?v=82"></script>
-<script src="design.js?v=126"></script>
+<script src="design.js?v=128"></script>
 </body>
 </html>

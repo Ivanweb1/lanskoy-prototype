@@ -2001,3 +2001,175 @@ function lnsMiniPlan(n, o) {
     if (!c.title) c.title = c.textContent.trim();
   });
 })();
+
+/* ---------- схема этажей: правки 12.10 ----------
+   floors.js общий с замороженным Ч/Б, поэтому всё — здесь, поверх его разметки:
+   номера по ширине секции, фирменная подсказка вместо <title>, тексты и ссылки
+   карточки секции, шторка на телефоне, масштаб и прокрутка к выбранной секции */
+(function () {
+  var page = document.querySelector('.dfloor');
+  var box = document.getElementById('bigPlan');
+  if (!page || !box) return;
+  var panel = document.getElementById('roomPanel');
+  var body = document.getElementById('roomBody');
+  var legend = page.querySelector('.dlegend');
+
+  /* поиск и выбранная секция — в одном липком блоке */
+  var side = page.querySelector('.floorside');
+  if (side && panel) {
+    var stick = document.createElement('div');
+    stick.className = 'dfloor__stick';
+    side.insertBefore(stick, side.firstElementChild);
+    stick.appendChild(side.querySelector('.dpanel'));
+    stick.appendChild(panel);
+  }
+
+  /* крестик шторки на телефоне */
+  if (panel) {
+    var x = document.createElement('button');
+    x.type = 'button';
+    x.className = 'droom__x';
+    x.setAttribute('aria-label', 'Закрыть');
+    x.textContent = '×';
+    x.addEventListener('click', function () { panel.hidden = true; });
+    panel.insertBefore(x, panel.firstChild);
+  }
+
+  /* ---- подсказка ---- */
+  var tip = document.createElement('div');
+  tip.className = 'dtip';
+  tip.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(tip);
+  function tipText(el) {
+    var t = el.getAttribute('data-tip') || '';
+    var m = t.match(/^(\S+) — (.+)$/);
+    return m ? '<b>' + m[1] + '</b>' + m[2].replace('арендатор не указан', 'магазин уточняется') : t;
+  }
+  page.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var el = e.target.closest && e.target.closest('[data-tip]');
+    if (!el) { tip.classList.remove('is-on'); return; }
+    tip.innerHTML = tipText(el);
+    var tx = e.clientX + 14, ty = e.clientY + 18;
+    if (tx + tip.offsetWidth > innerWidth - 8) tx = e.clientX - tip.offsetWidth - 14;
+    tip.style.left = tx + 'px';
+    tip.style.top = ty + 'px';
+    tip.classList.add('is-on');
+  });
+  page.addEventListener('mouseleave', function () { tip.classList.remove('is-on'); });
+
+  /* ---- после каждой перерисовки плана ---- */
+  function fitLabels() {
+    [].forEach.call(box.querySelectorAll('.pl-txt--real'), function (t) {
+      var r = box.querySelector('[data-room="' + t.textContent + '"]');
+      if (!r) return;
+      t.style.fontSize = '';
+      var bb = r.getBBox();
+      var w = bb.width - 6, tw = t.getBBox().width, fs = 14;
+      if (tw > w) fs = Math.max(8, Math.floor(14 * w / tw));
+      if (fs > bb.height * 0.6) fs = Math.max(8, Math.floor(bb.height * 0.6));
+      if (fs !== 14) t.style.fontSize = fs + 'px';
+    });
+  }
+  function moveTitles() {
+    [].forEach.call(box.querySelectorAll('title'), function (ti) {
+      ti.parentNode.setAttribute('data-tip', ti.textContent);
+      ti.remove();
+    });
+  }
+  function afterRender() {
+    moveTitles();
+    fitLabels();
+    applyZoom();
+  }
+
+  /* ---- легенда: значки без подписей, название — в подсказке ---- */
+  function fixLegend() {
+    if (!legend) return;
+    [].forEach.call(legend.querySelectorAll('li[data-mark]'), function (li) {
+      if (li.hasAttribute('data-tip')) return;
+      var name = li.textContent.trim();
+      li.setAttribute('data-tip', name);
+      li.setAttribute('aria-label', name);
+    });
+  }
+
+  /* ---- карточка секции: без статусов, ссылки на дизайн-страницы ---- */
+  var fixing = false;
+  function fixRoom() {
+    if (fixing || !body) return;
+    fixing = true;
+    var name = body.querySelector('.room__name');
+    if (name && /не привязан/.test(name.textContent)) {
+      var fl = page.querySelector('.floors__tab.is-active b');
+      body.innerHTML = '<p class="room__name">Магазин уточняется</p>' +
+        '<p class="room__place">' + (fl ? fl.textContent : '') + ' этаж</p>' +
+        '<a href="design-shops.html" class="btn btn--ghost btn--full">Все магазины</a>';
+    }
+    [].forEach.call(body.querySelectorAll('a[href]'), function (a) {
+      var h = a.getAttribute('href');
+      if (/^(shop|shops|rent)\.html/.test(h)) a.setAttribute('href', 'design-' + h);
+    });
+    fixing = false;
+    focusRoom();
+  }
+
+  /* ---- масштаб ---- */
+  var LEVELS = [1, 1.5, 2, 2.5, 3];
+  var z = matchMedia('(max-width:760px)').matches ? 2.5 : 1;
+  var wrap = document.createElement('div');
+  wrap.className = 'dplanwrap';
+  box.parentNode.insertBefore(wrap, box);
+  wrap.appendChild(box);
+  var zoom = document.createElement('div');
+  zoom.className = 'dzoom';
+  zoom.innerHTML = '<button type="button" data-z="1" aria-label="Приблизить">+</button>' +
+    '<button type="button" data-z="-1" aria-label="Отдалить">−</button>';
+  wrap.appendChild(zoom);
+  function applyZoom() {
+    var svg = box.querySelector('svg');
+    if (!svg) return;
+    svg.style.width = z === 1 ? '' : (z * 100) + '%';
+    svg.style.height = z === 1 ? '' : 'auto';
+    box.classList.toggle('is-zoomed', z > 1);
+    zoom.querySelector('[data-z="1"]').disabled = z === LEVELS[LEVELS.length - 1];
+    zoom.querySelector('[data-z="-1"]').disabled = z === LEVELS[0];
+  }
+  zoom.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-z]');
+    if (!b) return;
+    /* центр видимой части сохраняем */
+    var cx = (box.scrollLeft + box.clientWidth / 2) / box.scrollWidth;
+    var cy = (box.scrollTop + box.clientHeight / 2) / box.scrollHeight;
+    var i = LEVELS.indexOf(z) + (+b.dataset.z);
+    z = LEVELS[Math.max(0, Math.min(LEVELS.length - 1, i))];
+    applyZoom();
+    box.scrollLeft = cx * box.scrollWidth - box.clientWidth / 2;
+    box.scrollTop = cy * box.scrollHeight - box.clientHeight / 2;
+  });
+
+  /* выбранная секция — в видимую часть плана; при загрузке — середина этажа */
+  function focusRoom() {
+    var r = box.querySelector('.pl-room--here');
+    if (!r || box.scrollWidth <= box.clientWidth + 2) return;
+    var br = box.getBoundingClientRect(), rr = r.getBoundingClientRect();
+    box.scrollLeft += rr.left + rr.width / 2 - (br.left + br.width / 2);
+    box.scrollTop += rr.top + rr.height / 2 - (br.top + br.height / 2);
+  }
+
+  /* строка списка внизу колонки — план и карточка секции наверху: возвращаемся к ним */
+  var list = document.getElementById('floorList');
+  if (list) list.addEventListener('click', function (e) {
+    if (!e.target.closest('[data-go]') || matchMedia('(max-width:1000px)').matches) return;
+    var top = wrap.getBoundingClientRect().top - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hdr-sticky'), 10) || 64) - 90;
+    if (top < 0) window.scrollBy({ top: top, behavior: 'smooth' });
+  });
+
+  new MutationObserver(afterRender).observe(box, { childList: true });
+  if (legend) new MutationObserver(fixLegend).observe(legend, { childList: true });
+  if (body) new MutationObserver(fixRoom).observe(body, { childList: true });
+  afterRender();
+  fixLegend();
+  fixRoom();
+  if (!box.querySelector('.pl-room--here')) box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
+})();

@@ -3238,3 +3238,69 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   /* у «Соседства» доказательство — схема, фото над ней на телефоне лишнее */
   .drwhy__mob:has(.drwhy__plate--plan) .drwhy__img{display:none}
 }
+
+/* ============ СХЕМА ЭТАЖЕЙ: ПРАВКИ 12.10 ============ */
+/* номера секций крупнее; в узких секциях design.js уменьшает шрифт по ширине */
+.dfloor .dplan .pl-txt--real{font-size:14px}
+
+/* выбранная секция — тёмной карточкой: видна сразу, а не ещё одной рамкой среди панелей */
+.dfloor .droom{background:var(--b-navy);border-color:var(--b-navy);color:var(--b-cream);animation:droomIn .35s ease}
+.dfloor .droom .dpanel__title{color:var(--b-cream);border-color:rgba(196,154,108,.4)}
+.dfloor .droom #roomNum{color:var(--b-copper)}
+.dfloor .droom .room__name{color:var(--b-cream);font-size:26px}
+.dfloor .droom .room__cat,.dfloor .droom .room__place{color:rgba(246,244,237,.66)}
+.dfloor .droom .btn{background:var(--b-copper);border-color:var(--b-copper);color:var(--b-navy)}
+.dfloor .droom .btn:hover{background:transparent;color:var(--b-copper)}
+[data-theme="dark"] .dfloor .droom{background:rgba(196,154,108,.14);border-color:var(--b-copper)}
+@keyframes droomIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.droom__x{display:none}
+
+/* список магазинов — во всю высоту без своей прокрутки. Колонка не липнет:
+   липкий блок наезжал на список; клик по строке списка возвращает к плану (design.js) */
+.dfloor .floorside{position:static}
+.dfloor__stick{display:flex;flex-direction:column;gap:24px}
+.dfloor .dfloorlist{max-height:none;overflow:visible;padding-right:0;margin-right:0}
+
+/* легенда: цвета подписями, значки — одной строкой без подписей (название в подсказке) */
+.dfloor .dlegend li[data-mark]{font-size:0;gap:0;cursor:help}
+.dfloor .dlegend li:not([data-mark])+li[data-mark]{margin-left:4px;padding-left:28px;border-left:1px solid var(--s-line)}
+.dfloor .dlegend{column-gap:20px}
+.dfloor .dlegend li[data-mark]+li[data-mark]{margin-left:-8px}
+
+/* подсказка над секцией и значком — в стиле сайта вместо системной */
+.dtip{position:fixed;z-index:80;pointer-events:none;padding:8px 12px;max-width:260px;
+  background:var(--b-navy);color:var(--b-cream);font-family:var(--d-sans);font-size:13px;line-height:1.35;
+  border-left:2px solid var(--b-copper);box-shadow:0 10px 24px -12px rgba(1,20,39,.5);
+  opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s}
+.dtip.is-on{opacity:1;transform:none}
+.dtip b{color:var(--b-copper);font-weight:600;margin-right:6px}
+[data-theme="dark"] .dtip{background:var(--b-cream);color:var(--b-navy)}
+[data-theme="dark"] .dtip b{color:#8E6034}
+
+/* масштаб плана */
+.dplanwrap{position:relative}
+.dfloor .dbigplan.is-zoomed{overflow:auto}
+.dzoom{position:absolute;z-index:3;right:12px;top:12px;display:flex;flex-direction:column;
+  border:1px solid var(--s-accent);background:var(--s-bg)}
+.dzoom button{width:40px;height:40px;border:0;background:none;cursor:pointer;color:var(--s-accent-ink);
+  font-family:var(--d-sans);font-size:20px;line-height:1;transition:background-color .2s,color .2s}
+.dzoom button+button{border-top:1px solid var(--s-accent)}
+.dzoom button:hover:not(:disabled){background:var(--s-accent);color:var(--s-btn-fill-fg)}
+.dzoom button:disabled{opacity:.35;cursor:default}
+[data-theme="dark"] .dzoom{background:var(--b-navy)}
+
+@media (max-width:1000px){
+  .dfloor__stick{display:contents}
+  /* выбранная секция на телефоне — шторкой поверх плана, а не далеко под ним */
+  .dfloor .droom{position:fixed;z-index:70;left:12px;right:12px;bottom:12px;margin:0;padding:20px 20px 22px;
+    max-height:60vh;overflow:auto;box-shadow:0 -12px 40px -16px rgba(1,20,39,.6)}
+  .dfloor .droom .room__name{font-size:22px}
+  .dfloor .droom .dpanel__title{padding-right:40px}
+  .droom__x{display:flex;align-items:center;justify-content:center;position:absolute;top:12px;right:12px;width:36px;height:36px;
+    border:1px solid rgba(196,154,108,.5);background:none;color:var(--b-copper);font-size:20px;line-height:1;cursor:pointer}
+  [data-theme="dark"] .dfloor .droom{background:#0B2645}
+}
+@media (max-width:760px){
+  .dfloor .dbigplan svg.pl-real{width:100%}
+  .dzoom{right:calc(var(--pad) * -1 + 12px)}
+}
