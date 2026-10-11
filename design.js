@@ -1911,6 +1911,14 @@ function lnsMiniPlan(n, o) {
     else s += path;
   });
   s += top;
+  /* o.named — секции с подписью арендатора: первая подписана над, вторая под */
+  (o.named || []).forEach(function (c, i) {
+    var r = f.rooms.filter(function (x) { return x[0] === c; })[0];
+    if (!r) return;
+    s += '<path class="pl-room pl-room--here" d="' + r[2] + '"/>';
+    var y = i % 2 ? r[4] + r[6] + 40 : r[4] - 18;
+    s += '<text class="pl-txt pl-txt--label" x="' + (r[3] + r[5] / 2) + '" y="' + y + '" text-anchor="middle" style="font-size:30px">' + r[1] + '</text>';
+  });
   if (here) {
     s += '<path class="pl-room pl-room--here" d="' + here[2] + '"/>';
     var right = here[3] + here[5] + 120 < vb[0] + vb[2];
@@ -1979,4 +1987,36 @@ var FREE_ROOMS = { 1: [], 2: ['В11', 'В14a', 'В22', 'В40'], 3: ['С5', 'С9.
   window.addEventListener('scroll', upd, { passive: true });
   window.addEventListener('resize', upd);
   upd();
+})();
+
+
+/* «Аренда»: доводы вкладками — клик, наведение или стрелки меняют панель справа */
+(function () {
+  var box = document.querySelector('.dwhy');
+  if (!box) return;
+  var tabs = [].slice.call(box.querySelectorAll('.dwhy__tab'));
+  var plan = document.getElementById('whyPlan');
+  if (plan) plan.innerHTML = lnsMiniPlan(plan.getAttribute('data-floor'), { named: plan.getAttribute('data-rooms').split(',') });
+  function show(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', String(on));
+      var p = document.getElementById(t.getAttribute('aria-controls'));
+      p.hidden = !on;
+      p.classList.toggle('is-active', on);
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { show(t); });
+    /* наведение — только там, где есть мышь */
+    t.addEventListener('mouseenter', function () { if (window.matchMedia('(hover:hover)').matches) show(t); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+      if (!k) return;
+      e.preventDefault();
+      var n = tabs[(i + k + tabs.length) % tabs.length];
+      n.focus(); show(n);
+    });
+  });
 })();

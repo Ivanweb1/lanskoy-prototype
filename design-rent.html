@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=262">
+<link rel="stylesheet" href="design-pages.css?v=265">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -61,29 +61,78 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 </section>
 
 <!-- ================= ПОЧЕМУ ================= -->
+<!-- четыре довода вкладками: слева тезис, справа его доказательство из
+     данных сайта — категории, соседи на настоящей схеме, событие афиши, маршрут -->
 <section class="sect">
   <div class="wrap">
     <div class="dhead"><h2 class="dhead__h2">Почему арендаторы выбирают «Ланской»</h2></div>
-    <div class="dadvs dadvs--2">
-      <div class="dadv">
-        <span class="dadv__n">01</span>
-        <h3 class="dadv__h">Целевой покупатель</h3>
-        <p class="dadv__t">В комплекс едут за материалами и мебелью осознанно: человек в ремонте, дизайнер с проектом, подрядчик. Случайного трафика почти нет, но и конверсия в покупку выше.</p>
+    <div class="dwhy" data-tabs>
+      <div class="dwhy__list" role="tablist" aria-label="Доводы">
+        <button type="button" class="dwhy__tab is-active" role="tab" aria-selected="true" aria-controls="why1" id="whyt1">
+          <span class="dwhy__n">01</span><span class="dwhy__h">Целевой покупатель</span>
+          <span class="dwhy__t"><span>В комплекс едут за материалами и мебелью осознанно: человек в ремонте, дизайнер с проектом, подрядчик. Случайного трафика почти нет, но и конверсия в покупку выше.</span></span>
+        </button>
+        <button type="button" class="dwhy__tab" role="tab" aria-selected="false" aria-controls="why2" id="whyt2">
+          <span class="dwhy__n">02</span><span class="dwhy__h">Соседство работает на вас</span>
+          <span class="dwhy__t"><span>150 магазинов смежных категорий в одном здании. Покупатель, который приехал за плиткой, уходит ещё и с сантехникой — и наоборот.</span></span>
+        </button>
+        <button type="button" class="dwhy__tab" role="tab" aria-selected="false" aria-controls="why3" id="whyt3">
+          <span class="dwhy__n">03</span><span class="dwhy__h">Профессиональная аудитория</span>
+          <span class="dwhy__t"><span>Дизайнеры и архитекторы приходят на семинары и подбирают материалы под проекты. Один такой контакт приносит не одну покупку.</span></span>
+        </button>
+        <button type="button" class="dwhy__tab" role="tab" aria-selected="false" aria-controls="why4" id="whyt4">
+          <span class="dwhy__n">04</span><span class="dwhy__h">Расположение и парковка</span>
+          <span class="dwhy__t"><span>Между двумя станциями метро, рядом с городскими магистралями, парковка у входов.</span></span>
+        </button>
       </div>
-      <div class="dadv">
-        <span class="dadv__n">02</span>
-        <h3 class="dadv__h">Соседство работает на вас</h3>
-        <p class="dadv__t">150 магазинов смежных категорий в одном здании. Покупатель, который приехал за плиткой, уходит ещё и с сантехникой — и наоборот.</p>
-      </div>
-      <div class="dadv">
-        <span class="dadv__n">03</span>
-        <h3 class="dadv__h">Профессиональная аудитория</h3>
-        <p class="dadv__t">Дизайнеры и архитекторы приходят на семинары и подбирают материалы под проекты. Один такой контакт приносит не одну покупку.</p>
-      </div>
-      <div class="dadv">
-        <span class="dadv__n">04</span>
-        <h3 class="dadv__h">Расположение и парковка</h3>
-        <p class="dadv__t">Между двумя станциями метро, рядом с городскими магистралями, парковка у входов.</p>
+
+      <div class="dwhy__stage">
+        <!-- 01: за чем едут — категории каталога -->
+        <div class="dwhy__panel is-active" role="tabpanel" id="why1" aria-labelledby="whyt1">
+          <div class="dwhy__cats">
+            <a href="category.html" class="dwhy__cat"><img src="img/cat-plitka.webp" alt="" loading="lazy"><span>Плитка</span></a>
+            <a href="category.html" class="dwhy__cat"><img src="img/cat-santeh.webp" alt="" loading="lazy"><span>Сантехника</span></a>
+            <a href="category.html" class="dwhy__cat"><img src="img/cat-svet.webp" alt="" loading="lazy"><span>Свет</span></a>
+            <a href="category.html" class="dwhy__cat"><img src="img/cat-dveri.webp" alt="" loading="lazy"><span>Двери</span></a>
+            <a href="category.html" class="dwhy__cat"><img src="img/cat-pol.webp" alt="" loading="lazy"><span>Напольные покрытия</span></a>
+            <a href="category.html" class="dwhy__cat"><img src="img/cat-oboi.webp" alt="" loading="lazy"><span>Обои</span></a>
+          </div>
+          <p class="dwhy__cap">Всё для ремонта и интерьера в одном здании — <a href="categories.html" class="dlink dlink--in">все категории</a></p>
+        </div>
+        <!-- 02: соседи на настоящей схеме 1 этажа — плитка и сантехника стенка в стенку -->
+        <div class="dwhy__panel" role="tabpanel" id="why2" aria-labelledby="whyt2" hidden>
+          <a href="floors.html?room=%D0%9039a&amp;floor=1" class="dplan dwhy__plan" id="whyPlan" data-floor="1" data-rooms="А39a,А39b" aria-label="Открыть схему этажей"></a>
+          <p class="dwhy__cap"><b>Стиль Керамики</b> и <b>Интересная сантехника</b> — соседние секции на 1 этаже</p>
+        </div>
+        <!-- 03: событие из афиши -->
+        <div class="dwhy__panel" role="tabpanel" id="why3" aria-labelledby="whyt3" hidden>
+          <a href="event.html" class="dwhy__event">
+            <span class="dwhy__evimg"><img src="img/ev-2.webp" alt="" loading="lazy"></span>
+            <span class="dwhy__evb">
+              <span class="dwhy__evtag">Семинар · Для дизайнеров</span>
+              <span class="dwhy__evh">«Волховец» — реализация проектных продаж</span>
+              <span class="dwhy__evm">28 августа, 15:00 · 3 этаж, зона лекций</span>
+            </span>
+          </a>
+          <p class="dwhy__cap">Семинары и презентации брендов — в <a href="events.html" class="dlink dlink--in">афише комплекса</a>, специалисты — в <a href="designers.html#catalog" class="dlink dlink--in">каталоге дизайнеров</a></p>
+        </div>
+        <!-- 04: как добраться — те же факты, что на «Контактах» -->
+        <div class="dwhy__panel" role="tabpanel" id="why4" aria-labelledby="whyt4" hidden>
+          <div class="dwhy__route">
+            <div class="dwhy__rt">
+              <span class="dwhy__rk">На метро</span>
+              <span class="dwhy__rh"><i style="--line:#0078C9"></i>Чёрная речка</span>
+              <span class="dwhy__rh"><i style="--line:#D6083B"></i>Лесная</span>
+              <span class="dwhy__rs">около 15 минут пешком от станций</span>
+            </div>
+            <div class="dwhy__rt">
+              <span class="dwhy__rk">На машине</span>
+              <span class="dwhy__rh">ул. Студенческая, 10</span>
+              <span class="dwhy__rs">заезд на парковку с ул. Студенческой, рядом с городскими магистралями</span>
+            </div>
+          </div>
+          <p class="dwhy__cap"><a href="contacts.html" class="dlink dlink--in">Как добраться</a></p>
+        </div>
       </div>
     </div>
   </div>
@@ -96,10 +145,32 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <div class="rblock__text">
       <p class="rblock__kicker">Кто приходит в комплекс</p>
       <h2 class="rblock__h2">Три аудитории, все с намерением купить</h2>
-      <ul class="dnum__list">
-        <li><b>Частный покупатель в ремонте</b> — ищет, где купить материалы, сравнивает и вдохновляется</li>
-        <li><b>Дизайнер и архитектор</b> — подбирает поставщиков под проект, приходит за образцами</li>
-        <li><b>Подрядчик и строительная бригада</b> — закупает объёмами и возвращается регулярно</li>
+      <!-- три аудитории карточками: знак, кто это, за чем приходит — метками -->
+      <ul class="daud">
+        <li class="daud__i daud__i--home">
+          <span class="daud__ic" aria-hidden="true"></span>
+          <span class="daud__b">
+            <b class="daud__h">Частный покупатель в ремонте</b>
+            <span class="daud__t">Ищет, где купить материалы, сравнивает и вдохновляется</span>
+            <span class="daud__tags"><span>Выбор</span><span>Сравнение</span><span>Идеи</span></span>
+          </span>
+        </li>
+        <li class="daud__i daud__i--pro">
+          <span class="daud__ic" aria-hidden="true"></span>
+          <span class="daud__b">
+            <b class="daud__h">Дизайнер и архитектор</b>
+            <span class="daud__t">Подбирает поставщиков под проект, приходит за образцами</span>
+            <span class="daud__tags"><span>Поставщики</span><span>Образцы</span><span>Семинары</span></span>
+          </span>
+        </li>
+        <li class="daud__i daud__i--build">
+          <span class="daud__ic" aria-hidden="true"></span>
+          <span class="daud__b">
+            <b class="daud__h">Подрядчик и строительная бригада</b>
+            <span class="daud__t">Закупает объёмами и возвращается регулярно</span>
+            <span class="daud__tags"><span>Объёмы</span><span>Повторные закупки</span></span>
+          </span>
+        </li>
       </ul>
       <div class="rblock__cta"><a href="#form" class="dbtn dbtn--fill">Обсудить условия</a></div>
     </div>
@@ -253,6 +324,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="app.js?v=74"></script>
 <script src="floors-real.js?v=8"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=116"></script>
+<script src="design.js?v=118"></script>
 </body>
 </html>

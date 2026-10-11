@@ -3144,3 +3144,103 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .drent-hero .dpromo__main{display:flex;flex-direction:column}
 .drent-hero .dpromo__acts{display:flex;flex-wrap:wrap;gap:16px}
 @media (max-width:600px){.drent-hero .dpromo__acts .dbtn{width:100%;justify-content:center}}
+
+/* «Аренда»: доводы вкладками — слева тезисы, справа доказательство */
+.dwhy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:stretch}
+.dwhy__list{display:flex;flex-direction:column;border-top:1px solid var(--s-line)}
+.dwhy__tab{display:grid;grid-template-columns:52px minmax(0,1fr);gap:0 16px;align-items:baseline;width:100%;padding:22px 0;
+  background:none;border:0;border-bottom:1px solid var(--s-line);text-align:left;cursor:pointer;color:var(--s-fg);position:relative}
+.dwhy__tab::before{content:"";position:absolute;left:0;top:-1px;width:0;height:2px;background:var(--s-accent);transition:width .4s var(--d-ease)}
+.dwhy__tab.is-active::before{width:100%}
+.dwhy__n{font-family:var(--d-sans);font-size:14px;font-weight:600;letter-spacing:.12em;font-variant-numeric:lining-nums;color:var(--s-fg-soft);transition:color .25s}
+.dwhy__h{font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em;color:var(--s-fg-soft);transition:color .25s}
+.dwhy__t{grid-column:2;display:grid;grid-template-rows:0fr;overflow:hidden;font-size:15px;line-height:1.6;color:var(--s-fg-soft);opacity:0;
+  transition:grid-template-rows .4s var(--d-ease),opacity .3s,margin .4s var(--d-ease)}
+.dwhy__tab.is-active .dwhy__n,.dwhy__tab.is-active .dwhy__h,.dwhy__tab:hover .dwhy__h{color:var(--s-fg)}
+.dwhy__tab.is-active .dwhy__n{color:var(--s-accent-ink)}
+.dwhy__tab.is-active .dwhy__t{grid-template-rows:1fr;opacity:1;margin-top:10px}
+.dwhy__tab:focus-visible{outline:2px solid var(--s-accent);outline-offset:4px}
+
+.dwhy__stage{position:relative;min-height:440px;background:var(--s-bg-2);border:1px solid var(--s-line);padding:28px;display:flex}
+[data-theme="dark"] .dwhy__stage{background:var(--s-plate)}
+.dwhy__panel{display:flex;flex-direction:column;gap:18px;width:100%;animation:dwhyIn .45s var(--d-ease)}
+.dwhy__panel[hidden]{display:none}
+@keyframes dwhyIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.dwhy__panel{animation:none}}
+.dwhy__cap{margin:auto 0 0;font-size:14px;line-height:1.55;color:var(--s-fg-soft)}
+.dwhy__cap b{color:var(--s-fg);font-weight:600}
+
+/* 01 — категории */
+.dwhy__cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.dwhy__cat{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--b-navy)}
+.dwhy__cat img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--d-ease)}
+.dwhy__cat::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(1,20,39,.75),rgba(1,20,39,0) 55%)}
+.dwhy__cat span{position:absolute;left:12px;right:12px;bottom:10px;z-index:1;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--b-cream)}
+.dwhy__cat:hover img{transform:scale(1.06)}
+
+/* 02 — соседи на схеме */
+.dwhy__plan{display:block;padding:12px;background:var(--s-bg)}
+.dwhy__plan svg{display:block;width:100%;height:auto;max-height:340px}
+.dwhy__plan path{vector-effect:non-scaling-stroke}
+.dwhy__plan .pl-room{stroke-width:1}
+.dwhy__plan .pl-txt--label{fill:var(--s-accent-ink);font-weight:700}
+[data-theme="dark"] .dwhy__plan .pl-room--here{fill:var(--b-copper);stroke:var(--b-copper)}
+
+/* 03 — событие */
+.dwhy__event{display:grid;grid-template-rows:auto auto;background:var(--s-bg);color:var(--s-fg);border:1px solid var(--s-line);transition:border-color .25s}
+.dwhy__event:hover{border-color:var(--s-accent)}
+.dwhy__evimg{display:block;aspect-ratio:16/8;overflow:hidden}
+.dwhy__evimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--d-ease)}
+.dwhy__event:hover .dwhy__evimg img{transform:scale(1.04)}
+.dwhy__evb{display:flex;flex-direction:column;gap:8px;padding:18px 20px 20px}
+.dwhy__evtag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--s-accent-ink)}
+.dwhy__evh{font-family:var(--d-serif);font-weight:600;font-size:20px;line-height:1.25;color:var(--s-fg)}
+.dwhy__evm{font-size:14px;color:var(--s-fg-soft)}
+
+/* 04 — маршрут */
+.dwhy__route{display:grid;gap:12px}
+.dwhy__rt{display:flex;flex-direction:column;gap:8px;padding:22px 24px;background:var(--s-bg);border:1px solid var(--s-line)}
+.dwhy__rk{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dwhy__rh{display:flex;align-items:center;gap:10px;font-family:var(--d-serif);font-weight:600;font-size:22px;line-height:1.2;color:var(--s-fg)}
+.dwhy__rh i{flex:none;width:12px;height:12px;border-radius:50%;background:var(--line)}
+.dwhy__rs{font-size:14px;line-height:1.55;color:var(--s-fg-soft)}
+
+@media (max-width:1000px){
+  .dwhy{grid-template-columns:1fr;gap:28px}
+  .dwhy__stage{min-height:0;padding:18px}
+}
+@media (max-width:560px){
+  .dwhy__h{font-size:18px}
+  .dwhy__tab{grid-template-columns:40px minmax(0,1fr)}
+  .dwhy__cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+.dwhy__t>span{min-height:0}
+/* панель справа заполняется целиком: плитки категорий тянутся по высоте */
+.dwhy__cats{flex:1;grid-auto-rows:1fr}
+.dwhy__cat{aspect-ratio:auto;min-height:120px}
+.dwhy__plan{flex:1;display:flex;align-items:center}
+.dwhy__route{flex:1;grid-auto-rows:1fr}
+.dwhy__event{flex:1;grid-template-rows:1fr auto}
+.dwhy__evimg{aspect-ratio:auto;min-height:180px}
+.dwhy__rh{font-variant-numeric:lining-nums}
+
+/* «Аренда»: три аудитории карточками на тёмной полосе */
+.daud{display:grid;gap:10px;margin:0 0 32px;padding:0;list-style:none}
+.daud__i{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;align-items:start;padding:18px 20px;
+  border:1px solid rgba(196,154,108,.22);background:rgba(246,244,237,.03);transition:border-color .25s,background-color .25s,transform .35s var(--d-ease)}
+.daud__i:hover{border-color:var(--b-copper);background:rgba(196,154,108,.08);transform:translateX(4px)}
+.daud__ic{width:52px;height:52px;border:1px solid rgba(196,154,108,.4);position:relative}
+.daud__ic::before{content:"";position:absolute;inset:12px;background:var(--b-copper);-webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.daud__i--home{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M4 13L14 5l10 8M7 11v12h14V11'/%3E%3Crect x='11' y='16' width='6' height='7'/%3E%3C/svg%3E")}
+.daud__i--pro{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M14 4v4M14 8l-7 16M14 8l7 16M9.5 18h9'/%3E%3Ccircle cx='14' cy='8' r='2'/%3E%3C/svg%3E")}
+.daud__i--build{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23000' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M5 19a9 9 0 0 1 18 0M3 19h22v3H3zM12 10V7h4v3'/%3E%3C/svg%3E")}
+.daud__b{display:flex;flex-direction:column;gap:6px;min-width:0}
+.daud__h{font-size:16px;font-weight:600;color:var(--b-cream)}
+.daud__t{font-size:14px;line-height:1.55;color:rgba(246,244,237,.72)}
+.daud__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.daud__tags span{padding:4px 10px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--b-copper);border:1px solid rgba(196,154,108,.35)}
+@media (max-width:560px){
+  .daud__i{grid-template-columns:40px minmax(0,1fr);gap:14px;padding:16px}
+  .daud__ic{width:40px;height:40px}
+  .daud__ic::before{inset:9px}
+}
