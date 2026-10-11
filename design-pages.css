@@ -3255,8 +3255,6 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .daud__b{display:flex;flex-direction:column;gap:6px;min-width:0}
 .daud__h{font-size:16px;font-weight:600;color:var(--b-cream)}
 .daud__t{font-size:14px;line-height:1.55;color:rgba(246,244,237,.72)}
-.daud__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.daud__tags span{padding:4px 10px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--b-copper);border:1px solid rgba(196,154,108,.35)}
 @media (max-width:560px){
   .daud__i{grid-template-columns:40px minmax(0,1fr);gap:14px;padding:16px}
   .daud__ic{width:40px;height:40px}
