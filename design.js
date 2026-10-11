@@ -314,6 +314,62 @@
       }).observe(shops, { attributes: true, attributeFilter: ['hidden'] });
     }
 
+    /* ---- панель «Дизайнерам» ----
+       В Ч/Б-прототипе (partials.js, заморожен) «Дизайнерам» — простая
+       ссылка. В дизайне у раздела три страницы: лендинг, каталог и анкета,
+       поэтому пункт становится выпадающим, как «О комплексе». Вторая
+       колонка — то, что лендинг называет «для работы». Обработчик клика —
+       тот же closeMega из app.js, который к новой кнопке не привязан. */
+    var dLink = document.querySelector('.menu__list a.menu__link[href="designers.html"]');
+    var aboutPanel = document.getElementById('mega-about');
+    if (dLink && aboutPanel && !document.getElementById('mega-designers')) {
+      var dItem = dLink.closest('.menu__item');
+      dItem.classList.add('menu__item--has');
+      dItem.innerHTML = '<button type="button" class="menu__link" data-mega="designers">' +
+        'Дизайнерам<span class="caret"></span></button>';
+      aboutPanel.insertAdjacentHTML('afterend',
+        '<div class="mega" id="mega-designers" hidden>' +
+        '  <div class="wrap mega__in">' +
+        '    <div class="mega__col">' +
+        '      <p class="mega__title">Специалистам</p>' +
+        '      <ul class="mega__links">' +
+        '        <li><a href="designers.html">Дизайнерам</a></li>' +
+        '        <li><a href="designers.html#catalog">Каталог дизайнеров</a></li>' +
+        '        <li><a href="designer-form.html">Анкета дизайнера</a></li>' +
+        '      </ul>' +
+        '    </div>' +
+        '    <div class="mega__col">' +
+        '      <p class="mega__title">Для работы</p>' +
+        '      <ul class="mega__links">' +
+        '        <li><a href="shops.html">Каталог магазинов</a></li>' +
+        '        <li><a href="events.html">Профессиональные события</a></li>' +
+        '        <li><a href="journal.html">Журнал</a></li>' +
+        '      </ul>' +
+        '    </div>' +
+        '  </div>' +
+        '</div>');
+      var dPanel = document.getElementById('mega-designers');
+      dPanel.querySelector('.mega__in').insertAdjacentHTML('beforeend', prevCard('megaPrevDesigners', ''));
+      var dc = document.getElementById('megaPrevDesigners');
+      dc.setAttribute('href', 'designers.html#catalog');
+      dc.querySelector('img').src = 'img/designers/litvyakova/1.webp';
+      dc.querySelector('.mprev__kicker').textContent = 'Специалистам';
+      dc.querySelector('.mprev__t').textContent = 'Каталог дизайнеров';
+      dc.querySelector('.mprev__c').textContent = 'Дизайнеры интерьеров, архитекторы и светодизайнеры с портфолио и контактами';
+      var dBtn = dItem.querySelector('[data-mega]');
+      dBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var willOpen = dPanel.hidden;
+        if (typeof closeMega === 'function') closeMega();
+        var sb = document.getElementById('searchbar');
+        if (sb) sb.hidden = true;
+        if (willOpen) {
+          dPanel.hidden = false;
+          dItem.classList.add('is-open');
+        }
+      });
+    }
+
     /* ---- панель «О комплексе»: та же карточка, но постоянная ---- */
     var about = document.getElementById('mega-about');
     if (about && !about.querySelector('.mprev')) {

@@ -5,7 +5,7 @@
 
 Обновлено: 11.10.2026.
 
-## Готово (16)
+## Готово (19)
 
 | Страница | Файл |
 |---|---|
@@ -25,8 +25,11 @@
 | Событие | design-event.html |
 | Журнал | design-journal.html |
 | Статья | design-article.html |
+| Дизайнерам | design-designers.html |
+| Каталог дизайнеров | design-designers-catalog.html |
+| Анкета дизайнера | design-designer-form.html |
 
-## В работе (12)
+## В работе (9)
 
 | Раздел | Страница | Файл |
 |---|---|---|
@@ -37,11 +40,12 @@
 | | Бренды | design-brands.html |
 | | Бренд | design-brand.html |
 | | Схема этажей | design-floors.html |
-| Дизайнерам | Дизайнерам (лендинг для профи) | design-designers.html |
-| | Каталог дизайнеров (для покупателей, новая — без Ч/Б-прототипа) | design-designers-catalog.html |
-| | Дизайнер | design-designer.html |
-| | Анкета дизайнера | design-designer-form.html |
+| Дизайнерам | Дизайнер | design-designer.html |
 | О комплексе | Аренда площадей | design-rent.html |
+
+## Навигация
+
+«Дизайнерам» в шапке дизайн-страниц — выпадающая панель (собирается в design.js, partials.js не тронут): лендинг, каталог, анкета + «Для работы» (магазины, события, журнал) и превью каталога. На телефоне — аккордеон в бургере. «Каталог дизайнеров» в подвале ведёт на design-designers-catalog.html.
 
 ## Убрано
 
