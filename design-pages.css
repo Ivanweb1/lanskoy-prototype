@@ -128,6 +128,17 @@ a.dviews__item:hover{color:var(--s-fg);background:rgba(196,154,108,.12)}
 .checklist--row{display:flex;flex-wrap:wrap;gap:12px 20px}
 .checklist--row li{margin-bottom:0}
 .checklist--row .check{gap:10px}
+/* 12.10: список категорий аккуратнее — название в одну строку с многоточием
+   (полный текст в подсказке, design.js), чекбокс по центру строки,
+   число — Montserrat с табличными цифрами по правому краю; выбранный пункт медью */
+.filters .checklist li{margin-bottom:4px}
+.filters .checklist .check{align-items:center;min-height:32px;margin:0}
+.filters .checklist .check input{margin:0}
+.filters .checklist .check>span{min-width:0;align-items:center}
+.checklist__t{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.filters .checklist__n{font-family:var(--d-sans);font-variant-numeric:lining-nums tabular-nums;min-width:2ch;text-align:right}
+.check input:checked+span{color:var(--s-accent-ink)}
+.check input:checked+span .checklist__n{color:var(--s-accent-ink)}
 
 
 /* кнопка фильтров — только на узких экранах */
