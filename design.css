@@ -1470,7 +1470,9 @@ html{scroll-padding-top:76px}
      (display:contents), и её содержимое становится строками подвала:
      знак во всю ширину, следом колонки, соцсети — в самый низ,
      перед правовой строкой. */
-  .footer__in{display:flex;flex-direction:column}
+  /* gap:64px приходил из style.css (сетка подвала Ч/Б) и в столбике вставал
+     между знаком и колонками — до пунктов меню выходило ~100px пустоты */
+  .footer__in{display:flex;flex-direction:column;gap:0}
   .footer__lead{display:contents}
   .footer__logo{order:1;padding-bottom:26px}
   .footer .logo__img--inv{height:52px}

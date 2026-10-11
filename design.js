@@ -2232,3 +2232,36 @@ function lnsMiniPlan(n, o) {
     if (r) r.checked = true;
   });
 })();
+
+/* ---------- переключатель вида каталога: иконки на одной линии ----------
+   Сегменты равной ширины, а подписи разной длины: при центровке каждого
+   сегмента иконки стояли на разном расстоянии от края («прыгали»).
+   Содержимое ставим по левому краю с общим отступом — по самой длинной подписи */
+(function () {
+  var lists = [].slice.call(document.querySelectorAll('.dviews'));
+  if (!lists.length) return;
+  function fit(ul) {
+    var items = [].slice.call(ul.querySelectorAll('.dviews__item'));
+    items.forEach(function (a) { a.style.paddingLeft = a.style.paddingRight = a.style.justifyContent = ''; });
+    var max = 0;
+    items.forEach(function (a) {
+      var ic = a.querySelector('.dviews__ic');
+      var lab = [].filter.call(a.querySelectorAll('.dviews__full, .dviews__short'), function (x) { return getComputedStyle(x).display !== 'none'; })[0];
+      if (!lab) return;
+      var l = ic && getComputedStyle(ic).display !== 'none' ? ic.getBoundingClientRect().left : lab.getBoundingClientRect().left;
+      max = Math.max(max, lab.getBoundingClientRect().right - l);
+    });
+    var w = items[0].getBoundingClientRect().width;
+    var pad = Math.max(4, Math.floor((w - max) / 2));
+    items.forEach(function (a) {
+      a.style.justifyContent = 'flex-start';
+      /* правый отступ тот же: ширину сегментов (1fr) задаёт самая длинная подпись */
+      a.style.paddingLeft = a.style.paddingRight = pad + 'px';
+    });
+  }
+  function all() { lists.forEach(fit); }
+  all();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(all);
+  var t;
+  window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(all, 100); });
+})();
