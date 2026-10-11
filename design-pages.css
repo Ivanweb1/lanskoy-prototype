@@ -3012,3 +3012,12 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* тёмная тема гасит заливку всех секций правилом посильнее — свою возвращаем */
 [data-theme="dark"] .dminiplan .pl-room--here{fill:var(--b-copper);stroke:var(--b-copper)}
 [data-theme="dark"] .dminiplan .pl-txt--here{fill:#011427}
+
+/* тёмная тема: белые плашки брендов выпадали из фона. Плашка — только контур,
+   логотип — светлый монохром: grayscale+invert делает белый фон JPG чёрным,
+   screen растворяет чёрное в фоне страницы, тёмные знаки становятся светлыми */
+[data-theme="dark"] .dbitem__logo,[data-theme="dark"] .dshophead__logo--brand{background:transparent}
+[data-theme="dark"] .dbitem__logo img,[data-theme="dark"] .dshophead__logo--brand img{
+  mix-blend-mode:screen;filter:grayscale(1) invert(1) contrast(1.15);opacity:.85;transition:opacity .25s}
+[data-theme="dark"] .dbitem:hover .dbitem__logo img{opacity:1}
+[data-theme="dark"] .dbitem__word{color:var(--s-fg)}
