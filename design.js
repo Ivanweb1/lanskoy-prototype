@@ -1935,44 +1935,6 @@ function lnsMiniPlan(n, o) {
   el.innerHTML = lnsMiniPlan(el.getAttribute('data-floor'), { here: lnsNormRoom(el.getAttribute('data-room')) });
 })();
 
-/* «Аренда»: свободные секции по этажам — вкладки, схема, список.
-   Состав — ДЕМО: в выгрузке действующего сайта статуса секций нет, в бою
-   он приходит из CMS. Номера — с настоящих схем 2 и 3 этажей. */
-var FREE_ROOMS = { 1: [], 2: ['В11', 'В14a', 'В22', 'В40'], 3: ['С5', 'С9.2', 'С20'] };
-(function () {
-  var plan = document.getElementById('freePlan');
-  if (!plan) return;
-  var tabs = document.getElementById('freeTabs');
-  var list = document.getElementById('freeList');
-  var floors = Object.keys(FREE_ROOMS);
-  var total = floors.reduce(function (s, n) { return s + FREE_ROOMS[n].length; }, 0);
-  function plural(k) { var m = k % 10, h = k % 100; return m === 1 && h !== 11 ? 'свободная секция' : m >= 2 && m <= 4 && (h < 12 || h > 14) ? 'свободные секции' : 'свободных секций'; }
-  document.getElementById('freeTotal').textContent = total;
-  document.getElementById('freeTotalT').textContent = plural(total) + ' в комплексе';
-  tabs.innerHTML = floors.map(function (n) {
-    return '<button type="button" class="floors__tab" role="tab" data-floor="' + n + '"><b>' + n + '</b> этаж<span class="dfreeplan__n">' + FREE_ROOMS[n].length + '</span></button>';
-  }).join('');
-  function show(n) {
-    [].forEach.call(tabs.children, function (b) {
-      var on = b.getAttribute('data-floor') === n;
-      b.classList.toggle('is-active', on);
-      b.setAttribute('aria-selected', String(on));
-    });
-    plan.innerHTML = lnsMiniPlan(n, { free: FREE_ROOMS[n] });
-    plan.setAttribute('href', 'floors.html?floor=' + n);
-    list.innerHTML = FREE_ROOMS[n].length
-      ? FREE_ROOMS[n].map(function (c) {
-          return '<li><a href="floors.html?room=' + encodeURIComponent(c) + '&amp;floor=' + n + '"><b>' + c + '</b><span>' + n + ' этаж</span></a></li>';
-        }).join('')
-      : '<li class="dfreelist__empty">На этом этаже свободных секций сейчас нет</li>';
-  }
-  tabs.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-floor]');
-    if (b) show(b.getAttribute('data-floor'));
-  });
-  /* открываем первый этаж, где есть свободные */
-  show(floors.filter(function (n) { return FREE_ROOMS[n].length; })[0] || floors[0]);
-})();
 /* «Аренда»: липкая «Оставить заявку» на телефоне — пока не видно
    ни первого экрана (там свои кнопки), ни самой формы */
 (function () {

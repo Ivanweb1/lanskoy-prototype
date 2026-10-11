@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=267">
+<link rel="stylesheet" href="design-pages.css?v=269">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -40,7 +40,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       </div>
       <div class="dpromo__bottom dpromo__acts">
         <a href="#form" class="dbtn dbtn--fill">Оставить заявку</a>
-        <a href="#free" class="dbtn dbtn--ghost">Свободные помещения</a>
+        <a href="#terms" class="dbtn dbtn--ghost">Условия аренды</a>
       </div>
     </div>
     <div class="dpromo__media"><img class="jimg" src="img/rent.webp" alt="" loading="lazy"></div>
@@ -219,31 +219,19 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   </div>
 </section>
 
-<!-- ================= СВОБОДНЫЕ ПОМЕЩЕНИЯ И УСЛОВИЯ ================= -->
-<!-- свободные секции на настоящей схеме (floors-real.js), по этажам.
-     Состав свободных — демо (FREE_ROOMS в design.js), в бою — статус секции из CMS -->
-<section class="sect dsect--alt" id="free">
+<!-- ================= УСЛОВИЯ ================= -->
+<!-- строго по п. 6.10 ТЗ: условия аренды. Статусов «свободно/занято» у секций
+     в ТЗ и CMS нет — поэтому только ссылка на общую схему этажей -->
+<section class="sect dsect--alt" id="terms">
   <div class="wrap">
-    <div class="dhead"><h2 class="dhead__h2">Свободные помещения</h2></div>
-    <div class="dfreeplan">
-      <div class="dfreeplan__map">
-        <div class="floors__tabs dfloor__tabs" id="freeTabs" role="tablist" aria-label="Этаж"></div>
-        <a class="dplan dfreeplan__svg" id="freePlan" href="floors.html" aria-label="Открыть схему этажей"></a>
-        <p class="dfreeplan__legend"><span class="dfreeplan__sw dfreeplan__sw--free"></span>Свободно<span class="dfreeplan__sw"></span>Занято</p>
-      </div>
-      <div class="dfreeplan__side">
-        <p class="dfreeplan__count"><b id="freeTotal">7</b> <span id="freeTotalT">свободных секций в комплексе</span></p>
-        <ul class="dfreelist" id="freeList"></ul>
-        <div class="results__more"><a href="floors.html" class="dbtn dbtn--ghost">Открыть схему этажей</a></div>
-      </div>
-    </div>
-
+    <div class="dhead"><h2 class="dhead__h2">Условия аренды</h2></div>
     <ul class="drterms">
       <li><span class="drterms__k">Площади</span><span class="drterms__v">от 20 до 400 м²</span></li>
       <li><span class="drterms__k">Ставка</span><span class="drterms__v">индивидуально, по формату и этажу</span></li>
       <li><span class="drterms__k">Срок договора</span><span class="drterms__v">от 11 месяцев</span></li>
       <li><span class="drterms__k">Что входит</span><span class="drterms__v">карточка на сайте, размещение акций, участие в мероприятиях</span></li>
     </ul>
+    <div class="results__more drterms__more"><a href="floors.html" class="dbtn dbtn--ghost">Посмотреть схему этажей</a></div>
   </div>
 </section>
 
@@ -266,8 +254,8 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">02</span></span>
         <span class="drsteps__who">Отдел аренды</span>
         <h3 class="drsteps__h">Подбор и просмотр</h3>
-        <p class="drsteps__t">Отдел аренды подберёт свободные помещения под ваш формат и покажет их на месте.</p>
-        <p class="drsteps__go"><a href="#free" class="dlink dlink--in">Свободные помещения</a></p>
+        <p class="drsteps__t">Отдел аренды подберёт помещение под ваш формат и покажет его на месте.</p>
+        <p class="drsteps__go"><a href="floors.html" class="dlink dlink--in">Схема этажей</a></p>
       </li>
       <li class="drsteps__i drsteps__i--doc">
         <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">03</span></span>
@@ -347,7 +335,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         <p class="dpanel__title">Заявка отправлена</p>
         <p class="dpanel__text">Отдел аренды свяжется с вами в рабочее время — обычно в течение одного рабочего дня.</p>
         <p class="dpanel__text">Если вопрос срочный, позвоните напрямую: <a href="tel:+78123630007" class="dlink dlink--in">+7 (812) 363-00-07</a></p>
-        <a href="#free" class="dbtn dbtn--ghost dbtn--full">Пока посмотреть свободные помещения</a>
+        <a href="floors.html" class="dbtn dbtn--ghost dbtn--full">Пока посмотреть схему этажей</a>
       </div>
     </div>
   </div>
@@ -366,6 +354,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="app.js?v=74"></script>
 <script src="floors-real.js?v=8"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=120"></script>
+<script src="design.js?v=121"></script>
 </body>
 </html>

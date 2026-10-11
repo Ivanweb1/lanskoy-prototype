@@ -3080,45 +3080,13 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dshow__acts .dbtn{width:100%;justify-content:center}
 }
 
-/* свободные помещения: вкладки этажей, схема, список */
-.dfreeplan{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:56px;align-items:start}
-.dfreeplan__map .dfloor__tabs{margin-bottom:20px}
-.dfreeplan__n{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;margin-left:8px;padding:0 6px;
-  background:var(--s-accent);color:var(--s-btn-fill-fg);font-size:11px;font-weight:600;letter-spacing:0;font-variant-numeric:lining-nums}
-.floors__tab:not(.is-active) .dfreeplan__n{background:transparent;color:var(--s-fg-soft);border:1px solid var(--s-line-strong)}
-.dfreeplan__svg{display:block;padding:16px;transition:border-color .25s}
-.dfreeplan__svg:hover{border-color:var(--s-accent)}
-.dfreeplan__svg svg{display:block;width:100%;height:auto;max-height:560px}
-.dfreeplan__svg path{vector-effect:non-scaling-stroke}
-.dfreeplan__svg .pl-room{stroke-width:1}
-.dfreeplan__svg a .pl-room--here{cursor:pointer;transition:opacity .2s}
-.dfreeplan__svg a:hover .pl-room--here{opacity:.75}
-[data-theme="dark"] .dfreeplan__svg .pl-room--here{fill:var(--b-copper);stroke:var(--b-copper)}
-.dfreeplan__legend{display:flex;align-items:center;gap:8px;margin:14px 0 0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--s-fg-soft)}
-.dfreeplan__sw{width:14px;height:14px;border:1px solid var(--s-line-strong);background:var(--s-bg)}
-.dfreeplan__sw+*,.dfreeplan__legend .dfreeplan__sw:not(:first-child){margin-left:16px}
-.dfreeplan__sw--free{background:var(--b-copper);border-color:var(--b-copper)}
-.dfreeplan__count{display:flex;align-items:baseline;gap:12px;margin:0 0 20px;font-size:15px;color:var(--s-fg-soft)}
-.dfreeplan__count b{font-family:var(--d-sans);font-size:56px;font-weight:600;line-height:1;font-variant-numeric:lining-nums;color:var(--s-accent-ink)}
-.dfreelist{margin:0;padding:0;list-style:none;border-top:1px solid var(--s-line-strong)}
-.dfreelist li{border-bottom:1px solid var(--s-line)}
-.dfreelist a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 0;color:var(--s-fg);transition:color .2s}
-.dfreelist a b{font-size:18px;font-weight:600;font-variant-numeric:lining-nums}
-.dfreelist a span{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--s-fg-soft)}
-.dfreelist a span::after{content:"→";font-size:15px;letter-spacing:0;color:var(--s-accent-ink);transition:transform .25s}
-.dfreelist a:hover{color:var(--s-accent-ink)}
-.dfreelist a:hover span::after{transform:translateX(4px)}
-.dfreelist__empty{padding:14px 0;font-size:15px;color:var(--s-fg-soft)}
-.dfreeplan__side .results__more{margin-top:28px}
-
-/* условия — строкой из четырёх под схемой */
-.drterms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:56px 0 0;padding:0;list-style:none;border-top:1px solid var(--s-line-strong);border-bottom:1px solid var(--s-line)}
+/* условия — строкой из четырёх, под ними ссылка на схему этажей */
+.drterms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:0;list-style:none;border-top:1px solid var(--s-line-strong);border-bottom:1px solid var(--s-line)}
 .drterms li{display:flex;flex-direction:column;gap:8px;padding:24px 24px 24px 0}
 .drterms li+li{padding-left:24px;border-left:1px solid var(--s-line)}
 .drterms__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
 .drterms__v{font-size:16px;line-height:1.5;color:var(--s-fg)}
 @media (max-width:1000px){
-  .dfreeplan{grid-template-columns:1fr;gap:32px}
   .drterms{grid-template-columns:repeat(2,minmax(0,1fr))}
   .drterms li:nth-child(3){padding-left:0;border-left:0}
   .drterms li:nth-child(n+3){border-top:1px solid var(--s-line)}
@@ -3127,8 +3095,6 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .drterms{grid-template-columns:1fr}
   .drterms li,.drterms li+li{padding:18px 0;border-left:0}
   .drterms li+li{border-top:1px solid var(--s-line)}
-  .dfreeplan__svg{padding:8px}
-  .dfreeplan__map .dfloor__tabs{gap:18px}
 }
 
 /* как стать арендатором — этапы линией: знак в круге, «кто делает»,
@@ -3296,3 +3262,4 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .daud__ic{width:40px;height:40px}
   .daud__ic::before{inset:9px}
 }
+.drterms__more{margin-top:32px}
