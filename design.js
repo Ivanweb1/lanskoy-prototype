@@ -1959,6 +1959,16 @@ function lnsMiniPlan(n, o) {
   var tabs = [].slice.call(box.querySelectorAll('.drwhy__tab'));
   var plan = document.getElementById('whyPlan');
   if (plan) plan.innerHTML = lnsMiniPlan(plan.getAttribute('data-floor'), { named: plan.getAttribute('data-rooms').split(',') });
+  /* на телефоне вкладок нет: каждый довод раскрыт и сразу со своим кадром —
+     копия панели встаёт под текстом пункта (показывается только в узкой вёрстке) */
+  tabs.forEach(function (t) {
+    var p = document.getElementById(t.getAttribute('aria-controls'));
+    var m = p.cloneNode(true);
+    m.className = 'drwhy__mob';
+    ['id', 'role', 'aria-labelledby', 'aria-hidden'].forEach(function (a) { m.removeAttribute(a); });
+    [].forEach.call(m.querySelectorAll('[id]'), function (x) { x.removeAttribute('id'); });
+    t.parentNode.insertBefore(m, t.nextSibling);
+  });
   function show(tab) {
     tabs.forEach(function (t) {
       var on = t === tab;

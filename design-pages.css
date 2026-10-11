@@ -3183,3 +3183,24 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .drwhy{align-items:center}
   .drwhy__stage{min-height:500px}
 }
+
+/* «Почему выбирают» на телефоне: все доводы раскрыты, кадр с плашкой под каждым */
+.drwhy__mob{display:none}
+@media (max-width:1000px){
+  .drwhy__stage{display:none}
+  .drwhy__list{border-top:0}
+  .drwhy__tab{pointer-events:none;cursor:default;padding:24px 0 14px;border-bottom:0}
+  .drwhy__tab::before{width:100%;background:var(--s-line)}
+  .drwhy__tab .drwhy__n{color:var(--s-accent-ink)}
+  .drwhy__tab .drwhy__h{color:var(--s-fg)}
+  .drwhy__tab .drwhy__t{max-height:none;opacity:1;margin-top:10px}
+  .drwhy__mob{display:block;position:relative;margin:0 0 8px}
+  .drwhy__mob .drwhy__img{position:static;display:block;width:100%;aspect-ratio:16/10;height:auto;object-fit:cover;transform:none}
+  .drwhy__mob .drwhy__plate{position:static;width:auto;transform:none;opacity:1;box-shadow:none;padding:20px 20px 18px}
+  .drwhy__mob .drwhy__ph{font-size:18px}
+  .drwhy__mob .drwhy__plan{max-width:320px}
+}
+@media (max-width:1000px){
+  /* у «Соседства» доказательство — схема, фото над ней на телефоне лишнее */
+  .drwhy__mob:has(.drwhy__plate--plan) .drwhy__img{display:none}
+}
