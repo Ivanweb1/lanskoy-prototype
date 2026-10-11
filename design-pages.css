@@ -54,17 +54,19 @@ a.dtabs__item:hover{color:var(--s-accent-ink)}
    страницах. Активный сегмент — медная заливка, как .dbtn--fill */
 .dpage__in>div:first-child{flex:1 1 auto;min-width:0}
 .dpage__views{flex:none;padding-bottom:40px}
+/* 12.10: рамка и разделители медные, как у .dbtn--ghost, фон прозрачный —
+   активная заливка сливается с рамкой, без серой обводки вокруг меди */
 .dviews{
   display:inline-flex;margin:0;padding:0;list-style:none;
-  border:1px solid var(--s-line-strong);border-radius:2px;background:var(--s-field-bg);
+  border:1px solid var(--s-accent);border-radius:2px;background:transparent;
 }
-.dviews li+li{border-left:1px solid var(--s-line-strong)}
+.dviews li+li{border-left:1px solid var(--s-accent)}
 .dviews__item{
   display:flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;
   font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;
-  color:var(--s-fg-soft);transition:color .2s,background-color .2s;
+  color:var(--s-accent-ink);transition:color .2s,background-color .2s;
 }
-a.dviews__item:hover{color:var(--s-accent-ink);background:var(--s-plate)}
+a.dviews__item:hover{color:var(--s-fg);background:rgba(196,154,108,.12)}
 .dviews__item.is-active{background:var(--s-accent);color:var(--s-btn-fill-fg)}
 .dviews__ic{width:16px;height:16px;flex:none;background:currentColor;
   -webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
