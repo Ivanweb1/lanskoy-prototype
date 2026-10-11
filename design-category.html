@@ -72,10 +72,11 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <p class="evfilters__count dfilters__count"><b id="subShown">12</b> <span id="subWord">магазинов</span></p>
     </div>
     <!-- первая страница списка (12 из 28). Арендаторы и номера секций — с реальной
-         схемы 1 этажа (floors-real.js), подкатегории у них демо; А13B — как на карточке магазина -->
+         схемы 1 этажа (floors-real.js), подкатегории у них демо. Фото у 9 магазинов без своего
+         снимка — временные, из общих картинок прототипа (заменить на img/shops/&lt;slug&gt;.webp); А13B — как на карточке магазина -->
     <div class="grid grid--shops" id="subGrid">
       <a href="shop.html" class="shopcard" data-sub="panels" data-name="Akrilgermet" data-room="А41а">
-        <span class="shopcard__logo"><span class="shopcard__mark">Akrilgermet</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/promos/sputnik-kitchen.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Akrilgermet</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">Akrilgermet</span>
           <span class="shopcard__cat">Декоративные панели</span>
@@ -99,7 +100,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </span>
       </a>
       <a href="shop.html" class="shopcard" data-sub="glassbrick facet" data-name="Акцент" data-room="А28">
-        <span class="shopcard__logo"><span class="shopcard__mark">Акцент</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/cat-steklo.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Акцент</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">Акцент</span>
           <span class="shopcard__cat">Стеклянные кирпичи · Фацетные композиции</span>
@@ -107,7 +108,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </span>
       </a>
       <a href="shop.html" class="shopcard" data-sub="skirting profiles" data-name="Дядюшка Плинтус" data-room="А34">
-        <span class="shopcard__logo"><span class="shopcard__mark">Дядюшка Плинтус</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/cat-dekor.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Дядюшка Плинтус</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">Дядюшка Плинтус</span>
           <span class="shopcard__cat">Плинтусы, пороги · Профили отделочные</span>
@@ -115,7 +116,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </span>
       </a>
       <a href="shop.html" class="shopcard" data-sub="apron" data-name="Изабелла" data-room="А21">
-        <span class="shopcard__logo"><span class="shopcard__mark">Изабелла</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/shops/vladart/4.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Изабелла</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">Изабелла</span>
           <span class="shopcard__cat">Кухонные фартуки из стекла</span>
@@ -123,7 +124,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </span>
       </a>
       <a href="shop.html" class="shopcard" data-sub="veneer drymix" data-name="Красный Камень" data-room="А7">
-        <span class="shopcard__logo"><span class="shopcard__mark">Красный Камень</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/pr-2.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Красный Камень</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">Красный Камень</span>
           <span class="shopcard__cat">Каменный шпон · Сухие смеси</span>
@@ -131,7 +132,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </span>
       </a>
       <a href="shop.html" class="shopcard" data-sub="stucco" data-name="ПИЛЯСТРА" data-room="А47">
-        <span class="shopcard__logo"><span class="shopcard__mark">ПИЛЯСТРА</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/shops/vladart/5.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">ПИЛЯСТРА</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">ПИЛЯСТРА</span>
           <span class="shopcard__cat">Лепнина</span>
@@ -147,7 +148,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </span>
       </a>
       <a href="shop.html" class="shopcard" data-sub="profiles mdf" data-name="ПрофильЛюкс" data-room="А46">
-        <span class="shopcard__logo"><span class="shopcard__mark">ПрофильЛюкс</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/shops/vladart/2.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">ПрофильЛюкс</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">ПрофильЛюкс</span>
           <span class="shopcard__cat">Профили отделочные · Панели МДФ</span>
@@ -155,7 +156,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </span>
       </a>
       <a href="shop.html" class="shopcard" data-sub="plaster drymix" data-name="Урбанист" data-room="А5">
-        <span class="shopcard__logo"><span class="shopcard__mark">Урбанист</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/shops/vladart/video.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Урбанист</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">Урбанист</span>
           <span class="shopcard__cat">Декоративная штукатурка · Сухие смеси</span>
@@ -163,7 +164,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </span>
       </a>
       <a href="shop.html" class="shopcard" data-sub="fresco panels" data-name="Элит Интерьер" data-room="А15">
-        <span class="shopcard__logo"><span class="shopcard__mark">Элит Интерьер</span></span>
+        <span class="shopcard__logo"><img class="shopcard__img" src="img/shops/vladart/1.webp" alt="" loading="lazy" onerror="this.remove()"><span class="shopcard__mark">Элит Интерьер</span></span>
         <span class="shopcard__body">
           <span class="shopcard__name">Элит Интерьер</span>
           <span class="shopcard__cat">Фрески · Декоративные панели</span>
