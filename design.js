@@ -2203,3 +2203,32 @@ function lnsMiniPlan(n, o) {
   fixRoom();
   if (!box.querySelector('.pl-room--here')) box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
 })();
+
+/* ---------- сортировка каталога на телефоне — внутри панели фильтров ----------
+   До 1000px фильтры свёрнуты под кнопку; отдельная строка с сортировкой над
+   карточками там лишняя. Группа «Сортировка» строится из того же select
+   и меняет его — сортирует по-прежнему catalog.js */
+(function () {
+  var sel = document.getElementById('sortSelect');
+  var box = document.getElementById('filters');
+  if (!sel || !box) return;
+  var g = document.createElement('div');
+  g.className = 'filters__group dsortgroup';
+  var h = '<p class="filters__label">Сортировка</p><ul class="checklist dsortlist">';
+  [].forEach.call(sel.options, function (o, i) {
+    h += '<li><label class="check"><input type="radio" name="dsort" value="' + o.value + '"' + (i === sel.selectedIndex ? ' checked' : '') +
+      '><span>' + o.textContent + '</span></label></li>';
+  });
+  g.innerHTML = h + '</ul>';
+  var head = box.querySelector('.filters__head');
+  box.insertBefore(g, head ? head.nextSibling : box.firstChild);
+  g.addEventListener('change', function (e) {
+    if (e.target.name !== 'dsort') return;
+    sel.value = e.target.value;
+    sel.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  sel.addEventListener('change', function () {
+    var r = g.querySelector('input[value="' + sel.value + '"]');
+    if (r) r.checked = true;
+  });
+})();

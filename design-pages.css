@@ -3323,3 +3323,13 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dfloor .dlegend li[data-mark]+li[data-mark]{margin-left:-6px}
   .dfloor .dlegend .legend__mark{width:24px;height:24px}
 }
+
+/* сортировка каталога: на телефоне — группой в панели фильтров, строка над карточками скрыта */
+.dsortgroup{display:none}
+.dsortlist .check input{border-radius:50%}
+.dsortlist .check input:checked{background-image:none;box-shadow:inset 0 0 0 3px var(--s-bg)}
+@media (max-width:1000px){
+  .dsortgroup{display:block}
+  .results__bar .sortbox{display:none}
+  .results__bar:has(.results__count[hidden]){display:none}
+}
