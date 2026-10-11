@@ -1192,7 +1192,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
    влезали в 327px и распирали страницу: на телефоне кегль от ширины экрана
    и переносы по слогам */
 @media (max-width:760px){
-  .dpage__h1,.dart__h1,.dpromo__h1{font-size:clamp(22px,6.8vw,34px);hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+  .dpage__h1,.dart__h1,.dpromo__h1{font-size:clamp(22px,6.8vw,34px);overflow-wrap:break-word}
 }
 
 /* ============ 19. ДИЗАЙНЕРАМ ============ */
