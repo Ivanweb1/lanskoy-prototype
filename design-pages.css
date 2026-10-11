@@ -2907,8 +2907,8 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .dalpha .dalpha__i:first-child{min-width:0;padding:0;margin-right:14px}
 .dalpha .dalpha__sep{margin:0 8px}
 /* стена брендов: сверху белая плашка с логотипом (или названием словесным
-   знаком), под ней название, категория и число магазинов */
-.dblist{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 16px}
+   знаком), под ней название */
+.dblist{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px}
 .dbitem{display:flex;flex-direction:column;gap:12px}
 .dbitem[hidden]{display:none}
 .dbitem__logo{display:flex;align-items:center;justify-content:center;height:108px;padding:16px;background:#fff;border:1px solid var(--s-line);transition:border-color .25s}
@@ -2919,7 +2919,6 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .dbitem__n{display:block;font-size:15px;font-weight:600;line-height:1.3;color:var(--s-fg);transition:color .2s}
 .dbitem:hover .dbitem__n{color:var(--s-accent-ink)}
 .dbitem:hover .dbitem__logo{border-color:var(--s-accent)}
-.dbitem__m{display:block;margin-top:4px;font-size:12px;line-height:1.45;color:var(--s-fg-soft)}
 .dbgroup .dblist{align-self:start}
 .dbgroup .dbgroup__letter{margin-top:6px}
 /* последняя видимая группа — без линии снизу (после фильтра хвост оставался) */
