@@ -5,7 +5,7 @@
 
 Обновлено: 11.10.2026.
 
-## Готово (19)
+## Готово (20)
 
 | Страница | Файл |
 |---|---|
@@ -28,8 +28,9 @@
 | Дизайнерам | design-designers.html |
 | Каталог дизайнеров | design-designers-catalog.html |
 | Анкета дизайнера | design-designer-form.html |
+| Дизайнер | design-designer.html |
 
-## В работе (9)
+## В работе (8)
 
 | Раздел | Страница | Файл |
 |---|---|---|
@@ -40,7 +41,6 @@
 | | Бренды | design-brands.html |
 | | Бренд | design-brand.html |
 | | Схема этажей | design-floors.html |
-| Дизайнерам | Дизайнер | design-designer.html |
 | О комплексе | Аренда площадей | design-rent.html |
 
 ## Навигация
