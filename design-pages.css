@@ -2854,12 +2854,8 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* на десктопе блок «Связаться» рядом — кнопка звонка; на телефоне — переход к блоку */
 .dshophead__to{display:none}
 .dprose--narrow p{max-width:640px}
-.dfacts{display:flex;flex-wrap:wrap;gap:16px 48px;margin:28px 0 0;padding-top:24px;border-top:1px solid var(--s-line)}
-.dfacts div{display:flex;flex-direction:column;gap:6px}
-.dfacts dt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
-.dfacts dd{margin:0;font-size:15px;color:var(--s-fg)}
-.dfacts a{border-bottom:1px solid var(--s-line-strong);transition:color .2s,border-color .2s}
-.dfacts a:hover{color:var(--s-accent-ink);border-color:var(--s-accent)}
+/* факты в шапке дизайнера — ближе к имени, чем у акции */
+.dshophead .dpfacts{margin-top:20px;gap:10px}
 /* подпись работы — плашкой снизу при наведении */
 .dgallery [hidden]{display:none}
 .dgal__cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:28px 16px 12px;
@@ -2874,5 +2870,4 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dshophead__call{display:none}
   .dshophead__to{display:inline-flex}
   .dshophead__logo--photo{width:120px}
-  .dfacts{gap:14px 32px}
-}
+  }
