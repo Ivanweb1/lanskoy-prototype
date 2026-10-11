@@ -2265,3 +2265,15 @@ function lnsMiniPlan(n, o) {
   var t;
   window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(all, 100); });
 })();
+
+/* ---------- ширина полосы прокрутки ----------
+   Кадры «до правого края» считаются от 100vw, а в Windows 100vw включает
+   полосу прокрутки (17px) — страница уезжала вбок. --sbw вычитается в CSS */
+(function () {
+  function upd() {
+    document.documentElement.style.setProperty('--sbw', (window.innerWidth - document.documentElement.clientWidth) + 'px');
+  }
+  upd();
+  window.addEventListener('resize', upd);
+  window.addEventListener('load', upd);
+})();

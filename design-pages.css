@@ -1077,7 +1077,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dpromo .dtags{margin:0 0 22px}
 .dpromo__media{
   aspect-ratio:auto;min-height:100%;
-  margin-right:calc((max(0px,(100vw - var(--d-wrap)) / 2) + var(--pad)) * -1);
+  margin-right:calc((max(0px,(100vw - var(--sbw,0px) - var(--d-wrap)) / 2) + var(--pad)) * -1);
   clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);
   background:var(--b-navy);
 }
@@ -3132,7 +3132,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* сцена: кадр до правого края экрана со срезом, как .dpromo__media */
 .drwhy{align-items:stretch}
 .drwhy__stage{position:relative;min-height:560px;overflow:hidden;background:var(--b-navy);
-  margin-right:calc((max(0px,(100vw - var(--d-wrap)) / 2) + var(--pad)) * -1);
+  margin-right:calc((max(0px,(100vw - var(--sbw,0px) - var(--d-wrap)) / 2) + var(--pad)) * -1);
   clip-path:polygon(9% 0,100% 0,100% 100%,0 100%)}
 .drwhy__panel{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .6s var(--d-ease),visibility 0s .6s}
 .drwhy__panel.is-active{opacity:1;visibility:visible;transition:opacity .6s var(--d-ease),visibility 0s}
