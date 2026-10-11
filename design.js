@@ -1127,7 +1127,7 @@
   [].forEach.call(document.querySelectorAll('.dselect'), function (w) {
     var s = w.querySelector('select'); if (s) enhance(s, w);
   });
-  [].forEach.call(document.querySelectorAll('.dform__sel'), function (w) {
+  [].forEach.call(document.querySelectorAll('.dform__sel, .sortbox'), function (w) {
     var s = w.querySelector('select'); if (s) enhance(s, w);
   });
   /* для полей, добавленных после загрузки (объекты в анкете дизайнера) */
