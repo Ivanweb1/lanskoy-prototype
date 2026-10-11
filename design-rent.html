@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=270">
+<link rel="stylesheet" href="design-pages.css?v=272">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -223,10 +223,10 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
   <div class="wrap">
     <div class="dhead"><h2 class="dhead__h2">Условия аренды</h2></div>
     <ul class="drterms">
-      <li><span class="drterms__k">Площади</span><span class="drterms__v">от 20 до 400 м²</span></li>
-      <li><span class="drterms__k">Ставка</span><span class="drterms__v">индивидуально, по формату и этажу</span></li>
-      <li><span class="drterms__k">Срок договора</span><span class="drterms__v">от 11 месяцев</span></li>
-      <li><span class="drterms__k">Что входит</span><span class="drterms__v">карточка на сайте, размещение акций, участие в мероприятиях</span></li>
+      <li class="drterms__i--area"><span class="drterms__k">Площади</span><span class="drterms__v">от 20 до 400 м²</span></li>
+      <li class="drterms__i--rate"><span class="drterms__k">Ставка</span><span class="drterms__v">индивидуально, по формату и этажу</span></li>
+      <li class="drterms__i--term"><span class="drterms__k">Срок договора</span><span class="drterms__v">от 11 месяцев</span></li>
+      <li class="drterms__i--incl"><span class="drterms__k">Что входит</span><span class="drterms__v">карточка на сайте, размещение акций, участие в мероприятиях</span></li>
     </ul>
     <div class="results__more drterms__more"><a href="floors.html" class="dbtn dbtn--ghost">Посмотреть схему этажей</a></div>
   </div>
@@ -237,32 +237,28 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <section class="sect">
   <div class="wrap">
     <div class="dhead"><h2 class="dhead__h2">Как стать арендатором</h2></div>
-    <!-- этапы линией: знак в круге, кто делает шаг; линия между шагами
+    <!-- этапы линией: знак в круге; линия между шагами
          заполняется по очереди, когда блок попадает в экран (design.js) -->
     <ol class="drsteps" id="rentSteps">
       <li class="drsteps__i drsteps__i--req">
         <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">01</span></span>
-        <span class="drsteps__who">Вы</span>
         <h3 class="drsteps__h">Заявка</h3>
         <p class="drsteps__t">Оставьте заявку на сайте или позвоните в отдел аренды: расскажите о формате и нужной площади.</p>
         <p class="drsteps__go"><a href="#form" class="dlink dlink--in">Оставить заявку</a></p>
       </li>
       <li class="drsteps__i drsteps__i--eye">
         <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">02</span></span>
-        <span class="drsteps__who">Отдел аренды</span>
         <h3 class="drsteps__h">Подбор и просмотр</h3>
         <p class="drsteps__t">Отдел аренды подберёт помещение под ваш формат и покажет его на месте.</p>
         <p class="drsteps__go"><a href="floors.html" class="dlink dlink--in">Схема этажей</a></p>
       </li>
       <li class="drsteps__i drsteps__i--doc">
         <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">03</span></span>
-        <span class="drsteps__who">Вместе</span>
         <h3 class="drsteps__h">Договор</h3>
         <p class="drsteps__t">Согласуем ставку, срок и дату заезда, подписываем договор аренды.</p>
       </li>
       <li class="drsteps__i drsteps__i--card">
         <span class="drsteps__node" aria-hidden="true"><span class="drsteps__n">04</span></span>
-        <span class="drsteps__who">Менеджер и вы</span>
         <h3 class="drsteps__h">Карточка на сайте</h3>
         <p class="drsteps__t">Менеджер выдаст доступ в личный кабинет — заполните карточку магазина, добавьте фото и акции.</p>
         <p class="drsteps__go"><a href="shop.html" class="dlink dlink--in">Пример карточки</a></p>
