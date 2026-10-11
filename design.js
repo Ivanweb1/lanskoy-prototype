@@ -1969,7 +1969,7 @@ var FREE_ROOMS = { 1: [], 2: ['В11', 'В14a', 'В22', 'В40'], 3: ['С5', 'С9.
    ни первого экрана (там свои кнопки), ни самой формы */
 (function () {
   var bar = document.getElementById('rentSticky');
-  var hero = document.querySelector('.dabout-hero');
+  var hero = document.querySelector('.drent-hero');
   var form = document.getElementById('form');
   if (!bar || !hero || !form) return;
   function upd() {

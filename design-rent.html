@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=261">
+<link rel="stylesheet" href="design-pages.css?v=262">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -24,26 +24,26 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <main id="main" tabindex="-1">
 
 <!-- ================= ПЕРВЫЙ ЭКРАН ================= -->
-<section class="dpage dpromo dabout-hero">
-  <div class="wrap">
-    <nav class="dcrumbs" aria-label="Хлебные крошки">
-      <a href="design.html">Главная</a>
-      <span class="dcrumbs__sep" aria-hidden="true"></span>
-      <span aria-current="page">Аренда</span>
-    </nav>
-    <div class="dpromo__in">
-      <div class="dpromo__main">
-        <div class="dpromo__top">
-          <h1 class="dhero__h1 dabout-hero__h1">Покупатель приходит<em>с готовым намерением</em></h1>
-          <p class="dhero__sub">ТК «Ланской» — интерьерный центр в Санкт-Петербурге. Сюда едут те, кто уже начал ремонт или работает над проектом, а не гуляет между витрин.</p>
-        </div>
-        <div class="dpromo__bottom dpromo__acts">
-          <a href="#form" class="dbtn dbtn--fill">Оставить заявку</a>
-          <a href="#free" class="dbtn dbtn--ghost">Свободные помещения</a>
-        </div>
+<!-- первый экран как на главной и у акции: фото на всю высоту блока до правого
+     края (каркас .dpromo--full), без линии над кнопками -->
+<section class="dpage dpromo dpromo--full drent-hero">
+  <div class="dpromo__in">
+    <div class="dpromo__main">
+      <nav class="dcrumbs" aria-label="Хлебные крошки">
+        <a href="design.html">Главная</a>
+        <span class="dcrumbs__sep" aria-hidden="true"></span>
+        <span aria-current="page">Аренда</span>
+      </nav>
+      <div class="dpromo__top">
+        <h1 class="dhero__h1 dabout-hero__h1">Покупатель приходит<em>с готовым намерением</em></h1>
+        <p class="dhero__sub">ТК «Ланской» — интерьерный центр в Санкт-Петербурге. Сюда едут те, кто уже начал ремонт или работает над проектом, а не гуляет между витрин.</p>
       </div>
-      <div class="dpromo__media"><img class="jimg" src="img/rent.webp" alt="" loading="lazy"></div>
+      <div class="dpromo__bottom dpromo__acts">
+        <a href="#form" class="dbtn dbtn--fill">Оставить заявку</a>
+        <a href="#free" class="dbtn dbtn--ghost">Свободные помещения</a>
+      </div>
     </div>
+    <div class="dpromo__media"><img class="jimg" src="img/rent.webp" alt="" loading="lazy"></div>
   </div>
 </section>
 
@@ -253,6 +253,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="app.js?v=74"></script>
 <script src="floors-real.js?v=8"></script>
 <script src="events.js?v=74"></script>
-<script src="design.js?v=115"></script>
+<script src="design.js?v=116"></script>
 </body>
 </html>
