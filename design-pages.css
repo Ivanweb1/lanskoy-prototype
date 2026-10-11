@@ -2978,7 +2978,16 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 
 /* ============ КАРТОЧКА МАГАЗИНА: ПЕРВЫЙ ЭКРАН КАК У АКЦИИ ============ */
 /* каркас — .dpromo--full; поверх — статус работы и телефон только на узком экране */
-.dshophero .dtags{margin:20px 0 0}
+/* категории магазина — ссылки, поэтому метки переносятся целиком и подсвечиваются */
+.dshophero .derow__tags{flex-wrap:wrap;row-gap:6px}
+.dshophero a.dtag{white-space:nowrap;transition:color .2s}
+/* точка — перед каждой меткой, в отступе; метка в начале строки уводит свою
+   точку за левый край, а clip-path её срезает — строка не начинается с точки */
+.dshophero .derow__tags{margin-left:-23px;clip-path:inset(0 0 0 23px)}
+.dshophero .derow__tags .dtag{position:relative;margin-left:23px}
+.dshophero .derow__tags .dtag::before,.dshophero .derow__tags .dtag+.dtag::before{
+  content:"";position:absolute;left:-13px;top:50%;width:3px;height:3px;margin:-1.5px 0 0;border-radius:50%;background:currentColor}
+.dshophero a.dtag:hover{color:var(--s-fg)}
 .dshopfacts{margin-top:32px}
 @media (min-width:1001px){.dshophero__tel{display:none}}
 /* «Открыто до 20:00» — медная точка; закрыто — серая, текст приглушён */
@@ -3021,3 +3030,8 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   mix-blend-mode:screen;filter:grayscale(1) invert(1) contrast(1.15);opacity:.85;transition:opacity .25s}
 [data-theme="dark"] .dbitem:hover .dbitem__logo img{opacity:1}
 [data-theme="dark"] .dbitem__word{color:var(--s-fg)}
+/* мини-схема целиком: номер секции рядом с ней — медным, жирным */
+.dminiplan .pl-txt--label{fill:var(--s-accent-ink);font-weight:700}
+.dminiplan path{vector-effect:non-scaling-stroke}
+.dminiplan .pl-room{stroke-width:1}
+.dminiplan .pl-room--here{stroke-width:2}
