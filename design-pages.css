@@ -2897,3 +2897,44 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .dshophead__logo--photo{width:120px}
   .dask__menu{left:0;right:0;width:auto}
   }
+
+/* ============ БРЕНДЫ: указатель на сотни марок ============ */
+/* алфавит прилипает под шапкой — прыгать по буквам из середины списка */
+.dalpha{position:sticky;top:var(--hdr-sticky,65px);z-index:6;display:block;margin:0 0 40px;padding:8px 0 10px;background:var(--s-bg);border-bottom:1px solid var(--s-line)}
+.dalpha__in{display:flex;flex-wrap:wrap;align-items:center;gap:0}
+.dalpha .dalpha__i{min-width:21px;height:36px;padding:0 3px;font-size:15px}
+.dalpha .dalpha__i:first-child{padding:0 12px 0 0}
+.dalpha .dalpha__sep{margin:0 8px}
+/* плотный список: логотип (или инициалы) + название + категория и магазины */
+.dblist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px}
+.dbitem{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--s-line)}
+.dbitem[hidden]{display:none}
+.dbitem__logo{display:flex;align-items:center;justify-content:center;width:96px;height:44px;overflow:hidden;background:#fff;border:1px solid var(--s-line)}
+.dbitem__logo img{display:block;max-width:100%;max-height:100%;object-fit:contain}
+.dbitem--nologo .dbitem__logo{background:var(--s-bg-2)}
+[data-theme="dark"] .dbitem--nologo .dbitem__logo{background:var(--s-plate)}
+.dbitem__ini{font-family:var(--d-serif);font-weight:600;font-size:17px;letter-spacing:.06em;color:var(--s-accent)}
+.dbitem__b{min-width:0}
+.dbitem__n{display:block;font-size:15px;font-weight:600;line-height:1.3;color:var(--s-fg);transition:color .2s}
+.dbitem:hover .dbitem__n{color:var(--s-accent-ink)}
+.dbitem:hover .dbitem__logo{border-color:var(--s-accent)}
+.dbitem__m{display:block;margin-top:3px;font-size:12px;line-height:1.4;color:var(--s-fg-soft)}
+.dbgroup .dblist{align-self:start}
+.dbgroup .dbgroup__letter{margin-top:6px}
+/* последняя видимая группа — без линии снизу (после фильтра хвост оставался) */
+.dbgroup.is-last{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.dbempty__acts{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:8px}
+@media (max-width:1100px){
+  .dblist{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  /* на телефоне — лентой вбок, справа затухание: видно, что букв больше */
+  .dalpha{top:59px;margin:0 calc(var(--pad) * -1) 28px;padding:6px 0 8px}
+  .dalpha::after{content:"";position:absolute;top:0;right:0;bottom:0;width:48px;pointer-events:none;background:linear-gradient(to left,var(--s-bg),rgba(0,0,0,0))}
+  .dalpha__in{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:0 48px 0 var(--pad)}
+  .dalpha__in::-webkit-scrollbar{display:none}
+  .dalpha .dalpha__i{flex:none;min-width:32px;height:40px;font-size:17px}
+  .dblist{grid-template-columns:1fr}
+  .dbitem{grid-template-columns:80px minmax(0,1fr);gap:14px;padding:12px 0}
+  .dbitem__logo{width:80px;height:38px}
+}

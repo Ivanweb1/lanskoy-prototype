@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=232">
+<link rel="stylesheet" href="design-pages.css?v=235">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -36,13 +36,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     <div class="dpage__in">
       <div>
         <h1 class="dpage__h1">Бренды</h1>
-        <p class="dpage__lead">Марки, представленные в магазинах комплекса. Откройте бренд — покажем, где его купить.</p>
-      </div>
-      <div class="dpage__act">
-        <div class="field field--sm dbsearch">
-          <input type="search" id="brandSearch" placeholder="Название бренда" autocomplete="off" aria-label="Поиск бренда">
-          <button type="button" class="field__go" aria-label="Найти"></button>
-        </div>
+        <p class="dpage__lead">Марки, представленные в магазинах комплекса</p>
       </div>
     </div>
   </div>
@@ -51,23 +45,51 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <!-- ================= УКАЗАТЕЛЬ ================= -->
 <section class="dcat">
   <div class="wrap">
+    <!-- фильтры как на остальных списках: категория слева, поиск справа,
+         «Найдено N · Сбросить» — только при фильтре -->
+    <div class="evfilters dfilters" id="brandFilters">
+      <div class="evfilters__row dfilters__row">
+        <span class="evfilters__label dfilters__label">Категория</span>
+        <button type="button" class="chip dchip is-active" data-cat="all">Все</button>
+        <button type="button" class="chip dchip" data-cat="0">Декоративно-отделочные материалы</button>
+        <button type="button" class="chip dchip" data-cat="4">Лакокрасочные и клеящие материалы</button>
+        <button type="button" class="chip dchip" data-cat="5">Напольные покрытия</button>
+        <button type="button" class="chip dchip" data-cat="6">Потолки</button>
+        <button type="button" class="chip dchip" data-cat="7">Двери, перегородки, фурнитура</button>
+        <button type="button" class="chip dchip" data-cat="8">Остекление и оконная фурнитура</button>
+        <button type="button" class="chip dchip" data-cat="9">Стекло и зеркала</button>
+        <button type="button" class="chip dchip" data-cat="10">Сантехника</button>
+        <button type="button" class="chip dchip" data-cat="12">Лестницы</button>
+        <button type="button" class="chip dchip" data-cat="13">Отопление и кондиционирование</button>
+        <button type="button" class="chip dchip" data-cat="14">Мебель</button>
+        <button type="button" class="chip dchip" data-cat="15">Инструмент и крепёж</button>
+      </div>
+      <div class="field field--sm dbsearch dfilters__search">
+        <input type="search" id="brandSearch" placeholder="Название бренда" autocomplete="off" aria-label="Поиск бренда">
+        <button type="button" class="field__go" aria-label="Найти"></button>
+      </div>
+      <p class="evfilters__count dfilters__count"><b id="brandCount">40</b> <span id="brandCountWord">брендов</span></p>
+    </div>
+
+    <!-- алфавит прилипает под шапкой; латиница — полным рядом -->
     <nav class="alpha dalpha" id="alphaNav" aria-label="Указатель по алфавиту">
+      <div class="dalpha__in">
       <button type="button" class="alpha__i dalpha__i is-active" data-letter="all">Все</button>
       <button type="button" class="alpha__i dalpha__i" data-letter="А">А</button>
       <button type="button" class="alpha__i dalpha__i" data-letter="Б">Б</button>
       <button type="button" class="alpha__i dalpha__i" data-letter="В">В</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Г</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Д</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="Г">Г</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="Д">Д</button>
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Е</button>
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Ж</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>З</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>И</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>К</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="З">З</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="И">И</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="К">К</button>
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Л</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>М</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Н</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>О</button>
-      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>П</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="М">М</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="Н">Н</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="О">О</button>
+      <button type="button" class="alpha__i dalpha__i" data-letter="П">П</button>
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Р</button>
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>С</button>
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Т</button>
@@ -81,46 +103,273 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Ю</button>
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Я</button>
       <span class="dalpha__sep" aria-hidden="true"></span>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>A</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>B</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>C</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>D</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>E</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>F</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>G</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>H</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>I</button>
       <button type="button" class="alpha__i dalpha__i" data-letter="J">J</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>K</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>L</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>M</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>N</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>O</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>P</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Q</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>R</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>S</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>T</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>U</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>V</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>W</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>X</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Y</button>
+      <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>Z</button>
       <button type="button" class="alpha__i dalpha__i alpha__i--off" disabled>0—9</button>
+      </div>
     </nav>
-    <div class="brandlist dblist" id="brandList">
-      <section class="brandgroup dbgroup" data-letter="А">
-        <h2 class="brandgroup__letter dbgroup__letter">А</h2>
-        <div class="dbgroup__tiles">
-          <a href="brand.html" class="brandtile dbrand" data-name="Агрисовгаз"><span>Агрисовгаз</span></a>
-          <a href="brand.html" class="brandtile dbrand" data-name="Академия строительства"><span>Академия строительства</span></a>
-          <a href="brand.html" class="brandtile dbrand" data-name="Аквабрайт"><span>Аквабрайт</span></a>
-          <a href="brand.html" class="brandtile dbrand" data-name="Албес"><span>Албес</span></a>
-          <a href="brand.html" class="brandtile dbrand" data-name="Альта Профиль"><span>Альта Профиль</span></a>
-          <a href="brand.html" class="brandtile dbrand" data-name="Атлас Люкс"><span>Атлас Люкс</span></a>
+
+    <!-- 40 марок — с действующего сайта комплекса (tk-lanskoy, «Список брендов»),
+         логотипы у 15 оттуда же; у остальных — инициалы на плашке.
+         Категория и число магазинов — демо-значения -->
+    <div class="dbrandlist" id="brandList">
+      <section class="dbgroup" data-letter="А">
+        <h2 class="dbgroup__letter">А</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem" data-name="Агрисовгаз" data-cat="13">
+            <span class="dbitem__logo"><img src="img/brands/agrisovgaz.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Агрисовгаз</span><span class="dbitem__m">Отопление и кондиционирование · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Академия Строительства" data-cat="0">
+            <span class="dbitem__logo"><img src="img/brands/akademiya.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Академия Строительства</span><span class="dbitem__m">Декоративно-отделочные материалы · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Аквабрайт" data-cat="10">
+            <span class="dbitem__logo"><img src="img/brands/akvabrait.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Аквабрайт</span><span class="dbitem__m">Сантехника · 3 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Албес" data-cat="6">
+            <span class="dbitem__logo"><img src="img/brands/albes.png" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Албес</span><span class="dbitem__m">Потолки · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Альта-Профиль" data-cat="0">
+            <span class="dbitem__logo"><img src="img/brands/alta-profil.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Альта-Профиль</span><span class="dbitem__m">Декоративно-отделочные материалы · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Атлас-Люкс" data-cat="14">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">АЛ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Атлас-Люкс</span><span class="dbitem__m">Мебель · 1 магазин</span></span>
+          </a>
         </div>
       </section>
-      <section class="brandgroup dbgroup" data-letter="Б">
-        <h2 class="brandgroup__letter dbgroup__letter">Б</h2>
-        <div class="dbgroup__tiles">
-          <a href="brand.html" class="brandtile dbrand" data-name="Брянский лес"><span>Брянский лес</span></a>
-          <a href="brand.html" class="brandtile dbrand" data-name="БукДуб"><span>БукДуб</span></a>
+      <section class="dbgroup" data-letter="Б">
+        <h2 class="dbgroup__letter">Б</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Бренеран" data-cat="13">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">БР</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Бренеран</span><span class="dbitem__m">Отопление и кондиционирование · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Брянский лес" data-cat="5">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">БЛ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Брянский лес</span><span class="dbitem__m">Напольные покрытия · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="БукДуб" data-cat="12">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">БУ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">БукДуб</span><span class="dbitem__m">Лестницы · 1 магазин</span></span>
+          </a>
         </div>
       </section>
-      <section class="brandgroup dbgroup" data-letter="В">
-        <h2 class="brandgroup__letter dbgroup__letter">В</h2>
-        <div class="dbgroup__tiles">
-          <a href="brand.html" class="brandtile dbrand" data-name="Варвара"><span>Варвара</span></a>
-          <a href="brand.html" class="brandtile dbrand" data-name="Верно Лестница"><span>Верно Лестница</span></a>
+      <section class="dbgroup" data-letter="В">
+        <h2 class="dbgroup__letter">В</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Варвара" data-cat="13">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ВА</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Варвара</span><span class="dbitem__m">Отопление и кондиционирование · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Верно Лестница" data-cat="12">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ВЛ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Верно Лестница</span><span class="dbitem__m">Лестницы · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Вихрь" data-cat="15">
+            <span class="dbitem__logo"><img src="img/brands/vihr.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Вихрь</span><span class="dbitem__m">Инструмент и крепёж · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Вулкан" data-cat="13">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ВУ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Вулкан</span><span class="dbitem__m">Отопление и кондиционирование · 2 магазина</span></span>
+          </a>
         </div>
       </section>
-      <section class="brandgroup dbgroup" data-letter="J">
-        <h2 class="brandgroup__letter dbgroup__letter">J</h2>
-        <div class="dbgroup__tiles">
-          <a href="brand.html" class="brandtile dbrand" data-name="Jeremias"><span>Jeremias</span></a>
+      <section class="dbgroup" data-letter="Г">
+        <h2 class="dbgroup__letter">Г</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Городлес" data-cat="0">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ГО</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Городлес</span><span class="dbitem__m">Декоративно-отделочные материалы · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Госкреп" data-cat="15">
+            <span class="dbitem__logo"><img src="img/brands/goskrep.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Госкреп</span><span class="dbitem__m">Инструмент и крепёж · 3 магазина</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="Д">
+        <h2 class="dbgroup__letter">Д</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Добропаровъ" data-cat="13">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ДО</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Добропаровъ</span><span class="dbitem__m">Отопление и кондиционирование · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Доломит" data-cat="0">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ДО</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Доломит</span><span class="dbitem__m">Декоративно-отделочные материалы · 1 магазин</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="З">
+        <h2 class="dbgroup__letter">З</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem" data-name="Зубр" data-cat="15">
+            <span class="dbitem__logo"><img src="img/brands/zubr.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Зубр</span><span class="dbitem__m">Инструмент и крепёж · 4 магазина</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="И">
+        <h2 class="dbgroup__letter">И</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem" data-name="Интерскол" data-cat="15">
+            <span class="dbitem__logo"><img src="img/brands/interskol.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Интерскол</span><span class="dbitem__m">Инструмент и крепёж · 3 магазина</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="К">
+        <h2 class="dbgroup__letter">К</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem" data-name="Калибр" data-cat="15">
+            <span class="dbitem__logo"><img src="img/brands/kalibr.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Калибр</span><span class="dbitem__m">Инструмент и крепёж · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Камоника" data-cat="0">
+            <span class="dbitem__logo"><img src="img/brands/camonica.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Камоника</span><span class="dbitem__m">Декоративно-отделочные материалы · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Каньон" data-cat="0">
+            <span class="dbitem__logo"><img src="img/brands/kanyon.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Каньон</span><span class="dbitem__m">Декоративно-отделочные материалы · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Краснодеревщик" data-cat="7">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">КР</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Краснодеревщик</span><span class="dbitem__m">Двери, перегородки, фурнитура · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Крона" data-cat="7">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">КР</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Крона</span><span class="dbitem__m">Двери, перегородки, фурнитура · 1 магазин</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="М">
+        <h2 class="dbgroup__letter">М</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Мастер Защиты" data-cat="4">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">МЗ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Мастер Защиты</span><span class="dbitem__m">Лакокрасочные и клеящие материалы · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Мебель ТРЭ" data-cat="14">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">МТ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Мебель ТРЭ</span><span class="dbitem__m">Мебель · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Мебель-Массив" data-cat="14">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ММ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Мебель-Массив</span><span class="dbitem__m">Мебель · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Мета" data-cat="9">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">МЕ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Мета</span><span class="dbitem__m">Стекло и зеркала · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem" data-name="Металл Профиль" data-cat="0">
+            <span class="dbitem__logo"><img src="img/brands/metall-profil.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Металл Профиль</span><span class="dbitem__m">Декоративно-отделочные материалы · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="МеталлМонтаж" data-cat="7">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">МЕ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">МеталлМонтаж</span><span class="dbitem__m">Двери, перегородки, фурнитура · 1 магазин</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="Н">
+        <h2 class="dbgroup__letter">Н</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Национальный комфорт" data-cat="14">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">НК</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Национальный комфорт</span><span class="dbitem__m">Мебель · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Наша Лестница" data-cat="12">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">НЛ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Наша Лестница</span><span class="dbitem__m">Лестницы · 1 магазин</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="О">
+        <h2 class="dbgroup__letter">О</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem" data-name="ОКО стиль" data-cat="8">
+            <span class="dbitem__logo"><img src="img/brands/oko-stil.png" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">ОКО стиль</span><span class="dbitem__m">Остекление и оконная фурнитура · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="ОСБ" data-cat="7">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ОС</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">ОСБ</span><span class="dbitem__m">Двери, перегородки, фурнитура · 1 магазин</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="П">
+        <h2 class="dbgroup__letter">П</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="ПитерЛюки" data-cat="7">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ПИ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">ПитерЛюки</span><span class="dbitem__m">Двери, перегородки, фурнитура · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Подкова" data-cat="12">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ПО</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Подкова</span><span class="dbitem__m">Лестницы · 1 магазин</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Практика" data-cat="15">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ПР</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Практика</span><span class="dbitem__m">Инструмент и крепёж · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="ПроЛок" data-cat="7">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ПР</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">ПроЛок</span><span class="dbitem__m">Двери, перегородки, фурнитура · 2 магазина</span></span>
+          </a>
+          <a href="brand.html" class="dbitem dbitem--nologo" data-name="Профиль Лука" data-cat="5">
+            <span class="dbitem__logo"><span class="dbitem__ini" aria-hidden="true">ПЛ</span></span>
+            <span class="dbitem__b"><span class="dbitem__n">Профиль Лука</span><span class="dbitem__m">Напольные покрытия · 1 магазин</span></span>
+          </a>
+        </div>
+      </section>
+      <section class="dbgroup" data-letter="J">
+        <h2 class="dbgroup__letter">J</h2>
+        <div class="dblist">
+          <a href="brand.html" class="dbitem" data-name="Jeremias" data-cat="13">
+            <span class="dbitem__logo"><img src="img/brands/jeremias.jpg" alt="" loading="lazy"></span>
+            <span class="dbitem__b"><span class="dbitem__n">Jeremias</span><span class="dbitem__m">Отопление и кондиционирование · 1 магазин</span></span>
+          </a>
         </div>
       </section>
     </div>
-    <div class="empty" id="brandEmpty" hidden>
+    <div class="empty dbempty" id="brandEmpty" hidden>
       <p class="empty__title">Бренд не найден</p>
-      <p class="empty__text">Попробуйте другое написание — часть марок указана латиницей.</p>
-      <button type="button" class="dbtn dbtn--ghost" data-brandreset>Показать все</button>
+      <p class="empty__text">Попробуйте другое написание — часть марок указана латиницей. Или посмотрите магазины нужной категории: в них может быть то, что вы ищете.</p>
+      <div class="dbempty__acts">
+        <button type="button" class="dbtn dbtn--ghost" data-brandreset>Показать все бренды</button>
+        <a href="shops.html" class="dlink">Каталог магазинов</a>
+      </div>
     </div>
   </div>
 </section>
@@ -133,7 +382,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="brands.js?v=73"></script>
-<script src="design.js?v=105"></script>
+<script src="design.js?v=106"></script>
 </body>
 </html>

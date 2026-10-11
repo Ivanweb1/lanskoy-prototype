@@ -886,6 +886,91 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { set(false); btn.focus(); } });
 })();
 
+/* ---------- указатель брендов ----------
+   Буква, категория и поиск работают вместе. Буквы, под которыми после
+   фильтра пусто, гаснут. «Найдено N» — общий счётчик списков (ниже). */
+(function () {
+  var list = document.getElementById('brandList');
+  if (!list || !list.querySelector('.dbitem')) return;
+  var nav = document.getElementById('alphaNav');
+  var q = document.getElementById('brandSearch');
+  var empty = document.getElementById('brandEmpty');
+  var cnt = document.getElementById('brandCount');
+  var word = document.getElementById('brandCountWord');
+  var chips = [].slice.call(document.querySelectorAll('#brandFilters .chip[data-cat]'));
+  var groups = [].slice.call(list.querySelectorAll('.dbgroup'));
+  var letter = 'all', cat = 'all';
+  function plural(n) {
+    var a = n % 10, b = n % 100;
+    if (a === 1 && b !== 11) return 'бренд';
+    if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return 'бренда';
+    return 'брендов';
+  }
+  function match(it, s) {
+    return (cat === 'all' || it.dataset.cat === cat) &&
+           (!s || it.dataset.name.toLowerCase().indexOf(s) > -1);
+  }
+  function apply() {
+    var s = q.value.trim().toLowerCase(), total = 0, last = null, has = {};
+    groups.forEach(function (g) {
+      var shown = 0;
+      [].forEach.call(g.querySelectorAll('.dbitem'), function (it) {
+        var ok = match(it, s);
+        if (ok) has[g.dataset.letter] = true;
+        ok = ok && (letter === 'all' || g.dataset.letter === letter);
+        it.hidden = !ok;
+        if (ok) shown++;
+      });
+      g.hidden = !shown;
+      g.classList.remove('is-last');
+      if (shown) last = g;
+      total += shown;
+    });
+    if (last) last.classList.add('is-last');
+    empty.hidden = total > 0;
+    cnt.textContent = total;
+    word.textContent = plural(total);
+    [].forEach.call(nav.querySelectorAll('[data-letter]'), function (b) {
+      if (b.dataset.letter === 'all') return;
+      var off = !has[b.dataset.letter];
+      b.classList.toggle('alpha__i--off', off);
+      b.disabled = off;
+    });
+  }
+  function setLetter(l) {
+    letter = l;
+    [].forEach.call(nav.querySelectorAll('.alpha__i'), function (b) {
+      b.classList.toggle('is-active', b.dataset.letter === l);
+    });
+  }
+  nav.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-letter]');
+    if (!b || b.disabled) return;
+    setLetter(b.dataset.letter);
+    apply();
+    /* к началу списка, если указатель уже прилип */
+    var top = list.getBoundingClientRect().top - nav.offsetHeight - (parseInt(getComputedStyle(nav).top, 10) || 0) - 16;
+    if (top < 0) window.scrollBy({ top: top, behavior: 'smooth' });
+  });
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (x) { x.classList.toggle('is-active', x === c); });
+      cat = c.dataset.cat;
+      /* буква могла опустеть в новой категории — снимаем её */
+      setLetter('all');
+      apply();
+    });
+  });
+  q.addEventListener('input', apply);
+  [].forEach.call(document.querySelectorAll('[data-brandreset]'), function (b) {
+    b.addEventListener('click', function () {
+      q.value = '';
+      if (chips[0]) chips[0].click(); else { setLetter('all'); apply(); }
+    });
+  });
+  apply();
+})();
+
 /* ---------- афиша по ссылке с фильтром «Кому» ----------
    events.html?aud=pro — сразу события для дизайнеров (пункт «Профессиональные
    события» в меню «Дизайнерам»). Жмём чип — список фильтра подхватит сам */
