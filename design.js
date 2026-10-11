@@ -1837,8 +1837,10 @@
    в одну строку, сегодняшний выделен. Статус в первом экране считается от
    текущего времени; для показа в прототипе — ?time=21:30 и ?day=1…7. */
 (function () {
-  var box = document.querySelector('[data-hours]');
-  if (!box) return;
+  /* расписание есть в первом экране и в боковой колонке — данные берём из первого */
+  var boxes = [].slice.call(document.querySelectorAll('[data-hours]'));
+  if (!boxes.length) return;
+  var box = boxes[0];
   var DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
   var NEXT = ['в понедельник', 'во вторник', 'в среду', 'в четверг', 'в пятницу', 'в субботу', 'в воскресенье'];
   var hours = box.getAttribute('data-hours').split(',').map(function (s) {
@@ -1860,11 +1862,12 @@
     else groups.push({ from: i, to: i, h: h });
   });
   if (groups.length > 1) {
-    box.innerHTML = groups.map(function (g) {
+    var rows = groups.map(function (g) {
       var d = DAYS[g.from] + (g.to > g.from ? '—' + DAYS[g.to] : '');
       var today = day >= g.from && day <= g.to;
       return '<span class="dhours__r' + (today ? ' is-today' : '') + '"><span>' + d + '</span><span>' + label(g.h) + '</span></span>';
     }).join('');
+    boxes.forEach(function (b) { b.innerHTML = rows; });
   }
 
   /* статус */

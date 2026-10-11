@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=139">
-<link rel="stylesheet" href="design-pages.css?v=256">
+<link rel="stylesheet" href="design-pages.css?v=257">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -45,7 +45,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <h1 class="dpage__h1 dpromo__h1">VLADART STUDIO</h1>
 
       <!-- контакты — прямо в первом экране: всё, за чем приходят на карточку,
-           видно без прокрутки; в боковой колонке осталась только схема -->
+           видно без прокрутки; в боковой колонке они дублируются -->
       <dl class="dpfacts dshopfacts">
         <div class="dpfacts__r">
           <dt>Сейчас:</dt>
@@ -181,6 +181,25 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
     </div>
 
     <aside class="shopside dside">
+      <!-- контакты дублируются из первого экрана: колонка липкая и остаётся
+           под рукой, пока листают фото, видео и акции -->
+      <div class="dpanel">
+        <p class="dpanel__title">Контакты</p>
+        <ul class="dcontacts">
+          <li><span class="dcontacts__k">Телефон</span><a class="dcontacts__v dcontacts__v--big" href="tel:+78120000000">+7 (812) 000-00-00</a></li>
+          <li><span class="dcontacts__k">Сайт</span><a class="dcontacts__v" href="#">vladart-studio.ru</a></li>
+          <li>
+            <span class="dcontacts__k">Режим работы</span>
+            <span class="dhours" data-hours="10:00-20:00,10:00-20:00,10:00-20:00,10:00-20:00,10:00-20:00,10:00-20:00,10:00-20:00"><span class="dcontacts__v">10:00 — 20:00, ежедневно</span></span>
+          </li>
+        </ul>
+        <p class="dpanel__sub">Мессенджеры и соцсети</p>
+        <div class="dmsgs dshares">
+          <a href="#" class="dshare dshare--max" target="_blank" rel="noopener" aria-label="VLADART STUDIO в MAX" title="MAX"></a>
+          <a href="#" class="dshare dshare--tg" target="_blank" rel="noopener" aria-label="VLADART STUDIO в Telegram" title="Telegram"></a>
+          <a href="#" class="dshare dshare--vk" target="_blank" rel="noopener" aria-label="VLADART STUDIO во ВКонтакте" title="ВКонтакте"></a>
+        </div>
+      </div>
       <div class="dpanel">
         <p class="dpanel__title">Расположение</p>
         <p class="dpanel__place"><b>А10</b> · 1 этаж</p>
@@ -239,6 +258,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="floors-real.js?v=8"></script>
-<script src="design.js?v=111"></script>
+<script src="design.js?v=112"></script>
 </body>
 </html>
