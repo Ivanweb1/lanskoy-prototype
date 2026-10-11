@@ -2204,33 +2204,52 @@ function lnsMiniPlan(n, o) {
   if (!box.querySelector('.pl-room--here')) box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
 })();
 
-/* ---------- сортировка каталога на телефоне — внутри панели фильтров ----------
-   До 1000px фильтры свёрнуты под кнопку; отдельная строка с сортировкой над
-   карточками там лишняя. Группа «Сортировка» строится из того же select
-   и меняет его — сортирует по-прежнему catalog.js */
+/* ---------- сортировка каталога на телефоне — квадратом справа от «Фильтров» ----------
+   До 1000px строка с сортировкой над карточками скрыта; рядом с кнопкой
+   «Фильтры» — квадратная кнопка, по нажатию список вариантов в стиле сайта.
+   Выбор меняет тот же select — сортирует по-прежнему catalog.js */
 (function () {
   var sel = document.getElementById('sortSelect');
-  var box = document.getElementById('filters');
-  if (!sel || !box) return;
-  var g = document.createElement('div');
-  g.className = 'filters__group dsortgroup';
-  var h = '<p class="filters__label">Сортировка</p><ul class="checklist dsortlist">';
-  [].forEach.call(sel.options, function (o, i) {
-    h += '<li><label class="check"><input type="radio" name="dsort" value="' + o.value + '"' + (i === sel.selectedIndex ? ' checked' : '') +
-      '><span>' + o.textContent + '</span></label></li>';
-  });
-  g.innerHTML = h + '</ul>';
-  var head = box.querySelector('.filters__head');
-  box.insertBefore(g, head ? head.nextSibling : box.firstChild);
-  g.addEventListener('change', function (e) {
-    if (e.target.name !== 'dsort') return;
-    sel.value = e.target.value;
+  var tog = document.getElementById('filtersToggle');
+  if (!sel || !tog) return;
+  var row = document.createElement('div');
+  row.className = 'dfilt-row';
+  tog.parentNode.insertBefore(row, tog);
+  row.appendChild(tog);
+  var box = document.createElement('div');
+  box.className = 'dsortbtn';
+  box.innerHTML = '<button type="button" class="dsortbtn__b" aria-haspopup="listbox" aria-expanded="false" aria-label="Сортировка"><span class="dsortbtn__ic" aria-hidden="true"></span></button>' +
+    '<ul class="dd__list" role="listbox" hidden></ul>';
+  row.appendChild(box);
+  var btn = box.querySelector('button'), list = box.querySelector('ul');
+  function build() {
+    list.innerHTML = '';
+    [].forEach.call(sel.options, function (o, i) {
+      var li = document.createElement('li');
+      li.className = 'dd__opt' + (i === sel.selectedIndex ? ' is-sel' : '');
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', i === sel.selectedIndex ? 'true' : 'false');
+      li.dataset.i = i;
+      li.textContent = o.textContent;
+      list.appendChild(li);
+    });
+  }
+  function open(v) {
+    if (v) build();
+    list.hidden = !v;
+    box.classList.toggle('is-open', v);
+    btn.setAttribute('aria-expanded', String(v));
+  }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); open(list.hidden); });
+  list.addEventListener('click', function (e) {
+    var li = e.target.closest('.dd__opt');
+    if (!li) return;
+    sel.selectedIndex = +li.dataset.i;
     sel.dispatchEvent(new Event('change', { bubbles: true }));
+    open(false);
   });
-  sel.addEventListener('change', function () {
-    var r = g.querySelector('input[value="' + sel.value + '"]');
-    if (r) r.checked = true;
-  });
+  document.addEventListener('click', function (e) { if (!box.contains(e.target)) open(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !list.hidden) { open(false); btn.focus(); } });
 })();
 
 /* ---------- переключатель вида каталога: иконки на одной линии ----------
