@@ -2919,14 +2919,21 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .dbitem__n{display:block;font-size:15px;font-weight:600;line-height:1.3;color:var(--s-fg);transition:color .2s}
 .dbitem:hover .dbitem__n{color:var(--s-accent-ink)}
 .dbitem:hover .dbitem__logo{border-color:var(--s-accent)}
-/* при наведении поверх плашки — «Узнайте, где купить»: карточка ведёт
-   на страницу бренда со списком магазинов. На касании не показываем */
+/* при наведении поверх плашки — название марки и «Узнайте, где купить»:
+   логотип не всегда совпадает с названием (CAMONICA под «К»).
+   Подпись под плашкой — только там, где наведения нет (телефон, планшет);
+   на остальных она скрыта визуально, но остаётся текстом ссылки */
 .dbitem__logo{position:relative}
-.dbitem__logo::after{content:"Узнайте, где купить";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 12px;
-  background:var(--s-bg);font-family:var(--d-sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:center;color:var(--s-fg);
-  opacity:0;transition:opacity .25s var(--d-ease)}
-.dbitem:hover .dbitem__logo::after,.dbitem:focus-visible .dbitem__logo::after{opacity:1}
-@media (hover:none){.dbitem__logo::after{display:none}}
+.dbitem__hov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:0 12px;
+  background:var(--s-bg);text-align:center;opacity:0;transition:opacity .25s var(--d-ease)}
+.dbitem__hov b{font-family:var(--d-serif);font-weight:600;font-size:15px;line-height:1.2;letter-spacing:.04em;text-transform:uppercase;color:var(--s-fg)}
+.dbitem__hov span{font-family:var(--d-sans);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--s-accent-ink)}
+.dbitem:hover .dbitem__hov,.dbitem:focus-visible .dbitem__hov{opacity:1}
+@media (hover:hover){
+  .dbitem__b{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .dblist{row-gap:16px}
+}
+@media (hover:none){.dbitem__hov{display:none}}
 .dbgroup .dblist{align-self:start}
 .dbgroup .dbgroup__letter{margin-top:6px}
 /* последняя видимая группа — без линии снизу (после фильтра хвост оставался) */
