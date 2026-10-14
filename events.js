@@ -157,10 +157,11 @@ document.querySelectorAll('.jsform').forEach(function (form) {
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var fields = [].slice.call(form.querySelectorAll('[required]'));
+    /* обязательные и необязательные с шаблоном (ссылки на ролики): пустое — можно, неверное — нет */
+    var fields = [].slice.call(form.querySelectorAll('[required], input[pattern]'));
     var allOk = fields.map(validate).every(Boolean);
     if (!allOk) {
-      var first = form.querySelector('.is-invalid [required]');
+      var first = form.querySelector('.is-invalid [required], .is-invalid input[pattern]');
       if (first) first.focus();
       return;
     }

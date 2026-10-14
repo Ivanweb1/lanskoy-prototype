@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
-<link rel="stylesheet" href="design-pages.css?v=294">
+<link rel="stylesheet" href="design-pages.css?v=295">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -107,6 +107,29 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
               <span class="album__h dalbum__h">Офис студии на Васильевском</span>
               <span class="album__m dalbum__m">Офис · 48 м² · 2023 · <span class="album__n">2 фото</span></span>
             </span>
+          </div>
+        </div>
+      </div>
+      <div class="dblock">
+        <div class="dblock__head">
+          <h2 class="dblock__h2">Видео</h2>
+          <span class="dblock__meta">2 ролика</span>
+        </div>
+        <!-- ролики из анкеты — ссылками на Rutube или VK Видео, до трёх.
+             Карточка — как на «Галерее и видео», по клику — плеер в лайтбоксе
+             (id vidGrid — к нему app.js привязывает открытие видео).
+             Нет роликов — блока нет. Обложки, названия и длительность — демо,
+             на сайте подтягиваются с видеохостинга -->
+        <div class="dalbums dalbums--2" id="vidGrid">
+          <div class="vid dvid">
+            <span class="vid__media dvid__media"><img class="jimg" src="img/designers/litvyakova/2.webp" alt="" loading="lazy"></span>
+            <span class="vid__h dalbum__h">Рум-тур: квартира на Петроградской</span>
+            <span class="vid__m dalbum__m"><span class="dvid__meta"><span class="dvid__ic" aria-hidden="true"></span>Видео · 3:20</span> · Rutube</span>
+          </div>
+          <div class="vid dvid">
+            <span class="vid__media dvid__media"><img class="jimg" src="img/designers/litvyakova/3.webp" alt="" loading="lazy"></span>
+            <span class="vid__h dalbum__h">До и после: дом в Репино</span>
+            <span class="vid__m dalbum__m"><span class="dvid__meta"><span class="dvid__ic" aria-hidden="true"></span>Видео · 2:05</span> · VK Видео</span>
           </div>
         </div>
       </div>

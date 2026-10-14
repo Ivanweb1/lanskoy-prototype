@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
-<link rel="stylesheet" href="design-pages.css?v=294">
+<link rel="stylesheet" href="design-pages.css?v=295">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -235,6 +235,28 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
             </template>
           </fieldset>
 
+          <fieldset class="dform__grp">
+            <legend class="dform__leg">Видео</legend>
+            <p class="dform__note">Необязательно. До трёх роликов ссылками с Rutube или VK Видео — рум-туры, обзоры объектов, «до и после». На вашей странице в каталоге появится блок «Видео».</p>
+            <!-- только ссылки: файлы не храним, обложка, название и длительность
+                 подтягиваются с хостинга (как ролики магазинов, lk-video.html) -->
+            <div class="dform__vids">
+            <label class="fld">
+              <span class="fld__lab">Ссылка на ролик</span>
+              <input type="url" name="video1" inputmode="url" pattern="https?://(www\.)?(rutube\.ru|vkvideo\.ru|vk\.com)/.+" placeholder="https://rutube.ru/video/…">
+              <span class="fld__err">Нужна ссылка на ролик с Rutube или VK Видео</span>
+            </label>
+            <label class="fld">
+              <input type="url" name="video2" aria-label="Ссылка на ролик 2" inputmode="url" pattern="https?://(www\.)?(rutube\.ru|vkvideo\.ru|vk\.com)/.+" placeholder="https://vkvideo.ru/video…">
+              <span class="fld__err">Нужна ссылка на ролик с Rutube или VK Видео</span>
+            </label>
+            <label class="fld">
+              <input type="url" name="video3" aria-label="Ссылка на ролик 3" inputmode="url" pattern="https?://(www\.)?(rutube\.ru|vkvideo\.ru|vk\.com)/.+" placeholder="https://rutube.ru/video/…">
+              <span class="fld__err">Нужна ссылка на ролик с Rutube или VK Видео</span>
+            </label>
+            </div>
+          </fieldset>
+
           <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
           <label class="check">
             <input type="checkbox" name="pd" required>
@@ -263,7 +285,7 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
-<script src="events.js?v=74"></script>
+<script src="events.js?v=76"></script>
 <script src="design.js?v=135"></script>
 </body>
 </html>

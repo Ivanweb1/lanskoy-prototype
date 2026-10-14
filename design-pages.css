@@ -3499,3 +3499,6 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
     -webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
   .evcal.is-scroll .evcal__arrs{display:none}
 }
+
+/* анкета дизайнера: три поля ссылок на ролики подряд, подпись — только у первого */
+.dform__vids .fld + .fld{margin-top:-8px}
