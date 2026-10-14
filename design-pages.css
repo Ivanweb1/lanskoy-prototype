@@ -3385,19 +3385,16 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* медленный наезд на активном кадре — кадр «живёт», пока слайд на экране */
 .ptop__slide.is-active .ptop__img{transform:scale(1.05)}
 
-/* навигация: «01 —— 04» с полосами прогресса и пара стрелок вплотную —
-   одна строка внизу текстовой колонки, без лишних рамок вокруг счётчика */
+/* навигация: пара стрелок у левого края текста, полосы прогресса —
+   по центру всего слайдера на той же высоте. Счётчик только для
+   экранных дикторов: на экране номер дублировал бы полосы */
 .ptop__nav{
-  position:absolute;z-index:3;left:56px;bottom:44px;
-  display:flex;align-items:center;gap:32px;
+  position:absolute;z-index:3;left:56px;right:56px;bottom:44px;
+  display:flex;align-items:center;
 }
-.ptop__count{
-  display:flex;align-items:center;gap:14px;margin:0;
-  font-size:12px;font-weight:500;letter-spacing:.08em;color:var(--s-fg-soft);font-variant-numeric:tabular-nums;
-}
-.ptop__count b{font-weight:600;color:var(--s-fg)}
-.ptop__bars{display:flex;gap:4px}
-.ptop__bars i{position:relative;width:28px;height:2px;background:var(--s-line);overflow:hidden}
+.ptop__bars{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;gap:6px}
+.ptop__count{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}
+.ptop__bars i{position:relative;width:36px;height:2px;background:var(--s-line-strong);overflow:hidden}
 .ptop__bars i::after{content:"";position:absolute;inset:0;background:var(--s-accent);transform:scaleX(0);transform-origin:left}
 .ptop__bars i.is-done::after{transform:scaleX(1)}
 .ptop__bars i.is-run::after{animation:ptop-bar var(--ptop-t,7s) linear forwards}
@@ -3427,7 +3424,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 
 @media (max-width:1000px){
   .ptop__text{padding:44px 32px 116px 36px}
-  .ptop__nav{left:36px;bottom:36px}
+  .ptop__nav{left:36px;right:36px;bottom:36px}
 }
 /* на телефоне колонки схлопываются: кадр сверху без среза
    (рядом нет текстовой половины), навигация — строкой под кнопками */
@@ -3442,5 +3439,8 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .ptop__shop{margin-bottom:24px}
   .ptop__acts{flex-direction:column;align-items:stretch;gap:12px}
   .ptop__acts .dbtn{justify-content:center}
-  .ptop__nav{left:20px;right:20px;bottom:28px;justify-content:space-between;gap:16px}
+  .ptop__nav{left:20px;right:20px;bottom:28px}
+  /* узко: по центру полосы налезают на стрелки — уходят к правому краю */
+  .ptop__bars{position:static;transform:none;margin-left:auto}
+  .ptop__bars i{width:28px}
 }
