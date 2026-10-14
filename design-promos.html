@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
-<link rel="stylesheet" href="design-pages.css?v=294">
+<link rel="stylesheet" href="design-pages.css?v=295">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -35,6 +35,75 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
       <div>
         <h1 class="dpage__h1">Акции</h1>
         <p class="dpage__lead">Скидки, распродажи и специальные условия магазинов — с адресом секции и сроком действия.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ТОП-АКЦИИ: СЛАЙДЕР ================= -->
+<!-- Крупный баннер над списком: 3–5 акций, которые выбирает администратор.
+     Синяя плашка и боковой срез — как в «Аренде» на главной: это
+     полноширинный баннер, где кадр граничит с текстовой половиной. -->
+<section class="ptop" aria-roledescription="карусель" aria-label="Главные акции">
+  <div class="wrap">
+    <div class="ptop__box" id="promoTop">
+      <article class="ptop__slide is-active" role="group" aria-roledescription="слайд" aria-label="1 из 4">
+        <div class="ptop__text">
+          <p class="ptop__term">до 15 августа</p>
+          <h2 class="ptop__h2"><a href="promo.html">Кухни на заказ: специальные условия до конца лета</a></h2>
+          <p class="ptop__lead">Скидка на корпус и фасады при заказе кухни под ключ, замер и 3D-проект в подарок.</p>
+          <p class="ptop__shop"><b>Кухни «Спутник Стиль»</b> · 2 этаж · B12</p>
+          <div class="ptop__acts">
+            <a href="promo.html" class="dbtn dbtn--fill">Подробнее</a>
+            <a href="floors.html?room=B12&amp;floor=2" class="dlink">Найти на схеме</a>
+          </div>
+        </div>
+        <a class="ptop__media" href="promo.html" tabindex="-1" aria-hidden="true"><img class="ptop__img" src="img/promos/sputnik-kitchen.webp" alt="" loading="eager"></a>
+      </article>
+      <article class="ptop__slide" role="group" aria-roledescription="слайд" aria-label="2 из 4" aria-hidden="true">
+        <div class="ptop__text">
+          <p class="ptop__term ptop__term--soon">до 30 июня</p>
+          <h2 class="ptop__h2"><a href="promo.html">Распродажа дверных ручек <span class="nw">30—50%</span></a></h2>
+          <p class="ptop__lead">Итальянская и испанская фурнитура из прошлых коллекций — пока есть в наличии.</p>
+          <p class="ptop__shop"><b>Салон «Корал»</b> · 1 этаж · А14</p>
+          <div class="ptop__acts">
+            <a href="promo.html" class="dbtn dbtn--fill">Подробнее</a>
+            <a href="floors.html?room=А14&amp;floor=1" class="dlink">Найти на схеме</a>
+          </div>
+        </div>
+        <a class="ptop__media" href="promo.html" tabindex="-1" aria-hidden="true"><img class="ptop__img" src="img/pr-1.webp" alt="" loading="lazy"></a>
+      </article>
+      <article class="ptop__slide" role="group" aria-roledescription="слайд" aria-label="3 из 4" aria-hidden="true">
+        <div class="ptop__text">
+          <p class="ptop__term ptop__term--soon">до 30 июня</p>
+          <h2 class="ptop__h2"><a href="promo.html">Скидка 15% на декоративную штукатурку</a></h2>
+          <p class="ptop__lead">Материал и нанесение мастерами студии, образцы фактур — в шоуруме.</p>
+          <p class="ptop__shop"><b>VLADART STUDIO</b> · 1 этаж · А10</p>
+          <div class="ptop__acts">
+            <a href="promo.html" class="dbtn dbtn--fill">Подробнее</a>
+            <a href="floors.html?room=А10&amp;floor=1" class="dlink">Найти на схеме</a>
+          </div>
+        </div>
+        <a class="ptop__media" href="promo.html" tabindex="-1" aria-hidden="true"><img class="ptop__img" src="img/promos/vladart-plaster.webp" alt="" loading="lazy"></a>
+      </article>
+      <article class="ptop__slide" role="group" aria-roledescription="слайд" aria-label="4 из 4" aria-hidden="true">
+        <div class="ptop__text">
+          <p class="ptop__term">до 31 августа</p>
+          <h2 class="ptop__h2"><a href="promo.html">Лепнина Европласт: вторая позиция −30%</a></h2>
+          <p class="ptop__lead">Карнизы, молдинги и розетки — скидка действует на вторую позицию в чеке.</p>
+          <p class="ptop__shop"><b>ПРЕМЬЕР ДЕКОР</b> · 1 этаж · А12</p>
+          <div class="ptop__acts">
+            <a href="promo.html" class="dbtn dbtn--fill">Подробнее</a>
+            <a href="floors.html?room=А12&amp;floor=1" class="dlink">Найти на схеме</a>
+          </div>
+        </div>
+        <a class="ptop__media" href="promo.html" tabindex="-1" aria-hidden="true"><img class="ptop__img" src="img/cat-dekor.webp" alt="" loading="lazy"></a>
+      </article>
+      <div class="ptop__nav">
+        <button type="button" class="ptop__arr ptop__arr--prev" aria-label="Предыдущая акция"></button>
+        <p class="ptop__count" aria-live="polite"><b class="ptop__cur">01</b> / 04</p>
+        <button type="button" class="ptop__arr ptop__arr--next" aria-label="Следующая акция"></button>
+        <div class="ptop__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       </div>
     </div>
   </div>
@@ -207,6 +276,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="content.js?v=76"></script>
-<script src="design.js?v=135"></script>
+<script src="design.js?v=136"></script>
 </body>
 </html>

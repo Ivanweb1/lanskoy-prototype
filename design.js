@@ -2296,3 +2296,74 @@ function lnsMiniPlan(n, o) {
   window.addEventListener('resize', upd);
   window.addEventListener('load', upd);
 })();
+
+/* ---------- топ-акции: слайдер над списком ----------
+   Наплыв раз в 7 секунд; пауза при наведении, фокусе внутри и когда
+   вкладка скрыта. Свайп на телефоне. Без reduce-motion — без автосмены. */
+(function () {
+  var box = document.getElementById('promoTop');
+  if (!box) return;
+  var slides = [].slice.call(box.querySelectorAll('.ptop__slide'));
+  var bars = [].slice.call(box.querySelectorAll('.ptop__bars i'));
+  var cur = box.querySelector('.ptop__cur');
+  var n = slides.length, i = 0, T = 7000, timer = null, left = T, started = 0;
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  box.style.setProperty('--ptop-t', T / 1000 + 's');
+  if (n < 2) { box.querySelector('.ptop__nav').hidden = true; return; }
+
+  function pad(k) { return (k < 10 ? '0' : '') + k; }
+  function go(k) {
+    i = (k + n) % n;
+    slides.forEach(function (s, j) {
+      var on = j === i;
+      s.classList.toggle('is-active', on);
+      if (on) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true');
+      /* ссылки скрытых слайдов не должны ловить Tab */
+      [].forEach.call(s.querySelectorAll('.ptop__text a'), function (a) { a.tabIndex = on ? 0 : -1; });
+    });
+    bars.forEach(function (b, j) {
+      b.classList.remove('is-run');
+      b.classList.toggle('is-done', j < i);
+    });
+    cur.textContent = pad(i + 1);
+    restart();
+  }
+  function restart() {
+    clearTimeout(timer); left = T;
+    if (still) return;
+    var b = bars[i];
+    if (b) { void b.offsetWidth; b.classList.add('is-run'); }
+    if (!box.classList.contains('is-paused')) run();
+  }
+  function run() { started = Date.now(); clearTimeout(timer); timer = setTimeout(function () { go(i + 1); }, left); }
+  function pause() {
+    if (box.classList.contains('is-paused')) return;
+    box.classList.add('is-paused'); clearTimeout(timer); left -= Date.now() - started;
+  }
+  function resume() {
+    if (box.matches(':hover') || box.contains(document.activeElement) || document.hidden) return;
+    box.classList.remove('is-paused'); if (!still) run();
+  }
+
+  box.querySelector('.ptop__arr--prev').addEventListener('click', function () { go(i - 1); });
+  box.querySelector('.ptop__arr--next').addEventListener('click', function () { go(i + 1); });
+  box.addEventListener('mouseenter', pause);
+  box.addEventListener('mouseleave', resume);
+  box.addEventListener('focusin', pause);
+  box.addEventListener('focusout', function () { setTimeout(resume, 0); });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); else resume(); });
+  box.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { go(i - 1); } else if (e.key === 'ArrowRight') { go(i + 1); }
+  });
+
+  var x0 = null, y0 = 0;
+  box.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  box.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? i + 1 : i - 1);
+  }, { passive: true });
+
+  go(0);
+})();
