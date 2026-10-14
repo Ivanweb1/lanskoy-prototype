@@ -3395,18 +3395,15 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .ptop__bars i.is-done::after{transform:scaleX(1)}
 .ptop__bars i.is-run::after{animation:ptop-bar var(--ptop-t,7s) linear forwards}
 .ptop.is-paused .ptop__bars i.is-run::after{animation-play-state:paused}
+/* стрелки — как в пагинации списков (.dpager__arr): квадрат 44px,
+   тонкая рамка без скругления, шеврон 16px цветом текста */
 .ptop__arr{
-  width:40px;height:40px;flex:none;border:1px solid var(--s-line-strong);border-radius:2px;
-  background:transparent;cursor:pointer;position:relative;transition:background .2s,border-color .2s;
+  display:inline-flex;align-items:center;justify-content:center;flex:none;
+  width:44px;height:44px;padding:0;border:1px solid var(--s-line);
+  background:transparent;color:var(--s-fg);cursor:pointer;transition:color .2s,border-color .2s;
 }
-.ptop__arr::before{
-  content:"";position:absolute;inset:0;background:var(--s-fg-soft);transition:background .2s;
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/14px 8px;
-          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/14px 8px;
-}
-.ptop__arr--prev::before{transform:scaleX(-1)}
-.ptop__arr:hover{background:var(--s-plate);border-color:var(--s-accent)}
-.ptop__arr:hover::before{background:var(--s-accent-ink)}
+.ptop__arr--next svg{transform:scaleX(-1)}
+.ptop__arr:hover{border-color:var(--s-accent);color:var(--s-accent-ink)}
 .ptop__arr:focus-visible{outline:1px solid var(--s-accent);outline-offset:2px}
 @keyframes ptop-bar{to{transform:scaleX(1)}}
 
@@ -3432,5 +3429,6 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .ptop__acts{flex-direction:column;align-items:stretch;gap:12px}
   .ptop__acts .dbtn{justify-content:center}
   .ptop__nav{margin-top:16px;gap:16px}
+  .ptop__arr{width:40px;height:40px}
   .ptop__bars i{width:28px}
 }
