@@ -3385,35 +3385,39 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* медленный наезд на активном кадре — кадр «живёт», пока слайд на экране */
 .ptop__slide.is-active .ptop__img{transform:scale(1.05)}
 
-/* навигация: стрелки, счётчик и полосы прогресса внизу текстовой колонки */
+/* навигация: «01 —— 04» с полосами прогресса и пара стрелок вплотную —
+   одна строка внизу текстовой колонки, без лишних рамок вокруг счётчика */
 .ptop__nav{
-  position:absolute;z-index:3;left:56px;bottom:40px;
-  display:flex;align-items:center;gap:14px;
+  position:absolute;z-index:3;left:56px;bottom:44px;
+  display:flex;align-items:center;gap:32px;
 }
-.ptop__arr{
-  width:44px;height:44px;flex:none;border:1px solid var(--s-accent);border-radius:2px;
-  background:transparent;cursor:pointer;position:relative;transition:background .2s,border-color .2s;
-}
-.ptop__arr::before{
-  content:"";position:absolute;inset:0;background:var(--s-accent-ink);
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/16px 9px;
-          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/16px 9px;
-}
-.ptop__arr--prev::before{transform:scaleX(-1)}
-.ptop__arr:hover{background:var(--s-accent);border-color:var(--s-accent)}
-.ptop__arr:hover::before{background:var(--s-btn-fill-fg)}
-.ptop__arr:focus-visible{outline:1px solid var(--s-accent);outline-offset:3px}
 .ptop__count{
-  margin:0;min-width:58px;text-align:center;font-size:12px;letter-spacing:.08em;
-  color:var(--s-fg-soft);font-variant-numeric:tabular-nums;
+  display:flex;align-items:center;gap:14px;margin:0;
+  font-size:12px;font-weight:500;letter-spacing:.08em;color:var(--s-fg-soft);font-variant-numeric:tabular-nums;
 }
 .ptop__count b{font-weight:600;color:var(--s-fg)}
-.ptop__bars{display:flex;gap:6px;margin-left:12px}
-.ptop__bars i{position:relative;width:40px;height:2px;background:var(--s-line);overflow:hidden}
+.ptop__bars{display:flex;gap:4px}
+.ptop__bars i{position:relative;width:28px;height:2px;background:var(--s-line);overflow:hidden}
 .ptop__bars i::after{content:"";position:absolute;inset:0;background:var(--s-accent);transform:scaleX(0);transform-origin:left}
 .ptop__bars i.is-done::after{transform:scaleX(1)}
 .ptop__bars i.is-run::after{animation:ptop-bar var(--ptop-t,7s) linear forwards}
 .ptop__box.is-paused .ptop__bars i.is-run::after{animation-play-state:paused}
+/* стрелки — одна плашка из двух ячеек с общей рамкой */
+.ptop__arrs{display:flex;border:1px solid var(--s-line-strong);border-radius:2px}
+.ptop__arr{
+  width:40px;height:36px;flex:none;border:0;background:transparent;cursor:pointer;position:relative;
+  transition:background .2s;
+}
+.ptop__arr + .ptop__arr{border-left:1px solid var(--s-line-strong)}
+.ptop__arr::before{
+  content:"";position:absolute;inset:0;background:var(--s-fg-soft);transition:background .2s;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/14px 8px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 4.5h14M10 1l4 3.5L10 8' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/14px 8px;
+}
+.ptop__arr--prev::before{transform:scaleX(-1)}
+.ptop__arr:hover{background:var(--s-plate)}
+.ptop__arr:hover::before{background:var(--s-accent-ink)}
+.ptop__arr:focus-visible{outline:1px solid var(--s-accent);outline-offset:2px}
 @keyframes ptop-bar{to{transform:scaleX(1)}}
 
 @media (prefers-reduced-motion:reduce){
@@ -3423,8 +3427,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 
 @media (max-width:1000px){
   .ptop__text{padding:44px 32px 104px 36px}
-  .ptop__nav{left:36px;bottom:32px}
-  .ptop__bars{display:none}
+  .ptop__nav{left:36px;bottom:36px}
 }
 /* на телефоне колонки схлопываются: кадр сверху без среза
    (рядом нет текстовой половины), навигация — строкой под кнопками */
@@ -3433,12 +3436,12 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .ptop + .dcat{padding-top:40px}
   .ptop__slide{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;min-height:0}
   .ptop__media{grid-row:1;aspect-ratio:4/3;clip-path:none}
-  .ptop__text{grid-row:2;align-self:start;padding:28px 20px 92px}
+  .ptop__text{grid-row:2;align-self:start;padding:28px 20px 88px}
   .ptop__h2{font-size:clamp(22px,6.6vw,28px)}
   .ptop__lead{font-size:14px}
   .ptop__shop{margin-bottom:24px}
   .ptop__acts{flex-direction:column;align-items:stretch;gap:18px}
   .ptop__acts .dbtn{justify-content:center}
   .ptop__acts .dlink{align-self:center}
-  .ptop__nav{left:20px;right:20px;bottom:28px;justify-content:space-between}
+  .ptop__nav{left:20px;right:20px;bottom:28px;justify-content:space-between;gap:16px}
 }
