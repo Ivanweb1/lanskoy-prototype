@@ -2304,12 +2304,13 @@ function lnsMiniPlan(n, o) {
   var box = document.getElementById('promoTop');
   if (!box) return;
   var slides = [].slice.call(box.querySelectorAll('.ptop__slide'));
-  var bars = [].slice.call(box.querySelectorAll('.ptop__bars i'));
-  var cur = box.querySelector('.ptop__cur');
+  var root = box.closest('.ptop');   /* навигация — под плашкой, вне box */
+  var bars = [].slice.call(root.querySelectorAll('.ptop__bars i'));
+  var cur = root.querySelector('.ptop__cur');
   var n = slides.length, i = 0, T = 7000, timer = null, left = T, started = 0;
   var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  box.style.setProperty('--ptop-t', T / 1000 + 's');
-  if (n < 2) { box.querySelector('.ptop__nav').hidden = true; return; }
+  root.style.setProperty('--ptop-t', T / 1000 + 's');
+  if (n < 2) { root.querySelector('.ptop__nav').hidden = true; return; }
 
   function pad(k) { return (k < 10 ? '0' : '') + k; }
   function go(k) {
@@ -2333,26 +2334,26 @@ function lnsMiniPlan(n, o) {
     if (still) return;
     var b = bars[i];
     if (b) { void b.offsetWidth; b.classList.add('is-run'); }
-    if (!box.classList.contains('is-paused')) run();
+    if (!root.classList.contains('is-paused')) run();
   }
   function run() { started = Date.now(); clearTimeout(timer); timer = setTimeout(function () { go(i + 1); }, left); }
   function pause() {
-    if (box.classList.contains('is-paused')) return;
-    box.classList.add('is-paused'); clearTimeout(timer); left -= Date.now() - started;
+    if (root.classList.contains('is-paused')) return;
+    root.classList.add('is-paused'); clearTimeout(timer); left -= Date.now() - started;
   }
   function resume() {
-    if (box.matches(':hover') || box.contains(document.activeElement) || document.hidden) return;
-    box.classList.remove('is-paused'); if (!still) run();
+    if (root.matches(':hover') || root.contains(document.activeElement) || document.hidden) return;
+    root.classList.remove('is-paused'); if (!still) run();
   }
 
-  box.querySelector('.ptop__arr--prev').addEventListener('click', function () { go(i - 1); });
-  box.querySelector('.ptop__arr--next').addEventListener('click', function () { go(i + 1); });
-  box.addEventListener('mouseenter', pause);
-  box.addEventListener('mouseleave', resume);
-  box.addEventListener('focusin', pause);
-  box.addEventListener('focusout', function () { setTimeout(resume, 0); });
+  root.querySelector('.ptop__arr--prev').addEventListener('click', function () { go(i - 1); });
+  root.querySelector('.ptop__arr--next').addEventListener('click', function () { go(i + 1); });
+  root.addEventListener('mouseenter', pause);
+  root.addEventListener('mouseleave', resume);
+  root.addEventListener('focusin', pause);
+  root.addEventListener('focusout', function () { setTimeout(resume, 0); });
   document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); else resume(); });
-  box.addEventListener('keydown', function (e) {
+  root.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') { go(i - 1); } else if (e.key === 'ArrowRight') { go(i + 1); }
   });
 

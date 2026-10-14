@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
-<link rel="stylesheet" href="design-pages.css?v=299">
+<link rel="stylesheet" href="design-pages.css?v=300">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -99,14 +99,12 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
         </div>
         <a class="ptop__media" href="promo.html" tabindex="-1" aria-hidden="true"><img class="ptop__img" src="img/cat-dekor.webp" alt="" loading="lazy"></a>
       </article>
-      <div class="ptop__nav">
-        <div class="ptop__arrs">
-          <button type="button" class="ptop__arr ptop__arr--prev" aria-label="Предыдущая акция"></button>
-          <button type="button" class="ptop__arr ptop__arr--next" aria-label="Следующая акция"></button>
-        </div>
-        <span class="ptop__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <p class="ptop__count" aria-live="polite">Акция <span class="ptop__cur">01</span> из 04</p>
-      </div>
+    </div>
+    <div class="ptop__nav">
+      <button type="button" class="ptop__arr ptop__arr--prev" aria-label="Предыдущая акция" aria-controls="promoTop"></button>
+      <span class="ptop__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <button type="button" class="ptop__arr ptop__arr--next" aria-label="Следующая акция" aria-controls="promoTop"></button>
+      <p class="ptop__count" aria-live="polite">Акция <span class="ptop__cur">01</span> из 04</p>
     </div>
   </div>
 </section>
@@ -278,6 +276,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="content.js?v=76"></script>
-<script src="design.js?v=136"></script>
+<script src="design.js?v=137"></script>
 </body>
 </html>
