@@ -3360,7 +3360,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 }
 .ptop__slide.is-active{opacity:1;visibility:visible;transition:opacity .7s var(--d-ease),visibility 0s}
 /* низ текстовой колонки занят навигацией — отступ под неё */
-.ptop__text{align-self:center;padding:56px 48px 112px 56px}
+.ptop__text{align-self:center;padding:56px 48px 128px 56px}
 .ptop__term{
   display:inline-flex;align-items:center;height:28px;padding:0 12px;margin:0 0 22px;
   border:1px solid var(--s-line-strong);border-radius:2px;
@@ -3376,7 +3376,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 .ptop__lead{font-size:15px;line-height:1.6;color:var(--s-fg-soft);max-width:440px;margin:0 0 16px}
 .ptop__shop{font-size:13px;letter-spacing:.04em;color:var(--s-fg-soft);margin:0 0 30px}
 .ptop__shop b{font-weight:600;color:var(--s-fg)}
-.ptop__acts{display:flex;flex-wrap:wrap;gap:28px;align-items:center}
+.ptop__acts{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
 .ptop__media{
   position:relative;display:block;overflow:hidden;background:var(--b-navy);
   clip-path:polygon(13% 0,100% 0,100% 100%,0 100%);
@@ -3426,7 +3426,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 }
 
 @media (max-width:1000px){
-  .ptop__text{padding:44px 32px 104px 36px}
+  .ptop__text{padding:44px 32px 116px 36px}
   .ptop__nav{left:36px;bottom:36px}
 }
 /* на телефоне колонки схлопываются: кадр сверху без среза
@@ -3440,8 +3440,7 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .ptop__h2{font-size:clamp(22px,6.6vw,28px)}
   .ptop__lead{font-size:14px}
   .ptop__shop{margin-bottom:24px}
-  .ptop__acts{flex-direction:column;align-items:stretch;gap:18px}
+  .ptop__acts{flex-direction:column;align-items:stretch;gap:12px}
   .ptop__acts .dbtn{justify-content:center}
-  .ptop__acts .dlink{align-self:center}
   .ptop__nav{left:20px;right:20px;bottom:28px;justify-content:space-between;gap:16px}
 }
