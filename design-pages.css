@@ -1487,7 +1487,7 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dalbums--2 .dalbum__media{aspect-ratio:3/2}
 .dalbums--2 .dalbum.is-wide{grid-column:1/-1}
 .dalbums--2 .dalbum.is-wide .dalbum__media{aspect-ratio:21/8}
-/* на фото — ничего: число кадров и длительность в подписи, видео отмечено значком */
+/* на фото альбома — ничего: число кадров и длительность в подписи; у видео — кнопка на обложке и значок в подписи */
 .dalbum .album__n{position:static;display:inline;padding:0;background:none;color:inherit;font:inherit;letter-spacing:inherit;text-transform:none}
 .dvid__meta{display:inline-flex;align-items:center;gap:6px;color:var(--s-accent-ink)}
 .dvid__ic{width:0;height:0;border-left:7px solid currentColor;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
@@ -1495,6 +1495,22 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
 .dalbum[hidden],.dvid[hidden]{display:none}
 .dalbum__media,.dvid__media{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--s-bg-2);margin-bottom:12px}
 .dvid__media{aspect-ratio:16/9}
+/* на обложке ролика — медная кнопка воспроизведения, как у видео магазина
+   (.dvideo__play), чуть мельче: карточка меньше постера. Без неё обложку
+   было не отличить от фото альбома */
+.dvid__media::before{
+  content:"";position:absolute;z-index:2;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;
+  background:var(--b-copper);transition:transform .25s var(--d-ease),filter .25s;
+}
+.dvid__media::after{
+  content:"";position:absolute;z-index:3;left:50%;top:50%;margin:-10px 0 0 -5px;
+  border-left:14px solid var(--b-navy);border-top:10px solid transparent;border-bottom:10px solid transparent;
+}
+.dvid:hover .dvid__media::before{transform:scale(1.06);filter:brightness(1.07)}
+@media (max-width:600px){
+  .dvid__media::before{width:48px;height:48px;margin:-24px 0 0 -24px}
+  .dvid__media::after{margin:-8px 0 0 -4px;border-left-width:12px;border-top-width:8px;border-bottom-width:8px}
+}
 .dalbum:hover .jimg,.dvid:hover .jimg{transform:scale(1.05)}
 .dalbum__h{font-family:var(--d-sans);font-weight:600;font-size:17px;line-height:1.35;color:var(--s-fg);transition:color .2s}
 .dalbum:hover .dalbum__h,.dvid:hover .dalbum__h{color:var(--s-accent-ink)}
