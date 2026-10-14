@@ -3480,13 +3480,17 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 [data-theme="dark"] .evcal__d.is-we:not(.has-ev) .evcal__btn{color:rgba(246,244,237,.4)}
 .evcal__dots{display:flex;gap:3px;height:4px}
 .evcal__dots i{width:4px;height:4px;border-radius:50%;background:currentColor}
-/* день с событием — медная рамка; выбранный и наведение — медная заливка, как у активного чипа */
-.evcal__d.has-ev .evcal__btn{cursor:pointer;color:var(--s-accent-ink);box-shadow:inset 0 0 0 1px var(--s-accent);transition:background .2s,color .2s}
+/* День с событием — медное число и точки, без рамки: афиша будет плотной,
+   и при событии каждый день рамки слились бы в одну полосу. Рамка и
+   заливка — только у выбранного дня и при наведении. Пустые дни бледнее. */
+.evcal__d:not(.has-ev) .evcal__btn{opacity:.55}
+.evcal__d.has-ev .evcal__btn{cursor:pointer;color:var(--s-accent-ink);transition:background .2s,color .2s,box-shadow .2s}
 .evcal__d.has-ev .evcal__n{font-weight:700}
-.evcal__d.has-ev .evcal__btn:hover,
-.evcal__d.is-sel .evcal__btn{background:var(--s-accent);color:var(--s-btn-fill-fg)}
+.evcal__d.has-ev .evcal__btn:hover{box-shadow:inset 0 0 0 1px var(--s-accent)}
+.evcal__d.is-sel .evcal__btn,
+.evcal__d.is-sel .evcal__btn:hover{background:var(--s-accent);color:var(--s-btn-fill-fg);box-shadow:none}
 .evcal__d.has-ev .evcal__btn:focus-visible{outline:1px solid var(--s-accent);outline-offset:2px}
-.evcal__d.is-off .evcal__btn{cursor:default;color:var(--s-fg-soft);opacity:.45;background:transparent;box-shadow:inset 0 0 0 1px var(--s-line)}
+.evcal__d.is-off .evcal__btn{cursor:default;color:var(--s-fg-soft);opacity:.45;background:transparent;box-shadow:none}
 @media (max-width:760px){
   /* лента листается вбок — правый край гаснет, чтобы это было видно */
   .evcal{margin:-8px calc(var(--pad) * -1) 28px}
