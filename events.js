@@ -15,6 +15,7 @@
   var view = 'upcoming';
   var aud = 'all';
   var type = 'all';
+  var day = '';      /* день из ленты дат (ГГГГ-ММ-ДД), пусто — все даты */
 
   function apply() {
     var box = views[view];
@@ -25,18 +26,21 @@
     box.querySelectorAll('.evrow').forEach(function (row) {
       var okAud = aud === 'all' || row.dataset.aud === aud;
       var okType = type === 'all' || row.dataset.type === type;
-      var visible = okAud && okType;
+      var okDay = !day || view !== 'upcoming' || row.dataset.date === day;
+      var visible = okAud && okType && okDay;
+      row.dataset.okf = okAud && okType ? '1' : '0';   /* для ленты дат: проходит ли фильтры без учёта дня */
       row.hidden = !visible;
       if (visible) shown++;
     });
 
-    var filtersOn = aud !== 'all' || type !== 'all';
+    var filtersOn = aud !== 'all' || type !== 'all' || !!day;
     box.hidden = shown === 0;
     /* пусто из-за фильтров — одно сообщение, пусто само по себе — другое */
     empty.hidden = !(shown === 0 && filtersOn);
     none.hidden = !(shown === 0 && !filtersOn);
 
     count(shown);
+    document.dispatchEvent(new CustomEvent('ev:applied', { detail: { view: view, day: day } }));
   }
 
   /* «1 событие», «2 события», «5 событий» */
@@ -88,12 +92,15 @@
   });
 
   function reset() {
-    aud = 'all'; type = 'all';
+    aud = 'all'; type = 'all'; day = '';
     filters.querySelectorAll('.chip').forEach(function (c) {
       c.classList.toggle('is-active', c.dataset.aud === 'all' || c.dataset.type === 'all');
     });
     apply();
   }
+  /* лента дат просит показать один день (или снова все) */
+  document.addEventListener('ev:day', function (e) { day = e.detail || ''; apply(); });
+
   document.querySelectorAll('[data-evreset]').forEach(function (b) {
     b.addEventListener('click', reset);
   });
@@ -176,9 +183,12 @@ document.querySelectorAll('.jsform').forEach(function (form) {
 });
 
 /* ---------- лента дат над «Ближайшими» ----------
-   Полные недели от первого до последнего события (не меньше четырёх).
-   Дни с событием — медные кнопки, клик прокручивает к строке и подсвечивает её.
-   Событие скрыто фильтром — день гаснет. */
+   Рассчитана на плотную афишу: не меньше шести недель, под числом —
+   до трёх точек по числу событий в день. Клик по дню фильтрует список
+   этим днём (повторный клик или «Все даты» — сброс): прокрутка к строке
+   не работала бы, когда нужное событие ещё не подгружено.
+   В прототипе даты берутся из data-date строк списка; на сайте ленту
+   строит API по всем будущим событиям, а не только по загруженным. */
 (function () {
   var cal = document.getElementById('evCal');
   var list = document.getElementById('viewUpcoming');
@@ -188,8 +198,10 @@ document.querySelectorAll('.jsform').forEach(function (form) {
 
   var WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
   var MON = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  var MONG = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
   function parse(s) { var p = s.split('-'); return new Date(+p[0], p[1] - 1, +p[2]); }
   function key(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function word(n) { var a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'событие' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'события' : 'событий'; }
 
   var byDay = {};
   rows.forEach(function (r) { (byDay[r.dataset.date] = byDay[r.dataset.date] || []).push(r); });
@@ -198,47 +210,81 @@ document.querySelectorAll('.jsform').forEach(function (form) {
   start.setDate(start.getDate() - (start.getDay() + 6) % 7);          /* к понедельнику */
   end.setDate(end.getDate() + (7 - end.getDay()) % 7);                /* к воскресенью */
   var days = Math.round((end - start) / 864e5) + 1;
-  if (days < 28) { end.setDate(end.getDate() + 28 - days); days = 28; }
+  if (days < 42) { end.setDate(end.getDate() + 42 - days); days = 42; }
 
-  var h = '<ol class="evcal__days">';
+  var h = '<div class="evcal__head"><button type="button" class="evcal__all" hidden>Все даты</button>' +
+    '<span class="evcal__arrs"><button type="button" class="evcal__arr evcal__arr--prev" aria-label="Раньше"></button>' +
+    '<button type="button" class="evcal__arr evcal__arr--next" aria-label="Позже"></button></span></div>' +
+    '<div class="evcal__scroll"><ol class="evcal__days">';
   for (var i = 0, d = new Date(start); i < days; i++, d.setDate(d.getDate() + 1)) {
-    var k = key(d), ev = byDay[k], wd = d.getDay();
-    var cls = 'evcal__d' + (wd === 0 || wd === 6 ? ' is-we' : '') + (d.getDate() === 1 || i === 0 ? ' is-m' : '');
-    var mon = d.getDate() === 1 || i === 0 ? '<span class="evcal__mon">' + MON[d.getMonth()] + '</span>' : '';
+    var k = key(d), ev = byDay[k], wd = d.getDay(), first = d.getDate() === 1 || i === 0;
+    var cls = 'evcal__d' + (wd === 0 || wd === 6 ? ' is-we' : '') + (first ? ' is-m' : '') + (wd === 1 ? ' is-mon' : '');
+    var mon = first ? '<span class="evcal__mon">' + MON[d.getMonth()] + '</span>' : '';
     var inner = '<span class="evcal__wd">' + WD[wd] + '</span><span class="evcal__n">' + d.getDate() + '</span>';
     if (ev) {
-      var t = ev.map(function (r) { return r.querySelector('.erow__title').textContent.trim(); }).join('; ');
-      h += '<li class="' + cls + ' has-ev">' + mon + '<button type="button" class="evcal__btn" data-day="' + k + '" title="' + t.replace(/"/g, '&quot;') + '" aria-label="' + d.getDate() + ' ' + MON[d.getMonth()].toLowerCase() + ': ' + t.replace(/"/g, '&quot;') + '">' + inner + '<i class="evcal__dot" aria-hidden="true"></i></button></li>';
+      var dots = '';
+      for (var j = 0; j < Math.min(ev.length, 3); j++) dots += '<i></i>';
+      var lab = d.getDate() + ' ' + MONG[d.getMonth()] + ': ' + ev.length + ' ' + word(ev.length);
+      h += '<li class="' + cls + ' has-ev">' + mon + '<button type="button" class="evcal__btn" data-day="' + k + '" aria-pressed="false" aria-label="' + lab + '" title="' + lab + '">' + inner + '<span class="evcal__dots" aria-hidden="true">' + dots + '</span></button></li>';
     } else {
-      h += '<li class="' + cls + '" aria-hidden="true">' + mon + '<span class="evcal__btn">' + inner + '</span></li>';
+      h += '<li class="' + cls + '" aria-hidden="true">' + mon + '<span class="evcal__btn">' + inner + '<span class="evcal__dots"></span></span></li>';
     }
   }
-  cal.innerHTML = h + '</ol>';
+  cal.innerHTML = h + '</ol></div>';
+  var sc = cal.querySelector('.evcal__scroll');
+  var all = cal.querySelector('.evcal__all');
+  var prev = cal.querySelector('.evcal__arr--prev'), next = cal.querySelector('.evcal__arr--next');
 
-  /* фильтры и вкладки меняют список — пересчитываем после events.js */
-  function sync() {
-    cal.hidden = list.hidden;
+  /* стрелки листают по неделе; не нужны — прячутся */
+  function arrs() {
+    var max = sc.scrollWidth - sc.clientWidth;
+    cal.classList.toggle('is-scroll', max > 2);
+    prev.disabled = sc.scrollLeft <= 2;
+    next.disabled = sc.scrollLeft >= max - 2;
+  }
+  function week(dir) {
+    var w = cal.querySelector('.evcal__d').getBoundingClientRect().width * 7;
+    sc.scrollBy({ left: dir * w, behavior: 'smooth' });
+  }
+  prev.addEventListener('click', function () { week(-1); });
+  next.addEventListener('click', function () { week(1); });
+  sc.addEventListener('scroll', arrs, { passive: true });
+  window.addEventListener('resize', arrs);
+
+  /* после каждого применения фильтров: гасим дни без видимых событий,
+     отмечаем выбранный, прячем ленту в архиве */
+  document.addEventListener('ev:applied', function (e) {
+    var v = e.detail.view, sel = e.detail.day;
+    cal.hidden = v !== 'upcoming';
+    all.hidden = !sel;
+    /* выбран день — «Показать ещё» и пагинация к нему не относятся */
+    var more = list.querySelector('.results__more');
+    if (more) more.hidden = !!sel;
     [].forEach.call(cal.querySelectorAll('.has-ev'), function (li) {
       var b = li.querySelector('button');
-      var on = byDay[b.dataset.day].some(function (r) { return !r.hidden; });
+      var k = b.dataset.day;
+      /* без учёта выбранного дня: остальные дни при выборе не гаснут */
+      var on = byDay[k].some(function (r) { return r.dataset.okf !== '0'; });
       li.classList.toggle('is-off', !on);
-      b.disabled = !on;
+      li.classList.toggle('is-sel', sel === k);
+      b.setAttribute('aria-pressed', sel === k ? 'true' : 'false');
+      b.disabled = !on && sel !== k;
     });
-  }
-  ['evFilters', 'eventTabs'].forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) el.addEventListener('click', function () { setTimeout(sync, 0); });
+    /* выбранный день за краем ленты (выбор пришёл не кликом по ней) — подводим */
+    var cur = sel && cal.querySelector('.is-sel');
+    if (cur) {
+      var l = cur.offsetLeft - sc.offsetLeft, r = l + cur.offsetWidth;
+      if (l < sc.scrollLeft || r > sc.scrollLeft + sc.clientWidth) sc.scrollTo({ left: l - 40 });
+    }
+    arrs();
   });
-  window.addEventListener('popstate', function () { setTimeout(sync, 0); });
-  sync();
 
   cal.addEventListener('click', function (e) {
     var b = e.target.closest('button[data-day]');
-    if (!b) return;
-    var row = byDay[b.dataset.day].filter(function (r) { return !r.hidden; })[0];
-    if (!row) return;
-    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    row.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'center' });
-    row.classList.remove('is-hl'); void row.offsetWidth; row.classList.add('is-hl');
+    if (b) document.dispatchEvent(new CustomEvent('ev:day', { detail: b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.day }));
   });
+  all.addEventListener('click', function () { document.dispatchEvent(new CustomEvent('ev:day', { detail: '' })); });
+
+  /* лента собрана после первого apply() — догоняем его */
+  document.dispatchEvent(new CustomEvent('ev:day', { detail: '' }));
 })();
