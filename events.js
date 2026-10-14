@@ -174,3 +174,71 @@ document.querySelectorAll('.jsform').forEach(function (form) {
     if (e.target.type === 'checkbox') validate(e.target);
   });
 });
+
+/* ---------- лента дат над «Ближайшими» ----------
+   Полные недели от первого до последнего события (не меньше четырёх).
+   Дни с событием — медные кнопки, клик прокручивает к строке и подсвечивает её.
+   Событие скрыто фильтром — день гаснет. */
+(function () {
+  var cal = document.getElementById('evCal');
+  var list = document.getElementById('viewUpcoming');
+  if (!cal || !list) return;
+  var rows = [].slice.call(list.querySelectorAll('.evrow[data-date]'));
+  if (!rows.length) return;
+
+  var WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+  var MON = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  function parse(s) { var p = s.split('-'); return new Date(+p[0], p[1] - 1, +p[2]); }
+  function key(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+
+  var byDay = {};
+  rows.forEach(function (r) { (byDay[r.dataset.date] = byDay[r.dataset.date] || []).push(r); });
+  var dates = Object.keys(byDay).sort();
+  var start = parse(dates[0]), end = parse(dates[dates.length - 1]);
+  start.setDate(start.getDate() - (start.getDay() + 6) % 7);          /* к понедельнику */
+  end.setDate(end.getDate() + (7 - end.getDay()) % 7);                /* к воскресенью */
+  var days = Math.round((end - start) / 864e5) + 1;
+  if (days < 28) { end.setDate(end.getDate() + 28 - days); days = 28; }
+
+  var h = '<ol class="evcal__days">';
+  for (var i = 0, d = new Date(start); i < days; i++, d.setDate(d.getDate() + 1)) {
+    var k = key(d), ev = byDay[k], wd = d.getDay();
+    var cls = 'evcal__d' + (wd === 0 || wd === 6 ? ' is-we' : '') + (d.getDate() === 1 || i === 0 ? ' is-m' : '');
+    var mon = d.getDate() === 1 || i === 0 ? '<span class="evcal__mon">' + MON[d.getMonth()] + '</span>' : '';
+    var inner = '<span class="evcal__wd">' + WD[wd] + '</span><span class="evcal__n">' + d.getDate() + '</span>';
+    if (ev) {
+      var t = ev.map(function (r) { return r.querySelector('.erow__title').textContent.trim(); }).join('; ');
+      h += '<li class="' + cls + ' has-ev">' + mon + '<button type="button" class="evcal__btn" data-day="' + k + '" title="' + t.replace(/"/g, '&quot;') + '" aria-label="' + d.getDate() + ' ' + MON[d.getMonth()].toLowerCase() + ': ' + t.replace(/"/g, '&quot;') + '">' + inner + '<i class="evcal__dot" aria-hidden="true"></i></button></li>';
+    } else {
+      h += '<li class="' + cls + '" aria-hidden="true">' + mon + '<span class="evcal__btn">' + inner + '</span></li>';
+    }
+  }
+  cal.innerHTML = h + '</ol>';
+
+  /* фильтры и вкладки меняют список — пересчитываем после events.js */
+  function sync() {
+    cal.hidden = list.hidden;
+    [].forEach.call(cal.querySelectorAll('.has-ev'), function (li) {
+      var b = li.querySelector('button');
+      var on = byDay[b.dataset.day].some(function (r) { return !r.hidden; });
+      li.classList.toggle('is-off', !on);
+      b.disabled = !on;
+    });
+  }
+  ['evFilters', 'eventTabs'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', function () { setTimeout(sync, 0); });
+  });
+  window.addEventListener('popstate', function () { setTimeout(sync, 0); });
+  sync();
+
+  cal.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-day]');
+    if (!b) return;
+    var row = byDay[b.dataset.day].filter(function (r) { return !r.hidden; })[0];
+    if (!row) return;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    row.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'center' });
+    row.classList.remove('is-hl'); void row.offsetWidth; row.classList.add('is-hl');
+  });
+})();

@@ -3432,3 +3432,45 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
   .ptop__arr{width:40px;height:40px}
   .ptop__bars i{width:28px}
 }
+
+/* ============ АФИША: ЛЕНТА ДАТ ============ */
+/* Полные недели от первого до последнего события. Дни с событием —
+   медные, с точкой; выходные чуть бледнее; у первого дня месяца —
+   подпись месяца и медная черта слева. Не помещается — листается вбок. */
+.evcal{margin:-12px 0 40px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.evcal::-webkit-scrollbar{display:none}
+.evcal__days{display:flex;gap:2px;list-style:none;margin:0;padding:22px 0 0;min-width:max-content}
+.evcal__d{position:relative;flex:1 0 36px;min-width:36px}
+.evcal__d.is-m:not(:first-child){border-left:1px solid var(--s-line-strong)}
+.evcal__mon{
+  position:absolute;left:6px;top:-22px;white-space:nowrap;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft);
+}
+.evcal__btn{
+  display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;
+  padding:8px 0 10px;border:0;background:transparent;font:inherit;color:var(--s-fg-soft);
+}
+.evcal__wd{font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.evcal__n{font-size:14px;font-weight:500;font-variant-numeric:lining-nums tabular-nums}
+.evcal__d.is-we:not(.has-ev) .evcal__btn{color:rgba(1,20,39,.4)}
+[data-theme="dark"] .evcal__d.is-we:not(.has-ev) .evcal__btn{color:rgba(246,244,237,.4)}
+.evcal__dot{width:4px;height:4px;border-radius:50%;background:var(--s-accent)}
+.evcal__d:not(.has-ev) .evcal__btn::after{content:"";width:4px;height:4px}
+/* день с событием — медная рамка; наведение — медная заливка, как у активного чипа */
+.evcal__d.has-ev .evcal__btn{cursor:pointer;color:var(--s-accent-ink);box-shadow:inset 0 0 0 1px var(--s-accent);transition:background .2s,color .2s}
+.evcal__d.has-ev .evcal__n{font-weight:700}
+.evcal__d.has-ev .evcal__btn:hover{background:var(--s-accent);color:var(--s-btn-fill-fg)}
+.evcal__d.has-ev .evcal__btn:hover .evcal__dot{background:var(--s-btn-fill-fg)}
+.evcal__d.has-ev .evcal__btn:focus-visible{outline:1px solid var(--s-accent);outline-offset:-1px}
+.evcal__d.is-off .evcal__btn{cursor:default;color:var(--s-fg-soft);opacity:.45;background:transparent;box-shadow:inset 0 0 0 1px var(--s-line)}
+.evcal__d.is-off .evcal__dot{background:var(--s-line-strong)}
+/* строка, к которой перешли из ленты, коротко подсвечивается */
+.evrow.is-hl{animation:evcal-hl 1.6s var(--d-ease)}
+@keyframes evcal-hl{0%,35%{background:var(--s-plate);box-shadow:-12px 0 0 var(--s-plate),12px 0 0 var(--s-plate)}100%{background:transparent;box-shadow:none}}
+@media (prefers-reduced-motion:reduce){.evrow.is-hl{animation:none}}
+@media (max-width:760px){
+  /* лента листается вбок — правый край гаснет, чтобы это было видно */
+  .evcal{margin:-8px calc(var(--pad) * -1) 28px;padding:0 var(--pad);
+    -webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
+  .evcal__d{flex-basis:40px;min-width:40px}
+}
