@@ -3518,3 +3518,25 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 
 /* анкета дизайнера: три поля ссылок на ролики подряд, подпись — только у первого */
 .dform__vids .fld + .fld{margin-top:-8px}
+
+/* ---------- избранное на карточке магазина ----------
+   Сердце в строке с секцией, справа. Кнопку вставляет design.js,
+   выбор хранится в браузере (lns-favs) — в прототипе без личного кабинета */
+.shopcard__place{align-items:center}
+.shopcard__fav{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;margin:-8px -8px -8px auto;padding:0;border:0;border-radius:50%;
+  background:transparent;color:var(--s-fg-soft);cursor:pointer;
+  transition:color .2s,background-color .2s,transform .2s var(--d-ease);
+}
+.shopcard__fav::before{content:"";width:18px;height:18px;background:currentColor;
+  --ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z'/%3E%3C/svg%3E");
+  -webkit-mask:var(--ic) no-repeat center/contain;mask:var(--ic) no-repeat center/contain}
+.shopcard__fav:hover{color:var(--s-accent-ink);background:rgba(196,154,108,.12)}
+.shopcard__fav:focus-visible{outline:1px solid var(--s-accent);outline-offset:2px}
+.shopcard__fav.is-on{color:var(--s-accent)}
+.shopcard__fav.is-on::before{
+  --ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000' stroke='%23000' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z'/%3E%3C/svg%3E")}
+.shopcard__fav.is-pop{animation:dfavpop .35s var(--d-ease)}
+@keyframes dfavpop{50%{transform:scale(1.25)}}
+@media (prefers-reduced-motion:reduce){.shopcard__fav.is-pop{animation:none}}

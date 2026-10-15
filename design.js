@@ -2368,3 +2368,45 @@ function lnsMiniPlan(n, o) {
 
   go(0);
 })();
+
+
+/* ---------- избранное на карточке магазина ----------
+   Сердце в строке с секцией. Карточка — ссылка, поэтому клик по кнопке
+   не пускаем дальше. Выбор хранится в браузере по названию магазина */
+(function () {
+  var cards = document.querySelectorAll('.shopcard');
+  if (!cards.length) return;
+  var KEY = 'lns-favs';
+  var favs = [];
+  try { favs = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(favs)); } catch (e) {} }
+  function set(btn, on, name) {
+    btn.classList.toggle('is-on', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.setAttribute('aria-label', (on ? 'Убрать из избранного: ' : 'Добавить в избранное: ') + name);
+    btn.title = on ? 'В избранном' : 'В избранное';
+  }
+  [].forEach.call(cards, function (card) {
+    var place = card.querySelector('.shopcard__place');
+    var n = card.querySelector('.shopcard__name');
+    var name = card.getAttribute('data-name') || (n && n.textContent.trim());
+    if (!place || !name || place.querySelector('.shopcard__fav')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'shopcard__fav';
+    set(btn, favs.indexOf(name) > -1, name);
+    btn.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var i = favs.indexOf(name), on = i < 0;
+      if (on) favs.push(name); else favs.splice(i, 1);
+      save();
+      // одна и та же карточка может стоять на странице дважды — синхронизируем
+      [].forEach.call(document.querySelectorAll('.shopcard__fav'), function (b) {
+        if (b._name === name) set(b, on, name);
+      });
+      btn.classList.remove('is-pop'); void btn.offsetWidth; btn.classList.add('is-pop');
+    });
+    btn._name = name;
+    place.appendChild(btn);
+  });
+})();
