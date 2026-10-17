@@ -923,5 +923,18 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .dkpv__pop a{display:block;padding:4px 0;font-size:13px;line-height:1.4;color:var(--b-navy)}
 .dkpv__pop a:hover{color:var(--s-accent-ink)}
 .dkpv__list .dkpv__i[hidden]{display:none}
-@media (max-width:760px){.dkpv__sum{position:relative}.dkpv__more{position:static}.dkpv__pop{left:0;right:0;width:auto}}
+.dkpv__mmob{display:none}
+.dkpv__more.is-few{display:none}
+.dkpv__morebtn{margin-left:0}
+@media (max-width:760px){
+  /* телефон: сверху «Черновик · N» и «Что изменилось ▾», ниже отметки и кнопки */
+  .dkpv__sum{order:-1;position:relative;flex-wrap:nowrap;justify-content:space-between;width:100%}
+  .dkpv__list{display:none}
+  .dkpv__more,.dkpv__more.is-few{display:block;position:static}
+  .dkpv__mdesk{display:none}.dkpv__mmob{display:inline}
+  .dkpv__morebtn{height:32px;padding:0 10px;border:1px solid rgba(196,154,108,.5);border-radius:2px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+  .dkpv__pop{left:0;right:0;width:auto}
+  .dkpv__tools{order:1}
+  .dkpv__acts{order:2}
+}
 .dkpv__popt{margin-bottom:12px;font-family:var(--d-serif);font-weight:600;font-size:15px;color:var(--b-navy);font-variant-numeric:lining-nums}

@@ -835,7 +835,9 @@
         '.cookie,#siteCookie{display:none!important}';
       d.head.appendChild(st);
       // данные черновика вместо опубликованных: телефон исправлен
-      d.querySelectorAll('a[href^="tel:"]').forEach(function (a) { if (!a.closest('.footer, .header, #siteFooter, #siteHeader')) { a.textContent = '+7 (812) 363-00-07'; a.href = 'tel:+78123630007'; } });
+      d.querySelectorAll('main a[href^="tel:"]').forEach(function (a) { a.href = 'tel:+78123630007'; });
+      var tw = d.createTreeWalker(d.querySelector('main') || d.body, NodeFilter.SHOW_TEXT), tn;
+      while ((tn = tw.nextNode())) if (tn.nodeValue.indexOf('000-00-00') > -1) tn.nodeValue = tn.nodeValue.replace(/\+7 \(812\) 000-00-00/g, '+7 (812) 363-00-07');
       MARKS.forEach(function (m) {
         var els = m.sel ? [].slice.call(d.querySelectorAll(m.sel)) : [].filter.call(d.querySelectorAll('.dblock'), function (b) { var h = b.querySelector('h2'); return h && h.textContent.trim() === m.block; });
         els.forEach(function (el) { el.classList.add('pvmark'); el.setAttribute('data-pv', m.t); });
@@ -856,18 +858,20 @@
     }
     var pitems = [].slice.call(plist.querySelectorAll('.dkpv__i'));
     var pn = document.querySelector('.dkpv__sum .dstatus__n'); if (pn) pn.textContent = pitems.length;
-    if (pitems.length > 4) {
-      pitems.slice(3).forEach(function (a) { a.hidden = true; });
+    // список «Все изменения» строится всегда: на телефоне он единственный способ их увидеть
+    if (pitems.length) {
+      var few = pitems.length <= 4;
+      if (!few) pitems.slice(3).forEach(function (a) { a.hidden = true; });
       var groups = {};
       pitems.forEach(function (a) { var k = a.getAttribute('data-sec'); (groups[k] = groups[k] || []).push(a); });
       var wrap = document.createElement('span');
-      wrap.className = 'dkpv__more';
+      wrap.className = 'dkpv__more' + (few ? ' is-few' : '');
       var rest = pitems.length - 3;
-      wrap.innerHTML = '<button type="button" class="dkpv__morebtn" aria-expanded="false">ещё ' + rest + '</button><div class="dkpv__pop" hidden><p class="dkpv__popt">Все изменения · ' + pitems.length + '</p>' +
+      wrap.innerHTML = '<button type="button" class="dkpv__morebtn" aria-expanded="false"><span class="dkpv__mdesk">ещё ' + rest + '</span><span class="dkpv__mmob">Все изменения</span></button><div class="dkpv__pop" hidden><p class="dkpv__popt">Все изменения · ' + pitems.length + '</p>' +
         Object.keys(groups).map(function (k) {
           return '<div class="dkpv__popg"><p class="dkpv__popk">' + k + '</p>' + groups[k].map(function (a) { return '<a href="' + a.getAttribute('href') + '">' + a.textContent + '</a>'; }).join('') + '</div>';
         }).join('') + '</div>';
-      plist.appendChild(wrap);
+      plist.parentNode.appendChild(wrap);
       var mb = wrap.querySelector('button'), pop = wrap.querySelector('.dkpv__pop');
       mb.addEventListener('click', function () { var o = pop.hidden; pop.hidden = !o; wrap.classList.toggle('is-open', o); mb.setAttribute('aria-expanded', String(o)); });
       document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) { pop.hidden = true; wrap.classList.remove('is-open'); mb.setAttribute('aria-expanded', 'false'); } });
