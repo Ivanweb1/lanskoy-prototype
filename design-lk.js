@@ -580,9 +580,9 @@
       var r = yes.closest('.dprow');
       if (yes.getAttribute('data-yes') === 'del') { r.remove(); return; }
       r.classList.add('is-off');
-      r.querySelector('.dprow__st').innerHTML = '<span class="dstatus dstatus--empty">Снята</span>';
+      var st = r.querySelector('.dprow__body .dstatus'); st.className = 'dstatus dstatus--empty'; st.textContent = 'Снята';
       r.querySelector('.dprow__left').textContent = 'снята вручную сегодня';
-      r.querySelector('.dprow__acts').innerHTML = '<a href="lk-promo-new.html" class="dlink">Повторить</a>';
+      r.querySelector('.dprow__acts').innerHTML = '<a href="lk-promo-new.html" class="dbtn dbtn--ghost dprow__btn">Повторить</a>';
     }
   });
 })();

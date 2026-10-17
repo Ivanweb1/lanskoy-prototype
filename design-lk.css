@@ -659,44 +659,45 @@ body.dk{padding-top:0;background:var(--s-bg)}
 
 /* ============ АКЦИИ ============ */
 .dprows{display:grid;gap:12px;margin:0;padding:0;list-style:none}
-.dprow{display:grid;grid-template-columns:128px minmax(0,1fr) 210px 170px 150px;gap:20px;align-items:center;padding:14px 20px 14px 14px;
+.dprow{display:grid;grid-template-columns:120px minmax(0,1fr) 220px 168px;gap:28px;align-items:center;padding:14px 24px 14px 14px;
   border:1px solid var(--s-line);background:rgba(255,255,255,.55);transition:border-color .2s}
 .dprow:hover{border-color:var(--s-line-strong)}
 .dprow__img{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--s-bg-2)}
 .dprow__img img{width:100%;height:100%;object-fit:cover}
-.dprow__body{display:grid;gap:4px;min-width:0}
-.dprow__n{font-family:var(--d-serif);font-weight:600;font-size:17px;line-height:1.3;color:var(--s-fg)}
+.dprow__body{display:grid;justify-items:start;gap:6px;min-width:0}
+.dprow__body .dstatus{margin-bottom:2px}
+/* в Playfair числа — только ровными цифрами (решение Ивана 10.10) */
+.dprow__n{font-family:var(--d-serif);font-weight:600;font-size:17px;line-height:1.3;color:var(--s-fg);font-variant-numeric:lining-nums}
 .dprow__m{font-size:12px;color:var(--s-fg-soft)}
-.dprow__term{display:grid;gap:6px}
-.dprow__d{font-size:13px;color:var(--s-fg)}
-.dprow__bar{height:3px;background:var(--s-line)}
+.dprow__term{display:grid;gap:8px}
+.dprow__d{font-size:13px;font-weight:500;color:var(--s-fg)}
+.dprow__bar{height:2px;background:var(--s-line)}
 .dprow__bar i{display:block;height:100%;background:var(--s-accent)}
 .dprow__left{font-size:12px;color:var(--s-fg-soft)}
-.dprow__acts{display:flex;flex-direction:column;align-items:flex-end;gap:8px;white-space:nowrap}
-.dprow__acts .dlink{font-size:11px}
-.dprow__off{padding:0 0 2px;border:0;border-bottom:1px solid var(--s-line-strong);background:none;cursor:pointer;font:inherit;font-size:12px;color:var(--s-fg-soft);transition:color .2s,border-color .2s}
+.dprow__acts{display:grid;gap:10px;justify-items:center}
+.dkmain .dprow__btn{width:100%;height:40px;padding:0 16px;justify-content:center;font-size:11px}
+.dprow__off{padding:0 0 2px;border:0;border-bottom:1px solid transparent;background:none;cursor:pointer;font:inherit;font-size:12px;color:var(--s-fg-soft);transition:color .2s,border-color .2s}
 .dprow__off:hover{color:#A03E31;border-color:#B5483A}
 .dprow.is-ended .dprow__img img,.dprow.is-off .dprow__img img{filter:grayscale(1);opacity:.7}
 .dprow.is-ended .dprow__n,.dprow.is-off .dprow__n{color:var(--s-fg-soft)}
 .dprow.is-ended .dprow__bar i,.dprow.is-off .dprow__bar i{background:var(--s-line-strong)}
 /* подтверждение снятия — на месте действий */
-.dprow__ask{display:grid;gap:8px;justify-items:end;white-space:normal;max-width:220px;text-align:right;font-size:12px;line-height:1.45;color:var(--s-fg)}
+.dprow__ask{display:grid;gap:8px;justify-items:center;white-space:normal;text-align:center;font-size:12px;line-height:1.45;color:var(--s-fg)}
 .dprow__ask span{display:flex;gap:12px}
 .dprow__ask .dprow__yes{color:#A03E31;border-color:#B5483A}
 
 @media (max-width:1200px){
-  .dprow{grid-template-columns:112px minmax(0,1fr) auto;gap:12px 18px}
+  .dprow{grid-template-columns:112px minmax(0,1fr) 160px;gap:14px 22px}
   .dprow__img{grid-row:span 2}
   .dprow__term{grid-column:2}
-  .dprow__st{grid-column:3;grid-row:1;justify-self:end}
-  .dprow__acts{grid-column:3;grid-row:2;flex-direction:row;gap:16px}
+  .dprow__acts{grid-column:3;grid-row:1 / span 2}
 }
 @media (max-width:640px){
-  .dprow{grid-template-columns:88px minmax(0,1fr);padding:12px}
-  .dprow__img{grid-row:span 1}
-  .dprow__term,.dprow__st,.dprow__acts{grid-column:1/-1;grid-row:auto;justify-self:stretch}
-  .dprow__acts{justify-content:space-between}
+  .dprow{grid-template-columns:88px minmax(0,1fr);gap:14px;padding:12px}
+  .dprow__img{grid-row:span 1;align-self:start}
+  .dprow__term,.dprow__acts{grid-column:1/-1;grid-row:auto}
+  .dprow__acts{grid-template-columns:1fr auto;align-items:center;justify-items:start}
   .dprow__ask{max-width:none;justify-items:start;text-align:left}
   .dksect__head{flex-wrap:wrap;gap:6px 16px}
 }
-.dprow__st{justify-self:start}
+
