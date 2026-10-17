@@ -30,6 +30,7 @@
     if (ok && inp.hasAttribute('data-rules')) ok = rules(inp).every(Boolean);
     // телефон: целиком, с кодом страны и города — 11 цифр, начиная с 7 или 8
     if (ok && inp.hasAttribute('data-phone') && v) { var d = v.replace(/\D/g, ''); ok = d.length === 11 && /^[78]/.test(d); }
+    if (ok && inp.hasAttribute('data-date') && v) ok = dateOk(f, inp, v);
     if (ok && inp.hasAttribute('data-match')) ok = v === document.getElementById(inp.getAttribute('data-match')).value.trim();
     f.classList.toggle('is-invalid', !ok);
     aria(f, inp, ok);
@@ -58,6 +59,30 @@
     return url;
   }
 
+  /* даты ДД.ММ.ГГГГ: настоящая дата; окончание — не раньше начала и не в прошлом.
+     «Сегодня» в прототипе — 15.09.2026, как в журнале и на дашборде */
+  var TODAY = new Date(2026, 8, 15);
+  function parseD(v) {
+    var m = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(v); if (!m) return null;
+    var d = new Date(+m[3], m[2] - 1, +m[1]);
+    return d.getDate() === +m[1] && d.getMonth() === m[2] - 1 ? d : null;
+  }
+  function dateOk(f, inp, v) {
+    var err = f.querySelector('.fld__err'), d = parseD(v);
+    if (!d) { err.textContent = 'Дата целиком: 05.09.2026'; return false; }
+    if (inp.hasAttribute('data-date-end')) {
+      var from = parseD((inp.form.querySelector('[data-date]:not([data-date-end])') || {}).value || '');
+      if (from && d < from) { err.textContent = 'Окончание раньше начала'; return false; }
+      if (d < TODAY) { err.textContent = 'Дата уже прошла — акция сразу уйдёт с сайта'; return false; }
+    }
+    return true;
+  }
+  document.addEventListener('input', function (e) {
+    var t = e.target.closest('[data-date]'); if (!t) return;
+    var d = t.value.replace(/\D/g, '').slice(0, 8);
+    t.value = d.length > 4 ? d.slice(0, 2) + '.' + d.slice(2, 4) + '.' + d.slice(4) : d.length > 2 ? d.slice(0, 2) + '.' + d.slice(2) : d;
+  });
+
   /* условия пароля: не короче 8, буква, цифра (предложение, в ТЗ не заданы) */
   function rules(inp) {
     var v = inp.value;
@@ -76,6 +101,10 @@
       var bad = null;
       [].forEach.call(form.querySelectorAll('.fld'), function (f) {
         if (!check(f) && !bad) bad = f;
+      });
+      [].forEach.call(form.querySelectorAll('[data-req-group]'), function (g) {
+        var ok = !!g.querySelector('input:checked'); g.classList.toggle('is-invalid', !ok);
+        if (!ok && !bad) bad = g;
       });
       [].forEach.call(form.querySelectorAll('.check[data-req]'), function (c) {
         var ok = c.querySelector('input').checked;
@@ -105,6 +134,7 @@
   });
 
   document.addEventListener('change', function (e) {
+    var g = e.target.closest('[data-req-group].is-invalid'); if (g && e.target.checked) g.classList.remove('is-invalid');
     var c = e.target.closest('.check.is-invalid');
     if (c && e.target.checked) c.classList.remove('is-invalid');
   });
@@ -202,7 +232,7 @@
 
   /* счётчик символов в описании */
   [].forEach.call(document.querySelectorAll('[data-count]'), function (c) {
-    var ta = c.closest('.fld').querySelector('textarea');
+    var ta = c.closest('.fld').querySelector('textarea, input');
     var max = +ta.getAttribute('maxlength');
     var upd = function () { c.firstChild.textContent = ta.value.length; c.classList.toggle('is-near', ta.value.length > max * 0.9); };
     ta.addEventListener('input', upd); upd();
@@ -582,7 +612,97 @@
       r.classList.add('is-off');
       var st = r.querySelector('.dprow__body .dstatus'); st.className = 'dstatus dstatus--empty'; st.textContent = 'Снята';
       r.querySelector('.dprow__left').textContent = 'снята вручную сегодня';
-      r.querySelector('.dprow__acts').innerHTML = '<a href="lk-promo-new.html" class="dbtn dbtn--ghost dprow__btn">Повторить</a>';
+      r.querySelector('.dprow__acts').innerHTML = '<a href="design-lk-promo.html" class="dbtn dbtn--ghost dprow__btn">Повторить</a>';
     }
   });
+
+  /* ---------- форма акции: режим по адресу, живой предпросмотр ---------- */
+  var pf = document.querySelector('form[data-promo]');
+  if (pf) {
+    var PROMOS = {
+      '1': { n: 'Скидка 15% на декоративную штукатурку', c: ['Декоративно-отделочные материалы'], t: 'Скидка 15% на декоративную штукатурку при покупке от 20 м². Не суммируется с другими скидками.', s: '05.09.2026', e: '30.09.2026', img: 'img/promos/vladart-plaster.webp', st: 'ok' },
+      '2': { n: 'Бесплатный выезд замерщика', c: ['Декоративно-отделочные материалы', 'Лакокрасочные и клеящие материалы'], t: 'Бесплатный выезд замерщика по Санкт-Петербургу при заказе отделки от 30 м². Запись по телефону магазина.', s: '20.08.2026', e: '31.10.2026', img: 'img/promos/vladart-zamer.webp', st: 'ok' },
+      draft: { n: 'Осенние цены на декоративную штукатурку', c: ['Декоративно-отделочные материалы'], t: 'Специальные цены на штукатурку из осенней коллекции.', s: '01.10.2026', e: '30.11.2026', img: 'img/cat-dekor.webp', st: 'draft' },
+      summer: { n: 'Летняя распродажа образцов', c: ['Декоративно-отделочные материалы', 'Шторы, карнизы, ткани'], t: 'Образцы штукатурок и тканей из шоурума со скидкой до 50%. Количество ограничено.', s: '', e: '', img: 'img/cat-tekstil.webp', st: 'draft' }
+    };
+    var pq = new URLSearchParams(location.search), key = pq.get('p'), copy = pq.get('copy'), P = PROMOS[key] || PROMOS[copy];
+    var $ = function (s) { return document.querySelector(s); };
+    var MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+    var pimg = $('.dpimg');
+
+    var setImg = function (src) {
+      var im = $('[data-pv-img]');
+      im.src = src; im.hidden = !src; $('[data-pv-noimg]').hidden = !!src;
+      pimg.classList.toggle('has-img', !!src);
+      $('[data-pimg-t]').innerHTML = src ? 'Изображение загружено · <u>заменить</u>' : 'Перетащите изображение или <u>выберите файл</u>';
+    };
+    var preview = function () {
+      var t = pf.elements.title.value.trim();
+      $('[data-pv-title]').textContent = t || 'Название акции';
+      var e = parseD(pf.elements.to.value.trim());
+      $('[data-pv-term]').textContent = e ? 'до ' + e.getDate() + ' ' + MONTHS[e.getMonth()] : 'срок не указан';
+      if (key && P && t) { $('[data-p-crumb]').textContent = t; }
+    };
+
+    if (P) {
+      pf.elements.title.value = P.n; pf.elements.terms.value = P.t;
+      if (!copy) { pf.elements.from.value = P.s; pf.elements.to.value = P.e; }
+      [].forEach.call(pf.querySelectorAll('[name=cat]'), function (c) { c.checked = P.c.indexOf(c.value) > -1; });
+      setImg(P.img);
+      if (copy) {
+        $('[data-p-sub]').textContent = 'По образцу «' + P.n + '». Проверьте условия и укажите новый срок — карточка справа покажет, как акция будет выглядеть в ленте.';
+      } else {
+        $('[data-p-h1]').textContent = P.n; $('[data-p-crumb]').textContent = P.n;
+        document.title = P.n + ' — кабинет арендатора — ТК «Ланской»';
+        if (P.st === 'ok') {
+          $('[data-p-sub]').textContent = 'Акция опубликована. Любая правка уйдёт на проверку, а на сайте до одобрения останется текущая версия.';
+          $('[data-p-status]').innerHTML = '<span class="dstatus dstatus--ok">Опубликовано</span>';
+          $('[data-promo-off]').hidden = false; $('[data-promo-cancel]').hidden = true;
+        } else {
+          $('[data-p-sub]').textContent = 'Черновик — уйдёт на проверку вместе с остальными изменениями карточки.';
+        }
+      }
+    } else setImg('');
+    [].forEach.call(pf.querySelectorAll('[data-count]'), function (c) { c.closest('.fld').querySelector('input,textarea').dispatchEvent(new Event('input', { bubbles: true })); });
+    preview();
+    pf.addEventListener('input', preview);
+    pf.addEventListener('change', function (e) { if (e.target.closest('[data-date]')) { var f = e.target.closest('.fld'); if (e.target.value) check(f); } });
+
+    // снять с публикации — второе нажатие подтверждает
+    var offB = $('[data-promo-off]');
+    offB.addEventListener('click', function () {
+      if (!offB.dataset.ask) { offB.dataset.ask = '1'; offB.textContent = 'Точно снять? Нажмите ещё раз'; return; }
+      location.href = 'design-lk-promos.html?off=' + key;
+    });
+
+    // изображение акции: те же требования, что у галереи
+    var pin = $('[data-pimg]'), perr = $('[data-pimg-err]');
+    var addP = function (f) {
+      if (!f) return;
+      var fail = function (w) { perr.textContent = '«' + f.name + '» не подходит: ' + w; perr.hidden = false; };
+      perr.hidden = true;
+      if (!/^image\/(jpeg|png|webp)$/.test(f.type)) return fail('нужен JPG, PNG или WebP');
+      if (f.size > 10 * 1048576) return fail('больше 10 МБ');
+      var url = URL.createObjectURL(f), im = new Image();
+      im.onload = function () {
+        if (im.naturalHeight > im.naturalWidth) return fail('вертикальное — в ленте обрежется');
+        if (Math.max(im.naturalWidth, im.naturalHeight) < 1600) return fail('меньше 1600 px по длинной стороне');
+        setImg(url); saved();
+      };
+      im.src = url;
+    };
+    pin.addEventListener('change', function () { addP(pin.files[0]); pin.value = ''; });
+    var pd = $('[data-pimg-drop]');
+    ['dragenter', 'dragover'].forEach(function (ev) { pd.addEventListener(ev, function (e) { e.preventDefault(); pd.classList.add('is-over'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { pd.addEventListener(ev, function () { pd.classList.remove('is-over'); }); });
+    pd.addEventListener('drop', function (e) { e.preventDefault(); addP(e.dataTransfer.files[0]); });
+  }
+
+  /* список акций: пришли со «Снять с публикации» в форме — снимаем строку */
+  var offQ = new URLSearchParams(location.search).get('off');
+  if (offQ && document.querySelector('.dprows')) {
+    var link = document.querySelector('.dprow a[href="design-lk-promo.html?p=' + offQ + '"]');
+    var offBtn = link && link.closest('.dprow').querySelector('[data-off]');
+    if (offBtn) { offBtn.click(); var y = document.querySelector('[data-yes]'); if (y) y.click(); }
+  }
 })();

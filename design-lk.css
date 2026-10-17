@@ -517,7 +517,8 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .dkbarbot__acts{display:flex;gap:12px;margin-left:auto}
 .dkbarbot .dbtn{height:48px;padding:0 24px;font-size:11px}
 .dkbarbot .dbtn:hover{transform:none}
-.dkbarbot button.dbtn{border:0;cursor:pointer;font-family:inherit}
+.dkbarbot button.dbtn{cursor:pointer;font-family:inherit}
+.dkbarbot button.dbtn--fill{border:0}
 
 @media (max-width:1200px){
   .dkform{grid-template-columns:1fr}
@@ -701,3 +702,31 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dksect__head{flex-wrap:wrap;gap:6px 16px}
 }
 
+
+/* ============ ФОРМА АКЦИИ ============ */
+.dkcrumbs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dkcrumbs a{color:var(--s-fg-soft);transition:color .2s}
+.dkcrumbs a:hover{color:var(--s-accent-ink)}
+.dkcrumbs span[aria-hidden]{color:var(--s-accent)}
+.dkcrumbs [aria-current]{color:var(--s-fg);max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dkcats{margin:0;padding:0;border:0;min-width:0}
+.dkcats__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px}
+.dform .dkcats .check{display:flex;gap:10px;align-items:flex-start;margin:0;font-size:14px;line-height:1.4;color:var(--s-fg);cursor:pointer}
+.dkcats__err{display:none;margin-top:8px}
+.dkcats.is-invalid .dkcats__err{display:block}
+.dkcats.is-invalid .check input{border-color:#B5483A}
+.dpimg__drop{min-height:140px}
+.dpimg__drop.is-over{border-color:var(--s-accent);background:var(--s-plate)}
+.dpimg.has-img .dpimg__drop{min-height:0;padding:14px 20px;flex-direction:row;gap:12px}
+.dpimg.has-img .dupload__h{display:none}
+.dpimg__err{display:block;margin-top:8px}
+.dkpanel--prev .dkpanel__h{font-size:16px;margin-bottom:14px}
+.dpprev{pointer-events:none}
+.dpprev [hidden]{display:none !important}
+.dpprev__media{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--s-bg-2)}
+.dpprev__media .pcard__img{width:100%;height:100%;object-fit:cover;visibility:visible}
+.dpprev__media .pcard__term{z-index:2}
+.dpprev__noimg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dpprev .pcard__title{font-variant-numeric:lining-nums}
+.dkbarbot__acts [hidden]{display:none}
+@media (max-width:640px){.dkcats__list{grid-template-columns:1fr}}

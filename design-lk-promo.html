@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Акция — кабинет арендатора — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=44">
+<!-- кабинет — только светлая тема (решение Ивана 17.10) -->
+</head>
+<body class="dk">
+
+<div class="dk__shell">
+  <aside id="dkSide" data-lk="promos"></aside>
+
+  <main id="main" tabindex="-1" class="dkmain dkmain--form">
+
+    <nav class="dkcrumbs" aria-label="Хлебные крошки"><a href="design-lk-promos.html">Акции</a><span aria-hidden="true">/</span><span aria-current="page" data-p-crumb>Новая акция</span></nav>
+
+    <div class="dkhead">
+      <div>
+        <h1 class="dkhead__h1" data-p-h1>Новая акция</h1>
+        <p class="dkhead__sub" data-p-sub>Заполните поля — карточка справа покажет, как акция будет выглядеть в ленте. На сайт она попадёт после проверки администрацией.</p>
+      </div>
+      <div class="dkhead__acts" data-p-status><span class="dstatus dstatus--draft">Черновик</span></div>
+    </div>
+
+    <div class="dkform">
+      <form class="dform dkform__main" id="promoForm" data-card data-promo novalidate>
+
+        <section class="dkpanel" aria-labelledby="hWhat">
+          <h2 class="dkpanel__h" id="hWhat">Что предлагаете</h2>
+          <label class="fld">
+            <span class="fld__lab">Название акции <span class="fld__req" aria-hidden="true">*</span></span>
+            <input type="text" name="title" maxlength="80" required placeholder="Например, скидка 10% на плитку" data-p="title">
+            <span class="fld__foot"><span class="fld__hint">Коротко и по делу — видно в ленте акций и на странице магазина</span><span class="fld__count" data-count><span>0</span> / 80</span></span>
+            <span class="fld__err">Назовите акцию</span>
+          </label>
+          <label class="fld">
+            <span class="fld__lab">Условия <span class="fld__req" aria-hidden="true">*</span></span>
+            <textarea name="terms" rows="5" maxlength="600" required placeholder="Размер скидки, на что распространяется, ограничения" data-p="terms"></textarea>
+            <span class="fld__foot"><span class="fld__hint">Все ограничения — здесь. Если условие всплывёт только на кассе, претензии придут и магазину, и комплексу</span><span class="fld__count" data-count><span>0</span> / 600</span></span>
+            <span class="fld__err">Опишите условия акции</span>
+          </label>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hCat">
+          <h2 class="dkpanel__h" id="hCat">Категории</h2>
+          <fieldset class="dkcats" data-req-group>
+            <legend class="hp">Категории акции</legend>
+            <div class="dkcats__list">
+              <label class="check"><input type="checkbox" name="cat" value="Декоративно-отделочные материалы"><span>Декоративно-отделочные материалы</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Плитка"><span>Плитка</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Обои"><span>Обои</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Шторы, карнизы, ткани"><span>Шторы, карнизы, ткани</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Лакокрасочные и клеящие материалы"><span>Лакокрасочные и клеящие материалы</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Напольные покрытия"><span>Напольные покрытия</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Потолки"><span>Потолки</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Двери, перегородки, фурнитура"><span>Двери, перегородки, фурнитура</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Остекление и оконная фурнитура"><span>Остекление и оконная фурнитура</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Стекло и зеркала"><span>Стекло и зеркала</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Сантехника"><span>Сантехника</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Свет"><span>Свет</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Лестницы"><span>Лестницы</span></label>
+              <label class="check"><input type="checkbox" name="cat" value="Отопление и кондиционирование"><span>Отопление и кондиционирование</span></label>
+            </div>
+            <p class="dkpanel__hint">По ним акцию находят в фильтре ленты. Можно выбрать несколько — они могут отличаться от категорий магазина.</p>
+            <p class="fld__err dkcats__err">Выберите хотя бы одну категорию</p>
+          </fieldset>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hTerm">
+          <h2 class="dkpanel__h" id="hTerm">Срок действия</h2>
+          <div class="dform__two">
+            <label class="fld">
+              <span class="fld__lab">Начало</span>
+              <input type="text" name="from" inputmode="numeric" maxlength="10" placeholder="ДД.ММ.ГГГГ" data-date data-p="from">
+              <span class="fld__hint">Пусто — с момента одобрения</span>
+              <span class="fld__err">Дата целиком: 05.09.2026</span>
+            </label>
+            <label class="fld">
+              <span class="fld__lab">Окончание <span class="fld__req" aria-hidden="true">*</span></span>
+              <input type="text" name="to" inputmode="numeric" maxlength="10" placeholder="ДД.ММ.ГГГГ" required data-date data-date-end data-p="to">
+              <span class="fld__hint">В этот день акция сама уйдёт с сайта</span>
+              <span class="fld__err">Укажите дату окончания</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hImg">
+          <h2 class="dkpanel__h" id="hImg">Изображение</h2>
+          <div class="dpimg">
+            <label class="dupload dpimg__drop" data-pimg-drop>
+              <input type="file" accept="image/jpeg,image/png,image/webp" data-pimg>
+              <span class="dupload__ic" aria-hidden="true"></span>
+              <span class="dupload__t" data-pimg-t>Перетащите изображение или <u>выберите файл</u></span>
+              <span class="dupload__h">JPG, PNG или WebP · до 10 МБ · горизонтальное, от 1600 px по длинной стороне</span>
+            </label>
+            <p class="fld__err dpimg__err" data-pimg-err hidden></p>
+            <p class="dkpanel__hint">Показывается в ленте акций и на главной. Без изображения акция попадёт в ленту текстовой карточкой — её открывают заметно реже.</p>
+          </div>
+        </section>
+
+      </form>
+
+      <aside class="dkform__side">
+        <section class="dkpanel dkpanel--prev" aria-labelledby="hPrev">
+          <h2 class="dkpanel__h" id="hPrev">Как будет в ленте</h2>
+          <article class="pcard dpprev">
+            <span class="pcard__media dpprev__media">
+              <img class="pcard__img" src="" alt="" data-pv-img hidden>
+              <span class="dpprev__noimg" data-pv-noimg>Без изображения</span>
+              <span class="pcard__term" data-pv-term>срок не указан</span>
+            </span>
+            <div class="pcard__body">
+              <h3 class="pcard__title" data-pv-title>Название акции</h3>
+              <p class="pcard__meta"><span class="pcard__shop">VLADART STUDIO</span><span class="pcard__sec">А10</span></p>
+            </div>
+          </article>
+        </section>
+        <section class="dkpanel dkpanel--ro">
+          <h2 class="dkpanel__h">Магазин</h2>
+          <ul class="dkro">
+            <li><span class="dkro__k">Магазин</span><span class="dkro__v">VLADART STUDIO</span></li>
+            <li><span class="dkro__k">Расположение</span><span class="dkro__v">Секция А10 · 1 этаж</span></li>
+            <li><span class="dkro__k">Телефон</span><span class="dkro__v">из карточки магазина</span></li>
+          </ul>
+          <p class="dkro__note"><span>Берётся из карточки и обновляется вместе с ней — в акции менять не нужно.</span></p>
+        </section>
+      </aside>
+    </div>
+
+  </main>
+</div>
+
+<div class="dkbarbot" role="region" aria-label="Отправка на проверку">
+  <p class="dkbarbot__t" aria-live="polite"><span class="dkbarbot__dot" aria-hidden="true"></span><span data-saved>Черновик сохранён · 14:35</span></p>
+  <p class="dkbarbot__err" data-bar-err hidden role="alert">Сначала исправьте поле, отмеченное ошибкой</p>
+  <div class="dkbarbot__acts">
+    <button type="button" class="dbtn dbtn--ghost" data-promo-off hidden>Снять с публикации</button>
+    <a href="design-lk-promos.html" class="dbtn dbtn--ghost" data-promo-cancel>К списку акций</a>
+    <button type="submit" form="promoForm" class="dbtn dbtn--fill">Отправить на проверку</button>
+  </div>
+</div>
+
+<script src="design-lk-side.js?v=8"></script>
+<script src="design-lk.js?v=23"></script>
+</body>
+</html>
