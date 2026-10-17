@@ -1,0 +1,109 @@
+/* ТК «Ланской» — дизайн кабинета арендатора (design-lk-*.html).
+   Подключается после style.css → design.css → design-pages.css.
+   Кабинет — рабочий инструмент: публичной шапки и подвала нет (как в Ч/Б,
+   lk-parts.js), поэтому отступ body под фиксированную шапку снимаем.
+   Только токены --s-*, своих цветов нет — кроме красного ошибки #B5483A,
+   он тот же, что у полей анкеты. */
+
+body.dlk{padding-top:0}
+
+/* ============ ЭКРАНЫ ВХОДА (вход, код, пароль, заявка) ============ */
+/* Полноширинный баннер: текстовая половина + кадр. Срез 13% со стороны
+   текста — то же правило, что у первого экрана главной и «Аренды». */
+.dlkauth{
+  min-height:100vh;min-height:100svh;
+  display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
+  background:var(--s-bg);
+}
+.dlkauth__side{
+  display:flex;flex-direction:column;justify-content:space-between;gap:40px;
+  padding:28px var(--pad) 32px;
+}
+.dlkauth__top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.dlkauth__logo{display:flex}
+.dlkauth__logo img{height:52px;width:auto}
+.dlkauth__tools{display:flex;align-items:center;gap:22px}
+.dlkauth__tools .dlink{font-size:11px}
+
+.dlkauth__in{width:100%;max-width:420px;margin:0 auto}
+.dlkauth__h1{
+  font-family:var(--d-serif);font-weight:600;text-transform:uppercase;letter-spacing:.01em;
+  font-size:clamp(34px,3.6vw,54px);line-height:1.06;color:var(--s-fg);
+}
+.dlkauth__h1 em{display:block;font-style:normal;color:var(--s-accent)}
+.dlkauth__lead{margin:18px 0 32px;font-size:15px;line-height:1.6;color:var(--s-fg-soft)}
+
+.dlkauth__bottom{
+  width:100%;max-width:420px;margin:0 auto;padding-top:18px;border-top:1px solid var(--s-line);
+  display:grid;gap:8px;font-size:13px;line-height:1.5;color:var(--s-fg-soft);
+}
+.dlkauth__bottom a{color:var(--s-accent-ink);border-bottom:1px solid var(--s-line-strong);transition:border-color .2s}
+.dlkauth__bottom a:hover{border-color:var(--s-accent)}
+
+.dlkauth__media{position:relative;overflow:hidden;background:var(--s-bg-2);
+  clip-path:polygon(13% 0,100% 0,100% 100%,0 100%)}
+.dlkauth__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* поля: пароль и почта — в общий вид полей .dform */
+.dform input[type=password]{
+  height:50px;padding:0 14px;border:1px solid var(--s-line-strong);border-radius:2px;
+  background:var(--s-field-bg);font:inherit;font-size:15px;color:var(--s-fg);transition:border-color .2s;
+}
+.dform input[type=email],.dform input[type=password]{width:100%}
+.dlkauth .dform .fld{margin-bottom:20px}
+.dform .is-invalid input[type=password]{border-color:#B5483A}
+
+/* подпись поля со ссылкой справа («Забыли пароль?») */
+.fld__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.fld__aside{font-size:12px;color:var(--s-accent-ink);border-bottom:1px solid transparent;transition:border-color .2s}
+.fld__aside:hover{border-color:var(--s-accent)}
+
+/* показать / скрыть пароль — иконка в поле, медная, через mask */
+.dpass{position:relative;display:block}
+.dpass input{padding-right:52px !important}
+.dpass__eye{
+  position:absolute;right:0;top:0;width:50px;height:50px;padding:0;border:0;background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.dpass__eye::before{
+  content:"";width:20px;height:20px;background:var(--s-fg-soft);transition:background-color .2s;
+  -webkit-mask:var(--i-eye) no-repeat center/contain;mask:var(--i-eye) no-repeat center/contain;
+}
+.dpass__eye:hover::before,.dpass__eye[aria-pressed="true"]::before{background:var(--s-accent)}
+.dpass__eye[aria-pressed="true"]::before{-webkit-mask-image:var(--i-eye-off);mask-image:var(--i-eye-off)}
+.dpass__eye:focus-visible{outline:1px solid var(--s-accent);outline-offset:-4px}
+:root{
+  --i-eye:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1.5 12S5.5 4.8 12 4.8 22.5 12 22.5 12 18.5 19.2 12 19.2 1.5 12 1.5 12z'/%3E%3Ccircle cx='12' cy='12' r='3.2'/%3E%3C/svg%3E");
+  --i-eye-off:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1.5 12S5.5 4.8 12 4.8 22.5 12 22.5 12 18.5 19.2 12 19.2 1.5 12 1.5 12z'/%3E%3Ccircle cx='12' cy='12' r='3.2'/%3E%3Cpath d='M3 21L21 3'/%3E%3C/svg%3E");
+}
+
+.dlkauth .dbtn--full{margin-top:8px}
+
+/* сообщение над формой: «Вы вышли», «Неверная почта или пароль».
+   Плашка второго фона с медной чертой слева; ошибка — красной чертой */
+.dlkmsg{
+  margin:0 0 24px;padding:14px 18px;border-left:2px solid var(--s-accent);background:var(--s-plate);
+  font-size:13px;line-height:1.55;color:var(--s-fg-soft);
+}
+.dlkmsg b{display:block;margin-bottom:2px;font-size:14px;font-weight:600;color:var(--s-fg)}
+.dlkmsg a{color:var(--s-accent-ink);border-bottom:1px solid var(--s-line-strong)}
+.dlkmsg--err{border-left-color:#B5483A}
+
+/* ============ АДАПТИВ ============ */
+@media (max-width:1100px){
+  .dlkauth{grid-template-columns:minmax(0,1fr) minmax(0,.8fr)}
+}
+/* Кадр уходит: на узком экране боковой диагонали нет (правило главной),
+   а полоса фото над формой отодвигала бы поля за первый экран */
+@media (max-width:860px){
+  .dlkauth{grid-template-columns:1fr}
+  .dlkauth__media{display:none}
+  .dlkauth__side{min-height:100vh;min-height:100svh}
+}
+@media (max-width:560px){
+  .dlkauth__side{padding:18px 20px 24px;gap:36px}
+  .dlkauth__logo img{height:40px}
+  .dlkauth__tools{gap:16px}
+  .dlkauth__lead{margin:14px 0 26px;font-size:14px}
+}
+@media (max-width:400px){.dlkauth__tools .dlink{display:none}}

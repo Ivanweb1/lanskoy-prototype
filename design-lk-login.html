@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вход в кабинет арендатора — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=1">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);})();</script>
+</head>
+<body class="dlk">
+
+<main id="main" tabindex="-1">
+  <div class="dlkauth">
+
+    <div class="dlkauth__side">
+      <div class="dlkauth__top">
+        <a href="design.html" class="dlkauth__logo">
+          <img src="logo.svg" data-logo alt="ТК «Ланской» — на главную" width="167" height="52">
+        </a>
+        <div class="dlkauth__tools">
+          <a href="design.html" class="dlink">На сайт комплекса</a>
+          <button type="button" class="themetog" id="themeTog" aria-pressed="false" aria-label="Тёмная тема">
+            <span class="themetog__ic" aria-hidden="true"></span>
+            <span class="themetog__sun" aria-hidden="true"></span>
+            <span class="themetog__moon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="dlkauth__in">
+        <h1 class="dlkauth__h1">Кабинет<em>арендатора</em></h1>
+        <p class="dlkauth__lead">Здесь магазин обновляет свои контакты, акции, фото и видео. Изменения публикуются после проверки администрацией.</p>
+
+        <div class="dlkmsg" data-state="out" hidden>
+          <b>Вы вышли из кабинета</b>
+          Чтобы вернуться, войдите снова.
+        </div>
+        <div class="dlkmsg dlkmsg--err" data-state="err" hidden role="alert">
+          <b>Неверная почта или пароль</b>
+          Осталось 2 попытки, затем вход закроется на 15 минут. <a href="lk-reset.html">Восстановить пароль</a>
+        </div>
+
+        <form class="dform" data-next="lk-code.html" novalidate>
+          <label class="fld">
+            <span class="fld__lab">Рабочая почта</span>
+            <input type="email" name="email" autocomplete="username" placeholder="name@company.ru" required>
+            <span class="fld__err">Проверьте адрес — вход по почте, на которую выдан доступ</span>
+          </label>
+
+          <div class="fld">
+            <span class="fld__head">
+              <label class="fld__lab" for="lkPass">Пароль</label>
+              <a href="lk-reset.html" class="fld__aside">Забыли пароль?</a>
+            </span>
+            <span class="dpass">
+              <input type="password" id="lkPass" name="password" autocomplete="current-password" required>
+              <button type="button" class="dpass__eye" aria-pressed="false" aria-label="Показать пароль"></button>
+            </span>
+            <span class="fld__err">Введите пароль</span>
+          </div>
+
+          <button type="submit" class="dbtn dbtn--fill dbtn--full">Войти</button>
+        </form>
+      </div>
+
+      <div class="dlkauth__bottom">
+        <p>Не получается войти? <a href="lk-help.html?guest=1#trouble">Что делать</a></p>
+        <p>Магазин работает в комплексе, но доступа нет? <a href="lk-request.html">Подать заявку</a></p>
+        <p>Хотите арендовать помещение? <a href="design-rent.html">Условия аренды</a></p>
+      </div>
+    </div>
+
+    <div class="dlkauth__media" aria-hidden="true">
+      <img src="img/hero-light.webp" data-photo-light="img/hero-light.webp" data-photo-dark="img/hero-dark.webp" alt="">
+    </div>
+  </div>
+</main>
+
+<script src="design-lk.js?v=1"></script>
+</body>
+</html>
