@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Заявка на доступ в кабинет — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=19">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body class="dlk-site">
+
+<div id="siteHeader" data-active=""></div>
+
+<main id="main" tabindex="-1">
+  <div class="dlkauth dlkauth--site dlkauth--wide">
+
+    <div class="dlkauth__side">
+      <div class="dlkauth__in">
+
+        <div data-step="form">
+          <h1 class="dlkauth__h1">Заявка<em>на доступ</em></h1>
+          <p class="dlkauth__lead">Для магазинов, которые уже работают в комплексе. Решение придёт на рабочую почту.</p>
+
+          <form class="dform" data-swap novalidate>
+            <fieldset class="dreq__shops">
+              <legend class="hp">Магазины</legend>
+              <div class="dreq__shop">
+                <label class="fld">
+                  <span class="fld__lab">Название магазина <span class="fld__req" aria-hidden="true">*</span></span>
+                  <input type="text" name="shop[]" required>
+                  <span class="fld__err">Укажите название, как на вывеске</span>
+                </label>
+                <label class="fld">
+                  <span class="fld__lab">Помещение <span class="fld__req" aria-hidden="true">*</span></span>
+                  <input type="text" name="room[]" placeholder="А10" required>
+                  <span class="fld__err">Укажите номер</span>
+                </label>
+                <button type="button" class="dreq__del" aria-label="Убрать магазин" hidden></button>
+              </div>
+              <button type="button" class="dreq__add">Ещё магазин</button>
+            </fieldset>
+
+            <div class="dform__two">
+              <label class="fld">
+                <span class="fld__lab">Контактное лицо <span class="fld__req" aria-hidden="true">*</span></span>
+                <input type="text" name="name" autocomplete="name" required>
+                <span class="fld__err">Укажите имя и фамилию</span>
+              </label>
+              <label class="fld">
+                <span class="fld__lab">Телефон <span class="fld__req" aria-hidden="true">*</span></span>
+                <input type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+                <span class="fld__err">Укажите телефон для связи</span>
+              </label>
+            </div>
+
+            <label class="fld">
+              <span class="fld__lab">Рабочая почта <span class="fld__req" aria-hidden="true">*</span></span>
+              <input type="email" name="email" autocomplete="email" placeholder="name@company.ru" required data-echo="reqMail">
+              <span class="fld__hint">Станет логином для входа в кабинет</span>
+              <span class="fld__err">Проверьте адрес</span>
+            </label>
+
+            <div class="hp" aria-hidden="true"><input type="text" name="company" tabindex="-1" autocomplete="off"></div>
+
+            <label class="check dlkauth__check" data-req>
+              <input type="checkbox" name="pd" required>
+              <span>Согласен на обработку персональных данных и принимаю <a href="design-privacy.html">политику</a> <span class="fld__req" aria-hidden="true">*</span></span>
+              <span class="fld__err">Без согласия заявку отправить нельзя</span>
+            </label>
+
+            <div class="dcaptcha">Yandex SmartCaptcha</div>
+
+            <button type="submit" class="dbtn dbtn--fill dbtn--full">Отправить заявку</button>
+          </form>
+        </div>
+
+        <div data-step="done" hidden>
+          <h1 class="dlkauth__h1">Заявка<em>отправлена</em></h1>
+          <p class="dlkauth__lead">Администрация проверит данные и сообщит о решении на <b class="dlkauth__mail" id="reqMail">name@company.ru</b>. Если заявку одобрят, менеджер пришлёт пароль для входа — при первом входе его нужно будет сменить.</p>
+          <p class="dlkauth__lead">Обычно это занимает до 2 рабочих дней.</p>
+          <a href="design-lk-login.html" class="dbtn dbtn--ghost dbtn--full">Ко входу в кабинет</a>
+          <a href="design.html" class="dlkauth__alt">На главную</a>
+        </div>
+
+      </div>
+
+      <div class="dlkauth__bottom">
+        <p>Уже есть доступ? <a href="design-lk-login.html">Войти в кабинет</a></p>
+        <p>Как устроен кабинет — <a href="lk-help.html?guest=1">инструкция для арендаторов</a></p>
+        <p>Вопросы по доступу — <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>, <a href="tel:+78124585900">+7 (812) 458-59-00</a></p>
+      </div>
+    </div>
+
+    <div class="dlkauth__media" aria-hidden="true">
+      <img src="img/hero-light.webp" id="heroPhoto" alt="">
+    </div>
+  </div>
+</main>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=74"></script>
+<script src="design.js?v=146"></script>
+<script src="design-lk.js?v=10"></script>
+</body>
+</html>

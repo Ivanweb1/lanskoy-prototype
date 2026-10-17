@@ -31,6 +31,7 @@ body.dlk{padding-top:0}
 }
 .dlkauth__h1 em{display:block;font-style:normal;color:var(--s-accent)}
 .dlkauth__lead{margin:18px 0 32px;font-size:15px;line-height:1.6;color:var(--s-fg-soft)}
+.dlkauth__lead+.dlkauth__lead{margin-top:-20px}
 
 .dlkauth__bottom{
   width:100%;max-width:420px;margin:0 auto;padding-top:18px;border-top:1px solid var(--s-line);
@@ -178,3 +179,48 @@ body.dlk{padding-top:0}
 .dform.is-locked .dpass__eye{cursor:not-allowed;opacity:.5}
 .dform .dbtn:disabled{opacity:.4;cursor:not-allowed;filter:none;transform:none}
 .dform.is-locked .dbtn--ghost{margin-top:0}
+
+/* ============ ЗАЯВКА НА ДОСТУП ============ */
+/* полей больше — колонка формы шире */
+.dlkauth--wide .dlkauth__in,.dlkauth--wide .dlkauth__bottom{max-width:520px}
+.dreq__shops{margin:0 0 20px;padding:0;border:0;min-width:0}
+.dreq__shop{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:0 12px;position:relative}
+.dreq__shop.has-del{grid-template-columns:minmax(0,1fr) 120px 50px}
+.dreq__shop+.dreq__shop{padding-top:16px;border-top:1px solid var(--s-line)}
+.dlkauth .dform .dreq__shop .fld{margin-bottom:14px}
+.dreq__shops .dreq__shop .fld__lab{font-size:11px}
+.dreq__del{
+  align-self:start;margin-top:29px;width:50px;height:50px;padding:0;border:1px solid var(--s-line-strong);border-radius:2px;
+  background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s;
+}
+.dreq__del::before{content:"";width:14px;height:14px;background:var(--s-fg-soft);transition:background-color .2s;
+  -webkit-mask:var(--i-x) no-repeat center/contain;mask:var(--i-x) no-repeat center/contain}
+.dreq__del:hover{border-color:var(--s-accent)}
+.dreq__del:hover::before{background:var(--s-accent)}
+.dreq__add{
+  display:inline-flex;align-items:center;gap:10px;padding:0 0 3px;border:0;border-bottom:1px solid transparent;background:none;cursor:pointer;
+  font:inherit;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink);transition:border-color .2s;
+}
+.dreq__add::before{content:"";width:12px;height:12px;background:var(--s-accent);
+  -webkit-mask:var(--i-plus) no-repeat center/contain;mask:var(--i-plus) no-repeat center/contain}
+.dreq__add:hover{border-bottom-color:var(--s-accent)}
+:root{
+  --i-x:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M2 2l10 10M12 2L2 12'/%3E%3C/svg%3E");
+  --i-plus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M6 1v10M1 6h10'/%3E%3C/svg%3E");
+}
+.dform .fld__hint{font-size:12px;color:var(--s-fg-soft)}
+.dform .is-invalid .fld__hint{display:none}
+.dlkauth--wide .dform__two .fld{margin-bottom:20px}
+/* согласие: ошибка — строкой под текстом */
+.dform .dlkauth__check{flex-wrap:wrap;margin-bottom:20px}
+.dform .dlkauth__check>span:not(.fld__err){flex:1 1 0;min-width:0}
+.dform .dlkauth__check .fld__err{flex-basis:100%;padding-left:26px;margin-top:0}
+.dform .dlkauth__check.is-invalid input{border-color:#B5483A}
+.dlkauth .dcaptcha{margin-bottom:20px}
+@media (max-width:560px){
+  .dform__two{grid-template-columns:1fr}
+  /* название — во всю строку, помещение и «убрать» — под ним */
+  .dreq__shop,.dreq__shop.has-del{grid-template-columns:minmax(0,1fr) 50px}
+  .dreq__shop .fld:first-child{grid-column:1/-1}
+  .dreq__shop:not(.has-del) .fld:nth-child(2){grid-column:1/-1}
+}

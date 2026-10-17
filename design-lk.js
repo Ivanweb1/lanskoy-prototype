@@ -52,11 +52,55 @@
       [].forEach.call(form.querySelectorAll('.fld'), function (f) {
         if (!check(f) && !bad) bad = f;
       });
+      [].forEach.call(form.querySelectorAll('.check[data-req]'), function (c) {
+        var ok = c.querySelector('input').checked;
+        c.classList.toggle('is-invalid', !ok);
+        if (!ok && !bad) bad = c;
+      });
       if (bad) { bad.querySelector('input').focus(); return; }
+      [].forEach.call(form.querySelectorAll('[data-echo]'), function (i) {
+        var t = document.getElementById(i.getAttribute('data-echo'));
+        if (t && i.value.trim()) t.textContent = i.value.trim();
+      });
       if (form.hasAttribute('data-swap')) { showDone(); return; }
       location.href = form.getAttribute('data-next');
     });
   });
+
+  document.addEventListener('change', function (e) {
+    var c = e.target.closest('.check.is-invalid');
+    if (c && e.target.checked) c.classList.remove('is-invalid');
+  });
+
+  /* заявка: «Ещё магазин» — пустая копия строки с кнопкой «убрать» */
+  document.addEventListener('click', function (e) {
+    var add = e.target.closest('.dreq__add');
+    if (add) {
+      var rows = add.parentNode.querySelectorAll('.dreq__shop');
+      var row = rows[0].cloneNode(true);
+      row.querySelectorAll('input').forEach(function (i) { i.value = ''; });
+      row.querySelectorAll('.fld').forEach(function (f) { f.classList.remove('is-invalid'); });
+      add.parentNode.insertBefore(row, add);
+      sync(add.parentNode);
+      row.querySelector('input').focus();
+      return;
+    }
+    var del = e.target.closest('.dreq__del');
+    if (del) {
+      var box = del.closest('.dreq__shops');
+      del.closest('.dreq__shop').remove();
+      sync(box);
+      box.querySelector('.dreq__shop:last-of-type input').focus();
+    }
+  });
+  function sync(box) {
+    var rows = box.querySelectorAll('.dreq__shop');
+    rows.forEach(function (r) {
+      var many = rows.length > 1;
+      r.classList.toggle('has-del', many);
+      r.querySelector('.dreq__del').hidden = !many;
+    });
+  }
 
   // ошибка гаснет, как только человек начинает исправлять
   document.addEventListener('input', function (e) {
