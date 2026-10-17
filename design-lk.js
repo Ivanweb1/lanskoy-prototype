@@ -844,6 +844,35 @@
       d.addEventListener('click', function (e) { if (e.target.closest('a, button[type=submit]')) { e.preventDefault(); hintPv(); } }, true);
     };
     pvFrame.addEventListener('load', setupPv);
+
+    /* много изменений: в строке первые три, остальные — в раскрывающемся списке по разделам.
+       ?many=1 — показать большой черновик */
+    var plist = document.querySelector('.dkpv__list');
+    if (/[?&]many=1/.test(location.search)) {
+      [['design-lk-card.html', 'Карточка магазина', 'изменено описание'], ['design-lk-card.html', 'Карточка магазина', 'режим работы: суббота'],
+       ['design-lk-card.html', 'Карточка магазина', 'добавлена соцсеть Дзен'], ['design-lk-photos.html', 'Фотографии', 'новый логотип'],
+       ['design-lk-photos.html', 'Фотографии', 'обложка галереи'], ['design-lk-promo.html?p=1', 'Акции', 'продлена «Скидка 15%»']]
+        .forEach(function (x) { plist.insertAdjacentHTML('beforeend', '<a href="' + x[0] + '" class="dkpv__i" data-sec="' + x[1] + '">' + x[2] + '</a>'); });
+    }
+    var pitems = [].slice.call(plist.querySelectorAll('.dkpv__i'));
+    var pn = document.querySelector('.dkpv__sum .dstatus__n'); if (pn) pn.textContent = pitems.length;
+    if (pitems.length > 4) {
+      pitems.slice(3).forEach(function (a) { a.hidden = true; });
+      var groups = {};
+      pitems.forEach(function (a) { var k = a.getAttribute('data-sec'); (groups[k] = groups[k] || []).push(a); });
+      var wrap = document.createElement('span');
+      wrap.className = 'dkpv__more';
+      var rest = pitems.length - 3;
+      wrap.innerHTML = '<button type="button" class="dkpv__morebtn" aria-expanded="false">ещё ' + rest + '</button><div class="dkpv__pop" hidden><p class="dkpv__popt">Все изменения · ' + pitems.length + '</p>' +
+        Object.keys(groups).map(function (k) {
+          return '<div class="dkpv__popg"><p class="dkpv__popk">' + k + '</p>' + groups[k].map(function (a) { return '<a href="' + a.getAttribute('href') + '">' + a.textContent + '</a>'; }).join('') + '</div>';
+        }).join('') + '</div>';
+      plist.appendChild(wrap);
+      var mb = wrap.querySelector('button'), pop = wrap.querySelector('.dkpv__pop');
+      mb.addEventListener('click', function () { var o = pop.hidden; pop.hidden = !o; wrap.classList.toggle('is-open', o); mb.setAttribute('aria-expanded', String(o)); });
+      document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) { pop.hidden = true; wrap.classList.remove('is-open'); mb.setAttribute('aria-expanded', 'false'); } });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { pop.hidden = true; wrap.classList.remove('is-open'); } });
+    }
     // «К изменениям» — туда, откуда открыли предпросмотр (раздел кабинета), иначе на дашборд
     var back = document.querySelector('[data-pv-back]');
     if (back && /design-lk[\w-]*\.html/.test(document.referrer) && !/preview/.test(document.referrer)) back.href = document.referrer;

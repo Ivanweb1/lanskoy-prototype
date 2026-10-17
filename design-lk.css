@@ -911,3 +911,17 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dkpv__frame{border:0}
   .dkpv__seg{display:none}
 }
+/* предпросмотр: много изменений — первые три в строке, остальные в раскрывающемся списке */
+.dkpv__more{position:relative}
+.dkpv__morebtn{display:flex;align-items:center;gap:6px;margin-left:14px;padding:0;border:0;background:none;cursor:pointer;font:inherit;font-size:13px;font-weight:600;color:var(--b-copper)}
+.dkpv__morebtn::after{content:"";width:10px;height:6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23C49A6C' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;transition:transform .2s}
+.dkpv__more.is-open .dkpv__morebtn::after{transform:rotate(180deg)}
+.dkpv__pop{position:absolute;left:0;top:calc(100% + 12px);z-index:20;width:340px;max-height:60vh;overflow:auto;padding:16px 18px;background:var(--b-cream);box-shadow:0 18px 40px -12px rgba(1,20,39,.45)}
+.dkpv__pop[hidden]{display:none}
+.dkpv__popg+.dkpv__popg{margin-top:12px;padding-top:12px;border-top:1px solid var(--s-line)}
+.dkpv__popk{margin-bottom:6px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--s-accent-ink)}
+.dkpv__pop a{display:block;padding:4px 0;font-size:13px;line-height:1.4;color:var(--b-navy)}
+.dkpv__pop a:hover{color:var(--s-accent-ink)}
+.dkpv__list .dkpv__i[hidden]{display:none}
+@media (max-width:760px){.dkpv__sum{position:relative}.dkpv__more{position:static}.dkpv__pop{left:0;right:0;width:auto}}
+.dkpv__popt{margin-bottom:12px;font-family:var(--d-serif);font-weight:600;font-size:15px;color:var(--b-navy);font-variant-numeric:lining-nums}
