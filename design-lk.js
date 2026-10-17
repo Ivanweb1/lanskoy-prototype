@@ -31,7 +31,7 @@
     return ok;
   }
 
-  [].forEach.call(document.querySelectorAll('form[data-next]'), function (form) {
+  [].forEach.call(document.querySelectorAll('form[data-next]:not([data-code])'), function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var bad = null;
@@ -48,6 +48,68 @@
     var f = e.target.closest('.fld.is-invalid');
     if (f) f.classList.remove('is-invalid');
   });
+
+  /* ---------- код подтверждения ----------
+     Цифра — переход к следующей ячейке, Backspace — к предыдущей,
+     вставка из буфера раскладывает код по ячейкам. Демо: 000000 — неверный код. */
+  [].forEach.call(document.querySelectorAll('form[data-code]'), function (form) {
+    var cells = [].slice.call(form.querySelectorAll('.dotp input'));
+    var fld = form.querySelector('.dotp').closest('.fld');
+    function mark() { cells.forEach(function (c) { c.classList.toggle('is-filled', !!c.value); }); }
+    function fill(from, digits) {
+      digits.split('').forEach(function (d, k) { if (cells[from + k]) cells[from + k].value = d; });
+      mark();
+      var next = cells[Math.min(from + digits.length, cells.length - 1)];
+      next.focus(); next.select();
+    }
+    cells.forEach(function (c, i) {
+      c.addEventListener('input', function () {
+        var d = c.value.replace(/\D/g, '');
+        c.value = '';
+        if (d) fill(i, d.slice(0, cells.length - i)); else mark();
+      });
+      c.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && !c.value && i > 0) { cells[i - 1].value = ''; cells[i - 1].focus(); mark(); e.preventDefault(); }
+        if (e.key === 'ArrowLeft' && i > 0) { cells[i - 1].focus(); e.preventDefault(); }
+        if (e.key === 'ArrowRight' && i < cells.length - 1) { cells[i + 1].focus(); e.preventDefault(); }
+      });
+      c.addEventListener('focus', function () { c.select(); });
+      c.addEventListener('paste', function (e) {
+        var d = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+        if (!d) return;
+        e.preventDefault(); fill(i, d.slice(0, cells.length - i));
+      });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var code = cells.map(function (c) { return c.value; }).join('');
+      if (code.length < cells.length) {
+        fld.classList.add('is-invalid');
+        (cells.filter(function (c) { return !c.value; })[0] || cells[0]).focus();
+        return;
+      }
+      if (code === '000000') { location.search = '?err=1'; return; }
+      location.href = form.getAttribute('data-next');
+    });
+  });
+
+  /* таймер повторной отправки */
+  var timer = document.querySelector('[data-timer]');
+  if (timer) {
+    var left = +timer.getAttribute('data-timer');
+    var wait = document.querySelector('[data-wait]');
+    var again = document.querySelector('[data-resend]');
+    var tick = function () {
+      timer.textContent = '00:' + (left < 10 ? '0' : '') + left;
+      if (left-- <= 0) { clearInterval(id); wait.hidden = true; again.hidden = false; }
+    };
+    var id = setInterval(tick, 1000); tick();
+    again.addEventListener('click', function () {
+      left = +timer.getAttribute('data-timer'); wait.hidden = false; again.hidden = true;
+      wait.firstChild.textContent = 'Новый код отправлен. Ещё раз — через ';
+      id = setInterval(tick, 1000); tick();
+    });
+  }
 
   /* ---------- состояния экрана входа из адреса ----------
      ?out=1 — вышли из кабинета, ?err=1 — неверная почта или пароль */

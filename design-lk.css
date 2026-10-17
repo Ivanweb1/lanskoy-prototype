@@ -43,7 +43,10 @@ body.dlk{padding-top:0}
   clip-path:polygon(13% 0,100% 0,100% 100%,0 100%)}
 /* вход — страница сайта: под общей шапкой, высота — экран минус шапка */
 .dlkauth--site{min-height:calc(100vh - var(--hdr-h,138px));min-height:calc(100svh - var(--hdr-h,138px))}
-.dlkauth--site .dlkauth__side{justify-content:center;gap:48px;padding:56px var(--pad)}
+.dlkauth--site .dlkauth__side{justify-content:center;gap:48px;
+  /* левый край — по сетке сайта, на одной линии с логотипом в шапке (как первый экран главной) */
+  padding:56px 56px 56px calc(max(0px, (100vw - var(--d-wrap)) / 2) + var(--pad))}
+.dlkauth--site .dlkauth__in,.dlkauth--site .dlkauth__bottom{margin-left:0}
 .dlkauth__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* поля: пароль и почта — в общий вид полей .dform */
@@ -102,6 +105,7 @@ body.dlk{padding-top:0}
   .dlkauth__media{display:none}
   .dlkauth__side{min-height:100vh;min-height:100svh}
   .dlkauth--site .dlkauth__side{min-height:0;padding:40px var(--pad) 48px}
+  .dlkauth--site .dlkauth__in,.dlkauth--site .dlkauth__bottom{max-width:none}
 }
 @media (max-width:560px){
   .dlkauth__side{padding:18px 20px 24px;gap:36px}
@@ -120,3 +124,29 @@ body.dlk{padding-top:0}
   transition:background-color 9999s 0s,border-color .2s;
 }
 .dform input:autofill{background:var(--s-field-bg)}
+
+/* ============ КОД ПОДТВЕРЖДЕНИЯ ============ */
+.dlkauth__mail{font-weight:600;color:var(--s-fg)}
+/* шесть ячеек на ширину формы; цифры — Montserrat (служебные цифры не в Playfair) */
+.dotp{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.dform .dotp input{
+  width:100%;height:64px;padding:0;text-align:center;
+  border:1px solid var(--s-line-strong);border-radius:2px;background:var(--s-field-bg);
+  font:inherit;font-size:24px;font-weight:600;color:var(--s-fg);font-variant-numeric:tabular-nums;
+  caret-color:var(--s-accent);transition:border-color .2s,background-color .2s;
+}
+.dform .dotp input:focus{outline:none;border-color:var(--s-accent);box-shadow:inset 0 0 0 1px var(--s-accent)}
+.dotp input::selection{background:transparent}
+.dform .dotp input.is-filled{border-color:var(--s-fg-soft)}
+.dform .is-invalid .dotp input{border-color:#B5483A}
+.dotp__resend{margin:-4px 0 20px;font-size:13px;color:var(--s-fg-soft)}
+.dotp__resend b{font-weight:600;color:var(--s-fg);font-variant-numeric:tabular-nums}
+.dotp__resend .fld__aside{padding:0;border:0;border-bottom:1px solid var(--s-line-strong);background:none;font:inherit;font-size:13px;cursor:pointer}
+.dotp__resend .fld__aside:hover{border-color:var(--s-accent)}
+.dform .dlkauth__check{display:flex;gap:10px;align-items:flex-start;margin:0 0 24px;font-size:13px;line-height:1.5;cursor:pointer}
+.dlkauth__alt{display:block;width:max-content;margin:6px auto 0;font-size:13px;color:var(--s-accent-ink);border-bottom:1px solid var(--s-line-strong);transition:border-color .2s}
+.dlkauth__alt:hover{border-color:var(--s-accent)}
+@media (max-width:400px){
+  .dotp{gap:6px}
+  .dform .dotp input{height:54px;font-size:20px}
+}

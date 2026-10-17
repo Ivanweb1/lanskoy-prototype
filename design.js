@@ -764,7 +764,8 @@
     'cookie.html': 'design-cookie.html',
     '404.html': 'design-404.html',
     '500.html': 'design-500.html',
-    'lk-login.html': 'design-lk-login.html'
+    'lk-login.html': 'design-lk-login.html',
+    'lk-code.html': 'design-lk-code.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
