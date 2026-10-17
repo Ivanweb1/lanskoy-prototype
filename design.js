@@ -766,7 +766,8 @@
     '500.html': 'design-500.html',
     'lk-login.html': 'design-lk-login.html',
     'lk-code.html': 'design-lk-code.html',
-    'lk-reset.html': 'design-lk-reset.html'
+    'lk-reset.html': 'design-lk-reset.html',
+    'lk-newpass.html': 'design-lk-newpass.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');

@@ -27,9 +27,23 @@
     var v = inp.value.trim();
     var ok = inp.required ? !!v : true;
     if (ok && inp.type === 'email') ok = EMAIL.test(v);
+    if (ok && inp.hasAttribute('data-rules')) ok = rules(inp).every(Boolean);
+    if (ok && inp.hasAttribute('data-match')) ok = v === document.getElementById(inp.getAttribute('data-match')).value.trim();
     f.classList.toggle('is-invalid', !ok);
     return ok;
   }
+
+  /* условия пароля: не короче 8, буква, цифра (предложение, в ТЗ не заданы) */
+  function rules(inp) {
+    var v = inp.value;
+    return [v.length >= 8, /[a-zа-яё]/i.test(v), /\d/.test(v)];
+  }
+  document.addEventListener('input', function (e) {
+    var inp = e.target.closest('input[data-rules]');
+    if (!inp) return;
+    var ok = rules(inp);
+    [].forEach.call(inp.closest('.fld').querySelectorAll('[data-rule]'), function (li, k) { li.classList.toggle('is-ok', ok[k]); });
+  });
 
   [].forEach.call(document.querySelectorAll('form[data-next]:not([data-code]), form[data-swap]'), function (form) {
     form.addEventListener('submit', function (e) {
