@@ -179,7 +179,13 @@
       row.querySelectorAll('.fld').forEach(function (f) { f.classList.remove('is-invalid'); });
       var lab = row.querySelector('.fld__lab');
       if (lab && add.getAttribute('data-label')) lab.textContent = add.getAttribute('data-label');
+      row.querySelectorAll('.dd__btn, .dd__list').forEach(function (x) { x.remove(); });
+      row.querySelectorAll('.dform__sel').forEach(function (w) {
+        w.classList.remove('dd', 'is-open');
+        var s = w.querySelector('select'); delete s.dataset.dd; s.removeAttribute('aria-hidden'); s.removeAttribute('tabindex');
+      });
       add.parentNode.insertBefore(row, add);
+      if (window.lnsEnhanceSelect) row.querySelectorAll('.dform__sel').forEach(window.lnsEnhanceSelect);
       row.querySelector('input').focus();
       saved();
       return;
@@ -725,4 +731,137 @@
     lsec.addEventListener('change', lfilter);
     document.addEventListener('click', function (e) { if (e.target.closest('[data-log-reset]')) { lsec.value = 'all'; lfilter(); } });
   }
+})();
+
+/* ---------- выпадающие списки в стиле сайта (копия из design.js — он в кабинете не подключён) ----------
+   Раскрытый список у <select> рисует браузер/ОС (системный шрифт, синяя
+   подсветка) — стилями его не изменить. Поэтому поверх каждого списка
+   строим свой: кнопка + список вариантов. Настоящий <select> остаётся
+   скрытым и синхронным: фильтры и формы работают с ним как раньше.
+   Клавиатура: Enter/Пробел/↓ — открыть, ↑↓ — выбор, Enter — подтвердить,
+   Esc — закрыть; клик вне списка закрывает */
+(function () {
+  function enhance(sel, host) {
+    if (sel.dataset.dd) return;
+    sel.dataset.dd = '1';
+    sel.tabIndex = -1;
+    sel.setAttribute('aria-hidden', 'true');
+    host.classList.add('dd');
+    var list = document.createElement('ul');
+    list.className = 'dd__list';
+    list.setAttribute('role', 'listbox');
+    list.hidden = true;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'dd__btn';
+    btn.setAttribute('aria-haspopup', 'listbox');
+    btn.setAttribute('aria-expanded', 'false');
+    var lab = host.querySelector('.dselect__lab, .fld__lab');
+    btn.setAttribute('aria-label', (lab ? lab.textContent + ': ' : '') + 'выбрать');
+    host.appendChild(btn);
+    host.appendChild(list);
+    var cur = 0;
+
+    function build() {
+      list.innerHTML = '';
+      [].forEach.call(sel.options, function (o, i) {
+        if (o.hidden) return;
+        var li = document.createElement('li');
+        li.className = 'dd__opt';
+        li.setAttribute('role', 'option');
+        li.textContent = o.textContent;
+        li.dataset.i = i;
+        list.appendChild(li);
+      });
+    }
+    function mark() {
+      [].forEach.call(list.children, function (li) {
+        var i = +li.dataset.i;
+        li.classList.toggle('is-sel', i === sel.selectedIndex);
+        li.classList.toggle('is-cur', i === cur);
+        li.setAttribute('aria-selected', i === sel.selectedIndex ? 'true' : 'false');
+      });
+    }
+    function open() {
+      document.dispatchEvent(new CustomEvent('dd:close'));
+      cur = sel.selectedIndex;
+      mark();
+      list.hidden = false;
+      host.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    function close() {
+      list.hidden = true;
+      host.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    function pick(i) {
+      if (i !== sel.selectedIndex) {
+        sel.selectedIndex = i;
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      close();
+      btn.focus();
+    }
+    build();
+    /* поле — по ширине раскрытого списка (самого длинного варианта),
+       чтобы список не выступал из-под него */
+    function fit() {
+      if (!host.classList.contains('dselect')) return;
+      list.style.visibility = 'hidden';
+      list.hidden = false;
+      var w = list.offsetWidth;
+      list.hidden = true;
+      list.style.visibility = '';
+      if (w > host.offsetWidth) host.style.minWidth = w + 'px';
+    }
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      list.hidden ? open() : close();
+    });
+    list.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    list.addEventListener('click', function (e) {
+      var li = e.target.closest('.dd__opt');
+      if (li) pick(+li.dataset.i);
+    });
+    list.addEventListener('mousemove', function (e) {
+      var li = e.target.closest('.dd__opt');
+      if (li && +li.dataset.i !== cur) { cur = +li.dataset.i; mark(); }
+    });
+    function step(d) {
+      var n = sel.options.length;
+      do { cur = (cur + d + n) % n; } while (sel.options[cur].hidden);
+      mark();
+    }
+    btn.addEventListener('keydown', function (e) {
+      if (list.hidden) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); open(); }
+        return;
+      }
+      if (e.key === 'ArrowDown') { e.preventDefault(); step(1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); step(-1); }
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(cur); }
+      else if (e.key === 'Escape' || e.key === 'Tab') close();
+    });
+    document.addEventListener('click', function (e) { if (!host.contains(e.target)) close(); });
+    document.addEventListener('dd:close', close);
+    /* «label» вокруг списка фильтра: клик по подписи открывает список */
+    host.addEventListener('click', function (e) {
+      if (e.target === btn || btn.contains(e.target) || list.contains(e.target)) return;
+      e.preventDefault();
+      list.hidden ? open() : close();
+    });
+  }
+  [].forEach.call(document.querySelectorAll('.dselect'), function (w) {
+    var s = w.querySelector('select'); if (s) enhance(s, w);
+  });
+  [].forEach.call(document.querySelectorAll('.dform__sel, .sortbox'), function (w) {
+    var s = w.querySelector('select'); if (s) enhance(s, w);
+  });
+  /* для полей, добавленных после загрузки (объекты в анкете дизайнера) */
+  window.lnsEnhanceSelect = function (w) {
+    var s = w.querySelector('select'); if (s) enhance(s, w);
+  };
 })();
