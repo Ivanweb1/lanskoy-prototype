@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
 <link rel="stylesheet" href="design-pages.css?v=303">
-<link rel="stylesheet" href="design-lk.css?v=47">
+<link rel="stylesheet" href="design-lk.css?v=49">
 <!-- кабинет — только светлая тема (решение Ивана 17.10) -->
 </head>
 <body class="dk">
@@ -44,7 +44,7 @@
     </div>
 
     <div class="dlogs dform">
-    <section class="dkpanel dlogg">
+    <section class="dkpanel dlogg" data-sub>
       <div class="dlogg__head">
         <div><h2 class="dlogg__t">Не отправлено</h2><p class="dlogg__m">Уйдёт на проверку одной отправкой</p></div>
         <span class="dstatus dstatus--draft">Черновик</span>
@@ -59,7 +59,7 @@
       </ul>
     </section>
 
-    <section class="dkpanel dlogg">
+    <section class="dkpanel dlogg" data-sub>
       <div class="dlogg__head">
         <div><h2 class="dlogg__t">Отправка от 12.09.2026, 16:05</h2><p class="dlogg__m">Проверена 12.09.2026, 16:40</p></div>
         <span class="dstatus dstatus--stop">Отклонено</span>
@@ -73,7 +73,7 @@
       </ul>
     </section>
 
-    <section class="dkpanel dlogg">
+    <section class="dkpanel dlogg" data-sub>
       <div class="dlogg__head">
         <div><h2 class="dlogg__t">Отправка от 05.09.2026, 09:41</h2><p class="dlogg__m">Проверена 05.09.2026, 14:10</p></div>
         <span class="dstatus dstatus--ok">Опубликовано</span>
@@ -85,7 +85,7 @@
       </ul>
     </section>
 
-    <section class="dkpanel dlogg">
+    <section class="dkpanel dlogg" data-sub>
       <div class="dlogg__head">
         <div><h2 class="dlogg__t">Отправка от 20.08.2026, 12:15</h2><p class="dlogg__m">Проверена 20.08.2026, 17:30</p></div>
         <span class="dstatus dstatus--ok">Опубликовано</span>
@@ -96,6 +96,62 @@
           <li class="dlogr dlogr--dec" data-sec="decision"><span class="dlogr__d">20.08.2026, 17:30</span><span class="dlogr__s">Проверка</span><span class="dlogr__t"><span class="dstatus dstatus--ok">Опубликовано</span> проверено — изменения на сайте</span><span class="dlogr__w">Администрация комплекса</span></li>
       </ul>
     </section>
+
+    <section class="dkpanel dlogg" data-sub>
+      <div class="dlogg__head">
+        <div><h2 class="dlogg__t">Отправка от 01.07.2026, 11:22</h2><p class="dlogg__m">Проверена 01.07.2026, 15:45</p></div>
+        <span class="dstatus dstatus--ok">Опубликовано</span>
+      </div>
+      <ul class="dlog">
+          <li class="dlogr dlogr--head" aria-hidden="true"><span>Когда</span><span>Раздел</span><span>Что изменилось</span><span>Кто</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:02</span><span class="dlogr__s">Описание</span><span class="dlogr__t">Изменено описание магазина: добавлен абзац об услугах мастеров</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:05</span><span class="dlogr__s">Контакты</span><span class="dlogr__t">Добавлен телефон: <b>+7 (921) 000-00-00</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:06</span><span class="dlogr__s">Контакты</span><span class="dlogr__t">Добавлен мессенджер MAX: <b>max.ru/vladart</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:10</span><span class="dlogr__s">Режим работы</span><span class="dlogr__t">Понедельник: <s>10:00 — 21:00</s> → <b>10:00 — 20:00</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:11</span><span class="dlogr__s">Режим работы</span><span class="dlogr__t">Вторник: <s>10:00 — 21:00</s> → <b>10:00 — 20:00</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:12</span><span class="dlogr__s">Режим работы</span><span class="dlogr__t">Среда: <s>10:00 — 21:00</s> → <b>10:00 — 20:00</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:13</span><span class="dlogr__s">Режим работы</span><span class="dlogr__t">Четверг: <s>10:00 — 21:00</s> → <b>10:00 — 20:00</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:14</span><span class="dlogr__s">Режим работы</span><span class="dlogr__t">Пятница: <s>10:00 — 21:00</s> → <b>10:00 — 20:00</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">01.07.2026, 11:15</span><span class="dlogr__s">Режим работы</span><span class="dlogr__t">Суббота: <s>10:00 — 21:00</s> → <b>10:00 — 20:00</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="photos"><span class="dlogr__d">01.07.2026, 11:20</span><span class="dlogr__s">Фотографии</span><span class="dlogr__t">Добавлены 2 фотографии в галерею</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr dlogr--dec" data-sec="decision"><span class="dlogr__d">01.07.2026, 15:45</span><span class="dlogr__s">Проверка</span><span class="dlogr__t"><span class="dstatus dstatus--ok">Опубликовано</span> проверено — изменения на сайте</span><span class="dlogr__w">Администрация комплекса</span></li>
+      </ul>
+    </section>
+
+    <section class="dkpanel dlogg" data-sub data-more hidden>
+      <div class="dlogg__head">
+        <div><h2 class="dlogg__t">Отправка от 15.06.2026, 13:42</h2><p class="dlogg__m">Проверена 15.06.2026, 18:05</p></div>
+        <span class="dstatus dstatus--ok">Опубликовано</span>
+      </div>
+      <ul class="dlog">
+          <li class="dlogr dlogr--head" aria-hidden="true"><span>Когда</span><span>Раздел</span><span>Что изменилось</span><span>Кто</span></li>
+          <li class="dlogr" data-sec="photos"><span class="dlogr__d">15.06.2026, 13:40</span><span class="dlogr__s">Фотографии</span><span class="dlogr__t">Обложка галереи: заменена на фото шоурума</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr dlogr--dec" data-sec="decision"><span class="dlogr__d">15.06.2026, 18:05</span><span class="dlogr__s">Проверка</span><span class="dlogr__t"><span class="dstatus dstatus--ok">Опубликовано</span> проверено — изменения на сайте</span><span class="dlogr__w">Администрация комплекса</span></li>
+      </ul>
+    </section>
+
+    <section class="dkpanel dlogg" data-sub data-more hidden>
+      <div class="dlogg__head">
+        <div><h2 class="dlogg__t">Первая отправка — 28.05.2026, 10:55</h2><p class="dlogg__m">Проверена 29.05.2026, 12:15</p></div>
+        <span class="dstatus dstatus--ok">Опубликовано</span>
+      </div>
+      <ul class="dlog">
+          <li class="dlogr dlogr--head" aria-hidden="true"><span>Когда</span><span>Раздел</span><span>Что изменилось</span><span>Кто</span></li>
+          <li class="dlogr" data-sec="photos"><span class="dlogr__d">28.05.2026, 10:20</span><span class="dlogr__s">Логотип</span><span class="dlogr__t">Загружен логотип</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">28.05.2026, 10:24</span><span class="dlogr__s">Описание</span><span class="dlogr__t">Заполнено описание магазина</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">28.05.2026, 10:31</span><span class="dlogr__s">Контакты</span><span class="dlogr__t">Добавлен основной телефон: <b>+7 (812) 363-00-70</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">28.05.2026, 10:33</span><span class="dlogr__s">Контакты</span><span class="dlogr__t">Добавлен сайт: <b>vladart.ru</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">28.05.2026, 10:35</span><span class="dlogr__s">Соцсети</span><span class="dlogr__t">Добавлена страница ВКонтакте: <b>vk.com/vladart</b></span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">28.05.2026, 10:40</span><span class="dlogr__s">Режим работы</span><span class="dlogr__t">Заполнен режим работы на все дни</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="photos"><span class="dlogr__d">28.05.2026, 10:52</span><span class="dlogr__s">Фотографии</span><span class="dlogr__t">Добавлены 6 фотографий в галерею</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr dlogr--dec" data-sec="decision"><span class="dlogr__d">29.05.2026, 12:15</span><span class="dlogr__s">Проверка</span><span class="dlogr__t"><span class="dstatus dstatus--ok">Опубликовано</span> проверено — изменения на сайте</span><span class="dlogr__w">Администрация комплекса</span></li>
+      </ul>
+    </section>
+
+    <div class="results__more dlog__more" data-log-more>
+      <button type="button" class="dbtn dbtn--ghost">Показать ещё 2 отправки</button>
+      <p class="dlog__shown" data-log-shown>Показано 5 из 7 отправок</p>
+    </div>
 
     <section class="dkpanel dlogg dlogg--quiet">
       <div class="dlogg__head">
@@ -117,6 +173,6 @@
 </div>
 
 <script src="design-lk-side.js?v=9"></script>
-<script src="design-lk.js?v=26"></script>
+<script src="design-lk.js?v=27"></script>
 </body>
 </html>

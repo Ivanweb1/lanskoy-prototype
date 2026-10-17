@@ -712,17 +712,57 @@
     if (offBtn) { offBtn.click(); var y = document.querySelector('[data-yes]'); if (y) y.click(); }
   }
 
+  function plural(n, a, b, c) { var m = n % 10, h = n % 100; return m === 1 && h !== 11 ? a : m >= 2 && m <= 4 && (h < 12 || h > 14) ? b : c; }
+
   /* ---------- журнал: фильтр по разделу ---------- */
   var lsec = document.querySelector('[data-log-sec]');
   if (lsec) {
+    /* отправки: открыты три последние, остальные свёрнуты в строку;
+       в длинной отправке видны первые 5 изменений и итог проверки */
+    var SHOW = 5;
+    document.querySelectorAll('.dlogg[data-sub]').forEach(function (g, i) {
+      var rows = [].slice.call(g.querySelectorAll('.dlogr:not(.dlogr--head):not(.dlogr--dec)'));
+      var head = g.querySelector('.dlogg__head'), meta = g.querySelector('.dlogg__m');
+      var tog = document.createElement('button');
+      tog.type = 'button'; tog.className = 'dlogg__tog';
+      var setTog = function () {
+        var open = g.classList.contains('is-open');
+        tog.textContent = open ? 'Свернуть' : rows.length + ' ' + plural(rows.length, 'изменение', 'изменения', 'изменений');
+        tog.setAttribute('aria-expanded', String(open));
+      };
+      meta.insertAdjacentElement('afterend', tog);
+      head.classList.add('dlogg__head--btn');
+      head.addEventListener('click', function () { g.classList.toggle('is-open'); setTog(); });
+      if (i < 3) g.classList.add('is-open');
+      setTog();
+      if (rows.length > SHOW + 1) {
+        rows.slice(SHOW).forEach(function (r) { r.classList.add('is-more'); r.hidden = true; });
+        var li = document.createElement('li');
+        li.className = 'dlog__rest';
+        var n = rows.length - SHOW;
+        li.innerHTML = '<button type="button">Ещё ' + n + ' ' + plural(n, 'изменение', 'изменения', 'изменений') + '</button>';
+        rows[SHOW - 1].insertAdjacentElement('afterend', li);
+        li.querySelector('button').addEventListener('click', function () {
+          rows.forEach(function (r) { r.classList.remove('is-more'); r.hidden = false; }); li.remove();
+        });
+      }
+    });
+    var more = document.querySelector('[data-log-more]');
+    if (more) more.querySelector('button').addEventListener('click', function () {
+      document.querySelectorAll('.dlogg[data-more]').forEach(function (g) { g.hidden = false; g.removeAttribute('data-more'); });
+      more.remove();
+    });
     var lfilter = function () {
       var v = lsec.value, n = 0;
       document.querySelectorAll('.dlogg').forEach(function (g) {
         var k = 0;
+        if (g.hasAttribute('data-more')) return;
         g.querySelectorAll('.dlogr:not(.dlogr--head):not(.dlogr--dec)').forEach(function (r) {
           var on = v === 'all' || r.getAttribute('data-sec') === v;
-          r.hidden = !on; if (on) k++;
+          r.hidden = !on || (v === 'all' && r.classList.contains('is-more')); if (on) k++;
         });
+        var rest = g.querySelector('.dlog__rest'); if (rest) rest.hidden = v !== 'all';
+        if (v !== 'all' && k) g.classList.add('is-open');
         // решение модератора и заголовки остаются у плашки, если в ней что-то найдено
         g.hidden = !k; n += k;
       });

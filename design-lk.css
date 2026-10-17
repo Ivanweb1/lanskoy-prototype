@@ -775,3 +775,17 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dlogr__d{order:-1}
   .dlogr__s,.dlogr__t,.dlogr__w{grid-column:1;grid-row:auto}
 }
+/* журнал: свёрнутые отправки и длинные отправки */
+.dlogg__head--btn{cursor:pointer;margin-bottom:0}
+.dlogg__head--btn:hover .dlogg__t{color:var(--s-accent-ink)}
+.dlogg__tog{display:inline-flex;align-items:center;gap:8px;margin-top:8px;padding:0;border:0;background:none;cursor:pointer;font:inherit;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-accent-ink)}
+.dlogg__tog::after{content:"";width:10px;height:6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23C49A6C' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;transition:transform .2s}
+.dlogg.is-open .dlogg__tog::after{transform:rotate(180deg)}
+.dlogg:not(.is-open)[data-sub] .dlog,.dlogg:not(.is-open)[data-sub] .dknote__q,.dlogg:not(.is-open)[data-sub] .dlogg__acts{display:none}
+.dlogg.is-open .dlogg__head--btn{margin-bottom:14px}
+.dlog__rest{padding:10px 0;border-bottom:1px solid var(--s-line)}
+.dlog__rest button{padding:0 0 2px;border:0;border-bottom:1px solid var(--s-line-strong);background:none;cursor:pointer;font:inherit;font-size:13px;color:var(--s-accent-ink)}
+.dlog__more{display:grid;justify-items:center;gap:10px;margin-top:4px}
+.dlog__more .dbtn{width:100%;justify-content:center;cursor:pointer;font-family:inherit}
+.dlog__shown{font-size:12px;color:var(--s-fg-soft)}
+.dlogr[hidden],.dlog__rest[hidden]{display:none}
