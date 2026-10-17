@@ -558,4 +558,31 @@
     document.querySelector('[data-vlink-add]').addEventListener('click', addLink);
     lin.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addLink(); } });
   }
+
+  /* ---------- акции: снять с публикации, удалить черновик ---------- */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-off], [data-del]');
+    if (b && b.closest('.dprow')) {
+      var acts = b.closest('.dprow__acts');
+      acts.dataset.was = acts.innerHTML;
+      var del = b.hasAttribute('data-del');
+      acts.innerHTML = '<span class="dprow__ask" role="alert">' +
+        (del ? 'Удалить черновик акции?' : 'Снять акцию с сайта? Она пропадёт из ленты сразу, без проверки.') +
+        '<span><button type="button" class="dprow__off dprow__yes" data-yes="' + (del ? 'del' : 'off') + '">' + (del ? 'Удалить' : 'Снять') + '</button>' +
+        '<button type="button" class="dprow__off" data-no>Отмена</button></span></span>';
+      acts.querySelector('[data-no]').focus();
+      return;
+    }
+    var no = e.target.closest('[data-no]');
+    if (no) { var a = no.closest('.dprow__acts'); a.innerHTML = a.dataset.was; return; }
+    var yes = e.target.closest('[data-yes]');
+    if (yes) {
+      var r = yes.closest('.dprow');
+      if (yes.getAttribute('data-yes') === 'del') { r.remove(); return; }
+      r.classList.add('is-off');
+      r.querySelector('.dprow__st').innerHTML = '<span class="dstatus dstatus--empty">Снята</span>';
+      r.querySelector('.dprow__left').textContent = 'снята вручную сегодня';
+      r.querySelector('.dprow__acts').innerHTML = '<a href="lk-promo-new.html" class="dlink">Повторить</a>';
+    }
+  });
 })();

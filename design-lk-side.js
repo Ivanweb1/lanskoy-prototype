@@ -17,7 +17,7 @@
     { key: 'card', label: 'Карточка магазина', href: 'design-lk-card.html', ic: 'card', n: '1' },
     { key: 'photos', label: 'Фотографии', href: 'design-lk-photos.html', ic: 'photo', n: '1' },
     { key: 'video', label: 'Видео', href: 'design-lk-video.html', ic: 'video' },
-    { key: 'promos', label: 'Акции', href: 'lk-promos.html', ic: 'promo' },
+    { key: 'promos', label: 'Акции', href: 'design-lk-promos.html', ic: 'promo' },
     { sep: true },
     { key: 'log', label: 'Журнал изменений', href: 'lk-log.html', ic: 'log' },
     { key: 'account', label: 'Аккаунт и вход', href: 'lk-account.html', ic: 'user' },

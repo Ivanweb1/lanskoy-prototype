@@ -774,7 +774,8 @@
     'lk.html': 'design-lk.html',
     'lk-card.html': 'design-lk-card.html',
     'lk-photos.html': 'design-lk-photos.html',
-    'lk-video.html': 'design-lk-video.html'
+    'lk-video.html': 'design-lk-video.html',
+    'lk-promos.html': 'design-lk-promos.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
