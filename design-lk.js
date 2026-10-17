@@ -837,7 +837,7 @@
       // данные черновика вместо опубликованных: телефон исправлен
       d.querySelectorAll('main a[href^="tel:"]').forEach(function (a) { a.href = 'tel:+78123630007'; });
       var tw = d.createTreeWalker(d.querySelector('main') || d.body, NodeFilter.SHOW_TEXT), tn;
-      while ((tn = tw.nextNode())) if (tn.nodeValue.indexOf('000-00-00') > -1) tn.nodeValue = tn.nodeValue.replace(/\+7 \(812\) 000-00-00/g, '+7 (812) 363-00-07');
+      while ((tn = tw.nextNode())) if (tn.nodeValue.indexOf('000-00-00') > -1) tn.nodeValue = tn.nodeValue.replace(/\+7[\s\u00a0]*\(812\)[\s\u00a0]*000-00-00/g, '+7\u00a0(812)\u00a0363-00-07');
       MARKS.forEach(function (m) {
         var els = m.sel ? [].slice.call(d.querySelectorAll(m.sel)) : [].filter.call(d.querySelectorAll('.dblock'), function (b) { var h = b.querySelector('h2'); return h && h.textContent.trim() === m.block; });
         els.forEach(function (el) { el.classList.add('pvmark'); el.setAttribute('data-pv', m.t); });
