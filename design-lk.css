@@ -861,15 +861,15 @@ body.dk{padding-top:0;background:var(--s-bg)}
 
 /* ============ ПРЕДПРОСМОТР КАРТОЧКИ ============ */
 .dkpv{display:flex;flex-direction:column;height:100vh;height:100svh;overflow:hidden;background:var(--s-bg-2)}
-.dkpv__bar{flex:none;display:flex;align-items:center;gap:16px 24px;flex-wrap:nowrap;padding:14px 28px;background:var(--g-navy);color:var(--b-cream)}
+.dkpv__bar{flex:none;display:flex;align-items:center;gap:12px 22px;flex-wrap:wrap;padding:12px 24px;background:var(--g-navy);color:var(--b-cream)}
 .dkpv__logo img{height:34px;width:auto;display:block}
 .dkpv__info{min-width:0;margin-right:auto}
 .dkpv__t{font-family:var(--d-serif);font-weight:600;font-size:18px;color:var(--b-cream)}
 .dkpv__s{margin-top:2px;font-size:12px;color:rgba(246,244,237,.66)}
-.dkpv__tools{display:flex;align-items:center;gap:20px}
+.dkpv__tools{display:flex;align-items:center;gap:18px}
 /* переключатель вида — сегменты одной плашкой, активный — медная заливка (как .dviews) */
 .dkpv__seg{display:flex;border:1px solid rgba(196,154,108,.6);border-radius:2px}
-.dkpv__seg button{height:38px;padding:0 16px;border:0;background:transparent;cursor:pointer;font:inherit;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--b-cream)}
+.dkpv__seg button{height:38px;padding:0 13px;border:0;background:transparent;cursor:pointer;font:inherit;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--b-cream)}
 .dkpv__seg button+button{border-left:1px solid rgba(196,154,108,.6)}
 .dkpv__seg button.is-on{background:var(--b-copper);color:var(--b-navy)}
 .dkpv__check{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--b-cream);cursor:pointer}
@@ -882,28 +882,31 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .dkpv__acts .dbtn{height:40px;padding:0 18px;font-size:11px}
 .dkpv__acts .dbtn--ghost{color:var(--b-copper)}
 .dkpv__acts .dbtn:hover{transform:none}
-.dkpv__sum{flex:none;display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap;padding:12px 28px;background:var(--s-bg);border-bottom:1px solid var(--s-line)}
-.dkpv__sumt{font-size:13px;color:var(--s-fg-soft)}
-.dkpv__list{display:flex;flex-wrap:wrap;align-items:center}
+/* изменения — в той же синей полосе, слева */
+.dkpv__sum{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;margin-right:auto;min-width:0}
+.dkpv__sum .dstatus--draft{border-color:var(--b-copper);color:var(--b-copper)}
+.dkpv__sumt{font-size:13px;color:rgba(246,244,237,.66)}
+.dkpv__list{display:flex;flex-wrap:wrap;align-items:center;row-gap:4px}
+.dkpv__i{display:flex;align-items:center;font-size:13px;font-weight:500;color:var(--b-cream);text-decoration:underline;text-decoration-color:rgba(196,154,108,.5);text-underline-offset:4px;transition:color .2s,text-decoration-color .2s}
+.dkpv__i:hover{color:var(--b-copper);text-decoration-color:var(--b-copper)}
 /* разделитель в перечне — точка 3px цветом текста (брендбук стр. 42) */
-.dkpv__list .dkpv__i+.dkpv__i::before{content:"";width:3px;height:3px;margin:0 12px;border-radius:50%;background:var(--s-fg-soft)}
-.dkpv__i{display:flex;align-items:center;font-size:13px;font-weight:500;color:var(--s-fg);text-decoration:underline;text-decoration-color:var(--s-line-strong);text-underline-offset:4px;transition:color .2s,text-decoration-color .2s}
-.dkpv__i:hover{color:var(--s-accent-ink);text-decoration-color:var(--s-accent)}
-.dkpv__i+.dkpv__i::before{text-decoration:none}
+.dkpv__list .dkpv__i+.dkpv__i::before{content:"";width:3px;height:3px;margin:0 10px;border-radius:50%;background:rgba(246,244,237,.5)}
+.dkpv__x3{display:none}
+@media (max-width:1600px){.dkpv__x2,.dkpv__x{display:none}.dkpv__x3{display:inline}.dkpv__bar{gap:12px 18px}}
+/* не помещается в строку — вниз уходит перечень, инструменты и кнопки остаются сверху */
+@media (max-width:1400px){.dkpv__sum{order:2;flex-basis:100%;margin-right:0}.dkpv__tools{margin-right:auto}}
 .dkpv__stage{flex:1;min-height:0;display:flex;justify-content:center;padding:24px}
 .dkpv__frame{width:100%;height:100%;border:1px solid var(--s-line);background:#fff;transition:width .35s var(--d-ease)}
 .dkpv__stage.is-phone .dkpv__frame{width:390px;border:10px solid var(--b-navy);border-radius:28px}
 .dkpv__hint{position:fixed;left:50%;bottom:24px;z-index:5;transform:translate(-50%,20px);padding:12px 18px;background:var(--b-navy);color:var(--b-cream);font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
 .dkpv__hint.is-on{opacity:1;transform:translate(-50%,0)}
-@media (max-width:1240px){.dkpv__bar{flex-wrap:wrap}.dkpv__info{flex-basis:100%;order:-1;margin-right:0}.dkpv__logo{display:none}.dkpv__tools{margin-right:auto}}
+
 @media (max-width:760px){
   .dkpv__bar{padding:12px var(--pad);gap:12px}
-  .dkpv__tools{width:100%;justify-content:space-between}
+  .dkpv__tools{width:100%}
   .dkpv__acts{width:100%}.dkpv__acts .dbtn{flex:1;justify-content:center}
   .dkpv__x{display:none}
-  .dkpv__sum{padding:10px var(--pad);gap:6px 14px}
-  .dkpv__sumt{flex-basis:100%;order:2}
-  .dkpv__list{order:3}
+  .dkpv__sum{width:100%}
   .dkpv__stage{padding:0}
   .dkpv__frame{border:0}
   .dkpv__seg{display:none}

@@ -11,32 +11,14 @@
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
 <link rel="stylesheet" href="design-pages.css?v=303">
-<link rel="stylesheet" href="design-lk.css?v=56">
+<link rel="stylesheet" href="design-lk.css?v=60">
 </head>
 <body class="dk dkpv">
 
 <header class="dkpv__bar">
-  <a href="design-lk.html" class="dkpv__logo"><img src="logo-gold.png" alt="ТК «Ланской» — кабинет" width="116" height="36"></a>
-  <div class="dkpv__info">
-    <p class="dkpv__t">Предпросмотр карточки</p>
-    <p class="dkpv__s">Так VLADART STUDIO будет выглядеть на сайте, когда все правки одобрят</p>
-  </div>
-  <div class="dkpv__tools">
-    <div class="dkpv__seg" role="group" aria-label="Размер экрана">
-      <button type="button" class="is-on" data-device="desktop" aria-pressed="true">Компьютер</button>
-      <button type="button" data-device="phone" aria-pressed="false">Телефон</button>
-    </div>
-    <label class="dkpv__check"><input type="checkbox" data-marks checked><span>Отметить изменения</span></label>
-  </div>
-  <div class="dkpv__acts">
-    <a href="design-lk.html" class="dbtn dbtn--ghost" data-pv-back>К изменениям</a>
-    <a href="design-lk.html?sent=1" class="dbtn dbtn--fill">Отправить<span class="dkpv__x">&nbsp;на проверку</span></a>
-  </div>
-</header>
-
 <div class="dkpv__sum">
   <span class="dstatus dstatus--draft">Черновик · <span class="dstatus__n">4</span></span>
-  <span class="dkpv__sumt">Ещё не отправлено на проверку:</span>
+  <span class="dkpv__sumt dkpv__x2">Не отправлено:</span>
   <span class="dkpv__list">
     <a href="design-lk-card.html" class="dkpv__i">исправлен телефон</a>
     <a href="design-lk-photos.html" class="dkpv__i">3 новые фотографии</a>
@@ -44,6 +26,19 @@
     <a href="design-lk-promo.html?p=draft" class="dkpv__i">акция «Осенние цены»</a>
   </span>
 </div>
+  <div class="dkpv__tools">
+    <div class="dkpv__seg" role="group" aria-label="Размер экрана">
+      <button type="button" class="is-on" data-device="desktop" aria-pressed="true">Компьютер</button>
+      <button type="button" data-device="phone" aria-pressed="false">Телефон</button>
+    </div>
+    <label class="dkpv__check"><input type="checkbox" data-marks checked><span><span class="dkpv__x2">Отметить изменения</span><span class="dkpv__x3">Отметки</span></span></label>
+  </div>
+  <div class="dkpv__acts">
+    <a href="design-lk.html" class="dbtn dbtn--ghost" data-pv-back>К изменениям</a>
+    <a href="design-lk.html?sent=1" class="dbtn dbtn--fill">Отправить<span class="dkpv__x">&nbsp;на проверку</span></a>
+  </div>
+</header>
+
 
 <main id="main" class="dkpv__stage" data-stage>
   <iframe class="dkpv__frame" src="design-shop.html?preview=1" title="Карточка магазина так, как её увидят посетители" data-frame></iframe>
