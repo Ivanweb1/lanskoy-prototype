@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
 <link rel="stylesheet" href="design-pages.css?v=303">
-<link rel="stylesheet" href="design-lk.css?v=36">
+<link rel="stylesheet" href="design-lk.css?v=37">
 <!-- кабинет — только светлая тема (решение Ивана 17.10) -->
 </head>
 <body class="dk">
@@ -43,27 +43,23 @@
           <span class="dkpanel__meta" data-vid-left>Можно добавить ещё 3</span>
         </div>
         <div class="dvadd">
-          <div class="dvadd__col">
-            <p class="dvadd__k">Файлом</p>
-            <label class="dupload dvadd__drop" data-vdrop>
-              <input type="file" accept="video/mp4,video/quicktime,.mp4,.mov" data-vid-file>
-              <span class="dupload__ic" aria-hidden="true"></span>
-              <span class="dupload__t">Перетащите видео сюда или <u>выберите файл</u></span>
-              <span class="dupload__h">MP4 или MOV · до 500 МБ · до 3 минут · горизонтальное 16:9, от 1280 × 720</span>
-            </label>
-          </div>
-          <div class="dvadd__or" aria-hidden="true">или</div>
-          <div class="dvadd__col">
-            <p class="dvadd__k">Ссылкой с видеохостинга</p>
-            <div class="fld dvadd__link">
-              <label class="hp" for="vidLink">Ссылка на ролик</label>
-              <span class="dvadd__row">
-                <input type="url" id="vidLink" placeholder="https://rutube.ru/video/…" inputmode="url" data-vlink>
-                <button type="button" class="dbtn dbtn--ghost" data-vlink-add>Добавить</button>
-              </span>
-              <span class="fld__hint">VK Видео или RuTube · ролик должен быть открыт для всех</span>
-              <span class="fld__err">Нужна ссылка на ролик с VK Видео или RuTube</span>
-            </div>
+          <label class="dvadd__box dvadd__box--file" data-vdrop>
+            <input type="file" accept="video/mp4,video/quicktime,.mp4,.mov" data-vid-file class="hp">
+            <span class="dvadd__ic dvadd__ic--file" aria-hidden="true"></span>
+            <span class="dvadd__t">Файлом</span>
+            <span class="dvadd__d">Перетащите видео сюда или <u>выберите файл</u></span>
+            <span class="dvadd__h">MP4 или MOV · до 500 МБ · до 3 минут<br>горизонтальное 16:9, от 1280 × 720</span>
+          </label>
+          <span class="dvadd__or" aria-hidden="true"><span>или</span></span>
+          <div class="dvadd__box fld dvadd__link">
+            <span class="dvadd__ic dvadd__ic--link" aria-hidden="true"></span>
+            <label class="dvadd__t" for="vidLink">Ссылкой</label>
+            <span class="dvadd__row">
+              <input type="url" id="vidLink" placeholder="https://rutube.ru/video/…" inputmode="url" data-vlink>
+              <button type="button" class="dbtn dbtn--ghost" data-vlink-add>Добавить</button>
+            </span>
+            <span class="fld__hint dvadd__h">VK Видео или RuTube · ролик должен быть открыт для всех</span>
+            <span class="fld__err">Нужна ссылка на ролик с VK Видео или RuTube</span>
           </div>
         </div>
       </section>
