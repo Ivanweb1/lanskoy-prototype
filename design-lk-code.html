@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
 <link rel="stylesheet" href="design-pages.css?v=303">
-<link rel="stylesheet" href="design-lk.css?v=20">
+<link rel="stylesheet" href="design-lk.css?v=21">
 <script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
 if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 document.documentElement.setAttribute("data-theme",t);
@@ -31,10 +31,14 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 
         <div class="dlkmsg dlkmsg--err" data-state="err" hidden role="alert">
           <b>Код не подошёл</b>
-          Проверьте цифры в последнем письме — после повторной отправки старый код не действует. Осталось 2 попытки.
+          Проверьте цифры в последнем письме — после повторной отправки старый код не действует. <span data-attempts>Осталось 2 попытки.</span>
+        </div>
+        <div class="dlkmsg dlkmsg--err" data-state="expired" hidden role="alert">
+          <b>Код устарел</b>
+          Код действует 10 минут. Запросите новый — он придёт на ту же почту.
         </div>
 
-        <form class="dform" data-next="lk.html" data-code novalidate>
+        <form class="dform" data-next="lk.html" data-next-first="design-lk-first.html" data-code novalidate>
           <div class="fld">
             <span class="fld__lab" id="codeLab">Код из письма</span>
             <div class="dotp" role="group" aria-labelledby="codeLab">
@@ -80,6 +84,6 @@ try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.d
 <script src="partials.js?v=76"></script>
 <script src="app.js?v=74"></script>
 <script src="design.js?v=146"></script>
-<script src="design-lk.js?v=10"></script>
+<script src="design-lk.js?v=11"></script>
 </body>
 </html>

@@ -30,7 +30,30 @@
     if (ok && inp.hasAttribute('data-rules')) ok = rules(inp).every(Boolean);
     if (ok && inp.hasAttribute('data-match')) ok = v === document.getElementById(inp.getAttribute('data-match')).value.trim();
     f.classList.toggle('is-invalid', !ok);
+    aria(f, inp, ok);
     return ok;
+  }
+
+  /* ошибка поля — и для экранного диктора: aria-invalid + связь с текстом ошибки */
+  var errN = 0;
+  function aria(f, inp, ok) {
+    var err = f.querySelector('.fld__err');
+    if (!err) return;
+    if (!err.id) err.id = 'fldErr' + (++errN);
+    var ids = (inp.getAttribute('aria-describedby') || '').split(' ').filter(function (x) { return x && x !== err.id; });
+    if (!ok) ids.push(err.id);
+    if (ids.length) inp.setAttribute('aria-describedby', ids.join(' ')); else inp.removeAttribute('aria-describedby');
+    if (ok) inp.removeAttribute('aria-invalid'); else inp.setAttribute('aria-invalid', 'true');
+  }
+
+  /* куда дальше: ?first=1 (первый вход по временному паролю) идёт через
+     «Придумайте свой пароль» — на настоящем сайте это знает сервер */
+  function next(form) {
+    var first = new URLSearchParams(location.search).get('first');
+    if (first && form.hasAttribute('data-next-first')) return form.getAttribute('data-next-first');
+    var url = form.getAttribute('data-next');
+    if (first && form.getAttribute('data-keep') === 'first') url += (url.indexOf('?') > -1 ? '&' : '?') + 'first=1';
+    return url;
   }
 
   /* условия пароля: не короче 8, буква, цифра (предложение, в ТЗ не заданы) */
@@ -63,7 +86,7 @@
         if (t && i.value.trim()) t.textContent = i.value.trim();
       });
       if (form.hasAttribute('data-swap')) { showDone(); return; }
-      location.href = form.getAttribute('data-next');
+      location.href = next(form);
     });
   });
 
@@ -147,8 +170,15 @@
         (cells.filter(function (c) { return !c.value; })[0] || cells[0]).focus();
         return;
       }
-      if (code === '000000') { location.search = '?err=1'; return; }
-      location.href = form.getAttribute('data-next');
+      var p = new URLSearchParams(location.search);
+      var first = p.get('first') ? '&first=1' : '';
+      if (code === '000000') {
+        var n = (+p.get('err') || 0) + 1;
+        location.href = n >= 3 ? 'design-lk-login.html?codeout=1' + first : '?err=' + n + first;
+        return;
+      }
+      if (code === '999999') { location.href = '?expired=1' + first; return; }
+      location.href = next(form);
     });
   });
 
@@ -192,6 +222,17 @@
   [].forEach.call(document.querySelectorAll('[data-state]'), function (el) {
     el.hidden = !q.get(el.getAttribute('data-state'));
   });
+  [].forEach.call(document.querySelectorAll('[data-state-off]'), function (el) {
+    el.hidden = !!q.get(el.getAttribute('data-state-off'));
+  });
+  // сколько попыток ввода кода осталось
+  var att = document.querySelector('[data-attempts]');
+  if (att && q.get('err')) att.textContent = +q.get('err') >= 2 ? 'Осталась 1 попытка.' : 'Осталось 2 попытки.';
+  // код устарел — повторная отправка доступна сразу
+  if (q.get('expired') && document.querySelector('[data-code]')) {
+    var w = document.querySelector('[data-wait]'), r = document.querySelector('[data-resend]');
+    if (w && r) { w.hidden = true; r.hidden = false; }
+  }
   if (q.get('sent')) showDone();
 
   /* обратный отсчёт блокировки: дошёл до нуля — снова на вход */
