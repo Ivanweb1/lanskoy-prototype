@@ -730,3 +730,41 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .dpprev .pcard__title{font-variant-numeric:lining-nums}
 .dkbarbot__acts [hidden]{display:none}
 @media (max-width:640px){.dkcats__list{grid-template-columns:1fr}}
+
+/* ============ ЖУРНАЛ ИЗМЕНЕНИЙ ============ */
+.dlogf{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.dlogf__f{display:block;width:280px}
+.dlogf .dform__sel select{width:100%;height:48px;padding:0 40px 0 14px;-webkit-appearance:none;appearance:none;border:1px solid var(--s-line-strong);border-radius:2px;
+  background:var(--s-field-bg);font:inherit;font-size:14px;color:var(--s-fg);cursor:pointer}
+.dlogf .dform__sel select:focus{outline:none;border-color:var(--s-accent)}
+.dlogf__n{font-size:13px;color:var(--s-fg-soft)}
+.dlogs{display:grid;gap:16px}
+.dlogg{padding:24px 28px}
+.dlogg__head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
+.dlogg__t{font-family:var(--d-serif);font-weight:600;font-size:18px;color:var(--s-fg);font-variant-numeric:lining-nums}
+.dlogg__m{margin-top:4px;font-size:12px;color:var(--s-fg-soft)}
+.dlogg__q{margin:0 0 14px;background:rgba(181,72,58,.05);border-left:2px solid #B5483A}
+.dlogg__acts{margin:-4px 0 12px}
+.dlogg__acts .dlink{font-size:11px}
+.dlogg--quiet{background:transparent}
+.dlog{margin:0;padding:0;list-style:none;border-top:1px solid var(--s-line)}
+.dlogr{display:grid;grid-template-columns:140px 120px minmax(0,1fr) 190px;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--s-line);font-size:14px}
+.dlogr:last-child{border-bottom:0}
+.dlogr__d{font-size:13px;color:var(--s-fg-soft);font-variant-numeric:tabular-nums}
+.dlogr__s{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--s-accent-ink)}
+.dlogr__t{color:var(--s-fg)}
+.dlogr__t s{color:var(--s-fg-soft)}
+.dlogr__w{font-size:13px;color:var(--s-fg-soft);text-align:right}
+@media (max-width:1100px){
+  .dlogr{grid-template-columns:130px minmax(0,1fr);gap:4px 16px}
+  .dlogr__s{grid-column:2;grid-row:1}
+  .dlogr__t{grid-column:2}
+  .dlogr__w{grid-column:2;text-align:left;font-size:12px}
+}
+@media (max-width:640px){
+  .dlogg{padding:20px 18px}
+  .dlogf__f{width:100%}
+  .dlogr{grid-template-columns:1fr}
+  .dlogr__d{order:-1}
+  .dlogr__s,.dlogr__t,.dlogr__w{grid-column:1;grid-row:auto}
+}

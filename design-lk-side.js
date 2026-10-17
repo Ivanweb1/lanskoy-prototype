@@ -19,7 +19,7 @@
     { key: 'video', label: 'Видео', href: 'design-lk-video.html', ic: 'video' },
     { key: 'promos', label: 'Акции', href: 'design-lk-promos.html', ic: 'promo' },
     { sep: true },
-    { key: 'log', label: 'Журнал изменений', href: 'lk-log.html', ic: 'log' },
+    { key: 'log', label: 'Журнал изменений', href: 'design-lk-log.html', ic: 'log' },
     { key: 'account', label: 'Аккаунт и вход', href: 'lk-account.html', ic: 'user' },
     { key: 'help', label: 'Инструкция', href: 'lk-help.html', ic: 'help' }
   ];

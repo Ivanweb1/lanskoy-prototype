@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Журнал изменений — кабинет арендатора — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=45">
+<!-- кабинет — только светлая тема (решение Ивана 17.10) -->
+</head>
+<body class="dk">
+
+<div class="dk__shell">
+  <aside id="dkSide" data-lk="log"></aside>
+
+  <main id="main" tabindex="-1" class="dkmain">
+
+    <div class="dkhead">
+      <div>
+        <h1 class="dkhead__h1">Журнал изменений</h1>
+        <p class="dkhead__shop"><b>VLADART STUDIO</b><span>Секция А10 · 1 этаж</span></p>
+        <p class="dkhead__sub">Что изменено в кабинете, кем и когда, что отправлено на проверку и чем она закончилась.</p>
+      </div>
+    </div>
+
+    <div class="dlogf">
+      <label class="dlogf__f"><span class="hp">Раздел</span>
+        <span class="dform__sel"><select data-log-sec aria-label="Раздел">
+          <option value="all">Все разделы</option>
+          <option value="card">Описание и контакты</option>
+          <option value="photos">Фотографии</option>
+          <option value="video">Видео</option>
+          <option value="promos">Акции</option>
+          <option value="account">Аккаунт и вход</option>
+        </select></span>
+      </label>
+      <p class="dlogf__n" data-log-n aria-live="polite"></p>
+    </div>
+
+    <div class="dlogs dform">
+    <section class="dkpanel dlogg">
+      <div class="dlogg__head">
+        <div><h2 class="dlogg__t">Не отправлено</h2><p class="dlogg__m">Уйдёт на проверку одной отправкой</p></div>
+        <span class="dstatus dstatus--draft">Черновик</span>
+      </div>
+      <div class="dlogg__acts"><a href="design-lk.html" class="dlink">Отправить на проверку</a></div>
+      <ul class="dlog">
+          <li class="dlogr" data-sec="video"><span class="dlogr__d">16.09.2026, 10:12</span><span class="dlogr__s">Видео</span><span class="dlogr__t">Добавлен ролик по ссылке с RuTube</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="video"><span class="dlogr__d">16.09.2026, 10:05</span><span class="dlogr__s">Видео</span><span class="dlogr__t">Загружен ролик «vladart-showroom.mp4»</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="promos"><span class="dlogr__d">14.09.2026, 11:35</span><span class="dlogr__s">Акции</span><span class="dlogr__t">Создана акция «Осенние цены на декоративную штукатурку»</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="photos"><span class="dlogr__d">14.09.2026, 11:20</span><span class="dlogr__s">Фотографии</span><span class="dlogr__t">Добавлены 3 фотографии в галерею</span><span class="dlogr__w">Вы</span></li>
+      </ul>
+    </section>
+
+    <section class="dkpanel dlogg">
+      <div class="dlogg__head">
+        <div><h2 class="dlogg__t">Отправка от 12.09.2026, 16:05</h2><p class="dlogg__m">Проверена 12.09.2026, 16:40</p></div>
+        <span class="dstatus dstatus--stop">Отклонено</span>
+      </div>
+      <blockquote class="dknote__q dlogg__q">«Телефон указан без кода города, добавьте +7 (812). Новое фото в галерее вертикальное и обрезается в каталоге — замените на горизонтальное».<cite>Контент-менеджер Ольга</cite></blockquote>
+      <ul class="dlog">
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">12.09.2026, 16:40</span><span class="dlogr__s">Проверка</span><span class="dlogr__t">Отправка отклонена с комментарием</span><span class="dlogr__w">Контент-менеджер Ольга</span></li>
+          <li class="dlogr" data-sec="photos"><span class="dlogr__d">12.09.2026, 16:02</span><span class="dlogr__s">Фотографии</span><span class="dlogr__t">Добавлена 1 фотография в галерею</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="card"><span class="dlogr__d">12.09.2026, 15:58</span><span class="dlogr__s">Контакты</span><span class="dlogr__t">Основной телефон: <s>+7 (812) 363-00-70</s> → <b>363-00-07</b></span><span class="dlogr__w">Вы</span></li>
+      </ul>
+    </section>
+
+    <section class="dkpanel dlogg">
+      <div class="dlogg__head">
+        <div><h2 class="dlogg__t">Отправка от 05.09.2026, 09:41</h2><p class="dlogg__m">Проверена 05.09.2026, 14:10</p></div>
+        <span class="dstatus dstatus--ok">Опубликовано</span>
+      </div>
+      <ul class="dlog">
+          <li class="dlogr" data-sec="promos"><span class="dlogr__d">05.09.2026, 14:10</span><span class="dlogr__s">Проверка</span><span class="dlogr__t">Опубликовано</span><span class="dlogr__w">Контент-менеджер Ольга</span></li>
+          <li class="dlogr" data-sec="promos"><span class="dlogr__d">05.09.2026, 09:38</span><span class="dlogr__s">Акции</span><span class="dlogr__t">Создана акция «Скидка 15% на декоративную штукатурку»</span><span class="dlogr__w">Вы</span></li>
+      </ul>
+    </section>
+
+    <section class="dkpanel dlogg">
+      <div class="dlogg__head">
+        <div><h2 class="dlogg__t">Отправка от 20.08.2026, 12:15</h2><p class="dlogg__m">Проверена 20.08.2026, 17:30</p></div>
+        <span class="dstatus dstatus--ok">Опубликовано</span>
+      </div>
+      <ul class="dlog">
+          <li class="dlogr" data-sec="promos"><span class="dlogr__d">20.08.2026, 17:30</span><span class="dlogr__s">Проверка</span><span class="dlogr__t">Опубликовано</span><span class="dlogr__w">Контент-менеджер Ольга</span></li>
+          <li class="dlogr" data-sec="promos"><span class="dlogr__d">20.08.2026, 12:10</span><span class="dlogr__s">Акции</span><span class="dlogr__t">Создана акция «Бесплатный выезд замерщика»</span><span class="dlogr__w">Вы</span></li>
+      </ul>
+    </section>
+
+    <section class="dkpanel dlogg dlogg--quiet">
+      <div class="dlogg__head">
+        <div><h2 class="dlogg__t">Аккаунт и вход</h2><p class="dlogg__m">Не проходят проверку — записываются сразу</p></div>
+        
+      </div>
+      <ul class="dlog">
+          <li class="dlogr" data-sec="account"><span class="dlogr__d">16.09.2026, 09:58</span><span class="dlogr__s">Вход</span><span class="dlogr__t">Вход в кабинет с нового устройства · Chrome, Windows</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="account"><span class="dlogr__d">28.05.2026, 10:12</span><span class="dlogr__s">Пароль</span><span class="dlogr__t">Временный пароль заменён при первом входе</span><span class="dlogr__w">Вы</span></li>
+          <li class="dlogr" data-sec="account"><span class="dlogr__d">27.05.2026, 18:20</span><span class="dlogr__s">Доступ</span><span class="dlogr__t">Доступ в кабинет выдан по заявке</span><span class="dlogr__w">Администратор комплекса</span></li>
+      </ul>
+    </section>
+
+      <p class="dkempty" data-log-empty hidden>В этом разделе изменений нет.</p>
+    </div>
+
+  </main>
+</div>
+
+<script src="design-lk-side.js?v=9"></script>
+<script src="design-lk.js?v=24"></script>
+</body>
+</html>

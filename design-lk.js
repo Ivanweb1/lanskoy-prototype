@@ -705,4 +705,24 @@
     var offBtn = link && link.closest('.dprow').querySelector('[data-off]');
     if (offBtn) { offBtn.click(); var y = document.querySelector('[data-yes]'); if (y) y.click(); }
   }
+
+  /* ---------- журнал: фильтр по разделу ---------- */
+  var lsec = document.querySelector('[data-log-sec]');
+  if (lsec) {
+    var lfilter = function () {
+      var v = lsec.value, n = 0;
+      document.querySelectorAll('.dlogg').forEach(function (g) {
+        var k = 0;
+        g.querySelectorAll('.dlogr').forEach(function (r) {
+          var on = v === 'all' || r.getAttribute('data-sec') === v;
+          r.hidden = !on; if (on) k++;
+        });
+        g.hidden = !k; n += k;
+      });
+      document.querySelector('[data-log-empty]').hidden = !!n;
+      document.querySelector('[data-log-n]').innerHTML = v === 'all' ? '' : 'Найдено ' + n + ' · <button type="button" class="dprow__off" data-log-reset>Сбросить</button>';
+    };
+    lsec.addEventListener('change', lfilter);
+    document.addEventListener('click', function (e) { if (e.target.closest('[data-log-reset]')) { lsec.value = 'all'; lfilter(); } });
+  }
 })();
