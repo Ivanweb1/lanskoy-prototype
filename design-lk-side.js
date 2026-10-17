@@ -13,7 +13,7 @@
 
   var NAV = [
     { t: 'Магазин' },
-    { key: 'overview', label: 'Мой магазин', href: 'design-lk.html', ic: 'overview' },
+    { key: 'overview', label: 'Дашборд', href: 'design-lk.html', ic: 'overview' },
     { key: 'card', label: 'Карточка магазина', href: 'lk-card.html', ic: 'card', n: '1' },
     { key: 'photos', label: 'Фотографии', href: 'lk-photos.html', ic: 'photo', n: '1' },
     { key: 'video', label: 'Видео', href: 'lk-video.html', ic: 'video' },
