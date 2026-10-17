@@ -195,6 +195,7 @@ body.dlk{padding-top:0}
 }
 .dreq__del::before{content:"";width:14px;height:14px;background:var(--s-fg-soft);transition:background-color .2s;
   -webkit-mask:var(--i-x) no-repeat center/contain;mask:var(--i-x) no-repeat center/contain}
+.dreq__del[hidden]{display:none}
 .dreq__del:hover{border-color:var(--s-accent)}
 .dreq__del:hover::before{background:var(--s-accent)}
 .dreq__add{
