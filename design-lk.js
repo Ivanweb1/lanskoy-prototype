@@ -84,8 +84,15 @@
       });
       if (!bad) bad = form.querySelector('.dhour__t.is-bad') && form.querySelector('.dhour__t.is-bad').closest('.dhour');
       var barErr = document.querySelector('[data-bar-err]');
-      if (barErr) barErr.hidden = !bad;
-      if (bad) { bad.scrollIntoView({ block: 'center' }); bad.querySelector('input').focus({ preventScroll: true }); return; }
+      // фото: отклонённое нужно убрать, загрузка — дождаться
+      var why = 'Сначала исправьте поле, отмеченное ошибкой';
+      if (!bad && form.hasAttribute('data-photos')) {
+        bad = form.querySelector('.dshot.is-stop');
+        if (bad) why = 'Удалите отклонённое фото — иначе отправку вернут снова';
+        else if ((bad = form.querySelector('.dshot.is-load'))) why = 'Дождитесь, пока загрузятся фотографии';
+      }
+      if (barErr) { barErr.hidden = !bad; barErr.textContent = why; }
+      if (bad) { bad.scrollIntoView({ block: 'center' }); var fi = bad.querySelector('input'); if (fi) fi.focus({ preventScroll: true }); return; }
       if (form.hasAttribute('data-card')) { location.href = 'design-lk.html?sent=1'; return; }
       [].forEach.call(form.querySelectorAll('[data-echo]'), function (i) {
         var t = document.getElementById(i.getAttribute('data-echo'));
@@ -346,4 +353,111 @@
       cd.textContent = two(Math.floor(sec / 60)) + ':' + two(sec % 60);
     }, 1000);
   }
+
+  /* ---------- фотографии ---------- */
+  var gal = document.querySelector('[data-gal]');
+  if (gal) {
+    var MAX = 20;
+    var cnt = document.querySelector('[data-gal-count]');
+    var syncGal = function () {
+      var all = gal.querySelectorAll('.dshot:not(.is-err)');
+      if (cnt) cnt.textContent = all.length + ' из ' + MAX + ' фотографий';
+      gal.querySelectorAll('.dshot__cover').forEach(function (c) { c.remove(); });
+      var first = gal.querySelector('.dshot:not(.is-err) .dshot__img');
+      if (first) first.insertAdjacentHTML('beforeend', '<span class="dshot__cover">Обложка</span>');
+      var note = document.querySelector('[data-rejected-note]');
+      if (note) note.hidden = !gal.querySelector('.dshot.is-stop');
+      saved();
+    };
+
+    gal.addEventListener('click', function (e) {
+      var d = e.target.closest('.dshot__del');
+      if (d) { d.closest('.dshot').remove(); syncGal(); }
+    });
+
+    // порядок — перетаскиванием; первая становится обложкой
+    var dragged = null;
+    gal.addEventListener('dragstart', function (e) {
+      dragged = e.target.closest('.dshot'); if (!dragged) return;
+      dragged.classList.add('is-drag'); e.dataTransfer.effectAllowed = 'move';
+    });
+    gal.addEventListener('dragover', function (e) {
+      if (!dragged) return;
+      e.preventDefault();
+      var t = e.target.closest('.dshot');
+      gal.querySelectorAll('.is-target').forEach(function (x) { x.classList.remove('is-target'); });
+      if (t && t !== dragged) t.classList.add('is-target');
+    });
+    gal.addEventListener('drop', function (e) {
+      if (!dragged) return;
+      e.preventDefault();
+      var t = e.target.closest('.dshot');
+      if (t && t !== dragged) {
+        var list = [].slice.call(gal.children);
+        gal.insertBefore(dragged, list.indexOf(dragged) < list.indexOf(t) ? t.nextSibling : t);
+      }
+    });
+    gal.addEventListener('dragend', function () {
+      if (dragged) dragged.classList.remove('is-drag');
+      gal.querySelectorAll('.is-target').forEach(function (x) { x.classList.remove('is-target'); });
+      dragged = null; syncGal();
+    });
+
+    // загрузка: проверка формата, веса, размера и ориентации; превью — сам файл
+    var tile = function (cls, inner, status, statusCls) {
+      var li = document.createElement('li');
+      li.className = 'dshot ' + cls;
+      li.draggable = !/is-err/.test(cls);
+      li.innerHTML = '<span class="dshot__img">' + inner + '</span><span class="dshot__row"><span class="dstatus ' + statusCls + '">' + status +
+        '</span><button type="button" class="dshot__del" aria-label="Убрать"></button></span>';
+      gal.appendChild(li);
+      return li;
+    };
+    var bad = function (name, why) {
+      tile('is-err', '<span>«' + name + '» не загружен: ' + why + '</span>', 'Ошибка', 'dstatus--err');
+    };
+    var add = function (files) {
+      [].forEach.call(files, function (f) {
+        if (gal.querySelectorAll('.dshot:not(.is-err)').length >= MAX) return bad(f.name, 'в галерее уже ' + MAX + ' фотографий');
+        if (!/^image\/(jpeg|png|webp)$/.test(f.type)) return bad(f.name, 'нужен JPG, PNG или WebP');
+        if (f.size > 10 * 1024 * 1024) return bad(f.name, 'больше 10 МБ');
+        var url = URL.createObjectURL(f), im = new Image();
+        im.onload = function () {
+          if (im.naturalHeight > im.naturalWidth) return bad(f.name, 'вертикальное — обрежется в каталоге');
+          if (Math.max(im.naturalWidth, im.naturalHeight) < 1600) return bad(f.name, 'меньше 1600 px по длинной стороне');
+          var li = tile('is-load', '<img src="' + url + '" alt=""><span class="dshot__load"><span>Загружается</span><span class="dshot__bar"><i></i></span></span>', 'Загружается', 'dstatus--wait');
+          var p = 0, bar = li.querySelector('.dshot__bar i');
+          var id = setInterval(function () {
+            p = Math.min(100, p + 8 + Math.random() * 14); bar.style.width = p + '%';
+            if (p >= 100) {
+              clearInterval(id);
+              li.classList.remove('is-load'); li.querySelector('.dshot__load').remove();
+              var st = li.querySelector('.dstatus'); st.className = 'dstatus dstatus--draft'; st.textContent = 'Черновик';
+              syncGal();
+            }
+          }, 180);
+          syncGal();
+        };
+        im.onerror = function () { bad(f.name, 'файл повреждён'); };
+        im.src = url;
+      });
+    };
+    var fileIn = document.querySelector('[data-gal-file]');
+    fileIn.addEventListener('change', function () { add(fileIn.files); fileIn.value = ''; });
+    var drop = document.querySelector('[data-drop]');
+    ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { if (dragged) return; e.preventDefault(); drop.classList.add('is-over'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function () { drop.classList.remove('is-over'); }); });
+    drop.addEventListener('drop', function (e) { if (dragged) return; e.preventDefault(); add(e.dataTransfer.files); });
+  }
+
+  // логотип: превью нового файла, статус — черновик
+  var logoIn = document.querySelector('[data-logo-file]');
+  if (logoIn) logoIn.addEventListener('change', function () {
+    var f = logoIn.files[0]; if (!f) return;
+    var box = document.querySelector('.dlogo__box');
+    box.innerHTML = '<img src="' + URL.createObjectURL(f) + '" alt="Новый логотип">';
+    document.querySelector('.dlogo').classList.add('is-new');
+    var st = document.querySelector('.dlogo .dstatus'); st.className = 'dstatus dstatus--draft'; st.textContent = 'Черновик';
+    saved();
+  });
 })();

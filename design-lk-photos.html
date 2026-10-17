@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Фотографии — кабинет арендатора — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=34">
+<!-- кабинет — только светлая тема (решение Ивана 17.10) -->
+</head>
+<body class="dk">
+
+<div class="dk__shell">
+  <aside id="dkSide" data-lk="photos"></aside>
+
+  <main id="main" tabindex="-1" class="dkmain dkmain--form">
+
+    <div class="dkhead">
+      <div>
+        <h1 class="dkhead__h1">Фотографии</h1>
+        <p class="dkhead__shop"><b>VLADART STUDIO</b><span>Секция А10 · 1 этаж</span></p>
+        <p class="dkhead__sub">Логотип и галерея магазина. Всё, что вы загрузите, появится на сайте после проверки администрацией.</p>
+      </div>
+      <div class="dkhead__acts"><span class="dstatus dstatus--draft">Черновик · <span class="dstatus__n">3</span></span></div>
+    </div>
+
+    <div class="dknote dknote--stop" role="status" data-rejected-note>
+      <p class="dknote__t">Одна фотография отклонена</p>
+      <blockquote class="dknote__q">«Новое фото в галерее вертикальное и обрезается в каталоге — замените на горизонтальное».<cite>Контент-менеджер Ольга, 12.09.2026, 16:40</cite></blockquote>
+      На сайт оно не попало. Удалите его и загрузите горизонтальное — иначе отправку вернут снова.
+    </div>
+
+    <form id="photoForm" class="dform dkform__main" data-card data-photos novalidate>
+
+      <section class="dkpanel" aria-labelledby="hLogo">
+        <h2 class="dkpanel__h" id="hLogo">Логотип</h2>
+        <div class="dlogo">
+          <div class="dlogo__box"><span class="dlogo__mark">VLADART<small>studio</small></span></div>
+          <div class="dlogo__info">
+            <ul class="dkro">
+              <li><span class="dkro__k">Формат</span><span class="dkro__v">SVG или PNG с прозрачным фоном</span></li>
+              <li><span class="dkro__k">Размер</span><span class="dkro__v">не меньше 600 × 400 px, до 5 МБ</span></li>
+              <li><span class="dkro__k">Статус</span><span class="dkro__v"><span class="dstatus dstatus--ok">Опубликован</span></span></li>
+            </ul>
+            <p class="dkpanel__hint">Логотип показывается в каталоге магазинов, на карточке и в блоке брендов. На прозрачном фоне он ляжет на плашку сайта, с белым фоном — будет выглядеть заплаткой.</p>
+            <label class="dbtn dbtn--ghost dlogo__btn">Заменить логотип<input type="file" accept=".svg,.png,image/svg+xml,image/png" class="hp" data-logo-file></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="dkpanel" aria-labelledby="hGal">
+        <div class="dkpanel__head">
+          <h2 class="dkpanel__h" id="hGal">Галерея магазина</h2>
+          <span class="dkpanel__meta" data-gal-count>12 из 20 фотографий</span>
+        </div>
+
+        <label class="dupload dkgal__drop" data-drop>
+          <input type="file" accept="image/jpeg,image/png,image/webp" multiple data-gal-file>
+          <span class="dupload__ic" aria-hidden="true"></span>
+          <span class="dupload__t">Перетащите фотографии сюда или <u>выберите файлы</u></span>
+          <span class="dupload__h">JPG, PNG или WebP · до 10 МБ каждая · не меньше 1600 px по длинной стороне · горизонтальные · до 20 в галерее</span>
+        </label>
+        <p class="dkpanel__hint">Первая фотография — обложка: её видно в каталоге и в поиске. Порядок меняется перетаскиванием. Большие снимки сайт уменьшит и сожмёт сам.</p>
+
+        <ul class="dkgal" data-gal>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/shops/vladart/1.webp" alt="" loading="lazy"><span class="dshot__cover">Обложка</span></span>
+            <span class="dshot__row"><span class="dstatus dstatus--ok">Опубликовано</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/shops/vladart/2.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--ok">Опубликовано</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/shops/vladart/3.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--ok">Опубликовано</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/shops/vladart/4.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--ok">Опубликовано</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/shops/vladart/5.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--ok">Опубликовано</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/shops/vladart/6.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--ok">Опубликовано</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/cat-dekor.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--ok">Опубликовано</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/shops/vladart.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--ok">Опубликовано</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/cat-oboi.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--draft">Черновик</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/cat-plitka.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--draft">Черновик</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot" draggable="true">
+            <span class="dshot__img"><img src="img/cat-tekstil.webp" alt="" loading="lazy"></span>
+            <span class="dshot__row"><span class="dstatus dstatus--draft">Черновик</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+          <li class="dshot is-stop" draggable="true">
+            <span class="dshot__img"><img src="img/cat-svet.webp" alt="" loading="lazy"><span class="dshot__why">Вертикальное фото обрезается в каталоге — замените на горизонтальное</span></span>
+            <span class="dshot__row"><span class="dstatus dstatus--stop">Отклонено</span><button type="button" class="dshot__del" aria-label="Удалить фото"></button></span>
+          </li>
+        </ul>
+      </section>
+
+    </form>
+
+  </main>
+</div>
+
+<div class="dkbarbot" role="region" aria-label="Отправка на проверку">
+  <p class="dkbarbot__t" aria-live="polite"><span class="dkbarbot__dot" aria-hidden="true"></span><span data-saved>Черновик сохранён · 14:35</span></p>
+  <p class="dkbarbot__err" data-bar-err hidden role="alert">Сначала исправьте поле, отмеченное ошибкой</p>
+  <div class="dkbarbot__acts">
+    <a href="lk-preview.html" class="dbtn dbtn--ghost">Предпросмотр</a>
+    <button type="submit" form="photoForm" class="dbtn dbtn--fill">Отправить на проверку</button>
+  </div>
+</div>
+
+<script src="design-lk-side.js?v=6"></script>
+<script src="design-lk.js?v=17"></script>
+</body>
+</html>
