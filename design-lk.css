@@ -750,6 +750,12 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .dlog{margin:0;padding:0;list-style:none;border-top:1px solid var(--s-line)}
 .dlogr{display:grid;grid-template-columns:140px 120px minmax(0,1fr) 190px;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--s-line);font-size:14px}
 .dlogr:last-child{border-bottom:0}
+.dlogr--head{padding:10px 0;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dlogr--head span:last-child{text-align:right}
+/* решение модератора — отличается от правок арендатора */
+.dlogr--dec{background:var(--s-plate);box-shadow:-12px 0 0 var(--s-plate),12px 0 0 var(--s-plate);align-items:center}
+.dlogr--dec .dlogr__s{color:var(--s-fg)}
+.dlogr--dec .dlogr__t{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--s-fg-soft)}
 .dlogr__d{font-size:13px;color:var(--s-fg-soft);font-variant-numeric:tabular-nums}
 .dlogr__s{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--s-accent-ink)}
 .dlogr__t{color:var(--s-fg)}
@@ -760,6 +766,7 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dlogr__s{grid-column:2;grid-row:1}
   .dlogr__t{grid-column:2}
   .dlogr__w{grid-column:2;text-align:left;font-size:12px}
+  .dlogr--head{display:none}
 }
 @media (max-width:640px){
   .dlogg{padding:20px 18px}

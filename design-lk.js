@@ -719,10 +719,11 @@
       var v = lsec.value, n = 0;
       document.querySelectorAll('.dlogg').forEach(function (g) {
         var k = 0;
-        g.querySelectorAll('.dlogr').forEach(function (r) {
+        g.querySelectorAll('.dlogr:not(.dlogr--head):not(.dlogr--dec)').forEach(function (r) {
           var on = v === 'all' || r.getAttribute('data-sec') === v;
           r.hidden = !on; if (on) k++;
         });
+        // решение модератора и заголовки остаются у плашки, если в ней что-то найдено
         g.hidden = !k; n += k;
       });
       document.querySelector('[data-log-empty]').hidden = !!n;
