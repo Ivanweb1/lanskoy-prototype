@@ -238,7 +238,8 @@
 
   /* счётчик символов в описании */
   [].forEach.call(document.querySelectorAll('[data-count]'), function (c) {
-    var ta = c.closest('.fld').querySelector('textarea, input');
+    var fld = c.closest('.fld'), ta = fld && fld.querySelector('textarea, input');
+    if (!ta) return;  // [data-count] бывает и в шапке сайта на страницах входа
     var max = +ta.getAttribute('maxlength');
     var upd = function () { c.firstChild.textContent = ta.value.length; c.classList.toggle('is-near', ta.value.length > max * 0.9); };
     ta.addEventListener('input', upd); upd();
@@ -404,8 +405,10 @@
       gal.querySelectorAll('.dshot__cover').forEach(function (c) { c.remove(); });
       var first = gal.querySelector('.dshot:not(.is-err) .dshot__img');
       if (first) first.insertAdjacentHTML('beforeend', '<span class="dshot__cover">Обложка</span>');
-      var note = document.querySelector('[data-rejected-note]');
-      if (note) note.hidden = !gal.querySelector('.dshot.is-stop');
+      var note = document.querySelector('[data-rejected-note]'), stop = !!gal.querySelector('.dshot.is-stop');
+      if (note) note.hidden = !stop;
+      // отклонённое фото убрано — счётчик «нужно исправить» в меню гаснет
+      var badge = document.querySelector('.dknav__i.is-current .dknav__n'); if (badge) badge.hidden = !stop;
       saved();
     };
 

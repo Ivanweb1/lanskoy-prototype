@@ -738,7 +738,7 @@ body.dk{padding-top:0;background:var(--s-bg)}
   background:var(--s-field-bg);font:inherit;font-size:14px;color:var(--s-fg);cursor:pointer}
 .dlogf .dform__sel select:focus{outline:none;border-color:var(--s-accent)}
 .dlogf__n{font-size:13px;color:var(--s-fg-soft)}
-.dlogs{display:grid;gap:16px}
+.dlogs{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
 .dlogg{padding:24px 28px}
 .dlogg__head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
 .dlogg__t{font-family:var(--d-serif);font-weight:600;font-size:18px;color:var(--s-fg);font-variant-numeric:lining-nums}
