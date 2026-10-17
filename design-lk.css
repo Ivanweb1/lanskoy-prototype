@@ -299,8 +299,11 @@ body.dk{padding-top:0;background:var(--s-bg)}
   font-family:var(--d-serif);font-weight:600;text-transform:uppercase;letter-spacing:.01em;
   font-size:clamp(30px,2.8vw,42px);line-height:1.08;color:var(--s-fg);
 }
-.dkhead__h1 em{font-style:normal;color:var(--s-accent)}
-.dkhead__sub{margin-top:10px;max-width:560px;font-size:15px;line-height:1.6;color:var(--s-fg-soft)}
+.dkhead__shop{display:flex;align-items:center;flex-wrap:wrap;gap:6px 0;margin-top:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dkhead__shop b{font-weight:600;color:var(--s-accent-ink)}
+/* разделитель в перечне — точка 3px цветом текста (брендбук стр. 42) */
+.dkhead__shop span::before{content:"";display:inline-block;width:3px;height:3px;margin:0 12px;border-radius:50%;background:currentColor;vertical-align:middle}
+.dkhead__sub{margin-top:12px;max-width:560px;font-size:15px;line-height:1.6;color:var(--s-fg-soft)}
 .dkhead__acts{display:flex;gap:12px;flex-wrap:wrap}
 .dkmain .dbtn{height:48px;padding:0 24px;font-size:11px}
 .dkmain .dbtn:hover{transform:none}
@@ -322,13 +325,22 @@ body.dk{padding-top:0;background:var(--s-bg)}
   display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px;border:1px solid transparent;border-radius:2px;
   font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;
 }
-.dstatus::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.dstatus--draft{border-color:var(--s-accent);color:var(--s-accent-ink)}
-.dstatus--draft::before{background:transparent;border:1px solid currentColor}
-.dstatus--wait{background:var(--s-bg-2);color:var(--s-fg)}
-.dstatus--ok{background:var(--b-navy);color:var(--b-cream)}
+.dstatus::before{content:"";flex:none;width:11px;height:11px;background:currentColor;
+  -webkit-mask:var(--st) no-repeat center/contain;mask:var(--st) no-repeat center/contain}
+.dstatus--draft{border-color:var(--s-accent);color:var(--s-accent-ink);--st:var(--st-draft)}
+.dstatus--wait{background:var(--s-bg-2);color:var(--s-fg);--st:var(--st-wait)}
+.dstatus--ok{background:var(--b-navy);color:var(--b-cream);--st:var(--st-ok)}
 .dstatus--ok::before{background:var(--b-copper)}
-.dstatus--stop{border-color:#B5483A;color:#A03E31}
+.dstatus--stop{border-color:#B5483A;color:#A03E31;--st:var(--st-stop)}
+.dstatus__n{font-variant-numeric:lining-nums tabular-nums}
+:root{
+  /* иконки статусов: карандаш, часы, галка, восклицательный знак, пунктирный круг */
+  --st-draft:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.3' stroke-linejoin='round'%3E%3Cpath d='M2 10l.6-2.6L8.4 1.6l2 2-5.8 5.8z'/%3E%3C/svg%3E");
+  --st-wait:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round'%3E%3Ccircle cx='6' cy='6' r='4.9'/%3E%3Cpath d='M6 3.3V6l1.8 1.2'/%3E%3C/svg%3E");
+  --st-ok:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 6.3l2.6 2.6L10 3.4'/%3E%3C/svg%3E");
+  --st-stop:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round'%3E%3Ccircle cx='6' cy='6' r='4.9'/%3E%3Cpath d='M6 3.4v3.1M6 8.6v.01'/%3E%3C/svg%3E");
+  --st-empty:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.2' stroke-dasharray='2 1.6'%3E%3Ccircle cx='6' cy='6' r='4.9'/%3E%3C/svg%3E");
+}
 
 /* секции */
 .dksect{margin-top:48px}
@@ -419,8 +431,7 @@ body.dk{padding-top:0;background:var(--s-bg)}
 
 /* обзор: несколько статусов в плитке, «не заполнено», старт для нового арендатора */
 .dktile__st{display:flex;flex-wrap:wrap;gap:6px}
-.dstatus--empty{border-color:var(--s-line-strong);color:var(--s-fg-soft)}
-.dstatus--empty::before{background:transparent;border:1px dashed currentColor}
+.dstatus--empty{border-color:var(--s-line-strong);color:var(--s-fg-soft);--st:var(--st-empty)}
 .dknote--start{background:rgba(255,255,255,.55);border:1px solid var(--s-line);border-left:2px solid var(--s-accent)}
 .dkstart{counter-reset:st;display:grid;gap:8px;margin:18px 0 0;padding:0;list-style:none}
 .dkstart li{counter-increment:st}
