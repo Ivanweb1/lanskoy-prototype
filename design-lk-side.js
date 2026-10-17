@@ -16,7 +16,7 @@
     { key: 'overview', label: 'Дашборд', href: 'design-lk.html', ic: 'overview' },
     { key: 'card', label: 'Карточка магазина', href: 'design-lk-card.html', ic: 'card', n: '1' },
     { key: 'photos', label: 'Фотографии', href: 'design-lk-photos.html', ic: 'photo', n: '1' },
-    { key: 'video', label: 'Видео', href: 'lk-video.html', ic: 'video' },
+    { key: 'video', label: 'Видео', href: 'design-lk-video.html', ic: 'video' },
     { key: 'promos', label: 'Акции', href: 'lk-promos.html', ic: 'promo' },
     { sep: true },
     { key: 'log', label: 'Журнал изменений', href: 'lk-log.html', ic: 'log' },

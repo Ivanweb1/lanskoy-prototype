@@ -90,6 +90,7 @@
         bad = form.querySelector('.dshot.is-stop');
         if (bad) why = 'Удалите отклонённое фото — иначе отправку вернут снова';
         else if ((bad = form.querySelector('.dshot.is-load'))) why = 'Дождитесь, пока загрузятся фотографии';
+        else if ((bad = form.querySelector('.dvid.is-load'))) why = 'Дождитесь, пока загрузится видео';
       }
       if (barErr) { barErr.hidden = !bad; barErr.textContent = why; }
       if (bad) { bad.scrollIntoView({ block: 'center' }); var fi = bad.querySelector('input'); if (fi) fi.focus({ preventScroll: true }); return; }
@@ -210,6 +211,8 @@
   /* «Черновик сохранён · время» — имитация автосохранения */
   var savedEl = document.querySelector('[data-saved]'), savedT;
   function saved() {
+    // что-то поменялось — старое «сначала исправьте» больше не к месту
+    var be = document.querySelector('[data-bar-err]'); if (be) be.hidden = true;
     if (!savedEl) return;
     savedEl.textContent = 'Сохраняем черновик…';
     clearTimeout(savedT);
@@ -460,4 +463,99 @@
     var st = document.querySelector('.dlogo .dstatus'); st.className = 'dstatus dstatus--draft'; st.textContent = 'Черновик';
     saved();
   });
+
+  /* ---------- видео ---------- */
+  var vids = document.querySelector('[data-vids]');
+  if (vids) {
+    var VMAX = 5;
+    var vsync = function () {
+      var n = vids.querySelectorAll('.dvid:not(.is-err)').length;
+      var c = document.querySelector('[data-vid-count]'), l = document.querySelector('[data-vid-left]');
+      if (c) c.textContent = n + ' из ' + VMAX;
+      if (l) l.textContent = n >= VMAX ? 'Добавлено максимум — ' + VMAX + ' роликов' : 'Можно добавить ещё ' + (VMAX - n);
+      saved();
+    };
+    var row = function (cls, img, name, meta, status, statusCls, del, extra) {
+      var li = document.createElement('li');
+      li.className = 'dvid ' + cls;
+      li.innerHTML = '<span class="dvid__img">' + img + '</span><span class="dvid__body"><span class="dvid__n">' + name + '</span><span class="dvid__m">' + meta + '</span>' + (extra || '') +
+        '</span><span class="dvid__side"><span class="dstatus ' + statusCls + '">' + status + '</span><button type="button" class="dvid__del">' + del + '</button></span>';
+      vids.appendChild(li);
+      return li;
+    };
+    var verr = function (name, why) { row('is-err', '', name, 'Не загружен: ' + why, 'Ошибка', 'dstatus--err', 'Убрать'); vsync(); };
+    var full = function () { return vids.querySelectorAll('.dvid:not(.is-err)').length >= VMAX; };
+    var mb = function (b) { return Math.round(b / 1048576) + ' МБ'; };
+    var mmss = function (s) { s = Math.round(s); return Math.floor(s / 60) + ':' + (s % 60 < 10 ? '0' : '') + s % 60; };
+
+    // имитация загрузки: полоса до 100%, затем «Черновик»
+    var upload = function (li, from) {
+      var p = from || 0, bar = li.querySelector('.dshot__bar i'), t = li.querySelector('[data-pct]');
+      var id = setInterval(function () {
+        if (!li.isConnected) return clearInterval(id);
+        p = Math.min(100, p + 3 + Math.random() * 6);
+        bar.style.width = p + '%'; t.textContent = 'Загружено ' + Math.round(p) + '% · не закрывайте страницу';
+        if (p >= 100) {
+          clearInterval(id); li.classList.remove('is-load'); li.querySelector('.dvid__load').remove();
+          var st = li.querySelector('.dstatus'); st.className = 'dstatus dstatus--draft'; st.textContent = 'Черновик';
+          li.querySelector('.dvid__del').textContent = 'Удалить';
+          vsync();
+        }
+      }, 400);
+    };
+    [].forEach.call(vids.querySelectorAll('[data-sim]'), function (li) { upload(li, +li.getAttribute('data-sim')); });
+
+    vids.addEventListener('click', function (e) {
+      var d = e.target.closest('.dvid__del'); if (d) { d.closest('.dvid').remove(); vsync(); }
+    });
+
+    // файл: формат, вес, длительность, ориентация и размер кадра
+    var addFile = function (f) {
+      if (!f) return;
+      if (full()) return verr(f.name, 'уже ' + VMAX + ' роликов');
+      if (!/\.(mp4|mov)$/i.test(f.name)) return verr(f.name, 'нужен MP4 или MOV');
+      if (f.size > 500 * 1048576) return verr(f.name, 'больше 500 МБ');
+      var url = URL.createObjectURL(f), v = document.createElement('video');
+      v.preload = 'metadata'; v.muted = true;
+      v.onloadedmetadata = function () {
+        if (v.duration > 180) return verr(f.name, 'длиннее 3 минут (' + mmss(v.duration) + ')');
+        if (v.videoHeight >= v.videoWidth) return verr(f.name, 'вертикальное — нужно горизонтальное 16:9');
+        if (v.videoWidth < 1280 || v.videoHeight < 720) return verr(f.name, 'меньше 1280 × 720');
+        var li = row('is-load', '<video src="' + url + '#t=1" muted preload="metadata"></video><span class="dvid__play" aria-hidden="true"></span>', f.name,
+          'Файл · ' + mb(f.size) + ' · ' + mmss(v.duration), 'Загружается', 'dstatus--wait', 'Отменить',
+          '<span class="dvid__load"><span class="dshot__bar"><i></i></span><span data-pct>Загружено 0%</span></span>');
+        upload(li, 0); vsync();
+      };
+      v.onerror = function () { verr(f.name, 'файл не читается — проверьте формат'); };
+      v.src = url;
+    };
+    var vin = document.querySelector('[data-vid-file]');
+    vin.addEventListener('change', function () { addFile(vin.files[0]); vin.value = ''; });
+    var vdrop = document.querySelector('[data-vdrop]');
+    ['dragenter', 'dragover'].forEach(function (ev) { vdrop.addEventListener(ev, function (e) { e.preventDefault(); vdrop.classList.add('is-over'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { vdrop.addEventListener(ev, function () { vdrop.classList.remove('is-over'); }); });
+    vdrop.addEventListener('drop', function (e) { e.preventDefault(); addFile(e.dataTransfer.files[0]); });
+
+    // ссылка: только VK Видео и RuTube
+    var lin = document.querySelector('[data-vlink]'), lf = lin.closest('.fld');
+    var HOSTS = [
+      { re: /^(https?:\/\/)?(www\.)?rutube\.ru\/(video|shorts)\/[\w-]+/i, name: 'RuTube' },
+      { re: /^(https?:\/\/)?(www\.)?(vk\.com\/(video|clip)-?\d+_\d+|vkvideo\.ru\/video-?\d+_\d+)/i, name: 'VK Видео' }
+    ];
+    var addLink = function () {
+      var v = lin.value.trim(), h = HOSTS.filter(function (x) { return x.re.test(v); })[0];
+      var errT = lf.querySelector('.fld__err');
+      if (!h) { errT.textContent = 'Нужна ссылка на ролик с VK Видео или RuTube'; lf.classList.add('is-invalid'); aria(lf, lin, false); lin.focus(); return; }
+      if (full()) { errT.textContent = 'Добавлено максимум — ' + VMAX + ' роликов'; lf.classList.add('is-invalid'); return; }
+      aria(lf, lin, true);
+      var short = v.replace(/^https?:\/\/(www\.)?/, '');
+      row('', '<span class="dvid__host">' + h.name + '</span><span class="dvid__play" aria-hidden="true"></span>', 'Ролик ' + h.name,
+        h.name + ' · по ссылке · название подтянется с хостинга', 'Черновик', 'dstatus--draft', 'Удалить',
+        '<a class="dvid__m dvid__url" href="' + (/^https?:/.test(v) ? v : 'https://' + v) + '" target="_blank" rel="noopener">' + (short.length > 34 ? short.slice(0, 34) + '…' : short) + '</a>')
+        .querySelector('.dvid__img').classList.add('dvid__img--host');
+      lin.value = ''; vsync();
+    };
+    document.querySelector('[data-vlink-add]').addEventListener('click', addLink);
+    lin.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addLink(); } });
+  }
 })();
