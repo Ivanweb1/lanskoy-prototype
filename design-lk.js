@@ -149,4 +149,15 @@
     el.hidden = !q.get(el.getAttribute('data-state'));
   });
   if (q.get('sent')) showDone();
+
+  /* обратный отсчёт блокировки: дошёл до нуля — снова на вход */
+  var cd = document.querySelector('[data-countdown]');
+  if (cd) {
+    var sec = +cd.getAttribute('data-countdown');
+    var two = function (n) { return (n < 10 ? '0' : '') + n; };
+    var cdId = setInterval(function () {
+      if (--sec <= 0) { clearInterval(cdId); location.href = 'design-lk-login.html'; return; }
+      cd.textContent = two(Math.floor(sec / 60)) + ':' + two(sec % 60);
+    }, 1000);
+  }
 })();

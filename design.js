@@ -768,7 +768,8 @@
     'lk-code.html': 'design-lk-code.html',
     'lk-reset.html': 'design-lk-reset.html',
     'lk-newpass.html': 'design-lk-newpass.html',
-    'lk-first.html': 'design-lk-first.html'
+    'lk-first.html': 'design-lk-first.html',
+    'lk-locked.html': 'design-lk-locked.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');
