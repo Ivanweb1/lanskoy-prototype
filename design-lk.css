@@ -107,3 +107,20 @@ body.dlk{padding-top:0}
   .dlkauth__lead{margin:14px 0 26px;font-size:14px}
 }
 @media (max-width:400px){.dlkauth__tools .dlink{display:none}}
+
+/* Автозаполнение браузера красит поле в голубой (Chrome) — возвращаем
+   фон и цвет текста сайта. Фон поля полупрозрачный, поэтому под тенью
+   берём сплошной: кремовый в светлой теме, синий в тёмной. */
+.dform input:-webkit-autofill,
+.dform input:-webkit-autofill:hover,
+.dform input:-webkit-autofill:focus{
+  -webkit-text-fill-color:var(--s-fg);caret-color:var(--s-fg);
+  -webkit-box-shadow:0 0 0 1000px #FCFBF8 inset;box-shadow:0 0 0 1000px #FCFBF8 inset;
+  transition:background-color 9999s 0s,border-color .2s;
+}
+[data-theme="dark"] .dform input:-webkit-autofill,
+[data-theme="dark"] .dform input:-webkit-autofill:hover,
+[data-theme="dark"] .dform input:-webkit-autofill:focus{
+  -webkit-box-shadow:0 0 0 1000px #0F2033 inset;box-shadow:0 0 0 1000px #0F2033 inset;
+}
+.dform input:autofill{background:var(--s-field-bg)}
