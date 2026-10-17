@@ -104,7 +104,7 @@ body.dlk{padding-top:0}
   .dlkauth{grid-template-columns:1fr}
   .dlkauth__media{display:none}
   .dlkauth__side{min-height:100vh;min-height:100svh}
-  .dlkauth--site .dlkauth__side{min-height:0;padding:40px var(--pad) 48px}
+  .dlkauth--site .dlkauth__side{min-height:0;justify-content:flex-start;padding:40px var(--pad) 48px}
   .dlkauth--site .dlkauth__in,.dlkauth--site .dlkauth__bottom{max-width:none}
 }
 @media (max-width:560px){
@@ -149,6 +149,8 @@ body.dlk{padding-top:0}
 .dotp__resend .fld__aside{padding:0;border:0;border-bottom:1px solid var(--s-line-strong);background:none;font:inherit;font-size:13px;cursor:pointer}
 .dotp__resend .fld__aside:hover{border-color:var(--s-accent)}
 .dform .dlkauth__check{display:flex;gap:10px;align-items:flex-start;margin:0 0 24px;font-size:13px;line-height:1.5;cursor:pointer}
+.dlkauth .dbtn--ghost.dbtn--full{margin-top:4px}
+.dbtn--ghost.dbtn--full+.dlkauth__alt{margin-top:18px}
 .dlkauth__alt{display:block;width:max-content;margin:6px auto 0;font-size:13px;color:var(--s-accent-ink);border-bottom:1px solid var(--s-line-strong);transition:border-color .2s}
 .dlkauth__alt:hover{border-color:var(--s-accent)}
 @media (max-width:400px){

@@ -31,7 +31,7 @@
     return ok;
   }
 
-  [].forEach.call(document.querySelectorAll('form[data-next]:not([data-code])'), function (form) {
+  [].forEach.call(document.querySelectorAll('form[data-next]:not([data-code]), form[data-swap]'), function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var bad = null;
@@ -39,6 +39,7 @@
         if (!check(f) && !bad) bad = f;
       });
       if (bad) { bad.querySelector('input').focus(); return; }
+      if (form.hasAttribute('data-swap')) { showDone(); return; }
       location.href = form.getAttribute('data-next');
     });
   });
@@ -93,22 +94,38 @@
     });
   });
 
-  /* таймер повторной отправки */
-  var timer = document.querySelector('[data-timer]');
-  if (timer) {
-    var left = +timer.getAttribute('data-timer');
-    var wait = document.querySelector('[data-wait]');
-    var again = document.querySelector('[data-resend]');
+  /* таймер повторной отправки: на экране кода — сразу, на восстановлении
+     пароля — когда показано «Проверьте почту» */
+  function startTimer(box) {
+    var timer = box.querySelector('[data-timer]');
+    if (!timer || timer.dataset.run) return;
+    timer.dataset.run = '1';
+    var left, id;
+    var wait = box.querySelector('[data-wait]');
+    var again = box.querySelector('[data-resend]');
     var tick = function () {
       timer.textContent = '00:' + (left < 10 ? '0' : '') + left;
       if (left-- <= 0) { clearInterval(id); wait.hidden = true; again.hidden = false; }
     };
-    var id = setInterval(tick, 1000); tick();
+    var run = function () { left = +timer.getAttribute('data-timer'); id = setInterval(tick, 1000); tick(); };
     again.addEventListener('click', function () {
-      left = +timer.getAttribute('data-timer'); wait.hidden = false; again.hidden = true;
-      wait.firstChild.textContent = 'Новый код отправлен. Ещё раз — через ';
-      id = setInterval(tick, 1000); tick();
+      wait.hidden = false; again.hidden = true;
+      wait.firstChild.textContent = 'Отправлено повторно. Ещё раз — через ';
+      run();
     });
+    run();
+  }
+  [].forEach.call(document.querySelectorAll('[data-timer]'), function (t) {
+    var step = t.closest('[data-step]');
+    if (!step || !step.hidden) startTimer(step || document);
+  });
+
+  /* форма с data-swap: при верном заполнении вместо формы — следующий шаг.
+     ?sent=1 открывает экран сразу на этом шаге */
+  function showDone() {
+    var f = document.querySelector('[data-step="form"]'), d = document.querySelector('[data-step="done"]');
+    if (!f || !d) return;
+    f.hidden = true; d.hidden = false; startTimer(d);
   }
 
   /* ---------- состояния экрана входа из адреса ----------
@@ -117,4 +134,5 @@
   [].forEach.call(document.querySelectorAll('[data-state]'), function (el) {
     el.hidden = !q.get(el.getAttribute('data-state'));
   });
+  if (q.get('sent')) showDone();
 })();
