@@ -943,3 +943,34 @@ body.dk{padding-top:0;background:var(--s-bg)}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.2l2.6 2.6L10 3.4' fill='none' stroke='%23011427' stroke-width='1.6'/%3E%3C/svg%3E")}
 .dkpv__popt{margin-bottom:12px;font-family:var(--d-serif);font-weight:600;font-size:15px;color:var(--b-navy);font-variant-numeric:lining-nums}
 @media (max-width:760px){.dkpv__popcheck{display:flex}}
+
+/* журнал: «было → стало» — двумя строчками с подписями */
+.dlogr__what{display:block;margin-bottom:6px}
+.dlogr__diff{display:grid;gap:4px;padding:10px 12px;background:var(--s-plate);border-left:2px solid var(--s-accent)}
+.dlogr__was,.dlogr__now{display:grid;grid-template-columns:56px minmax(0,1fr);gap:10px;align-items:baseline;font-size:14px}
+.dlogr__diff i{font-style:normal;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--s-fg-soft)}
+.dlogr__was s{color:var(--s-fg-soft);text-decoration-color:rgba(1,20,39,.35)}
+.dlogr__now b{font-weight:600;color:var(--s-fg)}
+@media (max-width:640px){
+  /* дата и «кто» — одной строкой сверху, ниже раздел и что изменилось */
+  .dlogr{grid-template-columns:auto minmax(0,1fr);gap:4px 12px}
+  .dlogr__d{order:0;grid-column:1;grid-row:1}
+  .dlogr__w{grid-column:2;grid-row:1;text-align:right;font-size:12px}
+  .dlogr__s{grid-column:1/-1;grid-row:2;margin-top:4px}
+  .dlogr__t{grid-column:1/-1;grid-row:3}
+  .dlogr__d{white-space:nowrap}
+  .dlogr__w{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dlogr--dec .dlogr__t{flex-direction:column;align-items:flex-start;gap:6px;font-size:13px}
+  .dlogr__was,.dlogr__now{grid-template-columns:52px minmax(0,1fr)}
+}
+
+@media (max-width:640px){
+  /* дашборд, последние действия: дата и статус сверху, текст под ними */
+  .dklog__row{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center}
+  .dklog__d{grid-column:1;grid-row:1}
+  .dklog__row>.dstatus{grid-column:2;grid-row:1}
+  .dklog__t{grid-column:1/-1;grid-row:2;line-height:1.5}
+}
+.dkmore{display:flex;justify-content:center;margin-top:24px}
+.dkmain .dkmore .dbtn{min-width:280px;justify-content:center}
+@media (max-width:640px){.dkmain .dkmore .dbtn{width:100%;min-width:0}}
