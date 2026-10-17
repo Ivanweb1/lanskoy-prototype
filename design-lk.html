@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Обзор — кабинет арендатора — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=23">
+<!-- кабинет — только светлая тема (решение Ивана 17.10) -->
+</head>
+<body class="dk">
+
+<div class="dk__shell">
+  <aside id="dkSide" data-lk="overview"></aside>
+
+  <main id="main" tabindex="-1" class="dkmain">
+
+    <div class="dkhead">
+      <div>
+        <h1 class="dkhead__h1">Обзор</h1>
+        <p class="dkhead__sub">Что сейчас опубликовано, что ждёт проверки и что нужно поправить.</p>
+      </div>
+      <div class="dkhead__acts">
+        <a href="lk-preview.html" class="dbtn dbtn--ghost">Предпросмотр карточки</a>
+        <a href="lk-card.html" class="dbtn dbtn--fill">Редактировать</a>
+      </div>
+    </div>
+
+    <div data-state-off="sent">
+      <div class="dknote dknote--stop" role="status">
+        <p class="dknote__t"><span class="dstatus dstatus--stop">Отклонено</span> Изменения от 12 сентября нужно исправить</p>
+        Контент-менеджер вернул отправку целиком:
+        <blockquote class="dknote__q">«Телефон указан без кода города, добавьте +7 (812). Новое фото в галерее вертикальное и обрезается в каталоге — замените на горизонтальное».<cite>Контент-менеджер ТК «Ланской», 13.09.2026</cite></blockquote>
+        <div class="dknote__acts"><a href="lk-card.html" class="dlink">Открыть и поправить</a></div>
+      </div>
+
+      <div class="dknote">
+        <p class="dknote__t"><span class="dstatus dstatus--draft">Черновик</span> Изменения ещё не отправлены</p>
+        3 новые фотографии, акция «Осенние цены на декоративную штукатурку», 2 видео и отклонённые правки от 12 сентября. На проверку всё уйдёт одной отправкой — сначала исправьте телефон по комментарию выше, иначе отправку вернут снова. До одобрения на сайте остаётся текущая версия карточки.
+        <div class="dknote__acts">
+          <a href="lk-card.html" class="dbtn dbtn--fill">Исправить и отправить</a>
+          <a href="lk-preview.html" class="dbtn dbtn--ghost">Предпросмотр</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dknote" data-state="sent" hidden role="status">
+      <p class="dknote__t"><span class="dstatus dstatus--wait">На проверке</span> Изменения отправлены</p>
+      Всё из черновика ушло одной отправкой — описание, контакты, фото, видео и акция. Решение придёт на рабочую почту и появится здесь. До одобрения на сайте остаётся текущая версия карточки.
+      <div class="dknote__acts">
+        <a href="lk-log.html" class="dlink">Что отправлено</a>
+      </div>
+    </div>
+
+    <section class="dksect" aria-labelledby="hSect">
+      <div class="dksect__head"><h2 class="dksect__h2" id="hSect">Разделы карточки</h2></div>
+      <div class="dktiles">
+        <a href="lk-card.html" class="dktile">
+          <span class="dktile__h"><span class="dknav__ic" style="--ic:var(--ic-card)" aria-hidden="true"></span>Описание и контакты</span>
+          <span class="dktile__t">Описание магазина, телефоны, сайт, мессенджеры, соцсети и часы работы.</span>
+          <span class="dktile__foot"><span class="dstatus dstatus--stop" data-sent="wait">Отклонено 12.09</span><span class="dktile__go">Открыть</span></span>
+        </a>
+        <a href="lk-photos.html" class="dktile">
+          <span class="dktile__h"><span class="dknav__ic" style="--ic:var(--ic-photo)" aria-hidden="true"></span>Фотографии</span>
+          <span class="dktile__t">Логотип и галерея магазина. Опубликовано 8, новых в черновике 3, отклонена 1 — её нужно заменить.</span>
+          <span class="dktile__foot"><span class="dstatus dstatus--draft" data-sent="wait">Черновик</span><span class="dktile__go">Открыть</span></span>
+        </a>
+        <a href="lk-promos.html" class="dktile">
+          <span class="dktile__h"><span class="dknav__ic" style="--ic:var(--ic-promo)" aria-hidden="true"></span>Акции</span>
+          <span class="dktile__t">Две действующие акции и черновик «Осенние цены на декоративную штукатурку». «Скидка 15%» действует до 30 сентября.</span>
+          <span class="dktile__foot"><span class="dstatus dstatus--ok">Опубликовано</span><span class="dktile__go">Открыть</span></span>
+        </a>
+        <a href="lk-video.html" class="dktile">
+          <span class="dktile__h"><span class="dknav__ic" style="--ic:var(--ic-video)" aria-hidden="true"></span>Видео</span>
+          <span class="dktile__t">Ролики о магазине — файлом или ссылкой с VK Видео и RuTube. На сайте пока нет, 2 в черновике.</span>
+          <span class="dktile__foot"><span class="dstatus dstatus--draft" data-sent="wait">Черновик</span><span class="dktile__go">Открыть</span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="dkcols">
+      <section class="dksect" aria-labelledby="hLog">
+        <div class="dksect__head"><h2 class="dksect__h2" id="hLog">Последние действия</h2><a href="lk-log.html" class="dlink">Весь журнал</a></div>
+        <div class="dklog">
+          <div class="dklog__row"><span class="dklog__d">14.09.2026, 11:35</span><span class="dklog__t">Создана акция «Осенние цены на декоративную штукатурку»</span><span class="dstatus dstatus--draft">Черновик</span></div>
+          <div class="dklog__row"><span class="dklog__d">14.09.2026, 11:20</span><span class="dklog__t">Добавлены 3 фотографии в галерею</span><span class="dstatus dstatus--draft">Черновик</span></div>
+          <div class="dklog__row"><span class="dklog__d">12.09.2026, 16:05</span><span class="dklog__t">Отправлены на проверку: телефон магазина, 1 фотография</span><span class="dstatus dstatus--stop">Отклонено</span></div>
+          <div class="dklog__row"><span class="dklog__d">05.09.2026, 09:41</span><span class="dklog__t">Создана акция «Скидка 15% на декоративную штукатурку»</span><span class="dstatus dstatus--ok">Опубликовано</span></div>
+        </div>
+      </section>
+
+      <section class="dksect" aria-labelledby="hRo">
+        <div class="dksect__head"><h2 class="dksect__h2" id="hRo">Данные от администрации</h2><a href="design-shop.html" class="dlink">Как на сайте</a></div>
+        <ul class="dkro">
+          <li><span class="dkro__k">Название</span><span class="dkro__v">VLADART STUDIO</span></li>
+          <li><span class="dkro__k">Категории</span><span class="dkro__v">Декоративно-отделочные материалы · Декоративная штукатурка · Фрески</span></li>
+          <li><span class="dkro__k">Расположение</span><span class="dkro__v">Секция А10 · 1 этаж</span></li>
+          <li><span class="dkro__k">Бренды</span><span class="dkro__v dkro__v--empty">Пока не привязаны</span></li>
+        </ul>
+        <p class="dkro__note"><span>Эти поля меняет администрация комплекса. Нашли ошибку — напишите на <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>.</span></p>
+      </section>
+    </div>
+
+  </main>
+</div>
+
+<script src="design-lk-side.js?v=1"></script>
+<script src="design-lk.js?v=12"></script>
+</body>
+</html>

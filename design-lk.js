@@ -234,6 +234,9 @@
     if (w && r) { w.hidden = true; r.hidden = false; }
   }
   if (q.get('sent')) showDone();
+  if (q.get('sent')) [].forEach.call(document.querySelectorAll('[data-sent="wait"]'), function (s) {
+    s.className = 'dstatus dstatus--wait'; s.textContent = 'На проверке';
+  });
 
   /* обратный отсчёт блокировки: дошёл до нуля — снова на вход */
   var cd = document.querySelector('[data-countdown]');
