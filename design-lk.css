@@ -23,7 +23,9 @@ body.dlk{padding-top:0}
 .dlkauth__logo{display:flex}
 .dlkauth__logo img{height:52px;width:auto}
 .dlkauth__tools{display:flex;align-items:center;gap:22px}
-.dlkauth__tools .dlink{font-size:11px}
+/* компактная контурная кнопка — как «Аренда» в утилитарной строке сайта */
+.dlkauth__site.dbtn{gap:0;width:auto;height:40px;padding:0 18px;font-size:11px;letter-spacing:.14em;white-space:nowrap}
+.dlkauth__site.dbtn:hover{transform:none}
 
 .dlkauth__in{width:100%;max-width:420px;margin:0 auto}
 .dlkauth__h1{
@@ -106,7 +108,7 @@ body.dlk{padding-top:0}
   .dlkauth__tools{gap:16px}
   .dlkauth__lead{margin:14px 0 26px;font-size:14px}
 }
-@media (max-width:400px){.dlkauth__tools .dlink{display:none}}
+@media (max-width:560px){.dlkauth__site.dbtn{height:36px;padding:0 14px}.dlkauth__site-long{display:none}}
 
 /* Автозаполнение браузера красит поле в голубой (Chrome) — возвращаем
    фон и цвет текста сайта. Фон поля полупрозрачный, поэтому под тенью
