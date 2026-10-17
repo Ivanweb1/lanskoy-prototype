@@ -21,7 +21,7 @@
     { sep: true },
     { key: 'log', label: 'Журнал изменений', href: 'design-lk-log.html', ic: 'log' },
     { key: 'account', label: 'Аккаунт и вход', href: 'design-lk-account.html', ic: 'user' },
-    { key: 'help', label: 'Инструкция', href: 'lk-help.html', ic: 'help' }
+    { key: 'help', label: 'Инструкция', href: 'design-lk-help.html', ic: 'help' }
   ];
 
   function shop() {
@@ -52,6 +52,23 @@
 
   var s = document.getElementById('dkSide');
   if (!s) return;
+
+  /* инструкция открывается и без входа — со страниц входа (?guest=1):
+     вместо меню кабинета простая полоса, закрытые разделы ведут на вход */
+  if (s.getAttribute('data-lk') === 'help' && /[?&]guest=1/.test(location.search)) {
+    document.body.classList.add('is-guest');
+    var g = document.createElement('header');
+    g.className = 'dkguest';
+    g.innerHTML = '<a href="design.html"><img src="logo-gold.png" alt="ТК «Ланской» — на главную" width="135" height="42"></a>' +
+      '<nav class="dkguest__acts"><a href="design.html" class="dkguest__site">На сайт комплекса</a>' +
+      '<a href="design-lk-login.html" class="dbtn dbtn--fill">Войти в кабинет</a></nav>';
+    s.replaceWith(g);
+    document.body.insertBefore(g, document.body.firstChild);
+    [].forEach.call(document.querySelectorAll('.dkmain a[href^="design-lk"]'), function (a) {
+      if (!/design-lk-(login|request|reset)\.html/.test(a.getAttribute('href'))) a.setAttribute('href', 'design-lk-login.html');
+    });
+    return;
+  }
   s.className = 'dkside';
   s.setAttribute('aria-label', 'Меню кабинета');
   s.innerHTML =

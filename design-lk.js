@@ -795,6 +795,20 @@
     var o = e.target.closest('[data-dev-out]'); if (o) outRow(o.closest('.dkdev'));
     if (e.target.closest('[data-dev-all]')) outAll();
   });
+  /* ---------- инструкция: текущий раздел в содержании ---------- */
+  var toc = document.querySelector('.dhelp__toc');
+  if (toc && 'IntersectionObserver' in window) {
+    var links = {};
+    toc.querySelectorAll('a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        toc.querySelectorAll('a').forEach(function (a) { a.classList.remove('is-cur'); });
+        var a = links[e.target.id]; if (a) a.classList.add('is-cur');
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('.dhelp__sec').forEach(function (sec) { io.observe(sec); });
+  }
 })();
 
 /* ---------- выпадающие списки в стиле сайта (копия из design.js — он в кабинете не подключён) ----------
