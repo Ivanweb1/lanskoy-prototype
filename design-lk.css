@@ -476,7 +476,9 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .drep__row{display:grid;grid-template-columns:minmax(0,1fr) 50px;gap:12px;align-items:end}
 .drep__row--pair{grid-template-columns:200px minmax(0,1fr) 50px}
 .dkpanel .drep__row .fld{margin:0}
-.drep__row .fld.is-invalid+.drep__del,.drep__row:has(.is-invalid) .drep__del{align-self:start;margin-top:27px}
+/* строки с подписью над полем (телефоны): крестик — вровень с полем, и при ошибке под ним тоже */
+.drep__row:not(.drep__row--pair){align-items:start}
+.drep__row:not(.drep__row--pair) .drep__del{margin-top:30.5px}
 .drep__del{
   width:50px;height:50px;padding:0;border:1px solid var(--s-line-strong);border-radius:2px;background:transparent;cursor:pointer;
   display:flex;align-items:center;justify-content:center;transition:border-color .2s;
