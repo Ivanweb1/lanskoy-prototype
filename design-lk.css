@@ -299,7 +299,7 @@ body.dk{padding-top:0;background:var(--s-bg)}
   font-family:var(--d-serif);font-weight:600;text-transform:uppercase;letter-spacing:.01em;
   font-size:clamp(30px,2.8vw,42px);line-height:1.08;color:var(--s-fg);
 }
-.dkhead__h1 em{display:block;font-style:normal;color:var(--s-accent)}
+.dkhead__h1 em{font-style:normal;color:var(--s-accent)}
 .dkhead__sub{margin-top:10px;max-width:560px;font-size:15px;line-height:1.6;color:var(--s-fg-soft)}
 .dkhead__acts{display:flex;gap:12px;flex-wrap:wrap}
 .dkmain .dbtn{height:48px;padding:0 24px;font-size:11px}
