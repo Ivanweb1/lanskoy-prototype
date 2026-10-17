@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css?v=79">
 <link rel="stylesheet" href="design.css?v=140">
 <link rel="stylesheet" href="design-pages.css?v=303">
-<link rel="stylesheet" href="design-lk.css?v=55">
+<link rel="stylesheet" href="design-lk.css?v=56">
 </head>
 <body class="dk dkpv">
 
@@ -29,17 +29,20 @@
     <label class="dkpv__check"><input type="checkbox" data-marks checked><span>Отметить изменения</span></label>
   </div>
   <div class="dkpv__acts">
-    <a href="design-lk-card.html" class="dbtn dbtn--ghost">К правке</a>
+    <a href="design-lk.html" class="dbtn dbtn--ghost" data-pv-back>К изменениям</a>
     <a href="design-lk.html?sent=1" class="dbtn dbtn--fill">Отправить<span class="dkpv__x">&nbsp;на проверку</span></a>
   </div>
 </header>
 
 <div class="dkpv__sum">
-  <span class="dkpv__sumt">Что изменится</span>
-  <a href="design-lk-card.html" class="dkpv__i"><span class="dstatus dstatus--draft">Черновик</span>Контакты: исправлен телефон</a>
-  <a href="design-lk-photos.html" class="dkpv__i"><span class="dstatus dstatus--draft">Черновик</span>3 фотографии</a>
-  <a href="design-lk-video.html" class="dkpv__i"><span class="dstatus dstatus--draft">Черновик</span>2 видео</a>
-  <a href="design-lk-promo.html?p=draft" class="dkpv__i"><span class="dstatus dstatus--draft">Черновик</span>Акция «Осенние цены»</a>
+  <span class="dstatus dstatus--draft">Черновик · <span class="dstatus__n">4</span></span>
+  <span class="dkpv__sumt">Ещё не отправлено на проверку:</span>
+  <span class="dkpv__list">
+    <a href="design-lk-card.html" class="dkpv__i">исправлен телефон</a>
+    <a href="design-lk-photos.html" class="dkpv__i">3 новые фотографии</a>
+    <a href="design-lk-video.html" class="dkpv__i">2 видео</a>
+    <a href="design-lk-promo.html?p=draft" class="dkpv__i">акция «Осенние цены»</a>
+  </span>
 </div>
 
 <main id="main" class="dkpv__stage" data-stage>
@@ -48,6 +51,6 @@
 
 <p class="dkpv__hint" data-hint role="status" aria-live="polite"></p>
 
-<script src="design-lk.js?v=32"></script>
+<script src="design-lk.js?v=33"></script>
 </body>
 </html>

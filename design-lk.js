@@ -844,6 +844,9 @@
       d.addEventListener('click', function (e) { if (e.target.closest('a, button[type=submit]')) { e.preventDefault(); hintPv(); } }, true);
     };
     pvFrame.addEventListener('load', setupPv);
+    // «К изменениям» — туда, откуда открыли предпросмотр (раздел кабинета), иначе на дашборд
+    var back = document.querySelector('[data-pv-back]');
+    if (back && /design-lk[\w-]*\.html/.test(document.referrer) && !/preview/.test(document.referrer)) back.href = document.referrer;
     pvMarks.addEventListener('change', function () { var d = pvFrame.contentDocument; if (d && d.body) d.body.classList.toggle('pv-on', pvMarks.checked); });
     document.querySelectorAll('[data-device]').forEach(function (b) {
       b.addEventListener('click', function () {

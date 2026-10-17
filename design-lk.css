@@ -883,9 +883,13 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .dkpv__acts .dbtn--ghost{color:var(--b-copper)}
 .dkpv__acts .dbtn:hover{transform:none}
 .dkpv__sum{flex:none;display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap;padding:12px 28px;background:var(--s-bg);border-bottom:1px solid var(--s-line)}
-.dkpv__sumt{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--s-fg-soft)}
-.dkpv__i{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--s-fg);transition:color .2s}
-.dkpv__i:hover{color:var(--s-accent-ink)}
+.dkpv__sumt{font-size:13px;color:var(--s-fg-soft)}
+.dkpv__list{display:flex;flex-wrap:wrap;align-items:center}
+/* разделитель в перечне — точка 3px цветом текста (брендбук стр. 42) */
+.dkpv__list .dkpv__i+.dkpv__i::before{content:"";width:3px;height:3px;margin:0 12px;border-radius:50%;background:var(--s-fg-soft)}
+.dkpv__i{display:flex;align-items:center;font-size:13px;font-weight:500;color:var(--s-fg);text-decoration:underline;text-decoration-color:var(--s-line-strong);text-underline-offset:4px;transition:color .2s,text-decoration-color .2s}
+.dkpv__i:hover{color:var(--s-accent-ink);text-decoration-color:var(--s-accent)}
+.dkpv__i+.dkpv__i::before{text-decoration:none}
 .dkpv__stage{flex:1;min-height:0;display:flex;justify-content:center;padding:24px}
 .dkpv__frame{width:100%;height:100%;border:1px solid var(--s-line);background:#fff;transition:width .35s var(--d-ease)}
 .dkpv__stage.is-phone .dkpv__frame{width:390px;border:10px solid var(--b-navy);border-radius:28px}
@@ -898,7 +902,8 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dkpv__acts{width:100%}.dkpv__acts .dbtn{flex:1;justify-content:center}
   .dkpv__x{display:none}
   .dkpv__sum{padding:10px var(--pad);gap:6px 14px}
-  .dkpv__sum .dkpv__i:nth-of-type(n+3){display:none}
+  .dkpv__sumt{flex-basis:100%;order:2}
+  .dkpv__list{order:3}
   .dkpv__stage{padding:0}
   .dkpv__frame{border:0}
   .dkpv__seg{display:none}
