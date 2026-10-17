@@ -772,6 +772,29 @@
     lsec.addEventListener('change', lfilter);
     document.addEventListener('click', function (e) { if (e.target.closest('[data-log-reset]')) { lsec.value = 'all'; lfilter(); } });
   }
+  /* ---------- аккаунт: смена пароля и устройства ---------- */
+  var apf = document.querySelector('[data-pass-form]');
+  if (apf) {
+    apf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = null;
+      apf.querySelectorAll('.fld').forEach(function (f) { if (!check(f) && !bad) bad = f; });
+      if (bad) { bad.querySelector('input').focus(); return; }
+      var done = document.querySelector('[data-pass-done]'); done.hidden = false;
+      apf.reset(); apf.querySelectorAll('[data-rule]').forEach(function (li) { li.classList.remove('is-ok'); });
+      outAll();
+      done.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+  }
+  var outRow = function (r) {
+    r.classList.add('is-out');
+    var b = r.querySelector('[data-dev-out]'); if (b) b.outerHTML = '<span class="dkdev__m">Вход завершён</span>';
+  };
+  var outAll = function () { document.querySelectorAll('.dkdev:not(.is-this):not(.is-out)').forEach(outRow); };
+  document.addEventListener('click', function (e) {
+    var o = e.target.closest('[data-dev-out]'); if (o) outRow(o.closest('.dkdev'));
+    if (e.target.closest('[data-dev-all]')) outAll();
+  });
 })();
 
 /* ---------- выпадающие списки в стиле сайта (копия из design.js — он в кабинете не подключён) ----------
@@ -905,4 +928,5 @@
   window.lnsEnhanceSelect = function (w) {
     var s = w.querySelector('select'); if (s) enhance(s, w);
   };
+
 })();

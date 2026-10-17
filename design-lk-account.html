@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Аккаунт и вход — кабинет арендатора — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=51">
+<!-- кабинет — только светлая тема (решение Ивана 17.10) -->
+</head>
+<body class="dk">
+
+<div class="dk__shell">
+  <aside id="dkSide" data-lk="account"></aside>
+
+  <main id="main" tabindex="-1" class="dkmain">
+
+    <div class="dkhead">
+      <div>
+        <h1 class="dkhead__h1">Аккаунт и вход</h1>
+        <p class="dkhead__sub">Данные для входа в кабинет. Они общие для всех ваших магазинов и не проходят проверку администрацией — меняются сразу.</p>
+      </div>
+    </div>
+
+    <div class="dkacc">
+      <div class="dkacc__col">
+
+        <section class="dkpanel" aria-labelledby="hMail">
+          <h2 class="dkpanel__h" id="hMail">Почта для входа</h2>
+          <ul class="dkro">
+            <li><span class="dkro__k">Логин</span><span class="dkro__v">vladart@vladart.ru</span></li>
+            <li><span class="dkro__k">Код подтверждения</span><span class="dkro__v">Приходит на эту почту при входе с нового устройства</span></li>
+          </ul>
+          <p class="dkro__note"><span>Сменить почту для входа можно только через администрацию комплекса: <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>.</span></p>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hPass">
+          <h2 class="dkpanel__h" id="hPass">Смена пароля</h2>
+          <div class="dlkmsg" data-pass-done hidden role="status"><b>Пароль изменён</b>На почту ушло уведомление, вход на других устройствах завершён.</div>
+          <form class="dform" data-pass-form novalidate>
+            <div class="fld">
+              <label class="fld__lab" for="ap0">Текущий пароль</label>
+              <span class="dpass"><input type="password" id="ap0" autocomplete="current-password" required data-current><button type="button" class="dpass__eye" aria-pressed="false" aria-label="Показать пароль"></button></span>
+              <span class="fld__err">Введите текущий пароль</span>
+            </div>
+            <div class="fld">
+              <label class="fld__lab" for="np1">Новый пароль</label>
+              <span class="dpass"><input type="password" id="np1" autocomplete="new-password" required data-rules aria-describedby="apRules"><button type="button" class="dpass__eye" aria-pressed="false" aria-label="Показать пароль"></button></span>
+              <ul class="dpwrules" id="apRules" aria-live="polite">
+                <li data-rule="len">Не короче 8 символов</li>
+                <li data-rule="let">Хотя бы одна буква</li>
+                <li data-rule="dig">Хотя бы одна цифра</li>
+              </ul>
+              <span class="fld__err">Пароль не подходит под условия выше</span>
+            </div>
+            <div class="fld">
+              <label class="fld__lab" for="np2">Повторите новый пароль</label>
+              <span class="dpass"><input type="password" id="np2" autocomplete="new-password" required data-match="np1"><button type="button" class="dpass__eye" aria-pressed="false" aria-label="Показать пароль"></button></span>
+              <span class="fld__err">Пароли не совпадают</span>
+            </div>
+            <button type="submit" class="dbtn dbtn--fill dkacc__btn">Сменить пароль</button>
+            <p class="dkpanel__hint">После смены на почту придёт уведомление, а вход на других устройствах завершится.</p>
+          </form>
+        </section>
+
+      </div>
+      <div class="dkacc__col">
+
+        <section class="dkpanel" aria-labelledby="hDev">
+          <div class="dkpanel__head">
+            <h2 class="dkpanel__h" id="hDev">Устройства</h2>
+            <button type="button" class="dprow__off" data-dev-all>Выйти на всех, кроме этого</button>
+          </div>
+          <ul class="dkdevs" data-devs>
+            <li class="dkdev is-this">
+              <span class="dkdev__ic dkdev__ic--pc" aria-hidden="true"></span>
+              <span class="dkdev__b"><span class="dkdev__n">Windows · Яндекс Браузер</span><span class="dkdev__m">Санкт-Петербург · сейчас</span></span>
+              <span class="dstatus dstatus--ok">Это устройство</span>
+            </li>
+            <li class="dkdev">
+              <span class="dkdev__ic dkdev__ic--phone" aria-hidden="true"></span>
+              <span class="dkdev__b"><span class="dkdev__n">iPhone · Safari</span><span class="dkdev__m">Санкт-Петербург · 14.09.2026, 11:20 · код не спрашивается до 14.10.2026</span></span>
+              <button type="button" class="dprow__off" data-dev-out>Выйти</button>
+            </li>
+            <li class="dkdev">
+              <span class="dkdev__ic dkdev__ic--pc" aria-hidden="true"></span>
+              <span class="dkdev__b"><span class="dkdev__n">macOS · Chrome</span><span class="dkdev__m">Санкт-Петербург · 02.09.2026, 18:05</span></span>
+              <button type="button" class="dprow__off" data-dev-out>Выйти</button>
+            </li>
+          </ul>
+          <p class="dkpanel__hint">Не узнаёте устройство? Выйдите на нём и смените пароль.</p>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hShops">
+          <h2 class="dkpanel__h" id="hShops">Ваши магазины</h2>
+          <ul class="dkro">
+            <li><span class="dkro__k">VLADART STUDIO</span><span class="dkro__v">Секция А10 · 1 этаж</span></li>
+            <li><span class="dkro__k">ФАКТУРА ДЕКОР</span><span class="dkro__v">Секция В22 · 2 этаж</span></li>
+          </ul>
+          <p class="dkro__note"><span>Один вход на все магазины, переключение — в меню слева. Новый магазин добавляет администрация: <a href="design-lk-request.html">подать заявку</a>.</span></p>
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="design-lk-side.js?v=10"></script>
+<script src="design-lk.js?v=29"></script>
+</body>
+</html>
