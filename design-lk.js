@@ -868,11 +868,16 @@
       wrap.className = 'dkpv__more' + (few ? ' is-few' : '');
       var rest = pitems.length - 3;
       wrap.innerHTML = '<button type="button" class="dkpv__morebtn" aria-expanded="false"><span class="dkpv__mdesk">ещё ' + rest + '</span><span class="dkpv__mmob">Все изменения</span></button><div class="dkpv__pop" hidden><p class="dkpv__popt">Все изменения · ' + pitems.length + '</p>' +
+        '<label class="dkpv__popcheck"><input type="checkbox" data-marks2' + (pvMarks.checked ? ' checked' : '') + '><span>Подсветить их на карточке</span></label>' +
         Object.keys(groups).map(function (k) {
           return '<div class="dkpv__popg"><p class="dkpv__popk">' + k + '</p>' + groups[k].map(function (a) { return '<a href="' + a.getAttribute('href') + '">' + a.textContent + '</a>'; }).join('') + '</div>';
         }).join('') + '</div>';
       plist.parentNode.appendChild(wrap);
       var mb = wrap.querySelector('button'), pop = wrap.querySelector('.dkpv__pop');
+      // галочка в списке (телефон) и в полосе (компьютер) — одна и та же настройка
+      var m2 = wrap.querySelector('[data-marks2]');
+      m2.addEventListener('change', function () { pvMarks.checked = m2.checked; pvMarks.dispatchEvent(new Event('change')); });
+      pvMarks.addEventListener('change', function () { m2.checked = pvMarks.checked; });
       mb.addEventListener('click', function () { var o = pop.hidden; pop.hidden = !o; wrap.classList.toggle('is-open', o); mb.setAttribute('aria-expanded', String(o)); });
       document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) { pop.hidden = true; wrap.classList.remove('is-open'); mb.setAttribute('aria-expanded', 'false'); } });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { pop.hidden = true; wrap.classList.remove('is-open'); } });

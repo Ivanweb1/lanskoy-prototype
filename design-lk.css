@@ -934,7 +934,12 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dkpv__mdesk{display:none}.dkpv__mmob{display:inline}
   .dkpv__morebtn{height:32px;padding:0 10px;border:1px solid rgba(196,154,108,.5);border-radius:2px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
   .dkpv__pop{left:0;right:0;width:auto}
-  .dkpv__tools{order:1}
+  .dkpv__tools{display:none}
   .dkpv__acts{order:2}
 }
+.dkpv__popcheck{display:none;align-items:center;gap:10px;margin:0 0 14px;padding:10px 12px;background:var(--b-cream-2);font-size:13px;color:var(--b-navy);cursor:pointer}
+.dkpv__popcheck input{-webkit-appearance:none;appearance:none;flex:none;width:16px;height:16px;margin:0;border:1px solid var(--s-line-strong);background:transparent no-repeat center/11px 11px;cursor:pointer}
+.dkpv__popcheck input:checked{background-color:var(--b-copper);border-color:var(--b-copper);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.2l2.6 2.6L10 3.4' fill='none' stroke='%23011427' stroke-width='1.6'/%3E%3C/svg%3E")}
 .dkpv__popt{margin-bottom:12px;font-family:var(--d-serif);font-weight:600;font-size:15px;color:var(--b-navy);font-variant-numeric:lining-nums}
+@media (max-width:760px){.dkpv__popcheck{display:flex}}
