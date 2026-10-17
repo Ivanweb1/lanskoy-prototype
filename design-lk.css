@@ -7,9 +7,9 @@
 
 body.dlk{padding-top:0}
 
-/* Кабинет — только светлая тема (решение Ивана 17.10): тема задаётся
-   в <head> страницы, переключатель в общей шапке на входе скрыт */
-.dlk-site .themetog-li{display:none}
+/* Тема (решение Ивана 17.10): вход и код — страницы сайта, с общей шапкой
+   и переключателем темы. Внутри кабинета шапки нет, тема только светлая —
+   её ставит <head> страниц кабинета. */
 
 /* ============ ЭКРАНЫ ВХОДА (вход, код, пароль, заявка) ============ */
 /* Полноширинный баннер: текстовая половина + кадр. Срез 13% со стороны
@@ -115,7 +115,7 @@ body.dlk{padding-top:0}
 
 /* Автозаполнение браузера красит поле в голубой (Chrome) — возвращаем
    фон и цвет текста сайта. Фон поля полупрозрачный, поэтому под тенью
-   берём сплошной кремовый. */
+   берём сплошной: кремовый в светлой теме, синий в тёмной. */
 .dform input:-webkit-autofill,
 .dform input:-webkit-autofill:hover,
 .dform input:-webkit-autofill:focus{
@@ -124,6 +124,11 @@ body.dlk{padding-top:0}
   transition:background-color 9999s 0s,border-color .2s;
 }
 .dform input:autofill{background:var(--s-field-bg)}
+[data-theme="dark"] .dform input:-webkit-autofill,
+[data-theme="dark"] .dform input:-webkit-autofill:hover,
+[data-theme="dark"] .dform input:-webkit-autofill:focus{
+  -webkit-box-shadow:0 0 0 1000px #0F2033 inset;box-shadow:0 0 0 1000px #0F2033 inset;
+}
 
 /* ============ КОД ПОДТВЕРЖДЕНИЯ ============ */
 .dlkauth__mail{font-weight:600;color:var(--s-fg)}
