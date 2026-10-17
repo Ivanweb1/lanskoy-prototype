@@ -219,11 +219,12 @@
   /* ---------- состояния экрана входа из адреса ----------
      ?out=1 — вышли из кабинета, ?err=1 — неверная почта или пароль */
   var q = new URLSearchParams(location.search);
-  [].forEach.call(document.querySelectorAll('[data-state]'), function (el) {
-    el.hidden = !q.get(el.getAttribute('data-state'));
-  });
-  [].forEach.call(document.querySelectorAll('[data-state-off]'), function (el) {
-    el.hidden = !!q.get(el.getAttribute('data-state-off'));
+  /* data-state="x" — виден только при ?x=1; data-state-off="x y" — скрыт при любом из них */
+  [].forEach.call(document.querySelectorAll('[data-state], [data-state-off]'), function (el) {
+    var on = el.getAttribute('data-state'), off = el.getAttribute('data-state-off');
+    var show = on ? !!q.get(on) : true;
+    if (off && off.split(' ').some(function (k) { return !!q.get(k); })) show = false;
+    el.hidden = !show;
   });
   // сколько попыток ввода кода осталось
   var att = document.querySelector('[data-attempts]');
@@ -234,6 +235,13 @@
     if (w && r) { w.hidden = true; r.hidden = false; }
   }
   if (q.get('sent')) showDone();
+  // новый арендатор — карточка пустая
+  if (q.get('empty')) {
+    [].forEach.call(document.querySelectorAll('[data-empty]'), function (s) {
+      s.className = 'dstatus dstatus--empty'; s.textContent = 'Не заполнено';
+    });
+    [].forEach.call(document.querySelectorAll('[data-empty-text]'), function (t) { t.textContent = t.getAttribute('data-empty-text'); });
+  }
   if (q.get('sent')) [].forEach.call(document.querySelectorAll('[data-sent="wait"]'), function (s) {
     s.className = 'dstatus dstatus--wait'; s.textContent = 'На проверке';
   });
