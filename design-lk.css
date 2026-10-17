@@ -44,6 +44,9 @@ body.dlk{padding-top:0}
 
 .dlkauth__media{position:relative;overflow:hidden;background:var(--s-bg-2);
   clip-path:polygon(13% 0,100% 0,100% 100%,0 100%)}
+/* вход — страница сайта: под общей шапкой, высота — экран минус шапка */
+.dlkauth--site{min-height:calc(100vh - var(--hdr-h,138px));min-height:calc(100svh - var(--hdr-h,138px))}
+.dlkauth--site .dlkauth__side{justify-content:center;gap:48px;padding:56px var(--pad)}
 .dlkauth__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* поля: пароль и почта — в общий вид полей .dform */
@@ -101,6 +104,7 @@ body.dlk{padding-top:0}
   .dlkauth{grid-template-columns:1fr}
   .dlkauth__media{display:none}
   .dlkauth__side{min-height:100vh;min-height:100svh}
+  .dlkauth--site .dlkauth__side{min-height:0;padding:40px var(--pad) 48px}
 }
 @media (max-width:560px){
   .dlkauth__side{padding:18px 20px 24px;gap:36px}

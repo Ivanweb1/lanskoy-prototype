@@ -20,20 +20,21 @@
     [].forEach.call(document.querySelectorAll('[data-photo-light]'), function (img) {
       img.src = theme === 'dark' ? img.getAttribute('data-photo-dark') : img.getAttribute('data-photo-light');
     });
-    var tog = document.getElementById('themeTog');
+    var tog = document.querySelector('.dlkauth__tools #themeTog');
     if (tog) {
       tog.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
       tog.setAttribute('aria-label', theme === 'dark' ? 'Светлая тема' : 'Тёмная тема');
     }
   }
 
-  var tog = document.getElementById('themeTog');
+  // под общей шапкой сайта темой управляет design.js — второй обработчик не вешаем
+  var tog = document.querySelector('.dlkauth__tools #themeTog');
   if (tog) tog.addEventListener('click', function () {
     var next = current() === 'dark' ? 'light' : 'dark';
     try { localStorage.setItem(KEY, next); } catch (e) {}
     apply(next);
   });
-  apply(current());
+  if (!document.getElementById('siteHeader')) apply(current());
 
   /* ---------- показать / скрыть пароль ---------- */
   document.addEventListener('click', function (e) {
