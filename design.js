@@ -780,7 +780,8 @@
     'lk-promo-new.html': 'design-lk-promo.html',
     'lk-log.html': 'design-lk-log.html',
     'lk-account.html': 'design-lk-account.html',
-    'lk-help.html': 'design-lk-help.html'
+    'lk-help.html': 'design-lk-help.html',
+    'lk-preview.html': 'design-lk-preview.html'
   };
   [].forEach.call(document.querySelectorAll('a[href]'), function (a) {
     var h = a.getAttribute('href');

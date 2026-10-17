@@ -809,6 +809,49 @@
     }, { rootMargin: '-20% 0px -70% 0px' });
     document.querySelectorAll('.dhelp__sec').forEach(function (sec) { io.observe(sec); });
   }
+  /* ---------- предпросмотр карточки: настоящая страница магазина в рамке ----------
+     Внутри — design-shop.html: светлая тема, ссылки не уводят, изменённые
+     места обведены медной пунктирной рамкой с подписью */
+  var pvFrame = document.querySelector('[data-frame]');
+  if (pvFrame) {
+    var pvMarks = document.querySelector('[data-marks]'), pvHint = document.querySelector('[data-hint]'), pvT;
+    var hintPv = function () {
+      pvHint.textContent = 'В предпросмотре ссылки не открываются — это вид карточки, а не сайт';
+      pvHint.classList.add('is-on'); clearTimeout(pvT);
+      pvT = setTimeout(function () { pvHint.classList.remove('is-on'); }, 2600);
+    };
+    var MARKS = [
+      { sel: 'main a[href^="tel:"]', t: 'Телефон' },
+      { sel: '.dgallery', t: '3 новые фотографии' },
+      { block: 'Видео', t: '2 новых видео' },
+      { sel: '.dpromos', t: 'Новая акция' }
+    ];
+    var setupPv = function () {
+      var d = pvFrame.contentDocument; if (!d || !d.body) return;
+      d.documentElement.setAttribute('data-theme', 'light');
+      var st = d.createElement('style');
+      st.textContent = '.pv-on .pvmark{outline:2px dashed #C49A6C;outline-offset:6px;position:relative}' +
+        '.pv-on .pvmark::after{content:attr(data-pv);position:absolute;right:0;top:-30px;z-index:5;padding:4px 10px;background:#011427;color:#F6F4ED;font:600 10px/1.4 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}' +
+        '.cookie,#siteCookie{display:none!important}';
+      d.head.appendChild(st);
+      // данные черновика вместо опубликованных: телефон исправлен
+      d.querySelectorAll('a[href^="tel:"]').forEach(function (a) { if (!a.closest('.footer, .header, #siteFooter, #siteHeader')) { a.textContent = '+7 (812) 363-00-07'; a.href = 'tel:+78123630007'; } });
+      MARKS.forEach(function (m) {
+        var els = m.sel ? [].slice.call(d.querySelectorAll(m.sel)) : [].filter.call(d.querySelectorAll('.dblock'), function (b) { var h = b.querySelector('h2'); return h && h.textContent.trim() === m.block; });
+        els.forEach(function (el) { el.classList.add('pvmark'); el.setAttribute('data-pv', m.t); });
+      });
+      d.body.classList.toggle('pv-on', pvMarks.checked);
+      d.addEventListener('click', function (e) { if (e.target.closest('a, button[type=submit]')) { e.preventDefault(); hintPv(); } }, true);
+    };
+    pvFrame.addEventListener('load', setupPv);
+    pvMarks.addEventListener('change', function () { var d = pvFrame.contentDocument; if (d && d.body) d.body.classList.toggle('pv-on', pvMarks.checked); });
+    document.querySelectorAll('[data-device]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('[data-device]').forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+        document.querySelector('[data-stage]').classList.toggle('is-phone', b.getAttribute('data-device') === 'phone');
+      });
+    });
+  }
 })();
 
 /* ---------- выпадающие списки в стиле сайта (копия из design.js — он в кабинете не подключён) ----------
