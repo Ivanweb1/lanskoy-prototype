@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточка магазина — кабинет арендатора — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=30">
+<!-- кабинет — только светлая тема (решение Ивана 17.10) -->
+</head>
+<body class="dk">
+
+<div class="dk__shell">
+  <aside id="dkSide" data-lk="card"></aside>
+
+  <main id="main" tabindex="-1" class="dkmain dkmain--form">
+
+    <div class="dkhead">
+      <div>
+        <h1 class="dkhead__h1">Карточка магазина</h1>
+        <p class="dkhead__shop"><b>VLADART STUDIO</b><span>Секция А10 · 1 этаж</span></p>
+        <p class="dkhead__sub">Описание, контакты и режим работы. Всё, что вы здесь измените, попадёт на сайт после проверки администрацией.</p>
+      </div>
+      <div class="dkhead__acts"><span class="dstatus dstatus--stop">Отклонено 12.09</span></div>
+    </div>
+
+    <div class="dknote dknote--stop" role="status">
+      <p class="dknote__t">Правка отклонена — нужно исправить</p>
+      <blockquote class="dknote__q">«Телефон указан без кода города, добавьте +7 (812)».<cite>Контент-менеджер Ольга, 12.09.2026, 16:40</cite></blockquote>
+      <div class="dknote__acts"><a href="#phones" class="dlink">К полю с ошибкой</a></div>
+    </div>
+
+    <div class="dkform">
+      <form class="dform dkform__main" id="cardForm" data-card novalidate>
+
+        <section class="dkpanel" aria-labelledby="hAbout">
+          <h2 class="dkpanel__h" id="hAbout">О магазине</h2>
+          <label class="fld">
+            <span class="fld__lab">Описание</span>
+            <textarea name="about" rows="7" maxlength="1000">Салон декоративных покрытий и авторских настенных решений. В ассортименте — декоративная штукатурка, микроцемент, фрески и панно под индивидуальный размер, а также материалы для фактурных стен.
+
+Консультации по подбору покрытия под проект, расчёт расхода материала, выезд на объект и услуги мастеров-аппликаторов.</textarea>
+            <span class="fld__foot"><span class="fld__hint">Показывается в блоке «О магазине» на странице магазина</span><span class="fld__count" data-count><span>0</span> / 1000</span></span>
+          </label>
+        </section>
+
+        <section class="dkpanel" id="phones" aria-labelledby="hPhones">
+          <h2 class="dkpanel__h" id="hPhones">Телефоны</h2>
+          <div class="drep">
+            <div class="drep__row">
+              <label class="fld is-invalid">
+                <span class="fld__lab">Основной телефон</span>
+                <input type="tel" name="phone[]" value="363-00-07" data-phone aria-invalid="true">
+                <span class="fld__err">Добавьте код города: +7 (812) 363-00-07</span>
+              </label>
+              <button type="button" class="drep__del" aria-label="Убрать"></button>
+            </div>
+            <div class="drep__row">
+              <label class="fld">
+                <span class="fld__lab">Дополнительный телефон</span>
+                <input type="tel" name="phone[]" value="+7 (921) 000-00-00" data-phone>
+                <span class="fld__err">Номер целиком, с кодом: +7 (812) 000-00-00</span>
+              </label>
+              <button type="button" class="drep__del" aria-label="Убрать"></button>
+            </div>
+            <button type="button" class="drep__add" data-label="Дополнительный телефон">Добавить телефон</button>
+          </div>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hSite">
+          <h2 class="dkpanel__h" id="hSite">Сайт</h2>
+          <label class="fld">
+            <span class="fld__lab">Адрес сайта</span>
+            <input type="url" name="site" value="vladart.ru" placeholder="example.ru">
+          </label>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hMsg">
+          <h2 class="dkpanel__h" id="hMsg">Мессенджеры</h2>
+          <div class="drep">
+            <div class="drep__row drep__row--pair">
+              <span class="dform__sel"><select name="msg" aria-label="Мессенджер"><option selected>MAX</option></select></span>
+              <label class="fld"><span class="hp">Ссылка или номер</span><input type="text" name="msgv[]" value="max.ru/vladart" placeholder="Ссылка или номер"></label>
+              <button type="button" class="drep__del" aria-label="Убрать"></button>
+            </div>
+            <button type="button" class="drep__add">Добавить мессенджер</button>
+          </div>
+          <p class="dkpanel__hint">Пока доступен только MAX — список мессенджеров утверждается.</p>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hSoc">
+          <h2 class="dkpanel__h" id="hSoc">Соцсети</h2>
+          <div class="drep">
+            <div class="drep__row drep__row--pair">
+              <span class="dform__sel"><select name="soc" aria-label="Соцсеть"><option selected>ВКонтакте</option><option>Дзен</option><option>MAX</option><option>TenChat</option><option>VK Видео</option><option>RuTube</option><option>Pinterest</option><option>TikTok</option></select></span>
+              <label class="fld"><span class="hp">Ссылка</span><input type="url" name="socv[]" value="vk.com/vladart" placeholder="Ссылка на страницу"></label>
+              <button type="button" class="drep__del" aria-label="Убрать"></button>
+            </div>
+            <button type="button" class="drep__add">Добавить соцсеть</button>
+          </div>
+        </section>
+
+        <section class="dkpanel" aria-labelledby="hHours">
+          <div class="dkpanel__head">
+            <h2 class="dkpanel__h" id="hHours">Режим работы</h2>
+            <button type="button" class="dlink dhours__copy" data-copy-hours>Как в понедельник — на все дни</button>
+          </div>
+          <div class="dhours">
+            <div class="dhour">
+              <span class="dhour__d">Понедельник</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="10:00" aria-label="Понедельник, открытие">
+              <span class="dhour__dash" aria-hidden="true">—</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="20:00" aria-label="Понедельник, закрытие">
+              <label class="check dhour__off"><input type="checkbox"><span>Выходной</span></label>
+            </div>
+            <div class="dhour">
+              <span class="dhour__d">Вторник</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="10:00" aria-label="Вторник, открытие">
+              <span class="dhour__dash" aria-hidden="true">—</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="20:00" aria-label="Вторник, закрытие">
+              <label class="check dhour__off"><input type="checkbox"><span>Выходной</span></label>
+            </div>
+            <div class="dhour">
+              <span class="dhour__d">Среда</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="10:00" aria-label="Среда, открытие">
+              <span class="dhour__dash" aria-hidden="true">—</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="20:00" aria-label="Среда, закрытие">
+              <label class="check dhour__off"><input type="checkbox"><span>Выходной</span></label>
+            </div>
+            <div class="dhour">
+              <span class="dhour__d">Четверг</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="10:00" aria-label="Четверг, открытие">
+              <span class="dhour__dash" aria-hidden="true">—</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="20:00" aria-label="Четверг, закрытие">
+              <label class="check dhour__off"><input type="checkbox"><span>Выходной</span></label>
+            </div>
+            <div class="dhour">
+              <span class="dhour__d">Пятница</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="10:00" aria-label="Пятница, открытие">
+              <span class="dhour__dash" aria-hidden="true">—</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="20:00" aria-label="Пятница, закрытие">
+              <label class="check dhour__off"><input type="checkbox"><span>Выходной</span></label>
+            </div>
+            <div class="dhour">
+              <span class="dhour__d">Суббота</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="10:00" aria-label="Суббота, открытие">
+              <span class="dhour__dash" aria-hidden="true">—</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="20:00" aria-label="Суббота, закрытие">
+              <label class="check dhour__off"><input type="checkbox"><span>Выходной</span></label>
+            </div>
+            <div class="dhour is-off">
+              <span class="dhour__d">Воскресенье</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="" aria-label="Воскресенье, открытие" disabled>
+              <span class="dhour__dash" aria-hidden="true">—</span>
+              <input type="text" class="dhour__t" inputmode="numeric" maxlength="5" placeholder="10:00" value="" aria-label="Воскресенье, закрытие" disabled>
+              <label class="check dhour__off"><input type="checkbox" checked><span>Выходной</span></label>
+            </div>
+          </div>
+        </section>
+
+      </form>
+
+      <aside class="dkform__side">
+        <section class="dkpanel dkpanel--ro" aria-labelledby="hRo">
+          <h2 class="dkpanel__h" id="hRo">Данные от администрации</h2>
+          <ul class="dkro">
+            <li><span class="dkro__k">Название</span><span class="dkro__v">VLADART STUDIO</span></li>
+            <li><span class="dkro__k">Категории</span><span class="dkro__v">Декоративно-отделочные материалы · Декоративная штукатурка · Фрески</span></li>
+            <li><span class="dkro__k">Расположение</span><span class="dkro__v">Секция А10 · 1 этаж</span></li>
+            <li><span class="dkro__k">Бренды</span><span class="dkro__v dkro__v--empty">Пока не привязаны</span></li>
+          </ul>
+          <p class="dkro__note"><span>Эти поля меняет администрация. Нашли ошибку — напишите на <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>.</span></p>
+        </section>
+        <section class="dkpanel dkpanel--tip">
+          <h2 class="dkpanel__h">Как это попадёт на сайт</h2>
+          <p>Черновик сохраняется сам. «Отправить на проверку» отправляет все изменения карточки разом — описание, контакты, фото, видео и акции. До одобрения на сайте остаётся текущая версия.</p>
+          <a href="lk-preview.html" class="dlink">Предпросмотр карточки</a>
+        </section>
+      </aside>
+    </div>
+
+  </main>
+</div>
+
+<div class="dkbarbot" role="region" aria-label="Отправка на проверку">
+  <p class="dkbarbot__t" aria-live="polite"><span class="dkbarbot__dot" aria-hidden="true"></span><span data-saved>Черновик сохранён · 14:35</span></p>
+  <p class="dkbarbot__err" data-bar-err hidden role="alert">Сначала исправьте поле, отмеченное ошибкой</p>
+  <div class="dkbarbot__acts">
+    <a href="lk-preview.html" class="dbtn dbtn--ghost">Предпросмотр</a>
+    <button type="submit" form="cardForm" class="dbtn dbtn--fill">Отправить на проверку</button>
+  </div>
+</div>
+
+<script src="design-lk-side.js?v=5"></script>
+<script src="design-lk.js?v=16"></script>
+</body>
+</html>

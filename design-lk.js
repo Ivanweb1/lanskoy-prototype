@@ -28,6 +28,8 @@
     var ok = inp.required ? !!v : true;
     if (ok && inp.type === 'email') ok = EMAIL.test(v);
     if (ok && inp.hasAttribute('data-rules')) ok = rules(inp).every(Boolean);
+    // телефон: целиком, с кодом страны и города — 11 цифр, начиная с 7 или 8
+    if (ok && inp.hasAttribute('data-phone') && v) { var d = v.replace(/\D/g, ''); ok = d.length === 11 && /^[78]/.test(d); }
     if (ok && inp.hasAttribute('data-match')) ok = v === document.getElementById(inp.getAttribute('data-match')).value.trim();
     f.classList.toggle('is-invalid', !ok);
     aria(f, inp, ok);
@@ -68,7 +70,7 @@
     [].forEach.call(inp.closest('.fld').querySelectorAll('[data-rule]'), function (li, k) { li.classList.toggle('is-ok', ok[k]); });
   });
 
-  [].forEach.call(document.querySelectorAll('form[data-next]:not([data-code]), form[data-swap]'), function (form) {
+  [].forEach.call(document.querySelectorAll('form[data-next]:not([data-code]), form[data-swap], form[data-card]'), function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var bad = null;
@@ -80,7 +82,11 @@
         c.classList.toggle('is-invalid', !ok);
         if (!ok && !bad) bad = c;
       });
-      if (bad) { bad.querySelector('input').focus(); return; }
+      if (!bad) bad = form.querySelector('.dhour__t.is-bad') && form.querySelector('.dhour__t.is-bad').closest('.dhour');
+      var barErr = document.querySelector('[data-bar-err]');
+      if (barErr) barErr.hidden = !bad;
+      if (bad) { bad.scrollIntoView({ block: 'center' }); bad.querySelector('input').focus({ preventScroll: true }); return; }
+      if (form.hasAttribute('data-card')) { location.href = 'design-lk.html?sent=1'; return; }
       [].forEach.call(form.querySelectorAll('[data-echo]'), function (i) {
         var t = document.getElementById(i.getAttribute('data-echo'));
         if (t && i.value.trim()) t.textContent = i.value.trim();
@@ -124,6 +130,90 @@
       r.querySelector('.dreq__del').hidden = !many;
     });
   }
+
+  /* повторяющиеся строки (телефоны, мессенджеры, соцсети) */
+  document.addEventListener('click', function (e) {
+    var add = e.target.closest('.drep__add');
+    if (add) {
+      var rows = add.parentNode.querySelectorAll('.drep__row');
+      var row = rows[rows.length - 1].cloneNode(true);
+      row.querySelectorAll('input').forEach(function (i) { i.value = ''; i.removeAttribute('aria-invalid'); i.removeAttribute('aria-describedby'); });
+      row.querySelectorAll('.fld').forEach(function (f) { f.classList.remove('is-invalid'); });
+      var lab = row.querySelector('.fld__lab');
+      if (lab && add.getAttribute('data-label')) lab.textContent = add.getAttribute('data-label');
+      add.parentNode.insertBefore(row, add);
+      row.querySelector('input').focus();
+      saved();
+      return;
+    }
+    var del = e.target.closest('.drep__del');
+    if (del) {
+      var box = del.closest('.drep');
+      var all = box.querySelectorAll('.drep__row');
+      var r = del.closest('.drep__row');
+      if (all.length > 1) r.remove();
+      else r.querySelectorAll('input').forEach(function (i) { i.value = ''; });
+      saved();
+    }
+    // режим работы: как в понедельник — на все дни
+    if (e.target.closest('[data-copy-hours]')) {
+      var hs = document.querySelectorAll('.dhour');
+      var src = hs[0].querySelectorAll('input');
+      hs.forEach(function (h, k) {
+        if (!k) return;
+        var t = h.querySelectorAll('input');
+        t[0].value = src[0].value; t[1].value = src[1].value; t[2].checked = src[2].checked;
+        hour(h);
+      });
+      saved();
+    }
+  });
+
+  /* режим работы: «Выходной» гасит часы дня */
+  function hour(h) {
+    var off = h.querySelector('.dhour__off input').checked;
+    h.classList.toggle('is-off', off);
+    h.querySelectorAll('.dhour__t').forEach(function (t, k) { t.disabled = off; t.classList.remove('is-bad'); if (off) t.value = ''; else if (!t.value) t.value = k ? '20:00' : '10:00'; });
+  }
+  /* время: цифры сами получают двоеточие, неверное (25:00, 9:7) — красная рамка */
+  document.addEventListener('input', function (e) {
+    var t = e.target.closest('.dhour__t');
+    if (!t) return;
+    var d = t.value.replace(/\D/g, '').slice(0, 4);
+    t.value = d.length > 2 ? d.slice(0, 2) + ':' + d.slice(2) : d;
+  });
+  document.addEventListener('focusout', function (e) {
+    var t = e.target.closest && e.target.closest('.dhour__t');
+    if (t) t.classList.toggle('is-bad', !!t.value && !/^([01]\d|2[0-3]):[0-5]\d$/.test(t.value));
+  });
+  document.addEventListener('change', function (e) {
+    var h = e.target.closest('.dhour');
+    if (h && e.target.closest('.dhour__off')) hour(h);
+    if (e.target.closest('form[data-card]')) saved();
+  });
+
+  /* счётчик символов в описании */
+  [].forEach.call(document.querySelectorAll('[data-count]'), function (c) {
+    var ta = c.closest('.fld').querySelector('textarea');
+    var max = +ta.getAttribute('maxlength');
+    var upd = function () { c.firstChild.textContent = ta.value.length; c.classList.toggle('is-near', ta.value.length > max * 0.9); };
+    ta.addEventListener('input', upd); upd();
+  });
+
+  /* «Черновик сохранён · время» — имитация автосохранения */
+  var savedEl = document.querySelector('[data-saved]'), savedT;
+  function saved() {
+    if (!savedEl) return;
+    savedEl.textContent = 'Сохраняем черновик…';
+    clearTimeout(savedT);
+    savedT = setTimeout(function () {
+      var d = new Date();
+      savedEl.textContent = 'Черновик сохранён · ' + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+    }, 700);
+  }
+  document.addEventListener('input', function (e) {
+    if (e.target.closest('form[data-card]')) saved();
+  });
 
   // ошибка гаснет, как только человек начинает исправлять
   document.addEventListener('input', function (e) {
