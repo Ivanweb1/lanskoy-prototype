@@ -717,7 +717,6 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dprow__ask{max-width:none;grid-column:1/-1;justify-items:center;text-align:center}
   .dksect__head{flex-wrap:wrap;gap:6px 16px}
 }
-}
 
 
 /* ============ ФОРМА АКЦИИ ============ */
@@ -998,7 +997,7 @@ body.dk{padding-top:0;background:var(--s-bg)}
 
 /* нижнее меню на телефоне — основные разделы, остальное под «Ещё» */
 .dktab{display:none}
-.dkbar__shop{display:none}
+.dkme{display:none}
 @media (max-width:760px){
   body.has-tab{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
   .dktab{position:fixed;left:0;right:0;bottom:0;z-index:55;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
@@ -1020,23 +1019,45 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dktab__n{position:absolute;top:-3px;right:4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#B5483A;
     color:var(--b-cream);font-size:10px;font-weight:600;line-height:16px;text-align:center;box-shadow:0 0 0 2px #F6F4ED}
   .dkbar__btn{display:none}
-  .dkbar__shop{display:grid;justify-items:end;gap:2px;min-width:0;max-width:60%;padding:6px 22px 6px 0;border:0;background:none;
-    font:inherit;text-align:right;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
-  .dkbar__shop::after{content:"";position:absolute;right:2px;top:50%;width:7px;height:7px;margin-top:-6px;
-    border-right:1.5px solid var(--b-copper);border-bottom:1.5px solid var(--b-copper);transform:rotate(45deg)}
-  .dkbar__name{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-    font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--b-cream)}
-  .dkbar__place{font-size:11px;color:rgba(246,244,237,.66);white-space:nowrap}
-}
-@media (max-width:400px){
-  .dkbar{gap:12px}
-  .dkbar img{height:30px}
-  .dkbar__shop{max-width:62%}
-  .dkbar__name{letter-spacing:.04em}
   .dktab{transition:transform .3s var(--d-ease)}
   .dkbarbot{bottom:calc(64px + env(safe-area-inset-bottom,0px));transition:bottom .3s var(--d-ease)}
   body.tab-hidden .dktab{transform:translateY(100%)}
   body.tab-hidden .dkbarbot{bottom:0;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
   body.is-menu .dktab{transform:none}
   .dkpv__hint{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width:400px){
+  .dkbar img{height:32px}
+}
+
+/* телефон: круг магазина справа в верхней полосе и его выпадающий список */
+@media (max-width:760px){
+  .dkme{display:block;position:relative}
+  .dkme__btn{display:flex;padding:0;border:0;background:none;cursor:pointer;border-radius:50%;-webkit-tap-highlight-color:transparent}
+  .dkme__av{display:flex;align-items:center;justify-content:center;flex:none;width:40px;height:40px;border-radius:50%;
+    border:1px solid rgba(196,154,108,.6);background:rgba(196,154,108,.14);
+    font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--b-cream)}
+  .dkme__btn[aria-expanded="true"] .dkme__av{border-color:var(--b-copper);background:rgba(196,154,108,.3)}
+  .dkme__av--sm{width:32px;height:32px;font-size:11px;color:var(--b-navy);background:rgba(196,154,108,.2)}
+  .dkme__pop{position:absolute;right:0;top:calc(100% + 12px);z-index:70;width:min(300px,calc(100vw - 2 * var(--pad)));
+    display:grid;background:#FBFAF6;border:1px solid rgba(1,20,39,.1);box-shadow:0 16px 40px rgba(1,20,39,.22);color:var(--b-navy)}
+  .dkme__pop[hidden]{display:none}
+  .dkme__cur{display:grid;gap:4px;padding:16px 18px 12px}
+  .dkme__cur b{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;line-height:1.35}
+  .dkme__cur span,.dkme__acc span{font-size:12px;color:rgba(1,20,39,.6)}
+  .dkme__a{display:flex;align-items:baseline;gap:5px;padding:10px 18px;font-size:13px;color:var(--b-navy)}
+  .dkme__a:hover,.dkme__shop:hover{background:rgba(196,154,108,.12)}
+  .dkme__a--ext{padding-top:4px;color:var(--s-accent-ink,#8A6436)}
+  .dkme__a--ext::after{content:"";flex:none;width:8px;height:8px;background:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 8l6-6M3 2h5v5' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 8l6-6M3 2h5v5' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain}
+  .dkme__t{margin-top:6px;padding:12px 18px 6px;border-top:1px solid rgba(1,20,39,.08);
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(1,20,39,.5)}
+  .dkme__shop{display:flex;align-items:center;gap:12px;padding:8px 18px 10px}
+  .dkme__shop b{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .dkme__shop small{font-size:11px;color:rgba(1,20,39,.6)}
+  .dkme__acc{display:grid;margin-top:6px;padding-top:12px;border-top:1px solid rgba(1,20,39,.08)}
+  .dkme__acc span{display:grid;gap:2px;padding:0 18px 4px}
+  .dkme__acc span b{font-size:13px;font-weight:500;color:var(--b-navy);word-break:break-all}
+  .dkme__acc .dkme__a{padding-bottom:14px;color:#A03E31}
 }

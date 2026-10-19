@@ -11,6 +11,12 @@
   ];
   var cur = SHOPS[0];
 
+  // инициалы для круга: по первой букве двух первых слов (VLADART STUDIO → VS)
+  function initials(n) {
+    var w = n.replace(/[«»"']/g, '').split(/\s+/).filter(Boolean);
+    return (w[0].charAt(0) + (w[1] ? w[1].charAt(0) : w[0].charAt(1))).toUpperCase();
+  }
+
   var NAV = [
     { t: 'Магазин' },
     { key: 'overview', label: 'Дашборд', href: 'design-lk.html', ic: 'overview' },
@@ -86,8 +92,20 @@
   var bar = document.createElement('div');
   bar.className = 'dkbar';
   bar.innerHTML = '<a href="design-lk.html"><img src="logo-gold.png" alt="ТК «Ланской» — кабинет" width="116" height="36"></a>' +
-    '<button type="button" class="dkbar__shop" aria-controls="dkSide" aria-label="Магазин ' + cur.name + ', ' + cur.place + ' — сменить">' +
-      '<span class="dkbar__name">' + cur.name + '</span><span class="dkbar__place">' + cur.place + '</span></button>' +
+    '<div class="dkme">' +
+      '<button type="button" class="dkme__btn" aria-expanded="false" aria-controls="dkMe" aria-label="Магазин ' + cur.name + ' — меню">' +
+        '<span class="dkme__av" aria-hidden="true">' + initials(cur.name) + '</span></button>' +
+      '<div class="dkme__pop" id="dkMe" hidden>' +
+        '<div class="dkme__cur"><b>' + cur.name + '</b><span>' + cur.place + '</span></div>' +
+        '<a href="design-shop.html" class="dkme__a dkme__a--ext">Карточка на сайте</a>' +
+        (SHOPS.length > 1 ? '<p class="dkme__t">Другие магазины</p>' + SHOPS.filter(function (x) { return !x.current; }).map(function (x) {
+          return '<a href="design-lk.html" class="dkme__shop"><span class="dkme__av dkme__av--sm" aria-hidden="true">' + initials(x.name) + '</span>' +
+            '<span><b>' + x.name + '</b><small>' + x.place + '</small></span></a>';
+        }).join('') : '') +
+        '<div class="dkme__acc"><span>Вы вошли как<b>vladart@vladart.ru</b></span>' +
+        '<a href="design-lk-login.html?out=1" class="dkme__a">Выйти</a></div>' +
+      '</div>' +
+    '</div>' +
     '<button type="button" class="dkbar__btn" aria-expanded="false" aria-controls="dkSide">Меню</button>';
   document.body.insertBefore(bar, document.body.firstChild);
 
@@ -136,11 +154,16 @@
   }
 
   var btn = bar.querySelector('.dkbar__btn');
-  // плашка магазина в верхней полосе открывает меню сразу со списком магазинов
-  bar.querySelector('.dkbar__shop').addEventListener('click', function () {
-    s.querySelector('.dkshop').open = true;
-    toggle(true);
-  });
+  // круг магазина: выпадающий список с полным названием, другими магазинами и выходом
+  var me = bar.querySelector('.dkme__btn'), pop = bar.querySelector('.dkme__pop');
+  function meOpen(open) {
+    pop.hidden = !open;
+    me.setAttribute('aria-expanded', String(open));
+  }
+  me.addEventListener('click', function () { meOpen(pop.hidden); });
+  document.addEventListener('click', function (e) { if (!pop.hidden && !e.target.closest('.dkme')) meOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) { meOpen(false); me.focus(); } });
+
   function toggle(open) {
     document.body.classList.toggle('is-menu', open);
     btn.setAttribute('aria-expanded', String(open));
@@ -148,7 +171,7 @@
   }
   btn.addEventListener('click', function () { toggle(!document.body.classList.contains('is-menu')); });
   document.addEventListener('click', function (e) {
-    if (document.body.classList.contains('is-menu') && !e.target.closest('#dkSide, .dkbar__btn, .dkbar__shop, .dktab__more')) toggle(false);
+    if (document.body.classList.contains('is-menu') && !e.target.closest('#dkSide, .dkbar__btn, .dktab__more')) toggle(false);
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
 })();
