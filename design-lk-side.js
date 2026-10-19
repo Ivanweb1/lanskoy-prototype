@@ -86,8 +86,10 @@
     '<a href="design-shop.html" class="dkshop__site">Карточка на сайте</a>' +
     '<nav class="dknav" aria-label="Разделы кабинета">' + nav(s.getAttribute('data-lk') || '') + '</nav>' +
     '<div class="dkside__foot">' +
-      '<p class="dkside__who">Вы вошли как<b>vladart@vladart.ru</b></p>' +
-      '<a href="design-lk-login.html?out=1">Выйти</a>' +
+      '<a href="design-lk-account.html" class="dkside__who" title="Аккаунт и вход">' +
+        '<span class="dkside__uic" aria-hidden="true"><span class="dknav__ic" style="--ic:var(--ic-user)"></span></span>' +
+        '<span class="dkside__wt">Вы вошли как<b>vladart@vladart.ru</b></span></a>' +
+      '<a href="design-lk-login.html?out=1" class="dkside__out"><span class="dknav__ic" style="--ic:var(--ic-out)" aria-hidden="true"></span>Выйти</a>' +
     '</div>';
 
   /* журнал как уведомления: точка у иконки, пока последнее решение
