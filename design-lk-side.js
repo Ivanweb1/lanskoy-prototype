@@ -32,12 +32,14 @@
 
   function shop() {
     return '<details class="dkshop">' +
-      '<summary aria-label="Сменить магазин"><span class="dkshop__name">' + cur.name + '</span>' +
+      '<summary aria-label="Сменить магазин"><span class="dkav" aria-hidden="true">' + initials(cur.name) + '</span>' +
+      '<span class="dkshop__name">' + cur.name + '</span>' +
       '<span class="dkshop__place">' + cur.place + '</span></summary>' +
       '<div class="dkshop__list"><p class="dkshop__t">Ваши магазины</p>' +
       SHOPS.map(function (s) {
         return '<a href="design-lk.html" class="dkshop__i' + (s.current ? ' is-current' : '') + (s.ph ? ' is-ph' : '') + '">' +
-          s.name + '<small>' + s.place + '</small></a>';
+          '<span class="dkav dkav--sm" aria-hidden="true">' + initials(s.name) + '</span>' +
+          '<span>' + s.name + '<small>' + s.place + '</small></span></a>';
       }).join('') + '</div></details>';
   }
 
