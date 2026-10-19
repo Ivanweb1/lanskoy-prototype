@@ -997,7 +997,7 @@ body.dk{padding-top:0;background:var(--s-bg)}
 
 /* нижнее меню на телефоне — основные разделы, остальное под «Ещё» */
 .dktab{display:none}
-.dkme{display:none}
+.dkme,.dkbar__log{display:none}
 @media (max-width:760px){
   body.has-tab{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
   .dktab{position:fixed;left:0;right:0;bottom:0;z-index:55;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
@@ -1032,6 +1032,13 @@ body.dk{padding-top:0;background:var(--s-bg)}
 
 /* телефон: круг магазина справа в верхней полосе и его выпадающий список */
 @media (max-width:760px){
+  .dkbar{justify-content:flex-start}
+  .dkbar__log{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin-left:auto;border-radius:50%;
+    transition:background .2s;-webkit-tap-highlight-color:transparent}
+  .dkbar__log:hover{background:rgba(196,154,108,.14)}
+  .dkbar__log .dknav__ic{width:22px;height:22px;background:var(--b-cream)}
+  .dkbar__log.is-new::after{content:"";position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#D9574A;
+    box-shadow:0 0 0 2px #011427}
   .dkme{display:block;position:relative}
   .dkme__btn{display:flex;align-items:center;gap:8px;padding:4px 0 4px 4px;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .dkme__btn::after{content:"";flex:none;width:6px;height:6px;margin-top:-3px;border-right:1.5px solid var(--b-copper);border-bottom:1.5px solid var(--b-copper);

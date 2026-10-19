@@ -88,10 +88,21 @@
       '<a href="design-lk-login.html?out=1">Выйти</a>' +
     '</div>';
 
+  /* журнал как уведомления: точка у иконки, пока последнее решение
+     администрации не просмотрено; открыли журнал — точка гаснет */
+  var LAST_DECISION = '2026-09-12T16:40';
+  var logNew = false;
+  try {
+    if (s.getAttribute('data-lk') === 'log') localStorage.setItem('lkLogSeen', LAST_DECISION);
+    else logNew = !quiet && localStorage.getItem('lkLogSeen') !== LAST_DECISION;
+  } catch (e) { logNew = !quiet && s.getAttribute('data-lk') !== 'log'; }
+
   // верхняя полоса с меню — на телефоне
   var bar = document.createElement('div');
   bar.className = 'dkbar';
   bar.innerHTML = '<a href="design-lk.html"><img src="logo-gold.png" alt="ТК «Ланской» — кабинет" width="116" height="36"></a>' +
+    '<a href="design-lk-log.html" class="dkbar__log' + (logNew ? ' is-new' : '') + '" aria-label="Журнал изменений' + (logNew ? ' — есть новое решение администрации' : '') + '">' +
+      '<span class="dknav__ic" style="--ic:var(--ic-log)" aria-hidden="true"></span></a>' +
     '<div class="dkme">' +
       '<button type="button" class="dkme__btn" aria-expanded="false" aria-controls="dkMe" aria-label="Магазин ' + cur.name + ' — меню">' +
         '<span class="dkme__av" aria-hidden="true">' + initials(cur.name) + '</span></button>' +
