@@ -1033,11 +1033,11 @@ body.dk{padding-top:0;background:var(--s-bg)}
 /* телефон: круг магазина справа в верхней полосе и его выпадающий список */
 @media (max-width:760px){
   .dkbar{justify-content:flex-start}
-  .dkbar__log{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin-left:auto;border-radius:50%;
-    transition:background .2s;-webkit-tap-highlight-color:transparent}
-  .dkbar__log:hover{background:rgba(196,154,108,.14)}
-  .dkbar__log .dknav__ic{width:22px;height:22px;background:var(--b-cream)}
-  .dkbar__log.is-new::after{content:"";position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#D9574A;
+  .dkbar__log{position:relative;display:flex;align-items:center;justify-content:center;width:36px;height:36px;margin-left:auto;border-radius:50%;
+    border:1px solid rgba(246,244,237,.22);transition:background .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
+  .dkbar__log:hover{background:rgba(196,154,108,.14);border-color:rgba(196,154,108,.5)}
+  .dkbar__log .dknav__ic{width:18px;height:18px;background:var(--b-cream)}
+  .dkbar__log.is-new::after{content:"";position:absolute;top:3px;right:3px;width:8px;height:8px;border-radius:50%;background:#D9574A;
     box-shadow:0 0 0 2px #011427}
   .dkme{display:block;position:relative}
   .dkme__btn{display:flex;align-items:center;gap:8px;padding:4px 0 4px 4px;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
