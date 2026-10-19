@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Смена временного пароля — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=20">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body class="dlk-site">
+
+<div id="siteHeader" data-active=""></div>
+
+<main id="main" tabindex="-1">
+  <div class="dlkauth dlkauth--site">
+
+    <div class="dlkauth__side">
+      <div class="dlkauth__in">
+        <h1 class="dlkauth__h1">Придумайте<em>свой пароль</em></h1>
+        <p class="dlkauth__lead">Вы вошли по временному паролю, который прислал менеджер. Чтобы продолжить, замените его на свой.</p>
+
+        <form class="dform" data-next="lk.html" novalidate>
+          <div class="fld">
+            <label class="fld__lab" for="np1">Новый пароль</label>
+            <span class="dpass">
+              <input type="password" id="np1" name="new-password" autocomplete="new-password" required data-rules aria-describedby="npRules">
+              <button type="button" class="dpass__eye" aria-pressed="false" aria-label="Показать пароль"></button>
+            </span>
+            <ul class="dpwrules" id="npRules" aria-live="polite">
+              <li data-rule="len">Не короче 8 символов</li>
+              <li data-rule="let">Хотя бы одна буква</li>
+              <li data-rule="dig">Хотя бы одна цифра</li>
+            </ul>
+            <span class="fld__err">Пароль не подходит под условия выше</span>
+          </div>
+
+          <div class="fld">
+            <label class="fld__lab" for="np2">Повторите пароль</label>
+            <span class="dpass">
+              <input type="password" id="np2" name="new-password-2" autocomplete="new-password" required data-match="np1">
+              <button type="button" class="dpass__eye" aria-pressed="false" aria-label="Показать пароль"></button>
+            </span>
+            <span class="fld__err">Пароли не совпадают</span>
+          </div>
+
+          <button type="submit" class="dbtn dbtn--fill dbtn--full">Сохранить и войти</button>
+          <a href="design-lk-login.html?out=1" class="dlkauth__alt">Выйти</a>
+        </form>
+      </div>
+
+      <div class="dlkauth__bottom">
+        <p>Временный пароль после сохранения перестанет действовать. Если что-то пошло не так — напишите на <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a>.</p>
+      </div>
+    </div>
+
+    <div class="dlkauth__media" aria-hidden="true">
+      <img src="img/hero-light.webp" id="heroPhoto" alt="">
+    </div>
+  </div>
+</main>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=74"></script>
+<script src="design.js?v=146"></script>
+<script src="design-lk.js?v=10"></script>
+</body>
+</html>

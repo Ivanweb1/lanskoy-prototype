@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Восстановление пароля — ТК «Ланской»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic,latin">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="design.css?v=140">
+<link rel="stylesheet" href="design-pages.css?v=303">
+<link rel="stylesheet" href="design-lk.css?v=20">
+<script>(function(){var t;try{t=localStorage.getItem("lns-theme")}catch(e){}
+if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t);
+try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("js-rv")}catch(e){}})();</script>
+</head>
+<body class="dlk-site">
+
+<div id="siteHeader" data-active=""></div>
+
+<main id="main" tabindex="-1">
+  <div class="dlkauth dlkauth--site">
+
+    <div class="dlkauth__side">
+      <div class="dlkauth__in">
+
+        <div data-step="form">
+          <h1 class="dlkauth__h1">Восстановление<em>пароля</em></h1>
+          <p class="dlkauth__lead">Укажите почту, на которую выдан доступ в кабинет. Пришлём ссылку для смены пароля — она действует один час.</p>
+
+          <form class="dform" data-swap novalidate>
+            <label class="fld">
+              <span class="fld__lab">Почта</span>
+              <input type="email" name="email" autocomplete="username" placeholder="name@company.ru" required>
+              <span class="fld__err">Проверьте адрес</span>
+            </label>
+
+            <button type="submit" class="dbtn dbtn--fill dbtn--full">Прислать ссылку</button>
+            <a href="design-lk-login.html" class="dlkauth__alt">Войти по паролю</a>
+          </form>
+        </div>
+
+        <div data-step="done" hidden>
+          <h1 class="dlkauth__h1">Проверьте<em>почту</em></h1>
+          <p class="dlkauth__lead">Если такая почта заведена в кабинете, письмо со ссылкой для смены пароля уже отправлено. Ссылка действует один час.</p>
+
+          <p class="dotp__resend" aria-live="polite">
+            <span data-wait>Отправить письмо ещё раз можно через <b data-timer="59">00:59</b></span>
+            <button type="button" class="fld__aside" data-resend hidden>Отправить письмо ещё раз</button>
+          </p>
+
+          <a href="design-lk-newpass.html" class="dbtn dbtn--ghost dbtn--full">Открыть ссылку из письма</a>
+          <a href="design-lk-login.html" class="dlkauth__alt">Ко входу</a>
+        </div>
+
+      </div>
+
+      <div class="dlkauth__bottom">
+        <p>Почта не подходит или доступа к ней больше нет? Такие случаи решает только администрация — напишите на <a href="mailto:info@tk-lanskoy.ru">info@tk-lanskoy.ru</a> с рабочего адреса магазина или позвоните на <a href="tel:+78124585900">+7 (812) 458-59-00</a>.</p>
+        <p><a href="lk-help.html?guest=1#trouble">Что подготовить — в инструкции</a></p>
+      </div>
+    </div>
+
+    <div class="dlkauth__media" aria-hidden="true">
+      <img src="img/hero-light.webp" id="heroPhoto" alt="">
+    </div>
+  </div>
+</main>
+
+<div id="siteCookie"></div>
+
+<script src="partials.js?v=76"></script>
+<script src="app.js?v=74"></script>
+<script src="design.js?v=146"></script>
+<script src="design-lk.js?v=10"></script>
+</body>
+</html>
