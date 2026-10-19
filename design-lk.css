@@ -782,6 +782,10 @@ body.dk{padding-top:0;background:var(--s-bg)}
 }
 @media (max-width:640px){
   .dlogg{padding:20px 18px}
+  /* шапка отправки: статус сверху, дата одной строкой */
+  .dlogg__head{flex-direction:column-reverse;align-items:flex-start;gap:10px}
+  .dlogg__t{font-size:17px}
+  .dlogg__t span,.dlogg__m span{white-space:nowrap}
   .dlogf__f{width:100%}
   .dlogr{grid-template-columns:1fr}
   .dlogr__d{order:-1}
