@@ -1032,7 +1032,7 @@ body.dk{padding-top:0;background:var(--s-bg)}
 
 /* телефон: круг магазина справа в верхней полосе и его выпадающий список */
 @media (max-width:760px){
-  .dkbar{justify-content:flex-start}
+  .dkbar{justify-content:flex-start;gap:10px}
   .dkbar__log{position:relative;display:flex;align-items:center;justify-content:center;width:36px;height:36px;margin-left:auto;border-radius:50%;
     border:1px solid rgba(246,244,237,.22);transition:background .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
   .dkbar__log:hover{background:rgba(196,154,108,.14);border-color:rgba(196,154,108,.5)}
@@ -1040,13 +1040,14 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dkbar__log.is-new::after{content:"";position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:#D9574A;
     box-shadow:0 0 0 2px #011427}
   .dkme{display:block;position:relative}
-  .dkme__btn{display:flex;align-items:center;gap:8px;padding:4px 0 4px 4px;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .dkme__btn{display:flex;align-items:center;gap:8px;height:36px;padding:0 11px 0 2px;border:1px solid rgba(246,244,237,.22);border-radius:18px;
+    background:none;cursor:pointer;transition:background .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
+  .dkme__btn:hover,.dkme__btn[aria-expanded="true"]{background:rgba(196,154,108,.14);border-color:rgba(196,154,108,.5)}
   .dkme__btn::after{content:"";flex:none;width:6px;height:6px;margin-top:-3px;border-right:1.5px solid var(--b-copper);border-bottom:1.5px solid var(--b-copper);
     transform:rotate(45deg);transition:transform .2s}
   .dkme__btn[aria-expanded="true"]::after{margin-top:3px;transform:rotate(-135deg)}
-  .dkme__av{display:flex;align-items:center;justify-content:center;flex:none;width:36px;height:36px;border-radius:50%;
-    background:var(--b-copper);font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--b-navy);transition:opacity .2s}
-  .dkme__btn[aria-expanded="true"] .dkme__av{opacity:.85}
+  .dkme__av{display:flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;border-radius:50%;
+    background:var(--b-copper);font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--b-navy)}
   .dkme__av--sm{width:32px;height:32px;font-size:11px;color:var(--b-navy);background:rgba(196,154,108,.2)}
   .dkme__pop{position:absolute;right:0;top:calc(100% + 12px);z-index:70;width:min(300px,calc(100vw - 2 * var(--pad)));
     display:grid;background:#FBFAF6;border:1px solid rgba(1,20,39,.1);box-shadow:0 16px 40px rgba(1,20,39,.22);color:var(--b-navy)}
