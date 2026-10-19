@@ -1019,6 +1019,10 @@ body.dk{padding-top:0;background:var(--s-bg)}
   .dktab__n{position:absolute;top:-3px;right:4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#B5483A;
     color:var(--b-cream);font-size:10px;font-weight:600;line-height:16px;text-align:center;box-shadow:0 0 0 2px #F6F4ED}
   .dkbar__btn{display:none}
-  .dkbarbot{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .dktab{transition:transform .3s var(--d-ease)}
+  .dkbarbot{bottom:calc(64px + env(safe-area-inset-bottom,0px));transition:bottom .3s var(--d-ease)}
+  body.tab-hidden .dktab{transform:translateY(100%)}
+  body.tab-hidden .dkbarbot{bottom:0;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+  body.is-menu .dktab{transform:none}
   .dkpv__hint{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 }

@@ -115,6 +115,24 @@
   var more = tab.querySelector('.dktab__more');
   more.addEventListener('click', function () { toggle(!document.body.classList.contains('is-menu')); });
 
+  /* на страницах с панелью отправки меню уезжает при прокрутке вниз
+     и возвращается при прокрутке вверх — чтобы две панели не занимали пол-экрана */
+  if (document.querySelector('.dkbarbot')) {
+    var lastY = window.pageYOffset, ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var y = window.pageYOffset, d = y - lastY;
+        if (y < 80) document.body.classList.remove('tab-hidden');
+        else if (d > 8) document.body.classList.add('tab-hidden');
+        else if (d < -8) document.body.classList.remove('tab-hidden');
+        if (Math.abs(d) > 8 || y < 80) lastY = y;
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
   var btn = bar.querySelector('button');
   function toggle(open) {
     document.body.classList.toggle('is-menu', open);
