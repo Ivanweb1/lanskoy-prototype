@@ -75,10 +75,10 @@
     '<div class="dkside__top"><a href="design-lk.html" class="dkside__logo">' +
       '<img src="logo-gold.png" alt="ТК «Ланской» — кабинет арендатора" width="148" height="46"></a></div>' +
     shop() +
+    '<a href="design-shop.html" class="dkshop__site">Карточка на сайте</a>' +
     '<nav class="dknav" aria-label="Разделы кабинета">' + nav(s.getAttribute('data-lk') || '') + '</nav>' +
     '<div class="dkside__foot">' +
       '<p class="dkside__who">Вы вошли как<b>vladart@vladart.ru</b></p>' +
-      '<a href="design-shop.html">Карточка на сайте</a>' +
       '<a href="design-lk-login.html?out=1">Выйти</a>' +
     '</div>';
 
@@ -88,14 +88,42 @@
   bar.innerHTML = '<a href="design-lk.html"><img src="logo-gold.png" alt="ТК «Ланской» — кабинет" width="116" height="36"></a>' +
     '<button type="button" class="dkbar__btn" aria-expanded="false" aria-controls="dkSide">Меню</button>';
   document.body.insertBefore(bar, document.body.firstChild);
+
+  /* нижнее меню — на телефоне: основные разделы, остальное под «Ещё» */
+  var TABS = [
+    { key: 'overview', label: 'Дашборд' },
+    { key: 'card', label: 'Карточка' },
+    { key: 'photos', label: 'Фото' },
+    { key: 'promos', label: 'Акции' }
+  ];
+  var active = s.getAttribute('data-lk') || '';
+  var inTabs = TABS.some(function (t) { return t.key === active; });
+  var tab = document.createElement('nav');
+  tab.className = 'dktab';
+  tab.setAttribute('aria-label', 'Основные разделы');
+  tab.innerHTML = TABS.map(function (t) {
+    var i = NAV.filter(function (n) { return n.key === t.key; })[0], on = t.key === active;
+    return '<a href="' + i.href + '" class="dktab__i' + (on ? ' is-current' : '') + '"' + (on ? ' aria-current="page"' : '') + '>' +
+      '<span class="dktab__ic" aria-hidden="true"><span class="dknav__ic" style="--ic:var(--ic-' + i.ic + ')"></span>' +
+      (i.n && !quiet ? '<span class="dktab__n">' + i.n + '<span class="hp"> — нужно исправить</span></span>' : '') + '</span>' +
+      t.label + '</a>';
+  }).join('') +
+    '<button type="button" class="dktab__i dktab__more' + (inTabs ? '' : ' is-current') + '" aria-expanded="false" aria-controls="dkSide">' +
+    '<span class="dktab__ic" aria-hidden="true"><span class="dktab__burger"></span></span>Ещё</button>';
+  document.body.appendChild(tab);
+  document.body.classList.add('has-tab');
+  var more = tab.querySelector('.dktab__more');
+  more.addEventListener('click', function () { toggle(!document.body.classList.contains('is-menu')); });
+
   var btn = bar.querySelector('button');
   function toggle(open) {
     document.body.classList.toggle('is-menu', open);
     btn.setAttribute('aria-expanded', String(open));
+    more.setAttribute('aria-expanded', String(open));
   }
   btn.addEventListener('click', function () { toggle(!document.body.classList.contains('is-menu')); });
   document.addEventListener('click', function (e) {
-    if (document.body.classList.contains('is-menu') && !e.target.closest('#dkSide, .dkbar__btn')) toggle(false);
+    if (document.body.classList.contains('is-menu') && !e.target.closest('#dkSide, .dkbar__btn, .dktab__more')) toggle(false);
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
 })();

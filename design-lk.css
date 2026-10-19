@@ -268,6 +268,11 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .dkshop__i:hover{background:var(--s-plate)}
 .dkshop__i.is-current{color:var(--b-copper)}
 .dkshop__i.is-ph{opacity:.6}
+.dkshop__site{display:flex;align-items:center;gap:6px;align-self:flex-start;margin:-2px 16px 10px;padding:4px 13px;font-size:12px;color:var(--s-fg-soft);transition:color .2s}
+.dkshop__site::after{content:"";width:9px;height:9px;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 8l6-6M3 2h5v5' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 8l6-6M3 2h5v5' fill='none' stroke='%23000' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain}
+.dkshop__site:hover{color:var(--b-copper)}
 
 /* меню */
 .dknav{display:grid;align-content:start;gap:2px;padding:16px 12px;flex:1}
@@ -990,3 +995,30 @@ body.dk{padding-top:0;background:var(--s-bg)}
 .dkmore{display:flex;justify-content:center;margin-top:24px}
 .dkmain .dkmore .dbtn{min-width:280px;justify-content:center}
 @media (max-width:640px){.dkmain .dkmore .dbtn{width:100%;min-width:0}}
+
+/* нижнее меню на телефоне — основные разделы, остальное под «Ещё» */
+.dktab{display:none}
+@media (max-width:760px){
+  body.has-tab{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .dktab{position:fixed;left:0;right:0;bottom:0;z-index:55;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+    height:calc(64px + env(safe-area-inset-bottom,0px));padding:0 4px env(safe-area-inset-bottom,0px);
+    background:rgba(246,244,237,.97);border-top:1px solid rgba(1,20,39,.1);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .dktab__i{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;padding:0;border:0;background:none;
+    font:inherit;font-size:11px;font-weight:500;color:rgba(1,20,39,.55);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color .2s}
+  .dktab__i.is-current{color:var(--b-navy)}
+  .dktab__ic{position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:28px;border-radius:14px;transition:background .2s}
+  .dktab__ic .dknav__ic{width:20px;height:20px;background:rgba(1,20,39,.55)}
+  .dktab__i.is-current .dktab__ic{background:rgba(196,154,108,.2)}
+  .dktab__i.is-current .dknav__ic{background:var(--b-copper)}
+  .dktab__burger{width:18px;height:12px;background:
+    linear-gradient(currentColor,currentColor) 0 0/100% 1.5px no-repeat,
+    linear-gradient(currentColor,currentColor) 0 50%/100% 1.5px no-repeat,
+    linear-gradient(currentColor,currentColor) 0 100%/100% 1.5px no-repeat}
+  .dktab__i.is-current .dktab__burger{color:var(--b-copper)}
+  .dktab__n{position:absolute;top:-3px;right:4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#B5483A;
+    color:var(--b-cream);font-size:10px;font-weight:600;line-height:16px;text-align:center;box-shadow:0 0 0 2px #F6F4ED}
+  .dkbar__btn{display:none}
+  .dkbarbot{bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .dkpv__hint{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+}
