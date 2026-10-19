@@ -86,6 +86,8 @@
   var bar = document.createElement('div');
   bar.className = 'dkbar';
   bar.innerHTML = '<a href="design-lk.html"><img src="logo-gold.png" alt="ТК «Ланской» — кабинет" width="116" height="36"></a>' +
+    '<button type="button" class="dkbar__shop" aria-controls="dkSide" aria-label="Магазин ' + cur.name + ', ' + cur.place + ' — сменить">' +
+      '<span class="dkbar__name">' + cur.name + '</span><span class="dkbar__place">' + cur.place + '</span></button>' +
     '<button type="button" class="dkbar__btn" aria-expanded="false" aria-controls="dkSide">Меню</button>';
   document.body.insertBefore(bar, document.body.firstChild);
 
@@ -133,7 +135,12 @@
     }, { passive: true });
   }
 
-  var btn = bar.querySelector('button');
+  var btn = bar.querySelector('.dkbar__btn');
+  // плашка магазина в верхней полосе открывает меню сразу со списком магазинов
+  bar.querySelector('.dkbar__shop').addEventListener('click', function () {
+    s.querySelector('.dkshop').open = true;
+    toggle(true);
+  });
   function toggle(open) {
     document.body.classList.toggle('is-menu', open);
     btn.setAttribute('aria-expanded', String(open));
@@ -141,7 +148,7 @@
   }
   btn.addEventListener('click', function () { toggle(!document.body.classList.contains('is-menu')); });
   document.addEventListener('click', function (e) {
-    if (document.body.classList.contains('is-menu') && !e.target.closest('#dkSide, .dkbar__btn, .dktab__more')) toggle(false);
+    if (document.body.classList.contains('is-menu') && !e.target.closest('#dkSide, .dkbar__btn, .dkbar__shop, .dktab__more')) toggle(false);
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
 })();
