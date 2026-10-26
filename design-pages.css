@@ -547,6 +547,17 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .lightbox--vposter .lightbox__nav--prev,.lightbox--album .lightbox__nav--prev{left:calc(50% - 60px)}
   .lightbox--vposter .lightbox__nav--next,.lightbox--album .lightbox__nav--next{right:calc(50% - 60px)}
 }
+/* вертикальные снимки (img[data-full]) — кадр 3:4 по высоте окна;
+   на телефоне стрелки внизу, как у видео, — кадр во всю ширину */
+.lightbox--tall .lightbox__ph{aspect-ratio:3/4;height:min(calc(100vh - 150px),calc((100vw - 176px) * 4 / 3));width:auto;margin:0 auto;background-size:cover}
+@media (max-width:760px){
+  .lightbox--tall{padding:64px 16px 100px}
+  .lightbox--tall .lightbox__ph{height:min(calc(100vh - 200px),calc((100vw - 32px) * 4 / 3))}
+  .lightbox--tall .lightbox__nav{top:auto;bottom:24px;transform:none}
+  .lightbox--tall .lightbox__nav--prev{left:calc(50% - 60px)}
+  .lightbox--tall .lightbox__nav--next{right:calc(50% - 60px)}
+  .lightbox--tall .lightbox__counter{margin-top:14px}
+}
 /* лайтбокс альбома: под кадром подпись и счётчик «3 / 24», ниже лента
    миниатюр. Для видео и галерей без data-photos — прежний вид */
 .lightbox__bar{display:none}
@@ -2273,6 +2284,9 @@ a.dcontacts__v:hover{color:var(--s-accent-ink)}
   .dpromo--full .dpromo__main{min-width:0}
   .dpromo--full .dpromo__media{order:0;margin:0 calc(var(--pad) * -1);aspect-ratio:16/10;min-height:0;clip-path:none}
   .dpromo--full .dcrumbs{margin:22px 0 24px}
+  /* карточка магазина: кадр выше — снимок вертикальный, больше витрины */
+  .dpromo--full.dshophero .dpromo__media{aspect-ratio:1/1}
+  .dshophero .dpromo__media .jimg{object-position:50% 70%}
 }
 @media (max-width:600px){
   .dwhere-promo__acts{flex-direction:column;align-items:stretch}

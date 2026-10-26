@@ -837,7 +837,11 @@
     var tile = cur.querySelectorAll('.gallery__item')[n];
     var img = tile && tile.querySelector('img');
     var ok = img && img.naturalWidth;
-    lb.querySelector('.lightbox__ph').style.backgroundImage = ok ? 'url(' + JSON.stringify(img.currentSrc) + ')' : '';
+    /* data-full — исходный кадр без обрезки (вертикальный снимок с телефона):
+       в плитке он обрезан под 4:3, а в просмотре показываем целиком */
+    var full = ok && img.getAttribute('data-full');
+    lb.classList.toggle('lightbox--tall', !!full);
+    lb.querySelector('.lightbox__ph').style.backgroundImage = ok ? 'url(' + JSON.stringify(full || img.currentSrc) + ')' : '';
     lb.querySelector('.lightbox__label').style.display = ok ? 'none' : '';
   }
   var lb = document.querySelector('.lightbox');
