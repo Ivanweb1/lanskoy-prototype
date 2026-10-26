@@ -2760,9 +2760,9 @@ div.dway__row:hover .dway__arr::after{background:var(--b-copper)}
 /* галерея отчёта на телефоне: крупный кадр + 4 в сетке 2×2 — без
    одинокой плитки в последнем ряду; на четвёртой — «+2» */
 @media (max-width:760px){
-  .dgallery .dgal:nth-child(6){display:none}
+  .dgallery .dgal:nth-child(n+6){display:none}
   .dgallery .dgal:nth-child(5){position:relative}
-  .dgallery .dgal:nth-child(5)::after{content:"+1";position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;
+  .dgallery .dgal:nth-child(5)::after{content:var(--dgal-more,"+1");position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;
     background:rgba(1,20,39,.55);color:var(--b-cream);font-family:var(--d-sans);font-size:22px;font-weight:600;font-variant-numeric:lining-nums}
 }
 
